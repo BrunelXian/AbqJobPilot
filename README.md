@@ -1,12 +1,12 @@
 # abqjobpilot
 
-<h1 align="center">abqjobpilot</h1>
+<h1 align="center">Abaque Job Pilot</h1>
 
 <p align="center"><strong>Agent-friendly Abaqus INP queue runner and live monitor.</strong></p>
 <p align="center"><strong>Batch upload, sequential execution, safe interruption, real-time STA/log diagnostics, and resource-aware job control.</strong></p>
 
 <p align="center">
-  <a href="README_CN.md">中文 README</a>
+  <a href="README_CN.md">中文 README</a>A
 </p>
 
 [![Project Type](https://img.shields.io/badge/project-Abaqus%20job%20pilot-blue)](#)
