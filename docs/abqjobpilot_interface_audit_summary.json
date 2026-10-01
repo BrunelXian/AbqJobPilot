@@ -1,0 +1,139 @@
+{
+  "audit_date": "2026-06-24",
+  "project_path": "D:\\Projects\\abqjobpilot_dev",
+  "target_integrator": "D:\\Projects\\AbqPilot-v2",
+  "abqpilot_status": "PASS_ABQPILOT_V2_STAGE2_2_RESUME_SKIP_RERUN_CONTROL_READY",
+  "planned_stage": "Stage 2.3: abqjobpilot Preflight Integration",
+  "stage_a1_status": "ABQJOBPILOT_STAGE_A1_PUBLIC_PREFLIGHT_API_READY",
+  "stage_a2_status": "ABQJOBPILOT_STAGE_A2_QUEUE_ONLY_ENQUEUE_CONTRACT_READY",
+  "can_integrate_without_changes": true,
+  "has_cli_enqueue": true,
+  "has_gui_agent_enqueue": true,
+  "has_python_api": true,
+  "has_importable_functions": true,
+  "has_dry_run": true,
+  "has_enqueue_only_contract": true,
+  "queue_only_real_enqueue_supported": true,
+  "has_preflight_api": true,
+  "has_structured_status": true,
+  "has_stable_status_api": true,
+  "safe_preflight_possible": true,
+  "solver_submit_is_centralized": true,
+  "gui_required_for_current_agent_command": true,
+  "status_storage": {
+    "queue_json": "D:\\Projects\\abqjobpilot_dev\\runtime\\queue.json",
+    "live_status_json": "D:\\Projects\\abqjobpilot_dev\\runtime\\live_status.json",
+    "report_manifest_json": "D:\\Projects\\abqjobpilot_dev\\runtime\\reports\\manifest.json",
+    "per_job_reports_dir": "D:\\Projects\\abqjobpilot_dev\\runtime\\reports",
+    "abaqus_outputs_in_inp_work_dir": true
+  },
+  "entry_points": {
+    "gui": {
+      "path": "D:\\Projects\\abqjobpilot_dev\\run_gui.py",
+      "command": "cd D:\\Projects\\abqjobpilot_dev && python run_gui.py"
+    },
+    "python_import_root": "abqjobpilot",
+  "cli": {
+      "module": "abqjobpilot.api.cli",
+      "command": "python -m abqjobpilot.api.cli"
+    },
+    "package_console_scripts": []
+  },
+  "enqueue_interface": {
+    "internal_commands": [
+      "enqueue",
+      "enqueue-folder",
+      "list",
+      "help",
+      "clear"
+    ],
+    "python_function": "abqjobpilot.queue_store.add_inp_job_to_queue",
+    "enqueue_required_args": [
+      "--inp"
+    ],
+    "enqueue_optional_args": [
+      "--cpus",
+      "--gpus",
+      "--batch",
+      "--strategy",
+      "--job-name",
+      "--datacheck",
+      "--full-run",
+      "--notes"
+    ],
+    "validates_inp_existence": true,
+    "copies_inp_to_queue_or_run_dir": false,
+    "immediately_starts_abaqus": false,
+    "returns_structured_python_dict": true,
+    "returns_process_exit_codes": false,
+    "queue_only_contract": {
+      "method": "AbqJobPilotClient.enqueue(request, dry_run=False)",
+      "required_submission_modes": [
+        "preview_only",
+        "enqueue_only"
+      ],
+      "required_allow_solver_submit": false,
+      "queue_only": true,
+      "allowed_mutations": [
+        "runtime/queue.json"
+      ],
+      "solver_started": false,
+      "runner_started": false,
+      "gui_required": false,
+      "forbidden_mutations_detected": false
+    }
+  },
+  "status_capabilities": {
+    "queued": true,
+    "running": true,
+    "completed": true,
+    "failed": true,
+    "cancelled": true,
+    "locked": false,
+    "odb_missing": false,
+    "unknown_interrupted": true
+  },
+  "critical_blockers": [],
+  "remaining_limitations": [
+    "Public API intentionally does not submit Abaqus jobs.",
+    "Queue runner control is still GUI/internal only.",
+    "Schema migration/versioning for runtime JSON is not implemented yet."
+  ],
+  "recommended_next_stage": "AbqPilot-v2 may consume the A2 queue-only enqueue contract behind its approval gate.",
+  "recommended_contract": {
+    "client_class": "AbqJobPilotClient",
+    "methods": [
+      "preflight(request: JobRequest) -> JobPreflightResult",
+      "enqueue(request: JobRequest, dry_run: bool = True) -> JobSubmitResult",
+      "status(job_id: str) -> JobStatusResult",
+      "locate_outputs(job_id: str) -> JobOutputResult"
+    ],
+    "default_submission_mode": "preview_only",
+    "default_allow_solver_submit": false,
+    "queue_only_result_fields": [
+      "queue_only",
+      "queue_file_mutated",
+      "solver_started",
+      "runner_started",
+      "gui_required",
+      "allowed_mutations",
+      "forbidden_mutations_detected"
+    ]
+  },
+  "inspections_run": [
+    "dir",
+    "tree /F /A abqjobpilot",
+    "tree /F /A tests",
+    "rg interface keyword searches",
+    "CLI smoke: preflight --json",
+    "CLI smoke: enqueue --dry-run --json",
+    "CLI smoke: enqueue --enqueue-only --runtime-dir <temp> --json",
+    "python -m pytest -q"
+  ],
+  "tests": {
+    "command": "python -m pytest -q",
+    "result": "36 passed in 0.97s",
+    "abaqus_jobs_submitted": false
+  },
+  "final_verdict": "PASS_ABQJOBPILOT_STAGE_A2_QUEUE_ONLY_ENQUEUE_CONTRACT_READY"
+}

@@ -4,13 +4,17 @@ from __future__ import annotations
 
 import ctypes
 from ctypes import wintypes
+import logging
 import subprocess
 import tkinter as tk
+import time
+import zipfile
 from pathlib import Path
-from tkinter import filedialog, messagebox, scrolledtext, ttk
+from tkinter import filedialog, messagebox, scrolledtext, simpledialog, ttk
 
 from . import config
 from .command_console import AgentCommandConsole
+from .gui_table_state import queue_display_jobs, result_display_jobs, restore_iid, row_iid, selected_job_id
 from .queue_store import (
     add_folder_to_queue,
     add_inp_job_to_queue,
@@ -18,10 +22,18 @@ from .queue_store import (
     init_storage,
     load_queue,
     mark_job_skipped,
+    move_queued_job,
+    remove_queued_job,
+    remove_result_job,
+    requeue_result_job,
 )
+from .api import AbqJobPilotClient, JobRequest
+from .project import ProjectInfo, ProjectManager, export_project_archive, import_legacy_runtime, import_project_archive
+from .database import DatabaseFailure, ProjectHistoryRepository, sync_history_from_runtime
+from .status_codes import normalize_status
 from .runner_core import QueueRunner
 from .settings_store import load_settings, save_settings
-from .utils import format_bytes, open_folder, read_json, tail_text
+from .utils import format_bytes, now_iso, open_folder, read_json, tail_text, write_json
 
 
 QUEUE_COLUMNS = ("index", "status", "batch", "strategy", "job", "cpus", "gpus", "created", "inp")
@@ -44,12 +56,40 @@ COLORS = {
     "table_alt": "#f8fafc",
 }
 
+MENU_LABELS = {
+    "open_inp": ("Open INP", "打开 INP"),
+    "open_inp_folder": ("Open INP Folder", "打开 INP 文件夹"),
+    "copy_inp": ("Copy INP Path", "复制 INP 路径"),
+    "copy_name": ("Copy Job Name", "复制 Job 名称"),
+    "refresh": ("Refresh", "刷新"),
+    "preflight": ("Run Preflight", "运行预检"),
+    "output_folder": ("Locate Expected Output Folder", "打开预期输出文件夹"),
+    "top": ("Move to Top", "移到队首"),
+    "up": ("Move Up", "上移"),
+    "down": ("Move Down", "下移"),
+    "remove": ("Remove from Queue", "从队列移除"),
+    "work_folder": ("Open Working Folder", "打开工作文件夹"),
+    "odb_folder": ("Open ODB Folder", "打开 ODB 文件夹"),
+    "sta": ("Open STA", "打开 STA"),
+    "msg": ("Open MSG", "打开 MSG"),
+    "dat": ("Open DAT", "打开 DAT"),
+    "log": ("Open LOG", "打开 LOG"),
+    "copy_id": ("Copy Job ID", "复制 Job ID"),
+    "copy_odb": ("Copy ODB Path", "复制 ODB 路径"),
+    "refresh_status": ("Refresh Status", "刷新状态"),
+    "locate_outputs": ("Locate Outputs", "定位输出文件"),
+    "requeue": ("Requeue", "重新入队"),
+    "delete_result": ("Delete Result Record", "删除结果记录"),
+    "failure_summary": ("Show Failure Summary", "查看失败摘要"),
+    "run_history": ("View Run History", "查看运行历史"),
+}
+
 
 class BasicSettingsDialog(tk.Toplevel):
     def __init__(self, master, on_saved=None):
         super().__init__(master)
         self.title("Basic Settings")
-        self.geometry("520x300")
+        self.geometry("580x390")
         self.resizable(False, False)
         self.on_saved = on_saved
         settings = load_settings()
@@ -60,6 +100,8 @@ class BasicSettingsDialog(tk.Toplevel):
         self.gpus_var = tk.IntVar(value=settings["default_gpus"] if settings["default_gpus"] else 1)
         self.datacheck_var = tk.BooleanVar(value=settings["run_datacheck"])
         self.full_run_var = tk.BooleanVar(value=settings["run_full"])
+        self.auto_shutdown_var = tk.BooleanVar(value=settings["auto_shutdown_enabled"])
+        self.auto_shutdown_minutes_var = tk.IntVar(value=settings["auto_shutdown_idle_minutes"])
         self.apply_queued_var = tk.BooleanVar(value=True)
 
         self.columnconfigure(1, weight=1)
@@ -87,12 +129,22 @@ class BasicSettingsDialog(tk.Toplevel):
         ttk.Checkbutton(self, text="Run full analysis", variable=self.full_run_var).grid(row=4, column=0, columnspan=2, sticky="w", **pad)
         ttk.Checkbutton(
             self,
+            text="Auto shutdown after queue is done and system is idle",
+            variable=self.auto_shutdown_var,
+        ).grid(row=5, column=0, columnspan=3, sticky="w", **pad)
+        ttk.Label(self, text="Idle minutes before shutdown").grid(row=6, column=0, sticky="w", **pad)
+        ttk.Spinbox(self, from_=1, to=240, textvariable=self.auto_shutdown_minutes_var, width=8).grid(row=6, column=1, sticky="w", **pad)
+        ttk.Label(self, text="Default: 5 minutes. Windows shows a 60-second shutdown warning.").grid(
+            row=7, column=0, columnspan=3, sticky="w", **pad
+        )
+        ttk.Checkbutton(
+            self,
             text="Apply these values to existing QUEUED jobs",
             variable=self.apply_queued_var,
-        ).grid(row=5, column=0, columnspan=3, sticky="w", **pad)
+        ).grid(row=8, column=0, columnspan=3, sticky="w", **pad)
 
         button_frame = ttk.Frame(self)
-        button_frame.grid(row=6, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
+        button_frame.grid(row=9, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
         ttk.Button(button_frame, text="Save", command=self.save).grid(row=0, column=0, padx=(0, 8))
         ttk.Button(button_frame, text="Cancel", command=self.destroy).grid(row=0, column=1)
 
@@ -106,6 +158,8 @@ class BasicSettingsDialog(tk.Toplevel):
                     "default_gpus": int(self.gpus_var.get()) if self.use_gpu_var.get() else 0,
                     "run_datacheck": bool(self.datacheck_var.get()),
                     "run_full": bool(self.full_run_var.get()),
+                    "auto_shutdown_enabled": bool(self.auto_shutdown_var.get()),
+                    "auto_shutdown_idle_minutes": int(self.auto_shutdown_minutes_var.get()),
                 }
             )
         except (TypeError, ValueError) as exc:
@@ -132,7 +186,13 @@ class AbqJobPilotApp(tk.Tk):
         self._set_initial_geometry()
         self.configure(background=COLORS["bg"])
         self.job_by_id: dict[str, dict] = {}
+        self._rendered_rows: dict[str, list[tuple]] = {}
         self.runner = QueueRunner()
+        self.project_manager = ProjectManager()
+        self.project_name_var = tk.StringVar()
+        self.project_controls: dict[str, ttk.Button] = {}
+        self._agent_console: AgentCommandConsole | None = None
+        self._history_signature: tuple | None = None
         self.lang = "en"
         self.toolbar_buttons: dict[str, ttk.Button] = {}
         self.toolbar_button_labels: dict[str, tk.Label] = {}
@@ -143,6 +203,9 @@ class AbqJobPilotApp(tk.Tk):
         self.memory_percent_var = tk.StringVar(value="--")
         self.gpu_percent_var = tk.StringVar(value="--")
         self._last_cpu_times: tuple[int, int, int] | None = None
+        self._runner_was_running = False
+        self._queue_completed_monotonic: float | None = None
+        self._shutdown_requested = False
 
         self._configure_styles()
         self.columnconfigure(0, weight=1)
@@ -242,12 +305,186 @@ class AbqJobPilotApp(tk.Tk):
         self._make_primary_button(run, "start_queue", self.start_queue, 0)
         self._make_button(run, "stop_after_current", self.stop_after_current, 1)
         self._make_button(run, "skip_selected", self.skip_selected, 2)
-        self._make_button(run, "refresh", self.refresh_all, 3)
+        self._make_button(run, "clear_selected_result", self.clear_selected_result, 3)
+        self._make_button(run, "refresh", self.refresh_all, 4)
 
         self._make_button(right, "open_work_folder", self.open_selected_work_folder, 0)
         self._make_button(right, "language", self.toggle_language, 1)
         self._make_button(right, "help", self.show_help, 2)
         self._make_button(right, "exit", self.destroy, 3)
+
+        project_bar = ttk.Frame(toolbar)
+        project_bar.grid(row=1, column=0, columnspan=4, sticky="ew", pady=(7, 0))
+        ttk.Label(project_bar, textvariable=self.project_name_var, width=38).pack(side="left", padx=(0, 12))
+        for key, action in (("new", self.new_project), ("open", self.open_project_dialog),
+                            ("close", self.close_project), ("folder", self.open_project_folder),
+                            ("export", self.export_project_dialog), ("import", self.import_project_dialog),
+                            ("legacy", self.import_legacy_dialog)):
+            button = ttk.Button(project_bar, command=action)
+            button.pack(side="left", padx=(0, 5))
+            self.project_controls[key] = button
+        self.recent_menu = tk.Menu(self, tearoff=False)
+        self.recent_button = ttk.Menubutton(project_bar, menu=self.recent_menu)
+        self.recent_button.pack(side="left")
+        self.recent_menu.configure(postcommand=self._populate_recent_menu)
+        self._update_project_label()
+
+    def _update_project_label(self) -> None:
+        project = self.project_manager.current
+        prefix = "项目" if self.lang == "zh" else "Project"
+        name = project.name if project else ("无项目（默认运行目录）" if self.lang == "zh" else "No Project (default runtime)")
+        self.project_name_var.set(f"{prefix}: {name}")
+
+    def _can_switch_project(self) -> bool:
+        if self.runner.is_running():
+            messagebox.showwarning("Project", "A queue job is running. Switch projects after the runner stops.")
+            return False
+        if self._agent_console is not None and self._agent_console.winfo_exists():
+            messagebox.showwarning("Project", "Close Agent Command Console before switching projects.")
+            return False
+        return True
+
+    def _activate_project(self, project: ProjectInfo | None) -> None:
+        config.use_runtime_dir(project.runtime_dir if project else None)
+        self.project_manager.current = project
+        self._runner_was_running = False
+        self._queue_completed_monotonic = None
+        self._shutdown_requested = False
+        self.job_by_id.clear()
+        self._rendered_rows.clear()
+        self._history_signature = None
+        self.queue_tree.delete(*self.queue_tree.get_children())
+        self.results_tree.delete(*self.results_tree.get_children())
+        self._update_project_label()
+        self.refresh_all()
+
+    def open_project(self, root_dir: str | Path) -> None:
+        if not self._can_switch_project():
+            return
+        project = self.project_manager.open_project(root_dir)
+        self._activate_project(project)
+
+    def close_project(self) -> None:
+        if self.project_manager.current is None or not self._can_switch_project():
+            return
+        self._activate_project(None)
+
+    def _new_project_destination(self, title: str) -> tuple[Path, str] | None:
+        parent = filedialog.askdirectory(parent=self, title=title)
+        if not parent:
+            return None
+        name = simpledialog.askstring("Project", "New project folder and name:", parent=self)
+        if not name:
+            return None
+        name = name.strip()
+        if not name or name in {".", ".."} or Path(name).name != name or any(char in name for char in '<>:"/\\|?*'):
+            raise ValueError("Enter a single valid folder name")
+        return Path(parent) / name, name
+
+    def new_project(self) -> None:
+        if not self._can_switch_project():
+            return
+        try:
+            destination = self._new_project_destination("Select a parent folder for the new Project")
+            if destination is None:
+                return
+            root, name = destination
+            self.project_manager.create_project(root, name)
+            self.open_project(root)
+        except (OSError, ValueError) as exc:
+            messagebox.showerror("New Project", str(exc))
+
+    def open_project_dialog(self) -> None:
+        if not self._can_switch_project():
+            return
+        root = filedialog.askdirectory(parent=self, title="Select a Project folder containing project.json")
+        if root:
+            try:
+                self.open_project(root)
+            except (OSError, ValueError) as exc:
+                messagebox.showerror("Open Project", str(exc))
+
+    def _populate_recent_menu(self) -> None:
+        self.recent_menu.delete(0, "end")
+        entries = self.project_manager.recent_projects()
+        if not entries:
+            self.recent_menu.add_command(label="No recent projects", state="disabled")
+        for item in entries:
+            self.recent_menu.add_command(
+                label=f"{item.get('name', '')}  ({item['path']})",
+                command=lambda path=item["path"]: self._open_recent(path),
+            )
+
+    def _open_recent(self, path: str) -> None:
+        try:
+            self.open_project(path)
+        except (OSError, ValueError) as exc:
+            messagebox.showerror("Recent Project", str(exc))
+
+    def open_project_folder(self) -> None:
+        project = self.project_manager.current
+        if project:
+            open_folder(project.root)
+
+    def export_project_dialog(self) -> None:
+        project = self.project_manager.current
+        if project is None:
+            messagebox.showwarning("Export Project", "Open a Project first.")
+            return
+        choice = messagebox.askyesnocancel(
+            "Export Project",
+            "Metadata Archive is the default and contains Project metadata/history only.\n\n"
+            "Include every file physically inside this Project? This may include large ODB files. "
+            "Files referenced outside the Project are never copied.\n\n"
+            "Yes: Archive with Project-Owned Files     No: Metadata Archive     Cancel: Stop",
+            default="no",
+        )
+        if choice is None:
+            return
+        mode = "full" if choice else "metadata"
+        destination = filedialog.asksaveasfilename(
+            parent=self, title="Export Project", defaultextension=".abqjobpilot-project.zip",
+            initialfile=f"{project.name}.abqjobpilot-project.zip",
+            filetypes=[("AbqJobPilot Project", "*.zip")],
+        )
+        if destination:
+            try:
+                export_project_archive(project.root, destination, mode=mode)
+                label = "Archive with Project-Owned Files" if mode == "full" else "Metadata Archive"
+                messagebox.showinfo("Export Project", f"{label} saved:\n{destination}")
+            except (OSError, ValueError, DatabaseFailure) as exc:
+                messagebox.showerror("Export Project", str(exc))
+
+    def import_project_dialog(self) -> None:
+        if not self._can_switch_project():
+            return
+        archive = filedialog.askopenfilename(parent=self, title="Import Project Archive",
+                                             filetypes=[("AbqJobPilot Project", "*.zip")])
+        if not archive:
+            return
+        try:
+            destination = self._new_project_destination("Select a parent folder for the imported Project")
+            if destination is None:
+                return
+            project = import_project_archive(archive, destination[0])
+            self.open_project(project.root)
+        except (OSError, ValueError, DatabaseFailure, zipfile.BadZipFile) as exc:
+            messagebox.showerror("Import Project", str(exc))
+
+    def import_legacy_dialog(self) -> None:
+        if not self._can_switch_project():
+            return
+        source = filedialog.askdirectory(parent=self, title="Select a legacy runtime folder")
+        if not source:
+            return
+        try:
+            destination = self._new_project_destination("Select a parent folder for the imported Project")
+            if destination is None:
+                return
+            project = import_legacy_runtime(source, destination[0], destination[1])
+            self.open_project(project.root)
+        except (OSError, ValueError, DatabaseFailure) as exc:
+            messagebox.showerror("Import Legacy Runtime", str(exc))
 
     def _make_button(self, parent: ttk.Frame, key: str, command, column: int) -> None:
         button = ttk.Button(parent, command=command)
@@ -304,6 +541,8 @@ class AbqJobPilotApp(tk.Tk):
         self._configure_status_tags(self.queue_tree)
         self.queue_tree.grid(row=0, column=0, sticky="nsew")
         self._attach_scrollbars(frame, self.queue_tree)
+        self.queue_tree.bind("<Button-3>", self._show_queue_menu)
+        self.queue_tree.bind("<<TreeviewSelect>>", lambda _event: self._on_table_select(self.queue_tree, self.results_tree))
 
     def _build_results_area(self, parent: ttk.Frame) -> None:
         frame = ttk.LabelFrame(parent, text="Results", padding=8)
@@ -317,6 +556,8 @@ class AbqJobPilotApp(tk.Tk):
         self._configure_status_tags(self.results_tree)
         self.results_tree.grid(row=0, column=0, sticky="nsew")
         self._attach_scrollbars(frame, self.results_tree)
+        self.results_tree.bind("<Button-3>", self._show_results_menu)
+        self.results_tree.bind("<<TreeviewSelect>>", lambda _event: self._on_table_select(self.results_tree, self.queue_tree))
 
     def _build_log_area(self, parent: ttk.Frame) -> None:
         frame = ttk.LabelFrame(parent, text="Logs", padding=8)
@@ -401,15 +642,16 @@ class AbqJobPilotApp(tk.Tk):
 
     def _status_tag(self, status: str) -> str:
         upper = status.upper()
-        if upper in {"DATACHECK_RUNNING", "FULL_RUNNING"}:
+        public_status = normalize_status(upper)
+        if public_status in {"DATACHECK", "RUNNING"}:
             return "running"
         if upper in {"COMPLETED_OK", "DATACHECK_OK"}:
             return "success"
         if upper == "COMPLETED_WITH_WARNINGS":
             return "warning"
-        if upper.startswith("FAILED") or upper == "DATACHECK_FAILED" or upper == "UNKNOWN_INTERRUPTED":
+        if public_status == "FAILED" or upper == "UNKNOWN_INTERRUPTED":
             return "failed"
-        if upper in {"SKIPPED", "CANCELLED"}:
+        if public_status in {"CANCELLED", "SKIPPED"}:
             return "skipped"
         return "queued"
 
@@ -421,6 +663,7 @@ class AbqJobPilotApp(tk.Tk):
         x_scroll.grid(row=1, column=0, sticky="ew")
 
     def refresh_all(self) -> None:
+        self._sync_project_history_if_changed()
         jobs = load_queue()
         self.job_by_id = {job["queue_id"]: job for job in jobs if job.get("queue_id")}
         self._refresh_status()
@@ -430,8 +673,32 @@ class AbqJobPilotApp(tk.Tk):
         self._refresh_resource_usage()
         self._apply_language()
 
+    def _sync_project_history_if_changed(self) -> None:
+        project = self.project_manager.current
+        if project is None:
+            return
+        queue_file = project.runtime_dir / "queue.json"
+        reports = project.runtime_dir / "reports"
+        try:
+            queue_stat = queue_file.stat()
+            report_stat = reports.stat() if reports.exists() else None
+            signature = (queue_stat.st_mtime_ns, queue_stat.st_size,
+                         report_stat.st_mtime_ns if report_stat else None)
+        except OSError as exc:
+            logging.warning("Project history source unavailable: %s", exc)
+            return
+        if signature == self._history_signature:
+            return
+        try:
+            sync_history_from_runtime(project.root)
+        except (OSError, ValueError, DatabaseFailure) as exc:
+            logging.warning("Project history synchronization failed; runtime JSON remains active: %s", exc)
+        else:
+            self._history_signature = signature
+
     def _poll_refresh(self) -> None:
         self.refresh_all()
+        self._check_auto_shutdown_after_queue()
         self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
 
     def _refresh_status(self) -> None:
@@ -453,15 +720,12 @@ class AbqJobPilotApp(tk.Tk):
         self._update_status_light(str(values["phase"]))
 
     def _refresh_queue(self, jobs: list[dict]) -> None:
-        self.queue_tree.delete(*self.queue_tree.get_children())
-        active = [job for job in jobs if job.get("status") in config.ACTIVE_STATUSES]
+        active = queue_display_jobs(jobs)
+        rows = []
         for index, job in enumerate(active, start=1):
-            self.queue_tree.insert(
-                "",
-                "end",
-                iid=job["queue_id"],
-                tags=(self._status_tag(job.get("status", "")),),
-                values=(
+            rows.append((
+                row_iid(job),
+                (
                     index,
                     job.get("status", ""),
                     job.get("batch_name", ""),
@@ -472,18 +736,17 @@ class AbqJobPilotApp(tk.Tk):
                     job.get("created_at", ""),
                     job.get("inp_path", ""),
                 ),
-            )
+                self._status_tag(job.get("status", "")),
+            ))
+        self._render_tree(self.queue_tree, "queue", rows, active)
 
     def _refresh_results(self, jobs: list[dict]) -> None:
-        self.results_tree.delete(*self.results_tree.get_children())
-        results = [job for job in jobs if job.get("status") in config.RESULT_STATUSES]
+        results = result_display_jobs(jobs)
+        rows = []
         for job in results:
-            self.results_tree.insert(
-                "",
-                "end",
-                iid=f"result_{job['queue_id']}",
-                tags=(self._status_tag(job.get("status", "")),),
-                values=(
+            rows.append((
+                row_iid(job, results=True),
+                (
                     job.get("status", ""),
                     job.get("batch_name", ""),
                     job.get("strategy_name", ""),
@@ -495,7 +758,265 @@ class AbqJobPilotApp(tk.Tk):
                     job.get("warning_count", ""),
                     job.get("fatal_reason", ""),
                 ),
+                self._status_tag(job.get("status", "")),
+            ))
+        self._render_tree(self.results_tree, "results", rows, results)
+
+    def _render_tree(self, tree: ttk.Treeview, key: str, rows: list[tuple], jobs: list[dict]) -> None:
+        if rows == self._rendered_rows.get(key):
+            return
+        current = tree.selection()
+        selected_id = selected_job_id(current[0] if current else None, results=key == "results")
+        y_start = tree.yview()[0]
+        x_start = tree.xview()[0]
+        tree.delete(*tree.get_children())
+        for iid, values, tag in rows:
+            tree.insert("", "end", iid=iid, values=values, tags=(tag,))
+        selected_iid = restore_iid(selected_id, jobs, results=key == "results")
+        if selected_iid:
+            tree.selection_set(selected_iid)
+            tree.focus(selected_iid)
+        tree.yview_moveto(y_start)
+        tree.xview_moveto(x_start)
+        self._rendered_rows[key] = rows
+
+    def _on_table_select(self, selected_tree: ttk.Treeview, other_tree: ttk.Treeview) -> None:
+        if selected_tree.selection() and other_tree.selection():
+            other_tree.selection_remove(*other_tree.selection())
+
+    def _menu_label(self, key: str) -> str:
+        return MENU_LABELS[key][1 if self.lang == "zh" else 0]
+
+    def _menu_item(self, menu: tk.Menu, key: str, callback, enabled: bool = True) -> None:
+        menu.add_command(label=self._menu_label(key), command=callback, state="normal" if enabled else "disabled")
+
+    def _show_queue_menu(self, event) -> None:
+        iid = self.queue_tree.identify_row(event.y)
+        self.queue_tree.selection_set(iid if iid else ())
+        job_id = selected_job_id(iid)
+        job = self.job_by_id.get(job_id) if job_id else None
+        active = queue_display_jobs(load_queue())
+        index = next((index for index, item in enumerate(active) if item.get("queue_id") == job_id), -1)
+        editable = bool(job and job.get("status") == "QUEUED" and self._queue_mutations_allowed(active))
+        menu = tk.Menu(self, tearoff=False)
+        for key in ("open_inp", "open_inp_folder", "copy_inp", "copy_name"):
+            self._menu_item(menu, key, lambda action=key: self._queue_context_action(action, job_id), bool(job))
+        menu.add_separator()
+        self._menu_item(menu, "refresh", self.refresh_all)
+        self._menu_item(menu, "preflight", lambda: self._queue_context_action("preflight", job_id), bool(job))
+        self._menu_item(menu, "output_folder", lambda: self._queue_context_action("output_folder", job_id), bool(job))
+        menu.add_separator()
+        for key, enabled in (("top", index > 0), ("up", index > 0), ("down", 0 <= index < len(active) - 1)):
+            self._menu_item(menu, key, lambda action=key: self._queue_context_action(action, job_id), editable and enabled)
+        self._menu_item(menu, "remove", lambda: self._queue_context_action("remove", job_id), editable)
+        self._post_menu(menu, event)
+
+    def _show_results_menu(self, event) -> None:
+        iid = self.results_tree.identify_row(event.y)
+        self.results_tree.selection_set(iid if iid else ())
+        job_id = selected_job_id(iid, results=True)
+        job = self.job_by_id.get(job_id) if job_id else None
+        mutable = bool(job and self._queue_mutations_allowed(queue_display_jobs(load_queue())))
+        menu = tk.Menu(self, tearoff=False)
+        for key, field in (("work_folder", "work_dir"), ("odb_folder", "odb_path"),
+                           ("sta", "sta_path"), ("msg", "msg_path"), ("dat", "dat_path"), ("log", "log_path")):
+            path = job.get(field) if job else None
+            target = Path(path).parent if path and key == "odb_folder" else Path(path) if path else None
+            self._menu_item(menu, key, lambda action=key: self._results_context_action(action, job_id), bool(target and target.exists()))
+        menu.add_separator()
+        for key, field in (("copy_id", "queue_id"), ("copy_name", "job_name"),
+                           ("copy_inp", "inp_path"), ("copy_odb", "odb_path")):
+            self._menu_item(menu, key, lambda action=key: self._results_context_action(action, job_id), bool(job and job.get(field)))
+        menu.add_separator()
+        self._menu_item(menu, "refresh_status", lambda: self._results_context_action("refresh_status", job_id), bool(job))
+        self._menu_item(menu, "locate_outputs", lambda: self._results_context_action("locate_outputs", job_id), bool(job))
+        self._menu_item(menu, "failure_summary", lambda: self._results_context_action("failure_summary", job_id),
+                        bool(job and (str(job.get("status", "")).startswith(("FAILED", "DATACHECK_FAILED")))))
+        self._menu_item(menu, "run_history", lambda: self._results_context_action("run_history", job_id),
+                        bool(job and self.project_manager.current))
+        menu.add_separator()
+        self._menu_item(menu, "requeue", lambda: self._results_context_action("requeue", job_id), mutable)
+        self._menu_item(menu, "delete_result", lambda: self.clear_selected_result(job_id), mutable)
+        self._post_menu(menu, event)
+
+    def _post_menu(self, menu: tk.Menu, event) -> None:
+        try:
+            menu.tk_popup(event.x_root, event.y_root)
+        finally:
+            menu.grab_release()
+
+    def _queue_mutations_allowed(self, active: list[dict]) -> bool:
+        return not self.runner.is_running() and not any(
+            job.get("status") in {"DATACHECK_RUNNING", "FULL_RUNNING"} for job in active
+        )
+
+    def _current_job(self, job_id: str | None) -> dict | None:
+        if not job_id:
+            return None
+        return next((job for job in load_queue() if job.get("queue_id") == job_id), None)
+
+    def _copy_text(self, value: str) -> None:
+        self.clipboard_clear()
+        self.clipboard_append(str(value))
+
+    def _open_job_folder(self, folder: str | None) -> None:
+        if not folder or not Path(folder).is_dir():
+            messagebox.showerror("Open Folder", f"Folder does not exist:\n{folder or ''}")
+            return
+        open_folder(folder)
+
+    def _open_job_text(self, path: str | None) -> None:
+        if not path or not Path(path).is_file():
+            messagebox.showerror("Open File", f"File does not exist:\n{path or ''}")
+            return
+        try:
+            subprocess.Popen(["notepad.exe", str(path)])
+        except OSError as exc:
+            messagebox.showerror("Open File", str(exc))
+
+    def _queue_context_action(self, action: str, job_id: str | None) -> None:
+        job = self._current_job(job_id)
+        if not job:
+            messagebox.showwarning("Queue", "Selected job is no longer in the queue.")
+            self.refresh_all()
+            return
+        if action == "open_inp":
+            self._open_job_text(job.get("inp_path"))
+        elif action == "open_inp_folder":
+            self._open_job_folder(str(Path(job["inp_path"]).parent))
+        elif action in {"copy_inp", "copy_name"}:
+            self._copy_text(job.get("inp_path" if action == "copy_inp" else "job_name", ""))
+        elif action == "output_folder":
+            odb_path = job.get("odb_path")
+            self._open_job_folder(str(Path(odb_path).parent) if odb_path else job.get("work_dir"))
+        elif action == "preflight":
+            request = JobRequest(
+                inp_path=job["inp_path"], job_name=job.get("job_name"), cpus=job.get("cpus", 14),
+                gpus=job.get("gpus", 0), batch=job.get("batch_name"), strategy=job.get("strategy_name"),
+                working_dir=job.get("work_dir"),
             )
+            result = AbqJobPilotClient().preflight(request)
+            details = "\n".join(filter(None, (
+                result.status,
+                f"INP: {result.inp_path}",
+                f"CPUs: {result.cpus}",
+                f"Expected ODB: {result.expected_odb_path}",
+                *result.warnings,
+                *result.errors,
+            )))
+            messagebox.showinfo("Preflight", details)
+        elif action in {"top", "up", "down", "remove"}:
+            if not self._queue_mutations_allowed(queue_display_jobs(load_queue())):
+                messagebox.showwarning("Queue", "Queue changes are disabled while a job is running.")
+                return
+            if action == "remove":
+                if not messagebox.askyesno("Remove from Queue", "Remove this queue record only?\n\n"
+                                           "INP and Abaqus output files will remain untouched.\n\n"
+                                           f"Job: {job.get('job_name', '')}"):
+                    return
+                result = remove_queued_job(job["queue_id"])
+            else:
+                result = move_queued_job(job["queue_id"], action)
+            self.refresh_all()
+            if not result.get("ok"):
+                messagebox.showerror("Queue", result["message"])
+
+    def _results_context_action(self, action: str, job_id: str | None) -> None:
+        job = self._current_job(job_id)
+        if not job or job.get("status") not in config.RESULT_STATUSES:
+            messagebox.showwarning("Results", "Selected result is no longer available.")
+            self.refresh_all()
+            return
+        if action == "work_folder":
+            self._open_job_folder(job.get("work_dir"))
+        elif action == "odb_folder":
+            self._open_job_folder(str(Path(job["odb_path"]).parent) if job.get("odb_path") else None)
+        elif action in {"sta", "msg", "dat", "log"}:
+            self._open_job_text(job.get(f"{action}_path"))
+        elif action in {"copy_id", "copy_name", "copy_inp", "copy_odb"}:
+            field = {"copy_id": "queue_id", "copy_name": "job_name", "copy_inp": "inp_path", "copy_odb": "odb_path"}[action]
+            self._copy_text(job.get(field, ""))
+        elif action == "refresh_status":
+            status = AbqJobPilotClient().status(job_id=job_id)
+            details = "\n".join(filter(None, (status.status, f"ODB exists: {status.odb_exists}",
+                                               f"Lock exists: {status.lock_exists}", *status.warnings, *status.errors)))
+            messagebox.showinfo("Job Status", details)
+            self.refresh_all()
+        elif action == "locate_outputs":
+            outputs = AbqJobPilotClient().locate_outputs(job_id=job_id)
+            details = "\n".join(filter(None, (f"Work dir: {outputs.working_dir}",
+                                               f"ODB: {outputs.expected_odb_path}",
+                                               f"ODB exists: {outputs.odb_exists}",
+                                               *outputs.log_paths, *outputs.warnings, *outputs.errors)))
+            messagebox.showinfo("Outputs", details)
+        elif action == "failure_summary":
+            self._show_failure_summary(job)
+        elif action == "run_history":
+            self._show_run_history(job)
+        elif action == "requeue":
+            if not self._queue_mutations_allowed(queue_display_jobs(load_queue())):
+                messagebox.showwarning("Requeue", "Requeue is disabled while a job is running.")
+                return
+            result = requeue_result_job(job_id)
+            self.refresh_all()
+            if result.get("ok"):
+                messagebox.showinfo("Requeue", f"Queued {result['job_name']}. Use Start Queue to run it.")
+            else:
+                messagebox.showerror("Requeue", result.get("message", "Requeue failed."))
+
+    def _show_failure_summary(self, job: dict) -> None:
+        window = tk.Toplevel(self)
+        window.title(f"Failure Summary - {job.get('job_name', '')}")
+        window.geometry("920x580")
+        text_widget = scrolledtext.ScrolledText(window, wrap="none", font=("Consolas", 10))
+        text_widget.pack(fill="both", expand=True, padx=10, pady=10)
+        lines = [f"Job: {job.get('job_name', '')}", f"Status: {job.get('status', '')}",
+                 f"Reason: {job.get('fatal_reason') or '(none)'}"]
+        for suffix in ("sta", "msg", "dat"):
+            path = job.get(f"{suffix}_path")
+            content = tail_text(path, 30) if path else ""
+            lines.extend(("", f"{suffix.upper()} tail: {path or '(not recorded)'}", content or "(missing or empty)"))
+        text_widget.insert("1.0", "\n".join(lines))
+        text_widget.configure(state="disabled")
+
+    def _show_run_history(self, job: dict) -> None:
+        project = self.project_manager.current
+        if project is None:
+            messagebox.showinfo("Run History", "Open a Project to view durable Run history.")
+            return
+        try:
+            sync_history_from_runtime(project.root)
+            repository = ProjectHistoryRepository(project)
+            logical = repository.find_job_by_queue_id(job["queue_id"])
+            runs = repository.list_runs(logical["job_id"]) if logical else []
+        except (OSError, ValueError, DatabaseFailure) as exc:
+            messagebox.showerror("Run History", str(exc))
+            return
+        if not runs:
+            messagebox.showinfo("Run History", "No indexed attempts for this Job.")
+            return
+        window = tk.Toplevel(self)
+        window.title(f"Run History - {job.get('job_name', '')}")
+        window.geometry("1100x430")
+        frame = ttk.Frame(window, padding=10)
+        frame.pack(fill="both", expand=True)
+        frame.rowconfigure(0, weight=1)
+        frame.columnconfigure(0, weight=1)
+        columns = ("attempt", "status", "started", "completed", "cpus", "gpus", "working_dir", "odb")
+        tree = ttk.Treeview(frame, columns=columns, show="headings", selectmode="browse")
+        for column, width in (("attempt", 75), ("status", 125), ("started", 150), ("completed", 150),
+                              ("cpus", 55), ("gpus", 55), ("working_dir", 240), ("odb", 260)):
+            tree.heading(column, text=column.replace("_", " ").title())
+            tree.column(column, width=width, minwidth=width)
+        tree.grid(row=0, column=0, sticky="nsew")
+        scrollbar = ttk.Scrollbar(frame, orient="vertical", command=tree.yview)
+        scrollbar.grid(row=0, column=1, sticky="ns")
+        tree.configure(yscrollcommand=scrollbar.set)
+        for run in runs:
+            tree.insert("", "end", values=(run["attempt_no"], run["status"], run["started_at"] or "",
+                                             run["completed_at"] or "", run["cpus"] if run["cpus"] is not None else "",
+                                             run["gpus"] if run["gpus"] is not None else "",
+                                             run["working_dir"] or "", run["expected_odb_path"] or ""))
 
     def _refresh_logs(self) -> None:
         data = read_json(config.LIVE_STATUS_FILE, {})
@@ -611,6 +1132,86 @@ class AbqJobPilotApp(tk.Tk):
             return "--"
         return f"{util}%  {mem_used}/{mem_total} MB"
 
+    def _system_idle_seconds(self) -> float | None:
+        class LastInputInfo(ctypes.Structure):
+            _fields_ = [("cbSize", wintypes.UINT), ("dwTime", wintypes.DWORD)]
+
+        info = LastInputInfo()
+        info.cbSize = ctypes.sizeof(LastInputInfo)
+        try:
+            ok = ctypes.windll.user32.GetLastInputInfo(ctypes.byref(info))
+            tick_count = ctypes.windll.kernel32.GetTickCount()
+        except AttributeError:
+            return None
+        if not ok:
+            return None
+        elapsed_ms = (int(tick_count) - int(info.dwTime)) & 0xFFFFFFFF
+        return max(0.0, elapsed_ms / 1000.0)
+
+    def _check_auto_shutdown_after_queue(self) -> None:
+        running = self.runner.is_running()
+        if running:
+            self._runner_was_running = True
+            self._queue_completed_monotonic = None
+            self._shutdown_requested = False
+            return
+
+        if not self._runner_was_running:
+            return
+
+        settings = load_settings()
+        if not settings.get("auto_shutdown_enabled"):
+            self._queue_completed_monotonic = None
+            self._runner_was_running = False
+            self._shutdown_requested = False
+            return
+
+        if self._queue_completed_monotonic is None:
+            self._queue_completed_monotonic = time.monotonic()
+            return
+
+        idle_minutes = max(1, int(settings.get("auto_shutdown_idle_minutes") or 5))
+        required_seconds = idle_minutes * 60
+        elapsed_after_queue = time.monotonic() - self._queue_completed_monotonic
+        idle_seconds = self._system_idle_seconds()
+        if idle_seconds is None:
+            return
+        if elapsed_after_queue >= required_seconds and idle_seconds >= required_seconds and not self._shutdown_requested:
+            self._request_windows_shutdown(idle_minutes)
+
+    def _request_windows_shutdown(self, idle_minutes: int) -> None:
+        self._shutdown_requested = True
+        message = (
+            "abqjobpilot queue finished and the system has been idle. "
+            "Shutdown will begin in 60 seconds. Run 'shutdown /a' to abort."
+        )
+        flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+        try:
+            subprocess.Popen(
+                ["shutdown", "/s", "/t", "60", "/c", message],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                creationflags=flags,
+            )
+        except OSError:
+            self._shutdown_requested = False
+            return
+        try:
+            status = read_json(config.LIVE_STATUS_FILE, {})
+            if not isinstance(status, dict):
+                status = {}
+            status.update(
+                {
+                    "schema_version": config.SCHEMA_VERSION,
+                    "phase": "AUTO_SHUTDOWN_REQUESTED",
+                    "auto_shutdown_idle_minutes": idle_minutes,
+                    "updated_at": now_iso(),
+                }
+            )
+            write_json(config.LIVE_STATUS_FILE, status)
+        except OSError:
+            pass
+
     def add_inp(self) -> None:
         path = filedialog.askopenfilename(title="Select Abaqus INP", filetypes=[("Abaqus input", "*.inp"), ("All files", "*.*")])
         if not path:
@@ -649,7 +1250,10 @@ class AbqJobPilotApp(tk.Tk):
         BasicSettingsDialog(self, on_saved=lambda _settings: self.refresh_all())
 
     def open_agent_console(self) -> None:
-        AgentCommandConsole(self, on_queue_changed=self.refresh_all)
+        if self._agent_console is not None and self._agent_console.winfo_exists():
+            self._agent_console.lift()
+            return
+        self._agent_console = AgentCommandConsole(self, on_queue_changed=self.refresh_all)
 
     def toggle_language(self) -> None:
         self.lang = "zh" if self.lang == "en" else "en"
@@ -720,6 +1324,10 @@ class AbqJobPilotApp(tk.Tk):
         ):
             return
         result = self.runner.start()
+        if result.get("ok"):
+            self._runner_was_running = True
+            self._queue_completed_monotonic = None
+            self._shutdown_requested = False
         self.refresh_all()
         if not result.get("ok"):
             messagebox.showwarning("Start Queue", result.get("message", "Runner did not start."))
@@ -742,6 +1350,49 @@ class AbqJobPilotApp(tk.Tk):
             messagebox.showinfo("Skip Selected", result["message"])
         else:
             messagebox.showerror("Skip Selected", result.get("message", "Failed to skip job."))
+
+    def clear_selected_result(self, job_id: str | None = None) -> None:
+        job = self._current_job(job_id) if job_id else self._selected_job(self.results_tree)
+        title = "Clear Selected Result" if self.lang == "en" else "清除选中结果"
+        if not job:
+            messagebox.showwarning(title, "Select a result row first." if self.lang == "en" else "请先选中结果表中的一行。")
+            return
+        if job.get("status") not in config.RESULT_STATUSES:
+            messagebox.showwarning(
+                title,
+                "Only completed, failed, skipped, or cancelled result rows can be cleared."
+                if self.lang == "en"
+                else "只能清除已完成、失败、跳过或取消的结果记录。",
+            )
+            return
+        if not self._queue_mutations_allowed(queue_display_jobs(load_queue())):
+            messagebox.showwarning(title, "Result changes are disabled while a job is running.")
+            return
+        confirm = messagebox.askyesno(
+            title,
+            (
+                "Clear this result record from abqjobpilot queue history?\n\n"
+                "This will not delete Abaqus files such as .inp, .odb, .sta, .msg, .dat, or .log.\n\n"
+                f"Job: {job.get('job_name', '')}"
+            )
+            if self.lang == "en"
+            else (
+                "从 abqjobpilot 队列历史中清除这条结果记录？\n\n"
+                "这不会删除 Abaqus 文件，例如 .inp、.odb、.sta、.msg、.dat 或 .log。\n\n"
+                f"Job: {job.get('job_name', '')}"
+            ),
+        )
+        if not confirm:
+            return
+        result = remove_result_job(job["queue_id"])
+        self.refresh_all()
+        if result.get("ok"):
+            messagebox.showinfo(
+                title,
+                result["message"] if self.lang == "en" else "结果记录已清除，可以重新加入同一个 INP。",
+            )
+        else:
+            messagebox.showerror(title, result.get("message", "Failed to clear result."))
 
     def open_selected_work_folder(self) -> None:
         job = self._selected_job()
@@ -791,6 +1442,7 @@ class AbqJobPilotApp(tk.Tk):
                     "start_queue": "开始队列",
                     "stop_after_current": "当前完成后停止",
                     "skip_selected": "跳过选中",
+                    "clear_selected_result": "清除结果",
                     "open_work_folder": "打开工作文件夹",
                     "exit": "退出",
                     "language": "English",
@@ -840,6 +1492,7 @@ class AbqJobPilotApp(tk.Tk):
                 "start_queue": "Start Queue",
                 "stop_after_current": "Stop After Current Job",
                 "skip_selected": "Skip Selected",
+                "clear_selected_result": "Clear Result",
                 "open_work_folder": "Open Work Folder",
                 "exit": "Exit",
                 "language": "中文",
@@ -882,6 +1535,14 @@ class AbqJobPilotApp(tk.Tk):
 
     def _apply_language(self) -> None:
         texts = self._texts()
+        project_texts = ({"new": "新建", "open": "打开", "close": "关闭", "folder": "打开项目文件夹",
+                          "export": "导出", "import": "导入", "legacy": "导入旧版"} if self.lang == "zh" else
+                         {"new": "New", "open": "Open", "close": "Close", "folder": "Project Folder",
+                          "export": "Export", "import": "Import", "legacy": "Import Legacy"})
+        self._update_project_label()
+        for key, button in self.project_controls.items():
+            button.configure(text=project_texts[key])
+        self.recent_button.configure(text="最近项目" if self.lang == "zh" else "Recent")
         for key, button in self.toolbar_buttons.items():
             button.configure(text=texts["buttons"][key])
         for key, label in self.toolbar_button_labels.items():
@@ -899,14 +1560,13 @@ class AbqJobPilotApp(tk.Tk):
         for column, label in texts["result_headings"].items():
             self.results_tree.heading(column, text=label)
 
-    def _selected_job(self) -> dict | None:
-        selection = self.queue_tree.selection()
-        if selection:
-            return self.job_by_id.get(selection[0])
-        result_selection = self.results_tree.selection()
-        if result_selection:
-            queue_id = result_selection[0].replace("result_", "", 1)
-            return self.job_by_id.get(queue_id)
+    def _selected_job(self, tree: ttk.Treeview | None = None) -> dict | None:
+        for widget, results in ((tree, tree is self.results_tree),) if tree else (
+            (self.queue_tree, False), (self.results_tree, True)
+        ):
+            selection = widget.selection()
+            if selection:
+                return self.job_by_id.get(selected_job_id(selection[0], results=results))
         return None
 
 
