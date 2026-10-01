@@ -6,6 +6,7 @@ import ctypes
 from ctypes import wintypes
 import subprocess
 import tkinter as tk
+import time
 from pathlib import Path
 from tkinter import filedialog, messagebox, scrolledtext, ttk
 
@@ -18,10 +19,11 @@ from .queue_store import (
     init_storage,
     load_queue,
     mark_job_skipped,
+    remove_result_job,
 )
 from .runner_core import QueueRunner
 from .settings_store import load_settings, save_settings
-from .utils import format_bytes, open_folder, read_json, tail_text
+from .utils import format_bytes, now_iso, open_folder, read_json, tail_text, write_json
 
 
 QUEUE_COLUMNS = ("index", "status", "batch", "strategy", "job", "cpus", "gpus", "created", "inp")
@@ -49,7 +51,7 @@ class BasicSettingsDialog(tk.Toplevel):
     def __init__(self, master, on_saved=None):
         super().__init__(master)
         self.title("Basic Settings")
-        self.geometry("520x300")
+        self.geometry("580x390")
         self.resizable(False, False)
         self.on_saved = on_saved
         settings = load_settings()
@@ -60,6 +62,8 @@ class BasicSettingsDialog(tk.Toplevel):
         self.gpus_var = tk.IntVar(value=settings["default_gpus"] if settings["default_gpus"] else 1)
         self.datacheck_var = tk.BooleanVar(value=settings["run_datacheck"])
         self.full_run_var = tk.BooleanVar(value=settings["run_full"])
+        self.auto_shutdown_var = tk.BooleanVar(value=settings["auto_shutdown_enabled"])
+        self.auto_shutdown_minutes_var = tk.IntVar(value=settings["auto_shutdown_idle_minutes"])
         self.apply_queued_var = tk.BooleanVar(value=True)
 
         self.columnconfigure(1, weight=1)
@@ -87,12 +91,22 @@ class BasicSettingsDialog(tk.Toplevel):
         ttk.Checkbutton(self, text="Run full analysis", variable=self.full_run_var).grid(row=4, column=0, columnspan=2, sticky="w", **pad)
         ttk.Checkbutton(
             self,
+            text="Auto shutdown after queue is done and system is idle",
+            variable=self.auto_shutdown_var,
+        ).grid(row=5, column=0, columnspan=3, sticky="w", **pad)
+        ttk.Label(self, text="Idle minutes before shutdown").grid(row=6, column=0, sticky="w", **pad)
+        ttk.Spinbox(self, from_=1, to=240, textvariable=self.auto_shutdown_minutes_var, width=8).grid(row=6, column=1, sticky="w", **pad)
+        ttk.Label(self, text="Default: 5 minutes. Windows shows a 60-second shutdown warning.").grid(
+            row=7, column=0, columnspan=3, sticky="w", **pad
+        )
+        ttk.Checkbutton(
+            self,
             text="Apply these values to existing QUEUED jobs",
             variable=self.apply_queued_var,
-        ).grid(row=5, column=0, columnspan=3, sticky="w", **pad)
+        ).grid(row=8, column=0, columnspan=3, sticky="w", **pad)
 
         button_frame = ttk.Frame(self)
-        button_frame.grid(row=6, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
+        button_frame.grid(row=9, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
         ttk.Button(button_frame, text="Save", command=self.save).grid(row=0, column=0, padx=(0, 8))
         ttk.Button(button_frame, text="Cancel", command=self.destroy).grid(row=0, column=1)
 
@@ -106,6 +120,8 @@ class BasicSettingsDialog(tk.Toplevel):
                     "default_gpus": int(self.gpus_var.get()) if self.use_gpu_var.get() else 0,
                     "run_datacheck": bool(self.datacheck_var.get()),
                     "run_full": bool(self.full_run_var.get()),
+                    "auto_shutdown_enabled": bool(self.auto_shutdown_var.get()),
+                    "auto_shutdown_idle_minutes": int(self.auto_shutdown_minutes_var.get()),
                 }
             )
         except (TypeError, ValueError) as exc:
@@ -143,6 +159,9 @@ class AbqJobPilotApp(tk.Tk):
         self.memory_percent_var = tk.StringVar(value="--")
         self.gpu_percent_var = tk.StringVar(value="--")
         self._last_cpu_times: tuple[int, int, int] | None = None
+        self._runner_was_running = False
+        self._queue_completed_monotonic: float | None = None
+        self._shutdown_requested = False
 
         self._configure_styles()
         self.columnconfigure(0, weight=1)
@@ -242,7 +261,8 @@ class AbqJobPilotApp(tk.Tk):
         self._make_primary_button(run, "start_queue", self.start_queue, 0)
         self._make_button(run, "stop_after_current", self.stop_after_current, 1)
         self._make_button(run, "skip_selected", self.skip_selected, 2)
-        self._make_button(run, "refresh", self.refresh_all, 3)
+        self._make_button(run, "clear_selected_result", self.clear_selected_result, 3)
+        self._make_button(run, "refresh", self.refresh_all, 4)
 
         self._make_button(right, "open_work_folder", self.open_selected_work_folder, 0)
         self._make_button(right, "language", self.toggle_language, 1)
@@ -407,7 +427,7 @@ class AbqJobPilotApp(tk.Tk):
             return "success"
         if upper == "COMPLETED_WITH_WARNINGS":
             return "warning"
-        if upper.startswith("FAILED") or upper == "DATACHECK_FAILED" or upper == "UNKNOWN_INTERRUPTED":
+        if upper.startswith("FAILED") or upper.startswith("DATACHECK_FAILED") or upper == "UNKNOWN_INTERRUPTED":
             return "failed"
         if upper in {"SKIPPED", "CANCELLED"}:
             return "skipped"
@@ -432,6 +452,7 @@ class AbqJobPilotApp(tk.Tk):
 
     def _poll_refresh(self) -> None:
         self.refresh_all()
+        self._check_auto_shutdown_after_queue()
         self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
 
     def _refresh_status(self) -> None:
@@ -611,6 +632,85 @@ class AbqJobPilotApp(tk.Tk):
             return "--"
         return f"{util}%  {mem_used}/{mem_total} MB"
 
+    def _system_idle_seconds(self) -> float | None:
+        class LastInputInfo(ctypes.Structure):
+            _fields_ = [("cbSize", wintypes.UINT), ("dwTime", wintypes.DWORD)]
+
+        info = LastInputInfo()
+        info.cbSize = ctypes.sizeof(LastInputInfo)
+        try:
+            ok = ctypes.windll.user32.GetLastInputInfo(ctypes.byref(info))
+            tick_count = ctypes.windll.kernel32.GetTickCount()
+        except AttributeError:
+            return None
+        if not ok:
+            return None
+        elapsed_ms = (int(tick_count) - int(info.dwTime)) & 0xFFFFFFFF
+        return max(0.0, elapsed_ms / 1000.0)
+
+    def _check_auto_shutdown_after_queue(self) -> None:
+        running = self.runner.is_running()
+        if running:
+            self._runner_was_running = True
+            self._queue_completed_monotonic = None
+            self._shutdown_requested = False
+            return
+
+        if not self._runner_was_running:
+            return
+
+        settings = load_settings()
+        if not settings.get("auto_shutdown_enabled"):
+            self._queue_completed_monotonic = None
+            self._runner_was_running = False
+            self._shutdown_requested = False
+            return
+
+        if self._queue_completed_monotonic is None:
+            self._queue_completed_monotonic = time.monotonic()
+            return
+
+        idle_minutes = max(1, int(settings.get("auto_shutdown_idle_minutes") or 5))
+        required_seconds = idle_minutes * 60
+        elapsed_after_queue = time.monotonic() - self._queue_completed_monotonic
+        idle_seconds = self._system_idle_seconds()
+        if idle_seconds is None:
+            return
+        if elapsed_after_queue >= required_seconds and idle_seconds >= required_seconds and not self._shutdown_requested:
+            self._request_windows_shutdown(idle_minutes)
+
+    def _request_windows_shutdown(self, idle_minutes: int) -> None:
+        self._shutdown_requested = True
+        message = (
+            "abqjobpilot queue finished and the system has been idle. "
+            "Shutdown will begin in 60 seconds. Run 'shutdown /a' to abort."
+        )
+        flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+        try:
+            subprocess.Popen(
+                ["shutdown", "/s", "/t", "60", "/c", message],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                creationflags=flags,
+            )
+        except OSError:
+            self._shutdown_requested = False
+            return
+        try:
+            status = read_json(config.LIVE_STATUS_FILE, {})
+            if not isinstance(status, dict):
+                status = {}
+            status.update(
+                {
+                    "phase": "AUTO_SHUTDOWN_REQUESTED",
+                    "auto_shutdown_idle_minutes": idle_minutes,
+                    "updated_at": now_iso(),
+                }
+            )
+            write_json(config.LIVE_STATUS_FILE, status)
+        except OSError:
+            pass
+
     def add_inp(self) -> None:
         path = filedialog.askopenfilename(title="Select Abaqus INP", filetypes=[("Abaqus input", "*.inp"), ("All files", "*.*")])
         if not path:
@@ -720,6 +820,10 @@ class AbqJobPilotApp(tk.Tk):
         ):
             return
         result = self.runner.start()
+        if result.get("ok"):
+            self._runner_was_running = True
+            self._queue_completed_monotonic = None
+            self._shutdown_requested = False
         self.refresh_all()
         if not result.get("ok"):
             messagebox.showwarning("Start Queue", result.get("message", "Runner did not start."))
@@ -742,6 +846,46 @@ class AbqJobPilotApp(tk.Tk):
             messagebox.showinfo("Skip Selected", result["message"])
         else:
             messagebox.showerror("Skip Selected", result.get("message", "Failed to skip job."))
+
+    def clear_selected_result(self) -> None:
+        job = self._selected_job()
+        title = "Clear Selected Result" if self.lang == "en" else "清除选中结果"
+        if not job:
+            messagebox.showwarning(title, "Select a result row first." if self.lang == "en" else "请先选中结果表中的一行。")
+            return
+        if job.get("status") not in config.RESULT_STATUSES:
+            messagebox.showwarning(
+                title,
+                "Only completed, failed, skipped, or cancelled result rows can be cleared."
+                if self.lang == "en"
+                else "只能清除已完成、失败、跳过或取消的结果记录。",
+            )
+            return
+        confirm = messagebox.askyesno(
+            title,
+            (
+                "Clear this result record from abqjobpilot queue history?\n\n"
+                "This will not delete Abaqus files such as .inp, .odb, .sta, .msg, .dat, or .log.\n\n"
+                f"Job: {job.get('job_name', '')}"
+            )
+            if self.lang == "en"
+            else (
+                "从 abqjobpilot 队列历史中清除这条结果记录？\n\n"
+                "这不会删除 Abaqus 文件，例如 .inp、.odb、.sta、.msg、.dat 或 .log。\n\n"
+                f"Job: {job.get('job_name', '')}"
+            ),
+        )
+        if not confirm:
+            return
+        result = remove_result_job(job["queue_id"])
+        self.refresh_all()
+        if result.get("ok"):
+            messagebox.showinfo(
+                title,
+                result["message"] if self.lang == "en" else "结果记录已清除，可以重新加入同一个 INP。",
+            )
+        else:
+            messagebox.showerror(title, result.get("message", "Failed to clear result."))
 
     def open_selected_work_folder(self) -> None:
         job = self._selected_job()
@@ -791,6 +935,7 @@ class AbqJobPilotApp(tk.Tk):
                     "start_queue": "开始队列",
                     "stop_after_current": "当前完成后停止",
                     "skip_selected": "跳过选中",
+                    "clear_selected_result": "清除结果",
                     "open_work_folder": "打开工作文件夹",
                     "exit": "退出",
                     "language": "English",
@@ -840,6 +985,7 @@ class AbqJobPilotApp(tk.Tk):
                 "start_queue": "Start Queue",
                 "stop_after_current": "Stop After Current Job",
                 "skip_selected": "Skip Selected",
+                "clear_selected_result": "Clear Result",
                 "open_work_folder": "Open Work Folder",
                 "exit": "Exit",
                 "language": "中文",

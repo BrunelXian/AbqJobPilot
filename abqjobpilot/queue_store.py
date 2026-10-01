@@ -112,6 +112,8 @@ def _validate_new_job(inp_path: Path, cpus: int, job_name: str | None, jobs: lis
     resolved_job_name = job_name or inp_path.stem
     resolved_work_dir = _normalize_path(inp_path.parent)
     for existing in jobs:
+        if existing.get("status") not in config.ACTIVE_STATUSES:
+            continue
         existing_inp = _normalize_path(existing.get("inp_path", ""))
         existing_work_dir = _normalize_path(existing.get("work_dir", ""))
         if existing_inp.lower() == normalized_inp.lower():
@@ -268,6 +270,29 @@ def mark_job_skipped(queue_id: str) -> dict:
     if not job:
         return {"ok": False, "message": "ERROR: selected job not found"}
     return {"ok": True, "message": f"Skipped job: {job.get('job_name', queue_id)}", "job": job}
+
+
+def remove_result_job(queue_id: str) -> dict:
+    jobs = load_queue()
+    removed_job = None
+    remaining: list[dict] = []
+    for job in jobs:
+        if job.get("queue_id") == queue_id:
+            removed_job = job
+        else:
+            remaining.append(job)
+
+    if not removed_job:
+        return {"ok": False, "message": "ERROR: selected result was not found"}
+    if removed_job.get("status") not in config.RESULT_STATUSES:
+        return {"ok": False, "message": "ERROR: only completed, failed, skipped, or cancelled results can be cleared"}
+
+    save_queue(remaining)
+    return {
+        "ok": True,
+        "message": f"Cleared result record: {removed_job.get('job_name', queue_id)}",
+        "job": removed_job,
+    }
 
 
 def apply_resources_to_queued_jobs(

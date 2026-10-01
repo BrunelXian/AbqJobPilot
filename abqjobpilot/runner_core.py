@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 from . import config
-from .parsers import classify_final_verdict, parse_sta_status
+from .parsers import classify_datacheck_attempt, classify_final_verdict, parse_sta_status
 from .queue_store import load_queue, update_job
 from .settings_store import load_settings
 from .utils import now_iso, read_json, tail_text, write_json
@@ -39,11 +39,25 @@ def _abaqus_cmd_prefix() -> list[str]:
     return [abaqus_cmd]
 
 
-def _with_resources(job: dict, command: list[str]) -> list[str]:
+def _hidden_startupinfo() -> subprocess.STARTUPINFO | None:
+    if not hasattr(subprocess, "STARTUPINFO"):
+        return None
+    startupinfo = subprocess.STARTUPINFO()
+    startupinfo.dwFlags |= getattr(subprocess, "STARTF_USESHOWWINDOW", 0)
+    startupinfo.wShowWindow = 0
+    return startupinfo
+
+
+def _hidden_creationflags() -> int:
+    return getattr(subprocess, "CREATE_NO_WINDOW", 0)
+
+
+def _with_resources(job: dict, command: list[str], include_gpus: bool = True) -> list[str]:
     command.append(f"cpus={_effective_cpus(job)}")
-    gpus = _effective_gpus(job)
-    if gpus > 0:
-        command.append(f"gpus={gpus}")
+    if include_gpus:
+        gpus = _effective_gpus(job)
+        if gpus > 0:
+            command.append(f"gpus={gpus}")
     command.extend(["interactive", "ask_delete=OFF"])
     return command
 
@@ -51,7 +65,7 @@ def _with_resources(job: dict, command: list[str]) -> list[str]:
 def build_abaqus_datacheck_command(job: dict) -> list[str]:
     command = _abaqus_cmd_prefix()
     command.extend([f"job={job['job_name']}", f"input={job['inp_path']}", "datacheck"])
-    return _with_resources(job, command)
+    return _with_resources(job, command, include_gpus=False)
 
 
 def build_abaqus_full_run_command(job: dict) -> list[str]:
@@ -173,6 +187,8 @@ def _run_command(job: dict, phase: str, command: list[str]) -> int:
             stderr=subprocess.STDOUT,
             stdin=subprocess.DEVNULL,
             text=True,
+            startupinfo=_hidden_startupinfo(),
+            creationflags=_hidden_creationflags(),
         )
         while process.poll() is None:
             _write_live_status(job, phase)
@@ -215,15 +231,12 @@ def run_next_job(job: dict) -> dict:
         update_job(queue_id, {"status": "DATACHECK_RUNNING", "phase": "DATACHECK_RUNNING"})
         job.update({"status": "DATACHECK_RUNNING", "phase": "DATACHECK_RUNNING"})
         return_code = _run_command(job, "DATACHECK_RUNNING", build_abaqus_datacheck_command(job))
-        sta_text = _read_text(job.get("sta_path", ""))
-        msg_text = _read_text(job.get("msg_path", ""))
-        dat_text = _read_text(job.get("dat_path", ""))
         log_text = _read_text(job.get("log_path", ""))
-        verdict = classify_final_verdict(sta_text, msg_text, dat_text, log_text, return_code)
-        if verdict["status"] == "FAILED_FATAL" or return_code != 0:
+        verdict = classify_datacheck_attempt(log_text, return_code)
+        if verdict["status"] != "DATACHECK_PASS":
             updates = {
-                "status": "DATACHECK_FAILED",
-                "phase": "DATACHECK_FAILED",
+                "status": verdict["status"],
+                "phase": verdict["status"],
                 "ended_at": now_iso(),
                 "duration_sec": _duration_seconds(started_at),
                 "return_code": return_code,
@@ -233,11 +246,21 @@ def run_next_job(job: dict) -> dict:
                 "odb_size_bytes": _odb_size(job),
             }
             final_job = update_job(queue_id, updates) or job
-            _write_live_status(final_job, "DATACHECK_FAILED")
+            _write_live_status(final_job, verdict["status"])
             _write_report(final_job)
             return {"ok": False, "message": "datacheck failed", "job": final_job}
-        update_job(queue_id, {"status": "DATACHECK_OK", "phase": "DATACHECK_OK", "return_code": return_code})
-        job.update({"status": "DATACHECK_OK", "phase": "DATACHECK_OK", "return_code": return_code})
+        update_job(
+            queue_id,
+            {
+                "status": "DATACHECK_OK",
+                "phase": "DATACHECK_PASS",
+                "return_code": return_code,
+                "final_verdict": verdict.get("final_verdict"),
+                "fatal_reason": "",
+                "warning_count": verdict.get("warning_count"),
+            },
+        )
+        job.update({"status": "DATACHECK_OK", "phase": "DATACHECK_PASS", "return_code": return_code})
 
     if job.get("run_full", True):
         update_job(queue_id, {"status": "FULL_RUNNING", "phase": "FULL_RUNNING"})
