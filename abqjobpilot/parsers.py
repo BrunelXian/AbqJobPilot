@@ -21,6 +21,7 @@ NON_FATAL_ERROR_PHRASES = (
     "residual error",
     "relative error",
 )
+DATACHECK_INVALID_GPU_OPTION = 'Command line option "gpus" may not be used with "datacheck"'
 
 
 def _contains_success(text: str) -> bool:
@@ -80,6 +81,83 @@ def parse_console_status(log_text: str) -> dict:
         "fatal_detected": bool(matches),
         "fatal_reason": matches[0] if matches else "",
         "warning_count": warning_count,
+    }
+
+
+def latest_attempt_block(log_text: str, phase: str) -> str:
+    lines = log_text.splitlines()
+    start_marker = f"START {phase}"
+    end_marker = f"END {phase}"
+    start_index = None
+    for index, line in enumerate(lines):
+        if start_marker in line:
+            start_index = index
+    if start_index is None:
+        return log_text
+
+    end_index = len(lines) - 1
+    for index in range(start_index + 1, len(lines)):
+        if end_marker in lines[index]:
+            end_index = index
+            break
+    return "\n".join(lines[start_index : end_index + 1])
+
+
+def _contains_abaqus_job_completed(text: str) -> bool:
+    lowered = text.lower()
+    return "abaqus job" in lowered and "completed" in lowered
+
+
+def _contains_invalid_datacheck_gpu_option(text: str) -> bool:
+    normalized = text.replace("“", '"').replace("”", '"')
+    return DATACHECK_INVALID_GPU_OPTION.lower() in normalized.lower()
+
+
+def classify_datacheck_attempt(log_text: str = "", return_code: int | None = None) -> dict:
+    block = latest_attempt_block(log_text or "", "DATACHECK_RUNNING")
+    warning_count = len(re.findall(r"\bWARNING\b", block, flags=re.IGNORECASE))
+
+    if _contains_invalid_datacheck_gpu_option(block):
+        return {
+            "status": "DATACHECK_FAILED_INVALID_GPU_OPTION",
+            "final_verdict": "FAILED",
+            "fatal_reason": DATACHECK_INVALID_GPU_OPTION,
+            "warning_count": warning_count,
+            "attempt_block": block,
+        }
+
+    if _contains_abaqus_job_completed(block) and "abaqus error:" not in block.lower():
+        return {
+            "status": "DATACHECK_PASS",
+            "final_verdict": "DATACHECK_PASS",
+            "fatal_reason": "",
+            "warning_count": warning_count,
+            "attempt_block": block,
+        }
+
+    matches = _fatal_matches(block)
+    if matches:
+        return {
+            "status": "DATACHECK_FAILED",
+            "final_verdict": "FAILED",
+            "fatal_reason": matches[0],
+            "warning_count": warning_count,
+            "attempt_block": block,
+        }
+    if return_code not in (None, 0):
+        return {
+            "status": "DATACHECK_FAILED",
+            "final_verdict": "FAILED",
+            "fatal_reason": f"datacheck return code {return_code}",
+            "warning_count": warning_count,
+            "attempt_block": block,
+        }
+    return {
+        "status": "DATACHECK_PASS",
+        "final_verdict": "DATACHECK_PASS",
+        "fatal_reason": "",
+        "warning_count": warning_count,
+        "attempt_block": block,
     }
 
 
