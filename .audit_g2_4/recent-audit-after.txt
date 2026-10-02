@@ -1,0 +1,107 @@
+docs\ABQJOBPILOT_PROJECT_MODEL.md:58:Settings remain runtime-specific in P1 (`runtime/settings.json`); a new Project initially uses application defaults until settings are saved. Recent Projects are **application-level**, stored by default at `~/.abqjobpilot/recent_projects.json`. The list is newest-first, deduplicated by canonical path/project ID, capped at 10, and tolerates missing paths. A different recent-file path can be supplied to `ProjectManager` for tests or controlled deployments.
+docs\ABQJOBPILOT_PROJECT_MODEL.md:99:The single production store is `~/.abqjobpilot/recent_projects.json` (`%USERPROFILE%/.abqjobpilot/recent_projects.json` on Windows). `get_app_state_dir()` and `default_recent_file()` resolve this application-level path independently of the working directory, selected Project, runtime, and LOCALAPPDATA. This avoids MSIX AppData virtualization: a packaged migration tool and an unpackaged desktop GUI otherwise can see different files under the same apparent LOCALAPPDATA path. Older AppData Recent lists are not automatically merged; opening an existing Project registers it without re-importing its data.
+docs\ABQJOBPILOT_INTERFACE_AUDIT_FOR_ABQPILOT.md:95:D:\Projects\abqjobpilot_dev\abqjobpilot\settings_store.py
+docs\ABQJOBPILOT_INTERFACE_AUDIT_FOR_ABQPILOT.md:223:Important detail: the parser itself returns `cpus=None` / `gpus=None` when those flags are omitted. The GUI console then applies values from `settings_store.load_settings()`.
+docs\ABQJOBPILOT_INTERFACE_AUDIT_FOR_ABQPILOT.md:596:Agent Command execution is partly GUI-owned in `command_console.py`, because it applies GUI settings and writes output to widgets. This is not ideal for programmatic integration.
+tests\test_recent_projects.py:22:        self.store = self.root / 'app' / 'recent.json'
+tests\test_recent_projects.py:38:                self.assertEqual(default_recent_file(), Path.home() / '.abqjobpilot/recent_projects.json')
+tests\test_recent_projects.py:45:        self.assertEqual(ProjectManager(self.store).recent_projects()[0]['project_id'], a.project_id)
+tests\test_recent_projects.py:47:        item = ProjectManager(self.store).recent_projects()[0]
+tests\test_recent_projects.py:55:                'm=ProjectManager(sys.argv[1]); m.open_project(sys.argv[2]); print(json.dumps(m.recent_projects()))')
+tests\test_recent_projects.py:67:        items = self.manager.recent_projects()
+tests\test_recent_projects.py:77:        data['recent_projects'][0].update(path=str(a.root).swapcase() + '\\', project_id='old-id')
+tests\test_recent_projects.py:80:        items = self.manager.recent_projects()
+tests\test_recent_projects.py:92:        self.assertEqual(self.manager.recent_projects(), [])
+tests\test_recent_projects.py:98:        self.assertEqual(self.manager.recent_projects(), [])
+tests\test_recent_projects.py:99:        self.assertEqual(len(self.manager.recent_projects(include_missing=True)), 1)
+tests\test_recent_projects.py:100:        for text in ('{bad', '[]', '{"recent_projects": null}', '{"recent_projects": [null, 1, {}]}'):
+tests\test_recent_projects.py:102:            self.assertEqual(self.manager.recent_projects(), [])
+tests\test_recent_projects.py:108:        self.assertEqual(ProjectManager(self.store).recent_projects()[0]['path'], imported.root_dir)
+tests\test_recent_projects.py:114:        self.assertEqual(ProjectManager(self.store).recent_projects()[0]['project_id'], imported.project_id)
+tests\test_recent_projects.py:145:             patch.object(config, 'SETTINGS_FILE', str(runtime / 'settings.json')), \
+tests\test_project_database.py:23:        self.manager = ProjectManager(recent_file=self.root / "recent.json")
+tests\test_project_database.py:179:                                         recent_file=self.root / "recent.json")
+tests\test_queue_store.py:22:        self._old_settings = config.SETTINGS_FILE
+tests\test_queue_store.py:28:        config.SETTINGS_FILE = str(runtime / "settings.json")
+tests\test_queue_store.py:37:        config.SETTINGS_FILE = self._old_settings
+docs\ABQJOBPILOT_G2_1_OPERATIONAL_DASHBOARD.md:31:Baseline: clean HEAD `fb6e0d29db79eb3a0b703fd87382ea171e3f0d2a` before G2; G2 changes were already uncommitted at G2.1 start. Baseline full suite: 85 passed. G2.1 tests use temporary runtime/settings/recent-project paths and mocked solver callbacks; no Abaqus or real QueueRunner was started. The isolated `run_gui.py` smoke exited normally. Geometry checks at 1280 x 800 and 1440 x 900, including Tk scaling 125% and 150%, kept Queue, Results, both logs, Start Queue and resources visible. Tests cover both splitter drags, active A versus inspected B logs, no-active/stale logs, bounded tail/follow preservation, selections, colors, Project switch, and mock-only Start/Stop callbacks.
+tests\test_public_api.py:17:        self._old_settings = config.SETTINGS_FILE
+tests\test_public_api.py:24:        config.SETTINGS_FILE = str(runtime / "settings.json")
+tests\test_public_api.py:34:        config.SETTINGS_FILE = self._old_settings
+tests\test_g2_task_workspace.py:205:        self.manager = ProjectManager(recent_file=self.root / "recent.json")
+tests\test_g2_task_workspace.py:229:                   patch.object(config, "SETTINGS_FILE", str(self.runtime / "settings.json")),
+tests\test_project_model.py:20:        self.manager = ProjectManager(recent_file=self.root / "app" / "recent.json")
+tests\test_project_model.py:87:        recent = self.manager.recent_projects()
+tests\test_project_model.py:91:        self.assertEqual(len(self.manager.recent_projects()), 1)
+tests\test_project_model.py:92:        self.assertEqual(len(self.manager.recent_projects(include_missing=True)), 2)
+abqjobpilot\settings_store.py:1:"""Persisted user settings for GUI defaults."""
+abqjobpilot\settings_store.py:21:def load_settings() -> dict:
+abqjobpilot\settings_store.py:24:    settings = DEFAULT_SETTINGS.copy()
+abqjobpilot\settings_store.py:26:        settings.update(data)
+abqjobpilot\settings_store.py:27:    settings["default_cpus"] = max(1, int(settings.get("default_cpus") or config.DEFAULT_CPUS))
+abqjobpilot\settings_store.py:28:    settings["default_gpus"] = max(0, int(settings.get("default_gpus") or 0))
+abqjobpilot\settings_store.py:29:    settings["use_gpu"] = bool(settings.get("use_gpu"))
+abqjobpilot\settings_store.py:30:    settings["run_datacheck"] = bool(settings.get("run_datacheck"))
+abqjobpilot\settings_store.py:31:    settings["run_full"] = bool(settings.get("run_full"))
+abqjobpilot\settings_store.py:32:    settings["auto_shutdown_enabled"] = bool(settings.get("auto_shutdown_enabled"))
+abqjobpilot\settings_store.py:33:    settings["auto_shutdown_idle_minutes"] = max(1, int(settings.get("auto_shutdown_idle_minutes") or 5))
+abqjobpilot\settings_store.py:34:    return settings
+abqjobpilot\settings_store.py:37:def save_settings(settings: dict) -> dict:
+abqjobpilot\settings_store.py:39:    merged.update(settings)
+tests\test_project_file_ownership.py:30:        self.manager = ProjectManager(recent_file=self.root / "recent.json")
+tests\test_project_file_ownership.py:143:                                         recent_file=self.root / "legacy_recent.json")
+abqjobpilot\command_console.py:11:from .settings_store import load_settings
+abqjobpilot\command_console.py:261:        settings = load_settings()
+abqjobpilot\command_console.py:262:        cpus = parsed["cpus"] if parsed.get("cpus") is not None else settings["default_cpus"]
+abqjobpilot\command_console.py:264:            settings["default_gpus"] if settings["use_gpu"] else 0
+abqjobpilot\config.py:19:SETTINGS_FILE = str(RUNTIME_DIR_PATH / "settings.json")
+abqjobpilot\config.py:59:    SETTINGS_FILE = str(runtime / "settings.json")
+tests\test_project_gui.py:17:            manager = ProjectManager(recent_file=root / "recent.json")
+tests\test_project_gui.py:25:                 patch.object(config, "SETTINGS_FILE", str(default / "settings.json")), \
+tests\test_project_gui.py:48:            manager = ProjectManager(recent_file=root / "recent.json")
+tests\test_project_gui.py:68:                 patch.object(config, "SETTINGS_FILE", str(default / "settings.json")), \
+abqjobpilot\runner_core.py:14:from .settings_store import load_settings
+abqjobpilot\runner_core.py:33:    settings = load_settings()
+abqjobpilot\runner_core.py:34:    abaqus_cmd = settings.get("abaqus_cmd") or config.ABAQUS_CMD
+abqjobpilot\gui_app.py:42:from .settings_store import load_settings, save_settings
+abqjobpilot\gui_app.py:104:        settings = load_settings()
+abqjobpilot\gui_app.py:106:        self.abaqus_cmd_var = tk.StringVar(value=settings["abaqus_cmd"])
+abqjobpilot\gui_app.py:107:        self.cpus_var = tk.IntVar(value=settings["default_cpus"])
+abqjobpilot\gui_app.py:108:        self.use_gpu_var = tk.BooleanVar(value=settings["use_gpu"])
+abqjobpilot\gui_app.py:109:        self.gpus_var = tk.IntVar(value=settings["default_gpus"] if settings["default_gpus"] else 1)
+abqjobpilot\gui_app.py:110:        self.datacheck_var = tk.BooleanVar(value=settings["run_datacheck"])
+abqjobpilot\gui_app.py:111:        self.full_run_var = tk.BooleanVar(value=settings["run_full"])
+abqjobpilot\gui_app.py:112:        self.auto_shutdown_var = tk.BooleanVar(value=settings["auto_shutdown_enabled"])
+abqjobpilot\gui_app.py:113:        self.auto_shutdown_minutes_var = tk.IntVar(value=settings["auto_shutdown_idle_minutes"])
+abqjobpilot\gui_app.py:162:            settings = save_settings(
+abqjobpilot\gui_app.py:175:            messagebox.showerror("Settings", f"Invalid settings: {exc}")
+abqjobpilot\gui_app.py:179:                settings["default_cpus"],
+abqjobpilot\gui_app.py:180:                settings["default_gpus"] if settings["use_gpu"] else 0,
+abqjobpilot\gui_app.py:181:                settings["run_datacheck"],
+abqjobpilot\gui_app.py:182:                settings["run_full"],
+abqjobpilot\gui_app.py:185:            self.on_saved(settings)
+abqjobpilot\gui_app.py:432:        tools_menu.add_command(label=labels["settings"], command=self.open_settings)
+abqjobpilot\gui_app.py:547:        entries = self.project_manager.recent_projects()
+abqjobpilot\gui_app.py:1818:        settings = load_settings()
+abqjobpilot\gui_app.py:1819:        if not settings.get("auto_shutdown_enabled"):
+abqjobpilot\gui_app.py:1829:        idle_minutes = max(1, int(settings.get("auto_shutdown_idle_minutes") or 5))
+abqjobpilot\gui_app.py:1875:        settings = load_settings()
+abqjobpilot\gui_app.py:1878:            cpus=settings["default_cpus"],
+abqjobpilot\gui_app.py:1879:            gpus=settings["default_gpus"] if settings["use_gpu"] else 0,
+abqjobpilot\gui_app.py:1880:            run_datacheck=settings["run_datacheck"],
+abqjobpilot\gui_app.py:1881:            run_full=settings["run_full"],
+abqjobpilot\gui_app.py:1893:        settings = load_settings()
+abqjobpilot\gui_app.py:1896:            cpus=settings["default_cpus"],
+abqjobpilot\gui_app.py:1897:            gpus=settings["default_gpus"] if settings["use_gpu"] else 0,
+abqjobpilot\gui_app.py:1905:    def open_settings(self) -> None:
+abqjobpilot\gui_app.py:1906:        BasicSettingsDialog(self, on_saved=lambda _settings: self.refresh_all())
+abqjobpilot\gui_app.py:2152:                          "queue": "队列", "results": "结果", "refresh": "刷新", "settings": "基础设置",
+abqjobpilot\gui_app.py:2172:                    "settings": "基础设置",
+abqjobpilot\gui_app.py:2224:                      "queue": "Queue", "results": "Results", "refresh": "Refresh", "settings": "Settings",
+abqjobpilot\gui_app.py:2244:                "settings": "Settings",
+abqjobpilot\project\manager.py:20:def get_app_state_dir() -> Path:
+abqjobpilot\project\manager.py:30:    return get_app_state_dir() / "recent_projects.json"
+abqjobpilot\project\manager.py:118:    def recent_projects(self, include_missing: bool = False) -> list[dict]:
+abqjobpilot\project\manager.py:123:        entries = data.get("recent_projects", []) if isinstance(data, dict) else []
+abqjobpilot\project\manager.py:133:        existing = self.recent_projects(include_missing=True)
+abqjobpilot\project\manager.py:143:                                      "recent_projects": entries[:RECENT_LIMIT]})

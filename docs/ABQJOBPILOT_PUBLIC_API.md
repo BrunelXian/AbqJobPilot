@@ -404,4 +404,10 @@ Coding assistant -> JSON CLI / Python API / Agent Commands
 
 The public Python client and JSON CLI support `capabilities`, `preflight`, `enqueue`, `enqueue-folder`, `list`, `status`, and `locate-outputs`. The Agent Command Console accepts only its internal `enqueue`, `enqueue-folder`, `list`, `help`, and `clear` grammar. These are related interfaces, not interchangeable command syntaxes. The GUI Agent menu links to the canonical AI Instruction and this document.
 
-Public `solver_start` remains `false`. No assistant-specific SDK, MCP endpoint, HTTP service, or direct solver-start command is provided. Application version `0.2.0` is reported separately from `automation_surface` and `schema_version`, which remain `1.0`.
+Public `solver_start` remains `false`. No assistant-specific SDK, MCP endpoint, HTTP service, or direct solver-start command is provided. Application version `0.2.1` is reported separately from `automation_surface` and `schema_version`, which remain `1.0`.
+
+## Project Automation (0.2.1)
+
+The public client and CLI now wrap ProjectManager, portable archives, and read-only Project history. See [the A4 contract](ABQJOBPILOT_A4_PROJECT_AUTOMATION.md) for selectors, commands, error codes, and safety rules. The existing Agent Command Console grammar is unchanged.
+
+For coding agents (Codex, Claude Code, and other local tools): use the JSON CLI or Python API. Do not directly edit `project.json`, `project.db`, `runtime/queue.json`, or `runtime/live_status.json`; do not move or delete referenced engineering files. `project unregister` only removes a recent-project registration. No public solver-start operation exists.

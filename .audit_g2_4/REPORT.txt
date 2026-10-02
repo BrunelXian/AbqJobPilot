@@ -1,0 +1,39 @@
+PASS_ABQJOBPILOT_STAGE_G2_4_RECENT_PROJECTS_PERSISTENCE_FIX
+
+Initial HEAD: 6168397871f701f5f6f45e553be26e6a0dd57a97
+Initial checkout: clean (git status --short and git diff --stat empty).
+Baseline: 87 passed, 1 skipped. Final: 98 passed; git diff --check passed.
+
+Root cause: MSIX AppData filesystem virtualization. Migration and GUI used the same apparent LOCALAPPDATA store, but the packaged Codex process resolved it to a private LocalCache location. It was not a queue, database, invalid Project, JSON flush, or CWD problem. The existing atomic writer flushes and fsyncs before replace.
+Old apparent path: C:\Users\wuxia\AppData\Local\abqjobpilot\recent_projects.json
+Observed old physical path: C:\Users\wuxia\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\abqjobpilot\recent_projects.json
+Final canonical path: C:\Users\wuxia\.abqjobpilot\recent_projects.json
+Final resolved path: C:\Users\wuxia\.abqjobpilot\recent_projects.json
+
+Secondary fixes: both native Recent cascades are seeded at construction and refreshed on posting. create_project, archive import, and legacy import now register after successful completion/validation. GUI importers propagate their manager's instance-local recent_file. No last-Project auto-open was introduced.
+Canonical resolution: get_app_state_dir() -> Path.home()/.abqjobpilot; default_recent_file() appends recent_projects.json. No production dependency on LOCALAPPDATA, CWD, runtime or current Project.
+Deduplication retains existing resolved/normcase path and project_id behavior; reopening moves to front, max 10. Missing Projects remain on disk but are hidden by default. Malformed/missing lists safely produce an empty list.
+Test storage is explicit per manager/importer. Full suite rerun after repair left production Recent bytes unchanged.
+
+One-time registration: ProjectManager.register_project validated the canonical existing Project. No migration or recreation.
+Existing project_id: ed1a47a2-c3d6-4c2d-843a-b8942c66e828
+Project: D:\Projects\AbqJobPilotProjects\RL-LAM-ScanOPT-Stage1-3
+
+GUI launch 1: Recent populated before submenu callback; open from actual menu command showed correct Project header and 1307 results.
+GUI launch 2 (fresh process): Recent retained Project; open succeeded again.
+Both used run_gui.py via runpy and real Tk mainloop with production defaults and actual Recent menus. Startup was No Project as designed. Both closed.
+Smoke qualification: an external harness suppressed GUI history projection and GPU monitoring, blocked QueueRunner.start and child-process launch. History synchronization otherwise rewrites SQLite even with zero new Runs (verified only on a metadata copy). Production database/reconciliation code was deliberately unchanged. Thus an entirely unguarded normal-GUI open was not performed on the protected canonical Project.
+
+All 1472 canonical Project files retain exact SHA256 hashes and the file set is unchanged, including project.json, project.db, runtime and reports.
+project.db SHA256: 172d20ea016d50613765bf7de0775da4a642f15da78e7c10193b22cbbe5ead82
+project.json SHA256: 87f785f7bec02f7a8cb0f979f186c26f611080026688a95436b9567b6eb45fe2
+Full before/after pairs: integrity.json.
+No Project data changed; no files copied from engineering directories, schema changes, solver changes, Abaqus execution, QueueRunner start, commit or push.
+Search audits: recent-audit-before.txt, recent-audit-after.txt, solver-audit.txt. Solver-related code unchanged.
+
+Changed implementation: abqjobpilot/project/manager.py, archive.py, legacy_import.py; abqjobpilot/gui_app.py.
+Documentation: docs/ABQJOBPILOT_PROJECT_MODEL.md (Recent Projects persistence).
+Tests: new tests/test_recent_projects.py; explicit archive-store injection in tests/test_project_model.py, test_project_database.py, test_project_file_ownership.py.
+
+Remaining limitations: old AppData lists are not automatically merged; this requested canonical Project is repaired. Existing history sync behavior is outside scope. Native non-Codex desktop launch was not separately controlled; the new actual state path has no package redirection, and two real GUI processes verified persistence. Existing concurrent-instance last-writer behavior is unchanged.
+Automatic approval review rejected recursive deletion of .audit_g2_4/open-safety-copy with only 'blocked by policy'; temporary metadata copy remains there. No canonical Project deletion was attempted. Audit files and scratch copy are untracked and were not committed.

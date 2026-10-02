@@ -1,0 +1,24 @@
+{
+  "manager_path": "C:\\Users\\wuxia\\AppData\\Local\\abqjobpilot\\recent_projects.json",
+  "manager_records": [
+    {
+      "project_id": "ed1a47a2-c3d6-4c2d-843a-b8942c66e828",
+      "name": "RL-LAM-ScanOPT-Stage1-3",
+      "path": "D:\\Projects\\AbqJobPilotProjects\\RL-LAM-ScanOPT-Stage1-3",
+      "last_opened_at": "2026-10-02T22:38:34"
+    }
+  ],
+  "startup_header": "Project: No Project (default runtime)",
+  "menus": [
+    {
+      "before_postcommand_last_index": null,
+      "after_postcommand_last_index": 0,
+      "label": "RL-LAM-ScanOPT-Stage1-3  (D:\\Projects\\AbqJobPilotProjects\\RL-LAM-ScanOPT-Stage1-3)"
+    },
+    {
+      "before_postcommand_last_index": null,
+      "after_postcommand_last_index": 0,
+      "label": "RL-LAM-ScanOPT-Stage1-3  (D:\\Projects\\AbqJobPilotProjects\\RL-LAM-ScanOPT-Stage1-3)"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "project_id": "ed1a47a2-c3d6-4c2d-843a-b8942c66e828",
+  "name": "RL-LAM-ScanOPT-Stage1-3",
+  "description": null,
+  "created_at": "2026-10-02T22:35:37",
+  "updated_at": "2026-10-02T22:35:37",
+  "application": "abqjobpilot",
+  "import_provenance": {
+    "imported": true,
+    "source_type": "legacy_abqjobpilot_runtime",
+    "source_path": "D:\\Projects\\abqjobpilot\\runtime",
+    "imported_at": "2026-10-02T22:35:41",
+    "source_schema_version": null,
+    "excluded_batch": "stage5_n24_bc_c_canonical10_v01",
+    "excluded_queue_ids": [
+      "q_20261001175954381486",
+      "q_20261001182443533666",
+      "q_20261001182443590425",
+      "q_20261001182443645494",
+      "q_20261001182443702582",
+      "q_20261001182443758876",
+      "q_20261001182443814804",
+      "q_20261001182443870835",
+      "q_20261001182443929857",
+      "q_20261001182443986652"
+    ],
+    "staging": "Filtered JSON-only temporary staging passed to current legacy importer",
+    "historical_only": true,
+    "backup_projection": "Additional backup-only queue identities indexed with existing ProjectHistoryRepository; never added to active queue"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "phase": "IDLE",
+  "updated_at": "2026-06-12T19:57:26",
+  "queue_id": "q_20260612151821250819",
+  "current_job": "J2D_S3R19B28_N40_B10_known_best_mutation",
+  "strategy_name": "S3R19B28_N40_B10_known_best_mutation",
+  "batch_name": "stage3_run19_batch28_combined80_surrogate_screened_v01",
+  "step": "81",
+  "increment": "38",
+  "analysis_time": "55.75",
+  "odb_size_bytes": 477299128,
+  "started_at": "2026-06-12T19:45:32",
+  "elapsed_time": "714",
+  "sta_path": "E:\\Projects\\RL-LAM-ScanOpt\\cae_model\\stage3_run19_batch28_combined80_surrogate_screened_v01\\N40S3R19B28_N40_B10_known_best_mutation\\J2D_S3R19B28_N40_B10_known_best_mutation.sta",
+  "log_path": "E:\\Projects\\RL-LAM-ScanOpt\\cae_model\\stage3_run19_batch28_combined80_surrogate_screened_v01\\N40S3R19B28_N40_B10_known_best_mutation\\J2D_S3R19B28_N40_B10_known_best_mutation.log"
+}

@@ -109,7 +109,7 @@ class ProjectFileOwnershipTests(unittest.TestCase):
                 self.assertIn("project/project.db", names)
                 self.assertTrue(any(ref["kind"] == "external_reference" and ref["value"] == str(self.inp)
                                     for ref in manifest["path_references"]))
-            restored = import_project_archive(archive_path, self.root / f"restored_{mode}")
+            restored = import_project_archive(archive_path, self.root / f"restored_{mode}", recent_file=self.manager.recent_file)
             self.assertEqual(read_queue(restored.runtime_dir)[0]["inp_path"], str(self.inp))
             self.assertEqual(ProjectHistoryRepository(restored).find_job_by_queue_id(record["queue_id"])["inp_path"],
                              str(self.inp))
@@ -124,7 +124,7 @@ class ProjectFileOwnershipTests(unittest.TestCase):
         sync_history_from_runtime(self.project.root)
         archive_path = self.root / "missing_metadata.zip"
         export_project_archive(self.project.root, archive_path)
-        restored = import_project_archive(archive_path, self.root / "missing_restored")
+        restored = import_project_archive(archive_path, self.root / "missing_restored", recent_file=self.manager.recent_file)
         self.assertEqual(read_queue(restored.runtime_dir)[0]["inp_path"], str(missing))
         self.assertFalse(missing.exists())
         self.assertFalse((restored.root / "models").exists())
@@ -156,7 +156,7 @@ class ProjectFileOwnershipTests(unittest.TestCase):
         (self.project.results_dir / "owned.odb").write_bytes(b"project-owned fixture")
         archive_path = self.root / "older_full.zip"
         export_project_archive(self.project.root, archive_path, mode="full")
-        restored = import_project_archive(archive_path, self.root / "older_restored")
+        restored = import_project_archive(archive_path, self.root / "older_restored", recent_file=self.manager.recent_file)
         self.assertEqual((restored.models_dir / "owned.inp").read_bytes(), owned.read_bytes())
         self.assertTrue((restored.results_dir / "owned.odb").is_file())
 

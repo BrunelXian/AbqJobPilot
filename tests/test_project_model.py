@@ -115,7 +115,7 @@ class ProjectModelTests(unittest.TestCase):
             self.assertNotIn("project/models/Job_demo.inp", names)
             portable = json.loads(archive.read("project/runtime/queue.json"))
             self.assertEqual(portable["jobs"][0]["inp_path"], "project://models/Job_demo.inp")
-        restored = import_project_archive(archive_path, self.root / "Restored")
+        restored = import_project_archive(archive_path, self.root / "Restored", recent_file=self.manager.recent_file)
         self.assertEqual(restored.project_id, project.project_id)
         restored_record = read_queue(restored.runtime_dir)[0]
         self.assertEqual(restored_record["inp_path"], str(restored.models_dir / "Job_demo.inp"))
@@ -136,13 +136,13 @@ class ProjectModelTests(unittest.TestCase):
         with zipfile.ZipFile(archive_path) as archive:
             self.assertIn("project/models/Job_demo.inp", archive.namelist())
             self.assertIn("project/results/Job_demo.odb", archive.namelist())
-        restored = import_project_archive(archive_path, self.root / "Restored", preserve_project_id=False)
+        restored = import_project_archive(archive_path, self.root / "Restored", preserve_project_id=False, recent_file=self.manager.recent_file)
         self.assertNotEqual(restored.project_id, project.project_id)
         self.assertEqual((restored.models_dir / inp.name).read_bytes(), inp.read_bytes())
         self.assertEqual((restored.results_dir / odb.name).read_bytes(), odb.read_bytes())
         self.assertEqual((restored.results_dir / sta.name).read_bytes(), sta.read_bytes())
         with self.assertRaises(FileExistsError):
-            import_project_archive(archive_path, restored.root)
+            import_project_archive(archive_path, restored.root, recent_file=self.manager.recent_file)
 
     def test_archive_rejects_traversal_and_source_overwrite(self):
         project = self.project()
@@ -151,7 +151,7 @@ class ProjectModelTests(unittest.TestCase):
             archive.writestr("manifest.json", "{}")
             archive.writestr("project/../../evil.txt", "bad")
         with self.assertRaises(ValueError):
-            import_project_archive(archive_path, self.root / "Out")
+            import_project_archive(archive_path, self.root / "Out", recent_file=self.manager.recent_file)
         self.assertFalse((self.root / "evil.txt").exists())
         self.assertFalse((self.root / "Out").exists())
         with self.assertRaises(ValueError):
@@ -164,7 +164,7 @@ class ProjectModelTests(unittest.TestCase):
             archive.writestr("manifest.json", "{}")
             archive.writestr("project/./project.json", "{}")
         with self.assertRaises(ValueError):
-            import_project_archive(archive_path, self.root / "Alias")
+            import_project_archive(archive_path, self.root / "Alias", recent_file=self.manager.recent_file)
         self.assertFalse((self.root / "Alias").exists())
 
     def test_legacy_import_is_metadata_only_and_source_bytes_unchanged(self):

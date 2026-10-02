@@ -22,6 +22,7 @@ runtime/reports/*
 
 # Local backups
 backups/
+/projects/
 
 # Abaqus output files
 *.odb

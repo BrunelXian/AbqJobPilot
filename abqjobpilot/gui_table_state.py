@@ -45,3 +45,9 @@ def restore_iid(job_id: str | None, visible_jobs: list[dict], results: bool = Fa
     if job_id and any(str(job.get("queue_id")) == job_id for job in visible_jobs):
         return f"result_{job_id}" if results else job_id
     return None
+
+
+def restore_iids(selected_iids: tuple[str, ...], visible_jobs: list[dict],
+                 results: bool = False) -> tuple[str, ...]:
+    visible = {row_iid(job, results=results) for job in visible_jobs}
+    return tuple(iid for iid in selected_iids if iid in visible)

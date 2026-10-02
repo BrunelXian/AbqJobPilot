@@ -1,0 +1,31 @@
+docs\ABQJOBPILOT_PROJECT_MODEL.md:58:Settings remain runtime-specific in P1 (`runtime/settings.json`); a new Project initially uses application defaults until settings are saved. Recent Projects are **application-level**, stored by default at `%LOCALAPPDATA%/abqjobpilot/recent_projects.json` on Windows. The list is newest-first, deduplicated by canonical path/project ID, capped at 10, and tolerates missing paths. A different recent-file path can be supplied to `ProjectManager` for tests or controlled deployments.
+docs\ABQJOBPILOT_PROJECT_MODEL.md:66:manager = ProjectManager()
+tests\test_project_model.py:20:        self.manager = ProjectManager(recent_file=self.root / "app" / "recent.json")
+tests\test_project_model.py:87:        recent = self.manager.recent_projects()
+tests\test_project_model.py:89:        self.assertEqual(json.loads(self.manager.recent_file.read_text(encoding="utf-8"))["schema_version"], "1.0")
+tests\test_project_model.py:91:        self.assertEqual(len(self.manager.recent_projects()), 1)
+tests\test_project_model.py:92:        self.assertEqual(len(self.manager.recent_projects(include_missing=True)), 2)
+tests\test_project_model.py:188:                                         recent_file=self.manager.recent_file)
+tests\test_project_gui.py:17:            manager = ProjectManager(recent_file=root / "recent.json")
+tests\test_project_gui.py:48:            manager = ProjectManager(recent_file=root / "recent.json")
+tests\test_project_file_ownership.py:30:        self.manager = ProjectManager(recent_file=self.root / "recent.json")
+tests\test_project_file_ownership.py:143:                                         recent_file=self.root / "legacy_recent.json")
+tests\test_g2_task_workspace.py:205:        self.manager = ProjectManager(recent_file=self.root / "recent.json")
+tests\test_project_database.py:23:        self.manager = ProjectManager(recent_file=self.root / "recent.json")
+tests\test_project_database.py:179:                                         recent_file=self.root / "recent.json")
+abqjobpilot\gui_app.py:230:        self.project_manager = ProjectManager()
+abqjobpilot\gui_app.py:545:        entries = self.project_manager.recent_projects()
+abqjobpilot\project\manager.py:20:def default_recent_file() -> Path:
+abqjobpilot\project\manager.py:21:    base = Path(os.environ.get("LOCALAPPDATA") or (Path.home() / "AppData" / "Local"))
+abqjobpilot\project\manager.py:22:    return base / "abqjobpilot" / "recent_projects.json"
+abqjobpilot\project\manager.py:58:    def __init__(self, recent_file: str | Path | None = None):
+abqjobpilot\project\manager.py:59:        self.recent_file = Path(recent_file) if recent_file is not None else default_recent_file()
+abqjobpilot\project\manager.py:100:    def recent_projects(self, include_missing: bool = False) -> list[dict]:
+abqjobpilot\project\manager.py:102:            data = json.loads(self.recent_file.read_text(encoding="utf-8-sig"))
+abqjobpilot\project\manager.py:105:        entries = data.get("recent_projects", []) if isinstance(data, dict) else []
+abqjobpilot\project\manager.py:115:        existing = self.recent_projects(include_missing=True)
+abqjobpilot\project\manager.py:122:            "last_opened_at": now_iso(),
+abqjobpilot\project\manager.py:124:        write_json(self.recent_file, {"schema_version": PROJECT_SCHEMA_VERSION,
+abqjobpilot\project\manager.py:125:                                      "recent_projects": entries[:RECENT_LIMIT]})
+abqjobpilot\project\legacy_import.py:17:                          project_name: str, *, recent_file: str | Path | None = None) -> ProjectInfo:
+abqjobpilot\project\legacy_import.py:44:    manager = ProjectManager(recent_file=recent_file)

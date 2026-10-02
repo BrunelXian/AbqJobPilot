@@ -1,0 +1,16 @@
+{
+  "phase": "IDLE",
+  "updated_at": "2026-06-15T00:59:51",
+  "queue_id": "q_20260614155157051287",
+  "current_job": "J2D_S3R44CNS_N40_B16_uncertainty",
+  "strategy_name": "S3R44CNS_N40_B16_uncertainty",
+  "batch_name": "stage3_run44_constrained_N24_N40_batch32_v01",
+  "step": "81",
+  "increment": "38",
+  "analysis_time": "55.75",
+  "odb_size_bytes": 530160768,
+  "started_at": "2026-06-15T00:45:55",
+  "elapsed_time": "836",
+  "sta_path": "E:\\Projects\\RL-LAM-ScanOpt\\cae_model\\stage3_run44_constrained_N24_N40_batch32_v01\\N40S3R44CNS_N40_B16_uncertainty\\J2D_S3R44CNS_N40_B16_uncertainty.sta",
+  "log_path": "E:\\Projects\\RL-LAM-ScanOpt\\cae_model\\stage3_run44_constrained_N24_N40_batch32_v01\\N40S3R44CNS_N40_B16_uncertainty\\J2D_S3R44CNS_N40_B16_uncertainty.log"
+}

@@ -143,7 +143,7 @@ class ProjectDatabaseTests(unittest.TestCase):
         export_project_archive(self.project.root, p1_archive)
         with zipfile.ZipFile(p1_archive) as archive:
             self.assertNotIn("project/project.db", archive.namelist())
-        p1_imported = import_project_archive(p1_archive, self.root / "P1Imported")
+        p1_imported = import_project_archive(p1_archive, self.root / "P1Imported", recent_file=self.manager.recent_file)
         self.assertFalse((p1_imported.root / "project.db").exists())
         first = self.record("q_one", "FAILED_FATAL")
         second = self.record("q_two", "COMPLETED_OK")
@@ -157,7 +157,7 @@ class ProjectDatabaseTests(unittest.TestCase):
             with zipfile.ZipFile(path) as archive:
                 self.assertIn("project/project.db", archive.namelist())
             imported = import_project_archive(path, self.root / (path.stem + "_import"),
-                                              preserve_project_id=False)
+                                              preserve_project_id=False, recent_file=self.manager.recent_file)
             repo = ProjectHistoryRepository(imported)
             job = repo.find_job_by_queue_id("q_one")
             self.assertEqual(job["project_id"], imported.project_id)

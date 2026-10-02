@@ -32,15 +32,15 @@ class PresentationTests(unittest.TestCase):
         self.assertIsNone(github_url_from_remote("git@github.com:../AbqJobPilot.git"))
 
     def test_app_version_and_agent_reference_are_canonical(self):
-        self.assertEqual(__version__, "0.2.0")
+        self.assertEqual(__version__, "0.2.1")
         self.assertEqual(tuple(COMMAND_EXAMPLES), SUPPORTED_COMMANDS)
         for name, example in COMMAND_EXAMPLES.items():
             self.assertEqual(parse_agent_command(example)["command"], name)
             self.assertIn(example, AI_INSTRUCTION)
         self.assertIn("capabilities --json", CLI_EXAMPLES)
         self.assertNotIn("solver-start", CLI_EXAMPLES)
-        self.assertNotIn('"0.2.0"', (Path(__file__).parents[1] / "abqjobpilot" / "gui_app.py").read_text(encoding="utf-8"))
-        self.assertNotIn('"0.2.0"', (Path(__file__).parents[1] / "abqjobpilot" / "api" / "client.py").read_text(encoding="utf-8"))
+        self.assertNotIn('"0.2.1"', (Path(__file__).parents[1] / "abqjobpilot" / "gui_app.py").read_text(encoding="utf-8"))
+        self.assertNotIn('"0.2.1"', (Path(__file__).parents[1] / "abqjobpilot" / "api" / "client.py").read_text(encoding="utf-8"))
 
     def test_success_with_warnings_uses_exact_same_tag_and_keeps_identity(self):
         complete = status_presentation("COMPLETED_OK")
@@ -90,13 +90,15 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
     def test_g2_3_log_access_running_highlight_and_about(self):
         app = self.app
         self.assertEqual(app.title(), "AbqJobPilot")
-        self.assertEqual(__version__, "0.2.0")
+        self.assertEqual(__version__, "0.2.1")
         help_menu = app.nametowidget(app.menu_bar.entrycget(5, "menu"))
         self.assertEqual(help_menu.entrycget(0, "label"), "About AbqJobPilot")
         help_menu.invoke(0)
         self.assertEqual(app.about_window.title(), "About AbqJobPilot")
         self.assertIn(f"Version {__version__}", app.about_version_label.cget("text"))
         self.assertEqual(app.about_repo_label.cget("text"), STABLE_GITHUB_URL)
+        self.assertIn("INP queues", app.about_description_label.cget("text"))
+        self.assertIn("original engineering workspace", app.about_ownership_label.cget("text"))
         with patch("abqjobpilot.gui_app.webbrowser.open", return_value=True) as browser:
             app.about_open_button.invoke()
             browser.assert_called_once_with(STABLE_GITHUB_URL)
@@ -111,6 +113,8 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
         self.assertIn(f"版本 {__version__}", app.about_version_label.cget("text"))
         self.assertEqual(app.about_open_button.cget("text"), "打开 GitHub")
         self.assertEqual(app.about_copy_button.cget("text"), "复制链接")
+        self.assertIn("批量运行", app.about_description_label.cget("text"))
+        self.assertIn("原始工程目录", app.about_ownership_label.cget("text"))
         self.assertEqual(app._menu_label("view_logs"), "查看日志")
         self.assertEqual(app.view_running_button.cget("text"), "查看运行任务")
         app.about_window.destroy()
@@ -185,6 +189,140 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
         self.assertEqual(app.view_running_button.cget("style"), "TButton")
         self.assertTrue(self.inp_a.is_file())
         self.assertTrue((self.external / "B07.log").is_file())
+
+    def test_g2_5_multiselect_visible_bulk_and_default_project_dialog(self):
+        app = self.app
+        self.assertEqual(str(app.queue_tree.cget("selectmode")), "extended")
+        self.assertEqual(str(app.results_tree.cget("selectmode")), "extended")
+        queue = [build_queue_record(self.inp_a, 2, 0, "batch", "strategy", f"G25_Q{i}", True, True, "")
+                 for i in range(1, 4)]
+        results = [build_queue_record(self.inp_b, 2, 0, "batch", "strategy", f"G25_R{i}", True, True, "")
+                   for i in range(1, 4)]
+        for result in results:
+            result.update(status="COMPLETED_OK", ended_at="2026-07-01T00:00:00")
+        save_queue(queue + results, runtime_dir=self.runtime)
+        write_json(self.runtime / "live_status.json", {"phase": "IDLE"})
+        app.refresh_all()
+        q_iids = tuple(row_iid(job) for job in queue)
+        r_iids = tuple(row_iid(job, results=True) for job in results)
+        app.queue_tree.selection_set(q_iids[:2])
+        app.results_tree.selection_set(r_iids[:2])
+        for _ in range(3):
+            app.refresh_all()
+        self.assertEqual(set(app.queue_tree.selection()), set(q_iids[:2]))
+        self.assertEqual(set(app.results_tree.selection()), set(r_iids[:2]))
+        self.assertIn("2 selected", app.queue_count_var.get())
+        self.assertIn("2 selected", app.results_count_var.get())
+        reordered = [results[2], queue[0], queue[1], queue[2], results[0], results[1]]
+        save_queue(reordered, runtime_dir=self.runtime)
+        app.refresh_all()
+        self.assertEqual(set(app.queue_tree.selection()), set(q_iids[:2]))
+        self.assertEqual(set(app.results_tree.selection()), set(r_iids[:2]))
+        save_queue([item for item in reordered if item["queue_id"] != queue[1]["queue_id"]], runtime_dir=self.runtime)
+        app.refresh_all()
+        self.assertEqual(app.queue_tree.selection(), (q_iids[0],))
+        self.assertEqual(set(app.results_tree.selection()), set(r_iids[:2]))
+        save_queue(reordered, runtime_dir=self.runtime)
+        app.refresh_all()
+
+        app.queue_search_var.set("G25_Q1")
+        app.queue_tree.focus_set()
+        app.queue_tree.event_generate("<Control-a>")
+        self.assertEqual(app.queue_tree.selection(), (q_iids[0],))
+        self.assertEqual(app._selected_visible_ids(app.queue_tree), (queue[0]["queue_id"],))
+        with patch.object(app, "_post_menu") as post:
+            app.queue_tree.selection_remove(app.queue_tree.selection())
+            app._show_selected_context(app.queue_tree)
+            menu = post.call_args.args[0]
+            index = next(i for i in range(menu.index("end") + 1)
+                         if menu.type(i) == "command" and menu.entrycget(i, "label") == "Select All")
+            menu.invoke(index)
+        self.assertEqual(app.queue_tree.selection(), (q_iids[0],))
+        app._clear_table_selection(app.queue_tree)
+        self.assertFalse(app.queue_tree.selection())
+        app.queue_search_var.set("")
+
+        app.queue_tree.selection_set(q_iids[:2])
+        app.queue_tree.see(q_iids[0])
+        app.update_idletasks()
+        with patch.object(app, "_post_menu") as post:
+            app._show_queue_menu(SimpleNamespace(y=app.queue_tree.bbox(q_iids[0])[1] + 2))
+            menu = post.call_args.args[0]
+        self.assertEqual(set(app.queue_tree.selection()), set(q_iids[:2]))
+        labels = [menu.entrycget(i, "label") for i in range(menu.index("end") + 1)
+                  if menu.type(i) == "command"]
+        self.assertIn("Remove Selected Queue Records", labels)
+        bulk_queue_index = next(i for i in range(menu.index("end") + 1)
+                                if menu.type(i) == "command" and
+                                menu.entrycget(i, "label") == "Remove Selected Queue Records")
+        move_up_index = next(i for i in range(menu.index("end") + 1)
+                             if menu.type(i) == "command" and menu.entrycget(i, "label") == "Move Up")
+        self.assertEqual(menu.entrycget(move_up_index, "state"), "disabled")
+        with patch.object(app.runner, "is_running", return_value=True), \
+             patch("abqjobpilot.gui_app.messagebox.showwarning") as warn, \
+             patch("abqjobpilot.gui_app.messagebox.askyesno") as confirm:
+            app._remove_selected_queue()
+            warn.assert_called_once()
+            confirm.assert_not_called()
+        self.assertEqual(len(read_queue(self.runtime)), 6)
+        with patch("abqjobpilot.gui_app.messagebox.askyesno", return_value=False) as confirm:
+            menu.invoke(bulk_queue_index)
+            confirm.assert_called_once()
+            self.assertIn("2 selected", confirm.call_args.args[1])
+        self.assertEqual(len(read_queue(self.runtime)), 6)
+        with patch("abqjobpilot.gui_app.messagebox.askyesno", return_value=True) as confirm:
+            app._remove_selected_queue()
+            confirm.assert_called_once()
+        self.assertEqual([job["queue_id"] for job in read_queue(self.runtime) if job["status"] == "QUEUED"],
+                         [queue[2]["queue_id"]])
+
+        app.search_var.set("G25_R1")
+        app.results_tree.focus_set()
+        app.results_tree.event_generate("<Control-a>")
+        self.assertEqual(app._selected_visible_ids(app.results_tree), (results[0]["queue_id"],))
+        app.search_var.set("")
+        app.results_tree.selection_set(r_iids[:2])
+        app.results_tree.see(r_iids[0])
+        app.update_idletasks()
+        with patch.object(app, "_post_menu") as post:
+            app._show_results_menu(SimpleNamespace(y=app.results_tree.bbox(r_iids[0])[1] + 2))
+            result_menu = post.call_args.args[0]
+        self.assertEqual(set(app.results_tree.selection()), set(r_iids[:2]))
+        result_labels = [result_menu.entrycget(i, "label") for i in range(result_menu.index("end") + 1)
+                         if result_menu.type(i) == "command"]
+        self.assertIn("Delete Selected Result Records", result_labels)
+        bulk_result_index = next(i for i in range(result_menu.index("end") + 1)
+                                 if result_menu.type(i) == "command" and
+                                 result_menu.entrycget(i, "label") == "Delete Selected Result Records")
+        delete_one_index = next(i for i in range(result_menu.index("end") + 1)
+                                if result_menu.type(i) == "command" and
+                                result_menu.entrycget(i, "label") == "Delete Result Record")
+        self.assertEqual(result_menu.entrycget(delete_one_index, "state"), "disabled")
+        with patch("abqjobpilot.gui_app.messagebox.askyesno", return_value=False) as confirm:
+            result_menu.invoke(bulk_result_index)
+            confirm.assert_called_once()
+        self.assertEqual(len(read_queue(self.runtime)), 4)
+        app.results_tree.selection_set(r_iids[:2])
+        with patch("abqjobpilot.gui_app.messagebox.askyesno", return_value=True) as confirm:
+            app.clear_selected_result()
+            confirm.assert_called_once()
+        self.assertEqual([job["queue_id"] for job in read_queue(self.runtime) if job["status"] == "COMPLETED_OK"],
+                         [results[2]["queue_id"]])
+        self.assertTrue(self.inp_a.is_file())
+        self.assertTrue(self.inp_b.is_file())
+
+        app_root = self.root / "application"
+        external_parent = self.root / "chosen_projects"
+        with patch.object(config, "APP_ROOT_PATH", app_root), \
+             patch("abqjobpilot.gui_app.filedialog.askdirectory", return_value=str(external_parent)) as choose, \
+             patch("abqjobpilot.gui_app.simpledialog.askstring", return_value="External"):
+            destination = app._new_project_destination("Select Project parent")
+        self.assertEqual(Path(choose.call_args.kwargs["initialdir"]), app_root / "projects")
+        self.assertTrue((app_root / "projects").is_dir())
+        self.assertEqual(destination[0], external_parent / "External")
+        project = app.project_manager.create_project(*destination)
+        self.assertEqual(project.root, external_parent / "External")
+        self.assertTrue(self.inp_a.is_file())
 
     def test_workspace_gui_end_to_end(self):
         self._check_layout_languages_and_no_solver_actions()

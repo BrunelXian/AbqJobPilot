@@ -1,0 +1,10 @@
+{
+  "abaqus_cmd": "D:\\ABAQUS2024\\Commands\\abq2024.bat",
+  "default_cpus": 14,
+  "use_gpu": false,
+  "default_gpus": 0,
+  "run_datacheck": false,
+  "run_full": true,
+  "auto_shutdown_enabled": false,
+  "auto_shutdown_idle_minutes": 5
+}

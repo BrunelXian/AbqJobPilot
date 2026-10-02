@@ -1,0 +1,26 @@
+abqjobpilot\gui_app.py:9:import subprocess
+abqjobpilot\gui_app.py:41:from .runner_core import QueueRunner
+abqjobpilot\gui_app.py:229:        self.runner = QueueRunner()
+abqjobpilot\gui_app.py:1521:            subprocess.Popen(["notepad.exe", str(path)])
+abqjobpilot\gui_app.py:1767:        flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+abqjobpilot\gui_app.py:1769:            result = subprocess.run(
+abqjobpilot\gui_app.py:1780:        except (OSError, subprocess.SubprocessError):
+abqjobpilot\gui_app.py:1844:        flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+abqjobpilot\gui_app.py:1846:            subprocess.Popen(
+abqjobpilot\gui_app.py:1848:                stdout=subprocess.DEVNULL,
+abqjobpilot\gui_app.py:1849:                stderr=subprocess.DEVNULL,
+abqjobpilot\gui_app.py:1984:            subprocess.Popen(["taskmgr.exe"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+abqjobpilot\runner_core.py:5:import subprocess
+abqjobpilot\runner_core.py:36:    # avoiding shell=True and arbitrary shell command execution.
+abqjobpilot\runner_core.py:42:def _hidden_startupinfo() -> subprocess.STARTUPINFO | None:
+abqjobpilot\runner_core.py:43:    if not hasattr(subprocess, "STARTUPINFO"):
+abqjobpilot\runner_core.py:45:    startupinfo = subprocess.STARTUPINFO()
+abqjobpilot\runner_core.py:46:    startupinfo.dwFlags |= getattr(subprocess, "STARTF_USESHOWWINDOW", 0)
+abqjobpilot\runner_core.py:52:    return getattr(subprocess, "CREATE_NO_WINDOW", 0)
+abqjobpilot\runner_core.py:183:        log_file.write(f"Command: {subprocess.list2cmdline(command)}\n\n")
+abqjobpilot\runner_core.py:185:        process = subprocess.Popen(
+abqjobpilot\runner_core.py:189:            stderr=subprocess.STDOUT,
+abqjobpilot\runner_core.py:190:            stdin=subprocess.DEVNULL,
+abqjobpilot\runner_core.py:205:def run_next_job(job: dict) -> dict:
+abqjobpilot\runner_core.py:305:class QueueRunner:
+abqjobpilot\runner_core.py:342:                run_next_job(job)
