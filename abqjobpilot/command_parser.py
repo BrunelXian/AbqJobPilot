@@ -9,20 +9,26 @@ import shlex
 from . import config
 
 
-HELP_TEXT = """Supported commands:
-enqueue --inp "D:\\path\\Job_xxx.inp" --cpus 14
-enqueue --inp "D:\\path\\Job_xxx.inp" --cpus 14 --gpus 1
-enqueue-folder --folder "D:\\path\\strategy_folder" --cpus 14 --gpus 1
-list
-help
-clear
+COMMAND_EXAMPLES = {
+    "enqueue": 'enqueue --inp "D:\\path\\Job_xxx.inp" --cpus 14 --gpus 1 --batch batch_name --strategy strategy_name',
+    "enqueue-folder": 'enqueue-folder --folder "D:\\path\\strategy_folder" --pattern "*.inp" --cpus 14 --gpus 1 --batch batch_name --strategy strategy_name',
+    "list": "list",
+    "help": "help",
+    "clear": "clear",
+}
+SUPPORTED_COMMANDS = tuple(COMMAND_EXAMPLES)
 
-Notes:
-- This console only accepts abqjobpilot internal commands.
-- It never executes system shell commands.
-"""
 
-SUPPORTED_COMMANDS = ("enqueue", "enqueue-folder", "list", "help", "clear")
+def command_help_text(language: str = "en") -> str:
+    heading = "支持的命令：" if language == "zh" else "Supported commands:"
+    notes = ("说明：\n- 此控制台仅接受 AbqJobPilot 内部命令。\n- 不执行系统 Shell 命令。"
+             if language == "zh" else
+             "Notes:\n- This console only accepts AbqJobPilot internal commands.\n"
+             "- It never executes system shell commands.")
+    return f"{heading}\n" + "\n".join(COMMAND_EXAMPLES.values()) + f"\n\n{notes}\n"
+
+
+HELP_TEXT = command_help_text()
 
 
 class CommandParseError(ValueError):

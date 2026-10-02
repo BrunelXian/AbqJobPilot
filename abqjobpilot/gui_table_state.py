@@ -9,11 +9,12 @@ from . import config
 
 def queue_display_jobs(jobs: list[dict]) -> list[dict]:
     # The runner scans the persisted list from top to bottom.
-    return [job for job in jobs if job.get("status") in config.ACTIVE_STATUSES]
+    return [job for job in jobs if job.get("status") in config.ACTIVE_STATUSES or job.get("status") == "RUNNING"]
 
 
 def result_display_jobs(jobs: list[dict]) -> list[dict]:
-    results = [job for job in jobs if job.get("status") in config.RESULT_STATUSES]
+    results = [job for job in jobs if job.get("status") in config.RESULT_STATUSES or
+               job.get("status") in {"COMPLETED", "FAILED"}]
     return sorted(results, key=_result_time, reverse=True)
 
 

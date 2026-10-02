@@ -386,8 +386,22 @@ No SQLite-backed status layer exists yet.
 The command preview uses the configured default Abaqus command path.
 The API reads existing JSON status files but does not yet guarantee schema migration.
 Queue write serialization is process-local; independent processes must not write the same queue concurrently.
+```
 
 ## Project runtime ownership (P1)
 
 A Project owns its runtime at `<ProjectRoot>/runtime`. Pass `AbqJobPilotClient(runtime_dir=str(project.runtime_dir))` explicitly for project-scoped queue, status, and output operations. The default client still targets the configured local runtime, not whichever Project another GUI process has opened. The public automation surface does not create/open Projects or start the solver. See `docs/ABQJOBPILOT_PROJECT_MODEL.md` for the Project filesystem, archive, and legacy-import contract.
+
+## Agent and Coding-Assistant Integration
+
+Codex, Claude Code, ChatGPT, and other tools may use the same vendor-neutral interface:
+
+```text
+Coding assistant -> JSON CLI / Python API / Agent Commands
+                 -> AbqJobPilot Automation Surface v1
+                 -> queue metadata, status, output references
 ```
+
+The public Python client and JSON CLI support `capabilities`, `preflight`, `enqueue`, `enqueue-folder`, `list`, `status`, and `locate-outputs`. The Agent Command Console accepts only its internal `enqueue`, `enqueue-folder`, `list`, `help`, and `clear` grammar. These are related interfaces, not interchangeable command syntaxes. The GUI Agent menu links to the canonical AI Instruction and this document.
+
+Public `solver_start` remains `false`. No assistant-specific SDK, MCP endpoint, HTTP service, or direct solver-start command is provided. Application version `0.2.0` is reported separately from `automation_surface` and `schema_version`, which remain `1.0`.

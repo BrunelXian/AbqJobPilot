@@ -4,16 +4,22 @@ from __future__ import annotations
 
 import ctypes
 from ctypes import wintypes
+import json
 import logging
 import subprocess
 import tkinter as tk
 import time
+import webbrowser
 import zipfile
 from pathlib import Path
+from types import SimpleNamespace
 from tkinter import filedialog, messagebox, scrolledtext, simpledialog, ttk
 
-from . import config
-from .command_console import AgentCommandConsole
+from . import __version__, config
+from .app_metadata import STABLE_GITHUB_URL
+from .command_console import AI_INSTRUCTION, CLI_EXAMPLES, AgentCommandConsole
+from .gui_presentation import (SUCCESS_BACKGROUND, SUCCESS_FOREGROUND, filter_jobs,
+                               read_log_tail, status_presentation)
 from .gui_table_state import queue_display_jobs, result_display_jobs, restore_iid, row_iid, selected_job_id
 from .queue_store import (
     add_folder_to_queue,
@@ -28,6 +34,7 @@ from .queue_store import (
     requeue_result_job,
 )
 from .api import AbqJobPilotClient, JobRequest
+from .api.status_reader import expected_paths
 from .project import ProjectInfo, ProjectManager, export_project_archive, import_legacy_runtime, import_project_archive
 from .database import DatabaseFailure, ProjectHistoryRepository, sync_history_from_runtime
 from .status_codes import normalize_status
@@ -82,6 +89,8 @@ MENU_LABELS = {
     "delete_result": ("Delete Result Record", "删除结果记录"),
     "failure_summary": ("Show Failure Summary", "查看失败摘要"),
     "run_history": ("View Run History", "查看运行历史"),
+    "view_details": ("View Details", "查看详情"),
+    "view_logs": ("View Logs", "查看日志"),
 }
 
 
@@ -181,12 +190,42 @@ class AbqJobPilotApp(tk.Tk):
     def __init__(self):
         super().__init__()
         init_storage()
-        self.title("abqjobpilot")
+        self.title("AbqJobPilot")
         self._apply_icon()
         self._set_initial_geometry()
         self.configure(background=COLORS["bg"])
         self.job_by_id: dict[str, dict] = {}
         self._rendered_rows: dict[str, list[tuple]] = {}
+        self._restoring_table_selection = False
+        self._table_split_fraction = 0.5
+        self._table_split_width = 0
+        self._table_split_pending = False
+        self._all_jobs: list[dict] = []
+        self._last_selected_tree: ttk.Treeview | None = None
+        self.inspection_key: tuple[str, str] | None = None
+        self.runner_context: dict = {}
+        self._verified_running = False
+        self._live_status: dict = {}
+        self._rendered_inspection: tuple | None = None
+        self._rendered_log: tuple | None = None
+        self._details_collapsed = True
+        self.search_var = tk.StringVar()
+        self.queue_search_var = tk.StringVar()
+        self.filter_status_code = "all"
+        self.filter_batch: str | None = None
+        self.log_source_var = tk.StringVar(value="STA")
+        self.log_follow_var = tk.BooleanVar(value=True)
+        self.live_source_var = tk.StringVar(value="STA")
+        self.live_follow_vars = {"solver": tk.BooleanVar(value=True), "console": tk.BooleanVar(value=True)}
+        self._live_log_signatures: dict[str, tuple] = {}
+        self.running_summary_var = tk.StringVar()
+        self.queue_count_var = tk.StringVar()
+        self.results_count_var = tk.StringVar()
+        self.live_origin_vars = {"solver": tk.StringVar(), "console": tk.StringVar()}
+        self.inspection_title_var = tk.StringVar()
+        self.filtered_hint_var = tk.StringVar()
+        self.log_path_var = tk.StringVar()
+        self.resource_line_var = tk.StringVar()
         self.runner = QueueRunner()
         self.project_manager = ProjectManager()
         self.project_name_var = tk.StringVar()
@@ -209,10 +248,19 @@ class AbqJobPilotApp(tk.Tk):
 
         self._configure_styles()
         self.columnconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
         self._build_widgets()
         self.refresh_all()
-        self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
+        self._poll_after_id = self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
+
+    def destroy(self) -> None:
+        if getattr(self, "_poll_after_id", None):
+            try:
+                self.after_cancel(self._poll_after_id)
+            except tk.TclError:
+                pass
+            self._poll_after_id = None
+        super().destroy()
 
     def _apply_icon(self) -> None:
         icon_path = Path(config.APP_ICON_FILE)
@@ -225,12 +273,12 @@ class AbqJobPilotApp(tk.Tk):
     def _set_initial_geometry(self) -> None:
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
-        width = min(1760, max(1500, int(screen_width * 0.9)))
-        height = min(980, max(880, int(screen_height * 0.86)))
+        width = min(1760, max(1024, int(screen_width * 0.92)), screen_width)
+        height = min(980, max(700, int(screen_height * 0.88)), screen_height)
         x = max(0, (screen_width - width) // 2)
         y = max(0, (screen_height - height) // 2)
         self.geometry(f"{width}x{height}+{x}+{y}")
-        self.minsize(1360, 760)
+        self.minsize(1024, 640)
 
     def _configure_styles(self) -> None:
         style = ttk.Style(self)
@@ -256,78 +304,153 @@ class AbqJobPilotApp(tk.Tk):
             background=[("active", "#f1f5f9"), ("pressed", "#e2e8f0")],
             bordercolor=[("active", COLORS["accent"])],
         )
+        style.configure("RunningAction.TButton", padding=(12, 6), background=COLORS["accent"],
+                        foreground="#ffffff", bordercolor=COLORS["accent_dark"])
+        style.map("RunningAction.TButton",
+                  background=[("active", COLORS["accent_dark"]), ("pressed", COLORS["accent_dark"])],
+                  foreground=[("active", "#ffffff"), ("pressed", "#ffffff")])
         style.configure("Treeview", background="#ffffff", fieldbackground="#ffffff", foreground=COLORS["text"], rowheight=28, bordercolor=COLORS["panel_border"])
         style.configure("Treeview.Heading", background=COLORS["table_head"], foreground=COLORS["text"], font=("Segoe UI Semibold", 10), padding=(6, 6))
         style.map("Treeview", background=[("selected", COLORS["accent"])], foreground=[("selected", "#ffffff")])
+        style.configure("Workspace.TNotebook", background=COLORS["bg"], borderwidth=0)
+        style.configure("Workspace.TNotebook.Tab", padding=(16, 8))
         style.configure("Vertical.TScrollbar", background="#e2e8f0", troughcolor="#f8fafc", bordercolor="#e2e8f0")
         style.configure("Horizontal.TScrollbar", background="#e2e8f0", troughcolor="#f8fafc", bordercolor="#e2e8f0")
 
     def _build_widgets(self) -> None:
         self._build_toolbar()
+        self._build_status_area(self)
 
-        main_pane = ttk.PanedWindow(self, orient="vertical")
-        main_pane.grid(row=1, column=0, sticky="nsew", padx=10, pady=(0, 10))
+        self.workspace_pane = ttk.PanedWindow(self, orient="vertical")
+        self.workspace_pane.grid(row=2, column=0, sticky="nsew", padx=12, pady=(2, 0))
+        table_workspace = ttk.Frame(self.workspace_pane)
+        table_workspace.rowconfigure(0, weight=1)
+        table_workspace.columnconfigure(0, weight=1)
+        self.workspace_pane.add(table_workspace, weight=3)
+        self.table_pane = ttk.PanedWindow(table_workspace, orient="horizontal")
+        self.table_pane.grid(row=0, column=0, sticky="nsew")
+        self.table_pane.bind("<Configure>", self._on_table_pane_resize)
+        self.table_pane.bind("<ButtonRelease-1>", self._remember_table_split, add="+")
+        self._build_queue_area(self.table_pane)
+        self._build_results_area(self.table_pane)
+        self._build_live_logs(self.workspace_pane)
 
-        top_frame = ttk.Frame(main_pane)
-        bottom_frame = ttk.Frame(main_pane)
-        main_pane.add(top_frame, weight=3)
-        main_pane.add(bottom_frame, weight=2)
+        self.detail_window = tk.Toplevel(self)
+        self.detail_window.withdraw()
+        self.detail_window.title("Task Details")
+        self.detail_window.geometry("1050x650")
+        self.detail_window.rowconfigure(0, weight=1)
+        self.detail_window.columnconfigure(0, weight=1)
+        self.detail_window.protocol("WM_DELETE_WINDOW", self._hide_details)
+        self._build_details_area(self.detail_window)
+        self._build_footer()
+        self.bind("<F5>", lambda _event: self.refresh_all())
+        self.search_var.trace_add("write", lambda *_args: self._on_search_change())
+        self.queue_search_var.trace_add("write", lambda *_args: self._on_search_change())
+        self._clear_inspection_view()
 
-        top_frame.columnconfigure(0, weight=0)
-        top_frame.columnconfigure(1, weight=1)
-        top_frame.rowconfigure(0, weight=1)
-        self._build_status_area(top_frame)
-        self._build_queue_area(top_frame)
+    def _on_table_pane_resize(self, event) -> None:
+        if event.width == self._table_split_width:
+            return
+        self._table_split_width = event.width
+        if not self._table_split_pending:
+            self._table_split_pending = True
+            self.after_idle(self._apply_table_split)
 
-        bottom_frame.columnconfigure(0, weight=1)
-        bottom_frame.rowconfigure(0, weight=1)
-        bottom_frame.rowconfigure(1, weight=1)
-        self._build_results_area(bottom_frame)
-        self._build_log_area(bottom_frame)
+    def _apply_table_split(self) -> None:
+        self._table_split_pending = False
+        width = self.table_pane.winfo_width()
+        if width > 100:
+            self.table_pane.sashpos(0, round(width * self._table_split_fraction))
+
+    def _remember_table_split(self, event) -> None:
+        width = self.table_pane.winfo_width()
+        if width > 100 and abs(event.x - self.table_pane.sashpos(0)) <= 12:
+            self._table_split_fraction = self.table_pane.sashpos(0) / width
 
     def _build_toolbar(self) -> None:
-        toolbar = ttk.Frame(self, padding=(14, 10, 14, 8))
+        toolbar = ttk.Frame(self, padding=(12, 9, 12, 5))
         toolbar.grid(row=0, column=0, sticky="ew")
-        toolbar.columnconfigure(2, weight=1)
-
-        left = ttk.Frame(toolbar)
-        left.grid(row=0, column=0, sticky="w")
-        run = ttk.Frame(toolbar)
-        run.grid(row=0, column=1, sticky="w", padx=(18, 0))
-        right = ttk.Frame(toolbar)
-        right.grid(row=0, column=3, sticky="e")
-
-        self._make_button(left, "add_inp", self.add_inp, 0)
-        self._make_button(left, "add_folder", self.add_folder, 1)
-        self._make_button(left, "agent_command", self.open_agent_console, 2)
-        self._make_button(left, "settings", self.open_settings, 3)
-
-        self._make_primary_button(run, "start_queue", self.start_queue, 0)
-        self._make_button(run, "stop_after_current", self.stop_after_current, 1)
-        self._make_button(run, "skip_selected", self.skip_selected, 2)
-        self._make_button(run, "clear_selected_result", self.clear_selected_result, 3)
-        self._make_button(run, "refresh", self.refresh_all, 4)
-
-        self._make_button(right, "open_work_folder", self.open_selected_work_folder, 0)
-        self._make_button(right, "language", self.toggle_language, 1)
-        self._make_button(right, "help", self.show_help, 2)
-        self._make_button(right, "exit", self.destroy, 3)
-
-        project_bar = ttk.Frame(toolbar)
-        project_bar.grid(row=1, column=0, columnspan=4, sticky="ew", pady=(7, 0))
-        ttk.Label(project_bar, textvariable=self.project_name_var, width=38).pack(side="left", padx=(0, 12))
-        for key, action in (("new", self.new_project), ("open", self.open_project_dialog),
-                            ("close", self.close_project), ("folder", self.open_project_folder),
-                            ("export", self.export_project_dialog), ("import", self.import_project_dialog),
-                            ("legacy", self.import_legacy_dialog)):
-            button = ttk.Button(project_bar, command=action)
-            button.pack(side="left", padx=(0, 5))
-            self.project_controls[key] = button
-        self.recent_menu = tk.Menu(self, tearoff=False)
-        self.recent_button = ttk.Menubutton(project_bar, menu=self.recent_menu)
-        self.recent_button.pack(side="left")
-        self.recent_menu.configure(postcommand=self._populate_recent_menu)
+        toolbar.columnconfigure(5, weight=1)
+        self.project_dropdown_menu = tk.Menu(self, tearoff=False)
+        self.project_dropdown = ttk.Menubutton(toolbar, textvariable=self.project_name_var,
+                                               menu=self.project_dropdown_menu, width=28)
+        self.project_dropdown.grid(row=0, column=0, sticky="w", padx=(0, 8))
+        self.add_menu = tk.Menu(self, tearoff=False)
+        self.add_button = ttk.Menubutton(toolbar, menu=self.add_menu)
+        self.add_button.grid(row=0, column=1, sticky="w", padx=(0, 18))
+        self._make_button(toolbar, "agent_command", self.open_agent_console, 2)
+        self._make_primary_button(toolbar, "start_queue", self.start_queue, 3)
+        self._make_button(toolbar, "stop_after_current", self.stop_after_current, 4)
+        self._build_menus()
         self._update_project_label()
+
+    def _fill_project_menu(self, menu: tk.Menu) -> None:
+        menu.delete(0, "end")
+        labels = self._texts()["project_menu"]
+        for key, action in (("new", self.new_project), ("open", self.open_project_dialog),
+                            ("close", self.close_project), ("folder", self.open_project_folder)):
+            menu.add_command(label=labels[key], command=action)
+        menu.add_separator()
+        recent = tk.Menu(menu, tearoff=False, postcommand=lambda: self._populate_recent_menu(recent))
+        menu.add_cascade(label=labels["recent"], menu=recent)
+        menu.add_separator()
+        for key, action in (("export", self.export_project_dialog), ("import", self.import_project_dialog),
+                            ("legacy", self.import_legacy_dialog)):
+            menu.add_command(label=labels[key], command=action)
+
+    def _build_menus(self) -> None:
+        labels = self._texts()["menus"]
+        menu_bar = tk.Menu(self, tearoff=False)
+        project_menu = tk.Menu(menu_bar, tearoff=False)
+        self._fill_project_menu(project_menu)
+        self._fill_project_menu(self.project_dropdown_menu)
+        menu_bar.add_cascade(label=labels["project"], menu=project_menu)
+
+        self.add_menu.delete(0, "end")
+        self.add_menu.add_command(label=labels["add_inp"], command=self.add_inp)
+        self.add_menu.add_command(label=labels["add_folder"], command=self.add_folder)
+        task_menu = tk.Menu(menu_bar, tearoff=False)
+        task_menu.add_command(label=labels["add_inp"], command=self.add_inp)
+        task_menu.add_command(label=labels["add_folder"], command=self.add_folder)
+        task_menu.add_separator()
+        task_menu.add_command(label=labels["view_details"], command=self.open_selected_details)
+        task_menu.add_command(label=labels["skip"], command=self.skip_selected)
+        task_menu.add_command(label=labels["requeue"], command=lambda: self._selected_result_action("requeue"))
+        task_menu.add_command(label=labels["delete_result"], command=self.clear_selected_result)
+        menu_bar.add_cascade(label=labels["task"], menu=task_menu)
+
+        view_menu = tk.Menu(menu_bar, tearoff=False)
+        view_menu.add_command(label=labels["queue"], command=lambda: self.queue_tree.focus_set())
+        view_menu.add_command(label=labels["results"], command=lambda: self.results_tree.focus_set())
+        view_menu.add_command(label=labels["refresh"], command=self.refresh_all, accelerator="F5")
+        menu_bar.add_cascade(label=labels["view"], menu=view_menu)
+
+        tools_menu = tk.Menu(menu_bar, tearoff=False)
+        tools_menu.add_command(label=labels["settings"], command=self.open_settings)
+        tools_menu.add_command(label=labels["language"], command=self.toggle_language)
+        tools_menu.add_command(label=labels["task_manager"], command=self.open_task_manager_performance)
+        menu_bar.add_cascade(label=labels["tools"], menu=tools_menu)
+
+        agent_menu = tk.Menu(menu_bar, tearoff=False)
+        agent_labels = self._texts()["agent_menu"]
+        agent_menu.add_command(label=agent_labels["console"], command=self.open_agent_console)
+        agent_menu.add_command(label=agent_labels["instruction"], command=lambda: self._copy_text(AI_INSTRUCTION))
+        agent_menu.add_command(label=agent_labels["examples"], command=lambda: self._copy_text(CLI_EXAMPLES))
+        agent_menu.add_command(label=agent_labels["capabilities"], command=self.show_agent_capabilities)
+        agent_menu.add_separator()
+        agent_menu.add_command(label=agent_labels["docs"], command=self.open_automation_docs)
+        agent_menu.add_command(label=agent_labels["about"], command=self.show_automation_about)
+        menu_bar.add_cascade(label=labels["agent_top"], menu=agent_menu)
+        self.agent_menu = agent_menu
+
+        help_menu = tk.Menu(menu_bar, tearoff=False)
+        help_menu.add_command(label=labels["about_app"], command=self.show_help)
+        help_menu.add_command(label=labels["exit"], command=self.destroy)
+        menu_bar.add_cascade(label=labels["help"], menu=help_menu)
+        self.configure(menu=menu_bar)
+        self.menu_bar = menu_bar
+        self.add_button.configure(text=labels["add_task"])
 
     def _update_project_label(self) -> None:
         project = self.project_manager.current
@@ -345,16 +468,29 @@ class AbqJobPilotApp(tk.Tk):
         return True
 
     def _activate_project(self, project: ProjectInfo | None) -> None:
+        self._hide_details()
         config.use_runtime_dir(project.runtime_dir if project else None)
         self.project_manager.current = project
         self._runner_was_running = False
         self._queue_completed_monotonic = None
         self._shutdown_requested = False
         self.job_by_id.clear()
+        self._all_jobs.clear()
+        self.inspection_key = None
+        self._last_selected_tree = None
+        self.runner_context = {}
+        self._verified_running = False
+        self._rendered_inspection = None
+        self._rendered_log = None
+        self._live_log_signatures.clear()
         self._rendered_rows.clear()
         self._history_signature = None
         self.queue_tree.delete(*self.queue_tree.get_children())
         self.results_tree.delete(*self.results_tree.get_children())
+        self._clear_inspection_view()
+        for side, widget in self.live_log_texts.items():
+            self.live_origin_vars[side].set("")
+            self._set_text(widget, "", follow=False)
         self._update_project_label()
         self.refresh_all()
 
@@ -404,13 +540,13 @@ class AbqJobPilotApp(tk.Tk):
             except (OSError, ValueError) as exc:
                 messagebox.showerror("Open Project", str(exc))
 
-    def _populate_recent_menu(self) -> None:
-        self.recent_menu.delete(0, "end")
+    def _populate_recent_menu(self, menu: tk.Menu) -> None:
+        menu.delete(0, "end")
         entries = self.project_manager.recent_projects()
         if not entries:
-            self.recent_menu.add_command(label="No recent projects", state="disabled")
+            menu.add_command(label="No recent projects" if self.lang == "en" else "没有最近项目", state="disabled")
         for item in entries:
-            self.recent_menu.add_command(
+            menu.add_command(
                 label=f"{item.get('name', '')}  ({item['path']})",
                 command=lambda path=item["path"]: self._open_recent(path),
             )
@@ -511,121 +647,233 @@ class AbqJobPilotApp(tk.Tk):
         self.toolbar_button_labels[key] = label
 
     def _build_status_area(self, parent: ttk.Frame) -> None:
-        frame = ttk.LabelFrame(parent, text="Current Running Status", padding=10)
-        self.frames["status"] = frame
-        frame.grid(row=0, column=0, sticky="nsw", padx=(0, 10))
-        frame.columnconfigure(2, weight=1)
+        frame = ttk.Frame(parent, padding=(14, 8, 14, 8))
+        frame.grid(row=1, column=0, sticky="ew")
+        frame.columnconfigure(1, weight=1)
+        self.status_light = tk.Canvas(frame, width=18, height=18, highlightthickness=0, background=COLORS["bg"])
+        self.status_light.grid(row=0, column=0, padx=(0, 8))
+        self.status_light_id = self.status_light.create_oval(3, 3, 15, 15, fill=COLORS["muted"], outline="")
+        self.running_summary_label = ttk.Label(frame, textvariable=self.running_summary_var, wraplength=640)
+        self.running_summary_label.grid(row=0, column=1, sticky="w")
+        self.view_running_button = ttk.Button(frame, command=self.view_running_job)
+        self.view_running_button.grid(row=0, column=2, sticky="e")
+        self.resource_button = ttk.Button(frame, textvariable=self.resource_line_var,
+                                          command=self.open_task_manager_performance)
+        self.resource_button.grid(row=0, column=3, sticky="e", padx=(12, 0))
 
-        self.status_light = tk.Canvas(frame, width=18, height=18, highlightthickness=0, background=COLORS["panel"])
-        self.status_light.grid(row=0, column=2, sticky="ne", padx=(10, 0))
-        self.status_light_id = self.status_light.create_oval(3, 3, 15, 15, fill="#2fb344", outline="#1f7a2e")
-
-        labels = ("current_job", "strategy", "batch", "phase", "step", "increment", "analysis_time", "odb_size", "started_at", "elapsed_time")
-        for row, key in enumerate(labels):
-            label_widget = ttk.Label(frame)
-            label_widget.grid(row=row, column=0, sticky="w", pady=2)
-            self.status_label_widgets[key] = label_widget
-            var = tk.StringVar(value="")
-            self.status_vars[key] = var
-            ttk.Label(frame, textvariable=var, width=30).grid(row=row, column=1, sticky="w", pady=2)
+    def _build_table_controls(self, parent: ttk.Frame) -> None:
+        controls = ttk.Frame(parent, padding=(0, 0, 0, 5))
+        controls.grid(row=1, column=0, sticky="ew")
+        controls.columnconfigure(1, weight=1)
+        self.search_label = ttk.Label(controls)
+        self.search_label.grid(row=0, column=0, padx=(0, 4))
+        self.search_entry = ttk.Entry(controls, textvariable=self.search_var, width=18)
+        self.search_entry.grid(row=0, column=1, sticky="ew", padx=(0, 4))
+        self.status_filter = ttk.Combobox(controls, state="readonly", width=13)
+        self.status_filter.grid(row=0, column=2, padx=4)
+        self.status_filter.bind("<<ComboboxSelected>>", self._on_status_filter)
+        self.batch_filter = ttk.Combobox(controls, state="readonly", width=14)
+        self.batch_filter.grid(row=0, column=3, padx=4)
+        self.batch_filter.bind("<<ComboboxSelected>>", self._on_batch_filter)
+        self.refresh_button = ttk.Button(controls, command=self.refresh_all)
+        self.refresh_button.grid(row=0, column=4, padx=(4, 0))
 
     def _build_queue_area(self, parent: ttk.Frame) -> None:
-        frame = ttk.LabelFrame(parent, text="Current Queue", padding=8)
-        self.frames["queue"] = frame
-        frame.grid(row=0, column=1, sticky="nsew")
-        frame.rowconfigure(0, weight=1)
+        frame = ttk.Frame(parent, padding=2)
+        self.queue_frame = frame
+        parent.add(frame, weight=1)
+        frame.rowconfigure(2, weight=1)
         frame.columnconfigure(0, weight=1)
+        self.queue_heading = ttk.Label(frame, textvariable=self.queue_count_var)
+        self.queue_heading.grid(row=0, column=0, sticky="w", pady=(0, 4))
+        queue_controls = ttk.Frame(frame)
+        queue_controls.grid(row=1, column=0, sticky="ew", pady=(0, 5))
+        queue_controls.columnconfigure(0, weight=1)
+        self.queue_search_entry = ttk.Entry(queue_controls, textvariable=self.queue_search_var)
+        self.queue_search_entry.grid(row=0, column=0, sticky="ew")
+        self.queue_refresh_button = ttk.Button(queue_controls, command=self.refresh_all)
+        self.queue_refresh_button.grid(row=0, column=1, padx=(5, 0))
+        self.queue_more_button = ttk.Button(queue_controls, command=lambda: self._show_selected_context(self.queue_tree))
+        self.queue_more_button.grid(row=0, column=2, padx=(5, 0))
         self.queue_tree = ttk.Treeview(frame, columns=QUEUE_COLUMNS, show="headings", selectmode="browse")
-        widths = {"index": 54, "status": 130, "batch": 120, "strategy": 140, "job": 220, "cpus": 58, "gpus": 58, "created": 150, "inp": 360}
+        widths = {"index": 50, "status": 105, "batch": 90, "strategy": 90, "job": 180,
+                  "cpus": 50, "gpus": 50, "created": 150, "inp": 360}
         self._configure_tree(self.queue_tree, {column: column for column in QUEUE_COLUMNS}, widths)
+        self.queue_tree.configure(displaycolumns=("index", "status", "job", "batch", "strategy", "cpus", "gpus"))
         self._configure_status_tags(self.queue_tree)
-        self.queue_tree.grid(row=0, column=0, sticky="nsew")
-        self._attach_scrollbars(frame, self.queue_tree)
+        self.queue_tree.grid(row=2, column=0, sticky="nsew")
+        self._attach_scrollbars(frame, self.queue_tree, row=2)
         self.queue_tree.bind("<Button-3>", self._show_queue_menu)
+        self.queue_tree.bind("<Double-1>", lambda event: self._open_details_at_event(self.queue_tree, event))
         self.queue_tree.bind("<<TreeviewSelect>>", lambda _event: self._on_table_select(self.queue_tree, self.results_tree))
 
     def _build_results_area(self, parent: ttk.Frame) -> None:
-        frame = ttk.LabelFrame(parent, text="Results", padding=8)
-        self.frames["results"] = frame
-        frame.grid(row=0, column=0, sticky="nsew", pady=(0, 8))
-        frame.rowconfigure(0, weight=1)
+        frame = ttk.Frame(parent, padding=2)
+        self.results_frame = frame
+        parent.add(frame, weight=1)
+        frame.rowconfigure(2, weight=1)
         frame.columnconfigure(0, weight=1)
+        self.results_heading = ttk.Label(frame, textvariable=self.results_count_var)
+        self.results_heading.grid(row=0, column=0, sticky="w", pady=(0, 4))
+        self._build_table_controls(frame)
         self.results_tree = ttk.Treeview(frame, columns=RESULT_COLUMNS, show="headings", selectmode="browse")
-        widths = {"status": 150, "batch": 120, "strategy": 140, "job": 220, "started": 150, "ended": 150, "duration": 90, "odb": 90, "warnings": 80, "fatal": 360}
+        widths = {"status": 130, "batch": 90, "strategy": 90, "job": 190, "started": 150,
+                  "ended": 145, "duration": 70, "odb": 90, "warnings": 70, "fatal": 360}
         self._configure_tree(self.results_tree, {column: column for column in RESULT_COLUMNS}, widths)
+        self.results_tree.configure(displaycolumns=("status", "job", "batch", "strategy", "ended", "duration", "warnings"))
         self._configure_status_tags(self.results_tree)
-        self.results_tree.grid(row=0, column=0, sticky="nsew")
-        self._attach_scrollbars(frame, self.results_tree)
+        self.results_tree.grid(row=2, column=0, sticky="nsew")
+        self._attach_scrollbars(frame, self.results_tree, row=2)
         self.results_tree.bind("<Button-3>", self._show_results_menu)
+        self.results_tree.bind("<Double-1>", lambda event: self._open_details_at_event(self.results_tree, event))
         self.results_tree.bind("<<TreeviewSelect>>", lambda _event: self._on_table_select(self.results_tree, self.queue_tree))
+        self.results_more_button = ttk.Button(frame, command=lambda: self._show_selected_context(self.results_tree))
+        self.results_more_button.grid(row=0, column=0, sticky="e")
 
-    def _build_log_area(self, parent: ttk.Frame) -> None:
-        frame = ttk.LabelFrame(parent, text="Logs", padding=8)
-        self.frames["logs"] = frame
-        frame.grid(row=1, column=0, sticky="nsew")
-        frame.columnconfigure(0, weight=3)
-        frame.columnconfigure(1, weight=2)
-        frame.columnconfigure(2, weight=1, minsize=190)
-        frame.rowconfigure(0, weight=1)
+    def _build_details_area(self, parent: tk.Toplevel) -> None:
+        section = ttk.Frame(parent)
+        section.rowconfigure(1, weight=1)
+        section.columnconfigure(0, weight=1)
+        self.detail_section = section
+        section.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+        header = ttk.Frame(section, padding=(2, 4))
+        header.grid(row=0, column=0, sticky="ew")
+        header.columnconfigure(0, weight=1)
+        ttk.Label(header, textvariable=self.inspection_title_var).grid(row=0, column=0, sticky="w")
+        ttk.Label(header, textvariable=self.filtered_hint_var, foreground=COLORS["muted"]).grid(row=0, column=1, padx=8)
+        self.detail_folder_button = ttk.Button(header, command=self.open_selected_work_folder)
+        self.detail_folder_button.grid(row=0, column=2, padx=4)
+        self.detail_more_menu = tk.Menu(self, tearoff=False, postcommand=self._populate_detail_more_menu)
+        self.detail_more_button = ttk.Menubutton(header, menu=self.detail_more_menu)
+        self.detail_more_button.grid(row=0, column=3, padx=4)
+        self.detail_collapse_button = ttk.Button(header, command=self._toggle_details)
+        self.detail_collapse_button.grid(row=0, column=4, padx=4)
 
-        sta_frame = ttk.LabelFrame(frame, text="STA tail", padding=6)
-        self.frames["sta_tail"] = sta_frame
-        sta_frame.grid(row=0, column=0, sticky="nsew", padx=(0, 4))
-        sta_frame.rowconfigure(0, weight=1)
-        sta_frame.columnconfigure(0, weight=1)
-        self.sta_text = scrolledtext.ScrolledText(
-            sta_frame,
-            height=8,
-            wrap="none",
-            font=("Consolas", 10),
-            background="#fbfdff",
-            foreground=COLORS["text"],
-            insertbackground=COLORS["text"],
-            relief="flat",
-            borderwidth=1,
-        )
-        self.sta_text.grid(row=0, column=0, sticky="nsew")
+        self.detail_notebook = ttk.Notebook(section, style="Workspace.TNotebook")
+        self.detail_notebook.grid(row=1, column=0, sticky="nsew")
+        self.overview_tab = ttk.Frame(self.detail_notebook)
+        self.files_tab = ttk.Frame(self.detail_notebook)
+        self.logs_tab = ttk.Frame(self.detail_notebook)
+        self.history_tab = ttk.Frame(self.detail_notebook)
+        for tab in (self.overview_tab, self.files_tab, self.logs_tab, self.history_tab):
+            self.detail_notebook.add(tab)
+        self._build_overview_tab()
+        self._build_files_tab()
+        self._build_logs_tab()
+        self._build_history_tab()
+        self.detail_notebook.bind("<<NotebookTabChanged>>", lambda _event: self._refresh_inspection())
 
-        log_frame = ttk.LabelFrame(frame, text="Console log tail", padding=6)
-        self.frames["console_tail"] = log_frame
-        log_frame.grid(row=0, column=1, sticky="nsew", padx=4)
-        log_frame.rowconfigure(0, weight=1)
-        log_frame.columnconfigure(0, weight=1)
-        title_bar = ttk.Frame(log_frame)
-        title_bar.place(relx=1.0, x=-6, y=-28, anchor="ne")
-        self.copy_console_button = ttk.Button(title_bar, command=self.copy_console_for_ai, width=7)
-        self.copy_console_button.grid(row=0, column=0)
-        self.console_text = scrolledtext.ScrolledText(
-            log_frame,
-            height=8,
-            wrap="word",
-            font=("Consolas", 10),
-            background="#fbfdff",
-            foreground=COLORS["text"],
-            insertbackground=COLORS["text"],
-            relief="flat",
-            borderwidth=1,
-        )
-        self.console_text.grid(row=0, column=0, sticky="nsew")
+    def _build_overview_tab(self) -> None:
+        self.overview_tab.rowconfigure(0, weight=1)
+        self.overview_tab.columnconfigure(0, weight=1)
+        self.overview_text = scrolledtext.ScrolledText(self.overview_tab, height=6, wrap="word",
+                                                      font=("Segoe UI", 10), relief="flat", state="disabled")
+        self.overview_text.grid(row=0, column=0, sticky="nsew")
 
-        resource_frame = ttk.LabelFrame(frame, text="Resource Usage", padding=10)
-        self.frames["resource_usage"] = resource_frame
-        resource_frame.grid(row=0, column=2, sticky="nsew", padx=(4, 0))
-        resource_frame.columnconfigure(1, weight=1)
-        self.resource_label_widgets: dict[str, ttk.Label] = {}
-        for row, (key, value_var) in enumerate(
-            (
-                ("cpu", self.cpu_percent_var),
-                ("memory", self.memory_percent_var),
-                ("gpu", self.gpu_percent_var),
-            )
-        ):
-            label = ttk.Label(resource_frame)
-            label.grid(row=row, column=0, sticky="w", pady=4, padx=(0, 8))
-            self.resource_label_widgets[key] = label
-            ttk.Label(resource_frame, textvariable=value_var, style="ResourceValue.TLabel").grid(row=row, column=1, sticky="e", pady=4)
-        self.task_manager_button = ttk.Button(resource_frame, command=self.open_task_manager_performance)
-        self.task_manager_button.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
+    def _build_files_tab(self) -> None:
+        self.files_tab.rowconfigure(0, weight=1)
+        self.files_tab.columnconfigure(0, weight=1)
+        self.files_tree = ttk.Treeview(self.files_tab, columns=("kind", "state", "path"), show="headings")
+        for column, width in (("kind", 80), ("state", 190), ("path", 700)):
+            self.files_tree.heading(column, text=column.title())
+            self.files_tree.column(column, width=width, minwidth=60, stretch=column == "path")
+        self.files_tree.grid(row=0, column=0, sticky="nsew")
+        file_scroll = ttk.Scrollbar(self.files_tab, orient="vertical", command=self.files_tree.yview)
+        file_scroll.grid(row=0, column=1, sticky="ns")
+        self.files_tree.configure(yscrollcommand=file_scroll.set)
+        actions = ttk.Frame(self.files_tab)
+        actions.grid(row=1, column=0, sticky="w", pady=4)
+        self.file_copy_button = ttk.Button(actions, command=lambda: self._file_reference_action("copy"))
+        self.file_copy_button.pack(side="left", padx=4)
+        self.file_folder_button = ttk.Button(actions, command=lambda: self._file_reference_action("folder"))
+        self.file_folder_button.pack(side="left", padx=4)
+        self.file_open_button = ttk.Button(actions, command=lambda: self._file_reference_action("open"))
+        self.file_open_button.pack(side="left", padx=4)
+
+    def _build_logs_tab(self) -> None:
+        self.logs_tab.rowconfigure(1, weight=1)
+        self.logs_tab.columnconfigure(0, weight=1)
+        controls = ttk.Frame(self.logs_tab)
+        controls.grid(row=0, column=0, sticky="ew")
+        controls.columnconfigure(1, weight=1)
+        self.log_source = ttk.Combobox(controls, textvariable=self.log_source_var,
+                                       values=("STA", "MSG", "DAT", "LOG", "Console"), state="readonly", width=10)
+        self.log_source.grid(row=0, column=0, padx=(2, 8))
+        self.log_source.bind("<<ComboboxSelected>>", lambda _event: self._refresh_log(force=True))
+        self.log_origin_label = ttk.Label(controls, textvariable=self.log_path_var)
+        self.log_origin_label.grid(row=0, column=1, sticky="ew")
+        self.follow_checkbox = ttk.Checkbutton(controls, variable=self.log_follow_var)
+        self.follow_checkbox.grid(row=0, column=2, padx=4)
+        self.log_copy_button = ttk.Button(controls, command=self.copy_console_for_ai)
+        self.log_copy_button.grid(row=0, column=3, padx=4)
+        self.log_text = scrolledtext.ScrolledText(self.logs_tab, height=8, wrap="none", font=("Consolas", 10),
+                                                 background="#fbfdff", foreground=COLORS["text"], state="disabled")
+        self.log_text.grid(row=1, column=0, sticky="nsew")
+        for event_name in ("<MouseWheel>", "<Button-4>", "<Button-5>", "<Prior>", "<Up>"):
+            self.log_text.bind(event_name, self._pause_log_follow, add="+")
+        self.log_text.vbar.bind("<ButtonPress-1>", self._pause_log_follow, add="+")
+
+    def _build_history_tab(self) -> None:
+        self.history_tab.rowconfigure(0, weight=1)
+        self.history_tab.columnconfigure(0, weight=1)
+        columns = ("attempt", "status", "started", "completed", "cpus", "gpus", "working_dir", "odb")
+        self.history_tree = ttk.Treeview(self.history_tab, columns=columns, show="headings")
+        for column, width in (("attempt", 70), ("status", 160), ("started", 160), ("completed", 160),
+                              ("cpus", 60), ("gpus", 60), ("working_dir", 250), ("odb", 250)):
+            self.history_tree.heading(column, text=column.replace("_", " ").title())
+            self.history_tree.column(column, width=width, minwidth=55)
+        self._configure_status_tags(self.history_tree)
+        self.history_tree.grid(row=0, column=0, sticky="nsew")
+        scrollbar = ttk.Scrollbar(self.history_tab, orient="vertical", command=self.history_tree.yview)
+        scrollbar.grid(row=0, column=1, sticky="ns")
+        self.history_tree.configure(yscrollcommand=scrollbar.set)
+        self.history_empty_var = tk.StringVar()
+        ttk.Label(self.history_tab, textvariable=self.history_empty_var).grid(row=1, column=0, sticky="w")
+
+    def _build_live_logs(self, parent: ttk.PanedWindow) -> None:
+        section = ttk.Frame(parent)
+        section.rowconfigure(0, weight=1)
+        section.columnconfigure(0, weight=1)
+        parent.add(section, weight=2)
+        self.live_log_pane = ttk.PanedWindow(section, orient="horizontal")
+        self.live_log_pane.grid(row=0, column=0, sticky="nsew")
+        self.live_log_texts = {}
+        for side in ("solver", "console"):
+            pane = ttk.Frame(self.live_log_pane, padding=2)
+            pane.rowconfigure(1, weight=1)
+            pane.columnconfigure(0, weight=1)
+            self.live_log_pane.add(pane, weight=1)
+            controls = ttk.Frame(pane)
+            controls.grid(row=0, column=0, sticky="ew", pady=(0, 4))
+            controls.columnconfigure(1, weight=1)
+            if side == "solver":
+                selector = ttk.Combobox(controls, textvariable=self.live_source_var,
+                                        values=("STA", "MSG", "DAT", "LOG"), state="readonly", width=6)
+                selector.grid(row=0, column=0, padx=(0, 6))
+                selector.bind("<<ComboboxSelected>>", lambda _event: self._refresh_live_logs())
+                self.live_source_selector = selector
+            else:
+                self.console_heading = ttk.Label(controls)
+                self.console_heading.grid(row=0, column=0, padx=(0, 6))
+            ttk.Label(controls, textvariable=self.live_origin_vars[side]).grid(row=0, column=1, sticky="w")
+            follow = ttk.Checkbutton(controls, variable=self.live_follow_vars[side])
+            follow.grid(row=0, column=2, padx=4)
+            setattr(self, f"live_{side}_follow", follow)
+            widget = scrolledtext.ScrolledText(pane, height=8, wrap="none", font=("Consolas", 10),
+                                               background="#fbfdff", foreground=COLORS["text"], state="disabled")
+            widget.grid(row=1, column=0, sticky="nsew")
+            for event_name in ("<MouseWheel>", "<Button-4>", "<Button-5>", "<Prior>", "<Up>"):
+                widget.bind(event_name, lambda _event, key=side: self.live_follow_vars[key].set(False), add="+")
+            widget.vbar.bind("<ButtonPress-1>",
+                             lambda _event, key=side: self.live_follow_vars[key].set(False), add="+")
+            self.live_log_texts[side] = widget
+
+    def _build_footer(self) -> None:
+        footer = ttk.Frame(self, padding=(12, 4))
+        footer.grid(row=3, column=0, sticky="ew")
+        footer.columnconfigure(0, weight=1)
+        self.footer_mode_var = tk.StringVar()
+        ttk.Label(footer, textvariable=self.footer_mode_var, foreground=COLORS["muted"]).grid(row=0, column=0, sticky="w")
 
     def _configure_tree(self, tree: ttk.Treeview, headings: dict[str, str], widths: dict[str, int]) -> None:
         for column, label in headings.items():
@@ -635,41 +883,33 @@ class AbqJobPilotApp(tk.Tk):
     def _configure_status_tags(self, tree: ttk.Treeview) -> None:
         tree.tag_configure("queued", background="#ffffff", foreground=COLORS["text"])
         tree.tag_configure("running", background="#eff6ff", foreground=COLORS["accent_dark"])
-        tree.tag_configure("success", background="#f0fdf4", foreground="#166534")
-        tree.tag_configure("warning", background="#fffbeb", foreground="#92400e")
+        tree.tag_configure("success", background=SUCCESS_BACKGROUND, foreground=SUCCESS_FOREGROUND)
         tree.tag_configure("failed", background="#fef2f2", foreground="#991b1b")
         tree.tag_configure("skipped", background="#f8fafc", foreground=COLORS["muted"])
 
     def _status_tag(self, status: str) -> str:
-        upper = status.upper()
-        public_status = normalize_status(upper)
-        if public_status in {"DATACHECK", "RUNNING"}:
-            return "running"
-        if upper in {"COMPLETED_OK", "DATACHECK_OK"}:
-            return "success"
-        if upper == "COMPLETED_WITH_WARNINGS":
-            return "warning"
-        if public_status == "FAILED" or upper == "UNKNOWN_INTERRUPTED":
-            return "failed"
-        if public_status in {"CANCELLED", "SKIPPED"}:
-            return "skipped"
-        return "queued"
+        return status_presentation(status, self.lang)[1]
 
-    def _attach_scrollbars(self, parent: ttk.Frame, tree: ttk.Treeview) -> None:
+    def _attach_scrollbars(self, parent: ttk.Frame, tree: ttk.Treeview, row: int = 0) -> None:
         y_scroll = ttk.Scrollbar(parent, orient="vertical", command=tree.yview)
         x_scroll = ttk.Scrollbar(parent, orient="horizontal", command=tree.xview)
         tree.configure(yscrollcommand=y_scroll.set, xscrollcommand=x_scroll.set)
-        y_scroll.grid(row=0, column=1, sticky="ns")
-        x_scroll.grid(row=1, column=0, sticky="ew")
+        y_scroll.grid(row=row, column=1, sticky="ns")
+        x_scroll.grid(row=row + 1, column=0, sticky="ew")
 
     def refresh_all(self) -> None:
         self._sync_project_history_if_changed()
         jobs = load_queue()
+        self._all_jobs = jobs
         self.job_by_id = {job["queue_id"]: job for job in jobs if job.get("queue_id")}
         self._refresh_status()
-        self._refresh_queue(jobs)
-        self._refresh_results(jobs)
-        self._refresh_logs()
+        self._refresh_live_logs()
+        self._refresh_tables_from_cache()
+        if self.inspection_key and (self.inspection_key[0] != config.RUNTIME_DIR or
+                                    self.inspection_key[1] not in self.job_by_id):
+            self.inspection_key = None
+            self._clear_inspection_view()
+        self._refresh_inspection()
         self._refresh_resource_usage()
         self._apply_language()
 
@@ -699,35 +939,103 @@ class AbqJobPilotApp(tk.Tk):
     def _poll_refresh(self) -> None:
         self.refresh_all()
         self._check_auto_shutdown_after_queue()
-        self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
+        self._poll_after_id = self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
 
     def _refresh_status(self) -> None:
         data = read_json(config.LIVE_STATUS_FILE, {})
-        values = {
-            "current_job": data.get("current_job", ""),
-            "strategy": data.get("strategy_name", ""),
-            "batch": data.get("batch_name", ""),
-            "phase": data.get("phase", "IDLE"),
-            "step": data.get("step", ""),
-            "increment": data.get("increment", ""),
-            "analysis_time": data.get("analysis_time", ""),
-            "odb_size": format_bytes(data.get("odb_size_bytes")),
-            "started_at": data.get("started_at", ""),
-            "elapsed_time": data.get("elapsed_time", ""),
-        }
-        for label, value in values.items():
-            self.status_vars[label].set(str(value))
-        self._update_status_light(str(values["phase"]))
+        self._live_status = data if isinstance(data, dict) else {}
+        phase = str(self._live_status.get("phase") or "IDLE")
+        running = self.runner.is_running()
+        persisted_running = any(job.get("status") in {"DATACHECK_RUNNING", "FULL_RUNNING"}
+                                for job in self._all_jobs)
+        if running:
+            observed_phase = phase in {"DATACHECK_RUNNING", "FULL_RUNNING", "STARTED"}
+            self.runner_context = dict(self._live_status) if observed_phase else {}
+            name = self.runner_context.get("current_job") or "..."
+            if observed_phase:
+                parts = [("运行中" if self.lang == "zh" else "RUNNING"), str(name), phase]
+                for label, field in (("Step", "step"), ("Inc", "increment")):
+                    value = self.runner_context.get(field)
+                    if value not in (None, ""):
+                        parts.append(f"{label} {value}")
+                elapsed = self.runner_context.get("elapsed_time")
+                if elapsed not in (None, ""):
+                    try:
+                        seconds = int(float(elapsed))
+                        parts.append(f"{seconds // 3600:02d}:{seconds // 60 % 60:02d}:{seconds % 60:02d}")
+                    except (TypeError, ValueError):
+                        pass
+                summary = " · ".join(parts)
+            else:
+                summary = "执行器已启动 · 等待任务状态" if self.lang == "zh" else "Runner active · awaiting task status"
+            light = "running"
+        elif phase in {"DATACHECK_RUNNING", "FULL_RUNNING", "RUNNER_ACTIVE"} or persisted_running:
+            self.runner_context = dict(self._live_status)
+            prefix = "状态未确认 · 上次观察到的任务：" if self.lang == "zh" else "Status unconfirmed · last observed run: "
+            summary = prefix + str(self._live_status.get("current_job") or "--")
+            light = "uncertain"
+        else:
+            self.runner_context = {}
+            summary = "空闲" if self.lang == "zh" else "IDLE"
+            light = "idle"
+        pending = sum(job.get("status") in {"QUEUED", "DATACHECK_OK"} for job in self._all_jobs)
+        summary += f" · 待执行 {pending} 项" if self.lang == "zh" else f" · {pending} pending"
+        self.running_summary_var.set(summary)
+        self._verified_running = light == "running"
+        self._update_status_light(light)
+        can_view_running = bool(light == "running" and self.runner_context.get("queue_id"))
+        self.view_running_button.configure(state="normal" if can_view_running else "disabled",
+                                           style="RunningAction.TButton" if can_view_running else "TButton")
+
+    def _refresh_live_logs(self) -> None:
+        queue_id = self.runner_context.get("queue_id") if self._verified_running else None
+        job = self.job_by_id.get(queue_id) if queue_id else None
+        for side, widget in self.live_log_texts.items():
+            source = self.live_source_var.get() if side == "solver" else "Console"
+            field = {"STA": "sta_path", "MSG": "msg_path", "DAT": "dat_path",
+                     "LOG": "log_path", "Console": "log_path"}[source]
+            path = (job.get(field) if job else None) or self.runner_context.get(field)
+            if not queue_id:
+                path = None
+            if not path:
+                origin = ("无当前任务" if self.lang == "zh" else "No active job") if not queue_id else (
+                    "未记录路径" if self.lang == "zh" else "Path not recorded")
+                content = ""
+            else:
+                name = self.runner_context.get("current_job") or (job.get("job_name") if job else queue_id)
+                origin = f"{name} · {path}"
+                content = read_log_tail(path, max_bytes=65536, max_lines=80)
+                if source == "STA" and content:
+                    content = self._sta_table_text(content)
+                if not Path(path).is_file():
+                    content = "记录路径处文件缺失。" if self.lang == "zh" else "File missing at recorded path."
+            self.live_origin_vars[side].set(origin)
+            signature = (config.RUNTIME_DIR, queue_id, source, path, content, self.lang)
+            if signature != self._live_log_signatures.get(side):
+                self._set_text(widget, content, follow=self.live_follow_vars[side].get())
+                self._live_log_signatures[side] = signature
+
+    def _refresh_tables_from_cache(self) -> None:
+        if not hasattr(self, "queue_tree"):
+            return
+        self._update_batch_choices()
+        self._refresh_queue(self._all_jobs)
+        self._refresh_results(self._all_jobs)
+        self._refresh_table_counts()
 
     def _refresh_queue(self, jobs: list[dict]) -> None:
         active = queue_display_jobs(jobs)
+        visible = filter_jobs(active, self.queue_search_var.get())
+        visible_ids = {job.get("queue_id") for job in visible}
         rows = []
         for index, job in enumerate(active, start=1):
+            if job.get("queue_id") not in visible_ids:
+                continue
             rows.append((
                 row_iid(job),
                 (
                     index,
-                    job.get("status", ""),
+                    status_presentation(job.get("status"), self.lang)[0],
                     job.get("batch_name", ""),
                     job.get("strategy_name", ""),
                     job.get("job_name", ""),
@@ -738,16 +1046,17 @@ class AbqJobPilotApp(tk.Tk):
                 ),
                 self._status_tag(job.get("status", "")),
             ))
-        self._render_tree(self.queue_tree, "queue", rows, active)
+        self._render_tree(self.queue_tree, "queue", rows, visible)
 
     def _refresh_results(self, jobs: list[dict]) -> None:
         results = result_display_jobs(jobs)
+        visible = filter_jobs(results, self.search_var.get(), self.filter_status_code, self.filter_batch)
         rows = []
-        for job in results:
+        for job in visible:
             rows.append((
                 row_iid(job, results=True),
                 (
-                    job.get("status", ""),
+                    status_presentation(job.get("status"), self.lang)[0],
                     job.get("batch_name", ""),
                     job.get("strategy_name", ""),
                     job.get("job_name", ""),
@@ -760,7 +1069,7 @@ class AbqJobPilotApp(tk.Tk):
                 ),
                 self._status_tag(job.get("status", "")),
             ))
-        self._render_tree(self.results_tree, "results", rows, results)
+        self._render_tree(self.results_tree, "results", rows, visible)
 
     def _render_tree(self, tree: ttk.Treeview, key: str, rows: list[tuple], jobs: list[dict]) -> None:
         if rows == self._rendered_rows.get(key):
@@ -769,6 +1078,7 @@ class AbqJobPilotApp(tk.Tk):
         selected_id = selected_job_id(current[0] if current else None, results=key == "results")
         y_start = tree.yview()[0]
         x_start = tree.xview()[0]
+        self._restoring_table_selection = True
         tree.delete(*tree.get_children())
         for iid, values, tag in rows:
             tree.insert("", "end", iid=iid, values=values, tags=(tag,))
@@ -776,13 +1086,338 @@ class AbqJobPilotApp(tk.Tk):
         if selected_iid:
             tree.selection_set(selected_iid)
             tree.focus(selected_iid)
+        self.after_idle(self._finish_table_selection_restore)
         tree.yview_moveto(y_start)
         tree.xview_moveto(x_start)
         self._rendered_rows[key] = rows
 
+    def _finish_table_selection_restore(self) -> None:
+        self._restoring_table_selection = False
+
     def _on_table_select(self, selected_tree: ttk.Treeview, other_tree: ttk.Treeview) -> None:
-        if selected_tree.selection() and other_tree.selection():
-            other_tree.selection_remove(*other_tree.selection())
+        if self._restoring_table_selection:
+            return
+        selection = selected_tree.selection()
+        if not selection:
+            return
+        queue_id = selected_job_id(selection[0], results=selected_tree is self.results_tree)
+        if queue_id and queue_id in self.job_by_id:
+            self._last_selected_tree = selected_tree
+            self.inspection_key = (config.RUNTIME_DIR, queue_id)
+            self._rendered_inspection = None
+            self._refresh_inspection()
+
+    def _update_batch_choices(self) -> None:
+        all_label = "全部批次" if self.lang == "zh" else "All batches"
+        values = [all_label] + sorted({str(job.get("batch_name")) for job in self._all_jobs
+                                       if job.get("batch_name")})
+        if tuple(self.batch_filter.cget("values")) != tuple(values):
+            self.batch_filter.configure(values=values)
+        self.batch_filter.set(self.filter_batch if self.filter_batch in values else all_label)
+        if self.filter_batch not in values:
+            self.filter_batch = None
+
+    def _on_batch_filter(self, _event=None) -> None:
+        value = self.batch_filter.get()
+        self.filter_batch = value if value in {str(job.get("batch_name")) for job in self._all_jobs} else None
+        self._refresh_tables_from_cache()
+        self._refresh_inspection()
+
+    def _status_filter_labels(self) -> list[str]:
+        return (["全部状态", "待执行", "运行中", "完成", "有警告", "失败"] if self.lang == "zh" else
+                ["All statuses", "Queued", "Running", "Completed", "With warnings", "Failed"])
+
+    def _on_status_filter(self, _event=None) -> None:
+        codes = ("all", "queued", "running", "completed", "warnings", "failed")
+        index = self.status_filter.current()
+        self.filter_status_code = codes[index] if 0 <= index < len(codes) else "all"
+        self._refresh_tables_from_cache()
+        self._refresh_inspection()
+
+    def _on_search_change(self) -> None:
+        self._refresh_tables_from_cache()
+        self._refresh_inspection()
+
+    def _refresh_table_counts(self) -> None:
+        if not hasattr(self, "queue_tree"):
+            return
+        queued = len(queue_display_jobs(self._all_jobs))
+        results = len(result_display_jobs(self._all_jobs))
+        shown_queue = len(self.queue_tree.get_children())
+        shown_results = len(self.results_tree.get_children())
+        self.queue_count_var.set((f"队列 {shown_queue}/{queued} · 筛选不改变执行顺序" if self.lang == "zh" else
+                                  f"Queue {shown_queue}/{queued} · execution order unchanged"))
+        self.results_count_var.set((f"结果 {shown_results}/{results} · 最新在前" if self.lang == "zh" else
+                                    f"Results {shown_results}/{results} · newest first"))
+
+    def _inspection_job(self) -> dict | None:
+        if not self.inspection_key or self.inspection_key[0] != config.RUNTIME_DIR:
+            return None
+        return self.job_by_id.get(self.inspection_key[1])
+
+    def _inspection_visible(self, job: dict) -> bool:
+        if job.get("status") in config.ACTIVE_STATUSES or job.get("status") == "RUNNING":
+            return self.queue_tree.exists(row_iid(job))
+        return self.results_tree.exists(row_iid(job, results=True))
+
+    def _clear_inspection_view(self) -> None:
+        self.inspection_title_var.set("No task selected" if self.lang == "en" else "未选择任务")
+        self.filtered_hint_var.set("")
+        self.log_path_var.set("")
+        self._rendered_log = None
+        self._inspection_history_runs = []
+        for name in ("overview_text", "log_text"):
+            if hasattr(self, name):
+                self._set_text(getattr(self, name), "", follow=False)
+        for name in ("files_tree", "history_tree"):
+            if hasattr(self, name):
+                tree = getattr(self, name)
+                tree.delete(*tree.get_children())
+        if hasattr(self, "history_empty_var"):
+            self.history_empty_var.set("")
+
+    def _refresh_inspection(self) -> None:
+        if not hasattr(self, "detail_notebook"):
+            return
+        job = self._inspection_job()
+        if not job:
+            if self._rendered_inspection is not None:
+                self._rendered_inspection = None
+                self._clear_inspection_view()
+            return
+        signature = (self.inspection_key, self.lang, tuple(sorted((key, str(value)) for key, value in job.items())))
+        if signature != self._rendered_inspection:
+            self._rendered_inspection = signature
+            self.inspection_title_var.set(("当前查看：" if self.lang == "zh" else "Inspecting: ") +
+                                          str(job.get("job_name") or job.get("queue_id")))
+            self._inspection_history_runs = self._history_for_job(job)
+            self._render_overview(job)
+            self._render_file_references(job)
+            self._render_history_rows(self._inspection_history_runs)
+            self._rendered_log = None
+        self.filtered_hint_var.set("" if self._inspection_visible(job) else
+                                   ("当前查看项不在筛选结果中" if self.lang == "zh" else "Inspected task is hidden by filters"))
+        if self.detail_notebook.select() == str(self.logs_tab) and not self._details_collapsed:
+            self._refresh_log()
+
+    def _history_for_job(self, job: dict) -> list[dict]:
+        project = self.project_manager.current
+        if project is None:
+            return []
+        try:
+            repository = ProjectHistoryRepository(project)
+            logical = repository.find_job_by_queue_id(job["queue_id"])
+            return repository.list_runs(logical["job_id"]) if logical else []
+        except (OSError, ValueError, DatabaseFailure) as exc:
+            logging.warning("Run history unavailable: %s", exc)
+            return []
+
+    def _render_overview(self, job: dict) -> None:
+        label, _tag = status_presentation(job.get("status"), self.lang)
+        run = next((item for item in self._inspection_history_runs
+                    if item.get("queue_id") == job.get("queue_id")), None)
+        labels = ({"status": "状态", "raw": "原始状态", "warnings": "警告", "batch": "批次", "strategy": "策略",
+                   "created": "创建", "started": "开始", "ended": "结束", "duration": "耗时（秒）",
+                   "attempt": "尝试", "failure": "失败原因", "notes": "备注", "analysis": "分析时间"}
+                  if self.lang == "zh" else
+                  {"status": "Status", "raw": "Raw status", "warnings": "Warnings", "batch": "Batch", "strategy": "Strategy",
+                   "created": "Created", "started": "Started", "ended": "Ended", "duration": "Duration (s)",
+                   "attempt": "Attempt", "failure": "Failure", "notes": "Notes", "analysis": "Analysis time"})
+        lines = [f"{labels['status']}: {label}", f"{labels['raw']}: {job.get('status') or '--'}",
+                 f"{labels['warnings']}: {job.get('warning_count') if job.get('warning_count') is not None else '--'}",
+                 f"{labels['batch']}: {job.get('batch_name') or '--'}     {labels['strategy']}: {job.get('strategy_name') or '--'}",
+                 f"CPU: {job.get('cpus') if job.get('cpus') is not None else '--'}     GPU: {job.get('gpus') if job.get('gpus') is not None else '--'}",
+                 f"{labels['created']}: {job.get('created_at') or '--'}     {labels['started']}: {job.get('started_at') or '--'}",
+                 f"{labels['ended']}: {job.get('ended_at') or '--'}     {labels['duration']}: {job.get('duration_sec') if job.get('duration_sec') is not None else '--'}",
+                 f"Queue ID: {job.get('queue_id') or '--'}"]
+        if run:
+            lines.append(f"{labels['attempt']}: {run['attempt_no']}     Run ID: {run['run_id']}")
+        if job.get("fatal_reason"):
+            lines.append(f"{labels['failure']}: {job['fatal_reason']}")
+        if job.get("notes"):
+            lines.append(f"{labels['notes']}: {job['notes']}")
+        if job.get("step") is not None:
+            lines.append(f"Step: {job['step']}     Increment: {job.get('increment') or '--'}")
+        if job.get("analysis_time") is not None:
+            lines.append(f"{labels['analysis']}: {job['analysis_time']}")
+        self._set_text(self.overview_text, "\n".join(lines), follow=False)
+
+    def _render_file_references(self, job: dict) -> None:
+        self.files_tree.delete(*self.files_tree.get_children())
+        for kind, field in (("INP", "inp_path"), ("ODB", "odb_path"), ("STA", "sta_path"),
+                            ("MSG", "msg_path"), ("DAT", "dat_path"), ("LOG", "log_path")):
+            path = job.get(field)
+            exists = bool(path and Path(path).is_file())
+            state = (("存在（未验证有效性）" if exists else "文件缺失") if self.lang == "zh" else
+                     ("Exists (not validated)" if exists else "Missing")) if path else (
+                         "未记录" if self.lang == "zh" else "Not recorded")
+            self.files_tree.insert("", "end", iid=kind, values=(kind, state, path or ""))
+
+    def _render_history_rows(self, runs: list[dict]) -> None:
+        self.history_tree.delete(*self.history_tree.get_children())
+        for run in runs:
+            raw = run.get("raw_status") or run.get("status")
+            label, tag = status_presentation(raw, self.lang)
+            self.history_tree.insert("", "end", iid=run["run_id"], tags=(tag,), values=(
+                run["attempt_no"], label, run.get("started_at") or "", run.get("completed_at") or "",
+                run.get("cpus") if run.get("cpus") is not None else "",
+                run.get("gpus") if run.get("gpus") is not None else "",
+                run.get("working_dir") or "", run.get("expected_odb_path") or ""))
+        self.history_empty_var.set("" if runs else
+                                   ("暂无已记录的运行尝试" if self.lang == "zh" else "No recorded attempts"))
+
+    def _file_reference_action(self, action: str) -> None:
+        selected = self.files_tree.selection()
+        if not selected:
+            return
+        kind, _state, path = self.files_tree.item(selected[0], "values")
+        if not path:
+            return
+        if action == "copy":
+            self._copy_text(path)
+        elif action == "folder":
+            self._open_job_folder(str(Path(path).parent))
+        elif action == "open" and kind in {"INP", "STA", "MSG", "DAT", "LOG"}:
+            self._open_job_text(path)
+
+    def _pause_log_follow(self, _event=None) -> None:
+        self.log_follow_var.set(False)
+
+    def _refresh_log(self, *, force: bool = False) -> None:
+        job = self._inspection_job()
+        if not job:
+            self.log_path_var.set("")
+            return
+        source = self.log_source_var.get()
+        field = {"STA": "sta_path", "MSG": "msg_path", "DAT": "dat_path",
+                 "LOG": "log_path", "Console": "log_path"}[source]
+        path = job.get(field) or expected_paths(job).get(field)
+        run = next((item for item in self._inspection_history_runs
+                    if item.get("queue_id") == job.get("queue_id")), None)
+        attempt = f" · Attempt {run['attempt_no']}" if run else ""
+        available = bool(path and Path(path).is_file())
+        not_started = job.get("status") == "QUEUED" and not job.get("started_at")
+        state = (("可查看" if self.lang == "zh" else "Available") if available else
+                 ("路径未知" if self.lang == "zh" else "Path unknown") if not path else
+                 ("尚未生成" if self.lang == "zh" else "Not yet created") if not_started else
+                 ("文件缺失" if self.lang == "zh" else "Missing"))
+        self.log_path_var.set(f"{job.get('job_name') or '--'}{attempt} · {source}: {state} · "
+                              f"{path or ('未记录路径' if self.lang == 'zh' else 'Path not recorded')}")
+        content = read_log_tail(path, max_bytes=65536, max_lines=80) if available else ""
+        if source == "STA" and content:
+            content = self._sta_table_text(content)
+        if not path:
+            content = "此日志来源未记录路径。" if self.lang == "zh" else "No path recorded for this log source."
+        elif not available:
+            content = (("任务尚未运行，日志尚未生成。" if self.lang == "zh" else
+                        "This task has not run; the log has not been created yet.") if not_started else
+                       ("记录路径处文件缺失。" if self.lang == "zh" else "File missing at recorded path."))
+        else:
+            note = ("记录路径的当前文件内容；历史尝试的同名文件可能已被覆盖。\n\n" if self.lang == "zh" else
+                    "Current contents at recorded path; historical attempts may have overwritten this file.\n\n")
+            content = note + content
+        signature = (self.inspection_key, source, path, content)
+        if force or signature != self._rendered_log:
+            self._set_text(self.log_text, content, follow=self.log_follow_var.get())
+            self._rendered_log = signature
+
+    def _toggle_details(self) -> None:
+        if self._details_collapsed:
+            self._show_details()
+        else:
+            self._hide_details()
+        self._apply_language()
+
+    def _show_details(self) -> None:
+        if not self._inspection_job():
+            return
+        self._details_collapsed = False
+        self.detail_window.deiconify()
+        self.detail_window.lift()
+        self._refresh_inspection()
+
+    def _hide_details(self) -> None:
+        if hasattr(self, "detail_window") and self.detail_window.winfo_exists():
+            self.detail_window.withdraw()
+        self._details_collapsed = True
+
+    def open_task_details(self, job_id: str | None, initial_tab: str | None = None) -> None:
+        if not job_id or job_id not in self.job_by_id:
+            return
+        self.inspection_key = (config.RUNTIME_DIR, job_id)
+        self._rendered_inspection = None
+        if initial_tab == "logs":
+            self.detail_notebook.select(self.logs_tab)
+        self._show_details()
+
+    def open_selected_details(self) -> None:
+        job = self._selected_job()
+        if job:
+            self.open_task_details(job.get("queue_id"))
+
+    def _open_details_at_event(self, tree: ttk.Treeview, event) -> None:
+        iid = tree.identify_row(event.y)
+        if iid:
+            self.open_task_details(selected_job_id(iid, results=tree is self.results_tree))
+
+    def _show_selected_context(self, tree: ttk.Treeview) -> None:
+        selection = tree.selection()
+        if not selection:
+            return
+        tree.see(selection[0])
+        tree.update_idletasks()
+        bbox = tree.bbox(selection[0])
+        if not bbox:
+            return
+        event = SimpleNamespace(y=bbox[1] + 2, x_root=tree.winfo_rootx() + 30,
+                                y_root=tree.winfo_rooty() + bbox[1] + 20)
+        if tree is self.queue_tree:
+            self._show_queue_menu(event)
+        else:
+            self._show_results_menu(event)
+
+    def view_running_job(self) -> None:
+        queue_id = self.runner_context.get("queue_id")
+        self.open_task_details(queue_id)
+
+    def _populate_detail_more_menu(self) -> None:
+        menu = self.detail_more_menu
+        menu.delete(0, "end")
+        job = self._inspection_job()
+        if not job:
+            menu.add_command(label="No task selected" if self.lang == "en" else "未选择任务", state="disabled")
+            return
+        queue_id = job["queue_id"]
+        visible = self._inspection_visible(job)
+        if job.get("status") in config.ACTIVE_STATUSES or job.get("status") == "RUNNING":
+            for key in ("open_inp", "copy_inp", "preflight", "top", "up", "down", "remove"):
+                menu.add_command(label=self._menu_label(key),
+                                 command=lambda action=key: self._queue_context_action(action, queue_id),
+                                 state="normal" if key not in {"top", "up", "down", "remove"} or
+                                 (visible and job.get("status") == "QUEUED" and
+                                  self._queue_mutations_allowed(queue_display_jobs(load_queue())))
+                                 else "disabled")
+            menu.add_command(label=self._texts()["menus"]["skip"], command=lambda: self.skip_selected(queue_id),
+                             state="normal" if visible and job.get("status") == "QUEUED" else "disabled")
+        else:
+            for key in ("copy_id", "copy_name", "copy_inp", "copy_odb", "locate_outputs",
+                        "failure_summary", "run_history", "requeue", "delete_result"):
+                enabled = (key != "run_history" or self.project_manager.current is not None)
+                enabled = enabled and (key != "failure_summary" or normalize_status(job.get("status")) == "FAILED")
+                enabled = enabled and (key not in {"requeue", "delete_result"} or
+                                       (visible and job.get("status") in config.RESULT_STATUSES and
+                                        self._queue_mutations_allowed(queue_display_jobs(load_queue()))))
+                callback = (lambda: self.clear_selected_result(queue_id)) if key == "delete_result" else (
+                    lambda action=key: self._results_context_action(action, queue_id))
+                menu.add_command(label=self._menu_label(key), command=callback,
+                                 state="normal" if enabled else "disabled")
+
+    def _selected_result_action(self, action: str) -> None:
+        job = self._selected_job(self.results_tree)
+        if job and job.get("status") in config.RESULT_STATUSES and self.results_tree.exists(row_iid(job, results=True)):
+            self._results_context_action(action, job["queue_id"])
+        else:
+            messagebox.showwarning("Results", "Select a result first.")
 
     def _menu_label(self, key: str) -> str:
         return MENU_LABELS[key][1 if self.lang == "zh" else 0]
@@ -793,12 +1428,16 @@ class AbqJobPilotApp(tk.Tk):
     def _show_queue_menu(self, event) -> None:
         iid = self.queue_tree.identify_row(event.y)
         self.queue_tree.selection_set(iid if iid else ())
+        if iid:
+            self._last_selected_tree = self.queue_tree
         job_id = selected_job_id(iid)
         job = self.job_by_id.get(job_id) if job_id else None
         active = queue_display_jobs(load_queue())
         index = next((index for index, item in enumerate(active) if item.get("queue_id") == job_id), -1)
         editable = bool(job and job.get("status") == "QUEUED" and self._queue_mutations_allowed(active))
         menu = tk.Menu(self, tearoff=False)
+        self._menu_item(menu, "view_details", lambda: self.open_task_details(job_id), bool(job))
+        self._menu_item(menu, "view_logs", lambda: self.open_task_details(job_id, initial_tab="logs"), bool(job))
         for key in ("open_inp", "open_inp_folder", "copy_inp", "copy_name"):
             self._menu_item(menu, key, lambda action=key: self._queue_context_action(action, job_id), bool(job))
         menu.add_separator()
@@ -814,10 +1453,15 @@ class AbqJobPilotApp(tk.Tk):
     def _show_results_menu(self, event) -> None:
         iid = self.results_tree.identify_row(event.y)
         self.results_tree.selection_set(iid if iid else ())
+        if iid:
+            self._last_selected_tree = self.results_tree
         job_id = selected_job_id(iid, results=True)
         job = self.job_by_id.get(job_id) if job_id else None
-        mutable = bool(job and self._queue_mutations_allowed(queue_display_jobs(load_queue())))
+        mutable = bool(job and job.get("status") in config.RESULT_STATUSES and
+                       self._queue_mutations_allowed(queue_display_jobs(load_queue())))
         menu = tk.Menu(self, tearoff=False)
+        self._menu_item(menu, "view_details", lambda: self.open_task_details(job_id), bool(job))
+        self._menu_item(menu, "view_logs", lambda: self.open_task_details(job_id, initial_tab="logs"), bool(job))
         for key, field in (("work_folder", "work_dir"), ("odb_folder", "odb_path"),
                            ("sta", "sta_path"), ("msg", "msg_path"), ("dat", "dat_path"), ("log", "log_path")):
             path = job.get(field) if job else None
@@ -847,7 +1491,7 @@ class AbqJobPilotApp(tk.Tk):
 
     def _queue_mutations_allowed(self, active: list[dict]) -> bool:
         return not self.runner.is_running() and not any(
-            job.get("status") in {"DATACHECK_RUNNING", "FULL_RUNNING"} for job in active
+            normalize_status(job.get("status")) == "RUNNING" for job in active
         )
 
     def _current_job(self, job_id: str | None) -> dict | None:
@@ -895,7 +1539,7 @@ class AbqJobPilotApp(tk.Tk):
                 gpus=job.get("gpus", 0), batch=job.get("batch_name"), strategy=job.get("strategy_name"),
                 working_dir=job.get("work_dir"),
             )
-            result = AbqJobPilotClient().preflight(request)
+            result = AbqJobPilotClient(runtime_dir=config.RUNTIME_DIR).preflight(request)
             details = "\n".join(filter(None, (
                 result.status,
                 f"INP: {result.inp_path}",
@@ -923,7 +1567,7 @@ class AbqJobPilotApp(tk.Tk):
 
     def _results_context_action(self, action: str, job_id: str | None) -> None:
         job = self._current_job(job_id)
-        if not job or job.get("status") not in config.RESULT_STATUSES:
+        if not job or not result_display_jobs([job]):
             messagebox.showwarning("Results", "Selected result is no longer available.")
             self.refresh_all()
             return
@@ -937,13 +1581,13 @@ class AbqJobPilotApp(tk.Tk):
             field = {"copy_id": "queue_id", "copy_name": "job_name", "copy_inp": "inp_path", "copy_odb": "odb_path"}[action]
             self._copy_text(job.get(field, ""))
         elif action == "refresh_status":
-            status = AbqJobPilotClient().status(job_id=job_id)
+            status = AbqJobPilotClient(runtime_dir=config.RUNTIME_DIR).status(job_id=job_id)
             details = "\n".join(filter(None, (status.status, f"ODB exists: {status.odb_exists}",
                                                f"Lock exists: {status.lock_exists}", *status.warnings, *status.errors)))
             messagebox.showinfo("Job Status", details)
             self.refresh_all()
         elif action == "locate_outputs":
-            outputs = AbqJobPilotClient().locate_outputs(job_id=job_id)
+            outputs = AbqJobPilotClient(runtime_dir=config.RUNTIME_DIR).locate_outputs(job_id=job_id)
             details = "\n".join(filter(None, (f"Work dir: {outputs.working_dir}",
                                                f"ODB: {outputs.expected_odb_path}",
                                                f"ODB exists: {outputs.odb_exists}",
@@ -960,7 +1604,8 @@ class AbqJobPilotApp(tk.Tk):
             result = requeue_result_job(job_id)
             self.refresh_all()
             if result.get("ok"):
-                messagebox.showinfo("Requeue", f"Queued {result['job_name']}. Use Start Queue to run it.")
+                messagebox.showinfo("Requeue", f"Queued {result['job_name']}. A runner already active in another "
+                                    "process may pick it up; otherwise use Start Queue.")
             else:
                 messagebox.showerror("Requeue", result.get("message", "Requeue failed."))
 
@@ -1012,27 +1657,30 @@ class AbqJobPilotApp(tk.Tk):
         scrollbar = ttk.Scrollbar(frame, orient="vertical", command=tree.yview)
         scrollbar.grid(row=0, column=1, sticky="ns")
         tree.configure(yscrollcommand=scrollbar.set)
+        self._configure_status_tags(tree)
         for run in runs:
-            tree.insert("", "end", values=(run["attempt_no"], run["status"], run["started_at"] or "",
+            label, tag = status_presentation(run.get("raw_status") or run.get("status"), self.lang)
+            tree.insert("", "end", tags=(tag,), values=(run["attempt_no"], label, run["started_at"] or "",
                                              run["completed_at"] or "", run["cpus"] if run["cpus"] is not None else "",
                                              run["gpus"] if run["gpus"] is not None else "",
                                              run["working_dir"] or "", run["expected_odb_path"] or ""))
-
-    def _refresh_logs(self) -> None:
-        data = read_json(config.LIVE_STATUS_FILE, {})
-        self._set_text(self.sta_text, self._sta_table_text(tail_text(data.get("sta_path", ""), 80)))
-        self._set_text(self.console_text, tail_text(data.get("log_path", ""), 80))
 
     def _sta_table_text(self, text: str) -> str:
         if not text:
             return STA_HEADER + "\n" + "-" * len(STA_HEADER)
         return STA_HEADER + "\n" + "-" * len(STA_HEADER) + "\n" + text
 
-    def _set_text(self, widget: scrolledtext.ScrolledText, text: str) -> None:
+    def _set_text(self, widget: scrolledtext.ScrolledText, text: str, *, follow: bool = True) -> None:
+        if widget.get("1.0", "end-1c") == text:
+            return
+        previous_position = widget.yview()[0]
         widget.configure(state="normal")
         widget.delete("1.0", "end")
         widget.insert("1.0", text)
-        widget.see("end")
+        if follow:
+            widget.see("end")
+        else:
+            widget.yview_moveto(previous_position)
         widget.configure(state="disabled")
 
     def _refresh_resource_usage(self) -> None:
@@ -1044,6 +1692,10 @@ class AbqJobPilotApp(tk.Tk):
             self.cpu_percent_var.set(f"{percent}%")
         self.memory_percent_var.set(self._read_memory_text())
         self.gpu_percent_var.set(self._read_gpu_text())
+        prefix = "本机" if self.lang == "zh" else "Local machine"
+        self.resource_line_var.set(f"{prefix}: CPU {self.cpu_percent_var.get()} · "
+                                   f"{self._texts()['resources']['memory']} {self.memory_percent_var.get()} · "
+                                   f"GPU {self.gpu_percent_var.get()}")
 
     def _read_cpu_percent(self) -> int | None:
         current = self._get_system_cpu_times()
@@ -1253,15 +1905,75 @@ class AbqJobPilotApp(tk.Tk):
         if self._agent_console is not None and self._agent_console.winfo_exists():
             self._agent_console.lift()
             return
-        self._agent_console = AgentCommandConsole(self, on_queue_changed=self.refresh_all)
+        self._agent_console = AgentCommandConsole(self, on_queue_changed=self.refresh_all, language=self.lang)
+
+    def show_agent_capabilities(self) -> None:
+        capabilities = AbqJobPilotClient(runtime_dir=config.RUNTIME_DIR).capabilities()
+        title = "接口能力" if self.lang == "zh" else "Capabilities"
+        messagebox.showinfo(title, json.dumps(capabilities, ensure_ascii=False, indent=2))
+
+    def open_automation_docs(self) -> None:
+        path = config.APP_ROOT_PATH / "docs" / "ABQJOBPILOT_PUBLIC_API.md"
+        if path.is_file():
+            self._open_job_text(str(path))
+        else:
+            self._copy_text(str(path))
+            messagebox.showwarning("Documentation", f"Documentation not found. Path copied:\n{path}")
+
+    def show_automation_about(self) -> None:
+        title = "关于自动化接口" if self.lang == "zh" else "About Automation Interface"
+        message = ("AbqJobPilot 提供轻量自动化接口，用于任务预检、入队、状态查询和输出定位。\n"
+                   "它不是 AI Runtime；公开自动化接口不提供求解器启动。" if self.lang == "zh" else
+                   "AbqJobPilot provides a thin automation interface for job preparation, queueing, "
+                   "status inspection, and output discovery.\nIt is not an AI Runtime. "
+                   "The public automation surface does not expose solver start.")
+        messagebox.showinfo(title, message)
 
     def toggle_language(self) -> None:
         self.lang = "zh" if self.lang == "en" else "en"
+        self._rendered_inspection = None
+        self._rendered_rows.clear()
+        self._refresh_status()
+        self._refresh_live_logs()
+        self._refresh_tables_from_cache()
         self._apply_language()
+        self._refresh_inspection()
+        if self._agent_console is not None and self._agent_console.winfo_exists():
+            self._agent_console.set_language(self.lang)
 
     def show_help(self) -> None:
-        title = "Help" if self.lang == "en" else "帮助"
-        messagebox.showinfo(title, "abqjobpilot\nVersion: 0.1.0")
+        if getattr(self, "about_window", None) is not None and self.about_window.winfo_exists():
+            self.about_window.lift()
+            return
+        words = self._texts()["about"]
+        window = tk.Toplevel(self)
+        self.about_window = window
+        window.title(words["title"])
+        window.resizable(False, False)
+        window.transient(self)
+        body = ttk.Frame(window, padding=20)
+        body.grid(row=0, column=0, sticky="nsew")
+        ttk.Label(body, text="AbqJobPilot", font=("Segoe UI Semibold", 16)).grid(row=0, column=0, sticky="w")
+        self.about_version_label = ttk.Label(body, text=f"{words['version']} {__version__} · {words['build']}")
+        self.about_version_label.grid(row=1, column=0, sticky="w", pady=(4, 12))
+        ttk.Label(body, text=words["description"]).grid(row=2, column=0, sticky="w", pady=(0, 16))
+        ttk.Label(body, text=words["source"]).grid(row=3, column=0, sticky="w")
+        self.about_repo_label = ttk.Label(body, text=STABLE_GITHUB_URL or words["unavailable"],
+                                          foreground=COLORS["accent"] if STABLE_GITHUB_URL else COLORS["muted"])
+        self.about_repo_label.grid(row=4, column=0, sticky="w", pady=(3, 12))
+        actions = ttk.Frame(body)
+        actions.grid(row=5, column=0, sticky="e")
+        self.about_open_button = ttk.Button(actions, text=words["open"],
+                                            command=lambda: webbrowser.open(STABLE_GITHUB_URL)
+                                            if STABLE_GITHUB_URL else None)
+        self.about_open_button.grid(row=0, column=0, padx=(0, 8))
+        self.about_copy_button = ttk.Button(actions, text=words["copy"],
+                                            command=lambda: self._copy_text(STABLE_GITHUB_URL)
+                                            if STABLE_GITHUB_URL else None)
+        self.about_copy_button.grid(row=0, column=1)
+        if not STABLE_GITHUB_URL:
+            self.about_open_button.configure(state="disabled")
+            self.about_copy_button.configure(state="disabled")
 
     def open_task_manager_performance(self) -> None:
         try:
@@ -1320,7 +2032,8 @@ class AbqJobPilotApp(tk.Tk):
             return
         if not messagebox.askyesno(
             "Start Queue",
-            f"This will submit {queued_count} Abaqus job(s) from the queue. Continue?",
+            f"This starts the entire executable queue ({queued_count} job(s)), not only visible or "
+            "selected rows. Continue?",
         ):
             return
         result = self.runner.start()
@@ -1336,8 +2049,13 @@ class AbqJobPilotApp(tk.Tk):
         result = self.runner.request_stop_after_current()
         messagebox.showinfo("Stop After Current Job", result["message"])
 
-    def skip_selected(self) -> None:
-        job = self._selected_job()
+    def skip_selected(self, job_id: str | None = None) -> None:
+        if job_id:
+            job = self._current_job(job_id)
+        elif self._last_selected_tree is self.queue_tree:
+            job = self._selected_job(self.queue_tree)
+        else:
+            job = None
         if not job:
             messagebox.showwarning("Skip Selected", "Select a queued job first.")
             return
@@ -1352,7 +2070,12 @@ class AbqJobPilotApp(tk.Tk):
             messagebox.showerror("Skip Selected", result.get("message", "Failed to skip job."))
 
     def clear_selected_result(self, job_id: str | None = None) -> None:
-        job = self._current_job(job_id) if job_id else self._selected_job(self.results_tree)
+        if job_id:
+            job = self._current_job(job_id)
+        elif self._last_selected_tree is self.results_tree:
+            job = self._selected_job(self.results_tree)
+        else:
+            job = None
         title = "Clear Selected Result" if self.lang == "en" else "清除选中结果"
         if not job:
             messagebox.showwarning(title, "Select a result row first." if self.lang == "en" else "请先选中结果表中的一行。")
@@ -1395,7 +2118,7 @@ class AbqJobPilotApp(tk.Tk):
             messagebox.showerror(title, result.get("message", "Failed to clear result."))
 
     def open_selected_work_folder(self) -> None:
-        job = self._selected_job()
+        job = self._inspection_job() or self._selected_job()
         if not job:
             messagebox.showwarning("Open Work Folder", "Select a queue or result row first.")
             return
@@ -1406,41 +2129,47 @@ class AbqJobPilotApp(tk.Tk):
         open_folder(work_dir)
 
     def copy_console_for_ai(self) -> None:
-        data = read_json(config.LIVE_STATUS_FILE, {})
-        content = (
-            "Please diagnose this Abaqus job log.\n\n"
-            f"Phase: {data.get('phase', '')}\n"
-            f"Job: {data.get('current_job', '')}\n"
-            f"STA path: {data.get('sta_path', '')}\n"
-            f"Log path: {data.get('log_path', '')}\n\n"
-            "STA tail:\n"
-            f"{self.sta_text.get('1.0', 'end-1c')}\n\n"
-            "Console log tail:\n"
-            f"{self.console_text.get('1.0', 'end-1c')}\n"
-        )
-        self.clipboard_clear()
-        self.clipboard_append(content)
-        title = "Copied" if self.lang == "en" else "已复制"
-        msg = "Diagnostic text copied." if self.lang == "en" else "诊断文本已复制。"
-        messagebox.showinfo(title, msg)
+        if self._inspection_job():
+            self._copy_text(self.log_text.get("1.0", "end-1c"))
 
-    def _update_status_light(self, phase: str) -> None:
-        running = phase in {"RUNNER_ACTIVE", "DATACHECK_RUNNING", "FULL_RUNNING"}
-        color = "#d93025" if running else "#2fb344"
-        outline = "#9b1c16" if running else "#1f7a2e"
-        self.status_light.itemconfigure(self.status_light_id, fill=color, outline=outline)
+    def _update_status_light(self, state: str) -> None:
+        color = {"running": COLORS["accent"], "uncertain": COLORS["warning"],
+                 "idle": COLORS["muted"]}[state]
+        self.status_light.itemconfigure(self.status_light_id, fill=color, outline="")
 
     def _texts(self) -> dict:
         if self.lang == "zh":
             return {
+                "menus": {"project": "项目", "task": "任务", "view": "视图", "tools": "工具", "agent_top": "智能体", "help": "帮助",
+                          "about_app": "关于 AbqJobPilot",
+                          "add_task": "添加任务", "add_inp": "添加 INP", "add_folder": "添加文件夹",
+                          "view_details": "查看详情",
+                          "skip": "跳过选中", "requeue": "重新入队", "delete_result": "删除结果记录",
+                          "queue": "队列", "results": "结果", "refresh": "刷新", "settings": "基础设置",
+                          "agent": "智能体命令", "language": "English", "task_manager": "任务管理器", "exit": "退出"},
+                "agent_menu": {"console": "智能体命令控制台", "instruction": "复制 AI 指令模板",
+                               "examples": "复制 CLI 示例", "capabilities": "接口能力",
+                               "docs": "自动化 API 文档", "about": "关于自动化接口"},
+                "about": {"title": "关于 AbqJobPilot", "version": "版本", "build": "开发版本",
+                          "description": "轻量级 Abaqus 作业生命周期管理工具",
+                          "source": "稳定版 / 源代码：", "open": "打开 GitHub", "copy": "复制链接",
+                          "unavailable": "仓库链接不可用"},
+                "project_menu": {"new": "新建项目", "open": "打开项目", "close": "关闭项目",
+                                 "folder": "打开管理项目目录", "recent": "最近项目", "export": "导出项目",
+                                 "import": "导入项目", "legacy": "导入旧版 runtime"},
+                "details": {"running": "查看运行任务", "work_folder": "打开任务工作目录", "more": "更多",
+                            "collapse": "收起", "expand": "展开", "overview": "概览", "files": "文件引用",
+                            "logs": "日志", "history": "运行历史", "follow": "跟随末尾",
+                            "copy": "复制", "copy_path": "复制路径", "open_folder": "打开所在目录",
+                            "open_file": "打开文本文件", "search": "搜索作业名、批次、策略或 INP 路径"},
                 "buttons": {
                     "add_inp": "添加 INP",
                     "add_folder": "添加文件夹",
                     "settings": "基础设置",
-                    "agent_command": "智能命令",
+                    "agent_command": "智能体命令",
                     "refresh": "刷新",
                     "start_queue": "开始队列",
-                    "stop_after_current": "当前完成后停止",
+                    "stop_after_current": "当前作业结束后停止",
                     "skip_selected": "跳过选中",
                     "clear_selected_result": "清除结果",
                     "open_work_folder": "打开工作文件夹",
@@ -1483,6 +2212,28 @@ class AbqJobPilotApp(tk.Tk):
                 },
             }
         return {
+            "menus": {"project": "Project", "task": "Task", "view": "View", "tools": "Tools", "agent_top": "Agent", "help": "Help",
+                      "about_app": "About AbqJobPilot",
+                      "add_task": "Add Task", "add_inp": "Add INP", "add_folder": "Add Folder",
+                      "view_details": "View Details",
+                      "skip": "Skip Selected", "requeue": "Requeue", "delete_result": "Delete Result Record",
+                      "queue": "Queue", "results": "Results", "refresh": "Refresh", "settings": "Settings",
+                      "agent": "Agent Command", "language": "中文", "task_manager": "Task Manager", "exit": "Exit"},
+            "agent_menu": {"console": "Agent Command Console", "instruction": "Copy AI Instruction",
+                           "examples": "Copy CLI Examples", "capabilities": "Capabilities",
+                           "docs": "Automation API Documentation", "about": "About Automation Interface"},
+            "about": {"title": "About AbqJobPilot", "version": "Version", "build": "Development build",
+                      "description": "Lightweight Abaqus job lifecycle runner",
+                      "source": "Stable release / source:", "open": "Open GitHub", "copy": "Copy Link",
+                      "unavailable": "Repository link unavailable"},
+            "project_menu": {"new": "New Project", "open": "Open Project", "close": "Close Project",
+                             "folder": "Open Management Project Folder", "recent": "Recent Projects",
+                             "export": "Export Project", "import": "Import Project", "legacy": "Import Legacy Runtime"},
+            "details": {"running": "View Running Job", "work_folder": "Open Task Work Folder", "more": "More",
+                        "collapse": "Collapse", "expand": "Expand", "overview": "Overview", "files": "File References",
+                        "logs": "Logs", "history": "Run History", "follow": "Follow tail",
+                        "copy": "Copy", "copy_path": "Copy Path", "open_folder": "Open Folder",
+                        "open_file": "Open Text File", "search": "Search job, batch, strategy or INP path"},
             "buttons": {
                 "add_inp": "Add INP",
                 "add_folder": "Add Folder",
@@ -1535,35 +2286,66 @@ class AbqJobPilotApp(tk.Tk):
 
     def _apply_language(self) -> None:
         texts = self._texts()
-        project_texts = ({"new": "新建", "open": "打开", "close": "关闭", "folder": "打开项目文件夹",
-                          "export": "导出", "import": "导入", "legacy": "导入旧版"} if self.lang == "zh" else
-                         {"new": "New", "open": "Open", "close": "Close", "folder": "Project Folder",
-                          "export": "Export", "import": "Import", "legacy": "Import Legacy"})
         self._update_project_label()
-        for key, button in self.project_controls.items():
-            button.configure(text=project_texts[key])
-        self.recent_button.configure(text="最近项目" if self.lang == "zh" else "Recent")
+        if getattr(self, "_menu_lang", None) != self.lang:
+            self._build_menus()
+            self._menu_lang = self.lang
         for key, button in self.toolbar_buttons.items():
             button.configure(text=texts["buttons"][key])
         for key, label in self.toolbar_button_labels.items():
             label.configure(text=texts["buttons"][key])
-        for key, frame in self.frames.items():
-            frame.configure(text=texts["frames"].get(key, ""))
-        self.copy_console_button.configure(text=texts["copy_console"])
-        self.task_manager_button.configure(text=texts["task_manager"])
-        for key, label in self.resource_label_widgets.items():
-            label.configure(text=texts["resources"][key] + ":")
-        for key, label in self.status_label_widgets.items():
-            label.configure(text=texts["status"][key] + ":")
+        details = texts["details"]
+        self.view_running_button.configure(text=details["running"])
+        self.detail_folder_button.configure(text=details["work_folder"])
+        self.detail_more_button.configure(text=details["more"])
+        self.detail_collapse_button.configure(text="关闭" if self.lang == "zh" else "Close")
+        for tab, key in ((self.overview_tab, "overview"), (self.files_tab, "files"),
+                         (self.logs_tab, "logs"), (self.history_tab, "history")):
+            self.detail_notebook.tab(tab, text=details[key])
+        self.follow_checkbox.configure(text=details["follow"])
+        self.log_copy_button.configure(text=details["copy"])
+        self.file_copy_button.configure(text=details["copy_path"])
+        self.file_folder_button.configure(text=details["open_folder"])
+        self.file_open_button.configure(text=details["open_file"])
+        file_headings = (("kind", "类型" if self.lang == "zh" else "Kind"),
+                         ("state", "当前状态" if self.lang == "zh" else "Current state"),
+                         ("path", "已记录路径" if self.lang == "zh" else "Recorded path"))
+        for column, title in file_headings:
+            self.files_tree.heading(column, text=title)
+        for column, title in (("attempt", "尝试"), ("status", "状态"), ("started", "开始"),
+                              ("completed", "完成"), ("cpus", "CPU"), ("gpus", "GPU"),
+                              ("working_dir", "工作目录"), ("odb", "ODB 路径")):
+            self.history_tree.heading(column, text=title if self.lang == "zh" else column.replace("_", " ").title())
+        self.refresh_button.configure(text=texts["menus"]["refresh"])
+        self.queue_refresh_button.configure(text=texts["menus"]["refresh"])
+        self.queue_more_button.configure(text=details["more"])
+        self.results_more_button.configure(text=details["more"])
+        self.search_label.configure(text="结果搜索" if self.lang == "zh" else "Search results")
+        self.console_heading.configure(text="控制台日志" if self.lang == "zh" else "Console log")
+        for side in ("solver", "console"):
+            getattr(self, f"live_{side}_follow").configure(text=details["follow"])
+        labels = self._status_filter_labels()
+        self.status_filter.configure(values=labels)
+        codes = ("all", "queued", "running", "completed", "warnings", "failed")
+        self.status_filter.current(codes.index(self.filter_status_code))
+        self._update_batch_choices()
+        self._refresh_table_counts()
+        self.footer_mode_var.set(("项目模式" if self.project_manager.current else "默认 runtime · 引用模式")
+                                 if self.lang == "zh" else
+                                 ("Project · reference mode" if self.project_manager.current else "Default runtime · reference mode"))
+        if self.inspection_key is None:
+            self.inspection_title_var.set("未选择任务" if self.lang == "zh" else "No task selected")
         for column, label in texts["queue_headings"].items():
             self.queue_tree.heading(column, text=label)
         for column, label in texts["result_headings"].items():
             self.results_tree.heading(column, text=label)
 
     def _selected_job(self, tree: ttk.Treeview | None = None) -> dict | None:
-        for widget, results in ((tree, tree is self.results_tree),) if tree else (
-            (self.queue_tree, False), (self.results_tree, True)
-        ):
+        widgets = (tree,) if tree else (self._last_selected_tree, self.queue_tree, self.results_tree)
+        for widget in widgets:
+            if widget is None:
+                continue
+            results = widget is self.results_tree
             selection = widget.selection()
             if selection:
                 return self.job_by_id.get(selected_job_id(selection[0], results=results))

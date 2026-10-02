@@ -5,28 +5,20 @@ from __future__ import annotations
 import tkinter as tk
 from tkinter import scrolledtext, ttk
 
-from .command_parser import HELP_TEXT, CommandParseError, extract_agent_commands, parse_agent_command
+from .command_parser import (COMMAND_EXAMPLES, CommandParseError, command_help_text,
+                             extract_agent_commands, parse_agent_command)
 from .queue_store import add_folder_to_queue, add_inp_job_to_queue, load_queue
 from .settings_store import load_settings
 
 
-EXAMPLE_COMMANDS = (
-    'enqueue --inp "D:\\Projects\\RL-LAM-ScanOpt\\LDED_2D_CAE_Framework\\cae_models\\'
-    '32track_full\\center_out\\Job_2D_32track_full_center_out.inp" --batch 32track_full '
-    '--strategy center_out\n'
-    'enqueue-folder --folder "D:\\Projects\\RL-LAM-ScanOpt\\LDED_2D_CAE_Framework\\cae_models\\'
-    '32track_full\\teacher_pool_full20_v01\\random_scan_1" --pattern "*.inp"'
-)
+EXAMPLE_COMMANDS = "\n".join(COMMAND_EXAMPLES[name] for name in ("enqueue", "enqueue-folder"))
+COMMAND_REFERENCE = "\n".join(COMMAND_EXAMPLES.values())
 
-
-AI_SKILL_PROMPT = """You are generating abqjobpilot Agent Command strings.
+AI_INSTRUCTION = f"""You are generating AbqJobPilot Agent Command strings.
 
 Output only plain text commands, one command per line. Do not use Markdown.
 Allowed commands:
-enqueue --inp "D:\\path\\Job_xxx.inp" --cpus 14 --gpus 1 --batch batch_name --strategy strategy_name
-enqueue-folder --folder "D:\\path\\strategy_folder" --pattern "*.inp" --cpus 14 --gpus 1 --batch batch_name --strategy strategy_name
-list
-help
+{COMMAND_REFERENCE}
 
 Rules:
 - Use quoted Windows paths.
@@ -35,65 +27,138 @@ Rules:
 - If CPU/GPU are not specified, omit them so abqjobpilot uses Settings.
 - Never output shell commands, Python code, PowerShell, explanations, or bullets.
 """
+AI_SKILL_PROMPT = AI_INSTRUCTION
+
+CLI_EXAMPLES = "\n".join((
+    "python -m abqjobpilot.api.cli capabilities --json",
+    'python -m abqjobpilot.api.cli preflight --inp "D:\\path\\Job_xxx.inp" --cpus 14 --json',
+    'python -m abqjobpilot.api.cli enqueue --inp "D:\\path\\Job_xxx.inp" --dry-run --json',
+    'python -m abqjobpilot.api.cli status --job-id "QUEUE_ID" --json',
+    'python -m abqjobpilot.api.cli locate-outputs --job-id "QUEUE_ID" --json',
+))
+
+AGENT_UI_STRINGS = {
+    "en": {
+        "title": "Agent Command Console", "safety": "Internal commands only · No shell execution · Solver start unavailable",
+        "instruction": "AI Instruction", "copy_instruction": "Copy Instruction", "instruction_note": "",
+        "commands": "Commands", "paste": "Paste", "run": "Run Commands", "paste_run": "Paste && Run",
+        "clear_input": "Clear Input", "reference": "Command Reference", "copy_examples": "Copy Examples",
+        "output": "Output", "clear_output": "Clear Output", "copy_output": "Copy Output",
+        "clipboard_empty": "ERROR: clipboard is empty or does not contain text.",
+        "pasted": "OK: pasted {count} supported command(s) from clipboard.",
+        "no_lines": "WARNING: pasted text, but no supported Agent Command lines were found.",
+        "no_commands": "ERROR: no supported Agent Command lines found.",
+        "queue_empty": "Queue is empty.",
+    },
+    "zh": {
+        "title": "智能体命令控制台", "safety": "仅支持 AbqJobPilot 内部命令 · 不执行系统 Shell · 不提供求解器启动",
+        "instruction": "AI 指令", "copy_instruction": "复制指令", "instruction_note": "以上英文内容用于复制给 AI 编程助手。",
+        "commands": "命令", "paste": "粘贴", "run": "运行命令", "paste_run": "粘贴并运行",
+        "clear_input": "清空输入", "reference": "命令参考", "copy_examples": "复制示例",
+        "output": "输出", "clear_output": "清空输出", "copy_output": "复制输出",
+        "clipboard_empty": "错误：剪贴板为空或不包含文本。",
+        "pasted": "已粘贴 {count} 条支持的命令。",
+        "no_lines": "提示：已粘贴文本，但未找到支持的智能体命令。",
+        "no_commands": "错误：未找到支持的智能体命令。",
+        "queue_empty": "队列为空。",
+    },
+}
 
 
 class AgentCommandConsole(tk.Toplevel):
-    def __init__(self, master, on_queue_changed=None):
+    def __init__(self, master, on_queue_changed=None, language: str = "en"):
         super().__init__(master)
-        self.title("Agent Command Console")
         self.geometry("1040x760")
         self.minsize(860, 620)
         self.on_queue_changed = on_queue_changed
+        self.language = language if language in AGENT_UI_STRINGS else "en"
+        self._reference_open = False
+        self.buttons: dict[str, ttk.Button] = {}
 
         self.columnconfigure(0, weight=1)
-        self.rowconfigure(2, weight=1)
-        self.rowconfigure(4, weight=2)
+        self.rowconfigure(2, weight=2)
+        self.rowconfigure(4, weight=3)
         self._build_widgets()
-        self._append_output(HELP_TEXT)
+        self.set_language(self.language)
         self.input_text.focus_set()
 
     def _build_widgets(self) -> None:
-        skill_frame = ttk.LabelFrame(self, text="AI Skill Prompt", padding=8)
-        skill_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=(10, 6))
-        skill_frame.columnconfigure(0, weight=1)
-        self.skill_text = tk.Text(skill_frame, height=6, wrap="word")
+        self.safety_label = ttk.Label(self, foreground="#475569")
+        self.safety_label.grid(row=0, column=0, sticky="w", padx=16, pady=(12, 8))
+
+        self.instruction_frame = ttk.LabelFrame(self, padding=8)
+        self.instruction_frame.grid(row=1, column=0, sticky="ew", padx=12, pady=(0, 8))
+        self.instruction_frame.columnconfigure(0, weight=1)
+        self.skill_text = scrolledtext.ScrolledText(self.instruction_frame, height=7, wrap="word", relief="flat")
         self.skill_text.grid(row=0, column=0, sticky="ew", padx=(0, 8))
-        self.skill_text.insert("1.0", AI_SKILL_PROMPT)
+        self.skill_text.insert("1.0", AI_INSTRUCTION)
         self.skill_text.configure(state="disabled")
-        ttk.Button(skill_frame, text="Copy AI Prompt", command=self.copy_ai_prompt).grid(row=0, column=1, sticky="n")
+        self.buttons["copy_instruction"] = ttk.Button(self.instruction_frame, command=self.copy_ai_prompt)
+        self.buttons["copy_instruction"].grid(row=0, column=1, sticky="n")
+        self.instruction_note = ttk.Label(self.instruction_frame, foreground="#64748b")
+        self.instruction_note.grid(row=1, column=0, sticky="w", pady=(3, 0))
 
-        input_frame = ttk.LabelFrame(self, text="Paste Commands From AI Chat", padding=8)
-        input_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=(0, 6))
-        input_frame.columnconfigure(0, weight=1)
-        input_frame.rowconfigure(1, weight=1)
-        input_toolbar = ttk.Frame(input_frame)
-        input_toolbar.grid(row=0, column=0, sticky="ew", pady=(0, 6))
-        ttk.Button(input_toolbar, text="Paste", command=self.paste_clipboard).grid(row=0, column=0, padx=(0, 6))
-        ttk.Button(input_toolbar, text="Paste && Run", command=self.paste_and_run).grid(row=0, column=1, padx=(0, 6))
-        ttk.Button(input_toolbar, text="Run Commands", command=self.run_commands).grid(row=0, column=2, padx=(0, 6))
-        ttk.Button(input_toolbar, text="Clear Input", command=self.clear_input).grid(row=0, column=3, padx=(0, 6))
-        ttk.Button(input_toolbar, text="Clear Output", command=self.clear_output).grid(row=0, column=4, padx=(0, 6))
-        ttk.Button(input_toolbar, text="Copy Examples", command=self.copy_examples).grid(row=0, column=5, padx=(0, 6))
-        self.input_text = scrolledtext.ScrolledText(input_frame, height=8, wrap="word")
-        self.input_text.grid(row=1, column=0, sticky="nsew")
-        self.input_text.insert("1.0", "help")
+        self.commands_frame = ttk.LabelFrame(self, padding=8)
+        self.commands_frame.grid(row=2, column=0, sticky="nsew", padx=12, pady=(0, 8))
+        self.commands_frame.columnconfigure(0, weight=1)
+        self.commands_frame.rowconfigure(0, weight=1)
+        self.input_text = scrolledtext.ScrolledText(self.commands_frame, height=8, wrap="word", font=("Consolas", 10))
+        self.input_text.grid(row=0, column=0, sticky="nsew")
+        input_toolbar = ttk.Frame(self.commands_frame)
+        input_toolbar.grid(row=1, column=0, sticky="w", pady=(7, 0))
+        for column, (key, action) in enumerate((
+            ("paste", self.paste_clipboard), ("run", self.run_commands),
+            ("paste_run", self.paste_and_run), ("clear_input", self.clear_input),
+        )):
+            self.buttons[key] = ttk.Button(input_toolbar, command=action)
+            self.buttons[key].grid(row=0, column=column, padx=(0, 7))
 
-        help_frame = ttk.LabelFrame(self, text="Supported Internal Commands", padding=8)
-        help_frame.grid(row=3, column=0, sticky="ew", padx=10, pady=(0, 6))
-        help_text = (
-            'enqueue --inp "D:\\path\\Job_xxx.inp" --cpus 14 --gpus 1\n'
-            'enqueue-folder --folder "D:\\path\\strategy_folder" --cpus 14 --gpus 1\n'
-            "list | help | clear\n"
-            "Copy AI-generated commands, click Paste, then Run Commands. Multiple commands are supported."
-        )
-        ttk.Label(help_frame, text=help_text, justify="left").grid(row=0, column=0, sticky="w")
+        reference = ttk.Frame(self)
+        reference.grid(row=3, column=0, sticky="ew", padx=12, pady=(0, 8))
+        reference.columnconfigure(0, weight=1)
+        self.reference_toggle = ttk.Button(reference, command=self._toggle_reference)
+        self.reference_toggle.grid(row=0, column=0, sticky="w")
+        self.buttons["copy_examples"] = ttk.Button(reference, command=self.copy_examples)
+        self.buttons["copy_examples"].grid(row=0, column=1, sticky="e")
+        self.reference_body = ttk.Label(reference, text=COMMAND_REFERENCE, justify="left",
+                                        foreground="#475569", wraplength=790)
+        self.reference_body.grid(row=1, column=0, columnspan=2, sticky="w", pady=(7, 0))
+        self.reference_body.grid_remove()
 
-        output_frame = ttk.LabelFrame(self, text="Output", padding=8)
-        output_frame.grid(row=4, column=0, sticky="nsew", padx=10, pady=(0, 10))
-        output_frame.rowconfigure(0, weight=1)
-        output_frame.columnconfigure(0, weight=1)
-        self.output = scrolledtext.ScrolledText(output_frame, wrap="word", state="disabled")
-        self.output.grid(row=0, column=0, sticky="nsew")
+        self.output_frame = ttk.LabelFrame(self, padding=8)
+        self.output_frame.grid(row=4, column=0, sticky="nsew", padx=12, pady=(0, 12))
+        self.output_frame.columnconfigure(0, weight=1)
+        self.output_frame.rowconfigure(1, weight=1)
+        output_toolbar = ttk.Frame(self.output_frame)
+        output_toolbar.grid(row=0, column=0, sticky="e", pady=(0, 6))
+        for column, (key, action) in enumerate((("clear_output", self.clear_output),
+                                                ("copy_output", self.copy_output))):
+            self.buttons[key] = ttk.Button(output_toolbar, command=action)
+            self.buttons[key].grid(row=0, column=column, padx=(7, 0))
+        self.output = scrolledtext.ScrolledText(self.output_frame, wrap="word", state="disabled",
+                                                font=("Consolas", 10))
+        self.output.grid(row=1, column=0, sticky="nsew")
+
+    def set_language(self, language: str) -> None:
+        self.language = language if language in AGENT_UI_STRINGS else "en"
+        words = AGENT_UI_STRINGS[self.language]
+        self.title(words["title"])
+        self.safety_label.configure(text=words["safety"])
+        self.instruction_frame.configure(text=words["instruction"])
+        self.instruction_note.configure(text=words["instruction_note"])
+        self.commands_frame.configure(text=words["commands"])
+        self.output_frame.configure(text=words["output"])
+        self.reference_toggle.configure(text=words["reference"] + (" ▴" if self._reference_open else " ▾"))
+        for key, button in self.buttons.items():
+            button.configure(text=words[key])
+
+    def _toggle_reference(self) -> None:
+        self._reference_open = not self._reference_open
+        if self._reference_open:
+            self.reference_body.grid()
+        else:
+            self.reference_body.grid_remove()
+        self.set_language(self.language)
 
     def _append_output(self, text: str) -> None:
         self.output.configure(state="normal")
@@ -111,29 +176,35 @@ class AgentCommandConsole(tk.Toplevel):
         self.output.delete("1.0", "end")
         self.output.configure(state="disabled")
 
+    def copy_output(self) -> None:
+        self.clipboard_clear()
+        self.clipboard_append(self.output.get("1.0", "end-1c"))
+
     def copy_ai_prompt(self) -> None:
         self.clipboard_clear()
-        self.clipboard_append(AI_SKILL_PROMPT)
+        self.clipboard_append(AI_INSTRUCTION)
 
-    def paste_clipboard(self) -> None:
+    def paste_clipboard(self) -> bool:
         try:
             text = self.clipboard_get()
         except tk.TclError:
-            self._append_output("ERROR: clipboard is empty or does not contain text.")
-            return
+            self._append_output(AGENT_UI_STRINGS[self.language]["clipboard_empty"])
+            return False
         if not text.strip():
-            self._append_output("ERROR: clipboard is empty.")
-            return
+            self._append_output(AGENT_UI_STRINGS[self.language]["clipboard_empty"])
+            return False
         self.input_text.delete("1.0", "end")
         self.input_text.insert("1.0", text)
         commands = extract_agent_commands(text)
         if commands:
-            self._append_output(f"OK: pasted {len(commands)} supported command(s) from clipboard.")
+            self._append_output(AGENT_UI_STRINGS[self.language]["pasted"].format(count=len(commands)))
         else:
-            self._append_output("WARNING: pasted text, but no supported Agent Command lines were found.")
+            self._append_output(AGENT_UI_STRINGS[self.language]["no_lines"])
+        return True
 
     def paste_and_run(self) -> None:
-        self.paste_clipboard()
+        if not self.paste_clipboard():
+            return
         pasted_text = self.input_text.get("1.0", "end-1c")
         if extract_agent_commands(pasted_text):
             self.run_commands()
@@ -148,7 +219,7 @@ class AgentCommandConsole(tk.Toplevel):
         pasted_text = self.input_text.get("1.0", "end-1c")
         commands = extract_agent_commands(pasted_text)
         if not commands:
-            self._append_output("ERROR: no supported Agent Command lines found.")
+            self._append_output(AGENT_UI_STRINGS[self.language]["no_commands"])
             return
 
         any_queue_change = False
@@ -170,7 +241,7 @@ class AgentCommandConsole(tk.Toplevel):
             self.clear_output()
             return {"queue_changed": False}
         if command == "help":
-            self._append_output(f"> {command_text}\n\n{HELP_TEXT}")
+            self._append_output(f"> {command_text}\n\n{command_help_text(self.language)}")
             return {"queue_changed": False}
         if command == "list":
             self._append_output(f"> {command_text}\n\n{self._format_queue_list()}")
@@ -255,7 +326,7 @@ class AgentCommandConsole(tk.Toplevel):
     def _format_queue_list(self) -> str:
         jobs = load_queue()
         if not jobs:
-            return "Queue is empty."
+            return AGENT_UI_STRINGS[self.language]["queue_empty"]
         header = "index | status | batch_name | strategy_name | job_name | inp_path | cpus | gpus | created_at"
         lines = [header, "-" * len(header)]
         for index, job in enumerate(jobs, start=1):
