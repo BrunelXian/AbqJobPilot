@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 from pathlib import Path
 
-from abqjobpilot import config
+from abqjobpilot import __version__, config
 from abqjobpilot.queue_store import enqueue_record, read_queue
 from abqjobpilot.status_codes import normalize_status
 from .errors import error_detail
@@ -39,6 +39,7 @@ class AbqJobPilotClient:
         return {
             "schema_version": config.SCHEMA_VERSION,
             "application": "abqjobpilot",
+            "application_version": __version__,
             "automation_surface": "1.0",
             "capabilities": {
                 "preflight": True, "enqueue": True, "enqueue_folder": True,
