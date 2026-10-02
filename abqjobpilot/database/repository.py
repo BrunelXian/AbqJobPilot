@@ -14,8 +14,8 @@ from abqjobpilot.status_codes import normalize_status
 from abqjobpilot.project.manager import load_project_info
 from abqjobpilot.project.models import ProjectInfo
 
-from .connection import DatabaseFailure, open_connection
-from .migrations import initialize_database
+from .connection import DatabaseFailure, open_connection, inspect_schema_version
+from .migrations import SCHEMA_VERSION, initialize_database
 
 
 ARTIFACT_FIELDS = {"INP": "inp_path", "ODB": "odb_path", "STA": "sta_path",
@@ -45,15 +45,21 @@ def _logical_key(job_name: str | None, inp_path: str | None, work_dir: str | Non
 
 
 class ProjectHistoryRepository:
-    def __init__(self, project: ProjectInfo | str | Path):
+    def __init__(self, project: ProjectInfo | str | Path, *, read_only: bool = False):
         self.project = project if isinstance(project, ProjectInfo) else load_project_info(project)
         self.db_path = self.project.root / "project.db"
+        self.read_only = read_only
 
     @contextmanager
     def _connection(self, write: bool = False):
-        connection = open_connection(self.db_path)
+        if self.read_only and write:
+            raise DatabaseFailure("DATABASE_WRITE_FAILED", "Read-only history cannot be modified")
+        if self.read_only and inspect_schema_version(self.db_path) != SCHEMA_VERSION:
+            raise DatabaseFailure("DATABASE_READ_FAILED", "Project database has not been initialized")
+        connection = open_connection(self.db_path, read_only=self.read_only)
         try:
-            initialize_database(connection)
+            if not self.read_only:
+                initialize_database(connection)
             if write:
                 connection.execute("BEGIN IMMEDIATE")
             yield connection

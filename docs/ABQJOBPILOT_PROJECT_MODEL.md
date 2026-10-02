@@ -55,7 +55,7 @@ The public automation API remains GUI-free. Use `AbqJobPilotClient(runtime_dir=s
 
 `python run_gui.py` starts in **No Project (default runtime)** mode. It does not silently convert the old `runtime/` into a Project. The Project bar offers New, Open, Recent, Close, Project Folder, Export, Import, and Import Legacy. Opening a Project changes only this GUI process's runtime paths for Queue, Results, live status, reports, and runtime-specific Settings. Switching back to No Project restores the development application's default runtime. The active Project name is visible; table selection/render state is reset on switch. Switching is blocked while the internal runner is active or the Agent Command Console is open. Switching never starts or cancels a solver.
 
-Settings remain runtime-specific in P1 (`runtime/settings.json`); a new Project initially uses application defaults until settings are saved. Recent Projects are **application-level**, stored by default at `%LOCALAPPDATA%/abqjobpilot/recent_projects.json` on Windows. The list is newest-first, deduplicated by canonical path/project ID, capped at 10, and tolerates missing paths. A different recent-file path can be supplied to `ProjectManager` for tests or controlled deployments.
+Settings remain runtime-specific in P1 (`runtime/settings.json`); a new Project initially uses application defaults until settings are saved. Recent Projects are **application-level**, stored by default at `~/.abqjobpilot/recent_projects.json`. The list is newest-first, deduplicated by canonical path/project ID, capped at 10, and tolerates missing paths. A different recent-file path can be supplied to `ProjectManager` for tests or controlled deployments.
 
 ## Python operations
 
@@ -93,3 +93,11 @@ Export refuses an existing destination and an archive path inside the Project. I
 - Project creation is not a transactional multi-file operation; an I/O failure can leave a partial new destination for manual inspection.
 - ZIP import checks path traversal and member types, but does not impose a universal uncompressed-size limit because full archives may intentionally contain large ODB files. Import only trusted archives with enough disk space.
 - P1 archives without a database remain valid. P2 adds optional `project.db` for durable history; `runtime/queue.json` and `runtime/live_status.json` remain active runtime/control state. See `docs/ABQJOBPILOT_PROJECT_DATABASE.md`.
+
+## Recent Projects persistence
+
+The single production store is `~/.abqjobpilot/recent_projects.json` (`%USERPROFILE%/.abqjobpilot/recent_projects.json` on Windows). `get_app_state_dir()` and `default_recent_file()` resolve this application-level path independently of the working directory, selected Project, runtime, and LOCALAPPDATA. This avoids MSIX AppData virtualization: a packaged migration tool and an unpackaged desktop GUI otherwise can see different files under the same apparent LOCALAPPDATA path. Older AppData Recent lists are not automatically merged; opening an existing Project registers it without re-importing its data.
+
+Successful creation, opening, archive import, and legacy import validate the destination and register its existing ID, name, absolute path, and last-opened timestamp through `ProjectManager.register_project()`. Importers register only after completion. Registration does not rewrite Project metadata or history. Paths are resolved and Windows case-normalized for deduplication; matching IDs also deduplicate. Reopening moves an entry to the front; the list retains at most ten entries. Missing paths stay in the stored list but are hidden from the normal Recent menu.
+
+Both GUI Recent menus load entries at construction and refresh when posted. Startup still displays No Project until the user opens one. Tests and controlled callers explicitly inject `recent_file=` into managers and importers; this instance-local override never changes production defaults. Missing or malformed Recent JSON is treated as an empty list. Writes use the existing atomic, flushed JSON writer.

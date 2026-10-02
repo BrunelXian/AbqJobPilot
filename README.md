@@ -1,156 +1,138 @@
-<h1 align="center">Abaqus Job Pilot</h1>
+# AbqJobPilot
 
-<p align="center"><strong>Agent-friendly Abaqus .inp queue runner and live monitor.</strong></p>
-<p align="center"><strong>Batch upload, sequential execution, safe interruption, real-time STA/log diagnostics, and resource-aware job control.</strong></p>
+A lightweight local job runner and monitoring tool for Abaqus.
 
-<p align="center">
-  <a href="README_CN.md">中文 README</a>
-</p>
+AbqJobPilot is a Windows desktop application for organizing and monitoring batches of Abaqus INP jobs. It runs a local queue sequentially, shows current solver status and log tails, and keeps project-level history without taking ownership of your engineering files.
 
-<p align="center">
-  <a href="#"><img alt="Python" src="https://img.shields.io/badge/Python-3.9%2B-blue"></a>
-  <a href="#"><img alt="Platform" src="https://img.shields.io/badge/Platform-Windows-lightgrey"></a>
-  <a href="#"><img alt="GUI" src="https://img.shields.io/badge/GUI-Tkinter-success"></a>
-  <a href="#"><img alt="Abaqus" src="https://img.shields.io/badge/Abaqus-INP%20Queue-important"></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-green"></a>
-</p>
+## Overview
 
-![abqjobpilot interface](sample.png)
+Use the desktop dashboard to see the active job, execution-order queue, newest results, STA tail, console log, and local CPU/memory/GPU readings at once. English and Chinese UI modes are available.
 
-## Table Of Contents
+## Key Features
 
-- [Why abqjobpilot](#why-abqjobpilot)
-- [Highlights](#highlights)
-- [Quick Start](#quick-start)
-- [Abaqus Command Path](#abaqus-command-path)
-- [Agent Command Workflow](#agent-command-workflow)
-- [Output Location](#output-location)
-- [Safety Design](#safety-design)
-- [Tests](#tests)
-- [Roadmap](#roadmap)
+- Add one INP or enqueue matching INP files from a folder.
+- Run a datacheck before full analysis when enabled in Settings; process jobs sequentially.
+- Start the queue from the GUI, or request **Stop After Current Job** without terminating the current solver process.
+- Inspect Queue and Results side by side; search, filter, requeue, and use context actions for files and logs.
+- View live STA and console tails; inspect STA, MSG, DAT, and LOG paths for a selected task in Task Details.
+- Keep durable Job/Run attempt and artifact-path metadata in a formal Project's SQLite history.
+- Export metadata archives or explicitly include files physically owned by a Project; import older runtime metadata.
+- Use a JSON CLI, Python API, or the Agent Command Console for preparation, queueing, and inspection.
 
-## Why abqjobpilot
+## Lightweight Project Model
 
-`abqjobpilot` is a standalone desktop tool for managing Abaqus `.inp` job queues. It is designed for simulation batches, parameter sweeps, strategy pools, and long-running research workflows where manually submitting jobs one by one wastes time and compute availability.
+A Project holds queue state, run history, metadata, and file references. It does **not** move your Abaqus files. New Projects default to the application's `projects/` folder, but you may choose any other location.
 
-Many Abaqus batch workflows lose time because jobs are launched manually, failures are noticed late, or workstation resources sit idle overnight. `abqjobpilot` reduces that idle time through queue execution, datacheck-first workflow, live monitoring, resource visibility, and fast AI-assisted log diagnosis.
+```text
+Engineering workspace                    AbqJobPilot Project
+D:\AbaqusProjects\Example\               <app-root>\projects\Example\
+  model.cae                                 project.json
+  model.inp                                 project.db
+  model.odb                                 runtime\queue.json
+  model.sta                                 runtime\live_status.json
+```
 
-In batch simulation, parameter sweep, and strategy-pool generation workflows, it can improve effective compute throughput by roughly `15%-40%`, depending on job duration, machine configuration, queue size, and operator availability.
+The Job working directory remains the configured engineering workspace, normally the INP's directory. The Project database stores Job, Run, and artifact **metadata and paths only**; ODB and other solver files are never stored as SQLite BLOBs. Existing Projects outside `projects/` continue to work. Without a formal Project, the GUI can still use its local default runtime.
 
-## Highlights
+## Operational Dashboard
 
-| Area | What It Provides |
-| --- | --- |
-| Batch queue | Add one `.inp` file or scan a folder for multiple `.inp` jobs. |
-| Sequential execution | Run jobs one by one without manually launching each Abaqus job. |
-| Datacheck-first workflow | Run `datacheck` before full analysis to catch input issues earlier. |
-| Safe interruption | Use `Stop After Current Job` to stop the queue after the active job finishes. |
-| Live monitoring | Watch phase, step, increment, analysis time, ODB size, `.sta` tail, and console log tail. |
-| Result review | See completed, warning, and failed jobs in a separate result table. |
-| Agent-friendly control | Paste AI-generated internal commands into the Agent Command Console. |
-| Resource awareness | View CPU, memory, and GPU usage while jobs are running. |
-| Local output style | Keep Abaqus `.odb`, `.sta`, `.msg`, `.dat`, and `.log` files beside the original `.inp`. |
+Queue shows the real execution order; Results shows the newest records first. The execution strip and home STA/console tails follow the current confirmed running job, not whichever historical result is selected. Open **View Details** or **View Logs** on a row to inspect that task separately. A historical log path may now contain a later attempt's file, so it is not an immutable snapshot.
 
-## Quick Start
+## Installation / Requirements
+
+- Windows with Python 3.10+ and Tkinter/ttk.
+- A separately installed and licensed Abaqus command for actual solver execution.
+- The core application currently has no third-party Python runtime dependencies; `requirements.txt` is intentionally empty.
 
 ```powershell
-git clone https://github.com/BrunelXian/abq_job_pilot.git
-cd abq_job_pilot
-
+git clone https://github.com/BrunelXian/AbqJobPilot.git
+cd AbqJobPilot
 python -m venv .venv
-.\.venv\Scripts\activate
-
-pip install -r requirements.txt
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 python run_gui.py
 ```
 
-The current MVP uses only the Python standard library for core GUI functionality.
+This runs the Python source with your environment; it does not build an EXE. In **Settings**, set the Abaqus command for your workstation and review CPU/GPU and datacheck/full-run defaults before starting a queue. The example paths here are illustrative, not configured defaults.
 
-## Abaqus Command Path
+## Quick Start
 
-Each workstation may have a different Abaqus installation path. Open `Settings` in the GUI and set the local Abaqus command, for example:
+1. Run `python run_gui.py`.
+2. Optionally create or open a Project. Existing external Project folders are supported.
+3. Choose **Add Task** to add an INP or a folder, then inspect the Queue.
+4. Click **Start Queue** to begin local execution. **Stop After Current Job** lets the active job finish.
+5. Monitor the execution strip, STA/console tails, Results, and Task Details.
 
-```text
-D:\ABAQUS2024\Commands\abq2024.bat
-```
+Adding a task while a queue runner is already active may let that runner pick up the new item. The public automation interface itself never exposes a solver-start command.
 
-Settings also include:
+## Project Workflow
 
-- default CPU count, such as `12` or `14`
-- whether GPU is enabled
-- default GPU count, such as `1`
-- whether to run `datacheck`
-- whether to run the full analysis
+Project actions include New, Open, Recent, Close, Export, Import, and Import Legacy Runtime. Recent Projects is application-level navigation for Projects anywhere; it is not the default storage folder.
 
-## Agent Command Workflow
+- **Metadata Archive** (default): Project manifest, database/history when present, and runtime metadata.
+- **Archive with Project-Owned Files** (explicit): also includes files physically inside the Project root. Large project-owned solver files may make this archive large.
+- Files referenced outside the Project root are not silently copied in either mode. Legacy runtime import copies metadata/history into a new Project, leaving the legacy source unchanged.
 
-The Agent Command Console is not a system shell. It only accepts a small whitelist of internal commands.
+## Automation Interface
 
-You can ask ChatGPT, Codex, Grok, or another AI assistant to generate queue commands, then paste them back into `abqjobpilot`.
-
-```text
-enqueue --inp "D:\path\Job_xxx.inp" --cpus 14 --gpus 1
-enqueue-folder --folder "D:\path\strategy_folder" --pattern "*.inp"
-list
-help
-clear
-```
-
-Example commands:
-
-```text
-enqueue --inp "D:\Projects\models\batch_a\strategy_01\Job_test.inp" --batch batch_a --strategy strategy_01
-enqueue --inp "D:\Projects\models\batch_b\strategy_02\Job_test.inp" --cpus 12 --gpus 1
-enqueue-folder --folder "D:\Projects\models\batch_c\strategy_03" --pattern "*.inp"
-list
-```
-
-Console workflow:
-
-- `Copy AI Prompt`: copy the command-generation instruction for an AI assistant.
-- `Paste`: import generated commands from the clipboard.
-- `Paste & Run`: import and execute commands immediately.
-- Omit `--cpus` or `--gpus` to use Settings defaults.
-
-## Output Location
-
-Abaqus runs in the `.inp` file's folder, so solver output files are created there:
-
-```text
-*.odb
-*.sta
-*.msg
-*.dat
-*.log
-```
-
-`abqjobpilot` runtime metadata is stored under:
-
-```text
-runtime/
-```
-
-Runtime files, virtual environments, and large Abaqus output files are ignored by git.
-
-## Safety Design
-
-- The Agent Command Console parses only whitelisted internal commands.
-- It does not execute arbitrary PowerShell, cmd, Python, or shell commands.
-- Abaqus jobs start only after the user clicks `Start Queue`.
-- The runner avoids `shell=True` for Abaqus execution.
-
-## Tests
+The thin public interface supports capabilities, preflight, enqueue/enqueue-folder, queue list, status, output discovery, Project management, and read-only Job history. Use `--json` for machine-readable output; `enqueue` defaults to a dry run. Use `--enqueue-only` to write queue metadata without directly starting Abaqus.
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m abqjobpilot.api.cli capabilities --json
+python -m abqjobpilot.api.cli preflight --inp "D:\AbaqusProjects\Example\model.inp" --cpus 14 --json
+python -m abqjobpilot.api.cli enqueue --inp "D:\AbaqusProjects\Example\model.inp" --dry-run --json
+python -m abqjobpilot.api.cli status --job-id "QUEUE_ID" --json
+python -m abqjobpilot.api.cli locate-outputs --job-id "QUEUE_ID" --json
 ```
 
-Tests do not submit Abaqus jobs.
+The public automation interface does not expose solver start. Actual execution remains controlled by the desktop application's **Start Queue** workflow. See [the public API guide](docs/ABQJOBPILOT_PUBLIC_API.md) for request fields, runtime selection, and Python API examples.
 
-## Roadmap
+## Project Automation
 
-- Finer failure classification: license, input, numerical, interrupted.
-- Resume and rerun workflows.
-- More modern GUI theme.
-- Optional SQLite queue backend.
-- Packaged Windows release.
+Version 0.2.1 lets local scripts and coding agents manage formal Project metadata and query Job/Run history through the same JSON CLI and Python API. Use an explicit `--project-id` or `--project` path to target a Project. Omitting a selector preserves the existing default runtime; it never silently selects the most recent Project.
+
+```powershell
+python -m abqjobpilot.api.cli project list --json
+python -m abqjobpilot.api.cli project create --name "Example Study" --json
+python -m abqjobpilot.api.cli project show --project-id "<uuid>" --json
+python -m abqjobpilot.api.cli job list --project-id "<uuid>" --status FAILED --json
+python -m abqjobpilot.api.cli enqueue --project-id "<uuid>" --inp "D:\AbaqusProjects\Example\model.inp" --json
+```
+
+`project register` adds an existing Project to the recent-project registry. `project unregister` removes that registration only: the Project directory, database, runtime, and external engineering files remain untouched. `project update --name` changes the display name, not the directory name. Export defaults to a metadata archive; `--mode project-owned` explicitly includes files physically inside the Project root, never referenced external files.
+
+Automation tools should call AbqJobPilot's CLI or Python API, **not edit** `project.json`, `project.db`, `runtime/queue.json`, or `runtime/live_status.json` directly. They should not move or delete external engineering files or attempt solver execution through undocumented paths. See [Project Automation Surface v1](docs/ABQJOBPILOT_A4_PROJECT_AUTOMATION.md).
+
+## Agent Command Console
+
+The Console accepts an allow-listed internal command syntax such as `enqueue`, `enqueue-folder`, `list`, `help`, and `clear`. It is **not** a PowerShell or system-shell window. Its AI Instruction can be copied to a coding assistant to generate compatible command text.
+
+External tools such as Codex, Claude Code, or another tool-using assistant can call the JSON CLI/Python API or prepare text for the Console. This is a general machine-readable interface, not an official integration with any assistant.
+
+## Data and File Ownership
+
+CAE, INP, ODB, STA, MSG, DAT, LOG, and other engineering files normally stay in their original workspace. Queueing, viewing, history projection, and ordinary Project import do not relocate them. An explicit archive may copy Project-owned files, never silently gather referenced external files. File existence alone is not proof of a valid solver result.
+
+## Safety Boundaries
+
+Agent Command accepts internal commands only; it does not execute arbitrary shell text. Preflight and dry-run do not run Abaqus. Queue and Results record deletion does not delete engineering files or the database's durable run history. AbqJobPilot is a local single-machine tool, not a distributed scheduler or AI runtime.
+
+## Repository Structure
+
+| Path | Purpose |
+| --- | --- |
+| `abqjobpilot/gui_app.py` | Tkinter dashboard and user actions |
+| `abqjobpilot/runner_core.py` | Existing local Abaqus runner |
+| `abqjobpilot/queue_store.py` | JSON queue/control state |
+| `abqjobpilot/project/` | Project manifests and portable archives |
+| `abqjobpilot/database/` | Per-Project historical metadata |
+| `abqjobpilot/api/` | Safe Python API and JSON CLI |
+| `docs/` | Detailed contracts and design notes |
+
+## Current Version
+
+Current version: **0.2.1**. AbqJobPilot is actively developed; the application version is defined in `abqjobpilot/__init__.py`. Run non-solver tests with `python -m pytest -q` if pytest is available.
+
+## License
+
+[MIT License](LICENSE).

@@ -9,7 +9,7 @@ from abqjobpilot import config
 from abqjobpilot.queue_store import read_queue
 from abqjobpilot.utils import now_iso, write_json
 
-from .manager import ProjectManager, load_project_info
+from .manager import ProjectManager
 from .models import ProjectInfo
 
 
@@ -42,7 +42,7 @@ def import_legacy_runtime(source_runtime_dir: str | Path, destination_project_ro
                 report_data[path.name] = json.loads(path.read_text(encoding="utf-8-sig"))
 
     manager = ProjectManager(recent_file=recent_file)
-    project = manager.create_project(destination, project_name)
+    project = manager._create_project(destination, project_name)
     write_json(project.runtime_dir / "queue.json", {"schema_version": config.SCHEMA_VERSION, "jobs": jobs})
     if live is not None:
         write_json(project.runtime_dir / "live_status.json", live)
@@ -59,4 +59,4 @@ def import_legacy_runtime(source_runtime_dir: str | Path, destination_project_ro
     write_json(project.project_file, manifest)
     from abqjobpilot.database.reconciliation import sync_history_from_runtime
     sync_history_from_runtime(destination)
-    return load_project_info(destination)
+    return manager.register_project(destination)

@@ -1,6 +1,7 @@
 """Public, GUI-free integration API for abqjobpilot."""
 
 from .client import AbqJobPilotClient
+from .project_surface import AutomationResult
 from .models import (
     JobOutputResult,
     JobPreflightResult,
@@ -11,6 +12,7 @@ from .models import (
 
 __all__ = [
     "AbqJobPilotClient",
+    "AutomationResult",
     "JobOutputResult",
     "JobPreflightResult",
     "JobRequest",

@@ -23,6 +23,7 @@ from .status_reader import (
     last_log_lines,
     public_status_from_job,
 )
+from .project_surface import ProjectAutomationSurface, AutomationResult, SurfaceFailure
 
 
 class AbqJobPilotClient:
@@ -32,8 +33,48 @@ class AbqJobPilotClient:
     background runner and does not call Abaqus.
     """
 
-    def __init__(self, runtime_dir: str | None = None) -> None:
+    def __init__(self, runtime_dir: str | None = None, *, recent_file: str | None = None) -> None:
         self.runtime_dir = str(Path(runtime_dir or config.RUNTIME_DIR).expanduser().resolve())
+        self.projects = ProjectAutomationSurface(recent_file=recent_file)
+
+    def for_project(self, *, project: str | None = None, project_id: str | None = None,
+                    project_name: str | None = None) -> "AbqJobPilotClient":
+        """Return a runtime-scoped client without changing the GUI/global runtime."""
+        info = self.projects.resolve(project=project, project_id=project_id, project_name=project_name)
+        return AbqJobPilotClient(runtime_dir=str(info.runtime_dir), recent_file=str(self.projects.manager.recent_file))
+
+    def list_projects(self) -> AutomationResult:
+        return self.projects.list_projects()
+
+    def create_project(self, name: str, *, path: str | None = None,
+                       description: str | None = None) -> AutomationResult:
+        return self.projects.create_project(name, path=path, description=description)
+
+    def show_project(self, **selector) -> AutomationResult:
+        return self.projects.show_project(**selector)
+
+    def update_project(self, **fields_and_selector) -> AutomationResult:
+        if "description" in fields_and_selector and "update_description" not in fields_and_selector:
+            fields_and_selector["update_description"] = True
+        return self.projects.update_project(**fields_and_selector)
+
+    def register_project(self, path: str) -> AutomationResult:
+        return self.projects.register_project(path)
+
+    def unregister_project(self, **selector) -> AutomationResult:
+        return self.projects.unregister_project(**selector)
+
+    def export_project(self, output: str, *, mode: str = "metadata", **selector) -> AutomationResult:
+        return self.projects.export_project(output, mode=mode, **selector)
+
+    def import_project_archive(self, archive: str, *, destination: str | None = None) -> AutomationResult:
+        return self.projects.import_project_archive(archive, destination=destination)
+
+    def list_project_jobs(self, **filters_and_selector) -> AutomationResult:
+        return self.projects.list_project_jobs(**filters_and_selector)
+
+    def show_job(self, job_id: str, **selector) -> AutomationResult:
+        return self.projects.show_job(job_id, **selector)
 
     def capabilities(self) -> dict[str, Any]:
         return {
@@ -44,11 +85,22 @@ class AbqJobPilotClient:
             "capabilities": {
                 "preflight": True, "enqueue": True, "enqueue_folder": True,
                 "list": True, "status": True, "locate_outputs": True,
-                "solver_start": False,
+                "project_list": True, "project_create": True, "project_show": True,
+                "project_update": True, "project_register": True, "project_unregister": True,
+                "project_export": True, "project_import": True,
+                "job_list": True, "job_show": True,
+                "solver_start": False, "project_delete": False,
             },
         }
 
-    def list_jobs(self) -> dict[str, Any]:
+    def list_jobs(self, *, project: str | None = None, project_id: str | None = None,
+                  project_name: str | None = None, status: str | None = None,
+                  batch: str | None = None, strategy: str | None = None,
+                  limit: int | None = None) -> dict[str, Any] | AutomationResult:
+        if any((project, project_id, project_name)):
+            return self.list_project_jobs(project=project, project_id=project_id,
+                                          project_name=project_name, status=status,
+                                          batch=batch, strategy=strategy, limit=limit)
         try:
             jobs = read_queue(self.runtime_dir, strict=True)
         except (OSError, ValueError) as exc:

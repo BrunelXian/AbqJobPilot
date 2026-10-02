@@ -20,7 +20,7 @@ from .app_metadata import STABLE_GITHUB_URL
 from .command_console import AI_INSTRUCTION, CLI_EXAMPLES, AgentCommandConsole
 from .gui_presentation import (SUCCESS_BACKGROUND, SUCCESS_FOREGROUND, filter_jobs,
                                read_log_tail, status_presentation)
-from .gui_table_state import queue_display_jobs, result_display_jobs, restore_iid, row_iid, selected_job_id
+from .gui_table_state import queue_display_jobs, result_display_jobs, restore_iids, row_iid, selected_job_id
 from .queue_store import (
     add_folder_to_queue,
     add_inp_job_to_queue,
@@ -30,12 +30,15 @@ from .queue_store import (
     mark_job_skipped,
     move_queued_job,
     remove_queued_job,
+    remove_queued_jobs,
     remove_result_job,
+    remove_result_jobs,
     requeue_result_job,
 )
 from .api import AbqJobPilotClient, JobRequest
 from .api.status_reader import expected_paths
 from .project import ProjectInfo, ProjectManager, export_project_archive, import_legacy_runtime, import_project_archive
+from .project.manager import ensure_default_projects_root
 from .database import DatabaseFailure, ProjectHistoryRepository, sync_history_from_runtime
 from .status_codes import normalize_status
 from .runner_core import QueueRunner
@@ -91,6 +94,10 @@ MENU_LABELS = {
     "run_history": ("View Run History", "查看运行历史"),
     "view_details": ("View Details", "查看详情"),
     "view_logs": ("View Logs", "查看日志"),
+    "select_all": ("Select All", "全选"),
+    "clear_selection": ("Clear Selection", "取消选择"),
+    "remove_selected": ("Remove Selected Queue Records", "移除选中队列记录"),
+    "delete_selected": ("Delete Selected Result Records", "删除选中结果记录"),
 }
 
 
@@ -197,6 +204,7 @@ class AbqJobPilotApp(tk.Tk):
         self.job_by_id: dict[str, dict] = {}
         self._rendered_rows: dict[str, list[tuple]] = {}
         self._restoring_table_selection = False
+        self._selection_restore_after_id: str | None = None
         self._table_split_fraction = 0.5
         self._table_split_width = 0
         self._table_split_pending = False
@@ -254,12 +262,15 @@ class AbqJobPilotApp(tk.Tk):
         self._poll_after_id = self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
 
     def destroy(self) -> None:
-        if getattr(self, "_poll_after_id", None):
+        for key in ("_poll_after_id", "_selection_restore_after_id"):
+            callback_id = getattr(self, key, None)
+            if not callback_id:
+                continue
             try:
-                self.after_cancel(self._poll_after_id)
+                self.after_cancel(callback_id)
             except tk.TclError:
                 pass
-            self._poll_after_id = None
+            setattr(self, key, None)
         super().destroy()
 
     def _apply_icon(self) -> None:
@@ -393,6 +404,8 @@ class AbqJobPilotApp(tk.Tk):
             menu.add_command(label=labels[key], command=action)
         menu.add_separator()
         recent = tk.Menu(menu, tearoff=False, postcommand=lambda: self._populate_recent_menu(recent))
+        # Seed native cascades before posting; an empty submenu may not post on Windows.
+        self._populate_recent_menu(recent)
         menu.add_cascade(label=labels["recent"], menu=recent)
         menu.add_separator()
         for key, action in (("export", self.export_project_dialog), ("import", self.import_project_dialog),
@@ -506,7 +519,8 @@ class AbqJobPilotApp(tk.Tk):
         self._activate_project(None)
 
     def _new_project_destination(self, title: str) -> tuple[Path, str] | None:
-        parent = filedialog.askdirectory(parent=self, title=title)
+        parent = filedialog.askdirectory(parent=self, title=title,
+                                         initialdir=str(ensure_default_projects_root()))
         if not parent:
             return None
         name = simpledialog.askstring("Project", "New project folder and name:", parent=self)
@@ -602,7 +616,8 @@ class AbqJobPilotApp(tk.Tk):
             destination = self._new_project_destination("Select a parent folder for the imported Project")
             if destination is None:
                 return
-            project = import_project_archive(archive, destination[0])
+            project = import_project_archive(archive, destination[0],
+                                             recent_file=self.project_manager.recent_file)
             self.open_project(project.root)
         except (OSError, ValueError, DatabaseFailure, zipfile.BadZipFile) as exc:
             messagebox.showerror("Import Project", str(exc))
@@ -617,7 +632,8 @@ class AbqJobPilotApp(tk.Tk):
             destination = self._new_project_destination("Select a parent folder for the imported Project")
             if destination is None:
                 return
-            project = import_legacy_runtime(source, destination[0], destination[1])
+            project = import_legacy_runtime(source, destination[0], destination[1],
+                                            recent_file=self.project_manager.recent_file)
             self.open_project(project.root)
         except (OSError, ValueError, DatabaseFailure) as exc:
             messagebox.showerror("Import Legacy Runtime", str(exc))
@@ -695,7 +711,7 @@ class AbqJobPilotApp(tk.Tk):
         self.queue_refresh_button.grid(row=0, column=1, padx=(5, 0))
         self.queue_more_button = ttk.Button(queue_controls, command=lambda: self._show_selected_context(self.queue_tree))
         self.queue_more_button.grid(row=0, column=2, padx=(5, 0))
-        self.queue_tree = ttk.Treeview(frame, columns=QUEUE_COLUMNS, show="headings", selectmode="browse")
+        self.queue_tree = ttk.Treeview(frame, columns=QUEUE_COLUMNS, show="headings", selectmode="extended")
         widths = {"index": 50, "status": 105, "batch": 90, "strategy": 90, "job": 180,
                   "cpus": 50, "gpus": 50, "created": 150, "inp": 360}
         self._configure_tree(self.queue_tree, {column: column for column in QUEUE_COLUMNS}, widths)
@@ -704,6 +720,7 @@ class AbqJobPilotApp(tk.Tk):
         self.queue_tree.grid(row=2, column=0, sticky="nsew")
         self._attach_scrollbars(frame, self.queue_tree, row=2)
         self.queue_tree.bind("<Button-3>", self._show_queue_menu)
+        self.queue_tree.bind("<Control-a>", lambda _event: self._select_all_visible(self.queue_tree))
         self.queue_tree.bind("<Double-1>", lambda event: self._open_details_at_event(self.queue_tree, event))
         self.queue_tree.bind("<<TreeviewSelect>>", lambda _event: self._on_table_select(self.queue_tree, self.results_tree))
 
@@ -716,7 +733,7 @@ class AbqJobPilotApp(tk.Tk):
         self.results_heading = ttk.Label(frame, textvariable=self.results_count_var)
         self.results_heading.grid(row=0, column=0, sticky="w", pady=(0, 4))
         self._build_table_controls(frame)
-        self.results_tree = ttk.Treeview(frame, columns=RESULT_COLUMNS, show="headings", selectmode="browse")
+        self.results_tree = ttk.Treeview(frame, columns=RESULT_COLUMNS, show="headings", selectmode="extended")
         widths = {"status": 130, "batch": 90, "strategy": 90, "job": 190, "started": 150,
                   "ended": 145, "duration": 70, "odb": 90, "warnings": 70, "fatal": 360}
         self._configure_tree(self.results_tree, {column: column for column in RESULT_COLUMNS}, widths)
@@ -725,6 +742,7 @@ class AbqJobPilotApp(tk.Tk):
         self.results_tree.grid(row=2, column=0, sticky="nsew")
         self._attach_scrollbars(frame, self.results_tree, row=2)
         self.results_tree.bind("<Button-3>", self._show_results_menu)
+        self.results_tree.bind("<Control-a>", lambda _event: self._select_all_visible(self.results_tree))
         self.results_tree.bind("<Double-1>", lambda event: self._open_details_at_event(self.results_tree, event))
         self.results_tree.bind("<<TreeviewSelect>>", lambda _event: self._on_table_select(self.results_tree, self.queue_tree))
         self.results_more_button = ttk.Button(frame, command=lambda: self._show_selected_context(self.results_tree))
@@ -1075,28 +1093,32 @@ class AbqJobPilotApp(tk.Tk):
         if rows == self._rendered_rows.get(key):
             return
         current = tree.selection()
-        selected_id = selected_job_id(current[0] if current else None, results=key == "results")
+        focused = tree.focus()
         y_start = tree.yview()[0]
         x_start = tree.xview()[0]
         self._restoring_table_selection = True
         tree.delete(*tree.get_children())
         for iid, values, tag in rows:
             tree.insert("", "end", iid=iid, values=values, tags=(tag,))
-        selected_iid = restore_iid(selected_id, jobs, results=key == "results")
-        if selected_iid:
-            tree.selection_set(selected_iid)
-            tree.focus(selected_iid)
-        self.after_idle(self._finish_table_selection_restore)
+        selected_iids = restore_iids(current, jobs, results=key == "results")
+        if selected_iids:
+            tree.selection_set(selected_iids)
+            tree.focus(focused if focused in selected_iids else selected_iids[0])
+        if self._selection_restore_after_id is None:
+            self._selection_restore_after_id = self.after_idle(self._finish_table_selection_restore)
         tree.yview_moveto(y_start)
         tree.xview_moveto(x_start)
         self._rendered_rows[key] = rows
+        self._refresh_table_counts()
 
     def _finish_table_selection_restore(self) -> None:
+        self._selection_restore_after_id = None
         self._restoring_table_selection = False
 
     def _on_table_select(self, selected_tree: ttk.Treeview, other_tree: ttk.Treeview) -> None:
         if self._restoring_table_selection:
             return
+        self._refresh_table_counts()
         selection = selected_tree.selection()
         if not selection:
             return
@@ -1146,9 +1168,13 @@ class AbqJobPilotApp(tk.Tk):
         shown_queue = len(self.queue_tree.get_children())
         shown_results = len(self.results_tree.get_children())
         self.queue_count_var.set((f"队列 {shown_queue}/{queued} · 筛选不改变执行顺序" if self.lang == "zh" else
-                                  f"Queue {shown_queue}/{queued} · execution order unchanged"))
+                                  f"Queue {shown_queue}/{queued} · execution order unchanged") +
+                                 ((f" · 已选 {len(self.queue_tree.selection())} 项" if self.lang == "zh" else
+                                   f" · {len(self.queue_tree.selection())} selected") if self.queue_tree.selection() else ""))
         self.results_count_var.set((f"结果 {shown_results}/{results} · 最新在前" if self.lang == "zh" else
-                                    f"Results {shown_results}/{results} · newest first"))
+                                    f"Results {shown_results}/{results} · newest first") +
+                                   ((f" · 已选 {len(self.results_tree.selection())} 项" if self.lang == "zh" else
+                                     f" · {len(self.results_tree.selection())} selected") if self.results_tree.selection() else ""))
 
     def _inspection_job(self) -> dict | None:
         if not self.inspection_key or self.inspection_key[0] != config.RUNTIME_DIR:
@@ -1362,19 +1388,86 @@ class AbqJobPilotApp(tk.Tk):
 
     def _show_selected_context(self, tree: ttk.Treeview) -> None:
         selection = tree.selection()
-        if not selection:
-            return
-        tree.see(selection[0])
-        tree.update_idletasks()
-        bbox = tree.bbox(selection[0])
-        if not bbox:
-            return
-        event = SimpleNamespace(y=bbox[1] + 2, x_root=tree.winfo_rootx() + 30,
-                                y_root=tree.winfo_rooty() + bbox[1] + 20)
+        if selection:
+            tree.see(selection[0])
+            tree.update_idletasks()
+            bbox = tree.bbox(selection[0])
+        else:
+            bbox = None
+        event = SimpleNamespace(y=bbox[1] + 2 if bbox else -1,
+                                x_root=tree.winfo_rootx() + 30,
+                                y_root=tree.winfo_rooty() + (bbox[1] + 20 if bbox else 20))
         if tree is self.queue_tree:
             self._show_queue_menu(event)
         else:
             self._show_results_menu(event)
+
+    def _selected_visible_ids(self, tree: ttk.Treeview) -> tuple[str, ...]:
+        visible = set(tree.get_children())
+        results = tree is self.results_tree
+        return tuple(selected_job_id(iid, results=results) for iid in tree.selection() if iid in visible)
+
+    def _select_all_visible(self, tree: ttk.Treeview) -> str:
+        tree.selection_set(tree.get_children())
+        self._last_selected_tree = tree
+        tree.focus_set()
+        self._refresh_table_counts()
+        return "break"
+
+    def _clear_table_selection(self, tree: ttk.Treeview) -> None:
+        tree.selection_remove(tree.selection())
+        self._last_selected_tree = tree
+        self._refresh_table_counts()
+
+    def _append_selection_menu(self, menu: tk.Menu, tree: ttk.Treeview) -> None:
+        menu.add_separator()
+        self._menu_item(menu, "select_all", lambda: self._select_all_visible(tree), bool(tree.get_children()))
+        self._menu_item(menu, "clear_selection", lambda: self._clear_table_selection(tree), bool(tree.selection()))
+        selected = self._selected_visible_ids(tree)
+        if len(selected) > 1:
+            key = "delete_selected" if tree is self.results_tree else "remove_selected"
+            action = self._delete_selected_results if tree is self.results_tree else self._remove_selected_queue
+            self._menu_item(menu, key, action)
+
+    def _remove_selected_queue(self) -> None:
+        ids = self._selected_visible_ids(self.queue_tree)
+        jobs = load_queue()
+        selected = [job for job in jobs if job.get("queue_id") in ids]
+        title = "移除队列记录" if self.lang == "zh" else "Remove Queue Records"
+        if (not ids or len(selected) != len(ids) or any(job.get("status") != "QUEUED" for job in selected) or
+                not self._queue_mutations_allowed(queue_display_jobs(jobs))):
+            messagebox.showwarning(title, "只能在没有运行中任务时移除选中的待执行记录。" if self.lang == "zh" else
+                                   "Only selected QUEUED records can be removed while no job is running.")
+            return
+        prompt = (f"移除选中的 {len(ids)} 条队列记录？\n\n不会删除工程文件。" if self.lang == "zh" else
+                  f"Remove {len(ids)} selected queue records?\n\nEngineering files will not be deleted.")
+        if not messagebox.askyesno(title, prompt):
+            return
+        result = remove_queued_jobs(ids)
+        self.refresh_all()
+        if not result["ok"]:
+            messagebox.showerror(title, result["message"])
+
+    def _delete_selected_results(self) -> None:
+        ids = self._selected_visible_ids(self.results_tree)
+        jobs = load_queue()
+        selected = [job for job in jobs if job.get("queue_id") in ids]
+        title = "删除结果记录" if self.lang == "zh" else "Delete Result Records"
+        if (not ids or len(selected) != len(ids) or
+                any(job.get("status") not in config.RESULT_STATUSES for job in selected) or
+                not self._queue_mutations_allowed(queue_display_jobs(jobs))):
+            messagebox.showwarning(title, "无法批量删除选中的结果记录。" if self.lang == "zh" else
+                                   "Selected result records cannot be deleted now.")
+            return
+        prompt = (f"删除选中的 {len(ids)} 条结果列表记录？\n\n不会删除工程文件或数据库运行历史。" if self.lang == "zh" else
+                  f"Delete {len(ids)} selected result records?\n\n"
+                  "Engineering files and database run history will not be deleted.")
+        if not messagebox.askyesno(title, prompt):
+            return
+        result = remove_result_jobs(ids)
+        self.refresh_all()
+        if not result["ok"]:
+            messagebox.showerror(title, result["message"])
 
     def view_running_job(self) -> None:
         queue_id = self.runner_context.get("queue_id")
@@ -1413,6 +1506,9 @@ class AbqJobPilotApp(tk.Tk):
                                  state="normal" if enabled else "disabled")
 
     def _selected_result_action(self, action: str) -> None:
+        if len(self._selected_visible_ids(self.results_tree)) != 1:
+            messagebox.showwarning("Results", "Select exactly one result for this action.")
+            return
         job = self._selected_job(self.results_tree)
         if job and job.get("status") in config.RESULT_STATUSES and self.results_tree.exists(row_iid(job, results=True)):
             self._results_context_action(action, job["queue_id"])
@@ -1427,14 +1523,15 @@ class AbqJobPilotApp(tk.Tk):
 
     def _show_queue_menu(self, event) -> None:
         iid = self.queue_tree.identify_row(event.y)
-        self.queue_tree.selection_set(iid if iid else ())
-        if iid:
-            self._last_selected_tree = self.queue_tree
+        if iid and iid not in self.queue_tree.selection():
+            self.queue_tree.selection_set(iid)
+        self._last_selected_tree = self.queue_tree
         job_id = selected_job_id(iid)
         job = self.job_by_id.get(job_id) if job_id else None
         active = queue_display_jobs(load_queue())
         index = next((index for index, item in enumerate(active) if item.get("queue_id") == job_id), -1)
-        editable = bool(job and job.get("status") == "QUEUED" and self._queue_mutations_allowed(active))
+        single = len(self._selected_visible_ids(self.queue_tree)) == 1
+        editable = bool(single and job and job.get("status") == "QUEUED" and self._queue_mutations_allowed(active))
         menu = tk.Menu(self, tearoff=False)
         self._menu_item(menu, "view_details", lambda: self.open_task_details(job_id), bool(job))
         self._menu_item(menu, "view_logs", lambda: self.open_task_details(job_id, initial_tab="logs"), bool(job))
@@ -1448,16 +1545,18 @@ class AbqJobPilotApp(tk.Tk):
         for key, enabled in (("top", index > 0), ("up", index > 0), ("down", 0 <= index < len(active) - 1)):
             self._menu_item(menu, key, lambda action=key: self._queue_context_action(action, job_id), editable and enabled)
         self._menu_item(menu, "remove", lambda: self._queue_context_action("remove", job_id), editable)
+        self._append_selection_menu(menu, self.queue_tree)
         self._post_menu(menu, event)
 
     def _show_results_menu(self, event) -> None:
         iid = self.results_tree.identify_row(event.y)
-        self.results_tree.selection_set(iid if iid else ())
-        if iid:
-            self._last_selected_tree = self.results_tree
+        if iid and iid not in self.results_tree.selection():
+            self.results_tree.selection_set(iid)
+        self._last_selected_tree = self.results_tree
         job_id = selected_job_id(iid, results=True)
         job = self.job_by_id.get(job_id) if job_id else None
-        mutable = bool(job and job.get("status") in config.RESULT_STATUSES and
+        mutable = bool(len(self._selected_visible_ids(self.results_tree)) == 1 and
+                       job and job.get("status") in config.RESULT_STATUSES and
                        self._queue_mutations_allowed(queue_display_jobs(load_queue())))
         menu = tk.Menu(self, tearoff=False)
         self._menu_item(menu, "view_details", lambda: self.open_task_details(job_id), bool(job))
@@ -1481,6 +1580,7 @@ class AbqJobPilotApp(tk.Tk):
         menu.add_separator()
         self._menu_item(menu, "requeue", lambda: self._results_context_action("requeue", job_id), mutable)
         self._menu_item(menu, "delete_result", lambda: self.clear_selected_result(job_id), mutable)
+        self._append_selection_menu(menu, self.results_tree)
         self._post_menu(menu, event)
 
     def _post_menu(self, menu: tk.Menu, event) -> None:
@@ -1956,13 +2056,16 @@ class AbqJobPilotApp(tk.Tk):
         ttk.Label(body, text="AbqJobPilot", font=("Segoe UI Semibold", 16)).grid(row=0, column=0, sticky="w")
         self.about_version_label = ttk.Label(body, text=f"{words['version']} {__version__} · {words['build']}")
         self.about_version_label.grid(row=1, column=0, sticky="w", pady=(4, 12))
-        ttk.Label(body, text=words["description"]).grid(row=2, column=0, sticky="w", pady=(0, 16))
-        ttk.Label(body, text=words["source"]).grid(row=3, column=0, sticky="w")
+        self.about_description_label = ttk.Label(body, text=words["description"], wraplength=530, justify="left")
+        self.about_description_label.grid(row=2, column=0, sticky="w", pady=(0, 12))
+        self.about_ownership_label = ttk.Label(body, text=words["ownership"], wraplength=530, justify="left")
+        self.about_ownership_label.grid(row=3, column=0, sticky="w", pady=(0, 16))
+        ttk.Label(body, text=words["source"]).grid(row=4, column=0, sticky="w")
         self.about_repo_label = ttk.Label(body, text=STABLE_GITHUB_URL or words["unavailable"],
                                           foreground=COLORS["accent"] if STABLE_GITHUB_URL else COLORS["muted"])
-        self.about_repo_label.grid(row=4, column=0, sticky="w", pady=(3, 12))
+        self.about_repo_label.grid(row=5, column=0, sticky="w", pady=(3, 12))
         actions = ttk.Frame(body)
-        actions.grid(row=5, column=0, sticky="e")
+        actions.grid(row=6, column=0, sticky="e")
         self.about_open_button = ttk.Button(actions, text=words["open"],
                                             command=lambda: webbrowser.open(STABLE_GITHUB_URL)
                                             if STABLE_GITHUB_URL else None)
@@ -2053,6 +2156,9 @@ class AbqJobPilotApp(tk.Tk):
         if job_id:
             job = self._current_job(job_id)
         elif self._last_selected_tree is self.queue_tree:
+            if len(self._selected_visible_ids(self.queue_tree)) != 1:
+                messagebox.showwarning("Skip Selected", "Select exactly one queued job.")
+                return
             job = self._selected_job(self.queue_tree)
         else:
             job = None
@@ -2070,6 +2176,9 @@ class AbqJobPilotApp(tk.Tk):
             messagebox.showerror("Skip Selected", result.get("message", "Failed to skip job."))
 
     def clear_selected_result(self, job_id: str | None = None) -> None:
+        if job_id is None and self._last_selected_tree is self.results_tree and len(self._selected_visible_ids(self.results_tree)) > 1:
+            self._delete_selected_results()
+            return
         if job_id:
             job = self._current_job(job_id)
         elif self._last_selected_tree is self.results_tree:
@@ -2151,7 +2260,8 @@ class AbqJobPilotApp(tk.Tk):
                                "examples": "复制 CLI 示例", "capabilities": "接口能力",
                                "docs": "自动化 API 文档", "about": "关于自动化接口"},
                 "about": {"title": "关于 AbqJobPilot", "version": "版本", "build": "开发版本",
-                          "description": "轻量级 Abaqus 作业生命周期管理工具",
+                          "description": "一款面向 Abaqus 的轻量本地作业管理、批量运行与监控工具。用于管理 INP 作业队列、监控求解状态与日志、查看运行历史，并提供轻量的机器可读自动化接口。",
+                          "ownership": "Project 仅保存作业、运行记录和文件引用；CAE、INP、ODB 等工程文件仍保留在原始工程目录中。",
                           "source": "稳定版 / 源代码：", "open": "打开 GitHub", "copy": "复制链接",
                           "unavailable": "仓库链接不可用"},
                 "project_menu": {"new": "新建项目", "open": "打开项目", "close": "关闭项目",
@@ -2223,7 +2333,8 @@ class AbqJobPilotApp(tk.Tk):
                            "examples": "Copy CLI Examples", "capabilities": "Capabilities",
                            "docs": "Automation API Documentation", "about": "About Automation Interface"},
             "about": {"title": "About AbqJobPilot", "version": "Version", "build": "Development build",
-                      "description": "Lightweight Abaqus job lifecycle runner",
+                      "description": "A lightweight local job runner and monitoring tool for Abaqus. Organize INP queues, monitor live solver status and logs, review run history, and use a small machine-readable automation interface.",
+                      "ownership": "Projects keep job metadata, run history, and file references. CAE, INP, ODB, and other solver files stay in their original engineering workspace.",
                       "source": "Stable release / source:", "open": "Open GitHub", "copy": "Copy Link",
                       "unavailable": "Repository link unavailable"},
             "project_menu": {"new": "New Project", "open": "Open Project", "close": "Close Project",

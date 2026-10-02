@@ -12,7 +12,7 @@ from pathlib import Path, PurePosixPath
 
 from abqjobpilot.utils import now_iso
 
-from .manager import load_project_info
+from .manager import ProjectManager, load_project_info
 from .models import ProjectInfo
 
 
@@ -172,7 +172,8 @@ def _validated_members(archive: zipfile.ZipFile) -> dict[str, zipfile.ZipInfo]:
 
 
 def import_project_archive(archive_path: str | Path, destination_root: str | Path,
-                           *, preserve_project_id: bool = True) -> ProjectInfo:
+                           *, preserve_project_id: bool = True,
+                           recent_file: str | Path | None = None) -> ProjectInfo:
     source = Path(archive_path).expanduser().resolve()
     destination = Path(destination_root).expanduser().resolve()
     if destination.exists():
@@ -230,4 +231,4 @@ def import_project_archive(archive_path: str | Path, destination_root: str | Pat
             if destination.exists():
                 raise FileExistsError(f"Project destination already exists: {destination}")
             staged.rename(destination)
-    return load_project_info(destination)
+    return ProjectManager(recent_file=recent_file).register_project(destination)

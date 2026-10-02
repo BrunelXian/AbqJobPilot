@@ -377,6 +377,31 @@ def remove_queued_job(queue_id: str) -> dict:
 
 
 @_queue_write_locked
+def remove_queued_jobs(queue_ids: list[str] | tuple[str, ...]) -> dict:
+    ids = set(queue_ids)
+    jobs = load_queue()
+    selected = [job for job in jobs if job.get("queue_id") in ids]
+    if (not ids or len(selected) != len(ids) or
+            any(job.get("status") in {"DATACHECK_RUNNING", "FULL_RUNNING", "RUNNING"} for job in jobs) or
+            any(job.get("status") != "QUEUED" for job in selected)):
+        return {"ok": False, "message": "ERROR: bulk removal requires existing QUEUED jobs and no running job"}
+    save_queue([job for job in jobs if job.get("queue_id") not in ids])
+    return {"ok": True, "message": f"Removed {len(selected)} queue records", "jobs": selected}
+
+
+@_queue_write_locked
+def remove_result_jobs(queue_ids: list[str] | tuple[str, ...]) -> dict:
+    ids = set(queue_ids)
+    jobs = load_queue()
+    selected = [job for job in jobs if job.get("queue_id") in ids]
+    if (not ids or len(selected) != len(ids) or
+            any(job.get("status") not in config.RESULT_STATUSES for job in selected)):
+        return {"ok": False, "message": "ERROR: bulk deletion requires existing result records"}
+    save_queue([job for job in jobs if job.get("queue_id") not in ids])
+    return {"ok": True, "message": f"Cleared {len(selected)} result records", "jobs": selected}
+
+
+@_queue_write_locked
 def move_queued_job(queue_id: str, direction: str) -> dict:
     if direction not in {"top", "up", "down"}:
         return {"ok": False, "message": "ERROR: invalid move direction"}
