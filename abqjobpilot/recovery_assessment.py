@@ -8,6 +8,7 @@ from contextlib import closing
 from pathlib import Path
 
 from .runtime_coordination import runner_ownership_state, runtime_path
+from .process_identity import verify_launch_evidence
 from .status_codes import normalize_status
 
 
@@ -42,10 +43,12 @@ def assess_runtime(runtime_dir: str | Path, *, project_db: str | Path | None = N
         live = None
         errors.append(f"Invalid live_status.json: {exc}")
     owner = runner_ownership_state(runtime)
+    process_evidence = verify_launch_evidence(live.get("process_identity") if live else None)
     running = [str(job.get("queue_id")) for job in jobs if job.get("status") in RUNNING_STATUSES]
     lock_files = []
     odb_files = []
     missing_outputs = []
+    artifact_observations = []
     for job in jobs:
         work = job.get("work_dir")
         name = job.get("job_name")
@@ -53,14 +56,36 @@ def assess_runtime(runtime_dir: str | Path, *, project_db: str | Path | None = N
             continue
         lock = Path(work) / f"{name}.lck"
         odb = Path(job.get("odb_path") or Path(work) / f"{name}.odb")
+        observation = {"queue_id": job.get("queue_id"), "lck_path": str(lock), "odb_path": str(odb),
+                       "lck_exists": False, "odb_exists": False, "odb_mtime_ns": None}
         if lock.is_file():
             lock_files.append(str(lock))
+            observation["lck_exists"] = True
         if odb.is_file():
             odb_files.append(str(odb))
+            observation["odb_exists"] = True
+            try:
+                observation["odb_mtime_ns"] = odb.stat().st_mtime_ns
+            except OSError:
+                pass
         elif job.get("status") in {"COMPLETED_OK", "COMPLETED_WITH_WARNINGS"}:
             missing_outputs.append(str(odb))
+        artifact_observations.append(observation)
     reports = runtime / "reports"
     report_count = len(list(reports.glob("*.json"))) if reports.is_dir() else 0
+    report_terminal_evidence = []
+    if reports.is_dir():
+        for path in reports.glob("*.json"):
+            if not any(path.name.startswith(f"{queue_id}_") for queue_id in running):
+                continue
+            try:
+                report = _json_file(path)
+                if isinstance(report, dict) and report.get("queue_id") in running:
+                    if normalize_status(report.get("status")) in {"COMPLETED", "FAILED", "CANCELLED"}:
+                        report_terminal_evidence.append({"queue_id": report["queue_id"],
+                                                         "status": report.get("status"), "path": str(path)})
+            except (OSError, ValueError) as exc:
+                errors.append(f"Matching report could not be read: {path}: {exc}")
     db_disagreements = []
     if project_db is not None and Path(project_db).is_file():
         try:
@@ -81,7 +106,7 @@ def assess_runtime(runtime_dir: str | Path, *, project_db: str | Path | None = N
         status = "UNCONFIRMED"
     elif owner["state"] == "ACTIVE":
         status = "ACTIVE_RUNNER"
-    elif db_disagreements or missing_outputs:
+    elif db_disagreements or missing_outputs or report_terminal_evidence:
         status = "RECOVERY_REQUIRED"
     elif running or (live and live.get("phase") in RUNNING_STATUSES | {"RUNNER_ACTIVE"}):
         status = "STALE_RUNNING"
@@ -90,5 +115,8 @@ def assess_runtime(runtime_dir: str | Path, *, project_db: str | Path | None = N
     return {"status": status, "runtime_dir": str(runtime), "owner": owner,
             "running_queue_ids": running, "live_phase": live.get("phase") if live else None,
             "lock_files": lock_files, "odb_files": odb_files, "missing_outputs": missing_outputs,
-            "solver_process": "UNKNOWN", "report_count": report_count,
+            "artifact_observations": artifact_observations,
+            "solver_process": "UNKNOWN", "process_evidence": process_evidence,
+            "report_count": report_count,
+            "report_terminal_evidence": report_terminal_evidence,
             "history_disagreements": db_disagreements, "errors": errors}

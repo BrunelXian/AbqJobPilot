@@ -42,6 +42,7 @@ from .project.manager import ensure_default_projects_root
 from .database import DatabaseFailure, ProjectHistoryRepository, sync_history_from_runtime
 from .status_codes import normalize_status
 from .runner_core import QueueRunner
+from .recovery_dialog import RecoveryDialog
 from .settings_store import load_settings, save_settings
 from .utils import format_bytes, now_iso, open_folder, read_json, tail_text, write_json
 
@@ -443,6 +444,8 @@ class AbqJobPilotApp(tk.Tk):
         tools_menu.add_command(label=labels["settings"], command=self.open_settings)
         tools_menu.add_command(label=labels["language"], command=self.toggle_language)
         tools_menu.add_command(label=labels["task_manager"], command=self.open_task_manager_performance)
+        tools_menu.add_separator()
+        tools_menu.add_command(label=labels["runtime_recovery"], command=self.open_runtime_recovery)
         menu_bar.add_cascade(label=labels["tools"], menu=tools_menu)
 
         agent_menu = tk.Menu(menu_bar, tearoff=False)
@@ -464,6 +467,11 @@ class AbqJobPilotApp(tk.Tk):
         self.configure(menu=menu_bar)
         self.menu_bar = menu_bar
         self.add_button.configure(text=labels["add_task"])
+
+    def open_runtime_recovery(self) -> None:
+        project = self.project_manager.current
+        database = str(project.root / "project.db") if project is not None else None
+        RecoveryDialog(self, config.RUNTIME_DIR, database, language=self.lang)
 
     def _update_project_label(self) -> None:
         project = self.project_manager.current
@@ -2261,7 +2269,8 @@ class AbqJobPilotApp(tk.Tk):
                           "view_details": "查看详情",
                           "skip": "跳过选中", "requeue": "重新入队", "delete_result": "删除结果记录",
                           "queue": "队列", "results": "结果", "refresh": "刷新", "settings": "基础设置",
-                          "agent": "智能体命令", "language": "English", "task_manager": "任务管理器", "exit": "退出"},
+                          "agent": "智能体命令", "language": "English", "task_manager": "任务管理器",
+                          "runtime_recovery": "运行时恢复", "exit": "退出"},
                 "agent_menu": {"console": "智能体命令控制台", "instruction": "复制 AI 指令模板",
                                "examples": "复制 CLI 示例", "capabilities": "接口能力",
                                "docs": "自动化 API 文档", "about": "关于自动化接口"},
@@ -2334,7 +2343,8 @@ class AbqJobPilotApp(tk.Tk):
                       "view_details": "View Details",
                       "skip": "Skip Selected", "requeue": "Requeue", "delete_result": "Delete Result Record",
                       "queue": "Queue", "results": "Results", "refresh": "Refresh", "settings": "Settings",
-                      "agent": "Agent Command", "language": "中文", "task_manager": "Task Manager", "exit": "Exit"},
+                      "agent": "Agent Command", "language": "中文", "task_manager": "Task Manager",
+                      "runtime_recovery": "Runtime Recovery", "exit": "Exit"},
             "agent_menu": {"console": "Agent Command Console", "instruction": "Copy AI Instruction",
                            "examples": "Copy CLI Examples", "capabilities": "Capabilities",
                            "docs": "Automation API Documentation", "about": "About Automation Interface"},

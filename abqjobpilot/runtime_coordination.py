@@ -13,6 +13,7 @@ from pathlib import Path
 
 from . import config
 from .utils import write_json
+from .process_identity import verify_launch_evidence
 
 try:
     import msvcrt
@@ -214,3 +215,47 @@ def require_enqueue_admission(runtime_dir: str | Path | None = None) -> None:
     if state == "UNCONFIRMED":
         raise CoordinationError("RUNNER_OWNERSHIP_UNCONFIRMED", "Runner ownership is unconfirmed")
     _require_no_unconfirmed_run(runtime_path(runtime_dir))
+
+
+def require_output_admission(runtime_dir: str | Path | None, work_dir: str | Path,
+                             job_name: str, jobs: list[dict]) -> None:
+    """Reject reuse of an output identity with unconfirmed prior execution.
+
+    Call under queue_transaction after ordinary queue admission and validation.
+    This reads metadata and .lck existence only; it never inspects an ODB.
+    """
+    runtime = runtime_path(runtime_dir)
+    work = Path(work_dir).expanduser().resolve()
+    name = job_name.casefold()
+    for job in jobs:
+        if (job.get("status") == "UNKNOWN_INTERRUPTED"
+                and job.get("work_dir") and Path(job["work_dir"]).expanduser().resolve() == work
+                and str(job.get("job_name", "")).casefold() == name):
+            raise CoordinationError("OUTPUT_CONFLICT_UNCONFIRMED",
+                                    "An interrupted record already references this working directory and job name")
+    if (work / f"{job_name}.lck").is_file():
+        raise CoordinationError("OUTPUT_CONFLICT_UNCONFIRMED",
+                                "A solver lock file exists for the requested output identity")
+    live_path = runtime / "live_status.json"
+    if not live_path.is_file():
+        return
+    try:
+        live = json.loads(live_path.read_text(encoding="utf-8-sig"))
+        if not isinstance(live, dict):
+            raise ValueError("live status must be an object")
+    except (OSError, ValueError) as exc:
+        raise CoordinationError("INVALID_STATUS_DATA", f"Invalid live status: {exc}") from exc
+    evidence = live.get("process_identity")
+    if not isinstance(evidence, dict):
+        return
+    evidence_work = evidence.get("working_dir")
+    if (not isinstance(evidence_work, str) or Path(evidence_work).expanduser().resolve() != work
+            or str(evidence.get("job_name", "")).casefold() != name):
+        return
+    if evidence.get("runtime_dir") != str(runtime):
+        raise CoordinationError("OUTPUT_CONFLICT_UNCONFIRMED",
+                                "Process evidence for this output belongs to another runtime")
+    observation = verify_launch_evidence(evidence)
+    if observation["state"] != "CONFIRMED_EXITED":
+        raise CoordinationError("OUTPUT_CONFLICT_UNCONFIRMED",
+                                f"Prior output identity has unconfirmed process liveness: {observation['state']}")

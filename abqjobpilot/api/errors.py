@@ -11,6 +11,7 @@ def error_detail(message: str) -> dict[str, str]:
         ("runner_ownership_conflict", "RUNNER_OWNERSHIP_CONFLICT"),
         ("runner_ownership_unconfirmed", "RUNNER_OWNERSHIP_UNCONFIRMED"),
         ("recovery_required", "RECOVERY_REQUIRED"),
+        ("output_conflict_unconfirmed", "OUTPUT_CONFLICT_UNCONFIRMED"),
         ("inp file does not exist", "INP_NOT_FOUND"),
         ("cpus must", "INVALID_CPU_COUNT"),
         ("gpus must", "INVALID_GPU_COUNT"),

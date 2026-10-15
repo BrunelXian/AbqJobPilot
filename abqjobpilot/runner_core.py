@@ -10,6 +10,7 @@ from pathlib import Path
 
 from . import config
 from .parsers import classify_datacheck_attempt, classify_final_verdict, parse_sta_status
+from .process_identity import new_launch_evidence, refresh_launch_evidence
 from .queue_store import load_queue, update_job
 from .runtime_coordination import CoordinationError, RunnerOwnership
 from .settings_store import load_settings
@@ -131,6 +132,8 @@ def _write_live_status(job: dict | None = None, phase: str = "IDLE", extra: dict
         )
     if extra:
         payload.update(extra)
+    if job and isinstance(job.get("_process_identity"), dict):
+        payload["process_identity"] = job["_process_identity"]
     try:
         write_json(config.LIVE_STATUS_FILE, payload)
     except OSError:
@@ -193,10 +196,21 @@ def _run_command(job: dict, phase: str, command: list[str]) -> int:
             startupinfo=_hidden_startupinfo(),
             creationflags=_hidden_creationflags(),
         )
+        evidence = new_launch_evidence(runtime_dir=config.RUNTIME_DIR, queue_id=job["queue_id"],
+                                       phase=phase, pid=process.pid, command=command,
+                                       working_dir=job["work_dir"], job_name=job["job_name"])
+        job["_process_identity"] = evidence
+        _write_live_status(job, phase)
         while process.poll() is None:
+            try:
+                refresh_launch_evidence(evidence)
+            except (OSError, ValueError):
+                evidence["child_scan_status"] = "UNCONFIRMED"
             _write_live_status(job, phase)
             time.sleep(config.POLL_INTERVAL_SECONDS)
         return_code = process.returncode
+        evidence["launcher_exit_observed"] = True
+        evidence["last_verified_at"] = now_iso()
         log_file.write(f"\n[{now_iso()}] END {phase} return_code={return_code}\n")
         log_file.flush()
     _write_live_status(job, phase, {"return_code": return_code})

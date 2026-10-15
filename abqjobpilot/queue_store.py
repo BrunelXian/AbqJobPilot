@@ -14,7 +14,8 @@ from pathlib import Path
 
 from . import config
 from .utils import ensure_runtime_dirs, now_iso, read_json, write_json
-from .runtime_coordination import CoordinationError, queue_transaction, require_enqueue_admission
+from .runtime_coordination import (CoordinationError, queue_transaction,
+                                   require_enqueue_admission, require_output_admission)
 
 
 def _queue_path(runtime_dir: str | Path | None = None) -> Path:
@@ -239,6 +240,7 @@ def enqueue_record(
     ok, message = _validate_new_job(inp, cpus, job_name, jobs, work_dir)
     if not ok:
         return {"ok": False, "message": message}
+    require_output_admission(runtime_dir, work_dir, job_name or inp.stem, jobs)
 
     record = build_queue_record(
         inp,
