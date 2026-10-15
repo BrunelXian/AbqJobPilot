@@ -107,6 +107,8 @@ def export_project_archive(project_root: str | Path, archive_path: str | Path, m
             continue
         if path.is_file():
             relative = path.relative_to(root)
+            if relative.as_posix() in {"runtime/.queue.lock", "runtime/.runner.lock", "runtime/runner_owner.json"}:
+                continue
             if relative.as_posix() in {"project.db-wal", "project.db-shm", "project.db-journal"}:
                 continue
             if mode == "full" or _is_metadata(relative):

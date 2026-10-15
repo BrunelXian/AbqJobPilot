@@ -6,17 +6,20 @@ import argparse
 import re
 import shlex
 
-from . import config
-
-
 COMMAND_EXAMPLES = {
+    "project list": "project list",
+    "project create": 'project create --name "ProjectName"',
+    "project use": 'project use --project "ProjectName"',
+    "project show": "project show",
     "enqueue": 'enqueue --inp "D:\\path\\Job_xxx.inp" --cpus 14 --gpus 1 --batch batch_name --strategy strategy_name',
     "enqueue-folder": 'enqueue-folder --folder "D:\\path\\strategy_folder" --pattern "*.inp" --cpus 14 --gpus 1 --batch batch_name --strategy strategy_name',
     "list": "list",
+    "status": 'status --job-id "QUEUE_ID"',
+    "outputs": 'outputs --job-id "QUEUE_ID"',
     "help": "help",
     "clear": "clear",
 }
-SUPPORTED_COMMANDS = tuple(COMMAND_EXAMPLES)
+SUPPORTED_COMMANDS = tuple(dict.fromkeys(name.split()[0] for name in COMMAND_EXAMPLES))
 
 
 def command_help_text(language: str = "en") -> str:
@@ -55,6 +58,15 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = _Parser(prog="agent", add_help=False)
     subparsers = parser.add_subparsers(dest="command")
 
+    project = subparsers.add_parser("project", add_help=False)
+    project_actions = project.add_subparsers(dest="project_action", required=True)
+    project_actions.add_parser("list", add_help=False)
+    project_create = project_actions.add_parser("create", add_help=False)
+    project_create.add_argument("--name", required=True)
+    project_use = project_actions.add_parser("use", add_help=False)
+    project_use.add_argument("--project", required=True)
+    project_actions.add_parser("show", add_help=False)
+
     enqueue = subparsers.add_parser("enqueue", add_help=False)
     enqueue.add_argument("--inp", required=True)
     enqueue.add_argument("--cpus", type=int)
@@ -62,9 +74,10 @@ def _build_parser() -> argparse.ArgumentParser:
     enqueue.add_argument("--batch", dest="batch_name")
     enqueue.add_argument("--strategy", dest="strategy_name")
     enqueue.add_argument("--job-name", dest="job_name")
-    enqueue.add_argument("--datacheck", type=_str_to_bool, default=config.DEFAULT_RUN_DATACHECK)
-    enqueue.add_argument("--full-run", type=_str_to_bool, default=config.DEFAULT_RUN_FULL)
+    enqueue.add_argument("--datacheck", type=_str_to_bool)
+    enqueue.add_argument("--full-run", type=_str_to_bool)
     enqueue.add_argument("--notes", default="")
+    enqueue.add_argument("--project")
 
     folder = subparsers.add_parser("enqueue-folder", add_help=False)
     folder.add_argument("--folder", required=True)
@@ -73,8 +86,14 @@ def _build_parser() -> argparse.ArgumentParser:
     folder.add_argument("--gpus", type=int)
     folder.add_argument("--batch", dest="batch_name")
     folder.add_argument("--strategy", dest="strategy_name")
+    folder.add_argument("--project")
 
-    subparsers.add_parser("list", add_help=False)
+    listing = subparsers.add_parser("list", add_help=False)
+    listing.add_argument("--project")
+    for name in ("status", "outputs"):
+        inspection = subparsers.add_parser(name, add_help=False)
+        inspection.add_argument("--job-id", required=True)
+        inspection.add_argument("--project")
     subparsers.add_parser("help", add_help=False)
     subparsers.add_parser("clear", add_help=False)
     return parser

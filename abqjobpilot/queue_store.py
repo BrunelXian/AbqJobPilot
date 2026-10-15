@@ -7,16 +7,14 @@ SQLite implementation can keep the same GUI and command-console entry points.
 from __future__ import annotations
 
 import json
-import threading
+import inspect
 import uuid
 from functools import wraps
 from pathlib import Path
 
 from . import config
 from .utils import ensure_runtime_dirs, now_iso, read_json, write_json
-
-
-_QUEUE_LOCK = threading.RLock()
+from .runtime_coordination import CoordinationError, queue_transaction, require_enqueue_admission
 
 
 def _queue_path(runtime_dir: str | Path | None = None) -> Path:
@@ -24,10 +22,21 @@ def _queue_path(runtime_dir: str | Path | None = None) -> Path:
 
 
 def _queue_write_locked(function):
+    signature = inspect.signature(function)
+
     @wraps(function)
     def wrapper(*args, **kwargs):
-        with _QUEUE_LOCK:
-            return function(*args, **kwargs)
+        bound = signature.bind_partial(*args, **kwargs)
+        runtime_dir = bound.arguments.get("runtime_dir")
+        try:
+            with queue_transaction(runtime_dir):
+                if function.__name__ == "enqueue_record":
+                    require_enqueue_admission(runtime_dir)
+                return function(*args, **kwargs)
+        except CoordinationError as exc:
+            if function.__name__ in {"save_queue", "update_job"}:
+                raise
+            return {"ok": False, "code": exc.code, "message": f"{exc.code}: {exc}"}
     return wrapper
 
 
@@ -50,7 +59,7 @@ def read_queue(runtime_dir: str | Path | None = None, *, strict: bool = False) -
 
 
 def init_storage() -> None:
-    with _QUEUE_LOCK:
+    with queue_transaction():
         ensure_runtime_dirs()
         queue_path = Path(config.QUEUE_FILE)
         if not queue_path.exists():
@@ -264,7 +273,6 @@ def enqueue_record(
     }
 
 
-@_queue_write_locked
 def add_folder_to_queue(
     folder: str,
     pattern: str = "*.inp",

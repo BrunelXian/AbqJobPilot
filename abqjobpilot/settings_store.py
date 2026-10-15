@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from . import config
 from .utils import ensure_runtime_dirs, read_json, write_json
 
@@ -21,6 +23,15 @@ DEFAULT_SETTINGS = {
 def load_settings() -> dict:
     ensure_runtime_dirs()
     data = read_json(config.SETTINGS_FILE, {})
+    return _merged_settings(data)
+
+
+def load_settings_for_runtime(runtime_dir: str | Path) -> dict:
+    """Read Project settings without creating or updating runtime files."""
+    return _merged_settings(read_json(Path(runtime_dir) / "settings.json", {}))
+
+
+def _merged_settings(data) -> dict:
     settings = DEFAULT_SETTINGS.copy()
     if isinstance(data, dict):
         settings.update(data)

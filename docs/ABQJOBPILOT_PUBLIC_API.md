@@ -53,8 +53,30 @@ JobRequest(
     submission_mode="preview_only",
     allow_solver_submit=False,
     metadata={},
+    run_datacheck=None,
+    run_full=None,
 )
 ```
+
+`run_datacheck` and `run_full` are optional queue-record execution flags.
+When omitted, the existing core defaults are used. The GUI Agent Command
+Console resolves omitted resource and run-mode values from its selected
+Project's Settings before calling this API; it never supplies a default
+Project implicitly. The public JSON CLI retains its existing default-runtime
+behavior when no Project selector is given.
+
+## Agent Command and MCP boundaries
+
+The in-GUI Agent Command Console is a small human-readable command interface.
+It requires an explicit formal Project target for `enqueue`, `enqueue-folder`,
+`list`, `status`, and `outputs`; `project use` only changes that Console's
+target, not the main GUI Project. Its enqueue path invokes this public
+`AbqJobPilotClient.enqueue(..., dry_run=False)` in queue-only mode after
+preflight and conservative active-runner checks. `enqueue-folder` previews
+candidate requests and asks for confirmation; partial results are reported as
+`PARTIAL`, not success. The separate MCP stdio adapter still exposes only
+read-only tools, including a dry-run preparation tool. It has no enqueue or
+solver-start tool.
 
 Defaults are intentionally safe:
 
@@ -385,7 +407,7 @@ No queue runner control API is exposed.
 No SQLite-backed status layer exists yet.
 The command preview uses the configured default Abaqus command path.
 The API reads existing JSON status files but does not yet guarantee schema migration.
-Queue write serialization is process-local; independent processes must not write the same queue concurrently.
+Queue read/validate/write transactions use a runtime-scoped OS-backed lock across local processes. Lock acquisition is bounded; `QUEUE_LOCK_TIMEOUT` is returned on contention timeout. Actual enqueue is rejected with `RUNNER_ACTIVE` while an owned runner is active or starting, or `RUNNER_OWNERSHIP_UNCONFIRMED` when ownership cannot be established. Dry-run/preflight remain read-only. See `ABQJOBPILOT_RUNTIME_COORDINATION.md` for limits.
 ```
 
 ## Project runtime ownership (P1)
@@ -402,9 +424,9 @@ Coding assistant -> JSON CLI / Python API / Agent Commands
                  -> queue metadata, status, output references
 ```
 
-The public Python client and JSON CLI support `capabilities`, `preflight`, `enqueue`, `enqueue-folder`, `list`, `status`, and `locate-outputs`. The Agent Command Console accepts only its internal `enqueue`, `enqueue-folder`, `list`, `help`, and `clear` grammar. These are related interfaces, not interchangeable command syntaxes. The GUI Agent menu links to the canonical AI Instruction and this document.
+The public Python client and JSON CLI support `capabilities`, `preflight`, `enqueue`, `enqueue-folder`, `list`, `status`, and `locate-outputs`. The Agent Command Console additionally supports Project selection and read-only `status`/`outputs` in its own internal grammar. These are related interfaces, not interchangeable command syntaxes. The GUI Agent menu links to the canonical AI Instruction and this document.
 
-Public `solver_start` remains `false`. No assistant-specific SDK, MCP endpoint, HTTP service, or direct solver-start command is provided. Application version `0.2.1` is reported separately from `automation_surface` and `schema_version`, which remain `1.0`.
+Public `solver_start` remains `false`. A separate read-only MCP stdio adapter exists; no MCP enqueue, HTTP service, or direct solver-start command is provided. Application version is reported separately from `automation_surface` and `schema_version`, which remain `1.0`.
 
 ## Project Automation (0.2.1)
 

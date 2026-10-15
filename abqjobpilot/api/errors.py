@@ -6,6 +6,11 @@ from __future__ import annotations
 def error_detail(message: str) -> dict[str, str]:
     lowered = message.lower()
     rules = (
+        ("queue_lock_timeout", "QUEUE_LOCK_TIMEOUT"),
+        ("runner_active", "RUNNER_ACTIVE"),
+        ("runner_ownership_conflict", "RUNNER_OWNERSHIP_CONFLICT"),
+        ("runner_ownership_unconfirmed", "RUNNER_OWNERSHIP_UNCONFIRMED"),
+        ("recovery_required", "RECOVERY_REQUIRED"),
         ("inp file does not exist", "INP_NOT_FOUND"),
         ("cpus must", "INVALID_CPU_COUNT"),
         ("gpus must", "INVALID_GPU_COUNT"),

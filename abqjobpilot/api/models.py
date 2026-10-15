@@ -41,6 +41,8 @@ class JobRequest(JsonModel):
     submission_mode: str = "preview_only"
     allow_solver_submit: bool = False
     metadata: dict[str, Any] = field(default_factory=dict)
+    run_datacheck: bool | None = None
+    run_full: bool | None = None
 
 
 @dataclass
@@ -106,5 +108,7 @@ class JobOutputResult(JsonModel):
     sta_path: str | None = None
     msg_path: str | None = None
     dat_path: str | None = None
+    lck_path: str | None = None
+    path_sources: dict[str, str] = field(default_factory=dict)
     errors: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)

@@ -2005,7 +2005,13 @@ class AbqJobPilotApp(tk.Tk):
         if self._agent_console is not None and self._agent_console.winfo_exists():
             self._agent_console.lift()
             return
-        self._agent_console = AgentCommandConsole(self, on_queue_changed=self.refresh_all, language=self.lang)
+        project = self.project_manager.current
+        self._agent_console = AgentCommandConsole(
+            self, on_queue_changed=self.refresh_all, language=self.lang,
+            project=str(project.root) if project else None,
+            recent_file=str(self.project_manager.recent_file),
+            runner_active=self.runner.is_running,
+        )
 
     def show_agent_capabilities(self) -> None:
         capabilities = AbqJobPilotClient(runtime_dir=config.RUNTIME_DIR).capabilities()

@@ -1,0 +1,2 @@
+# Optional MCP stdio adapter only; the ordinary GUI does not need this package.
+mcp>=2,<3

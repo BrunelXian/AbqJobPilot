@@ -89,7 +89,7 @@ The public automation interface does not expose solver start. Actual execution r
 
 ## Project Automation
 
-Version 0.2.1 lets local scripts and coding agents manage formal Project metadata and query Job/Run history through the same JSON CLI and Python API. Use an explicit `--project-id` or `--project` path to target a Project. Omitting a selector preserves the existing default runtime; it never silently selects the most recent Project.
+The public CLI and Python API let local scripts and coding agents manage formal Project metadata and query Job/Run history. Use an explicit `--project-id` or `--project` path to target a Project. Omitting a selector preserves the existing default runtime; it never silently selects the most recent Project.
 
 ```powershell
 python -m abqjobpilot.api.cli project list --json
@@ -103,9 +103,25 @@ python -m abqjobpilot.api.cli enqueue --project-id "<uuid>" --inp "D:\AbaqusProj
 
 Automation tools should call AbqJobPilot's CLI or Python API, **not edit** `project.json`, `project.db`, `runtime/queue.json`, or `runtime/live_status.json` directly. They should not move or delete external engineering files or attempt solver execution through undocumented paths. See [Project Automation Surface v1](docs/ABQJOBPILOT_A4_PROJECT_AUTOMATION.md).
 
+## Optional Read-Only MCP
+
+The 0.2.2 development version adds a Project-bound local stdio MCP adapter. Its five tools are `abq_preflight`, `abq_list_jobs`, `abq_job_status`, `abq_locate_outputs`, and `abq_prepare_enqueue`. The optional official SDK dependency is declared separately in `requirements-mcp.txt`; the desktop GUI does not need it. A configured MCP client can launch `python -m abqjobpilot.mcp.server --project "<Project folder>"`. MCP cannot enqueue a real job or start Abaqus. See [MCP setup and safety](docs/ABQJOBPILOT_MCP.md).
+
 ## Agent Command Console
 
-The Console accepts an allow-listed internal command syntax such as `enqueue`, `enqueue-folder`, `list`, `help`, and `clear`. It is **not** a PowerShell or system-shell window. Its AI Instruction can be copied to a coding assistant to generate compatible command text.
+The Console accepts allow-listed internal commands: `project list`, `project create`, `project use`, `project show`, `enqueue`, `enqueue-folder`, `list`, `status`, `outputs`, `help`, and `clear`. It is **not** a PowerShell or system-shell window. Its AI Instruction can be copied to a coding assistant to generate compatible command text. Queue and inspection commands require a selected formal Project; `project use` changes only the Console target, never the live GUI Project. An explicit `--project` on a task command overrides the Console target for that command. An active or unconfirmed runner blocks Console enqueue; folder enqueue previews all matching requests and requires confirmation.
+
+For example, in the Console:
+
+```text
+project use --project "Example Study"
+enqueue --inp "D:\AbaqusProjects\Example\model.inp"
+list
+status --job-id "QUEUE_ID"
+outputs --job-id "QUEUE_ID"
+```
+
+The JSON CLI/Python API remains a separate public automation interface and retains its existing default-runtime behavior. The optional MCP server remains Project-bound and **read-only**; a Console enqueue becomes visible through MCP when both target the same Project. None of these interfaces adds solver start or autonomous execution.
 
 External tools such as Codex, Claude Code, or another tool-using assistant can call the JSON CLI/Python API or prepare text for the Console. This is a general machine-readable interface, not an official integration with any assistant.
 
@@ -127,11 +143,12 @@ Agent Command accepts internal commands only; it does not execute arbitrary shel
 | `abqjobpilot/project/` | Project manifests and portable archives |
 | `abqjobpilot/database/` | Per-Project historical metadata |
 | `abqjobpilot/api/` | Safe Python API and JSON CLI |
+| `abqjobpilot/mcp/` | Optional, read-only Project-bound stdio MCP adapter |
 | `docs/` | Detailed contracts and design notes |
 
 ## Current Version
 
-Current version: **0.2.1**. AbqJobPilot is actively developed; the application version is defined in `abqjobpilot/__init__.py`. Run non-solver tests with `python -m pytest -q` if pytest is available.
+Development version: **0.2.2.dev0** (stable release: **0.2.1**). AbqJobPilot is actively developed; the application version is defined in `abqjobpilot/__init__.py`. Run non-solver tests with `python -m pytest -q` if pytest is available.
 
 ## License
 

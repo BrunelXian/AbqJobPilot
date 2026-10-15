@@ -8,7 +8,7 @@ from typing import Any
 from abqjobpilot import config
 from abqjobpilot.queue_store import read_queue
 from abqjobpilot.status_codes import normalize_status
-from abqjobpilot.utils import read_json, tail_text
+from abqjobpilot.utils import read_json
 
 
 def read_queue_file(runtime_dir: str | Path | None = None) -> list[dict[str, Any]]:
@@ -90,10 +90,21 @@ def expected_paths(job: dict[str, Any]) -> dict[str, str | None]:
     return paths
 
 
-def last_log_lines(log_path: str | None, line_count: int = 40) -> list[str]:
+def last_log_lines(log_path: str | None, line_count: int = 40, max_bytes: int = 262144) -> list[str]:
     if not log_path:
         return []
-    return tail_text(log_path, line_count=line_count).splitlines()
+    try:
+        with Path(log_path).open("rb") as stream:
+            stream.seek(0, 2)
+            size = stream.tell()
+            stream.seek(max(0, size - max_bytes))
+            data = stream.read(max_bytes)
+    except OSError:
+        return []
+    lines = data.decode("utf-8", errors="replace").splitlines()
+    if size > max_bytes and lines:
+        lines = lines[1:]
+    return lines[-line_count:]
 
 
 def public_status_from_job(job: dict[str, Any] | None, lock_exists: bool, odb_exists: bool) -> str:

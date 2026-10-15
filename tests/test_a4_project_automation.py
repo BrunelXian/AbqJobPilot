@@ -37,7 +37,7 @@ class ProjectAutomationTests(unittest.TestCase):
         return exit_code, json.loads(output.getvalue())
 
     def test_version_capabilities_and_json_errors(self):
-        self.assertEqual(__version__, "0.2.1")
+        self.assertEqual(__version__, "0.2.2.dev0")
         caps = self.client.capabilities()
         self.assertEqual(caps["application_version"], __version__)
         self.assertEqual(caps["automation_surface"], "1.0")

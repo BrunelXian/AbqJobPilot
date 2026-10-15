@@ -227,6 +227,8 @@ class AbqJobPilotClient:
                 submission_mode=request.submission_mode,
                 allow_solver_submit=request.allow_solver_submit,
                 metadata=request.metadata,
+                run_datacheck=request.run_datacheck,
+                run_full=request.run_full,
             ),
             runtime_dir=self.runtime_dir,
             command_preview=preflight.command_preview,
@@ -310,6 +312,10 @@ class AbqJobPilotClient:
             sta_path=paths.get("sta_path"),
             msg_path=paths.get("msg_path"),
             dat_path=paths.get("dat_path"),
+            lck_path=paths.get("lck_path"),
+            path_sources={key: ("recorded" if job and job.get(key) else "expected")
+                          for key in ("odb_path", "sta_path", "msg_path", "dat_path", "log_path", "lck_path")
+                          if paths.get(key)},
             errors=errors,
             warnings=warnings,
         )
@@ -318,6 +324,11 @@ class AbqJobPilotClient:
 def _resolve_request(request: JobRequest) -> dict:
     errors: list[str] = []
     warnings: list[str] = []
+
+    for field_name in ("run_datacheck", "run_full"):
+        value = getattr(request, field_name)
+        if value is not None and type(value) is not bool:
+            errors.append(f"{field_name} must be a boolean when provided")
 
     try:
         cpus = int(request.cpus)
@@ -435,6 +446,8 @@ def enqueue_job_queue_only(
         job_name=request.job_name,
         working_dir=request.working_dir,
         notes=str(request.metadata.get("notes", "")) if isinstance(request.metadata, dict) else "",
+        run_datacheck=config.DEFAULT_RUN_DATACHECK if request.run_datacheck is None else request.run_datacheck,
+        run_full=config.DEFAULT_RUN_FULL if request.run_full is None else request.run_full,
         runtime_dir=runtime_dir,
     )
     if not result.get("ok"):

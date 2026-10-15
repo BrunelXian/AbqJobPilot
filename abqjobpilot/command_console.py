@@ -3,15 +3,13 @@
 from __future__ import annotations
 
 import tkinter as tk
-from tkinter import scrolledtext, ttk
+from tkinter import messagebox, scrolledtext, ttk
 
-from .command_parser import (COMMAND_EXAMPLES, CommandParseError, command_help_text,
-                             extract_agent_commands, parse_agent_command)
-from .queue_store import add_folder_to_queue, add_inp_job_to_queue, load_queue
-from .settings_store import load_settings
+from .agent_session import AgentCommandSession
+from .command_parser import COMMAND_EXAMPLES, command_help_text, extract_agent_commands
 
 
-EXAMPLE_COMMANDS = "\n".join(COMMAND_EXAMPLES[name] for name in ("enqueue", "enqueue-folder"))
+EXAMPLE_COMMANDS = "\n".join(COMMAND_EXAMPLES[name] for name in ("project use", "enqueue", "enqueue-folder"))
 COMMAND_REFERENCE = "\n".join(COMMAND_EXAMPLES.values())
 
 AI_INSTRUCTION = f"""You are generating AbqJobPilot Agent Command strings.
@@ -25,6 +23,8 @@ Rules:
 - Include --cpus only if the user explicitly gave a CPU count.
 - Include --gpus only if the user explicitly asked for GPU or gave a GPU count.
 - If CPU/GPU are not specified, omit them so abqjobpilot uses Settings.
+- Select a Project explicitly with project use before enqueue; do not guess a recent Project.
+- Never generate Project deletion, solver-start, or approval commands.
 - Never output shell commands, Python code, PowerShell, explanations, or bullets.
 """
 AI_SKILL_PROMPT = AI_INSTRUCTION
@@ -49,6 +49,9 @@ AGENT_UI_STRINGS = {
         "no_lines": "WARNING: pasted text, but no supported Agent Command lines were found.",
         "no_commands": "ERROR: no supported Agent Command lines found.",
         "queue_empty": "Queue is empty.",
+        "target_project": "Target Project:", "no_project": "No target Project selected",
+        "project_id": "Current Project ID:", "project_runtime": "Project Runtime:",
+        "folder_confirm": "Target: {project} ({project_id})\nEnqueue {count} INP file(s)?\n\n{inputs}",
     },
     "zh": {
         "title": "智能体命令控制台", "safety": "仅支持 AbqJobPilot 内部命令 · 不执行系统 Shell · 不提供求解器启动",
@@ -61,12 +64,17 @@ AGENT_UI_STRINGS = {
         "no_lines": "提示：已粘贴文本，但未找到支持的智能体命令。",
         "no_commands": "错误：未找到支持的智能体命令。",
         "queue_empty": "队列为空。",
+        "target_project": "目标 Project：", "no_project": "尚未选择目标 Project",
+        "project_id": "当前 Project ID：", "project_runtime": "Project 运行目录：",
+        "folder_confirm": "目标：{project}（{project_id}）\n将 {count} 个 INP 加入队列？\n\n{inputs}",
     },
 }
 
 
 class AgentCommandConsole(tk.Toplevel):
-    def __init__(self, master, on_queue_changed=None, language: str = "en"):
+    def __init__(self, master, on_queue_changed=None, language: str = "en",
+                 project: str | None = None, recent_file: str | None = None,
+                 runner_active=None):
         super().__init__(master)
         self.geometry("1040x760")
         self.minsize(860, 620)
@@ -74,20 +82,39 @@ class AgentCommandConsole(tk.Toplevel):
         self.language = language if language in AGENT_UI_STRINGS else "en"
         self._reference_open = False
         self.buttons: dict[str, ttk.Button] = {}
+        self.session = AgentCommandSession(project=project, recent_file=recent_file,
+                                           runner_active=runner_active,
+                                           confirm_folder=self._confirm_folder)
+        self._project_options: dict[str, str] = {}
 
         self.columnconfigure(0, weight=1)
-        self.rowconfigure(2, weight=2)
-        self.rowconfigure(4, weight=3)
+        self.rowconfigure(3, weight=2)
+        self.rowconfigure(5, weight=3)
         self._build_widgets()
+        self._refresh_projects()
         self.set_language(self.language)
         self.input_text.focus_set()
 
     def _build_widgets(self) -> None:
+        target = ttk.Frame(self)
+        target.grid(row=0, column=0, sticky="ew", padx=16, pady=(10, 3))
+        target.columnconfigure(1, weight=1)
+        self.target_label = ttk.Label(target)
+        self.target_label.grid(row=0, column=0, sticky="w", padx=(0, 8))
+        self.target_var = tk.StringVar()
+        self.target_combo = ttk.Combobox(target, textvariable=self.target_var, state="readonly")
+        self.target_combo.grid(row=0, column=1, sticky="ew")
+        self.target_combo.bind("<<ComboboxSelected>>", self._select_project)
+        self.project_id_label = ttk.Label(target, foreground="#64748b")
+        self.project_id_label.grid(row=1, column=0, columnspan=2, sticky="w")
+        self.project_runtime_label = ttk.Label(target, foreground="#64748b")
+        self.project_runtime_label.grid(row=2, column=0, columnspan=2, sticky="w")
+
         self.safety_label = ttk.Label(self, foreground="#475569")
-        self.safety_label.grid(row=0, column=0, sticky="w", padx=16, pady=(12, 8))
+        self.safety_label.grid(row=1, column=0, sticky="w", padx=16, pady=(4, 8))
 
         self.instruction_frame = ttk.LabelFrame(self, padding=8)
-        self.instruction_frame.grid(row=1, column=0, sticky="ew", padx=12, pady=(0, 8))
+        self.instruction_frame.grid(row=2, column=0, sticky="ew", padx=12, pady=(0, 8))
         self.instruction_frame.columnconfigure(0, weight=1)
         self.skill_text = scrolledtext.ScrolledText(self.instruction_frame, height=7, wrap="word", relief="flat")
         self.skill_text.grid(row=0, column=0, sticky="ew", padx=(0, 8))
@@ -99,7 +126,7 @@ class AgentCommandConsole(tk.Toplevel):
         self.instruction_note.grid(row=1, column=0, sticky="w", pady=(3, 0))
 
         self.commands_frame = ttk.LabelFrame(self, padding=8)
-        self.commands_frame.grid(row=2, column=0, sticky="nsew", padx=12, pady=(0, 8))
+        self.commands_frame.grid(row=3, column=0, sticky="nsew", padx=12, pady=(0, 8))
         self.commands_frame.columnconfigure(0, weight=1)
         self.commands_frame.rowconfigure(0, weight=1)
         self.input_text = scrolledtext.ScrolledText(self.commands_frame, height=8, wrap="word", font=("Consolas", 10))
@@ -114,7 +141,7 @@ class AgentCommandConsole(tk.Toplevel):
             self.buttons[key].grid(row=0, column=column, padx=(0, 7))
 
         reference = ttk.Frame(self)
-        reference.grid(row=3, column=0, sticky="ew", padx=12, pady=(0, 8))
+        reference.grid(row=4, column=0, sticky="ew", padx=12, pady=(0, 8))
         reference.columnconfigure(0, weight=1)
         self.reference_toggle = ttk.Button(reference, command=self._toggle_reference)
         self.reference_toggle.grid(row=0, column=0, sticky="w")
@@ -126,7 +153,7 @@ class AgentCommandConsole(tk.Toplevel):
         self.reference_body.grid_remove()
 
         self.output_frame = ttk.LabelFrame(self, padding=8)
-        self.output_frame.grid(row=4, column=0, sticky="nsew", padx=12, pady=(0, 12))
+        self.output_frame.grid(row=5, column=0, sticky="nsew", padx=12, pady=(0, 12))
         self.output_frame.columnconfigure(0, weight=1)
         self.output_frame.rowconfigure(1, weight=1)
         output_toolbar = ttk.Frame(self.output_frame)
@@ -149,8 +176,47 @@ class AgentCommandConsole(tk.Toplevel):
         self.commands_frame.configure(text=words["commands"])
         self.output_frame.configure(text=words["output"])
         self.reference_toggle.configure(text=words["reference"] + (" ▴" if self._reference_open else " ▾"))
+        self.target_label.configure(text=words["target_project"])
+        self._show_target()
         for key, button in self.buttons.items():
             button.configure(text=words[key])
+
+    def _refresh_projects(self) -> None:
+        result = self.session.api.list_projects().to_dict()
+        self._project_options = {f"{item['name']} | {item['path']}": item["path"]
+                                 for item in result.get("projects", []) if item.get("exists")}
+        self.target_combo.configure(values=list(self._project_options))
+        self._show_target()
+
+    def _show_target(self) -> None:
+        words = AGENT_UI_STRINGS[self.language]
+        target = self.session.target
+        if target:
+            value = next((label for label, path in self._project_options.items()
+                          if path == str(target.root)), target.name)
+            self.target_var.set(value)
+        else:
+            self.target_var.set(words["no_project"])
+        self.project_id_label.configure(text=f"{words['project_id']} {target.project_id if target else '--'}")
+        self.project_runtime_label.configure(text=f"{words['project_runtime']} {target.runtime_dir if target else '--'}")
+
+    def _select_project(self, _event=None) -> None:
+        path = self._project_options.get(self.target_var.get())
+        if path:
+            self.session.use_project(path)
+        self._show_target()
+
+    def _confirm_folder(self, preview: dict) -> bool:
+        words = AGENT_UI_STRINGS[self.language]
+        inputs = "\n".join(
+            f"{item['job_name']} | CPU {item['cpus']} GPU {item['gpus']} | {item['inp_path']}\n"
+            f"  -> {item['expected_odb_path']}"
+            for item in preview["requests"][:12])
+        if preview["count"] > 12:
+            inputs += f"\n... +{preview['count'] - 12}"
+        return messagebox.askyesno(words["title"], words["folder_confirm"].format(
+            count=preview["count"], project=preview["project"],
+            project_id=preview["project_id"], inputs=inputs), parent=self)
 
     def _toggle_reference(self) -> None:
         self._reference_open = not self._reference_open
@@ -225,115 +291,18 @@ class AgentCommandConsole(tk.Toplevel):
         any_queue_change = False
         for command_text in commands:
             result = self._run_one_command(command_text)
-            any_queue_change = any_queue_change or bool(result.get("queue_changed"))
+            any_queue_change = any_queue_change or result["queue_changed"]
+            if result["target_changed"]:
+                self._refresh_projects()
         if any_queue_change and self.on_queue_changed:
             self.on_queue_changed()
 
     def _run_one_command(self, command_text: str) -> dict:
-        try:
-            parsed = parse_agent_command(command_text)
-        except CommandParseError as exc:
-            self._append_output(f"> {command_text}\n\nERROR: {exc}")
-            return {"queue_changed": False}
-
-        command = parsed["command"]
-        if command == "clear":
+        result = self.session.execute(command_text)
+        if result["status"] == "CLEAR":
             self.clear_output()
-            return {"queue_changed": False}
-        if command == "help":
+        elif result["status"] == "HELP":
             self._append_output(f"> {command_text}\n\n{command_help_text(self.language)}")
-            return {"queue_changed": False}
-        if command == "list":
-            self._append_output(f"> {command_text}\n\n{self._format_queue_list()}")
-            return {"queue_changed": False}
-        if command == "enqueue":
-            result = self._enqueue(parsed)
-            self._append_output(f"> {command_text}\n\n{self._format_enqueue_result(result)}")
-            return {"queue_changed": bool(result.get("ok"))}
-        if command == "enqueue-folder":
-            result = self._enqueue_folder(parsed)
-            self._append_output(f"> {command_text}\n\n{self._format_folder_result(result)}")
-            return {"queue_changed": bool(result.get("added"))}
-        self._append_output(f"> {command_text}\n\nERROR: unsupported command: {command}")
-        return {"queue_changed": False}
-
-    def _resource_defaults(self, parsed: dict) -> tuple[int, int]:
-        settings = load_settings()
-        cpus = parsed["cpus"] if parsed.get("cpus") is not None else settings["default_cpus"]
-        gpus = parsed["gpus"] if parsed.get("gpus") is not None else (
-            settings["default_gpus"] if settings["use_gpu"] else 0
-        )
-        return cpus, gpus
-
-    def _enqueue(self, parsed: dict) -> dict:
-        cpus, gpus = self._resource_defaults(parsed)
-        return add_inp_job_to_queue(
-            parsed["inp"],
-            cpus=cpus,
-            gpus=gpus,
-            batch_name=parsed.get("batch_name"),
-            strategy_name=parsed.get("strategy_name"),
-            job_name=parsed.get("job_name"),
-            run_datacheck=parsed.get("datacheck", True),
-            run_full=parsed.get("full_run", True),
-            notes=parsed.get("notes", ""),
-        )
-
-    def _enqueue_folder(self, parsed: dict) -> dict:
-        cpus, gpus = self._resource_defaults(parsed)
-        return add_folder_to_queue(
-            parsed["folder"],
-            pattern=parsed.get("pattern", "*.inp"),
-            cpus=cpus,
-            gpus=gpus,
-            batch_name=parsed.get("batch_name"),
-            strategy_name=parsed.get("strategy_name"),
-        )
-
-    def _format_enqueue_result(self, result: dict) -> str:
-        if not result.get("ok"):
-            return result.get("message", "ERROR: failed to add job")
-        return (
-            "OK: added job to queue\n"
-            f"Queue ID: {result['queue_id']}\n"
-            f"Job: {result['job_name']}\n"
-            f"Strategy: {result['strategy_name']}\n"
-            f"Batch: {result['batch_name']}\n"
-            f"CPUs: {result['cpus']}\n"
-            f"GPUs: {result.get('gpus', 0)}\n"
-            f"Work dir: {result['work_dir']}\n"
-            f"Queue position: {result['queue_position']}"
-        )
-
-    def _format_folder_result(self, result: dict) -> str:
-        lines: list[str] = []
-        if result.get("added"):
-            lines.append(f"OK: added {len(result['added'])} job(s) to queue")
-            for item in result["added"]:
-                lines.append(
-                    f"- {item['job_name']} | {item['strategy_name']} | "
-                    f"CPUs {item['cpus']} | GPUs {item.get('gpus', 0)} | position {item['queue_position']}"
-                )
-        if result.get("errors"):
-            if lines:
-                lines.append("")
-            lines.append("Errors:")
-            lines.extend(result["errors"])
-        if not lines:
-            lines.append(result.get("message", "ERROR: no jobs were added"))
-        return "\n".join(lines)
-
-    def _format_queue_list(self) -> str:
-        jobs = load_queue()
-        if not jobs:
-            return AGENT_UI_STRINGS[self.language]["queue_empty"]
-        header = "index | status | batch_name | strategy_name | job_name | inp_path | cpus | gpus | created_at"
-        lines = [header, "-" * len(header)]
-        for index, job in enumerate(jobs, start=1):
-            lines.append(
-                f"{index} | {job.get('status', '')} | {job.get('batch_name', '')} | "
-                f"{job.get('strategy_name', '')} | {job.get('job_name', '')} | "
-                f"{job.get('inp_path', '')} | {job.get('cpus', '')} | "
-                f"{job.get('gpus', 0)} | {job.get('created_at', '')}"
-            )
-        return "\n".join(lines)
+        else:
+            self._append_output(f"> {command_text}\n\n{result['status']}: {result['message']}")
+        return result

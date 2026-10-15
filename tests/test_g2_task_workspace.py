@@ -32,15 +32,19 @@ class PresentationTests(unittest.TestCase):
         self.assertIsNone(github_url_from_remote("git@github.com:../AbqJobPilot.git"))
 
     def test_app_version_and_agent_reference_are_canonical(self):
-        self.assertEqual(__version__, "0.2.1")
-        self.assertEqual(tuple(COMMAND_EXAMPLES), SUPPORTED_COMMANDS)
+        self.assertEqual(__version__, "0.2.2.dev0")
+        self.assertEqual(tuple(dict.fromkeys(name.split()[0] for name in COMMAND_EXAMPLES)),
+                         SUPPORTED_COMMANDS)
         for name, example in COMMAND_EXAMPLES.items():
-            self.assertEqual(parse_agent_command(example)["command"], name)
+            parsed = parse_agent_command(example)
+            self.assertEqual(parsed["command"], name.split()[0])
+            if name.startswith("project "):
+                self.assertEqual(parsed["project_action"], name.split()[1])
             self.assertIn(example, AI_INSTRUCTION)
         self.assertIn("capabilities --json", CLI_EXAMPLES)
         self.assertNotIn("solver-start", CLI_EXAMPLES)
-        self.assertNotIn('"0.2.1"', (Path(__file__).parents[1] / "abqjobpilot" / "gui_app.py").read_text(encoding="utf-8"))
-        self.assertNotIn('"0.2.1"', (Path(__file__).parents[1] / "abqjobpilot" / "api" / "client.py").read_text(encoding="utf-8"))
+        self.assertNotIn('"0.2.2.dev0"', (Path(__file__).parents[1] / "abqjobpilot" / "gui_app.py").read_text(encoding="utf-8"))
+        self.assertNotIn('"0.2.2.dev0"', (Path(__file__).parents[1] / "abqjobpilot" / "api" / "client.py").read_text(encoding="utf-8"))
 
     def test_success_with_warnings_uses_exact_same_tag_and_keeps_identity(self):
         complete = status_presentation("COMPLETED_OK")
@@ -90,7 +94,7 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
     def test_g2_3_log_access_running_highlight_and_about(self):
         app = self.app
         self.assertEqual(app.title(), "AbqJobPilot")
-        self.assertEqual(__version__, "0.2.1")
+        self.assertEqual(__version__, "0.2.2.dev0")
         help_menu = app.nametowidget(app.menu_bar.entrycget(5, "menu"))
         self.assertEqual(help_menu.entrycget(0, "label"), "About AbqJobPilot")
         help_menu.invoke(0)

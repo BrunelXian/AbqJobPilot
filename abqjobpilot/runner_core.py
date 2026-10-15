@@ -11,6 +11,7 @@ from pathlib import Path
 from . import config
 from .parsers import classify_datacheck_attempt, classify_final_verdict, parse_sta_status
 from .queue_store import load_queue, update_job
+from .runtime_coordination import CoordinationError, RunnerOwnership
 from .settings_store import load_settings
 from .utils import now_iso, read_json, tail_text, write_json
 
@@ -307,6 +308,7 @@ class QueueRunner:
         self._thread: threading.Thread | None = None
         self._lock = threading.Lock()
         self._stop_after_current = False
+        self._ownership: RunnerOwnership | None = None
 
     def is_running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
@@ -315,9 +317,21 @@ class QueueRunner:
         with self._lock:
             if self.is_running():
                 return {"ok": False, "message": "Queue runner is already running."}
+            ownership = RunnerOwnership(config.RUNTIME_DIR)
+            try:
+                ownership.acquire()
+            except CoordinationError as exc:
+                return {"ok": False, "code": exc.code, "message": str(exc)}
+            self._ownership = ownership
             self._stop_after_current = False
             self._thread = threading.Thread(target=self._run_loop, name="abqjobpilot-runner", daemon=True)
-            self._thread.start()
+            try:
+                self._thread.start()
+            except BaseException:
+                ownership.release()
+                self._ownership = None
+                self._thread = None
+                raise
         return {"ok": True, "message": "Queue runner started."}
 
     def request_stop_after_current(self) -> dict:
@@ -350,3 +364,6 @@ class QueueRunner:
             except OSError:
                 pass
             self._stop_after_current = False
+            if self._ownership is not None:
+                self._ownership.release()
+                self._ownership = None
