@@ -154,6 +154,7 @@ def observe_descendants(launcher: dict) -> dict:
     if rows is None:
         return {"state": "UNCONFIRMED", "children": []}
     parents = {launcher["pid"]}
+    known_identities = {launcher["pid"]: launcher}
     descendants = []
     pending = list(rows)
     while pending:
@@ -164,15 +165,25 @@ def observe_descendants(launcher: dict) -> dict:
             pending.remove(row)
             parents.add(row["pid"])
             identity = capture_identity(row["pid"])
+            parent = known_identities.get(row["parent_pid"], {})
+            identity["parent_pid"] = row["parent_pid"]
+            identity["observed_parent_creation_time_100ns"] = parent.get("creation_time_100ns")
             if (identity["identity_status"] == "CONFIRMED"
                     and Path(identity["executable_path"]).name.casefold() != row["exe"].casefold()):
-                identity = {"pid": row["pid"], "identity_status": "UNCONFIRMED",
+                identity = {"pid": row["pid"], "parent_pid": row["parent_pid"],
+                            "observed_parent_creation_time_100ns": parent.get("creation_time_100ns"),
+                            "identity_status": "UNCONFIRMED",
                             "reason": "process image changed after the descendant snapshot"}
             identity["role"] = "solver_candidate" if (
                 row["exe"].lower() in SOLVER_NAMES or row["exe"].lower().startswith("abq")) else "descendant"
             descendants.append(identity)
-    return {"state": "OK" if all(child["identity_status"] == "CONFIRMED" for child in descendants)
-            else "UNCONFIRMED", "children": descendants}
+            known_identities[row["pid"]] = identity
+    launcher_still_active = verify_identity(launcher)["state"] == "CONFIRMED_ACTIVE"
+    return {"state": "OK" if launcher_still_active and all(
+        child["identity_status"] == "CONFIRMED"
+        and isinstance(child.get("observed_parent_creation_time_100ns"), int)
+        for child in descendants) else "UNCONFIRMED",
+            "children": descendants}
 
 
 def new_launch_evidence(*, runtime_dir: str, queue_id: str, phase: str, pid: int,

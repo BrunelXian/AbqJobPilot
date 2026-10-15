@@ -15,7 +15,9 @@ import pytest
 
 from abqjobpilot import config
 from abqjobpilot.process_identity import (capture_identity, inspect_pid, new_launch_evidence,
-                                          refresh_launch_evidence, verify_identity, verify_launch_evidence)
+                                          observe_descendants, refresh_launch_evidence,
+                                          verify_identity, verify_launch_evidence)
+from abqjobpilot.passive_lineage import sample_lineage
 from abqjobpilot.queue_store import build_queue_record, enqueue_record, read_queue, save_queue
 from abqjobpilot.recovery_workflow import apply_approved_recovery, approve_local_plan, build_recovery_plan
 from abqjobpilot.runner_core import _run_command
@@ -124,6 +126,65 @@ def test_launcher_exit_without_child_identity_remains_unconfirmed(tmp_path):
     evidence["child_scan_status"] = "OK"
     assert verify_launch_evidence(evidence)["state"] == "UNCONFIRMED"
     assert verify_launch_evidence({"bad": "record"})["state"] == "UNCONFIRMED"
+
+
+def test_descendant_scan_fails_closed_when_launcher_exits_during_snapshot():
+    launcher = {"pid": 100, "creation_time_100ns": 10, "executable_path": "cmd.exe",
+                "identity_status": "CONFIRMED"}
+    snapshot = [{"pid": 200, "parent_pid": 100, "exe": "standard.exe"}]
+    child = {"pid": 200, "creation_time_100ns": 20, "executable_path": "standard.exe",
+             "identity_status": "CONFIRMED"}
+    with patch("abqjobpilot.process_identity.verify_identity", side_effect=[
+            {"state": "CONFIRMED_ACTIVE"}, {"state": "CONFIRMED_EXITED"}]), \
+         patch("abqjobpilot.process_identity._process_snapshot", return_value=snapshot), \
+         patch("abqjobpilot.process_identity.capture_identity", return_value=child):
+        observation = observe_descendants(launcher)
+    assert observation["state"] == "UNCONFIRMED"
+    assert observation["children"][0]["role"] == "solver_candidate"
+
+
+def test_descendant_scan_records_observed_parent_identity():
+    launcher = {"pid": 100, "creation_time_100ns": 10, "executable_path": "cmd.exe",
+                "identity_status": "CONFIRMED"}
+    snapshot = [{"pid": 200, "parent_pid": 100, "exe": "SMALauncher.exe"},
+                {"pid": 300, "parent_pid": 200, "exe": "standard.exe"}]
+    def identity(pid):
+        return {"pid": pid, "creation_time_100ns": pid,
+                "executable_path": "SMALauncher.exe" if pid == 200 else "standard.exe",
+                "identity_status": "CONFIRMED"}
+    with patch("abqjobpilot.process_identity.verify_identity", return_value={"state": "CONFIRMED_ACTIVE"}), \
+         patch("abqjobpilot.process_identity._process_snapshot", return_value=snapshot), \
+         patch("abqjobpilot.process_identity.capture_identity", side_effect=identity):
+        observation = observe_descendants(launcher)
+    assert observation["state"] == "OK"
+    assert [(child["parent_pid"], child["observed_parent_creation_time_100ns"])
+            for child in observation["children"]] == [(100, 10), (200, 200)]
+
+
+def test_passive_samples_are_bounded_and_do_not_write(tmp_path):
+    launcher = {"pid": 100, "creation_time_100ns": 10, "executable_path": "cmd.exe",
+                "identity_status": "CONFIRMED"}
+    before = list(tmp_path.iterdir())
+    with patch("abqjobpilot.passive_lineage.observe_descendants", return_value={
+            "state": "OK", "children": []}), \
+         patch("abqjobpilot.passive_lineage.verify_identity", return_value={
+             "state": "CONFIRMED_ACTIVE"}):
+        samples = sample_lineage(launcher, sample_count=3, interval_seconds=0.05,
+                                 sleep=lambda _: None)
+    assert len(samples) == 3
+    assert all(item["scan_state"] == "OK" for item in samples)
+    assert list(tmp_path.iterdir()) == before
+    with pytest.raises(ValueError):
+        sample_lineage(launcher, sample_count=601)
+    with pytest.raises(ValueError):
+        sample_lineage(launcher, sample_count=100, interval_seconds=1)
+
+
+def test_partial_lineage_record_cannot_establish_solver_exit():
+    evidence = {"runtime_dir": "fixture", "queue_id": "q", "launcher": {"pid": 1},
+                "observed_children": [{"pid": 2, "role": "solver_candidate"}],
+                "launcher_exit_observed": True, "child_scan_status": "OK"}
+    assert verify_launch_evidence(evidence)["state"] == "UNCONFIRMED"
 
 
 def test_mocked_solver_candidate_active_and_exited_classifications(tmp_path):
