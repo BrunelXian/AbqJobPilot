@@ -17,6 +17,8 @@ Verdict: `PASS_ABQJOBPILOT_MCP_RUN006_GATE_A_READONLY_PLAN_READY`.
 - `git diff --check` passed (only Git's LF-to-CRLF advisory warnings). Six production metadata hashes matched the Gate A baseline.
 - Added code has no Abaqus/QueueRunner launch, process termination, solver-file movement, database schema update, or MCP write tool. Tests launched only ordinary Python fixture processes.
 
-## Boundary and next action
+## Gate B outcome and next action
 
-This is **not** full Abaqus process-lineage validation. The observed 2024-labelled installation and Windows fixture processes cannot establish real solver ancestry. The user must separately approve Gate B's exact execution, license, resource and disposable-output scope before any Abaqus run. Do not begin Run 007 automatically.
+Gate B was separately authorized and one disposable Abaqus attempt was executed. It failed before solver startup because Abaqus's OS WMI query returned `0x80041003` and reported -1 CPUs available. The observed `cmd.exe -> SMALauncher.exe -> SMAPython.exe` chain is direct partial-launch evidence, but no `standard.exe`/`explicit.exe` lineage was available. The full Run 006 verdict is **`INCONCLUSIVE`**, not lineage-validation PASS. See `GATE_B_RESULTS.md` and `PROCESS_LINEAGE_EVIDENCE.json`. No retry is authorized. Do not begin Run 007 automatically.
+
+Gate B post-run full pytest: `193 passed in 57.27s`. The six production metadata hashes remained identical to their pre-run values after the suite.
