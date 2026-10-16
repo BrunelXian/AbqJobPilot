@@ -17,6 +17,7 @@ runtime/*.json
 runtime/*.tmp
 runtime/logs/*
 runtime/reports/*
+runtime/*.lock
 !runtime/logs/.gitkeep
 !runtime/reports/.gitkeep
 

@@ -219,6 +219,23 @@ class ProjectHistoryRepository:
         with self._connection() as connection:
             return _as_dict(connection.execute("SELECT * FROM runs WHERE run_id = ?", (run_id,)).fetchone())
 
+    def get_run_process_evidence(self, run_id: str) -> dict | None:
+        """Read native evidence referenced by a Run; legacy Runs simply have none."""
+        from abqjobpilot.run_evidence import read_process_evidence
+
+        run = self.get_run(run_id)
+        if run is None:
+            return None
+        try:
+            metadata = json.loads(run["metadata_json"] or "{}")
+        except (TypeError, ValueError):
+            return None
+        if not isinstance(metadata, dict):
+            return None
+        evidence = read_process_evidence(self.project.runtime_dir,
+                                         metadata.get("process_evidence_path"))
+        return evidence if evidence and evidence.get("queue_id") == run["queue_id"] else None
+
     def find_job_by_queue_id(self, queue_id: str) -> dict | None:
         with self._connection() as connection:
             return _as_dict(connection.execute(
@@ -261,6 +278,7 @@ class ProjectHistoryRepository:
                 existing = connection.execute("SELECT * FROM runs WHERE queue_id = ?", (queue_id,)).fetchone()
                 raw_status = record.get("status") or record.get("phase")
                 canonical = normalize_status(raw_status)
+                evidence_ref = record.get("process_evidence_path")
                 if existing is None:
                     run = self._create_run(
                         connection, job["job_id"], queue_id=queue_id, status=canonical, raw_status=raw_status,
@@ -268,7 +286,8 @@ class ProjectHistoryRepository:
                         working_dir=record.get("work_dir"), expected_odb_path=record.get("odb_path"),
                         created_at=record.get("created_at"), started_at=record.get("started_at"),
                         completed_at=record.get("ended_at"), exit_reason=record.get("fatal_reason"),
-                        metadata={"source": provenance},
+                        metadata={"source": provenance, **({"process_evidence_path": evidence_ref}
+                                                         if isinstance(evidence_ref, str) else {})},
                     )
                     counts["created_runs"] += 1
                 else:
@@ -283,6 +302,11 @@ class ProjectHistoryRepository:
                             (canonical, raw_status, record.get("started_at"), record.get("ended_at"),
                              record.get("fatal_reason"), run["run_id"]),
                         )
+                    if isinstance(evidence_ref, str):
+                        metadata = json.loads(existing["metadata_json"] or "{}")
+                        metadata["process_evidence_path"] = evidence_ref
+                        connection.execute("UPDATE runs SET metadata_json = ? WHERE run_id = ?",
+                                           (json.dumps(metadata, ensure_ascii=False), run["run_id"]))
                 for kind, field in ARTIFACT_FIELDS.items():
                     path = record.get(field)
                     if not isinstance(path, str) or not path:

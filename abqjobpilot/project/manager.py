@@ -8,7 +8,7 @@ import uuid
 from pathlib import Path
 
 from abqjobpilot import config
-from abqjobpilot.utils import now_iso, write_json
+from abqjobpilot.utils import now_iso, read_json, write_json
 
 from .models import ProjectInfo
 
@@ -31,7 +31,31 @@ def default_recent_file() -> Path:
 
 
 def default_projects_root() -> Path:
-    return config.APP_ROOT_PATH / "projects"
+    settings = read_json(get_app_state_dir() / "app_settings.json", {})
+    configured = settings.get("projects_root") if isinstance(settings, dict) else None
+    if isinstance(configured, str) and configured:
+        candidate = Path(configured).expanduser()
+        if candidate.is_absolute():
+            root = candidate.resolve()
+            if root != config.APP_ROOT_PATH and config.APP_ROOT_PATH not in root.parents:
+                return root
+    return get_app_state_dir() / "projects"
+
+
+def set_default_projects_root(root_dir: str | Path) -> Path:
+    candidate = Path(root_dir).expanduser()
+    if not candidate.is_absolute():
+        raise ValueError("Default Projects folder must be an absolute path")
+    root = candidate.resolve()
+    if root == config.APP_ROOT_PATH or config.APP_ROOT_PATH in root.parents:
+        raise ValueError("Default Projects folder must be outside the application directory")
+    settings_file = get_app_state_dir() / "app_settings.json"
+    settings = read_json(settings_file, {})
+    if not isinstance(settings, dict):
+        settings = {}
+    settings["projects_root"] = str(root)
+    write_json(settings_file, settings)
+    return root
 
 
 def ensure_default_projects_root() -> Path:

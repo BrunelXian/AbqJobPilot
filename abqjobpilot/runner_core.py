@@ -10,8 +10,9 @@ from pathlib import Path
 
 from . import config
 from .parsers import classify_datacheck_attempt, classify_final_verdict, parse_sta_status
-from .process_identity import new_launch_evidence, refresh_launch_evidence
+from .process_identity import new_launch_evidence, refresh_launch_evidence, verify_identity
 from .queue_store import load_queue, update_job
+from .run_evidence import save_phase_evidence
 from .runtime_coordination import CoordinationError, RunnerOwnership
 from .settings_store import load_settings
 from .utils import now_iso, read_json, tail_text, write_json
@@ -128,6 +129,7 @@ def _write_live_status(job: dict | None = None, phase: str = "IDLE", extra: dict
                 "elapsed_time": str(_duration_seconds(job.get("started_at")) or ""),
                 "sta_path": job.get("sta_path", ""),
                 "log_path": job.get("log_path", ""),
+                "process_evidence_path": job.get("process_evidence_path"),
             }
         )
     if extra:
@@ -176,10 +178,20 @@ def _write_report(job: dict) -> None:
         }
     )
     write_json(manifest_path, manifest)
+    project_root = Path(config.RUNTIME_DIR).parent
+    if (project_root / "project.json").is_file():
+        from .database import DatabaseFailure, sync_history_from_runtime
+
+        try:
+            sync_history_from_runtime(project_root)
+        except (DatabaseFailure, OSError, ValueError) as exc:
+            # Runtime JSON stays authoritative; a later reconciliation can retry.
+            write_json(report_path, {**job, "schema_version": config.SCHEMA_VERSION,
+                                     "history_projection_error": f"{type(exc).__name__}: {exc}"})
 
 
 def _run_command(job: dict, phase: str, command: list[str]) -> int:
-    job = _refresh_job_paths(job)
+    job.update(_refresh_job_paths(job))
     log_path = Path(job["log_path"])
     log_path.parent.mkdir(parents=True, exist_ok=True)
     with log_path.open("a", encoding="utf-8", errors="ignore") as log_file:
@@ -200,17 +212,46 @@ def _run_command(job: dict, phase: str, command: list[str]) -> int:
                                        phase=phase, pid=process.pid, command=command,
                                        working_dir=job["work_dir"], job_name=job["job_name"])
         job["_process_identity"] = evidence
+
+        def persist(return_code: int | None = None) -> None:
+            try:
+                job["process_evidence_path"] = save_phase_evidence(
+                    config.RUNTIME_DIR, job["queue_id"], phase, evidence, return_code=return_code)
+            except (OSError, ValueError, TypeError) as exc:
+                # A solver already launched must still be supervised if metadata I/O fails.
+                job["process_evidence_error"] = f"{type(exc).__name__}: {exc}"
+
+        persist()
         _write_live_status(job, phase)
+        last_saved = time.monotonic()
+        last_live = last_saved
         while process.poll() is None:
+            before = {(child.get("pid"), child.get("creation_time_100ns"))
+                      for child in evidence.get("observed_children", [])}
+            previous_scan_status = evidence.get("child_scan_status")
             try:
                 refresh_launch_evidence(evidence)
-            except (OSError, ValueError):
+            except (OSError, ValueError) as exc:
                 evidence["child_scan_status"] = "UNCONFIRMED"
-            _write_live_status(job, phase)
-            time.sleep(config.POLL_INTERVAL_SECONDS)
+                evidence["child_scan_error"] = f"{type(exc).__name__}: {exc}"
+            else:
+                evidence.pop("child_scan_error", None)
+            after = {(child.get("pid"), child.get("creation_time_100ns"))
+                     for child in evidence.get("observed_children", [])}
+            if after != before or evidence.get("child_scan_status") != previous_scan_status or time.monotonic() - last_saved >= 10:
+                persist()
+                last_saved = time.monotonic()
+            if time.monotonic() - last_live >= config.POLL_INTERVAL_SECONDS:
+                _write_live_status(job, phase)
+                last_live = time.monotonic()
+            time.sleep(min(config.POLL_INTERVAL_SECONDS, 0.5))
         return_code = process.returncode
         evidence["launcher_exit_observed"] = True
+        evidence["launcher_exit_verification"] = verify_identity(evidence["launcher"])
+        for child in evidence.get("observed_children", []):
+            child["exit_verification"] = verify_identity(child)
         evidence["last_verified_at"] = now_iso()
+        persist(return_code)
         log_file.write(f"\n[{now_iso()}] END {phase} return_code={return_code}\n")
         log_file.flush()
     _write_live_status(job, phase, {"return_code": return_code})
@@ -225,6 +266,10 @@ def run_next_job(job: dict) -> dict:
     """
 
     job = _refresh_job_paths(job)
+
+    def evidence_updates() -> dict:
+        return {key: job[key] for key in ("process_evidence_path", "process_evidence_error") if key in job}
+
     queue_id = job["queue_id"]
     started_at = job.get("started_at") or now_iso()
     update_job(
@@ -261,6 +306,7 @@ def run_next_job(job: dict) -> dict:
                 "fatal_reason": verdict.get("fatal_reason") or f"datacheck return code {return_code}",
                 "warning_count": verdict.get("warning_count"),
                 "odb_size_bytes": _odb_size(job),
+                **evidence_updates(),
             }
             final_job = update_job(queue_id, updates) or job
             _write_live_status(final_job, verdict["status"])
@@ -275,6 +321,7 @@ def run_next_job(job: dict) -> dict:
                 "final_verdict": verdict.get("final_verdict"),
                 "fatal_reason": "",
                 "warning_count": verdict.get("warning_count"),
+                **evidence_updates(),
             },
         )
         job.update({"status": "DATACHECK_OK", "phase": "DATACHECK_PASS", "return_code": return_code})
@@ -298,6 +345,7 @@ def run_next_job(job: dict) -> dict:
             "fatal_reason": verdict.get("fatal_reason"),
             "warning_count": verdict.get("warning_count"),
             "odb_size_bytes": _odb_size(job),
+            **evidence_updates(),
         }
         final_job = update_job(queue_id, updates) or job
         _write_live_status(final_job, verdict["status"])
@@ -311,6 +359,7 @@ def run_next_job(job: dict) -> dict:
         "duration_sec": _duration_seconds(started_at),
         "final_verdict": "DATACHECK_ONLY",
         "odb_size_bytes": _odb_size(job),
+        **evidence_updates(),
     }
     final_job = update_job(queue_id, updates) or job
     _write_report(final_job)

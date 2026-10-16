@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from collections import Counter
 
 
 SUCCESS_PATTERN = "THE ANALYSIS HAS COMPLETED SUCCESSFULLY"
@@ -22,6 +23,7 @@ NON_FATAL_ERROR_PHRASES = (
     "relative error",
 )
 DATACHECK_INVALID_GPU_OPTION = 'Command line option "gpus" may not be used with "datacheck"'
+WARNING_SUMMARY = re.compile(r"^\s*(\d+)\s+WARNING\s+MESSAGES?\b", re.IGNORECASE)
 
 
 def _contains_success(text: str) -> bool:
@@ -39,6 +41,29 @@ def _fatal_matches(text: str) -> list[str]:
                 matches.append(pattern)
                 break
     return matches
+
+
+def _warning_count(*sources: str) -> int:
+    """Abaqus summaries count messages; their WARNING token is not a message.
+
+    Each file may repeat the same summary or detailed warning. Prefer the
+    largest per-file summary total, then account for distinct detail lines.
+    """
+    summary_total = 0
+    detail_counts: Counter[str] = Counter()
+    for source in sources:
+        file_total = 0
+        source_details: Counter[str] = Counter()
+        for line in source.splitlines():
+            summary = WARNING_SUMMARY.match(line)
+            if summary:
+                file_total += int(summary.group(1))
+            elif re.search(r"\bWARNING\b", line, flags=re.IGNORECASE):
+                source_details[" ".join(line.casefold().split())] += 1
+        summary_total = max(summary_total, file_total)
+        for detail, count in source_details.items():
+            detail_counts[detail] = max(detail_counts[detail], count)
+    return max(summary_total, sum(detail_counts.values()))
 
 
 def parse_sta_status(sta_text: str) -> dict:
@@ -75,7 +100,7 @@ def parse_sta_status(sta_text: str) -> dict:
 
 def parse_console_status(log_text: str) -> dict:
     matches = _fatal_matches(log_text)
-    warning_count = len(re.findall(r"\bWARNING\b", log_text, flags=re.IGNORECASE))
+    warning_count = _warning_count(log_text)
     return {
         "completed_successfully": _contains_success(log_text),
         "fatal_detected": bool(matches),
@@ -115,22 +140,13 @@ def _contains_invalid_datacheck_gpu_option(text: str) -> bool:
 
 def classify_datacheck_attempt(log_text: str = "", return_code: int | None = None) -> dict:
     block = latest_attempt_block(log_text or "", "DATACHECK_RUNNING")
-    warning_count = len(re.findall(r"\bWARNING\b", block, flags=re.IGNORECASE))
+    warning_count = _warning_count(block)
 
     if _contains_invalid_datacheck_gpu_option(block):
         return {
             "status": "DATACHECK_FAILED_INVALID_GPU_OPTION",
             "final_verdict": "FAILED",
             "fatal_reason": DATACHECK_INVALID_GPU_OPTION,
-            "warning_count": warning_count,
-            "attempt_block": block,
-        }
-
-    if _contains_abaqus_job_completed(block) and "abaqus error:" not in block.lower():
-        return {
-            "status": "DATACHECK_PASS",
-            "final_verdict": "DATACHECK_PASS",
-            "fatal_reason": "",
             "warning_count": warning_count,
             "attempt_block": block,
         }
@@ -152,6 +168,14 @@ def classify_datacheck_attempt(log_text: str = "", return_code: int | None = Non
             "warning_count": warning_count,
             "attempt_block": block,
         }
+    if _contains_abaqus_job_completed(block):
+        return {
+            "status": "DATACHECK_PASS",
+            "final_verdict": "DATACHECK_PASS",
+            "fatal_reason": "",
+            "warning_count": warning_count,
+            "attempt_block": block,
+        }
     return {
         "status": "DATACHECK_PASS",
         "final_verdict": "DATACHECK_PASS",
@@ -168,9 +192,10 @@ def classify_final_verdict(
     log_text: str = "",
     return_code: int | None = None,
 ) -> dict:
-    combined = "\n".join([sta_text or "", msg_text or "", dat_text or "", log_text or ""])
+    full_log = latest_attempt_block(log_text or "", "FULL_RUNNING")
+    combined = "\n".join([sta_text or "", msg_text or "", dat_text or "", full_log])
     matches = _fatal_matches(combined)
-    warning_count = len(re.findall(r"\bWARNING\b", combined, flags=re.IGNORECASE))
+    warning_count = _warning_count(sta_text or "", msg_text or "", dat_text or "", full_log)
 
     if matches:
         return {

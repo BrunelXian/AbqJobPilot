@@ -84,14 +84,14 @@ class ProjectAutomationTests(unittest.TestCase):
         self.assertEqual(ambiguous["status"], "AMBIGUOUS_PROJECT")
         self.assertEqual(len(ambiguous["matches"]), 2)
 
-    def test_default_create_uses_application_root_and_duplicate_is_safe(self):
-        with patch("abqjobpilot.project.manager.config.APP_ROOT_PATH", self.root):
+    def test_default_create_uses_user_root_and_duplicate_is_safe(self):
+        with patch("abqjobpilot.project.manager.get_app_state_dir", return_value=self.root / "app-state"):
             result = self.client.create_project("Default Study")
         self.assertEqual(result.status, "PROJECT_CREATED")
-        destination = self.root / "projects" / "Default Study"
+        destination = self.root / "app-state" / "projects" / "Default Study"
         self.assertEqual(result.to_dict()["project"]["path"], str(destination))
         before = (destination / "project.json").read_bytes()
-        with patch("abqjobpilot.project.manager.config.APP_ROOT_PATH", self.root):
+        with patch("abqjobpilot.project.manager.get_app_state_dir", return_value=self.root / "app-state"):
             duplicate = self.client.create_project("Default Study")
         self.assertEqual(duplicate.status, "PROJECT_ALREADY_EXISTS")
         self.assertEqual(before, (destination / "project.json").read_bytes())

@@ -95,11 +95,17 @@ def inspect_pid(pid: int) -> dict:
 
 
 def capture_identity(pid: int) -> dict:
-    observed = inspect_pid(pid)
+    try:
+        observed = inspect_pid(pid)
+    except (OSError, ValueError) as exc:
+        return {"pid": pid, "identity_status": "UNCONFIRMED", "identity_source": "windows_openprocess",
+                "reason": f"process inspection failed: {type(exc).__name__}: {exc}"}
     if observed.get("state") != "ACTIVE":
-        return {"pid": pid, "identity_status": "UNCONFIRMED", "reason": observed.get("reason", observed["state"])}
+        return {"pid": pid, "identity_status": "UNCONFIRMED",
+                "identity_source": "windows_openprocess", "reason": observed.get("reason", observed["state"])}
     return {"pid": pid, "creation_time_100ns": observed["creation_time_100ns"],
-            "executable_path": observed["executable_path"], "identity_status": "CONFIRMED"}
+            "executable_path": observed["executable_path"], "identity_status": "CONFIRMED",
+            "identity_source": "windows_openprocess_getprocesstimes"}
 
 
 def verify_identity(record: dict) -> dict:
@@ -107,7 +113,10 @@ def verify_identity(record: dict) -> dict:
             or not isinstance(record.get("pid"), int) or not isinstance(record.get("creation_time_100ns"), int)
             or not isinstance(record.get("executable_path"), str) or not record["executable_path"]):
         return {"state": "UNCONFIRMED", "reason": "incomplete process identity"}
-    observed = inspect_pid(record["pid"])
+    try:
+        observed = inspect_pid(record["pid"])
+    except (OSError, ValueError) as exc:
+        return {"state": "UNCONFIRMED", "reason": f"process inspection failed: {type(exc).__name__}: {exc}"}
     if observed["state"] == "EXITED":
         if (observed.get("creation_time_100ns") is not None
                 and observed["creation_time_100ns"] != record["creation_time_100ns"]):
@@ -176,12 +185,23 @@ def observe_descendants(launcher: dict) -> dict:
                             "reason": "process image changed after the descendant snapshot"}
             identity["role"] = "solver_candidate" if (
                 row["exe"].lower() in SOLVER_NAMES or row["exe"].lower().startswith("abq")) else "descendant"
+            identity["relationship_source"] = "windows_toolhelp32_snapshot"
+            identity["relationship_status"] = (
+                "VERIFIED" if identity["identity_status"] == "CONFIRMED"
+                and parent.get("identity_status") == "CONFIRMED"
+                and isinstance(parent.get("creation_time_100ns"), int)
+                and identity.get("creation_time_100ns", 0) >= parent["creation_time_100ns"]
+                else "UNVERIFIED"
+            )
             descendants.append(identity)
             known_identities[row["pid"]] = identity
     launcher_still_active = verify_identity(launcher)["state"] == "CONFIRMED_ACTIVE"
+    if not launcher_still_active:
+        for child in descendants:
+            child["relationship_status"] = "UNVERIFIED"
     return {"state": "OK" if launcher_still_active and all(
         child["identity_status"] == "CONFIRMED"
-        and isinstance(child.get("observed_parent_creation_time_100ns"), int)
+        and child.get("relationship_status") == "VERIFIED"
         for child in descendants) else "UNCONFIRMED",
             "children": descendants}
 
@@ -201,8 +221,12 @@ def refresh_launch_evidence(evidence: dict) -> dict:
     scan = observe_descendants(evidence["launcher"])
     existing = {(item.get("pid"), item.get("creation_time_100ns")): item
                 for item in evidence.get("observed_children", [])}
+    observed_at = now_iso()
     for child in scan["children"]:
-        existing[(child.get("pid"), child.get("creation_time_100ns"))] = child
+        key = (child.get("pid"), child.get("creation_time_100ns"))
+        child["first_observed_at"] = existing.get(key, {}).get("first_observed_at", observed_at)
+        child["last_observed_at"] = observed_at
+        existing[key] = child
     evidence["observed_children"] = list(existing.values())
     evidence["child_scan_status"] = scan["state"]
     evidence["last_verified_at"] = now_iso()

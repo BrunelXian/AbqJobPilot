@@ -3,9 +3,23 @@
 from __future__ import annotations
 
 from pathlib import Path
+import hashlib
 
 APP_ROOT_PATH = Path(__file__).resolve().parents[1]
-RUNTIME_DIR_PATH = APP_ROOT_PATH / "runtime"
+
+
+def default_runtime_path() -> Path:
+    legacy = APP_ROOT_PATH / "runtime"
+    if any((legacy / name).is_file() for name in ("queue.json", "live_status.json", "settings.json")):
+        return legacy
+    for folder in ("reports", "logs"):
+        if (legacy / folder).is_dir() and any(child.is_file() and child.name != ".gitkeep" for child in (legacy / folder).iterdir()):
+            return legacy
+    installation = hashlib.sha256(str(APP_ROOT_PATH).casefold().encode("utf-8")).hexdigest()[:12]
+    return Path.home() / ".abqjobpilot" / "installations" / installation / "runtime"
+
+
+RUNTIME_DIR_PATH = default_runtime_path()
 
 ABAQUS_CMD = r"D:\ABAQUS2024\Commands\abq2024.bat"
 DEFAULT_CPUS = 14

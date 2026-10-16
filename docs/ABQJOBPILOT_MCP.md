@@ -1,14 +1,25 @@
 # AbqJobPilot MCP (0.2.2 development)
 
-The optional MCP adapter exposes five Project-bound, read-only tools over local
+The optional MCP adapter exposes five Project-bound, read-only/preview tools over local
 stdio. It delegates to the existing public Python API; it is not a second
 queue, runner, scheduler, database, or AI runtime.
 
 ## Requirements and launch
 
 The official Python MCP SDK v2 is optional (`requirements-mcp.txt` declares
-`mcp>=2,<3`). Ordinary GUI and API usage does not import it. In an environment
-where that SDK is already installed, launch from the AbqJobPilot source root:
+`mcp>=2,<3`). Ordinary GUI and API usage does not import it. For a `Develop`
+source checkout, install that optional dependency into an isolated environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-mcp.txt
+```
+
+Then configure a compatible MCP client to launch the server from the AbqJobPilot
+source root with that interpreter. The following command is the real server
+entry point; it starts a stdio server and waits for a client, so run `--help`
+instead if you only want to validate the arguments:
 
 ```powershell
 python -m abqjobpilot.mcp.server --project "D:\AbaqusProjects\ExampleManager"
@@ -36,9 +47,10 @@ format; this is an example, not an installed global configuration):
 }
 ```
 
-Use an interpreter containing the official SDK v2. This development Run was
-tested with Python 3.12.10 and MCP SDK 2.3.0 in an existing environment;
-no package installation is part of Run 001.
+Use an interpreter containing the official SDK v2. The development protocol
+tests used Python 3.12.10 and MCP SDK 2.3.0. The `cwd` key in the example is
+client-dependent; adapt the wrapper to the client's documented stdio schema.
+No specific vendor desktop client configuration has been end-to-end tested.
 
 ## Tools and identities
 
@@ -54,6 +66,26 @@ The five tools return structured JSON-compatible data with `schema_version`,
 `status`, `project_id`, `data`, `errors`, `warnings`, and `error_details`.
 Read-only tool annotations are published for clients, but the implementation
 and public API calls, not annotations, enforce the safety boundary.
+
+## Connection and rejection checks
+
+- `ModuleNotFoundError: mcp`: use the same Python interpreter for installation
+  and the client's `command`; `requirements-mcp.txt` is optional, not installed
+  by `requirements.txt`.
+- `ModuleNotFoundError: abqjobpilot`: start from the source checkout (`cwd`),
+  or make the package importable in the chosen environment.
+- Startup returns `Cannot start AbqJobPilot MCP server`: verify `--project`
+  names an existing formal Project and that its manifest is readable. There
+  is no implicit Recent/GUI/default-runtime fallback.
+- Invalid tool arguments produce an MCP tool error or structured
+  `INVALID_REQUEST`; consult the tool's input schema from `tools/list`.
+  `abq_job_status` needs explicit `scope` and `identifier`;
+  `abq_locate_outputs` needs exactly one of `queue_id` or `inp_path`.
+- The client must be allowed to read the Project and referenced engineering
+  workspace. Missing external files may be reported without changing Project
+  metadata. Never interpret ODB existence as solver-result validation.
+- Keep stdout reserved for MCP stdio transport; startup diagnostics go to
+  stderr. This server does not expose HTTP, queue writes, or solver start.
 
 ## Safety and limitations
 

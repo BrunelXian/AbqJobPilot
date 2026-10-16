@@ -69,14 +69,16 @@ class DefaultProjectRootTests(unittest.TestCase):
             old_cwd = Path.cwd()
             try:
                 os.chdir(other_cwd)
-                with patch.object(config, "APP_ROOT_PATH", app_root):
-                    self.assertEqual(default_projects_root(), app_root / "projects")
-                    self.assertFalse((app_root / "projects").exists())
-                    self.assertEqual(ensure_default_projects_root(), app_root / "projects")
-                    self.assertTrue((app_root / "projects").is_dir())
+                with patch.object(config, "APP_ROOT_PATH", app_root), \
+                     patch("abqjobpilot.project.manager.get_app_state_dir", return_value=Path(folder) / "app_state"):
+                    expected = Path(folder) / "app_state" / "projects"
+                    self.assertEqual(default_projects_root(), expected)
+                    self.assertFalse(expected.exists())
+                    self.assertEqual(ensure_default_projects_root(), expected)
+                    self.assertTrue(expected.is_dir())
                     manager = ProjectManager(recent_file=Path(folder) / "recent.json")
-                    project = manager.create_project(app_root / "projects" / "Demo", "Demo")
-                    self.assertEqual(project.root, app_root / "projects" / "Demo")
+                    project = manager.create_project(expected / "Demo", "Demo")
+                    self.assertEqual(project.root, expected / "Demo")
                     external = manager.create_project(Path(folder) / "external_project", "External")
                     self.assertEqual(manager.open_project(external.root).project_id, external.project_id)
             finally:

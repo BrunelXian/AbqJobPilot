@@ -18,6 +18,7 @@ from abqjobpilot.gui_presentation import (SUCCESS_BACKGROUND, SUCCESS_FOREGROUND
                                            filter_jobs, read_log_tail, status_presentation)
 from abqjobpilot.gui_table_state import queue_display_jobs, result_display_jobs, row_iid
 from abqjobpilot.project import ProjectManager
+from abqjobpilot.project.manager import default_projects_root
 from abqjobpilot.queue_store import build_queue_record, read_queue, save_queue
 from abqjobpilot.utils import write_json
 
@@ -321,8 +322,8 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
              patch("abqjobpilot.gui_app.filedialog.askdirectory", return_value=str(external_parent)) as choose, \
              patch("abqjobpilot.gui_app.simpledialog.askstring", return_value="External"):
             destination = app._new_project_destination("Select Project parent")
-        self.assertEqual(Path(choose.call_args.kwargs["initialdir"]), app_root / "projects")
-        self.assertTrue((app_root / "projects").is_dir())
+        self.assertEqual(Path(choose.call_args.kwargs["initialdir"]), default_projects_root())
+        self.assertTrue(default_projects_root().is_dir())
         self.assertEqual(destination[0], external_parent / "External")
         project = app.project_manager.create_project(*destination)
         self.assertEqual(project.root, external_parent / "External")
@@ -369,6 +370,7 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
                    patch.object(config, "QUEUE_FILE", str(self.runtime / "queue.json")),
                    patch.object(config, "LIVE_STATUS_FILE", str(self.runtime / "live_status.json")),
                    patch.object(config, "SETTINGS_FILE", str(self.runtime / "settings.json")),
+                   patch("abqjobpilot.project.manager.get_app_state_dir", return_value=self.root / "app_state"),
                    patch("abqjobpilot.gui_app.ProjectManager", return_value=self.manager),
                    patch.object(AbqJobPilotApp, "_read_gpu_text", return_value="--"))
         for item in patches:
@@ -640,7 +642,7 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
         app = self.app
         for width, height in ((1280, 800), (1440, 900)):
             app.geometry(f"{width}x{height}")
-            app.update_idletasks()
+            app.update()
             self.assertGreater(app.queue_tree.winfo_width(), 400)
             self.assertGreater(app.results_tree.winfo_width(), 500)
             self.assertLess(abs(app.queue_frame.winfo_width() - app.results_frame.winfo_width()), 24)

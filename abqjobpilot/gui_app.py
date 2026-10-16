@@ -38,7 +38,7 @@ from .queue_store import (
 from .api import AbqJobPilotClient, JobRequest
 from .api.status_reader import expected_paths
 from .project import ProjectInfo, ProjectManager, export_project_archive, import_legacy_runtime, import_project_archive
-from .project.manager import ensure_default_projects_root
+from .project.manager import default_projects_root, ensure_default_projects_root, set_default_projects_root
 from .database import DatabaseFailure, ProjectHistoryRepository, sync_history_from_runtime
 from .status_codes import normalize_status
 from .runner_core import QueueRunner
@@ -106,7 +106,7 @@ class BasicSettingsDialog(tk.Toplevel):
     def __init__(self, master, on_saved=None):
         super().__init__(master)
         self.title("Basic Settings")
-        self.geometry("580x390")
+        self.geometry("680x435")
         self.resizable(False, False)
         self.on_saved = on_saved
         settings = load_settings()
@@ -120,6 +120,7 @@ class BasicSettingsDialog(tk.Toplevel):
         self.auto_shutdown_var = tk.BooleanVar(value=settings["auto_shutdown_enabled"])
         self.auto_shutdown_minutes_var = tk.IntVar(value=settings["auto_shutdown_idle_minutes"])
         self.apply_queued_var = tk.BooleanVar(value=True)
+        self.projects_root_var = tk.StringVar(value=str(default_projects_root()))
 
         self.columnconfigure(1, weight=1)
         self._build_widgets()
@@ -128,7 +129,7 @@ class BasicSettingsDialog(tk.Toplevel):
 
     def _build_widgets(self) -> None:
         pad = {"padx": 10, "pady": 6}
-        ttk.Label(self, text="Abaqus command").grid(row=0, column=0, sticky="w", **pad)
+        ttk.Label(self, text="Abaqus command (current runtime)").grid(row=0, column=0, sticky="w", **pad)
         ttk.Entry(self, textvariable=self.abaqus_cmd_var).grid(row=0, column=1, columnspan=2, sticky="ew", **pad)
 
         ttk.Label(self, text="Default CPUs").grid(row=1, column=0, sticky="w", **pad)
@@ -159,14 +160,21 @@ class BasicSettingsDialog(tk.Toplevel):
             text="Apply these values to existing QUEUED jobs",
             variable=self.apply_queued_var,
         ).grid(row=8, column=0, columnspan=3, sticky="w", **pad)
+        ttk.Label(self, text="Default Projects folder (global)").grid(row=9, column=0, sticky="w", **pad)
+        ttk.Entry(self, textvariable=self.projects_root_var).grid(row=9, column=1, columnspan=2, sticky="ew", **pad)
 
         button_frame = ttk.Frame(self)
-        button_frame.grid(row=9, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
+        button_frame.grid(row=10, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
         ttk.Button(button_frame, text="Save", command=self.save).grid(row=0, column=0, padx=(0, 8))
         ttk.Button(button_frame, text="Cancel", command=self.destroy).grid(row=0, column=1)
 
     def save(self) -> None:
         try:
+            projects_root = Path(self.projects_root_var.get().strip()).expanduser().resolve()
+            if not self.projects_root_var.get().strip():
+                raise ValueError("Default Projects folder is required")
+            if projects_root == config.APP_ROOT_PATH or config.APP_ROOT_PATH in projects_root.parents:
+                raise ValueError("Default Projects folder must be outside the application directory")
             settings = save_settings(
                 {
                     "abaqus_cmd": self.abaqus_cmd_var.get().strip() or config.ABAQUS_CMD,
@@ -179,6 +187,7 @@ class BasicSettingsDialog(tk.Toplevel):
                     "auto_shutdown_idle_minutes": int(self.auto_shutdown_minutes_var.get()),
                 }
             )
+            set_default_projects_root(projects_root)
         except (TypeError, ValueError) as exc:
             messagebox.showerror("Settings", f"Invalid settings: {exc}")
             return

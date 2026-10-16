@@ -20,7 +20,7 @@ ARCHIVE_SCHEMA_VERSION = "1.0"
 PROJECT_PATH_PREFIX = "project://"
 PATH_FIELDS = frozenset({
     "inp_path", "work_dir", "working_dir", "odb_path", "sta_path",
-    "msg_path", "dat_path", "log_path", "lck_path", "report_path",
+    "msg_path", "dat_path", "log_path", "lck_path", "report_path", "runtime_dir",
 })
 
 
