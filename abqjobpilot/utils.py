@@ -49,7 +49,10 @@ def write_json(path: str | Path, data) -> None:
         tmp = target.with_name(f"{target.name}.{uuid.uuid4().hex}.tmp")
         try:
             with _JSON_LOCK:
-                tmp.write_text(text, encoding="utf-8")
+                with tmp.open("w", encoding="utf-8") as stream:
+                    stream.write(text)
+                    stream.flush()
+                    os.fsync(stream.fileno())
                 os.replace(str(tmp), str(target))
                 return
         except OSError as exc:
