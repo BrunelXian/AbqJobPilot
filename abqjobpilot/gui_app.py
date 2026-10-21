@@ -43,7 +43,7 @@ from .database import DatabaseFailure, ProjectHistoryRepository, sync_history_fr
 from .status_codes import normalize_status
 from .runner_core import QueueRunner
 from .recovery_dialog import RecoveryDialog
-from .settings_store import load_settings, save_settings
+from .settings_store import DEFAULT_SETTINGS, inspect_settings_for_runtime, load_settings, save_settings
 from .utils import format_bytes, now_iso, open_folder, read_json, tail_text, write_json
 
 
@@ -103,24 +103,30 @@ MENU_LABELS = {
 
 
 class BasicSettingsDialog(tk.Toplevel):
-    def __init__(self, master, on_saved=None):
+    def __init__(self, master, on_saved=None, *, runtime_dir, project_id=None, validate_context=None):
         super().__init__(master)
         self.title("Basic Settings")
-        self.geometry("680x435")
-        self.resizable(False, False)
+        self.geometry("760x540")
+        self.minsize(720, 520)
         self.on_saved = on_saved
-        settings = load_settings()
+        self.runtime_dir = Path(runtime_dir).expanduser().resolve()
+        self.settings_file = self.runtime_dir / "settings.json"
+        self.project_id = project_id
+        self.validate_context = validate_context
+        self.persistence = inspect_settings_for_runtime(self.runtime_dir)
+        settings = self.persistence["effective_settings"] or DEFAULT_SETTINGS.copy()
 
         self.abaqus_cmd_var = tk.StringVar(value=settings["abaqus_cmd"])
         self.cpus_var = tk.IntVar(value=settings["default_cpus"])
         self.use_gpu_var = tk.BooleanVar(value=settings["use_gpu"])
-        self.gpus_var = tk.IntVar(value=settings["default_gpus"] if settings["default_gpus"] else 1)
+        self.gpus_var = tk.IntVar(value=settings["default_gpus"])
         self.datacheck_var = tk.BooleanVar(value=settings["run_datacheck"])
         self.full_run_var = tk.BooleanVar(value=settings["run_full"])
         self.auto_shutdown_var = tk.BooleanVar(value=settings["auto_shutdown_enabled"])
         self.auto_shutdown_minutes_var = tk.IntVar(value=settings["auto_shutdown_idle_minutes"])
-        self.apply_queued_var = tk.BooleanVar(value=True)
-        self.projects_root_var = tk.StringVar(value=str(default_projects_root()))
+        self.apply_queued_var = tk.BooleanVar(value=False)
+        self._projects_root = default_projects_root()
+        self.projects_root_var = tk.StringVar(value=str(self._projects_root))
 
         self.columnconfigure(1, weight=1)
         self._build_widgets()
@@ -129,47 +135,59 @@ class BasicSettingsDialog(tk.Toplevel):
 
     def _build_widgets(self) -> None:
         pad = {"padx": 10, "pady": 6}
-        ttk.Label(self, text="Abaqus command (current runtime)").grid(row=0, column=0, sticky="w", **pad)
-        ttk.Entry(self, textvariable=self.abaqus_cmd_var).grid(row=0, column=1, columnspan=2, sticky="ew", **pad)
+        target = self.project_id or "No Project"
+        ttk.Label(self, text=f"Project: {target}\n{self.settings_file}", wraplength=710).grid(
+            row=0, column=0, columnspan=3, sticky="w", **pad)
+        state = self.persistence["status"]
+        if not self.persistence["persisted"]:
+            state += " - defaults shown; not verified as saved"
+        if self.persistence["errors"]:
+            state += ": " + "; ".join(self.persistence["errors"])
+        ttk.Label(self, text=state, wraplength=710).grid(row=1, column=0, columnspan=3, sticky="w", **pad)
+        ttk.Label(self, text="Abaqus command (bound runtime)").grid(row=2, column=0, sticky="w", **pad)
+        ttk.Entry(self, textvariable=self.abaqus_cmd_var).grid(row=2, column=1, columnspan=2, sticky="ew", **pad)
 
-        ttk.Label(self, text="Default CPUs").grid(row=1, column=0, sticky="w", **pad)
-        ttk.Spinbox(self, from_=1, to=128, textvariable=self.cpus_var, width=8).grid(row=1, column=1, sticky="w", **pad)
+        ttk.Label(self, text="Default CPUs").grid(row=3, column=0, sticky="w", **pad)
+        ttk.Spinbox(self, from_=1, to=128, textvariable=self.cpus_var, width=8).grid(row=3, column=1, sticky="w", **pad)
         preset_frame = ttk.Frame(self)
-        preset_frame.grid(row=1, column=2, sticky="w", **pad)
+        preset_frame.grid(row=3, column=2, sticky="w", **pad)
         ttk.Button(preset_frame, text="12", width=4, command=lambda: self.cpus_var.set(12)).grid(row=0, column=0, padx=(0, 4))
         ttk.Button(preset_frame, text="14", width=4, command=lambda: self.cpus_var.set(14)).grid(row=0, column=1)
 
-        ttk.Checkbutton(self, text="Use GPU", variable=self.use_gpu_var).grid(row=2, column=0, sticky="w", **pad)
-        ttk.Label(self, text="GPUs").grid(row=2, column=1, sticky="w", **pad)
-        ttk.Spinbox(self, from_=0, to=8, textvariable=self.gpus_var, width=8).grid(row=2, column=2, sticky="w", **pad)
+        ttk.Checkbutton(self, text="Use GPU", variable=self.use_gpu_var).grid(row=4, column=0, sticky="w", **pad)
+        ttk.Label(self, text="GPUs").grid(row=4, column=1, sticky="w", **pad)
+        ttk.Spinbox(self, from_=0, to=8, textvariable=self.gpus_var, width=8).grid(row=4, column=2, sticky="w", **pad)
 
-        ttk.Checkbutton(self, text="Run datacheck first", variable=self.datacheck_var).grid(row=3, column=0, columnspan=2, sticky="w", **pad)
-        ttk.Checkbutton(self, text="Run full analysis", variable=self.full_run_var).grid(row=4, column=0, columnspan=2, sticky="w", **pad)
+        ttk.Checkbutton(self, text="Run datacheck first", variable=self.datacheck_var).grid(row=5, column=0, columnspan=2, sticky="w", **pad)
+        ttk.Checkbutton(self, text="Run full analysis", variable=self.full_run_var).grid(row=6, column=0, columnspan=2, sticky="w", **pad)
         ttk.Checkbutton(
             self,
             text="Auto shutdown after queue is done and system is idle",
             variable=self.auto_shutdown_var,
-        ).grid(row=5, column=0, columnspan=3, sticky="w", **pad)
-        ttk.Label(self, text="Idle minutes before shutdown").grid(row=6, column=0, sticky="w", **pad)
-        ttk.Spinbox(self, from_=1, to=240, textvariable=self.auto_shutdown_minutes_var, width=8).grid(row=6, column=1, sticky="w", **pad)
+        ).grid(row=7, column=0, columnspan=3, sticky="w", **pad)
+        ttk.Label(self, text="Idle minutes before shutdown").grid(row=8, column=0, sticky="w", **pad)
+        ttk.Spinbox(self, from_=1, to=240, textvariable=self.auto_shutdown_minutes_var, width=8).grid(row=8, column=1, sticky="w", **pad)
         ttk.Label(self, text="Default: 5 minutes. Windows shows a 60-second shutdown warning.").grid(
-            row=7, column=0, columnspan=3, sticky="w", **pad
+            row=9, column=0, columnspan=3, sticky="w", **pad
         )
         ttk.Checkbutton(
             self,
             text="Apply these values to existing QUEUED jobs",
             variable=self.apply_queued_var,
-        ).grid(row=8, column=0, columnspan=3, sticky="w", **pad)
-        ttk.Label(self, text="Default Projects folder (global)").grid(row=9, column=0, sticky="w", **pad)
-        ttk.Entry(self, textvariable=self.projects_root_var).grid(row=9, column=1, columnspan=2, sticky="ew", **pad)
+        ).grid(row=10, column=0, columnspan=3, sticky="w", **pad)
+        ttk.Label(self, text="Default Projects folder (global)").grid(row=11, column=0, sticky="w", **pad)
+        ttk.Entry(self, textvariable=self.projects_root_var).grid(row=11, column=1, columnspan=2, sticky="ew", **pad)
 
         button_frame = ttk.Frame(self)
-        button_frame.grid(row=10, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
+        button_frame.grid(row=12, column=0, columnspan=3, sticky="e", padx=10, pady=(18, 10))
         ttk.Button(button_frame, text="Save", command=self.save).grid(row=0, column=0, padx=(0, 8))
         ttk.Button(button_frame, text="Cancel", command=self.destroy).grid(row=0, column=1)
 
     def save(self) -> None:
+        verified = False
         try:
+            if self.validate_context:
+                self.validate_context()
             projects_root = Path(self.projects_root_var.get().strip()).expanduser().resolve()
             if not self.projects_root_var.get().strip():
                 raise ValueError("Default Projects folder is required")
@@ -185,19 +203,26 @@ class BasicSettingsDialog(tk.Toplevel):
                     "run_full": bool(self.full_run_var.get()),
                     "auto_shutdown_enabled": bool(self.auto_shutdown_var.get()),
                     "auto_shutdown_idle_minutes": int(self.auto_shutdown_minutes_var.get()),
-                }
+                }, runtime_dir=self.runtime_dir,
             )
-            set_default_projects_root(projects_root)
-        except (TypeError, ValueError) as exc:
-            messagebox.showerror("Settings", f"Invalid settings: {exc}")
+            verified = True
+            if projects_root != self._projects_root:
+                set_default_projects_root(projects_root)
+            if self.apply_queued_var.get():
+                if self.validate_context:
+                    self.validate_context()
+                result = apply_resources_to_queued_jobs(
+                    settings["default_cpus"],
+                    settings["default_gpus"] if settings["use_gpu"] else 0,
+                    settings["run_datacheck"], settings["run_full"], runtime_dir=self.runtime_dir,
+                )
+                if not result.get("ok"):
+                    raise RuntimeError(result.get("message", "Queue update failed"))
+        except (OSError, TypeError, ValueError, RuntimeError, tk.TclError) as exc:
+            state = "Settings saved and verified, but a subsequent update failed" if verified else "Settings save not verified"
+            messagebox.showerror("Settings", f"{state}\n{self.settings_file}\n{exc}", parent=self)
             return
-        if self.apply_queued_var.get():
-            apply_resources_to_queued_jobs(
-                settings["default_cpus"],
-                settings["default_gpus"] if settings["use_gpu"] else 0,
-                settings["run_datacheck"],
-                settings["run_full"],
-            )
+        messagebox.showinfo("Settings", f"Saved and verified\nProject: {self.project_id or 'No Project'}\n{self.settings_file}", parent=self)
         if self.on_saved:
             self.on_saved(settings)
         self.destroy()
@@ -249,6 +274,8 @@ class AbqJobPilotApp(tk.Tk):
         self.project_name_var = tk.StringVar()
         self.project_controls: dict[str, ttk.Button] = {}
         self._agent_console: AgentCommandConsole | None = None
+        self._settings_dialog: BasicSettingsDialog | None = None
+        self._project_context_revision = 0
         self._history_signature: tuple | None = None
         self.lang = "en"
         self.toolbar_buttons: dict[str, ttk.Button] = {}
@@ -495,10 +522,14 @@ class AbqJobPilotApp(tk.Tk):
         if self._agent_console is not None and self._agent_console.winfo_exists():
             messagebox.showwarning("Project", "Close Agent Command Console before switching projects.")
             return False
+        if self._settings_dialog is not None and self._settings_dialog.winfo_exists():
+            messagebox.showwarning("Project", "Close Basic Settings before switching projects.")
+            return False
         return True
 
     def _activate_project(self, project: ProjectInfo | None) -> None:
         self._hide_details()
+        self._project_context_revision += 1
         config.use_runtime_dir(project.runtime_dir if project else None)
         self.project_manager.current = project
         self._runner_was_running = False
@@ -2015,8 +2046,38 @@ class AbqJobPilotApp(tk.Tk):
         else:
             messagebox.showerror("Add Folder", result.get("message", "No jobs added"))
 
+    def _settings_binding(self) -> tuple:
+        project = self.project_manager.current
+        runtime = project.runtime_dir if project else config.RUNTIME_DIR_PATH
+        return (project.project_id if project else None, project.root.resolve() if project else None,
+                Path(runtime).resolve(), self._project_context_revision)
+
     def open_settings(self) -> None:
-        BasicSettingsDialog(self, on_saved=lambda _settings: self.refresh_all())
+        if self._settings_dialog is not None and self._settings_dialog.winfo_exists():
+            self._settings_dialog.lift()
+            return
+        binding = self._settings_binding()
+        project_id, project_root, runtime, _revision = binding
+
+        def validate_context():
+            if self._settings_binding() != binding:
+                raise ValueError("GUI Project changed. Close and reopen Basic Settings.")
+            if (Path(config.RUNTIME_DIR).resolve() != runtime
+                    or Path(config.SETTINGS_FILE).resolve() != runtime / "settings.json"):
+                raise ValueError("GUI runtime/settings path mismatch. Reopen the GUI Project before saving.")
+            if project_root is not None:
+                actual = self.project_manager.validate_project(project_root)
+                if actual.project_id != project_id or actual.runtime_dir.resolve() != runtime:
+                    raise ValueError("Project identity/runtime changed on disk. Reopen the Project.")
+
+        try:
+            validate_context()
+            self._settings_dialog = BasicSettingsDialog(
+                self, on_saved=lambda _settings: self.refresh_all(), runtime_dir=runtime,
+                project_id=project_id, validate_context=validate_context,
+            )
+        except (OSError, ValueError) as exc:
+            messagebox.showerror("Settings", f"Cannot open Settings for {runtime}: {exc}", parent=self)
 
     def open_agent_console(self) -> None:
         if self._agent_console is not None and self._agent_console.winfo_exists():

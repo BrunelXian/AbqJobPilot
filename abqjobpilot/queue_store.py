@@ -462,8 +462,9 @@ def apply_resources_to_queued_jobs(
     gpus: int,
     run_datacheck: bool,
     run_full: bool,
+    runtime_dir: str | Path | None = None,
 ) -> dict:
-    jobs = load_queue()
+    jobs = load_queue() if runtime_dir is None else read_queue(runtime_dir, strict=True)
     updated = 0
     for job in jobs:
         if job.get("status") == "QUEUED":
@@ -473,5 +474,5 @@ def apply_resources_to_queued_jobs(
             job["run_full"] = bool(run_full)
             updated += 1
     if updated:
-        save_queue(jobs)
+        save_queue(jobs, runtime_dir=runtime_dir)
     return {"ok": True, "message": f"Updated {updated} queued job(s).", "updated": updated}
