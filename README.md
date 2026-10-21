@@ -25,7 +25,9 @@ Abaqus parameter studies and simulation batches are often managed through separa
 
 Its **Agent-ready** interfaces let an external coding assistant or automation script validate a request, inspect Jobs, locate outputs, and—with explicit queue-only APIs—prepare a queue. **AbqJobPilot is not an autonomous CAE agent**, and its current MCP server cannot enqueue Jobs or start Abaqus.
 
-This README describes the **`Develop` branch (`0.2.2.dev0`)**. Features and validation boundaries differ from the stable `main` branch; see [Release Channels](#release-channels).
+This README describes the **`Develop` branch (`0.3.0.dev0`)**. Features and validation boundaries differ from the stable `main` branch; see [Release Channels](#release-channels).
+
+`0.3.0.dev0` marks development toward `0.3.0`. The [Agent-first design and implementation plan](docs/agent_first/run_001_resume/FINAL_SUMMARY.md) does not imply that the proposed execution service is implemented or that real Abaqus execution has passed acceptance.
 
 ## Interface
 
@@ -237,7 +239,7 @@ AbqJobPilot is designed to distinguish **what was requested**, **what was record
 | Channel | Branch | Positioning |
 | --- | --- | --- |
 | Stable source | [`main`](https://github.com/BrunelXian/AbqJobPilot/tree/main) | Published stable code line; its feature set and version must be checked independently. |
-| Development source | [`Develop`](https://github.com/BrunelXian/AbqJobPilot/tree/Develop) | **`0.2.2.dev0`** in the documented checkout; Project improvements, Agent interfaces and optional MCP. |
+| Development source | [`Develop`](https://github.com/BrunelXian/AbqJobPilot/tree/Develop) | **`0.3.0.dev0`** in the documented checkout; Project improvements, Agent interfaces and optional MCP. |
 
 This repository's earlier `main` source reported `0.1.0`, while the separately installed local stable application may have a different version. Do not treat a locally installed stable version as a statement about the current GitHub `main` branch. This README documents the development source and does **not** advertise a compiled release artifact.
 

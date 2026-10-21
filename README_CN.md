@@ -25,7 +25,9 @@
 
 它还提供 **Agent-ready** 接口：外部 AI 编程助手或脚本可以检查输入、准备作业、查询状态和定位输出；明确授权的队列接口可以入队。但是，**AbqJobPilot 并不是完整的自主 CAE Agent**，当前 MCP 服务也不能直接入队或启动 Abaqus。
 
-本文介绍 **`Develop` 分支（`0.2.2.dev0`）**。稳定版 `main` 与开发版功能不完全相同，详情见[版本与分支](#版本与分支)。
+本文介绍 **`Develop` 分支（`0.3.0.dev0`）**。稳定版 `main` 与开发版功能不完全相同，详情见[版本与分支](#版本与分支)。
+
+`0.3.0.dev0` 标识面向 `0.3.0` 的开发阶段。[Agent-first 设计与实施计划](docs/agent_first/run_001_resume/FINAL_SUMMARY.md)不表示拟议执行服务已经实现，也不表示真实 Abaqus 执行已通过验收。
 
 ## 软件界面
 
@@ -234,7 +236,7 @@ AbqJobPilot 的设计要求区分：**用户请求了什么、系统记录了什
 | 通道 | 分支 | 定位 |
 | --- | --- | --- |
 | 稳定版源码 | [`main`](https://github.com/BrunelXian/AbqJobPilot/tree/main) | 已发布的稳定代码线，需按其自身版本判断功能。 |
-| 开发版源码 | [`Develop`](https://github.com/BrunelXian/AbqJobPilot/tree/Develop) | 本文所述 **`0.2.2.dev0`**，含 Project、Agent/MCP 和过程证据等开发功能。 |
+| 开发版源码 | [`Develop`](https://github.com/BrunelXian/AbqJobPilot/tree/Develop) | 本文所述 **`0.3.0.dev0`**，含 Project、Agent/MCP 和过程证据等开发功能。 |
 
 先前检查的远端 `main` 源码版本为 `0.1.0`；本机另外安装的稳定程序可以有不同版本。不要把本地稳定程序版本等同于 GitHub `main` 的当前版本。本文说明的是源码开发分支，不宣称存在对应的独立安装包。
 
