@@ -33,7 +33,7 @@ class PresentationTests(unittest.TestCase):
         self.assertIsNone(github_url_from_remote("git@github.com:../AbqJobPilot.git"))
 
     def test_app_version_and_agent_reference_are_canonical(self):
-        self.assertEqual(__version__, "0.2.2.dev0")
+        self.assertEqual(__version__, "0.3.0.dev0")
         self.assertEqual(tuple(dict.fromkeys(name.split()[0] for name in COMMAND_EXAMPLES)),
                          SUPPORTED_COMMANDS)
         for name, example in COMMAND_EXAMPLES.items():
@@ -44,8 +44,8 @@ class PresentationTests(unittest.TestCase):
             self.assertIn(example, AI_INSTRUCTION)
         self.assertIn("capabilities --json", CLI_EXAMPLES)
         self.assertNotIn("solver-start", CLI_EXAMPLES)
-        self.assertNotIn('"0.2.2.dev0"', (Path(__file__).parents[1] / "abqjobpilot" / "gui_app.py").read_text(encoding="utf-8"))
-        self.assertNotIn('"0.2.2.dev0"', (Path(__file__).parents[1] / "abqjobpilot" / "api" / "client.py").read_text(encoding="utf-8"))
+        self.assertNotIn(f'"{__version__}"', (Path(__file__).parents[1] / "abqjobpilot" / "gui_app.py").read_text(encoding="utf-8"))
+        self.assertNotIn(f'"{__version__}"', (Path(__file__).parents[1] / "abqjobpilot" / "api" / "client.py").read_text(encoding="utf-8"))
 
     def test_success_with_warnings_uses_exact_same_tag_and_keeps_identity(self):
         complete = status_presentation("COMPLETED_OK")
@@ -95,12 +95,12 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
     def test_g2_3_log_access_running_highlight_and_about(self):
         app = self.app
         self.assertEqual(app.title(), "AbqJobPilot")
-        self.assertEqual(__version__, "0.2.2.dev0")
         help_menu = app.nametowidget(app.menu_bar.entrycget(5, "menu"))
         self.assertEqual(help_menu.entrycget(0, "label"), "About AbqJobPilot")
         help_menu.invoke(0)
         self.assertEqual(app.about_window.title(), "About AbqJobPilot")
         self.assertIn(f"Version {__version__}", app.about_version_label.cget("text"))
+        self.assertIn("Development build", app.about_version_label.cget("text"))
         self.assertEqual(app.about_repo_label.cget("text"), STABLE_GITHUB_URL)
         self.assertIn("INP queues", app.about_description_label.cget("text"))
         self.assertIn("original engineering workspace", app.about_ownership_label.cget("text"))
@@ -116,6 +116,7 @@ class TaskWorkspaceGuiTests(unittest.TestCase):
         help_menu.invoke(0)
         self.assertEqual(app.about_window.title(), "关于 AbqJobPilot")
         self.assertIn(f"版本 {__version__}", app.about_version_label.cget("text"))
+        self.assertIn("开发版本", app.about_version_label.cget("text"))
         self.assertEqual(app.about_open_button.cget("text"), "打开 GitHub")
         self.assertEqual(app.about_copy_button.cget("text"), "复制链接")
         self.assertIn("批量运行", app.about_description_label.cget("text"))

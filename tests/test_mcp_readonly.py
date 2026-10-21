@@ -12,6 +12,7 @@ from pathlib import Path
 
 import pytest
 
+from abqjobpilot import __version__
 from abqjobpilot.database import ProjectHistoryRepository
 from abqjobpilot.mcp.tools import ReadOnlyTools
 from abqjobpilot.project.manager import ProjectManager
@@ -151,7 +152,7 @@ def test_protocol_stdio_initialize_list_call_and_integrity(fixture_project, tmp_
             async with Client(params, mode="legacy", read_timeout_seconds=15) as client:
                 assert client.protocol_version is not None
                 assert client.server_info is not None
-                assert client.server_info.version == "0.2.2.dev0"
+                assert client.server_info.version == __version__
                 tools = await client.list_tools()
                 names = {tool.name for tool in tools.tools}
                 assert names == {"abq_preflight", "abq_list_jobs", "abq_job_status",
@@ -228,7 +229,7 @@ def test_normal_api_and_gui_import_without_optional_sdk():
         timeout=15, check=False,
     )
     assert result.returncode == 0, result.stderr
-    assert result.stdout.strip() == "0.2.2.dev0 True"
+    assert result.stdout.strip() == f"{__version__} True"
 
 
 def test_log_tail_is_bounded_and_chronological(tmp_path):
