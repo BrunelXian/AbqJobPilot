@@ -53,6 +53,10 @@ class AbqJobPilotClient:
     def show_project(self, **selector) -> AutomationResult:
         return self.projects.show_project(**selector)
 
+    def get_project_settings(self, **selector) -> AutomationResult:
+        """Query actual persisted settings with an explicit Project path, ID, or name."""
+        return self.projects.get_project_settings(**selector)
+
     def update_project(self, **fields_and_selector) -> AutomationResult:
         if "description" in fields_and_selector and "update_description" not in fields_and_selector:
             fields_and_selector["update_description"] = True
@@ -87,6 +91,7 @@ class AbqJobPilotClient:
                 "list": True, "status": True, "locate_outputs": True,
                 "project_list": True, "project_create": True, "project_show": True,
                 "project_update": True, "project_register": True, "project_unregister": True,
+                "project_settings_read": True,
                 "project_export": True, "project_import": True,
                 "job_list": True, "job_show": True,
                 "solver_start": False, "project_delete": False,

@@ -67,6 +67,44 @@ behavior when no Project selector is given.
 
 ## Agent Command and MCP boundaries
 
+### Read-only Project Settings persistence
+
+```python
+from abqjobpilot.api import AbqJobPilotClient
+
+result = AbqJobPilotClient().get_project_settings(project=r"D:\CAE\ExampleProject")
+print(result.to_json())
+```
+
+Use an explicit `project`, `project_id`, or unambiguous `project_name` selector. This
+Python query does not switch the GUI or Agent Console target, register a Project,
+initialize a database, or write settings/queue files. Capabilities advertises it
+as `project_settings_read`; it does not add an MCP tool or CLI command.
+
+The result includes `project_id`, `project_path`, `runtime_dir`, `settings_file`,
+`persisted`, `exists`, `settings`, `effective_settings`, and `defaulted_fields`.
+`settings` contains actual disk values; `effective_settings` separately includes
+compatibility defaults. An older partial file may be persisted while some fields
+are defaulted. Check `defaulted_fields` when verifying specific saved values.
+
+Possible persistence statuses are `PERSISTED`, `NOT_PERSISTED`,
+`INVALID_SETTINGS`, `SETTINGS_READ_FAILED`, and `SETTINGS_PATH_MISMATCH`.
+A missing file returns `NOT_PERSISTED`, `persisted=False`, and `settings=None`;
+defaults are never presented as proof that a file was saved. Invalid or unreadable
+files return explicit errors. Existing Project-selector errors remain unchanged.
+The legacy `load_settings_for_runtime()` remains an effective-defaults loader,
+not a persistence check.
+
+Basic Settings binds its GUI Project/runtime when opened, displays the target
+path and persistence state, and verifies the disk file after saving. Close it
+before switching GUI Projects. Agent Console target selection is independent.
+Applying values to existing QUEUED jobs is opt-in and defaults to off. Global
+default-Projects-folder preferences are separate from Project runtime settings;
+a later preference/queue update failure is reported separately from a verified
+settings save. These writes are not one cross-file transaction.
+
+### Command interfaces
+
 The in-GUI Agent Command Console is a small human-readable command interface.
 It requires an explicit formal Project target for `enqueue`, `enqueue-folder`,
 `list`, `status`, and `outputs`; `project use` only changes that Console's

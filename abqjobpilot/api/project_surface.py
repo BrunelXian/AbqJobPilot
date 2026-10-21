@@ -18,6 +18,7 @@ from abqjobpilot.project.manager import (ProjectManager, default_projects_root,
 from abqjobpilot.project.models import ProjectInfo
 from abqjobpilot.queue_store import read_queue
 from abqjobpilot.status_codes import normalize_status
+from abqjobpilot.settings_store import inspect_settings_for_runtime
 
 
 @dataclass
@@ -145,6 +146,18 @@ class ProjectAutomationSurface:
                                 "running": sum(normalize_status(item.get("status")) == "RUNNING" for item in records),
                                 "total_records": len(records)}
             return AutomationResult("OK", {"project": summary})
+        return self._guard(action)
+
+    def get_project_settings(self, **selector: str | None) -> AutomationResult:
+        """Read persistence evidence for an explicit Project; never register or initialize it."""
+        def action() -> AutomationResult:
+            info = self.resolve(**selector)
+            result = inspect_settings_for_runtime(info.runtime_dir)
+            status = result.pop("status")
+            errors = result.pop("errors")
+            return AutomationResult(status, {"project_id": info.project_id,
+                                             "project_path": str(info.root), **result}, errors,
+                                    error_details=[{"code": status, "message": error} for error in errors])
         return self._guard(action)
 
     def _history_counts(self, info: ProjectInfo) -> dict[str, int | None]:
