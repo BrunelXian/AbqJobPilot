@@ -1,0 +1,275 @@
+{
+  "read_at_utc": "2026-10-23T06:31:08.362282+00:00",
+  "canonical_body_digest": "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6",
+  "manifest_file_bytes_sha256": "560d37d3dd44ed25c3fc44c3daa159403fe1e765963980d9eab570f3bf4a2fb5",
+  "canonical_rule": "execution.models.digest(body), sorted compact strict JSON UTF-8; not the pretty JSON file hash",
+  "existing_readonly_review": {
+    "status": "OFFLINE_PACKAGE_UNCHANGED",
+    "experiment_id": "abq2024_r010_a19d17ea",
+    "manifest_digest": "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6",
+    "preview_digest": "sha256:1ed98f391032fe9b34a31f87200d5884266e312bb5f2ffc6ce3c0881b3b42b01",
+    "execution_authorized": false,
+    "run_created": false,
+    "runtime_verified": false,
+    "output_reserved": false,
+    "warning": "Read view only; changed materials or output competition require refusal before any future launch"
+  },
+  "materials": [
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\engineering\\axial_bar.inp",
+      "expected_sha256": "e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3",
+      "actual_sha256": "e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3",
+      "bytes": 420,
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\project.json",
+      "expected_sha256": "6aa17b620a89f783ed0c490107d6ea96bd066654134416dc4a602b917bc635ab",
+      "actual_sha256": "6aa17b620a89f783ed0c490107d6ea96bd066654134416dc4a602b917bc635ab",
+      "bytes": 107,
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\profile.json",
+      "expected_sha256": "66133b519c491964b1a160e99e982c497859e46a8d5c3b3e1f10cbe16af93892",
+      "actual_sha256": "66133b519c491964b1a160e99e982c497859e46a8d5c3b3e1f10cbe16af93892",
+      "bytes": 292,
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\preview.json",
+      "expected_sha256": "30c720c615558a59bd34ef69f2445e95661242a9e68994759b09a54a77171d19",
+      "actual_sha256": "30c720c615558a59bd34ef69f2445e95661242a9e68994759b09a54a77171d19",
+      "bytes": 3076,
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\analytical_reference.json",
+      "expected_sha256": "d9e7d3ad446016693a89f3797cb8902950c23772049a851547f6db89c6d0db7d",
+      "actual_sha256": "d9e7d3ad446016693a89f3797cb8902950c23772049a851547f6db89c6d0db7d",
+      "bytes": 1133,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\abaqus_preview\\__init__.py",
+      "expected_sha256": "1b74c8e9b0f117d1eb68cb20e53bcb63a286651e10d963e81be01b17c8f51b3e",
+      "actual_sha256": "1b74c8e9b0f117d1eb68cb20e53bcb63a286651e10d963e81be01b17c8f51b3e",
+      "bytes": 231,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\abaqus_preview\\inputs.py",
+      "expected_sha256": "66f9b58d79b66161770a91a33111cd270bbf1d21a2b10a501056fdbe756948de",
+      "actual_sha256": "66f9b58d79b66161770a91a33111cd270bbf1d21a2b10a501056fdbe756948de",
+      "bytes": 13809,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\abaqus_preview\\preview.py",
+      "expected_sha256": "beda61c592784e0d78ac2283b9e64cac1ddc16554937e13d767f1b680e2305d0",
+      "actual_sha256": "beda61c592784e0d78ac2283b9e64cac1ddc16554937e13d767f1b680e2305d0",
+      "bytes": 14385,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\execution\\models.py",
+      "expected_sha256": "7242ae21ca764628dd3a2aefc5311d021184364139d53572127437c0bd5a1825",
+      "actual_sha256": "7242ae21ca764628dd3a2aefc5311d021184364139d53572127437c0bd5a1825",
+      "bytes": 4596,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\execution\\paths.py",
+      "expected_sha256": "4c78b31ce3aacebdc407f5ba0bd732aece5154418c6a8ddc247b66ed0dc77f71",
+      "actual_sha256": "4c78b31ce3aacebdc407f5ba0bd732aece5154418c6a8ddc247b66ed0dc77f71",
+      "bytes": 2017,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\execution\\process_handles.py",
+      "expected_sha256": "905e05e70d77b0fdf5504935c56be6413865439e9219e63f55642fbc1f014b96",
+      "actual_sha256": "905e05e70d77b0fdf5504935c56be6413865439e9219e63f55642fbc1f014b96",
+      "bytes": 2913,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+      "expected_sha256": "70497f91e24a7e14c7e27a1893170e401a021b411ff7abf6af850f1863d882f3",
+      "actual_sha256": "70497f91e24a7e14c7e27a1893170e401a021b411ff7abf6af850f1863d882f3",
+      "bytes": 3605,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_probe_review.py",
+      "expected_sha256": "ade4b27a2fee0dcab148be887243626e64e39493f6ae1653851e09046d0dfe30",
+      "actual_sha256": "ade4b27a2fee0dcab148be887243626e64e39493f6ae1653851e09046d0dfe30",
+      "bytes": 4869,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_010\\RUNTIME_AND_CONTRACT.md",
+      "expected_sha256": "e4e885783bdd3ce7122c8076cc82265fb1642f6008af7feaf994174be7bed4f0",
+      "actual_sha256": "e4e885783bdd3ce7122c8076cc82265fb1642f6008af7feaf994174be7bed4f0",
+      "bytes": 8327,
+      "matches": true
+    },
+    {
+      "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_010\\OBSERVATION_AND_ACCEPTANCE_PLAN.md",
+      "expected_sha256": "f91fe4cb9c53c7c110cd77cd4448ea77fb93d15ffb510ab2f18339ed98a5a494",
+      "actual_sha256": "f91fe4cb9c53c7c110cd77cd4448ea77fb93d15ffb510ab2f18339ed98a5a494",
+      "bytes": 9220,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\Commands\\abq2024.bat",
+      "expected_sha256": "e9bb42ba164b08b57b07828d4b826a4c9d38d82dc070887f2d7cdea6bcefc711",
+      "actual_sha256": "e9bb42ba164b08b57b07828d4b826a4c9d38d82dc070887f2d7cdea6bcefc711",
+      "bytes": 182,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+      "expected_sha256": "e7eb0d96e23bdde503c3ec63d82b229f2cd0f1310cc1cd1604352a8491714420",
+      "actual_sha256": "e7eb0d96e23bdde503c3ec63d82b229f2cd0f1310cc1cd1604352a8491714420",
+      "bytes": 146464,
+      "matches": true
+    },
+    {
+      "path": "D:\\ONEAPI\\compiler\\2022.2.0\\env\\vars.bat",
+      "expected_sha256": "dbdc2697c9e5e5e85c3d039dd3aaa853a7cbdbe85dfdfcef2d2879a566b9adfe",
+      "actual_sha256": "dbdc2697c9e5e5e85c3d039dd3aaa853a7cbdbe85dfdfcef2d2879a566b9adfe",
+      "bytes": 11439,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\InstallData\\registry.json",
+      "expected_sha256": "1cf5a0d5a8f0f8070f941b69bb1557fedb770f45d91b1042ddfd1ba38df92a26",
+      "actual_sha256": "1cf5a0d5a8f0f8070f941b69bb1557fedb770f45d91b1042ddfd1ba38df92a26",
+      "bytes": 704,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\InstallData\\Installed.cmp",
+      "expected_sha256": "c34d655fb36d6d153fa26bbce5e2a8e08bd6e1af74d69562ef730c4408414cb4",
+      "actual_sha256": "c34d655fb36d6d153fa26bbce5e2a8e08bd6e1af74d69562ef730c4408414cb4",
+      "bytes": 7056,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\info\\memory.info",
+      "expected_sha256": "0f9eed3eb2621f36a37b8aabecf543a434ae7f79ba19b53f2702d966285335e8",
+      "actual_sha256": "0f9eed3eb2621f36a37b8aabecf543a434ae7f79ba19b53f2702d966285335e8",
+      "bytes": 2771,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\abaqus_v6.env",
+      "expected_sha256": "4ca3df60107a27bc3e95787c203d7b8bcbf7660a121547b4bcac52582d816904",
+      "actual_sha256": "4ca3df60107a27bc3e95787c203d7b8bcbf7660a121547b4bcac52582d816904",
+      "bytes": 1355,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\basic_v6.env",
+      "expected_sha256": "200063137765c17ea4222236ad0042f1409ab6f6c979382ce011de933fd1e3eb",
+      "actual_sha256": "200063137765c17ea4222236ad0042f1409ab6f6c979382ce011de933fd1e3eb",
+      "bytes": 7054,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\mpi_config.env",
+      "expected_sha256": "abca17611f91078b2391094f14ee4785974c5620ee683a3ad2542043808efbf3",
+      "actual_sha256": "abca17611f91078b2391094f14ee4785974c5620ee683a3ad2542043808efbf3",
+      "bytes": 1423,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\win86_64.env",
+      "expected_sha256": "66e23ecc788bcf4f19fabe008d4b1107c33f252337ade47bc6ba212539a45353",
+      "actual_sha256": "66e23ecc788bcf4f19fabe008d4b1107c33f252337ade47bc6ba212539a45353",
+      "bytes": 4804,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\graphicsConfig.env",
+      "expected_sha256": "f82514b50a5376c2e1c531dd8b230076128889c7be0a59f46cced54bf78f6e29",
+      "actual_sha256": "f82514b50a5376c2e1c531dd8b230076128889c7be0a59f46cced54bf78f6e29",
+      "bytes": 26947,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\jleConfig.env",
+      "expected_sha256": "10ae6f7cc4e852d11e084a43e80cf3b49214d2bba0513f6a0aac2930bdd21544",
+      "actual_sha256": "10ae6f7cc4e852d11e084a43e80cf3b49214d2bba0513f6a0aac2930bdd21544",
+      "bytes": 667,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\custom_v6.env",
+      "expected_sha256": "cfb9f23124019d3e191f2b650bfe3a9ab1e9149768e17f4296e6386f2a94431c",
+      "actual_sha256": "cfb9f23124019d3e191f2b650bfe3a9ab1e9149768e17f4296e6386f2a94431c",
+      "bytes": 218,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\abaqus.app",
+      "expected_sha256": "e85cfb2ba08dc7e800b856ef755ec7ec3f28abe21a2efa3dc9ce4a78db8d21aa",
+      "actual_sha256": "e85cfb2ba08dc7e800b856ef755ec7ec3f28abe21a2efa3dc9ce4a78db8d21aa",
+      "bytes": 3693,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\abaqus.arg",
+      "expected_sha256": "5fa3d56f9cfb48644fe6ec1a667508726d07909f82f96b227f2c7038dae1cea4",
+      "actual_sha256": "5fa3d56f9cfb48644fe6ec1a667508726d07909f82f96b227f2c7038dae1cea4",
+      "bytes": 15274,
+      "matches": true
+    },
+    {
+      "path": "C:\\Windows\\System32\\cmd.exe",
+      "expected_sha256": "15cd209c995b7d3009c91ca40892d5b8f1fb162f3e5f10716642ea278e8e0d7b",
+      "actual_sha256": "15cd209c995b7d3009c91ca40892d5b8f1fb162f3e5f10716642ea278e8e0d7b",
+      "bytes": 339968,
+      "matches": true
+    },
+    {
+      "path": "D:\\Program Files\\Python312\\Lib\\subprocess.py",
+      "expected_sha256": "e9886605ccac88bcfe2330a1b4cd8f132cbaf97ebb6834b1dcb5a69b127b8d5b",
+      "actual_sha256": "e9886605ccac88bcfe2330a1b4cd8f132cbaf97ebb6834b1dcb5a69b127b8d5b",
+      "bytes": 90963,
+      "matches": true
+    },
+    {
+      "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\licensing.env",
+      "expected_sha256": "2cb6d7c00471a4bcfd4619470fd752d152e7457daecf3b36ca2234522d487681",
+      "actual_sha256": "2cb6d7c00471a4bcfd4619470fd752d152e7457daecf3b36ca2234522d487681",
+      "bytes": 1088,
+      "matches": true
+    },
+    {
+      "path": "D:\\ONEAPI\\compiler\\2022.2.0\\windows\\lib\\oclfpga\\fpgavars.bat",
+      "expected_sha256": "30f95fc86014a9317b6b3e9460544f9f78a262cc37e5e4d1a4ccdd873a5573c2",
+      "actual_sha256": "30f95fc86014a9317b6b3e9460544f9f78a262cc37e5e4d1a4ccdd873a5573c2",
+      "bytes": 790,
+      "matches": true
+    }
+  ],
+  "previous_source_files_unchanged": 53,
+  "experiment_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a",
+  "observations_empty": true,
+  "extracted_empty": true,
+  "scratch_empty": true,
+  "job_outputs_absent": true,
+  "engineering_entries": [
+    "axial_bar.inp",
+    "scratch"
+  ],
+  "prior_test_directories_separate_and_untouched": true,
+  "prior_scripts_not_called_or_modified": true,
+  "no_start_intent_created": true,
+  "wrapper_launch_attempts": 0,
+  "extra_abaqus_calls": 0,
+  "interpreter": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0"
+}

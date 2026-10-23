@@ -1,0 +1,22 @@
+{
+  "process": {
+    "identity": {
+      "pid": 23464,
+      "creation_time_100ns": 134372142856028828,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+    },
+    "exit": {
+      "pid": 23464,
+      "creation_time_100ns": 134372142856028828,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740685,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_4540ba416b5448fda93344cea23d54b2\\pytest\\test_r11_01_public_readonly_en1\\case_c732a416\\stdout_eaba7d654f5a451e8f6b08fc6b4af383.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_4540ba416b5448fda93344cea23d54b2\\pytest\\test_r11_01_public_readonly_en1\\case_c732a416\\stderr_92f0386dbda1415cb802ba107f1c5238.txt",
+    "handles_closed": true
+  },
+  "stdout": "usage: probe.py [-h] [--candidate-digest CANDIDATE_DIGEST]\n                [{check,execute,report}]\n\nFixed Run010 controller candidate. Default=check. No real execution approved\nby this package.\n\npositional arguments:\n  {check,execute,report}\n\noptions:\n  -h, --help            show this help message and exit\n  --candidate-digest CANDIDATE_DIGEST\n                        Reviewed candidate identity, not an authorization\n                        token\n",
+  "real_root_unchanged": true
+}

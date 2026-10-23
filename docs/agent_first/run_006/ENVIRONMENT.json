@@ -1,0 +1,16 @@
+{
+  "interpreter": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "os": "Windows-11-10.0.26300-SP0",
+  "windows": [
+    10,
+    0,
+    26300,
+    2,
+    ""
+  ],
+  "source_files": 36,
+  "sqlite_version": "3.49.1",
+  "pytest_version": "9.1.0",
+  "registry": "D:/XianLab/envs/ENVIRONMENTS.md"
+}

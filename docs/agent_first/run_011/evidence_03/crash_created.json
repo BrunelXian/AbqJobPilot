@@ -1,0 +1,57 @@
+{
+  "controller": {
+    "identity": {
+      "pid": 18408,
+      "creation_time_100ns": 134372140499994746,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 18408,
+      "creation_time_100ns": 134372140499994746,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 92,
+      "exit_observed_at": 1792740450,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex1\\case_ffcf9245\\stdout_5e1fc0c2c9824b34a09e8bca2c698eef.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex1\\case_ffcf9245\\stderr_26f835e9229242daa6195d3fd75f4cad.txt",
+    "handles_closed": true
+  },
+  "repeat": {
+    "identity": {
+      "pid": 8536,
+      "creation_time_100ns": 134372140501004588,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 8536,
+      "creation_time_100ns": 134372140501004588,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 2,
+      "exit_observed_at": 1792740450,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex1\\case_ffcf9245\\stdout_2ae9448242844952a2eddb291411ae60.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex1\\case_ffcf9245\\stderr_55afe9a72ed943e0aecd6d1f1d63bf60.txt",
+    "handles_closed": true
+  },
+  "cleanup": {
+    "identity": {
+      "pid": 28808,
+      "creation_time_100ns": 134372140500765524,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 28808,
+      "creation_time_100ns": 134372140500765524,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740450,
+      "exit_source": "retained_windows_handle"
+    },
+    "method": "fixture release then natural exit",
+    "handle_closed": true
+  },
+  "service_pid_record": "absent after intent / before identity persistence",
+  "independent_fixture_registration_used_only_for_test_cleanup": true
+}

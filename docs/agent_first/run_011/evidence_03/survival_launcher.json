@@ -1,0 +1,123 @@
+{
+  "controller": {
+    "identity": {
+      "pid": 34292,
+      "creation_time_100ns": 134372140481830972,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 34292,
+      "creation_time_100ns": 134372140481830972,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740448,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_05_06_controller_retu1\\case_089e0cf9\\stdout_7304c1440d994ec8a6f163a9e0d7aee6.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_05_06_controller_retu1\\case_089e0cf9\\stderr_b8b6651a6c554728a7ec6f066bcbe06d.txt",
+    "handles_closed": true
+  },
+  "report": {
+    "schema": "r011-experiment-report-v1",
+    "attempt_id": "attempt_ec9a3439f0ce465f870d4dbadeffaab3",
+    "experiment_id": "fixture_only",
+    "candidate_digest": "candidate_a",
+    "source": "external_experiment_controller_not_Project_Run",
+    "creation": "PROCESS_OBJECT_RETURNED",
+    "processes": {
+      "direct_identity": {
+        "pid": 24384,
+        "creation_time_100ns": 134372140482715137,
+        "image_path": "D:\\Program Files\\Python312\\python.exe"
+      },
+      "exits": [
+        {
+          "pid": 24384,
+          "creation_time_100ns": 134372140482715137,
+          "image_path": "D:\\Program Files\\Python312\\python.exe",
+          "exit_code": 0,
+          "exit_observed_at_ns": 1792740448477411300,
+          "source": "direct_Popen_handle"
+        },
+        {
+          "pid": 9100,
+          "creation_time_100ns": 134372140482761696,
+          "image_path": "C:\\Windows\\System32\\conhost.exe",
+          "exit_code": 0,
+          "exit_observed_at": 1792740448,
+          "exit_source": "retained_windows_handle"
+        }
+      ],
+      "candidate_identities": [
+        {
+          "pid": 9100,
+          "creation_time_100ns": 134372140482761696,
+          "image_path": "C:\\Windows\\System32\\conhost.exe"
+        },
+        {
+          "pid": 15744,
+          "creation_time_100ns": 134372140483325764,
+          "image_path": "D:\\Program Files\\Python312\\python.exe"
+        },
+        {
+          "pid": 10348,
+          "creation_time_100ns": 134372140483391655,
+          "image_path": "C:\\Windows\\System32\\conhost.exe"
+        }
+      ],
+      "all_observed_exited": false,
+      "member_completeness": "UNKNOWN",
+      "overall_exit": "UNKNOWN",
+      "unknowns": [],
+      "observation_time_ns": 1792740448866499500
+    },
+    "solver": "EVIDENCE_INSUFFICIENT",
+    "numerical": "EVIDENCE_INSUFFICIENT",
+    "odb_content_validation": "NOT_RUN",
+    "overall": "PARTIAL",
+    "deadline_reached": true,
+    "launch_pid": 24384,
+    "creation_duration_seconds": 0.014999999984866008,
+    "observation_finished_at_ns": 1792740448866499500,
+    "observation_elapsed_seconds": 0.6089999999967404,
+    "results": {
+      "solver": "EVIDENCE_INSUFFICIENT",
+      "numerical": "EVIDENCE_INSUFFICIENT",
+      "odb_content_validation": "NOT_RUN",
+      "observations": [],
+      "reason": "DAT_MISSING"
+    },
+    "returned_at_ns": 1792740448868529100,
+    "elapsed_including_creation_and_reporting_seconds": 0.6089999999967404
+  },
+  "worker_alive_and_file_grew_after_controller_exit": true,
+  "cleanup": {
+    "identity": {
+      "pid": 15744,
+      "creation_time_100ns": 134372140483325764,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 15744,
+      "creation_time_100ns": 134372140483325764,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740448,
+      "exit_source": "retained_windows_handle"
+    },
+    "method": "fixture release then natural exit",
+    "handle_closed": true
+  },
+  "physical_registrations": [
+    {
+      "pid": 24384,
+      "creation_time_100ns": 134372140482715137,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    {
+      "pid": 15744,
+      "creation_time_100ns": 134372140483325764,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    }
+  ]
+}

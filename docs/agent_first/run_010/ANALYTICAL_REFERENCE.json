@@ -1,0 +1,48 @@
+{
+  "method": "independent_exact_rational_axial_stiffness",
+  "units": {
+    "force": "N",
+    "length": "mm",
+    "stress": "MPa"
+  },
+  "parameters": {
+    "L": "10",
+    "A": "1",
+    "E": "1000",
+    "nu": "0.3",
+    "F": "1"
+  },
+  "calculation": {
+    "stiffness_EA_over_L_N_per_mm": "100",
+    "displacement_FL_over_EA_mm": "1/100",
+    "strain_u_over_L": "1/1000",
+    "stress_F_over_A_MPa": "1",
+    "reaction_node1_X_N": "-1"
+  },
+  "expected_decimal": {
+    "node2_U1_mm": "0.01",
+    "element1_S11_MPa": "1",
+    "node1_RF1_N": "-1"
+  },
+  "comparison": "abs(actual-expected) <= max(abs_tol, rel_tol*abs(expected))",
+  "tolerances": {
+    "node2_U1_mm": {
+      "absolute": "0.000001",
+      "relative": "0.0001"
+    },
+    "element1_S11_MPa": {
+      "absolute": "0.0001",
+      "relative": "0.0001"
+    },
+    "node1_RF1_N": {
+      "absolute": "0.0001",
+      "relative": "0.0001"
+    },
+    "constrained_U_mm": "0.00000001",
+    "node2_RF_N": "0.0001",
+    "global_X_balance_N": "0.0002"
+  },
+  "final_step": 1,
+  "final_time": "1",
+  "solver_result_observed": false
+}

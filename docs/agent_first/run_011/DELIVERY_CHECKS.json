@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-23T15:41:34.3007952+08:00",
+  "branch": "Develop",
+  "head": "fb7912ec9e0107b18f65948b147c87579c87cded",
+  "conflicts": [],
+  "preserved_files": 106,
+  "changed_previous_files": 0,
+  "powershell_document_blocks_valid": 3,
+  "source_changes": "Only new docs/agent_first/run_011 files",
+  "real_execute_calls": 0,
+  "abaqus_calls": 0,
+  "candidate_digest": "sha256:645389d8f25942e908f04dca25fbefed820d6f63b35fcfb6c308977b6c016824"
+}

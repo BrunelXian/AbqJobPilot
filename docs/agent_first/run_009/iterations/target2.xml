@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="15" skipped="0" tests="87" time="2.110" timestamp="2026-10-23T11:14:06.228236+08:00" hostname="Boltzmann"><testcase classname="tests.test_abaqus_preview" name="test_stable_body_and_distinct_observation_no_filesystem_writes" time="0.022" /><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[main_bytes]" time="0.027"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d0')
+change = 'main_bytes'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d0\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[dependency_bytes]" time="0.016"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d1')
+change = 'dependency_bytes'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d1\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[memory]" time="0.026" /><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[wall]" time="0.029" /><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[profile_version]" time="0.021"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d4')
+change = 'profile_version'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d4\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[profile_id]" time="0.019"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d5')
+change = 'profile_id'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d5\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[scratch]" time="0.023" /><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[job]" time="0.013"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d7')
+change = 'job'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d7\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[project]" time="0.012"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d8')
+change = 'project'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d8\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[instance]" time="0.015"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d9')
+change = 'instance'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d9\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[input_name]" time="0.014"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d10')
+change = 'input_name'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+&gt;       a = prepare(**args).to_dict()["content_digest"]
+            ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...emp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d10\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_semantic_changes_change_digest[root]" time="0.025"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_semantic_changes_change_d11')
+change = 'root'
+
+    @pytest.mark.parametrize("change", ["main_bytes", "dependency_bytes", "memory", "wall", "profile_version", "profile_id",
+                                       "scratch", "job", "project", "instance", "input_name", "root"])
+    def test_semantic_changes_change_digest(tmp_path, change):
+        args = case(tmp_path, contents="*INCLUDE, INPUT=part.inp\n" + STEP)
+        root = Path(args["engineering_root"])
+        (root / "part.inp").write_text(MODEL, encoding="ascii")
+        a = prepare(**args).to_dict()["content_digest"]
+        if change == "main_bytes": (root / "source.inp").write_text("**changed\n*INCLUDE, INPUT=part.inp\n" + STEP)
+        elif change == "dependency_bytes": (root / "part.inp").write_text(MODEL.replace("210000", "200000"))
+        elif change == "memory": args["runtime_profile"]["memory_mb"] = 1024
+        elif change == "wall": args["runtime_profile"]["wall_seconds"] = 120
+        elif change == "profile_version": args["runtime_profile"]["profile_version"] = 2
+        elif change == "profile_id": args["runtime_profile"]["profile_id"] = "other"
+        elif change == "scratch": args["runtime_profile"]["scratch_relative"] = "other_scratch"
+        elif change == "job": args["job_name"] = "other_job"
+        elif change == "project": args["project"]["project_id"] = "other"
+        elif change == "instance": args["project"]["project_instance_id"] = "other"
+        elif change == "input_name":
+            (root / "source.inp").rename(root / "other.inp"); args["main_input"] = "other.inp"
+        elif change == "root":
+            other = tmp_path / "other"; other.mkdir()
+            for p in root.iterdir(): (other / p.name).write_bytes(p.read_bytes())
+            args["engineering_root"] = args["submission_cwd"] = str(other)
+&gt;       assert prepare(**args).to_dict()["content_digest"] != a
+               ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...cal\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_semantic_changes_change_d11\\other', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_include_is_submission_root_not_including_parent_and_case_rules" time="0.023"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_include_is_submission_roo0')
+
+    def test_include_is_submission_root_not_including_parent_and_case_rules(tmp_path):
+        args = case(tmp_path, contents="*include, input=sub/part.inp\n" + STEP.lower())
+        root = Path(args["engineering_root"]); (root / "sub").mkdir()
+        (root / "sub/part.inp").write_text("*INCLUDE, INPUT=model.inp\n")
+        (root / "sub/model.inp").write_text(MODEL)
+        error("INPUT_NOT_FOUND", lambda: prepare(**args))  # no parent fallback
+        (root / "model.inp").write_text(MODEL)
+&gt;       report = inspect(prepare(**args))["body"]
+                         ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_include_is_submission_roo0\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NOD\n1,0,0,0\n-UNSUPPORTED_KEYWORD]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NODE, INPUT=outside.inp\n1,0,0,0\n-UNSUPPORTED_PARAMETER]" time="0.012" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*ELEMENT, TYPE=T3D2, ELSET=A, FILE=other\n1,1,2\n-UNSUPPORTED_PARAMETER]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*INCLUDE, INPUT=a.inp, PASSWORD=secret\n-UNSUPPORTED_PARAMETER]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*INCLUDE, INPUT=&quot;a.inp&quot;\n-UNSUPPORTED_SYNTAX]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NODE,\n INPUT=a.inp\n-UNSUPPORTED_SYNTAX]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*PARAMETER\nfoo=1\n-UNSUPPORTED_KEYWORD]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*RESTART, READ=YES\n-UNSUPPORTED_KEYWORD]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*INITIAL CONDITIONS, TYPE=STRESS, FILE=old\n-UNSUPPORTED_KEYWORD]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*USER MATERIAL\n-UNSUPPORTED_KEYWORD]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*INCLUDE, INPUT=a.inp, INPUT=b.inp\n-UNSUPPORTED_PARAMETER]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NODE\n1,&lt;x&gt;,0,0\n-UNSUPPORTED_DATA]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NODE\n1,0,0,\n-UNSUPPORTED_DATA]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NODE\n1,0,0,0,4\n-UNSUPPORTED_DATA]" time="0.012" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NODE\n1,0,0,0\n\n-UNSUPPORTED_SYNTAX]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[ ** comment\n-UNSUPPORTED_KEYWORD]" time="0.011" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*STEP, NLGEOM=YES\n-UNSUPPORTED_PARAMETER]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*STATIC, RIKS=YES\n0.1,1,1e-5,0.1\n-UNSUPPORTED_PARAMETER]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*NODE\n1,NaN,0,0\n-UNSUPPORTED_DATA]" time="0.011" /><testcase classname="tests.test_abaqus_preview" name="test_unsupported_grammar_never_claims_coverage[*HEADING\n&lt;script&gt;\n-UNSUPPORTED_DATA]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_encoding_line_and_control_limits[\xff\n]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_encoding_line_and_control_limits[*HEADING\nno newline]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_encoding_line_and_control_limits[*HEADING\ntext\rmore\n]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_encoding_line_and_control_limits[**xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n]" time="0.011" /><testcase classname="tests.test_abaqus_preview" name="test_encoding_line_and_control_limits[**\tcomment\n]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[../outside.inp]" time="0.011" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[/root.inp]" time="0.008" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[C:/root.inp]" time="0.008" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[C:root.inp]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[\\\\host\\file.inp]" time="0.025" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[a.inp:stream]" time="0.012" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[./a.inp]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[dir//a.inp]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[NUL.inp]" time="0.008" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[dir./a.inp]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[a file.inp]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[$INPUT.inp]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_unsafe_references_refused_before_read[a.txt]" time="0.010" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[missing]" time="0.012" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[cycle]" time="0.011" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[duplicate]" time="0.016" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[depth]" time="0.035" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[count]" time="0.033" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[file_bytes]" time="0.063" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[total_bytes]" time="0.271" /><testcase classname="tests.test_abaqus_preview" name="test_missing_cycles_and_limits[blocks]" time="0.042" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[cpus-2-RESOURCE_LIMIT]" time="0.009" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[cpus-True-INVALID_REQUEST]" time="0.004" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[gpus-1-RESOURCE_LIMIT]" time="0.008" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[memory_mb-4097-RESOURCE_LIMIT]" time="0.011" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[wall_seconds-0-RESOURCE_LIMIT]" time="0.008" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[declared_version-2025-UNSUPPORTED_PROFILE]" time="0.006" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[product-Abaqus/Explicit-UNSUPPORTED_PROFILE]" time="0.007" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[phase-datacheck-UNSUPPORTED_PROFILE]" time="0.007" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[scratch_relative-../scratch-UNSUPPORTED_PATH]" time="0.005" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[arbitrary_args-value9-INVALID_REQUEST]" time="0.006" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[command-secret-INVALID_REQUEST]" time="0.003" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[env-value11-INVALID_REQUEST]" time="0.003" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[user-a.for-INVALID_REQUEST]" time="0.004" /><testcase classname="tests.test_abaqus_preview" name="test_profile_whitelist[queue-remote-INVALID_REQUEST]" time="0.004" /><testcase classname="tests.test_abaqus_preview" name="test_output_scope_is_physical_directory_and_job_not_project" time="0.033" /><testcase classname="tests.test_abaqus_preview" name="test_actual_hardlink_rejected_and_writer_cannot_change_pinned_file" time="0.018"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_actual_hardlink_rejected_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002CE1E9A4F80&gt;
+
+    def test_actual_hardlink_rejected_and_writer_cannot_change_pinned_file(tmp_path, monkeypatch):
+        args = case(tmp_path); root = Path(args["engineering_root"])
+        os.link(root / "source.inp", root / "alias.inp")
+        error("UNSUPPORTED_PATH", lambda: prepare(**args))
+        (root / "alias.inp").unlink()
+        original = inputs._block
+        attempted = []
+        def block(*args):
+            with pytest.raises(PermissionError): (root / "source.inp").write_bytes(b"changed")
+            attempted.append(True)
+            return original(*args)
+        monkeypatch.setattr(inputs, "_block", block)
+&gt;       prepare(**args)
+
+tests\test_abaqus_preview.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_actual_hardlink_rejected_0\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_second_pass_detects_unstable_identity" time="0.012" /><testcase classname="tests.test_abaqus_preview" name="test_export_uses_original_snapshot_nooverwrite_and_failure_cleanup" time="0.010"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_export_uses_original_snap0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002CE1E9A4E30&gt;
+
+    def test_export_uses_original_snapshot_nooverwrite_and_failure_cleanup(tmp_path, monkeypatch):
+&gt;       args = case(tmp_path); value = prepare(**args); original = inspect(value)
+                                       ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:198: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_export_uses_original_snap0\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_export_path_rejection[../a.json]" time="0.020" /><testcase classname="tests.test_abaqus_preview" name="test_export_path_rejection[C:/a.json]" time="0.013"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_export_path_rejection_C__0')
+target = 'C:/a.json'
+
+    @pytest.mark.parametrize("target", ["../a.json", "C:/a.json", "a.json:stream", "NUL.json", "dir/a.json", "a.inp"])
+    def test_export_path_rejection(tmp_path, target):
+&gt;       args = case(tmp_path); value = prepare(**args); root = tmp_path / "export"; root.mkdir()
+                                       ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_export_path_rejection_C__0\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_export_path_rejection[a.json:stream]" time="0.016" /><testcase classname="tests.test_abaqus_preview" name="test_export_path_rejection[NUL.json]" time="0.028" /><testcase classname="tests.test_abaqus_preview" name="test_export_path_rejection[dir/a.json]" time="0.022" /><testcase classname="tests.test_abaqus_preview" name="test_export_path_rejection[a.inp]" time="0.017" /><testcase classname="tests.test_abaqus_preview" name="test_inspection_is_offline_bounded_and_not_an_execution_attestation" time="0.011"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target2/test_inspection_is_offline_bou0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002CE1E9A4BC0&gt;
+
+    def test_inspection_is_offline_bounded_and_not_an_execution_attestation(tmp_path, monkeypatch):
+&gt;       value = prepare(**case(tmp_path)); data = value.to_dict()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:221: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_inspection_is_offline_bou0\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_direct_service_and_trusted_issuer_cannot_accept_preview" time="0.235"><failure message="abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition">harness = Harness(root=WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target...d_truste0/inputs/source.txt'), config=ConfigSnapshot(_json='{"config_revision":1,"values":{"label":"simulation 测试"}}'))
+
+    def test_direct_service_and_trusted_issuer_cannot_accept_preview(harness):
+        h = harness; args = case(h.root)
+&gt;       value = prepare(**args); fake = h.plan(); grant = h.grant(fake)
+                ^^^^^^^^^^^^^^^
+
+tests\test_abaqus_preview.py:232: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ()
+kwargs = {'project': {'project_id': 'offline_project', 'project_instance_id': 'offline_instance'}, 'runtime_profile': {'profile...Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\target2\\test_direct_service_and_truste0\\engineering', ...}
+
+    @wraps(function)
+    def call(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ExecutionError as exc:
+            # Never echo input bytes, raw OS exceptions, arbitrary fields or paths.
+&gt;           raise ExecutionError(exc.code, "Offline preview refused (" + exc.code + "); correct the named precondition",
+                                 stage="OFFLINE_PREVIEW") from None
+E           abqjobpilot.execution.models.ExecutionError: Offline preview refused (INPUT_UNSTABLE); correct the named precondition
+
+abqjobpilot\abaqus_preview\preview.py:42: ExecutionError</failure></testcase><testcase classname="tests.test_abaqus_preview" name="test_offline_dependency_graph_has_no_execution_authority_or_legacy_imports" time="0.011" /></testsuite></testsuites>

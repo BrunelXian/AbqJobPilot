@@ -1,0 +1,58 @@
+{
+  "candidate_body_digest_recomputed": "sha256:d427264f99b2e1128a50d171c09b852cc57662ee002de5c31ba7cdc9d60b840c",
+  "new_materials_matched": 37,
+  "original_34_and_old_21_matched": true,
+  "previous_run011_files_checked": 99,
+  "previous_run011_changed": [],
+  "prior_106_changed": [],
+  "operator_evidence_files": 23,
+  "operator_source_or_archive_changed": [],
+  "recorded_operator_evidence_verdict": {
+    "historical_fixture": "VERIFIED_RECORDED_CHAIN",
+    "operator_provenance": "user identified this terminal invocation",
+    "controller_exits": [
+      {
+        "exited": true,
+        "observed_at": "2026-10-23T10:21:54.0218789Z",
+        "source": "PowerShell_retained_OS_process_reference",
+        "exit_code": 0,
+        "identity": {
+          "pid": 31852,
+          "creation_time_100ns": 134372245131478753,
+          "image_path": "D:\\Program Files\\Python312\\python.exe"
+        }
+      },
+      {
+        "exited": true,
+        "observed_at": "2026-10-23T10:21:54.0233878Z",
+        "source": "PowerShell_retained_OS_process_reference",
+        "exit_code": 0,
+        "identity": {
+          "pid": 32904,
+          "creation_time_100ns": 134372245131202028,
+          "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+        }
+      }
+    ],
+    "worker_exit": {
+      "exited": true,
+      "observed_at": "2026-10-23T10:22:03.4915268Z",
+      "source": "PowerShell_retained_OS_process_reference",
+      "exit_code": 0,
+      "identity": {
+        "pid": 13024,
+        "creation_time_100ns": 134372245134037335,
+        "image_path": "D:\\Program Files\\Python312\\python.exe"
+      }
+    },
+    "scope": "terminal/session remained alive; fixed Python only; no Job hierarchy or Abaqus proof",
+    "authorization": "NONE",
+    "current_processes_probed": false
+  },
+  "real_experiment_observations": [],
+  "real_job_outputs": [],
+  "abaqus_calls": 0,
+  "real_execute_calls": 0,
+  "new_candidate_authorization": "NOT_GRANTED",
+  "self_check_tool_report": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_PolicyCheck_d3c99c985ccd4786bc9563b282415011\\SELF_CHECK.json"
+}

@@ -1,0 +1,555 @@
+..............F...................FFFFF..FFFFF                           [100%]
+================================== FAILURES ===================================
+________ test_r11_04_creation_unknown_keeps_attempt_and_distinct_state ________
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_04_creation_unknown_k0')
+
+    def test_r11_04_creation_unknown_keeps_attempt_and_distinct_state(tmp_path):
+        root, spec = make_case(tmp_path); called = []
+        def unknown(out, err):
+            assert records.read_json(root / 'observations/attempt.json')['state'] == 'START_INTENT'
+            called.append(1); raise OSError('may have created before response was lost')
+        report = engine.run_once(spec, 'v1', lambda:None, pass_host, unknown)
+>       assert called == [1] and report['creation'] == 'CALL_ENTERED_OUTCOME_UNKNOWN'
+E       assert ([] == [1]
+E         
+E         Right contains one more item: 1
+E         Use -v to get more diff)
+
+docs\agent_first\run_011\tests\test_candidate.py:151: AssertionError
+_______ test_r11_01_public_readonly_entry_no_process_or_writes[default] _______
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_01_public_readonly_en0')
+operation = 'default'
+
+    @pytest.mark.parametrize('operation', ['default','help','check','report','import'])
+    def test_r11_01_public_readonly_entry_no_process_or_writes(tmp_path, operation):
+        root, _ = make_case(tmp_path)
+        before = inventory(frozen.ROOT / 'observations')
+        args = {'default':[], 'help':['--help'], 'check':['check'], 'report':['report'], 'import':[]}[operation]
+        script = HERE / 'readonly_driver.py' if operation == 'import' else HERE.parent / 'controller/probe.py'
+>       child = Launched(root, script, args, interpreter=ENV_PYTHON)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d151c40>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+________ test_r11_01_public_readonly_entry_no_process_or_writes[help] _________
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_01_public_readonly_en1')
+operation = 'help'
+
+    @pytest.mark.parametrize('operation', ['default','help','check','report','import'])
+    def test_r11_01_public_readonly_entry_no_process_or_writes(tmp_path, operation):
+        root, _ = make_case(tmp_path)
+        before = inventory(frozen.ROOT / 'observations')
+        args = {'default':[], 'help':['--help'], 'check':['check'], 'report':['report'], 'import':[]}[operation]
+        script = HERE / 'readonly_driver.py' if operation == 'import' else HERE.parent / 'controller/probe.py'
+>       child = Launched(root, script, args, interpreter=ENV_PYTHON)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d2254d0>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+________ test_r11_01_public_readonly_entry_no_process_or_writes[check] ________
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_01_public_readonly_en2')
+operation = 'check'
+
+    @pytest.mark.parametrize('operation', ['default','help','check','report','import'])
+    def test_r11_01_public_readonly_entry_no_process_or_writes(tmp_path, operation):
+        root, _ = make_case(tmp_path)
+        before = inventory(frozen.ROOT / 'observations')
+        args = {'default':[], 'help':['--help'], 'check':['check'], 'report':['report'], 'import':[]}[operation]
+        script = HERE / 'readonly_driver.py' if operation == 'import' else HERE.parent / 'controller/probe.py'
+>       child = Launched(root, script, args, interpreter=ENV_PYTHON)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d2250e0>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+_______ test_r11_01_public_readonly_entry_no_process_or_writes[report] ________
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_01_public_readonly_en3')
+operation = 'report'
+
+    @pytest.mark.parametrize('operation', ['default','help','check','report','import'])
+    def test_r11_01_public_readonly_entry_no_process_or_writes(tmp_path, operation):
+        root, _ = make_case(tmp_path)
+        before = inventory(frozen.ROOT / 'observations')
+        args = {'default':[], 'help':['--help'], 'check':['check'], 'report':['report'], 'import':[]}[operation]
+        script = HERE / 'readonly_driver.py' if operation == 'import' else HERE.parent / 'controller/probe.py'
+>       child = Launched(root, script, args, interpreter=ENV_PYTHON)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d227b50>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+_______ test_r11_01_public_readonly_entry_no_process_or_writes[import] ________
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_01_public_readonly_en4')
+operation = 'import'
+
+    @pytest.mark.parametrize('operation', ['default','help','check','report','import'])
+    def test_r11_01_public_readonly_entry_no_process_or_writes(tmp_path, operation):
+        root, _ = make_case(tmp_path)
+        before = inventory(frozen.ROOT / 'observations')
+        args = {'default':[], 'help':['--help'], 'check':['check'], 'report':['report'], 'import':[]}[operation]
+        script = HERE / 'readonly_driver.py' if operation == 'import' else HERE.parent / 'controller/probe.py'
+>       child = Launched(root, script, args, interpreter=ENV_PYTHON)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d227c30>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+____ test_r11_05_06_controller_returns_worker_continues_then_exits[worker] ____
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_05_06_controller_retu0')
+mode = 'worker'
+
+    @pytest.mark.parametrize('mode', ['worker','launcher'])
+    def test_r11_05_06_controller_returns_worker_continues_then_exits(tmp_path, mode):
+        root, spec = make_case(tmp_path)
+>       child = Launched(root, HERE/'fixture_driver.py', [mode,str(root),'a'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:265: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d10a730>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+___ test_r11_05_06_controller_returns_worker_continues_then_exits[launcher] ___
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_05_06_controller_retu1')
+mode = 'launcher'
+
+    @pytest.mark.parametrize('mode', ['worker','launcher'])
+    def test_r11_05_06_controller_returns_worker_continues_then_exits(tmp_path, mode):
+        root, spec = make_case(tmp_path)
+>       child = Launched(root, HERE/'fixture_driver.py', [mode,str(root),'a'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:265: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d10a420>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+_______________ test_r11_03_four_process_concurrency_and_repeat _______________
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_03_four_process_concu0')
+
+    def test_r11_03_four_process_concurrency_and_repeat(tmp_path):
+        root, spec=make_case(tmp_path)
+>       children=[Launched(root,HERE/'fixture_driver.py',['race',str(root),tag]) for tag in 'abcd']
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:291: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d10a1f0>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+___ test_r11_04_real_controller_exit_preserves_claim[crash_intent-91-False] ___
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_04_real_controller_ex0')
+mode = 'crash_intent', code = 91, worker = False
+
+    @pytest.mark.parametrize('mode,code,worker', [('crash_intent',91,False),('crash_created',92,True)])
+    def test_r11_04_real_controller_exit_preserves_claim(tmp_path,mode,code,worker):
+        root,spec=make_case(tmp_path)
+>       crashed=Launched(root,HERE/'fixture_driver.py',[mode,str(root),'a']).finish()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d10ace0>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+___ test_r11_04_real_controller_exit_preserves_claim[crash_created-92-True] ___
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run011_54fc679fa235425abeb3d73edffc36fa/pytest/test_r11_04_real_controller_ex1')
+mode = 'crash_created', code = 92, worker = True
+
+    @pytest.mark.parametrize('mode,code,worker', [('crash_intent',91,False),('crash_created',92,True)])
+    def test_r11_04_real_controller_exit_preserves_claim(tmp_path,mode,code,worker):
+        root,spec=make_case(tmp_path)
+>       crashed=Launched(root,HERE/'fixture_driver.py',[mode,str(root),'a']).finish()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+docs\agent_first\run_011\tests\test_candidate.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+docs\agent_first\run_011\tests\test_candidate.py:82: in __init__
+    self.p = subprocess.Popen([interpreter, '-B', str(script), *args], cwd=root,
+D:\Program Files\Python312\Lib\subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+D:\Program Files\Python312\Lib\subprocess.py:1534: in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+docs\agent_first\run_011\tests\conftest.py:14: in sentinel
+    assert Path(exe) in {Path(r'D:\Program Files\Python312\python.exe'),
+           ^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1162: in __init__
+    super().__init__(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'WindowsPath' object has no attribute '_raw_paths'") raised in repr()] WindowsPath object at 0x1ec7d10bf40>
+args = (None,)
+
+    def __init__(self, *args):
+        paths = []
+        for arg in args:
+            if isinstance(arg, PurePath):
+                if arg._flavour is not self._flavour:
+                    # GH-103631: Convert separators for backwards compatibility.
+                    paths.append(arg.as_posix())
+                else:
+                    paths.extend(arg._raw_paths)
+            else:
+                try:
+                    path = os.fspath(arg)
+                except TypeError:
+                    path = arg
+                if not isinstance(path, str):
+>                   raise TypeError(
+                        "argument should be a str or an os.PathLike "
+                        "object where __fspath__ returns a str, "
+                        f"not {type(path).__name__!r}")
+E                   TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+D:\Program Files\Python312\Lib\pathlib.py:373: TypeError
+=========================== short test summary info ===========================
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_04_creation_unknown_keeps_attempt_and_distinct_state
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_01_public_readonly_entry_no_process_or_writes[default]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_01_public_readonly_entry_no_process_or_writes[help]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_01_public_readonly_entry_no_process_or_writes[check]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_01_public_readonly_entry_no_process_or_writes[report]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_01_public_readonly_entry_no_process_or_writes[import]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_05_06_controller_returns_worker_continues_then_exits[worker]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_05_06_controller_returns_worker_continues_then_exits[launcher]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_03_four_process_concurrency_and_repeat
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_04_real_controller_exit_preserves_claim[crash_intent-91-False]
+FAILED docs/agent_first/run_011/tests/test_candidate.py::test_r11_04_real_controller_exit_preserves_claim[crash_created-92-True]
+11 failed, 35 passed in 1.08s

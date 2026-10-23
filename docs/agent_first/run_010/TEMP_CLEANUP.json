@@ -1,0 +1,55 @@
+{
+  "status": "FILE_CLEANUP_BLOCKED_BY_AUTOMATIC_POLICY",
+  "rejected_actions": [
+    "recursive removal under verified task temporary root",
+    "recursive removal using three exact absolute literal paths"
+  ],
+  "stated_reason": "blocked by policy; no additional reason provided",
+  "deletion_executed": false,
+  "retained_test_directories": [
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests",
+      "exists": true,
+      "files": 673,
+      "bytes": 17629476.0
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final",
+      "exists": true,
+      "files": 673,
+      "bytes": 17630838.0
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release",
+      "exists": true,
+      "files": 677,
+      "bytes": 17632156.0
+    }
+  ],
+  "retained_intermediate_scripts": [
+    {
+      "FullName": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\collect_evidence.py",
+      "Length": 4928
+    },
+    {
+      "FullName": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\create_inputs.py",
+      "Length": 1525
+    },
+    {
+      "FullName": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\freeze_package.py",
+      "Length": 8199
+    },
+    {
+      "FullName": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\invoke_offline_client.py",
+      "Length": 2372
+    },
+    {
+      "FullName": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\invoke_package_recheck.py",
+      "Length": 1974
+    }
+  ],
+  "approval_package_preserved": true,
+  "test_processes_exited": true,
+  "ipc_private_materials_removed_by_harness": true,
+  "other_user_processes_touched": false
+}

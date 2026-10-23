@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="2" failures="4" skipped="0" tests="12" time="17.541" timestamp="2026-10-22T23:47:07.258848+08:00" hostname="Boltzmann"><testcase classname="tests.test_public_workflow" name="test_plan_inspection_readonly_and_public_projection" time="0.005"><error message="failed on setup with &quot;file D:\Projects\abqjobpilot_dev\tests\test_public_workflow.py, line 24&#10;  def test_plan_inspection_readonly_and_public_projection(harness, monkeypatch):&#10;file D:\Projects\abqjobpilot_dev\tests\execution_helpers.py, line 102&#10;  @pytest.fixture&#10;  def harness(tmp_path, guard_environment):&#10;E       fixture 'guard_environment' not found&#10;&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, factory, harness, local, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;D:\Projects\abqjobpilot_dev\tests\execution_helpers.py:102&quot;">file D:\Projects\abqjobpilot_dev\tests\test_public_workflow.py, line 24
+  def test_plan_inspection_readonly_and_public_projection(harness, monkeypatch):
+file D:\Projects\abqjobpilot_dev\tests\execution_helpers.py, line 102
+  @pytest.fixture
+  def harness(tmp_path, guard_environment):
+E       fixture 'guard_environment' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, factory, harness, local, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+D:\Projects\abqjobpilot_dev\tests\execution_helpers.py:102</error></testcase><testcase classname="tests.test_public_workflow" name="test_trusted_process_issuance_exact_and_no_self_approval" time="0.002"><error message="failed on setup with &quot;file D:\Projects\abqjobpilot_dev\tests\test_public_workflow.py, line 38&#10;  def test_trusted_process_issuance_exact_and_no_self_approval(harness):&#10;file D:\Projects\abqjobpilot_dev\tests\execution_helpers.py, line 102&#10;  @pytest.fixture&#10;  def harness(tmp_path, guard_environment):&#10;E       fixture 'guard_environment' not found&#10;&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, factory, harness, local, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;D:\Projects\abqjobpilot_dev\tests\execution_helpers.py:102&quot;">file D:\Projects\abqjobpilot_dev\tests\test_public_workflow.py, line 38
+  def test_trusted_process_issuance_exact_and_no_self_approval(harness):
+file D:\Projects\abqjobpilot_dev\tests\execution_helpers.py, line 102
+  @pytest.fixture
+  def harness(tmp_path, guard_environment):
+E       fixture 'guard_environment' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, factory, harness, local, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+D:\Projects\abqjobpilot_dev\tests\execution_helpers.py:102</error></testcase><testcase classname="tests.test_public_workflow" name="test_explicit_validation_replay_concurrent_and_separate_state" time="1.672"><failure message="AttributeError: 'ExperimentStore' object has no attribute 'dispatch_gate'. Did you mean: 'dispatch_scope'?">local = &lt;test_process_fixture.FixtureHarness object at 0x00000238612757C0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000238611C86B0&gt;
+
+    def test_explicit_validation_replay_concurrent_and_separate_state(local, monkeypatch):
+        h = local; request = finish(h)
+        before = h.local_store.query_run(h.context, h.rid)
+&gt;       gate = h.local_store.dispatch_gate(h.context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ExperimentStore' object has no attribute 'dispatch_gate'. Did you mean: 'dispatch_scope'?
+
+tests\test_public_workflow.py:52: AttributeError</failure></testcase><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[missing-MANAGEMENT_GRANT_REQUIRED]" time="1.565" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[execution-MANAGEMENT_GRANT_REQUIRED]" time="1.693" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[owner-STALE_OWNER]" time="1.888" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[scope-MANAGEMENT_GRANT_SCOPE]" time="1.839"><failure message="AssertionError: assert 'MANAGEMENT_SCOPE_MISMATCH' == 'MANAGEMENT_GRANT_SCOPE'&#10;  &#10;  - MANAGEMENT_GRANT_SCOPE&#10;  + MANAGEMENT_SCOPE_MISMATCH">local = &lt;test_process_fixture.FixtureHarness object at 0x00000238611C9A30&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000023861287050&gt;
+damage = 'scope', code = 'MANAGEMENT_GRANT_SCOPE'
+
+    @pytest.mark.parametrize("damage,code", [("missing", "MANAGEMENT_GRANT_REQUIRED"), ("execution", "MANAGEMENT_GRANT_REQUIRED"),
+        ("owner", "STALE_OWNER"), ("scope", "MANAGEMENT_GRANT_SCOPE"), ("approved", "INVALID_REQUEST")])
+    def test_validation_refusal_before_artifact_read(local, monkeypatch, damage, code):
+        h = local; request = finish(h)
+        if damage == "missing": request["management_grant_id"] = "missing"
+        if damage == "execution": request["management_grant_id"] = h.requests[0]["grant_id"]
+        if damage == "owner": request["owner_id"] = "wrong"
+        if damage == "scope": request["expected_run_revision"] += 1
+        if damage == "approved": request["approved"] = True
+        from abqjobpilot.execution import public_workflow
+        monkeypatch.setattr(public_workflow, "validate_process_artifact", lambda *a: pytest.fail("unauthorized artifact read"))
+        before = inventory(Path(h.context.root))
+        with pytest.raises(ExecutionError) as exc: h.service.validate_run(h.context, request)
+&gt;       assert exc.value.code == code
+E       AssertionError: assert 'MANAGEMENT_SCOPE_MISMATCH' == 'MANAGEMENT_GRANT_SCOPE'
+E         
+E         - MANAGEMENT_GRANT_SCOPE
+E         + MANAGEMENT_SCOPE_MISMATCH
+
+tests\test_public_workflow.py:84: AssertionError</failure></testcase><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[approved-INVALID_REQUEST]" time="1.734" /><testcase classname="tests.test_public_workflow" name="test_validation_pending_and_uncertain_are_ineligible" time="1.646" /><testcase classname="tests.test_public_workflow" name="test_validation_transaction_and_lost_response[management:before_commit]" time="1.659"><failure message="AssertionError: assert 'private-failure-canary' not in 'Transaction...ilure-canary'&#10;  &#10;  'private-failure-canary' is contained here:&#10;    ore retry: private-failure-canary">local = &lt;test_process_fixture.FixtureHarness object at 0x0000023861255790&gt;
+fault = 'management:before_commit'
+
+    @pytest.mark.parametrize("fault", ["management:before_commit", "management:after_commit"])
+    def test_validation_transaction_and_lost_response(local, fault):
+        h = local; request = finish(h)
+        before = h.local_store.query_run(h.context, h.rid)
+        def fail(stage):
+            if stage == fault: raise OSError("private-failure-canary")
+        h.local_store._checkpoint = fail
+        with pytest.raises(ExecutionError) as exc: h.service.validate_run(h.context, request)
+&gt;       assert "private-failure-canary" not in str(exc.value)
+E       AssertionError: assert 'private-failure-canary' not in 'Transaction...ilure-canary'
+E         
+E         'private-failure-canary' is contained here:
+E           ore retry: private-failure-canary
+
+tests\test_public_workflow.py:103: AssertionError</failure></testcase><testcase classname="tests.test_public_workflow" name="test_validation_transaction_and_lost_response[management:after_commit]" time="1.735" /><testcase classname="tests.test_public_workflow" name="test_explicit_validation_invalid_does_not_rewrite_process_success" time="1.787"><failure message="AttributeError: 'ExperimentStore' object has no attribute 'dispatch_gate'. Did you mean: 'dispatch_scope'?">local = &lt;test_process_fixture.FixtureHarness object at 0x00000238612117F0&gt;
+
+    def test_explicit_validation_invalid_does_not_rewrite_process_success(local):
+        h = local; request = finish(h)
+        (h.run_root(h.rid) / "result.json").write_text("invalid", encoding="utf-8")
+        assert h.service.validate_run(h.context, request)["receipt"]["projection_at_commit"]["verdict"] == "FAIL"
+        run = h.local_store.query_run(h.context, h.rid)
+        assert run["backend_outcome"] == "COMPLETED" and run["exit_verification"] == "VERIFIED"
+        assert run["artifact_validation"] == "INVALID" and run["solver_conclusion"] == "NOT_RUN"
+&gt;       assert h.local_store.dispatch_gate(h.context)["state"] == "PAUSED"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ExperimentStore' object has no attribute 'dispatch_gate'. Did you mean: 'dispatch_scope'?
+
+tests\test_public_workflow.py:119: AttributeError</failure></testcase></testsuite></testsuites>

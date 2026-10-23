@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="3.111" timestamp="2026-10-23T21:12:47.732829+08:00" hostname="Boltzmann"><testcase classname="tests.test_standard_supervisor" name="test_windows_public_standard_path_gui_reconnect_substitute" time="3.038" /></testsuite></testsuites>

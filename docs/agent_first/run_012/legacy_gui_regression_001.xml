@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="5" time="0.797" timestamp="2026-10-23T20:34:49.258212+08:00" hostname="Boltzmann"><testcase classname="tests.test_project_gui.ProjectGuiTests" name="test_export_defaults_to_metadata_and_explains_external_references" time="0.328"><failure message="KeyError: 'ProjectManager'">self = &lt;test_project_gui.ProjectGuiTests testMethod=test_export_defaults_to_metadata_and_explains_external_references&gt;
+
+    def test_export_defaults_to_metadata_and_explains_external_references(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            manager = ProjectManager(recent_file=root / "recent.json")
+            project = manager.create_project(root / "Project", "Project")
+            manager.current = project
+            default = root / "default_runtime"
+            with patch.object(config, "RUNTIME_DIR_PATH", default), \
+                 patch.object(config, "RUNTIME_DIR", str(default)), \
+                 patch.object(config, "QUEUE_FILE", str(default / "queue.json")), \
+                 patch.object(config, "LIVE_STATUS_FILE", str(default / "live_status.json")), \
+                 patch.object(config, "SETTINGS_FILE", str(default / "settings.json")), \
+&gt;                patch("abqjobpilot.gui_app.ProjectManager", return_value=manager), \
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 patch.object(AbqJobPilotApp, "_read_gpu_text", return_value="--"):
+
+tests\test_project_gui.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+D:\Program Files\Python312\Lib\unittest\mock.py:1606: in __exit__
+    if not self.create and (not hasattr(self.target, self.attribute) or
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'ProjectManager'
+
+    def __getattr__(name):
+        # Preserve existing module-level integration/patch points without importing
+        # Runtime/Runner/Recent/DB in the explicit connect-only workspace.
+        if name in _LEGACY_NAMES:
+            _load_legacy()
+&gt;           return globals()[name]
+                   ^^^^^^^^^^^^^^^
+E           KeyError: 'ProjectManager'
+
+abqjobpilot\gui_app.py:35: KeyError</failure></testcase><testcase classname="tests.test_project_gui.ProjectGuiTests" name="test_project_switch_reloads_queue_and_results_without_runner" time="0.100"><failure message="KeyError: 'ProjectManager'">self = &lt;unittest.mock._patch object at 0x0000025CBE172180&gt;
+
+    def get_original(self):
+        target = self.getter()
+        name = self.attribute
+    
+        original = DEFAULT
+        local = False
+    
+        try:
+&gt;           original = target.__dict__[name]
+                       ^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'ProjectManager'
+
+D:\Program Files\Python312\Lib\unittest\mock.py:1427: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;test_project_gui.ProjectGuiTests testMethod=test_project_switch_reloads_queue_and_results_without_runner&gt;
+
+    def test_project_switch_reloads_queue_and_results_without_runner(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            manager = ProjectManager(recent_file=root / "recent.json")
+            a = manager.create_project(root / "A", "A")
+            b = manager.create_project(root / "B", "B")
+            inp_a = a.models_dir / "Job_A.inp"
+            inp_b = b.models_dir / "Job_B.inp"
+            a.models_dir.mkdir()
+            b.models_dir.mkdir()
+            inp_a.write_text("*Heading\n", encoding="utf-8")
+            inp_b.write_text("*Heading\n", encoding="utf-8")
+            queued = build_queue_record(inp_a, 2, 0, "A", "A", None, True, True, "")
+            completed = build_queue_record(inp_b, 2, 0, "B", "B", None, True, True, "")
+            completed["status"] = "COMPLETED_OK"
+            completed["phase"] = "COMPLETED_OK"
+            save_queue([queued], runtime_dir=a.runtime_dir)
+            save_queue([completed], runtime_dir=b.runtime_dir)
+            default = root / "default_runtime"
+            with patch.object(config, "RUNTIME_DIR_PATH", default), \
+                 patch.object(config, "RUNTIME_DIR", str(default)), \
+                 patch.object(config, "QUEUE_FILE", str(default / "queue.json")), \
+                 patch.object(config, "LIVE_STATUS_FILE", str(default / "live_status.json")), \
+                 patch.object(config, "SETTINGS_FILE", str(default / "settings.json")), \
+&gt;                patch("abqjobpilot.gui_app.ProjectManager", return_value=manager), \
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 patch.object(AbqJobPilotApp, "_read_gpu_text", return_value="--"):
+
+tests\test_project_gui.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+D:\Program Files\Python312\Lib\unittest\mock.py:1467: in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\unittest\mock.py:1429: in get_original
+    original = getattr(target, name, DEFAULT)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'ProjectManager'
+
+    def __getattr__(name):
+        # Preserve existing module-level integration/patch points without importing
+        # Runtime/Runner/Recent/DB in the explicit connect-only workspace.
+        if name in _LEGACY_NAMES:
+            _load_legacy()
+&gt;           return globals()[name]
+                   ^^^^^^^^^^^^^^^
+E           KeyError: 'ProjectManager'
+
+abqjobpilot\gui_app.py:35: KeyError</failure></testcase><testcase classname="tests.test_gui_table_state.TestGuiTableState" name="test_queue_preserves_runner_order_and_identity" time="0.001" /><testcase classname="tests.test_gui_table_state.TestGuiTableState" name="test_result_selection_restores_by_id_after_reorder" time="0.000" /><testcase classname="tests.test_gui_table_state.TestGuiTableState" name="test_results_newest_first_with_timestamp_fallbacks" time="0.000" /></testsuite></testsuites>

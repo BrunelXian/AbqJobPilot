@@ -1,0 +1,22 @@
+{
+  "process": {
+    "identity": {
+      "pid": 3976,
+      "creation_time_100ns": 134372140452195216,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+    },
+    "exit": {
+      "pid": 3976,
+      "creation_time_100ns": 134372140452195216,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "exit_code": 2,
+      "exit_observed_at": 1792740445,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_01_public_readonly_en0\\case_e322c116\\stdout_72b5e130973d40a9ac792823fa923d35.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_01_public_readonly_en0\\case_e322c116\\stderr_cb2d74bf4da44fe283356cb88690eb4c.txt",
+    "handles_closed": true
+  },
+  "stdout": "{\"attempt_written\": false, \"candidate_digest\": \"sha256:9217cf9d792d518a9107c582662a9ac54cc78c23fef42fd2a57fc17da25b9e50\", \"execution_authorization\": \"NOT_ASSERTED\", \"external_processes_created\": 0, \"host\": {\"controller_standard_handles\": {\"stderr\": {\"file_type\": 1, \"ownership\": \"borrowed; never closed by controller\"}, \"stdout\": {\"file_type\": 1, \"ownership\": \"borrowed; never closed by controller\"}}, \"identity\": {\"creation_time_100ns\": 134372140452359683, \"image_path\": \"D:\\\\Program Files\\\\Python312\\\\python.exe\", \"pid\": 17100}, \"in_any_job\": true, \"interpreter\": \"D:\\\\XianLab\\\\envs\\\\LangChainEnv\\\\Scripts\\\\python.exe\", \"job_query_error\": null, \"job_query_succeeded\": true, \"observed_at_ns\": 1792740445723060700, \"python\": \"3.12.10\"}, \"host_condition\": \"BLOCKED\", \"materials\": \"MATCH\", \"status\": \"CHECK_ONLY\", \"warning\": \"execute rechecks in its own process; prior check cannot admit execution\"}\n",
+  "real_root_unchanged": true
+}

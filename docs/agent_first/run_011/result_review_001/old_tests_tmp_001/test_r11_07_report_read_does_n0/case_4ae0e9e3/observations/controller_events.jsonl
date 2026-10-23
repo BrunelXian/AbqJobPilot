@@ -1,0 +1,2 @@
+{"attempt_id":"attempt_7a4ea8319d3949a89e33c1bcd4872234","kind":"START_INTENT_PERSISTED","logs":{"kind":"exclusive_regular_files","owner":"controller; child inherits copies","stderr":"observations/stderr.bin","stdout":"observations/stdout.bin"},"observed_at_ns":1792757065848596300,"sequence":1}
+{"kind":"CREATE_CALL_ENTERING","meaning":"not proof of OS creation","observed_at_ns":1792757065852594700,"sequence":2}

@@ -1,0 +1,5 @@
+{
+  "branch": "Develop",
+  "head": "fb7912ec9e0107b18f65948b147c87579c87cded",
+  "status": "?? abqjobpilot/abaqus_preview/\n?? abqjobpilot/execution/\n?? docs/agent_first/run_002/\n?? docs/agent_first/run_003/\n?? docs/agent_first/run_004/\n?? docs/agent_first/run_005/\n?? docs/agent_first/run_006/\n?? docs/agent_first/run_007/\n?? docs/agent_first/run_008/\n?? docs/agent_first/run_009/\n?? examples/\n?? tests/abaqus_preview_helpers.py\n?? tests/execution_helpers.py\n?? tests/reconciliation_helpers.py\n?? tests/run003_process.py\n?? tests/supervisor_helpers.py\n?? tests/test_abaqus_preview.py\n?? tests/test_abaqus_preview_integration.py\n?? tests/test_diagnostic_supervisor.py\n?? tests/test_execution_contract.py\n?? tests/test_execution_isolation.py\n?? tests/test_execution_ownership.py\n?? tests/test_execution_store.py\n?? tests/test_fake_reconciliation.py\n?? tests/test_fake_supervisor.py\n?? tests/test_process_contract.py\n?? tests/test_process_fixture.py\n?? tests/test_public_client_example.py\n?? tests/test_public_workflow.py\n?? tests/test_reconciliation_supervisor.py\n?? tests/test_recorded_exit_reconciliation.py\n?? tests/test_run_diagnostics.py"
+}

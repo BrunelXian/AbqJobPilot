@@ -1,0 +1,91 @@
+{
+  "controller": {
+    "identity": {
+      "pid": 3172,
+      "creation_time_100ns": 134372138974709122,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 3172,
+      "creation_time_100ns": 134372138974709122,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740298,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_f73718320bd04717a85d2cf6490b947d\\pytest\\test_r11_05_06_controller_retu0\\case_46b9f4e1\\stdout_6bc5adf849d8492f958249470911da1f.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_f73718320bd04717a85d2cf6490b947d\\pytest\\test_r11_05_06_controller_retu0\\case_46b9f4e1\\stderr_d998152b93bd46a1a9d0112a9753d90f.txt",
+    "handles_closed": true
+  },
+  "report": {
+    "schema": "r011-experiment-report-v1",
+    "attempt_id": "attempt_89e01b691e074d9f99134bab31d04e24",
+    "experiment_id": "fixture_only",
+    "candidate_digest": "candidate_a",
+    "source": "external_experiment_controller_not_Project_Run",
+    "creation": "PROCESS_OBJECT_RETURNED",
+    "processes": {
+      "direct_identity": {
+        "pid": 19668,
+        "creation_time_100ns": 134372138975592590,
+        "image_path": "D:\\Program Files\\Python312\\python.exe"
+      },
+      "exits": [],
+      "candidate_identities": [
+        {
+          "pid": 27652,
+          "creation_time_100ns": 134372138975669869,
+          "image_path": "C:\\Windows\\System32\\conhost.exe"
+        }
+      ],
+      "all_observed_exited": false,
+      "member_completeness": "UNKNOWN",
+      "overall_exit": "UNKNOWN",
+      "unknowns": [],
+      "observation_time_ns": 1792740298149824200
+    },
+    "solver": "EVIDENCE_INSUFFICIENT",
+    "numerical": "EVIDENCE_INSUFFICIENT",
+    "odb_content_validation": "NOT_RUN",
+    "overall": "PARTIAL",
+    "deadline_reached": true,
+    "launch_pid": 19668,
+    "creation_duration_seconds": 0.0,
+    "observation_finished_at_ns": 1792740298149824200,
+    "observation_elapsed_seconds": 0.6089999999967404,
+    "results": {
+      "solver": "EVIDENCE_INSUFFICIENT",
+      "numerical": "EVIDENCE_INSUFFICIENT",
+      "odb_content_validation": "NOT_RUN",
+      "observations": [],
+      "reason": "DAT_MISSING"
+    },
+    "returned_at_ns": 1792740298153384500,
+    "elapsed_including_creation_and_reporting_seconds": 0.6089999999967404
+  },
+  "worker_alive_and_file_grew_after_controller_exit": true,
+  "cleanup": {
+    "identity": {
+      "pid": 19668,
+      "creation_time_100ns": 134372138975592590,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 19668,
+      "creation_time_100ns": 134372138975592590,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740298,
+      "exit_source": "retained_windows_handle"
+    },
+    "method": "fixture release then natural exit",
+    "handle_closed": true
+  },
+  "physical_registrations": [
+    {
+      "pid": 19668,
+      "creation_time_100ns": 134372138975592590,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    }
+  ]
+}

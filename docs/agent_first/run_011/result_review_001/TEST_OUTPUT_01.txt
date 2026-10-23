@@ -1,0 +1,130 @@
+........................EE.....                                          [100%]
+=================================== ERRORS ====================================
+_ ERROR at setup of test_missing_conflicting_incomplete_or_oversize_refused[[OVERSIZE_TEST_VALUE_OMITTED]] _
+
+cls = <class '_pytest.runner.CallInfo'>
+func = <function call_and_report.<locals>.<lambda> at 0x000001898C8A6020>
+when = 'setup'
+reraise = (<class '_pytest.outcomes.Exit'>, <class 'KeyboardInterrupt'>)
+
+    @classmethod
+    def from_call(
+        cls,
+        func: Callable[[], TResult],
+        when: Literal["collect", "setup", "call", "teardown"],
+        reraise: type[BaseException] | tuple[type[BaseException], ...] | None = None,
+    ) -> CallInfo[TResult]:
+        """Call func, wrapping the result in a CallInfo.
+    
+        :param func:
+            The function to call. Called without arguments.
+        :type func: Callable[[], _pytest.runner.TResult]
+        :param when:
+            The phase in which the function is called.
+        :param reraise:
+            Exception or exceptions that shall propagate if raised by the
+            function, instead of being wrapped in the CallInfo.
+        """
+        excinfo = None
+        instant = timing.Instant()
+        try:
+>           result: TResult | None = func()
+                                     ^^^^^^
+
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:361: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:250: in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\pluggy\_hooks.py:512: in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\pluggy\_manager.py:120: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\logging.py:858: in pytest_runtest_setup
+    yield
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\capture.py:895: in pytest_runtest_setup
+    return (yield)
+            ^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:169: in pytest_runtest_setup
+    _update_current_test_var(item, "setup")
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:215: in _update_current_test_var
+    os.environ[var_name] = value
+    ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = [ENVIRONMENT REPR OMITTED: unrelated sensitive context]
+key = 'PYTEST_CURRENT_TEST'
+value = 'docs/agent_first/run_011/result_review_001/test_dat_review.py::test_missing_conflicting_incomplete_or_oversize_refuse...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] (setup)'
+
+>   ???
+E   ValueError: the environment variable is longer than 32767 characters
+
+<frozen os>:720: ValueError
+_ ERROR at teardown of test_missing_conflicting_incomplete_or_oversize_refused[[OVERSIZE_TEST_VALUE_OMITTED]] _
+
+cls = <class '_pytest.runner.CallInfo'>
+func = <function call_and_report.<locals>.<lambda> at 0x000001898C8A6200>
+when = 'teardown'
+reraise = (<class '_pytest.outcomes.Exit'>, <class 'KeyboardInterrupt'>)
+
+    @classmethod
+    def from_call(
+        cls,
+        func: Callable[[], TResult],
+        when: Literal["collect", "setup", "call", "teardown"],
+        reraise: type[BaseException] | tuple[type[BaseException], ...] | None = None,
+    ) -> CallInfo[TResult]:
+        """Call func, wrapping the result in a CallInfo.
+    
+        :param func:
+            The function to call. Called without arguments.
+        :type func: Callable[[], _pytest.runner.TResult]
+        :param when:
+            The phase in which the function is called.
+        :param reraise:
+            Exception or exceptions that shall propagate if raised by the
+            function, instead of being wrapped in the CallInfo.
+        """
+        excinfo = None
+        instant = timing.Instant()
+        try:
+>           result: TResult | None = func()
+                                     ^^^^^^
+
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:361: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:250: in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\pluggy\_hooks.py:512: in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\pluggy\_manager.py:120: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\logging.py:873: in pytest_runtest_teardown
+    yield
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\capture.py:905: in pytest_runtest_teardown
+    return (yield)
+            ^^^^^
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:198: in pytest_runtest_teardown
+    _update_current_test_var(item, "teardown")
+D:\XianLab\envs\LangChainEnv\Lib\site-packages\_pytest\runner.py:215: in _update_current_test_var
+    os.environ[var_name] = value
+    ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = [ENVIRONMENT REPR OMITTED: unrelated sensitive context]
+key = 'PYTEST_CURRENT_TEST'
+value = 'docs/agent_first/run_011/result_review_001/test_dat_review.py::test_missing_conflicting_incomplete_or_oversize_refuse...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] (teardown)'
+
+>   ???
+E   ValueError: the environment variable is longer than 32767 characters
+
+<frozen os>:720: ValueError
+=========================== short test summary info ===========================
+ERROR docs/agent_first/run_011/result_review_001/test_dat_review.py::test_missing_conflicting_incomplete_or_oversize_refused[[OVERSIZE_TEST_VALUE_OMITTED]]
+ERROR docs/agent_first/run_011/result_review_001/test_dat_review.py::test_missing_conflicting_incomplete_or_oversize_refused[[OVERSIZE_TEST_VALUE_OMITTED]]
+29 passed, 2 errors in 0.59s

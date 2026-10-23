@@ -1,0 +1,19 @@
+{
+  "tests": 343,
+  "regression_case_identity_subset_confirmed": true,
+  "matrix_test_references_found": 19,
+  "local_links_checked": 26,
+  "source_hashes_unchanged_since_test_snapshot": 38,
+  "examples_offline_validated": 5,
+  "whitespace_and_fences": "PASS",
+  "testsuite": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "343",
+    "time": "241.902",
+    "timestamp": "2026-10-22T22:52:26.997033+08:00",
+    "hostname": "Boltzmann"
+  }
+}

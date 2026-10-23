@@ -1,0 +1,13 @@
+{
+  "source": "user explicit authorization in current conversation",
+  "experiment_id": "abq2024_r010_a19d17ea",
+  "manifest_digest": "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6",
+  "approved_entry": "D:\\ABAQUS2024\\Commands\\abq2024.bat",
+  "approved_calls": 1,
+  "approved_extra_calls": 0,
+  "actual_entry_launch_attempts": 0,
+  "approval_is_not_a_product_grant": true,
+  "immutable_manifest_authorized_flag_left_unchanged": true,
+  "launch_intent_created": false,
+  "decision": "stop under user preflight requirement 7; not an authorization shortage; no repeat approval requested"
+}

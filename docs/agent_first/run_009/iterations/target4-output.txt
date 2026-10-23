@@ -1,0 +1,113 @@
+........................................................................ [ 77%]
+................F...FE                                                   [100%]
+=================================== ERRORS ====================================
+_ ERROR at teardown of test_existing_public_ipc_rejects_preview_and_never_downgrades _
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target4/test_existing_public_ipc_rejec0')
+
+    @pytest.fixture
+    def processes(tmp_path):
+        harness = ProcessHarness(tmp_path)
+        try:
+            yield harness
+        finally:
+>           harness.close()
+
+tests\supervisor_helpers.py:234: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <supervisor_helpers.ProcessHarness object at 0x00000205ED01D3D0>
+
+    def close(self):
+        for child in self.children:
+            if child.process.poll() is None:
+                if child.mode == "owner":
+                    # Release only barriers belonging to this harness, then request graceful test stop.
+                    for path in child.control.glob("*.reached.json"):
+                        path.with_name(path.name.replace(".reached.json", ".release.json")).write_text("{}", encoding="utf-8")
+                    (child.control / "stop.json").write_text("{}", encoding="utf-8")
+                    try:
+                        child.process.wait(timeout=8)
+                    except subprocess.TimeoutExpired:
+                        child.terminate()
+                else:
+                    child.terminate()
+            assert child.process.poll() is not None
+            for stream in child.logs:
+                stream.close()
+        rows = [{"mode": c.mode, "identity": c.identity, "exit_code": c.process.returncode,
+                 "launcher_pid": c.process.pid,
+                 "terminated_by_owned_handle": c.terminated, "exited": c.process.poll() is not None,
+                 "control": str(c.control)} for c in self.children]
+        for child, row in zip(self.children, rows):
+            if child.native:
+                api, handle = child.native
+                assert api.WaitForSingleObject(handle, 0) == 0
+                row["actual_process_handle_signaled"] = True
+                api.CloseHandle(handle)
+                child.native = None
+        # Only files created by this fixture, inside its explicit root. Business
+        # evidence stays available; ephemeral connection credentials are removed.
+        removed = []
+        for path in [self.bootstrap] + [c.control / "private-process.json" for c in self.children]:
+            target = confined(self.root, path, exists=True)
+            target.unlink()
+            removed.append(str(target.relative_to(self.root)))
+        (self.root / "lifecycle.json").write_text(canonical_json(rows), encoding="utf-8")
+        assert inventory(self.root)["recent-fixture.json"] == self.recent
+        files = [str(p.relative_to(self.root)) for p in self.root.rglob("*") if p.is_file()]
+>       assert not any(Path(p).suffix.lower() in {".inp", ".cae", ".odb", ".jnl"} for p in files)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError
+
+tests\supervisor_helpers.py:219: AssertionError
+================================== FAILURES ===================================
+________ test_no_storage_or_validation_access_even_with_existing_store ________
+
+harness = Harness(root=WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6/target...idation_0/inputs/source.txt'), config=ConfigSnapshot(_json='{"config_revision":1,"values":{"label":"simulation ����"}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000205EF1ED4C0>
+
+    def test_no_storage_or_validation_access_even_with_existing_store(harness, monkeypatch):
+        import sqlite3
+        from abqjobpilot.execution.fake_backend import FakeBackend
+        from abqjobpilot.execution.process_backend import ProcessBackend
+        import abqjobpilot.execution.validation as validation
+        h = harness; args = case(h.root); before = inventory(h.root)
+        def forbidden(*a, **kw): pytest.fail("offline path crossed execution/storage boundary")
+        monkeypatch.setattr(sqlite3, "connect", forbidden)
+>       monkeypatch.setattr(FakeBackend, "execute", forbidden)
+E       AttributeError: <class 'abqjobpilot.execution.fake_backend.FakeBackend'> has no attribute 'execute'
+
+tests\test_abaqus_preview.py:278: AttributeError
+________ test_existing_public_ipc_rejects_preview_and_never_downgrades ________
+
+processes = <supervisor_helpers.ProcessHarness object at 0x00000205ED01D3D0>
+
+    def test_existing_public_ipc_rejects_preview_and_never_downgrades(processes):
+        h = processes
+        preview = prepare(**case(h.root)).to_dict()
+        h.owner()
+        client = h.client(); health = client.health()
+        assert health["backends"] == [{"backend_id": "fake-v1", "version": 1}]
+        assert not any("abaqus" in op.lower() for op in health["operations"])
+        before = inventory(Path(h.context.root)); gate = client.dispatch_gate()
+        for request in (preview, {**preview, "executable": True, "approved": True, "dry_run": False},
+                        {**h.requests[0], "plan_id": preview["content_digest"], "plan_digest": preview["content_digest"]},
+                        {**h.requests[0], "plan_digest": preview["content_digest"]}):
+            with pytest.raises(ExecutionError) as failure: client.submit(request)
+            assert failure.value.code in {"INVALID_REQUEST", "NOT_FOUND", "GRANT_SCOPE_MISMATCH"}
+        # No prepare/convert/approve or dynamic backend RPC exists.
+        for op in ("prepare_abaqus", "convert_preview", "approve", "register_backend"):
+            with pytest.raises(ExecutionError) as failure: client.call(op, {"preview": preview})
+            assert failure.value.code == "UNKNOWN_OPERATION"
+        assert inventory(Path(h.context.root)) == before and client.dispatch_gate() == gate
+>       assert client.events()["events"] == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list indices must be integers or slices, not str
+
+tests\test_abaqus_preview_integration.py:84: TypeError
+=========================== short test summary info ===========================
+FAILED tests/test_abaqus_preview.py::test_no_storage_or_validation_access_even_with_existing_store
+FAILED tests/test_abaqus_preview_integration.py::test_existing_public_ipc_rejects_preview_and_never_downgrades
+ERROR tests/test_abaqus_preview_integration.py::test_existing_public_ipc_rejects_preview_and_never_downgrades
+2 failed, 91 passed, 1 error in 4.86s

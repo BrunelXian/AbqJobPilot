@@ -1,0 +1,57 @@
+[
+  {
+    "file": "target1.xml",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "14",
+    "skipped": "0",
+    "tests": "87",
+    "time": "3.285",
+    "timestamp": "2026-10-23T11:13:42.056323+08:00",
+    "hostname": "Boltzmann"
+  },
+  {
+    "file": "target2.xml",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "15",
+    "skipped": "0",
+    "tests": "87",
+    "time": "2.110",
+    "timestamp": "2026-10-23T11:14:06.228236+08:00",
+    "hostname": "Boltzmann"
+  },
+  {
+    "file": "target3.xml",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "87",
+    "time": "2.032",
+    "timestamp": "2026-10-23T11:14:31.362803+08:00",
+    "hostname": "Boltzmann"
+  },
+  {
+    "file": "target4.xml",
+    "name": "pytest",
+    "errors": "1",
+    "failures": "2",
+    "skipped": "0",
+    "tests": "94",
+    "time": "4.788",
+    "timestamp": "2026-10-23T11:15:37.453046+08:00",
+    "hostname": "Boltzmann"
+  },
+  {
+    "file": "target5.xml",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "93",
+    "time": "4.785",
+    "timestamp": "2026-10-23T11:16:04.818273+08:00",
+    "hostname": "Boltzmann"
+  }
+]

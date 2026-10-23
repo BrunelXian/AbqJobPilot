@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="55.408" timestamp="2026-10-23T20:35:43.772944+08:00" hostname="Boltzmann"><testcase classname="tests.test_execution_gui" name="test_actual_gui_close_reopen_public_client_worker_survives" time="6.435"><failure message="PermissionError: [Errno 13] Permission denied: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run012_final_001\\test_actual_gui_close_reopen_p0\\gui_B\\view.json'">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run012_final_001/test_actual_gui_close_reopen_p0')
+
+    def test_actual_gui_close_reopen_public_client_worker_survives(tmp_path):
+        h=ProcessHarness(tmp_path,process_scenarios=['result_wait'])
+        guis=[];refs=[];conn=None
+        evidence={'os':sys.platform,'python':sys.executable,'version':sys.version,'temporary_root':str(tmp_path)}
+        try:
+            owner=h.owner()
+            client=h.client()
+            # Independent ordinary public example process submits before any GUI exists.
+            offer=tmp_path/'offer.json';offer.write_text(canonical_json({'request':h.requests[0]}),encoding='utf-8')
+            conn=connection(h);session=tmp_path/'session';session.mkdir()
+            with (tmp_path/'client.stderr').open('wb') as err:
+                a=subprocess.Popen([sys.executable,'-B',str(SOURCE/'examples/agent_first/client_workflow.py'),
+                    '--source',str(SOURCE),'--connection',str(conn),'--offer',str(offer),'--session',str(session),'--phase','submit'],
+                    cwd=tmp_path,stdout=subprocess.DEVNULL,stderr=err,shell=False,close_fds=True,creationflags=subprocess.CREATE_NO_WINDOW)
+                ar=ProcessReference(a.pid,cleanup=True);refs.append(ar)
+                assert a.wait(timeout=15)==0,(tmp_path/'client.stderr').read_text()
+            receipt=read_json(session/'session.json')['receipt'];rid=receipt['run_id']
+            run=wait_until(lambda:(r if len((r:=client.run(rid))['process_records'])==4 else None))
+            worker=next(m for m in run['process_records'] if m['role']=='worker')
+            wr=ProcessReference(worker['pid'],worker,cleanup=True);refs.append(wr)
+            wait_until(lambda:len(client.run(rid)['process_exits'])&gt;=2)
+            before=db_facts(client,rid)
+            gui=Gui(tmp_path,conn,'key-0','gui_A');guis.append(gui)
+            first=gui.view(lambda v:v['connected'] and rid in json.dumps(v['rows']) and 'WAITING' in v['progress_text'])
+            page=client.progress(rid);seq=page['next_sequence']
+            gui.view(lambda v:'"sequence": '+str(seq+1) in v['progress_text'])
+            exits=gui.normal_close()
+            after_seq=client.progress(rid)['next_sequence']
+            wait_until(lambda:client.progress(rid)['next_sequence']&gt;after_seq)
+            growth=client.progress(rid)
+            assert wr.exit_evidence() is None
+            assert owner.process.poll() is None
+            assert client.health()['process']==owner.identity
+            assert client.dispatch_gate()==before['gate']
+            assert client.receipt('key-0')==receipt
+            gui2=Gui(tmp_path,conn,'key-0','gui_B');guis.append(gui2)
+            reopened=gui2.view(lambda v:v['connected'] and rid in json.dumps(v['rows']) and 'WAITING' in v['progress_text'])
+            assert client.submit(h.requests[0])['replayed'] # Same public request, no second execution.
+            assert db_facts(client,rid)==before
+            (Path(h.context.runtime_root)/'process_runs'/rid/'release.json').write_text('{}',encoding='utf-8')
+            finished=h.finished(rid)
+            shown=gui2.view(lambda v:v['connected'] and dict(v['rows']).get('Artifact 独立验证')=='VALID')
+            assert finished['solver_conclusion']=='NOT_RUN' and finished['artifact_validation']=='VALID'
+            assert len(finished['process_exits'])==4 and all(e['exit_code']==0 for e in finished['process_exits'])
+            assert finished['process_records']==run['process_records']
+            assert len([e for e in client.events() if e['type']=='START_INTENT'])==1
+            physical=read_json(owner.control/'physical-launches.json')
+            assert len(physical)==1 and physical[0]['run_id']==rid
+            assert dict(shown['rows'])['执行阶段']==finished['execution']
+            assert dict(shown['rows'])['OS 退出验证']==finished['exit_verification']
+            # Stop owner normally after completion; connected GUI must show stale state.
+            (owner.control/'stop.json').write_text('{}',encoding='utf-8');assert owner.process.wait(timeout=10)==0
+&gt;           lost=gui2.view(lambda v:not v['connected'])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_execution_gui.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_execution_gui.py:52: in view
+    return wait_until(check)
+           ^^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:25: in wait_until
+    result = predicate()
+             ^^^^^^^^^^^
+tests\test_execution_gui.py:50: in check
+    view=read_json(self.root/'view.json')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:33: in read_json
+    return json.loads(path.read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run012_final_001/test_actual_gui_close_reopen_p0/gui_B/view.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+&gt;       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run012_final_001\\test_actual_gui_close_reopen_p0\\gui_B\\view.json'
+
+D:\Program Files\Python312\Lib\pathlib.py:1013: PermissionError</failure></testcase><testcase classname="tests.test_execution_gui" name="test_progress_auth_bounds_readonly_and_corruption" time="1.681" /><testcase classname="tests.test_execution_gui" name="test_product_entries_starter_exits_and_owner_is_independent" time="47.159" /></testsuite></testsuites>

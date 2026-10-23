@@ -15,36 +15,30 @@ from pathlib import Path
 from types import SimpleNamespace
 from tkinter import filedialog, messagebox, scrolledtext, simpledialog, ttk
 
-from . import __version__, config
-from .app_metadata import STABLE_GITHUB_URL
-from .command_console import AI_INSTRUCTION, CLI_EXAMPLES, AgentCommandConsole
-from .gui_presentation import (SUCCESS_BACKGROUND, SUCCESS_FOREGROUND, filter_jobs,
-                               read_log_tail, status_presentation)
-from .gui_table_state import queue_display_jobs, result_display_jobs, restore_iids, row_iid, selected_job_id
-from .queue_store import (
-    add_folder_to_queue,
-    add_inp_job_to_queue,
-    apply_resources_to_queued_jobs,
-    init_storage,
-    load_queue,
-    mark_job_skipped,
-    move_queued_job,
-    remove_queued_job,
-    remove_queued_jobs,
-    remove_result_job,
-    remove_result_jobs,
-    requeue_result_job,
-)
-from .api import AbqJobPilotClient, JobRequest
-from .api.status_reader import expected_paths
-from .project import ProjectInfo, ProjectManager, export_project_archive, import_legacy_runtime, import_project_archive
-from .project.manager import default_projects_root, ensure_default_projects_root, set_default_projects_root
-from .database import DatabaseFailure, ProjectHistoryRepository, sync_history_from_runtime
-from .status_codes import normalize_status
-from .runner_core import QueueRunner
-from .recovery_dialog import RecoveryDialog
-from .settings_store import load_settings, save_settings
-from .utils import format_bytes, now_iso, open_folder, read_json, tail_text, write_json
+from . import __version__
+
+_LEGACY_NAMES = ('config', 'STABLE_GITHUB_URL', 'AI_INSTRUCTION', 'CLI_EXAMPLES', 'AgentCommandConsole', 'SUCCESS_BACKGROUND', 'SUCCESS_FOREGROUND', 'filter_jobs', 'read_log_tail', 'status_presentation', 'queue_display_jobs', 'result_display_jobs', 'restore_iids', 'row_iid', 'selected_job_id', 'add_folder_to_queue', 'add_inp_job_to_queue', 'apply_resources_to_queued_jobs', 'init_storage', 'load_queue', 'mark_job_skipped', 'move_queued_job', 'remove_queued_job', 'remove_queued_jobs', 'remove_result_job', 'remove_result_jobs', 'requeue_result_job', 'AbqJobPilotClient', 'JobRequest', 'expected_paths', 'ProjectInfo', 'ProjectManager', 'export_project_archive', 'import_legacy_runtime', 'import_project_archive', 'default_projects_root', 'ensure_default_projects_root', 'set_default_projects_root', 'DatabaseFailure', 'ProjectHistoryRepository', 'sync_history_from_runtime', 'normalize_status', 'QueueRunner', 'RecoveryDialog', 'load_settings', 'save_settings', 'format_bytes', 'now_iso', 'open_folder', 'read_json', 'tail_text', 'write_json')
+_legacy_loaded = False
+
+def _load_legacy():
+    global _legacy_loaded
+    if not _legacy_loaded:
+        from . import gui_legacy
+        globals().update({name: getattr(gui_legacy, name) for name in _LEGACY_NAMES})
+        _legacy_loaded = True
+
+def __getattr__(name):
+    # Preserve existing module-level integration/patch points without importing
+    # Runtime/Runner/Recent/DB in the explicit connect-only workspace.
+    if name in _LEGACY_NAMES:
+        _load_legacy()
+        if name not in globals():
+            # mock.patch may remove a lazily resolved attribute on exit. Restore
+            # that one name, without replacing other active integration patches.
+            from . import gui_legacy
+            globals()[name] = getattr(gui_legacy, name)
+        return globals()[name]
+    raise AttributeError(name)
 
 
 QUEUE_COLUMNS = ("index", "status", "batch", "strategy", "job", "cpus", "gpus", "created", "inp")
@@ -204,8 +198,13 @@ class BasicSettingsDialog(tk.Toplevel):
 
 
 class AbqJobPilotApp(tk.Tk):
-    def __init__(self):
+    def __init__(self, *, execution_connection=None, request_key=None, on_execution_view=None):
         super().__init__()
+        if execution_connection is not None:
+            from .execution_gui import ExecutionView
+            self.execution_view = ExecutionView(self, execution_connection, request_key, on_execution_view)
+            return
+        _load_legacy()
         init_storage()
         self.title("AbqJobPilot")
         self._apply_icon()
@@ -272,6 +271,8 @@ class AbqJobPilotApp(tk.Tk):
         self._poll_after_id = self.after(config.POLL_INTERVAL_SECONDS * 1000, self._poll_refresh)
 
     def destroy(self) -> None:
+        if "execution_view" in self.__dict__:
+            self.execution_view.close()
         for key in ("_poll_after_id", "_selection_restore_after_id"):
             callback_id = getattr(self, key, None)
             if not callback_id:
@@ -284,7 +285,7 @@ class AbqJobPilotApp(tk.Tk):
         super().destroy()
 
     def _apply_icon(self) -> None:
-        icon_path = Path(config.APP_ICON_FILE)
+        icon_path = Path(__file__).resolve().parents[1] / "abqjobpilot.ico"
         if icon_path.exists():
             try:
                 self.iconbitmap(str(icon_path))
@@ -2489,5 +2490,12 @@ class AbqJobPilotApp(tk.Tk):
 
 
 def main() -> None:
-    app = AbqJobPilotApp()
+    import argparse
+    parser = argparse.ArgumentParser(description="AbqJobPilot Dev GUI")
+    parser.add_argument("--execution-connection")
+    parser.add_argument("--request-key")
+    args = parser.parse_args()
+    if bool(args.execution_connection) != bool(args.request_key):
+        parser.error("Explicit connection and request key are required together")
+    app = AbqJobPilotApp(execution_connection=args.execution_connection, request_key=args.request_key)
     app.mainloop()

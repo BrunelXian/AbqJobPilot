@@ -1,0 +1,22 @@
+{
+  "process": {
+    "identity": {
+      "pid": 36336,
+      "creation_time_100ns": 134372138969795746,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+    },
+    "exit": {
+      "pid": 36336,
+      "creation_time_100ns": 134372138969795746,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740297,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_f73718320bd04717a85d2cf6490b947d\\pytest\\test_r11_01_public_readonly_en4\\case_269b2169\\stdout_2c1f7a94752643a8be3f056a7caa6a35.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_f73718320bd04717a85d2cf6490b947d\\pytest\\test_r11_01_public_readonly_en4\\case_269b2169\\stderr_b418cf95fed14aa59b450ea85e1ba9f1.txt",
+    "handles_closed": true
+  },
+  "stdout": "IMPORT_NO_EXECUTION\n",
+  "real_root_unchanged": true
+}

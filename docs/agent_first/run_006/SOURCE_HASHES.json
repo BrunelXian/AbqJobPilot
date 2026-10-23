@@ -1,0 +1,146 @@
+[
+  {
+    "path": "abqjobpilot/execution/__init__.py",
+    "sha256": "A04D2159719435020AA7157950F38254C9D9DCF3F1182CBD02AB70CB48355F4B"
+  },
+  {
+    "path": "abqjobpilot/execution/audit_export.py",
+    "sha256": "08C2DA9E8B7046511CB09C09519F4300B2A5F0243D8CB4E9ECEBA97F4555428F"
+  },
+  {
+    "path": "abqjobpilot/execution/authorization.py",
+    "sha256": "855A37F066F8B7BAFD14A1663CDE3AA10CD04DB95945FCB7805CB2AB86A8F4D3"
+  },
+  {
+    "path": "abqjobpilot/execution/client.py",
+    "sha256": "6C60A83EBF1718B38F23BE44161CAC0FF25A92151EFDD3307DECC7DE5B3ECD6C"
+  },
+  {
+    "path": "abqjobpilot/execution/diagnostics.py",
+    "sha256": "FE33BA12664816D5188A24EF04A70A4E1EF4E9E299745845ACC7A69422324F62"
+  },
+  {
+    "path": "abqjobpilot/execution/fake_backend.py",
+    "sha256": "DAA2C9949BE9741597DE245E0A40EB3CB41421D9A21B0821D119318D0D985032"
+  },
+  {
+    "path": "abqjobpilot/execution/models.py",
+    "sha256": "7242AE21CA764628DD3A2AEFC5311D021184364139D53572127437C0BD5A1825"
+  },
+  {
+    "path": "abqjobpilot/execution/ownership.py",
+    "sha256": "01A2188B695CA7192B06A01DF51F7FFB26EFCDF736E4994C911B777BD969D66F"
+  },
+  {
+    "path": "abqjobpilot/execution/paths.py",
+    "sha256": "4C78B31CE3AACEBDC407F5BA0BD732AECE5154418C6A8DDC247B66ED0DC77F71"
+  },
+  {
+    "path": "abqjobpilot/execution/planning.py",
+    "sha256": "D1DA4CA59114AB1A84C313C1E709647C7CC0227D22B80DA551BA30D58225ABF4"
+  },
+  {
+    "path": "abqjobpilot/execution/process_backend.py",
+    "sha256": "DC9D2D8565C1C21DF27BEE88FC0B8A1644EEE8DEA82601FC29C7BD49E4B3898E"
+  },
+  {
+    "path": "abqjobpilot/execution/process_contract.py",
+    "sha256": "517A7BF66FD6AA8992BEDA9F087D60306A60FFF2A9CE4FD16004E6A83B40015C"
+  },
+  {
+    "path": "abqjobpilot/execution/process_fixture.py",
+    "sha256": "2AB457024BCB1A1ED1085CB1F62DFB2FEBEFFC540B0DFC3D99097E742CCB1B28"
+  },
+  {
+    "path": "abqjobpilot/execution/process_handles.py",
+    "sha256": "905E05E70D77B0FDF5504935C56BE6413865439E9219E63F55642FBC1F014B96"
+  },
+  {
+    "path": "abqjobpilot/execution/process_validation.py",
+    "sha256": "3C3DAB14B5EDD97B8B066C0762B3B1F48DE115F83027277F86F9F5A53E8F151D"
+  },
+  {
+    "path": "abqjobpilot/execution/protocol.py",
+    "sha256": "E5583E17261DB8924CFC09804A675845D9A869C5AD881CFE78F119797F8188C6"
+  },
+  {
+    "path": "abqjobpilot/execution/reconciliation.py",
+    "sha256": "83260E0FE5283A1D003D9AD79CC1B491E942F8AD53858D58104BADFAB4892AF6"
+  },
+  {
+    "path": "abqjobpilot/execution/service.py",
+    "sha256": "BC150CC784C89E3C4D06269FF950B5A1C156FBB57B882846D17BAEF0F90598DF"
+  },
+  {
+    "path": "abqjobpilot/execution/store.py",
+    "sha256": "906998C80FAFCBC3A2B57B740EBE128B52B96D3306F1112E374DCBB99D9B316E"
+  },
+  {
+    "path": "abqjobpilot/execution/supervisor.py",
+    "sha256": "92AB8DF477ECF1E6583704BAAE69543AB2722F762ED1EFA96A278626F102AD69"
+  },
+  {
+    "path": "abqjobpilot/execution/validation.py",
+    "sha256": "107F8FD6AD27B923CF281E5686458A277E9087676C9F54F3377B80DDAF979F22"
+  },
+  {
+    "path": "tests/execution_helpers.py",
+    "sha256": "3196FA594A9B3AD8AD1CAC81A7232DF4DF1995A127B098B9F8286D213D4444D5"
+  },
+  {
+    "path": "tests/reconciliation_helpers.py",
+    "sha256": "68EF5E7A707EBBE2CCECF9DA1023D42547805C18C7A1318EB769FEC43EE4327B"
+  },
+  {
+    "path": "tests/run003_process.py",
+    "sha256": "E60134CC39574C17668E22ED35014EA9A07FE841C039C2167C02B7D4362326ED"
+  },
+  {
+    "path": "tests/supervisor_helpers.py",
+    "sha256": "8BCE77D19E7B9C6F7AB67A83F40C13DC571F6533E5381A75CF22531E746EA99E"
+  },
+  {
+    "path": "tests/test_diagnostic_supervisor.py",
+    "sha256": "CFA2810CBA73BAD332036B9847F16E500508BF2896C2AC66BE9F4D6C4BF0046E"
+  },
+  {
+    "path": "tests/test_execution_contract.py",
+    "sha256": "2699049C6957E17D6E12092E766B729EF577EC00DD9139AA31A7B5F8741E8668"
+  },
+  {
+    "path": "tests/test_execution_isolation.py",
+    "sha256": "6BB3AE4AD80E37FA57BA087B92913B29A8CDF341F7D32C4EF912874A9D48819C"
+  },
+  {
+    "path": "tests/test_execution_ownership.py",
+    "sha256": "021A7A3D694318EC212FC873B3340018640E9391557A01E901A1A6BC4D544145"
+  },
+  {
+    "path": "tests/test_execution_store.py",
+    "sha256": "9C3CBB8E237CC05F2BDA5F2CDA53453DA6CD78CC17716EF8647F30C394C5C681"
+  },
+  {
+    "path": "tests/test_fake_reconciliation.py",
+    "sha256": "A8412F82D2F62F9EB2F86698EBE96BAF10F5254482D001C84CD65FA60D537FAF"
+  },
+  {
+    "path": "tests/test_fake_supervisor.py",
+    "sha256": "ECEB02591406A2F170CFDCB871B84FDB41FAC47134EEB42116434D43F64EEA18"
+  },
+  {
+    "path": "tests/test_process_contract.py",
+    "sha256": "6E15B147D5579F31E4A79B6CFFACC0CCB5694FB732D8218F4987628B6B43C82D"
+  },
+  {
+    "path": "tests/test_process_fixture.py",
+    "sha256": "56EB71232B63D485E3C093714BC6563E93770A88C7CFD761CC76BDD949166732"
+  },
+  {
+    "path": "tests/test_reconciliation_supervisor.py",
+    "sha256": "B4D52E6DE810AFDB38AAD7A4DEDE8ECAEB7BB728B652FC98667A0C242B4E2D64"
+  },
+  {
+    "path": "tests/test_run_diagnostics.py",
+    "sha256": "2A2981C421EA5A41D5BCB127D5B3510A56F4056C8C65E81483A39D9E8946211F"
+  }
+]

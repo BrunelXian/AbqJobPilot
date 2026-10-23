@@ -1,0 +1,566 @@
+{
+  "schema": "r011-post-experiment-review-v1",
+  "reviewed_at_ns": 1792756959135421300,
+  "attempt_id": "attempt_d932768199b84915a89c8d7a83ef9c3f",
+  "experiment_id": "abq2024_r010_a19d17ea",
+  "candidate_digest": "sha256:d427264f99b2e1128a50d171c09b852cc57662ee002de5c31ba7cdc9d60b840c",
+  "original_digest": "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6",
+  "frozen_materials": {
+    "new": 37,
+    "old": 21,
+    "original": 34,
+    "status": "MATCH"
+  },
+  "input_sha256": "e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3",
+  "dat_sha256": "23ac0cdd7714ef956f481fdf1ec97530cd0cf44a160ae286cd689400efc3f045",
+  "sources": {
+    "observations/attempt.json": {
+      "device": 5972476759961804666,
+      "inode": 32369622321930259,
+      "bytes": 1902,
+      "mtime_ns": 1792755959007158000,
+      "ctime_ns": 1792755959007158000,
+      "sha256": "fe587d323c15cb5e5c9529fc0d6eb14062149b324371a73895c661f4e8c004f4",
+      "birthtime_ns": 1792755959007158000,
+      "read_at_ns": 1792756959078249600
+    },
+    "observations/controller_report.json": {
+      "device": 5972476759961804666,
+      "inode": 18014398510050450,
+      "bytes": 6655,
+      "mtime_ns": 1792756259031846700,
+      "ctime_ns": 1792756259031846700,
+      "sha256": "2ce6bbe7bf10d606dcac06fa395f403c914c54ae6687b060c5a12e68372e237c",
+      "birthtime_ns": 1792756259031338900,
+      "read_at_ns": 1792756959085017400
+    },
+    "observations/controller_events.jsonl": {
+      "device": 5972476759961804666,
+      "inode": 44191571343864011,
+      "bytes": 12865,
+      "mtime_ns": 1792756259008550500,
+      "ctime_ns": 1792756259008550500,
+      "sha256": "e457eb760261e8b4cd3eb5c3daa86d13d9e11abb423c3fd8049788f4b040eb08",
+      "birthtime_ns": 1792755959010199700,
+      "read_at_ns": 1792756959091028100
+    },
+    "observations/stdout.bin": {
+      "device": 5972476759961804666,
+      "inode": 31806672368595339,
+      "bytes": 796,
+      "mtime_ns": 1792755986054173100,
+      "ctime_ns": 1792755986054173100,
+      "sha256": "5d006b28c055a702cef28beceb285f7ae7a1f5e51fb11d560e2ebf75ebb27328",
+      "birthtime_ns": 1792755959010199700,
+      "read_at_ns": 1792756959098559700
+    },
+    "observations/stderr.bin": {
+      "device": 5972476759961804666,
+      "inode": 21673573207013804,
+      "bytes": 176,
+      "mtime_ns": 1792755965751588300,
+      "ctime_ns": 1792755965751588300,
+      "sha256": "fda75c2059c73c179c0517166282db48e637da41d5e9b9b4e4719405fd1b93af",
+      "birthtime_ns": 1792755959011201600,
+      "read_at_ns": 1792756959104559300
+    },
+    "engineering/axial_bar.inp": {
+      "device": 5972476759961804666,
+      "inode": 8725724278888077,
+      "bytes": 420,
+      "mtime_ns": 1792733143982944600,
+      "ctime_ns": 1792733143982944600,
+      "sha256": "e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3",
+      "birthtime_ns": 1792733143982944600,
+      "read_at_ns": 1792756959111269600
+    },
+    "engineering/r010_bar_a19d17ea.dat": {
+      "device": 5972476759961804666,
+      "inode": 6473924464673669,
+      "bytes": 10334,
+      "mtime_ns": 1792755983793569700,
+      "ctime_ns": 1792755983793569700,
+      "sha256": "23ac0cdd7714ef956f481fdf1ec97530cd0cf44a160ae286cd689400efc3f045",
+      "birthtime_ns": 1792755974092635700,
+      "read_at_ns": 1792756959118807500
+    },
+    "engineering/r010_bar_a19d17ea.sta": {
+      "device": 5972476759961804666,
+      "inode": 12666373952354561,
+      "bytes": 444,
+      "mtime_ns": 1792755983795086100,
+      "ctime_ns": 1792755983795086100,
+      "sha256": "fb33a85f075f5e230d6edc808383a0d021937365be19007511454cc7cd82e91f",
+      "birthtime_ns": 1792755983787464400,
+      "read_at_ns": 1792756959124807000
+    },
+    "engineering/r010_bar_a19d17ea.msg": {
+      "device": 5972476759961804666,
+      "inode": 31525197391770457,
+      "bytes": 7606,
+      "mtime_ns": 1792755983793569700,
+      "ctime_ns": 1792755983793569700,
+      "sha256": "13cb4c3a7e7d2df8e41f7a582de0e782882cce7e5097768092df53556e11c03c",
+      "birthtime_ns": 1792755983307522000,
+      "read_at_ns": 1792756959131403300
+    }
+  },
+  "source_attribution": "same frozen input, attempt/output identity, post-intent file birth, controller-recorded DAT hash and stable file identity; no cross-filesystem atomic snapshot claim",
+  "host_admission_from_record": {
+    "policy": "operator_powershell_retained_session_v1",
+    "eligible": true,
+    "reasons": [],
+    "lifetime_claim": "CONDITIONAL_OPERATOR_SESSION_RETAINED",
+    "full_job_hierarchy": "UNKNOWN",
+    "terminal_closure_survival": "NOT_VERIFIED",
+    "abaqus_chain": "NOT_VERIFIED",
+    "authorization": "NOT_GRANTED"
+  },
+  "wrapper_calls_recorded": 1,
+  "extra_abaqus_calls_recorded": 0,
+  "new_abaqus_calls_this_review": 0,
+  "call_count_scope": "one controller create event/object and one Job transcript; internal license helper belongs to this invocation, not an extra diagnostic command",
+  "start_intent_utc": "2026-10-23T11:45:59.007158+00:00",
+  "direct_exit_observed_utc": "2026-10-23T11:46:26.135090+00:00",
+  "direct_exit_after_intent_seconds": 27.1279325,
+  "observation_finished_utc": "2026-10-23T11:50:59.008550+00:00",
+  "observation_elapsed_seconds": 300.0,
+  "deadline_reached": true,
+  "processes": {
+    "all_observed_exited": true,
+    "candidate_identities": [
+      {
+        "creation_time_100ns": 134372295590384417,
+        "image_path": "C:\\Windows\\System32\\conhost.exe",
+        "pid": 9148
+      },
+      {
+        "creation_time_100ns": 134372295591163756,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+        "pid": 29748
+      },
+      {
+        "creation_time_100ns": 134372295591665988,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+        "pid": 28396
+      },
+      {
+        "creation_time_100ns": 134372295650518541,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+        "pid": 21988
+      },
+      {
+        "creation_time_100ns": 134372295651916862,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+        "pid": 8920
+      },
+      {
+        "creation_time_100ns": 134372295656741574,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+        "pid": 4572
+      },
+      {
+        "creation_time_100ns": 134372295657834363,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+        "pid": 26924
+      },
+      {
+        "creation_time_100ns": 134372295746750709,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+        "pid": 20508
+      },
+      {
+        "creation_time_100ns": 134372295834961415,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+        "pid": 16008
+      },
+      {
+        "creation_time_100ns": 134372295859964228,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMASimUtility.exe",
+        "pid": 4436
+      }
+    ],
+    "direct_identity": {
+      "creation_time_100ns": 134372295590255218,
+      "image_path": "C:\\Windows\\System32\\cmd.exe",
+      "pid": 22932
+    },
+    "exits": [
+      {
+        "creation_time_100ns": 134372295650518541,
+        "exit_code": 0,
+        "exit_observed_at": 1792755965,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+        "pid": 21988
+      },
+      {
+        "creation_time_100ns": 134372295657834363,
+        "exit_code": 0,
+        "exit_observed_at": 1792755974,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+        "pid": 26924
+      },
+      {
+        "creation_time_100ns": 134372295834961415,
+        "exit_code": 0,
+        "exit_observed_at": 1792755983,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+        "pid": 16008
+      },
+      {
+        "creation_time_100ns": 134372295746750709,
+        "exit_code": 0,
+        "exit_observed_at": 1792755984,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+        "pid": 20508
+      },
+      {
+        "creation_time_100ns": 134372295656741574,
+        "exit_code": 0,
+        "exit_observed_at": 1792755985,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+        "pid": 4572
+      },
+      {
+        "creation_time_100ns": 134372295651916862,
+        "exit_code": 0,
+        "exit_observed_at": 1792755986,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+        "pid": 8920
+      },
+      {
+        "creation_time_100ns": 134372295859964228,
+        "exit_code": 0,
+        "exit_observed_at": 1792755986,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMASimUtility.exe",
+        "pid": 4436
+      },
+      {
+        "creation_time_100ns": 134372295590255218,
+        "exit_code": 0,
+        "exit_observed_at_ns": 1792755986135090500,
+        "image_path": "C:\\Windows\\System32\\cmd.exe",
+        "pid": 22932,
+        "source": "direct_Popen_handle"
+      },
+      {
+        "creation_time_100ns": 134372295590384417,
+        "exit_code": 0,
+        "exit_observed_at": 1792755986,
+        "exit_source": "retained_windows_handle",
+        "image_path": "C:\\Windows\\System32\\conhost.exe",
+        "pid": 9148
+      },
+      {
+        "creation_time_100ns": 134372295591163756,
+        "exit_code": 0,
+        "exit_observed_at": 1792755986,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+        "pid": 29748
+      },
+      {
+        "creation_time_100ns": 134372295591665988,
+        "exit_code": 0,
+        "exit_observed_at": 1792755986,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+        "pid": 28396
+      }
+    ],
+    "last_sample_at_ns": 1792756258984404100,
+    "member_completeness": "UNKNOWN",
+    "overall_exit": "UNKNOWN",
+    "unknowns": []
+  },
+  "process_evidence_check": "11 unique retained identities and exit records agree with event journal",
+  "no_new_process_probe": true,
+  "no_current_disappearance_used_as_exit": true,
+  "solver": "NORMAL_COMPLETION_CORROBORATED_TEXT_AND_RECORDED_STANDARD_EXIT",
+  "solver_references": [
+    {
+      "file": "STA",
+      "line": 8,
+      "text": "THE ANALYSIS HAS COMPLETED SUCCESSFULLY"
+    },
+    {
+      "file": "MSG",
+      "line": 119,
+      "text": "THE ANALYSIS HAS BEEN COMPLETED"
+    },
+    {
+      "file": "MSG",
+      "line": 137,
+      "text": "0  ERROR MESSAGES"
+    },
+    {
+      "file": "stdout",
+      "line": 7,
+      "text": "Abaqus 2024"
+    },
+    {
+      "file": "stdout",
+      "line": 13,
+      "text": "Begin Abaqus/Standard Analysis"
+    },
+    {
+      "file": "stdout",
+      "line": 17,
+      "text": "End Abaqus/Standard Analysis"
+    },
+    {
+      "file": "stdout",
+      "line": 23,
+      "text": "Abaqus JOB r010_bar_a19d17ea COMPLETED"
+    }
+  ],
+  "numeric_review": {
+    "schema": "r011-actual-2024-axial-dat-v1",
+    "dat_sha256": "23ac0cdd7714ef956f481fdf1ec97530cd0cf44a160ae286cd689400efc3f045",
+    "scope": "historical fixed-model printed values only; no OS/ODB probing",
+    "solver": "DAT_COMPLETION_TEXT_OBSERVED",
+    "numerical": "PRIMARY_THREE_PASS",
+    "odb_content_validation": "NOT_RUN",
+    "comparisons": [
+      {
+        "quantity": "2_U1",
+        "expected": "0.01",
+        "effective_tolerance": "0.000001",
+        "unit": "mm",
+        "group": "primary",
+        "actual": "0.010000000",
+        "absolute_error": "0E-9",
+        "status": "PASS",
+        "source": {
+          "line": 218,
+          "header_line": 215,
+          "raw": "1.0000000E-02",
+          "entity": "2",
+          "component": "U1",
+          "position": "global_node"
+        }
+      },
+      {
+        "quantity": "1_S11",
+        "expected": "1",
+        "effective_tolerance": "0.0001",
+        "unit": "MPa",
+        "group": "primary",
+        "actual": "1.000",
+        "absolute_error": "0.000",
+        "status": "PASS",
+        "source": {
+          "line": 203,
+          "header_line": 200,
+          "raw": "1.000",
+          "entity": "1",
+          "component": "S11",
+          "position": "integration_point_1"
+        }
+      },
+      {
+        "quantity": "1_RF1",
+        "expected": "-1",
+        "effective_tolerance": "0.0001",
+        "unit": "N",
+        "group": "primary",
+        "actual": "-1.0000000",
+        "absolute_error": "0E-7",
+        "status": "PASS",
+        "source": {
+          "line": 227,
+          "header_line": 224,
+          "raw": "-1.0000000E+00",
+          "entity": "1",
+          "component": "RF1",
+          "position": "global_node"
+        }
+      },
+      {
+        "quantity": "1_U1",
+        "expected": "0",
+        "effective_tolerance": "0.00000001",
+        "unit": "mm",
+        "group": "additional",
+        "status": "NOT_RECORDED",
+        "actual": null,
+        "absolute_error": null,
+        "reason": "NO_PRINTED_ROW; not inferred as zero"
+      },
+      {
+        "quantity": "1_U2",
+        "expected": "0",
+        "effective_tolerance": "0.00000001",
+        "unit": "mm",
+        "group": "additional",
+        "status": "NOT_RECORDED",
+        "actual": null,
+        "absolute_error": null,
+        "reason": "NO_PRINTED_ROW; not inferred as zero"
+      },
+      {
+        "quantity": "1_U3",
+        "expected": "0",
+        "effective_tolerance": "0.00000001",
+        "unit": "mm",
+        "group": "additional",
+        "status": "NOT_RECORDED",
+        "actual": null,
+        "absolute_error": null,
+        "reason": "NO_PRINTED_ROW; not inferred as zero"
+      },
+      {
+        "quantity": "2_U2",
+        "expected": "0",
+        "effective_tolerance": "0.00000001",
+        "unit": "mm",
+        "group": "additional",
+        "actual": "0E-7",
+        "absolute_error": "0E-7",
+        "status": "PASS",
+        "source": {
+          "line": 218,
+          "header_line": 215,
+          "raw": "0.0000000E+00",
+          "entity": "2",
+          "component": "U2",
+          "position": "global_node"
+        }
+      },
+      {
+        "quantity": "2_U3",
+        "expected": "0",
+        "effective_tolerance": "0.00000001",
+        "unit": "mm",
+        "group": "additional",
+        "actual": "0E-7",
+        "absolute_error": "0E-7",
+        "status": "PASS",
+        "source": {
+          "line": 218,
+          "header_line": 215,
+          "raw": "0.0000000E+00",
+          "entity": "2",
+          "component": "U3",
+          "position": "global_node"
+        }
+      },
+      {
+        "quantity": "2_RF1",
+        "expected": "0",
+        "effective_tolerance": "0.0001",
+        "unit": "N",
+        "group": "additional",
+        "actual": "0E-7",
+        "absolute_error": "0E-7",
+        "status": "PASS",
+        "source": {
+          "line": 228,
+          "header_line": 224,
+          "raw": "0.0000000E+00",
+          "entity": "2",
+          "component": "RF1",
+          "position": "global_node"
+        }
+      },
+      {
+        "quantity": "2_RF2",
+        "expected": "0",
+        "effective_tolerance": "0.0001",
+        "unit": "N",
+        "group": "additional",
+        "actual": "0E-7",
+        "absolute_error": "0E-7",
+        "status": "PASS",
+        "source": {
+          "line": 228,
+          "header_line": 224,
+          "raw": "0.0000000E+00",
+          "entity": "2",
+          "component": "RF2",
+          "position": "global_node"
+        }
+      },
+      {
+        "quantity": "2_RF3",
+        "expected": "0",
+        "effective_tolerance": "0.0001",
+        "unit": "N",
+        "group": "additional",
+        "actual": "0E-7",
+        "absolute_error": "0E-7",
+        "status": "PASS",
+        "source": {
+          "line": 228,
+          "header_line": 224,
+          "raw": "0.0000000E+00",
+          "entity": "2",
+          "component": "RF3",
+          "position": "global_node"
+        }
+      },
+      {
+        "quantity": "X_force_balance",
+        "group": "additional",
+        "absolute_error": "0E-7",
+        "effective_tolerance": "0.0002",
+        "unit": "N",
+        "status": "PASS"
+      }
+    ],
+    "full_frozen_checks": "NOT_ALL_ESTABLISHED",
+    "step": 1,
+    "increment": 1,
+    "final_time": "1",
+    "context": {
+      "heading_line": 127,
+      "summary_line": 183,
+      "final_time_line": 187,
+      "completion_line": 231,
+      "footer_line": 235
+    },
+    "decoding": "strict CP936; non-ASCII allowed only as month glyph in page date"
+  },
+  "old_parser_reproduced": {
+    "solver": "EVIDENCE_INSUFFICIENT",
+    "numerical": "EVIDENCE_INSUFFICIENT",
+    "odb_content_validation": "NOT_RUN",
+    "layout": "r011-explicit-dat-tables-v1",
+    "actual_2024_layout_validated": false,
+    "reason": "UNSUPPORTED_TEXT"
+  },
+  "old_parser_first_failure": {
+    "encoding": "ascii",
+    "byte_offset_zero_based": 63,
+    "bytes_hex": "d4c2",
+    "strict_cp936_character": "\u6708",
+    "line": 3
+  },
+  "old_result_preserved": {
+    "solver": "EVIDENCE_INSUFFICIENT",
+    "numerical": "EVIDENCE_INSUFFICIENT",
+    "overall": "PARTIAL"
+  },
+  "known_wrapper_warning": "VS2022 path warning occurred; subsequent Standard start/completion is separately recorded",
+  "stderr_scope": "existing invocation license-check transcript; no new license query; server details omitted",
+  "overall": "PARTIAL",
+  "odb_content_validation": "NOT_RUN",
+  "remaining": [
+    "full required Abaqus member set not proven",
+    "node 1 U1/U2/U3 absent from DAT; not inferred as zero",
+    "ODB content not inspected",
+    "no host-wide resource/handle release proof"
+  ],
+  "window": "No known recorded process requires the operator window to remain for this completed observation. Unknown unobserved members prevent a universal closure-survival guarantee.",
+  "implementation_sha256": {
+    "dat_review.py": "52de635997e950ba2698dcb18c950ba9bd84797b5c2642176aa3648f54c11164",
+    "collect_review.py": "54534890b7fd0bcbbc735554c9c71a30e360763f53aece22b207b3c8c09e158e"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "interpreter": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "pytest": "9.1.0",
+  "sqlite": "3.49.1",
+  "os": "Windows-11-10.0.26300-SP0",
+  "windows": [
+    "11",
+    "10.0.26300",
+    "SP0",
+    "Multiprocessor Free"
+  ],
+  "temp_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run008_4668b8a810324ba288be12587006710a"
+}

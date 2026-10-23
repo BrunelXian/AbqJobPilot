@@ -1,0 +1,99 @@
+........................................................................ [ 20%]
+........................................................................ [ 40%]
+........................................................................ [ 60%]
+................................................................F....... [ 80%]
+.......................................................................  [100%]
+================================== FAILURES ===================================
+_ test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:after_identity] _
+
+factory = <function factory.<locals>.create at 0x000001FB0CA6A5C0>
+stage = 'process:after_identity'
+
+    @pytest.mark.parametrize("stage", ["process:before_create", "process:after_create", "process:after_identity", "process:after_handoff", "process:before_exit_record", "process:after_exit", "process:before_terminal"])
+    def test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch(factory, stage):
+        h = factory("result_wait" if stage in {"process:after_create", "process:after_identity", "process:after_handoff"} else "normal", "normal")
+        if stage in {"process:after_exit", "process:before_terminal", "process:after_handoff", "process:before_exit_record"}:
+            owner = h.owner(barriers=["process:after_identity", stage])
+            accepted = h.client().submit(h.requests[0])
+            rid = accepted["receipt"]["run_id"]
+            owner.reached("process:after_identity")
+            h.capture(rid)
+            owner.release("process:after_identity")
+            owner.reached(stage)
+            if stage == "process:after_handoff":
+                wait_until(lambda: (h.run_root(rid) / "result.json").exists())
+                wait_until(lambda: h.references[rid, "launcher"].exit_evidence())
+            if stage == "process:before_exit_record":
+                wait_until(lambda: all(ref.exit_evidence() for (r, _), ref in h.references.items() if r == rid))
+        else:
+            owner, accepted, rid = h.start(stage=stage)
+        other = h.client().submit(h.requests[1])["receipt"]["run_id"]
+        before = h.client().run(rid)
+        if stage == "process:before_exit_record":
+            assert before["process_exits"] == [] and before["exit_verification"] == "UNKNOWN"
+        owner.terminate()  # Actual retained Windows handle, no service finally.
+        worker_survived = False
+        if stage in {"process:after_create", "process:after_identity", "process:after_handoff"}:
+            worker_survived = h.references[rid, "worker"].exit_evidence() is None
+            assert worker_survived
+        fresh = h.owner(management_control=True)
+        assert fresh.identity["pid"] != owner.identity["pid"]
+        assert not h.client().health()["dispatch_enabled"]
+        if worker_survived:
+            assert h.references[rid, "worker"].exit_evidence() is None
+        run = h.client().run(rid)
+        assert run["reconciliation_requirement"] == "RECONCILIATION_REQUIRED"
+        assert run["revision"] == before["revision"] and h.client().receipt("key-0") == accepted["receipt"]
+        assert h.client().submit(h.requests[0])["receipt"] == accepted["receipt"]
+        assert h.client().run(other)["queue_state"] == "PENDING" and not h.run_root(other).exists()
+        if stage in {"process:before_create", "process:after_create"}:
+            assert run["process_records"] == [] and run["exit_verification"] == "UNKNOWN"
+        if stage == "process:before_create":
+            assert not (h.run_root(rid) / "launcher.json").exists()
+        if stage == "process:after_exit":
+            assert len(run["process_exits"]) == 4 and run["exit_verification"] == "PARTIAL"
+        preview = h.client().preview_reconciliation(rid)
+        assert preview["candidate_action"] is None
+        assert preview["reasons"][0]["code"] == "UNSUPPORTED_EVIDENCE_POLICY"
+        from test_reconciliation_supervisor import permit
+        from reconciliation_helpers import adoption_scope
+        from abqjobpilot.execution.reconciliation import ADOPT, RESUME
+        adopt = permit(h, fresh, ADOPT, adoption_scope(preview), "reject-process-adoption")
+        with pytest.raises(ExecutionError) as error:
+            h.client().apply_reconciliation(adopt)
+        assert error.value.code == "EVIDENCE_INSUFFICIENT"
+>       resume = permit(h, fresh, RESUME, {"expected_gate_version": h.client().dispatch_gate()["version"]}, "reject-process-resume")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_process_fixture.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_reconciliation_supervisor.py:20: in permit
+    grant_id = read_json(reply)["grant_id"]
+               ^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:33: in read_json
+    return json.loads(path.read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run008_4668b8a810324ba288be12587006710a/full2/test_actual_owner_crash_window2/experiment_0/process_1/grant_4989cb2a3131478eb4c73660aae61445.reply.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run008_4668b8a810324ba288be12587006710a\\full2\\test_actual_owner_crash_window2\\experiment_0\\process_1\\grant_4989cb2a3131478eb4c73660aae61445.reply.json'
+
+D:\Program Files\Python312\Lib\pathlib.py:1013: PermissionError
+=========================== short test summary info ===========================
+FAILED tests/test_process_fixture.py::test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:after_identity]
+1 failed, 358 passed in 277.45s (0:04:37)

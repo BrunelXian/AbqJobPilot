@@ -1,0 +1,20 @@
+{
+  "tests_final": 359,
+  "old_tests_rerun": 343,
+  "new_tests": 16,
+  "failed": 0,
+  "skipped": 0,
+  "source_hashes_stable_during_final_suite": true,
+  "source_and_test_files": 44,
+  "old_tests_unchanged": true,
+  "broken_document_links": [],
+  "branch": "Develop",
+  "head": "fb7912ec9e0107b18f65948b147c87579c87cded",
+  "version": "0.3.0.dev0",
+  "unresolved_conflicts": false,
+  "tracked_files_modified": false,
+  "matching_live_test_processes": 0,
+  "unavailable_process_probes": 2,
+  "unresolved_cleanup": 0,
+  "private_handoff_files_remaining": 0
+}

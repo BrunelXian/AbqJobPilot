@@ -1,0 +1,116 @@
+[
+  {
+    "path": "D:\\ABAQUS2024\\Commands\\abq2024.bat",
+    "bytes": 182,
+    "sha256": "e9bb42ba164b08b57b07828d4b826a4c9d38d82dc070887f2d7cdea6bcefc711",
+    "last_write_utc": "2024-11-10T14:52:13.2739267Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+    "bytes": 146464,
+    "sha256": "e7eb0d96e23bdde503c3ec63d82b229f2cd0f1310cc1cd1604352a8491714420",
+    "last_write_utc": "2023-08-12T01:43:39Z"
+  },
+  {
+    "path": "D:\\ONEAPI\\compiler\\2022.2.0\\env\\vars.bat",
+    "bytes": 11439,
+    "sha256": "dbdc2697c9e5e5e85c3d039dd3aaa853a7cbdbe85dfdfcef2d2879a566b9adfe",
+    "last_write_utc": "2022-07-30T03:49:34Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\InstallData\\registry.json",
+    "bytes": 704,
+    "sha256": "1cf5a0d5a8f0f8070f941b69bb1557fedb770f45d91b1042ddfd1ba38df92a26",
+    "last_write_utc": "2024-11-10T13:28:51.826418Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\InstallData\\Installed.cmp",
+    "bytes": 7056,
+    "sha256": "c34d655fb36d6d153fa26bbce5e2a8e08bd6e1af74d69562ef730c4408414cb4",
+    "last_write_utc": "2024-11-10T13:30:14.8703406Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\info\\memory.info",
+    "bytes": 2771,
+    "sha256": "0f9eed3eb2621f36a37b8aabecf543a434ae7f79ba19b53f2702d966285335e8",
+    "last_write_utc": "2018-05-07T20:32:58Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\abaqus_v6.env",
+    "bytes": 1355,
+    "sha256": "4ca3df60107a27bc3e95787c203d7b8bcbf7660a121547b4bcac52582d816904",
+    "last_write_utc": "2023-05-29T02:15:04Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\basic_v6.env",
+    "bytes": 7054,
+    "sha256": "200063137765c17ea4222236ad0042f1409ab6f6c979382ce011de933fd1e3eb",
+    "last_write_utc": "2023-07-29T00:41:09Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\mpi_config.env",
+    "bytes": 1423,
+    "sha256": "abca17611f91078b2391094f14ee4785974c5620ee683a3ad2542043808efbf3",
+    "last_write_utc": "2023-05-29T02:15:04Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\win86_64.env",
+    "bytes": 4804,
+    "sha256": "66e23ecc788bcf4f19fabe008d4b1107c33f252337ade47bc6ba212539a45353",
+    "last_write_utc": "2023-05-29T02:15:04Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\graphicsConfig.env",
+    "bytes": 26947,
+    "sha256": "f82514b50a5376c2e1c531dd8b230076128889c7be0a59f46cced54bf78f6e29",
+    "last_write_utc": "2023-07-29T00:41:09Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\jleConfig.env",
+    "bytes": 667,
+    "sha256": "10ae6f7cc4e852d11e084a43e80cf3b49214d2bba0513f6a0aac2930bdd21544",
+    "last_write_utc": "2023-07-22T04:23:48Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\custom_v6.env",
+    "bytes": 218,
+    "sha256": "cfb9f23124019d3e191f2b650bfe3a9ab1e9149768e17f4296e6386f2a94431c",
+    "last_write_utc": "2024-11-10T13:26:24.8268323Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\abaqus.app",
+    "bytes": 3693,
+    "sha256": "e85cfb2ba08dc7e800b856ef755ec7ec3f28abe21a2efa3dc9ce4a78db8d21aa",
+    "last_write_utc": "2023-04-24T18:23:54Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\abaqus.arg",
+    "bytes": 15274,
+    "sha256": "5fa3d56f9cfb48644fe6ec1a667508726d07909f82f96b227f2c7038dae1cea4",
+    "last_write_utc": "2023-04-25T19:19:48Z"
+  },
+  {
+    "path": "C:\\Windows\\System32\\cmd.exe",
+    "bytes": 339968,
+    "sha256": "15cd209c995b7d3009c91ca40892d5b8f1fb162f3e5f10716642ea278e8e0d7b",
+    "last_write_utc": "2026-09-23T04:13:57.1871073Z"
+  },
+  {
+    "path": "D:\\Program Files\\Python312\\Lib\\subprocess.py",
+    "bytes": 90963,
+    "sha256": "e9886605ccac88bcfe2330a1b4cd8f132cbaf97ebb6834b1dcb5a69b127b8d5b",
+    "last_write_utc": "2025-04-08T04:56:52.0000000Z"
+  },
+  {
+    "path": "D:\\ABAQUS2024\\product\\win_b64\\SMA\\site\\licensing.env",
+    "bytes": 1088,
+    "sha256": "2cb6d7c00471a4bcfd4619470fd752d152e7457daecf3b36ca2234522d487681",
+    "last_write_utc": "2023-05-29T02:15:13.0000000Z"
+  },
+  {
+    "path": "D:\\ONEAPI\\compiler\\2022.2.0\\windows\\lib\\oclfpga\\fpgavars.bat",
+    "bytes": 790,
+    "sha256": "30f95fc86014a9317b6b3e9460544f9f78a262cc37e5e4d1a4ccdd873a5573c2",
+    "last_write_utc": "2022-08-11T21:25:50.0000000Z"
+  }
+]

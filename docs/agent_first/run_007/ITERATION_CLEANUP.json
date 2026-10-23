@@ -1,0 +1,35 @@
+[
+  {
+    "iteration": "smoke",
+    "cases": 39,
+    "owners_clients": 45,
+    "fixture_roles": 156,
+    "physical_backend_launches": 39,
+    "terminated_owners_clients": 39,
+    "cleanup_terminated_fixture_roles": 4,
+    "private_credential_files_remaining": 0,
+    "all_inventory_checks_passed": true
+  },
+  {
+    "iteration": "run1",
+    "cases": 50,
+    "owners_clients": 59,
+    "fixture_roles": 200,
+    "physical_backend_launches": 50,
+    "terminated_owners_clients": 52,
+    "cleanup_terminated_fixture_roles": 4,
+    "private_credential_files_remaining": 0,
+    "all_inventory_checks_passed": true
+  },
+  {
+    "iteration": "full1",
+    "cases": 102,
+    "owners_clients": 141,
+    "fixture_roles": 284,
+    "physical_backend_launches": 71,
+    "terminated_owners_clients": 70,
+    "cleanup_terminated_fixture_roles": 20,
+    "private_credential_files_remaining": 0,
+    "all_inventory_checks_passed": true
+  }
+]

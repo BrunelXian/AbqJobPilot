@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="1" tests="5" time="0.573" timestamp="2026-10-23T21:29:35.115829+08:00" hostname="Boltzmann"><testcase classname="tests.test_project_gui.ProjectGuiTests" name="test_export_defaults_to_metadata_and_explains_external_references" time="0.318" /><testcase classname="tests.test_project_gui.ProjectGuiTests" name="test_project_switch_reloads_queue_and_results_without_runner" time="0.093"><skipped type="pytest.skip" message="Tk display unavailable: Can't find a usable init.tcl in the following directories: &#10;    {D:\Program Files\Python312\tcl\tcl8.6}&#10;&#10;D:/Program Files/Python312/tcl/tcl8.6/init.tcl: couldn't read file &quot;D:/Program Files/Python312/tcl/tcl8.6/init.tcl&quot;: No error&#10;couldn't read file &quot;D:/Program Files/Python312/tcl/tcl8.6/init.tcl&quot;: No error&#10;    while executing&#10;&quot;source {D:/Program Files/Python312/tcl/tcl8.6/init.tcl}&quot;&#10;    (&quot;uplevel&quot; body line 1)&#10;    invoked from within&#10;&quot;uplevel #0 [list source $tclfile]&quot;&#10;&#10;&#10;This probably means that Tcl wasn't installed properly.">D:\Projects\abqjobpilot_dev\tests\test_project_gui.py:45: Tk display unavailable: Can't find a usable init.tcl in the following directories: 
+    {D:\Program Files\Python312\tcl\tcl8.6}
+
+D:/Program Files/Python312/tcl/tcl8.6/init.tcl: couldn't read file "D:/Program Files/Python312/tcl/tcl8.6/init.tcl": No error
+couldn't read file "D:/Program Files/Python312/tcl/tcl8.6/init.tcl": No error
+    while executing
+"source {D:/Program Files/Python312/tcl/tcl8.6/init.tcl}"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel #0 [list source $tclfile]"
+
+
+This probably means that Tcl wasn't installed properly.</skipped></testcase><testcase classname="tests.test_gui_table_state.TestGuiTableState" name="test_queue_preserves_runner_order_and_identity" time="0.001" /><testcase classname="tests.test_gui_table_state.TestGuiTableState" name="test_result_selection_restores_by_id_after_reorder" time="0.000" /><testcase classname="tests.test_gui_table_state.TestGuiTableState" name="test_results_newest_first_with_timestamp_fallbacks" time="0.000" /></testsuite></testsuites>

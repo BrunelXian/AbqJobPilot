@@ -1,0 +1,104 @@
+{
+  "files": [
+    {
+      "path": "abqjobpilot/gui_app.py",
+      "sha256": "a76799b20a0b4f47635082ee2f2154e110163493d82c95c0c615141cf75a34b9"
+    },
+    {
+      "path": "abqjobpilot/gui_legacy.py",
+      "sha256": "26ce4ba7e66537d3169461a1ff636738c4bc8bef8f42eb52d7fe46e0d82b0638"
+    },
+    {
+      "path": "abqjobpilot/execution_gui.py",
+      "sha256": "408656ed733801f3d6f29577653d36e73808ba027138bd29971eae3959ff0e26"
+    },
+    {
+      "path": "abqjobpilot/execution/client.py",
+      "sha256": "1c971d0f2b249bdd24938b3a7f422a6239c0e080838be429eff3d709e336c513"
+    },
+    {
+      "path": "abqjobpilot/execution/supervisor.py",
+      "sha256": "7a12c4574b79057370232303ab811cd26bd5340907ed2bab7f13b0803f12d484"
+    },
+    {
+      "path": "abqjobpilot/execution/process_fixture.py",
+      "sha256": "a4ad9d7f6df3bf416d1e5c4f5274ef20738213e9e56374af799c41e6183ba3c0"
+    },
+    {
+      "path": "abqjobpilot/execution/progress_log.py",
+      "sha256": "a6ea4c40940ede52034a4432b66c969b4428fea08b25369ffa92d088fd07f4ee"
+    },
+    {
+      "path": "examples/agent_first/dev_gui_demo.py",
+      "sha256": "9ed1d13d13191796de304f8c1b211a392d293d53e5faae613067709768dcc0cf"
+    },
+    {
+      "path": "tests/test_execution_gui.py",
+      "sha256": "e03329ddf691719cde3430844d71395280811e39d12093750061d961a283602d"
+    },
+    {
+      "path": "tests/run012_gui.py",
+      "sha256": "668c95c7072be721164fdf224b895a623a5de2f0785b39949e2dae71b9f5d436"
+    },
+    {
+      "path": "tests/run012_capture.py",
+      "sha256": "a9a0a85228f4b4deac73802fd0ff2543ecab10a25cb8c0fbfe5bdc9bab67ec4b"
+    },
+    {
+      "path": "tests/test_execution_isolation.py",
+      "sha256": "a4f8110d456e010478fd520666c9a2eee51269133c9862a5f6d4e99eed41a641"
+    },
+    {
+      "path": "examples\\agent_first\\01_Start_TEST_Service.vbs",
+      "sha256": "92e72cb4b5c66a12224c2c115a59a25f1619be73458cced88e83a3a43dc49367"
+    },
+    {
+      "path": "examples\\agent_first\\02_Submit_Fixed_Test.vbs",
+      "sha256": "97e4f62bda4d8d68a6781fab731cb11e1e21951f6e855310147280c54593154f"
+    },
+    {
+      "path": "examples\\agent_first\\03_Open_Dev_GUI.vbs",
+      "sha256": "dd7a3678463f3fecffde8cc6db0b6a76688270ecd683d52c7698e02bc72a03f3"
+    },
+    {
+      "path": "examples\\agent_first\\04_Stop_TEST_Service.vbs",
+      "sha256": "84d1fbc120f46a14fa1e3766de920e7be2c8303841ab5e1a241ce9b8f2748fa4"
+    }
+  ],
+  "tests": [
+    {
+      "file": "regression_001.xml",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "359",
+      "time": "214.432",
+      "timestamp": "2026-10-23T20:34:06.412513+08:00",
+      "hostname": "Boltzmann"
+    },
+    {
+      "file": "legacy_gui_regression_002.xml",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "5",
+      "time": "0.933",
+      "timestamp": "2026-10-23T20:35:02.512396+08:00",
+      "hostname": "Boltzmann"
+    },
+    {
+      "file": "gui_integration_003.xml",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "5",
+      "time": "61.772",
+      "timestamp": "2026-10-23T20:42:01.968730+08:00",
+      "hostname": "Boltzmann"
+    }
+  ],
+  "unique_passed": 369
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="16" time="3.999" timestamp="2026-10-23T21:07:22.824146+08:00" hostname="Boltzmann"><testcase classname="tests.test_standard_backend" name="test_real_requires_separate_grant_and_opt_in" time="0.209"><failure message="AssertionError: assert 'TEST_GRANT_ONLY' == 'UNSUPPORTED_EVIDENCE_POLICY'&#10;  &#10;  - UNSUPPORTED_EVIDENCE_POLICY&#10;  + TEST_GRANT_ONLY">case = &lt;test_standard_backend.Case object at 0x0000019707EF4C50&gt;
+
+    def test_real_requires_separate_grant_and_opt_in(case):
+        c=case
+        assert_code('GRANT_REQUIRED',lambda:c.service.submit(c.ctx,c.request()))
+        from execution_helpers import FakeGrantFixture
+        from abqjobpilot.execution.models import ExecutionPlan
+        grant=FakeGrantFixture(c.store).issue_exact(ExecutionPlan.from_dict(c.plan))
+        assert_code('REAL_GRANT_REQUIRED',lambda:c.service.submit(c.ctx,c.request(grant)))
+        from abqjobpilot.execution.test_authority import issue_process_execution
+&gt;       assert_code('UNSUPPORTED_EVIDENCE_POLICY',lambda:issue_process_execution(c.service,c.plan['plan_id'],expires_at=now()+10))
+
+tests\test_standard_backend.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+code = 'UNSUPPORTED_EVIDENCE_POLICY'
+func = &lt;function test_real_requires_separate_grant_and_opt_in.&lt;locals&gt;.&lt;lambda&gt; at 0x00000197065A3740&gt;
+
+    def assert_code(code,func):
+        with pytest.raises(ExecutionError) as error: func()
+&gt;       assert error.value.code==code
+E       AssertionError: assert 'TEST_GRANT_ONLY' == 'UNSUPPORTED_EVIDENCE_POLICY'
+E         
+E         - UNSUPPORTED_EVIDENCE_POLICY
+E         + TEST_GRANT_ONLY
+
+tests\test_standard_backend.py:58: AssertionError</failure></testcase><testcase classname="tests.test_standard_backend" name="test_changed_or_unapproved_request_never_launches[input]" time="0.197" /><testcase classname="tests.test_standard_backend" name="test_changed_or_unapproved_request_never_launches[project]" time="0.186" /><testcase classname="tests.test_standard_backend" name="test_changed_or_unapproved_request_never_launches[output]" time="0.201" /><testcase classname="tests.test_standard_backend" name="test_changed_or_unapproved_request_never_launches[approved]" time="0.190" /><testcase classname="tests.test_standard_backend" name="test_changed_or_unapproved_request_never_launches[digest]" time="0.194" /><testcase classname="tests.test_standard_backend" name="test_changed_or_unapproved_request_never_launches[expired]" time="0.213" /><testcase classname="tests.test_standard_backend" name="test_durable_receipt_single_launch_separate_partial_dimensions" time="0.399" /><testcase classname="tests.test_standard_backend" name="test_creation_commit_crash_windows_remain_blocked[standard:after_intent]" time="0.283" /><testcase classname="tests.test_standard_backend" name="test_creation_commit_crash_windows_remain_blocked[standard:before_create]" time="0.294" /><testcase classname="tests.test_standard_backend" name="test_creation_commit_crash_windows_remain_blocked[standard:after_create]" time="0.298" /><testcase classname="tests.test_standard_backend" name="test_creation_commit_crash_windows_remain_blocked[standard:before_result_commit]" time="0.316" /><testcase classname="tests.test_standard_backend" name="test_host_failure_before_external_attempt" time="0.257" /><testcase classname="tests.test_standard_backend" name="test_historical_cp936_sample_and_malformed_data" time="0.003"><failure message="AssertionError: assert ['0.010000000... '-1.0000000'] == ['0.01000', '1.000', '-1.000']&#10;  &#10;  At index 0 diff: '0.010000000' != '0.01000'&#10;  Use -v to get more diff">def test_historical_cp936_sample_and_malformed_data():
+        from abqjobpilot.execution.standard_dat import parse
+        raw=HISTORICAL.read_bytes(); result=parse(raw)
+        assert result['numerical']=='PRIMARY_THREE_PASS'
+        primary=[v for v in result['comparisons'] if v['group']=='primary']
+&gt;       assert [v['actual'] for v in primary]==['0.01000','1.000','-1.000']
+E       AssertionError: assert ['0.010000000... '-1.0000000'] == ['0.01000', '1.000', '-1.000']
+E         
+E         At index 0 diff: '0.010000000' != '0.01000'
+E         Use -v to get more diff
+
+tests\test_standard_backend.py:156: AssertionError</failure></testcase><testcase classname="tests.test_standard_backend" name="test_parser_failure_does_not_erase_os_evidence" time="0.332" /><testcase classname="tests.test_standard_backend" name="test_concurrent_service_claim_single_effect" time="0.334" /></testsuite></testsuites>

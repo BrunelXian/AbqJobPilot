@@ -1,0 +1,69 @@
+{
+  "status": "BLOCKED_BEFORE_ABAQUS_LAUNCH",
+  "tool_python_job": {
+    "pid": 29140,
+    "is_in_job": true,
+    "query_succeeded": true,
+    "limit_flags": 12288,
+    "limit_flags_hex": "0x3000",
+    "kill_on_job_close": true,
+    "silent_breakaway": true,
+    "explicit_breakaway": false
+  },
+  "python_child_probes": [
+    {
+      "kind": "first venv child assertion",
+      "exit_code": 0,
+      "in_job": true,
+      "assertion": "failed because child still in job",
+      "limitation": "PID and explicit handle-close record were not printed; communicate had completed before assertion"
+    },
+    {
+      "kind": "venv child normal flags",
+      "popen_pid": 20896,
+      "actual_pid": 31188,
+      "in_job": true,
+      "exit_code": 0,
+      "explicit_handles_closed": true
+    },
+    {
+      "kind": "registered base Python normal flags",
+      "pid": 17472,
+      "in_job": true,
+      "exit_code": 0,
+      "explicit_handles_closed": true
+    },
+    {
+      "kind": "registered base Python detailed job query",
+      "pid": 10244,
+      "in_job": true,
+      "limit_flags": 10240,
+      "limit_flags_hex": "0x2800",
+      "kill_on_job_close": true,
+      "silent_breakaway": false,
+      "explicit_breakaway": true,
+      "exit_code": 0,
+      "explicit_handles_closed": true
+    },
+    {
+      "kind": "registered base Python explicit-breakaway probe only",
+      "pid": 20324,
+      "creation_flags": "CREATE_NO_WINDOW|CREATE_BREAKAWAY_FROM_JOB",
+      "in_job": true,
+      "exit_code": 0,
+      "explicit_handles_closed": true,
+      "limitation": "Remaining job-chain limits not proven absent; not an Abaqus invocation"
+    }
+  ],
+  "conclusion": "The normal child remains in a kill-on-close job. We have not proven that controller or session exit leaves descendants alive. The explicit-breakaway Python probe is also still in a job. No Abaqus invocation will be made under this unresolved outer lifecycle boundary.",
+  "system_job_configuration_modified": false,
+  "processes_terminated": 0,
+  "all_probe_communicate_calls_returned_exit_zero": true,
+  "probe_timeout_triggered": false,
+  "abaqus_creation_flags_changed": false,
+  "approval_review_rejected_real_call": false,
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_limit_information"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "argv": [
+    "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+    "-B",
+    "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+    "--source",
+    "D:\\Projects\\abqjobpilot_dev",
+    "--project",
+    "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\project.json",
+    "--profile",
+    "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\profile.json",
+    "--engineering-root",
+    "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\engineering",
+    "--submission-cwd",
+    "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\engineering",
+    "--main-input",
+    "axial_bar.inp",
+    "--job",
+    "r010_bar_a19d17ea",
+    "--support-profile",
+    "windows-standard-axial-print-v1",
+    "--export-root",
+    "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials"
+  ],
+  "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\client_cwd",
+  "identity": {
+    "pid": 7296,
+    "creation_time_100ns": 134372067833818742,
+    "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+  },
+  "exit": {
+    "pid": 7296,
+    "creation_time_100ns": 134372067833818742,
+    "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+    "exit_code": 0,
+    "exit_observed_at": 1792733183,
+    "exit_source": "retained_windows_handle"
+  },
+  "reported_client_pid": 16756,
+  "popen_handle_wait_completed": true,
+  "native_handle_closed": true,
+  "popen_handle_closed": true,
+  "stdout_stderr_closed": true,
+  "abaqus_calls": 0,
+  "engineering_bytes_unchanged": true
+}

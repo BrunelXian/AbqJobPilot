@@ -1,0 +1,86 @@
+{
+  "read_at": "2026-10-23T22:06:47.593783+08:00",
+  "intent": {
+    "intent_at_ns": 1792764214425315900,
+    "output_key": "sha256:564c957021567b457c4b78009b133d80740d053539891d8ec66a6b70b8b2b03f",
+    "owner_id": "owner_17886eb60d8349e880d61131a04be3b3",
+    "phase_attempt_id": "phase_5b46d6d7f0aa42bf82d3a353a4b1e359",
+    "plan_digest": "sha256:62dc0aa95bad8c5e0d61d62515a4451a9d3f694016339fe68d7ca2c55239d46a",
+    "project_instance_id": "pi_776faf62f2d64a4ab23e83c53b665788",
+    "run_id": "r_609c9bbfd9c54b3ca2fce23bbd6059e4",
+    "state": "START_INTENT"
+  },
+  "files": [
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\axial_bar.inp",
+      "bytes": 420,
+      "sha256": "e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3",
+      "inode": 562949954787375,
+      "device": 5972476759961804666,
+      "ctime_ns": 1792762205323576000,
+      "mtime_ns": 1792762205323576000,
+      "created_after_intent": false,
+      "modified_after_intent": false
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.dat",
+      "bytes": 10334,
+      "sha256": "41488640e73e3d3d4ac8d19b26b5a512e125c7e731e6463b1f7e89bfee8be363",
+      "inode": 24206847997446531,
+      "device": 5972476759961804666,
+      "ctime_ns": 1792764223157798800,
+      "mtime_ns": 1792764230172145400,
+      "created_after_intent": true,
+      "modified_after_intent": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.sta",
+      "bytes": 444,
+      "sha256": "8334ebd98af39141ce4a15a2a4c57cd2d3a4df77df83c12a5b047e5dac449165",
+      "inode": 28428972648347382,
+      "device": 5972476759961804666,
+      "ctime_ns": 1792764230165821000,
+      "mtime_ns": 1792764230172145400,
+      "created_after_intent": true,
+      "modified_after_intent": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.msg",
+      "bytes": 7605,
+      "sha256": "850fd3222b2537292f8aa63093449e96604837b854abba1cd3ef0dec0cd3a9a9",
+      "inode": 44754521297327721,
+      "device": 5972476759961804666,
+      "ctime_ns": 1792764230056644400,
+      "mtime_ns": 1792764230172145400,
+      "created_after_intent": true,
+      "modified_after_intent": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.log",
+      "exists": false
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\project\\runtime\\standard_runs\\r_609c9bbfd9c54b3ca2fce23bbd6059e4\\stdout.bin",
+      "bytes": 802,
+      "sha256": "def7c1d3a0e8e9ed40ab3176ad475ecce95269293c0e56da96388a86b60190cb",
+      "inode": 9851624185173485,
+      "device": 5972476759961804666,
+      "ctime_ns": 1792764214582043300,
+      "mtime_ns": 1792764230833101400,
+      "created_after_intent": true,
+      "modified_after_intent": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\project\\runtime\\standard_runs\\r_609c9bbfd9c54b3ca2fce23bbd6059e4\\stderr.bin",
+      "bytes": 176,
+      "sha256": "fda75c2059c73c179c0517166282db48e637da41d5e9b9b4e4719405fd1b93af",
+      "inode": 28710447624790702,
+      "device": 5972476759961804666,
+      "ctime_ns": 1792764214582043300,
+      "mtime_ns": 1792764216539389100,
+      "created_after_intent": true,
+      "modified_after_intent": true
+    }
+  ],
+  "odb_content_read": false
+}

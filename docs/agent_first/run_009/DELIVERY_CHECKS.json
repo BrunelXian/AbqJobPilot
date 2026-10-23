@@ -1,0 +1,19 @@
+{
+  "tests": 452,
+  "old_tests": 359,
+  "new_tests": 93,
+  "failed": 0,
+  "skipped": 0,
+  "predecessor_files_unchanged": 44,
+  "new_code_test_files": 7,
+  "source_hashes_unchanged_after_suite": true,
+  "broken_links": [],
+  "branch": "Develop",
+  "head": "fb7912ec9e0107b18f65948b147c87579c87cded",
+  "version": "0.3.0.dev0",
+  "conflicts": false,
+  "tracked_changes": false,
+  "private_files_remaining": 0,
+  "matching_live_registered_test_processes": 0,
+  "unavailable_process_probes": 0
+}

@@ -1,0 +1,11 @@
+{
+  "source_files_matched": 36,
+  "unrelated_preexisting_sources_changed": 0,
+  "local_links_valid": 22,
+  "matrix_test_references_passed": 24,
+  "offline_export_examples_valid": 2,
+  "frozen_prior_evidence_hashes_matched": 4,
+  "matching_live_test_processes": 0,
+  "private_credential_files": 0,
+  "audit_note": "Chinese documentation read explicitly as UTF-8 after initial platform-default GBK read refusal; no product or test change."
+}

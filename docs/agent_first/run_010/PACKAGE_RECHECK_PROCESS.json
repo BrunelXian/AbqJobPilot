@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+    "-B",
+    "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_probe_review.py",
+    "--source",
+    "D:\\Projects\\abqjobpilot_dev",
+    "--manifest",
+    "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\experiment_manifest.json",
+    "--expected-manifest-digest",
+    "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6"
+  ],
+  "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\client_cwd",
+  "identity": {
+    "pid": 23564,
+    "creation_time_100ns": 134372070146114748,
+    "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+  },
+  "exit": {
+    "pid": 23564,
+    "creation_time_100ns": 134372070146114748,
+    "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+    "exit_code": 0,
+    "exit_observed_at": 1792733414,
+    "exit_source": "retained_windows_handle"
+  },
+  "native_handle_closed": true,
+  "popen_handle_closed": true,
+  "stdout_stderr_closed": true,
+  "no_file_changes": true,
+  "no_abaqus_invocations": true
+}

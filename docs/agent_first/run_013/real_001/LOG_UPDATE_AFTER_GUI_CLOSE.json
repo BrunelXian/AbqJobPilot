@@ -1,0 +1,38 @@
+{
+  "source": "PUBLIC_OBSERVATIONS.jsonl",
+  "method": "actual byte-count change, not read_at timestamp change",
+  "gui_closed_at": "2026-10-23T22:03:43.791941+08:00",
+  "first_nonempty_after_close_at": "2026-10-23T22:03:50.594770+08:00",
+  "progress": {
+    "has_more": false,
+    "next_sequence": 0,
+    "read_at": 1792764230,
+    "records": [
+      {
+        "bytes": 444,
+        "event": "STA_BYTES",
+        "observed_at": 1792764230
+      },
+      {
+        "event": "THE ANALYSIS HAS COMPLETED SUCCESSFULLY",
+        "observed_at": 1792764230,
+        "source": "sta"
+      },
+      {
+        "bytes": 7605,
+        "event": "MSG_BYTES",
+        "observed_at": 1792764230
+      },
+      {
+        "event": "THE ANALYSIS HAS BEEN COMPLETED",
+        "observed_at": 1792764230,
+        "source": "msg"
+      }
+    ],
+    "source": "bounded_standard_text_latest",
+    "status": "RECORDED"
+  },
+  "solver_exit_recorded_at_that_public_read": true,
+  "membership": "UNKNOWN",
+  "note": "Last recorded absence of exit is not a fresh OS liveness probe"
+}

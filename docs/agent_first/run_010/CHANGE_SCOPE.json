@@ -1,0 +1,33 @@
+{
+  "prior_files": 51,
+  "prior_files_unchanged": 48,
+  "changed_existing": [
+    {
+      "path": "abqjobpilot/abaqus_preview/inputs.py",
+      "before": "38dbf8ba8cd78b1d3881b2f5b8d3e8024ec48c3260c855175662881612291327",
+      "after": "66f9b58d79b66161770a91a33111cd270bbf1d21a2b10a501056fdbe756948de"
+    },
+    {
+      "path": "abqjobpilot/abaqus_preview/preview.py",
+      "before": "87221aa8bd8cb074c0361384a0855287503781d14e4e52759995ac6249c54cf6",
+      "after": "beda61c592784e0d78ac2283b9e64cac1ddc16554937e13d767f1b680e2305d0"
+    },
+    {
+      "path": "examples/agent_first/abaqus_offline_preview.py",
+      "before": "78650daed048bb1ea3700b85a0487577c7ea43c138988263f053884311a33fe7",
+      "after": "70497f91e24a7e14c7e27a1893170e401a021b411ff7abf6af850f1863d882f3"
+    }
+  ],
+  "new_code": [
+    {
+      "path": "examples/agent_first/abaqus_probe_review.py",
+      "sha256": "ade4b27a2fee0dcab148be887243626e64e39493f6ae1653851e09046d0dfe30"
+    },
+    {
+      "path": "tests/test_probe_preparation.py",
+      "sha256": "dccde42eab8d366a741a02eaf996718d29774a635c2096e426cac9572474fdd2"
+    }
+  ],
+  "application_version": "0.3.0.dev0",
+  "tracked_source_changes": 0
+}

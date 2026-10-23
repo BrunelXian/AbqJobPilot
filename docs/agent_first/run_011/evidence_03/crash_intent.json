@@ -1,0 +1,41 @@
+{
+  "controller": {
+    "identity": {
+      "pid": 22288,
+      "creation_time_100ns": 134372140498350315,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 22288,
+      "creation_time_100ns": 134372140498350315,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 91,
+      "exit_observed_at": 1792740449,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex0\\case_0a609a8c\\stdout_1e11b0fc1253410db16f794d86a36171.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex0\\case_0a609a8c\\stderr_038def29105a4f9eb6a61b577266b1a1.txt",
+    "handles_closed": true
+  },
+  "repeat": {
+    "identity": {
+      "pid": 20000,
+      "creation_time_100ns": 134372140499194842,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": {
+      "pid": 20000,
+      "creation_time_100ns": 134372140499194842,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "exit_code": 2,
+      "exit_observed_at": 1792740449,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex0\\case_0a609a8c\\stdout_fa057cc8540146a79ae99610f41c4c51.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_1d2a3d8a3353492e8600d04ce80dc082\\pytest\\test_r11_04_real_controller_ex0\\case_0a609a8c\\stderr_128dbe530b334a43953287da3e412a18.txt",
+    "handles_closed": true
+  },
+  "cleanup": null,
+  "service_pid_record": "absent after intent / before identity persistence",
+  "independent_fixture_registration_used_only_for_test_cleanup": false
+}

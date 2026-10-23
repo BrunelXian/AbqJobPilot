@@ -1,0 +1,387 @@
+[
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\ACCEPTANCE_MATRIX.md",
+    "bytes": 6220,
+    "sha256": "a746257b9c108dcec4167b1ae81f18b866e9d983f8e1aa22c53fd79f2a2798b0"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\BASELINE_STATUS.txt",
+    "bytes": 12504,
+    "sha256": "7928cdb929f1ce6483c2ab12af078dd23353bd23f0e30533d66fb77373cc4e13"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\CANDIDATE_DRAFT_01.json",
+    "bytes": 9220,
+    "sha256": "a801478e202bb1fbd7423031e73956b87f49c36fce7a1ef04a82fb3fd0852969"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\CANDIDATE_DRAFT_02.json",
+    "bytes": 9220,
+    "sha256": "b75885a4ac042d4fb728a3c52ebab77c060d5de0c8aff15a932b779f65e18818"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\CANDIDATE_DRAFT_03.json",
+    "bytes": 9220,
+    "sha256": "26831cec003886b58cc1a938400254d30a3e60a2d39a1a126a346f07d0c068e8"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\CANDIDATE_MANIFEST.json",
+    "bytes": 9220,
+    "sha256": "646bde3a13297d17cd94babffe1d42e7a73f545bd9f8ed5d59d3aaca0490bc0d"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\collect_validation.py",
+    "bytes": 5187,
+    "sha256": "b89a9d6963ffae39e68eb1320f5588af2b3118a81ed455a072616f0f2c8a8dcd"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\DELIVERY_CHECKS.json",
+    "bytes": 471,
+    "sha256": "6b4e543295646dce84e929535a130512fbc9ffc4fab5f8b9903d1897b5ca4467"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\DEPENDENCY_OUTPUT.txt",
+    "bytes": 101,
+    "sha256": "bdcafe2518df2cc6476c436fcb9fe63a7a0ac4057a8ce99b3423f99a9437d2bb"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\DEPENDENCY_RESULTS.xml",
+    "bytes": 3371,
+    "sha256": "ee07faa79ae29a67f254b33e61cd744273c23f774efecb82e08b8b214b8de9e5"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\DEPENDENCY_TEST_ROOT.txt",
+    "bytes": 98,
+    "sha256": "8a889830a517e543cf36cb8e958a9a1a889bbdb04f7da92b3bf8b9e938f1139f"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\DESIGN_AND_DIFF.md",
+    "bytes": 9164,
+    "sha256": "cc9c25605a718a939f41c5592e10185e852455ab09e35d4c8af4c2e96eacac8e"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\FINAL_SUMMARY.md",
+    "bytes": 6764,
+    "sha256": "27d10ef87f75f5d211e492580cf0b278c7f4a05629c4faccc4a3456e9cef8bf5"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\freeze_candidate.py",
+    "bytes": 838,
+    "sha256": "986498d7dbb21c0a69a5346028d215c8030ae5ed6f358903d26688cabcfcfe53"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\GIT_FINAL_STATUS.txt",
+    "bytes": 1177,
+    "sha256": "ef736c4db8bcf9a9af3cc6df0d6a711d0d4b0e9d94a9830a680ceb411c29d407"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\PRESERVATION_BASELINE.json",
+    "bytes": 22068,
+    "sha256": "9f551ccaaef0168043f4d745dc8c19b1bb9aeb9d4cf5198eb7b9907c052dc1a6"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\PUBLIC_CHECK.json",
+    "bytes": 899,
+    "sha256": "ae57f1b0a66e65da2756e8666167457a080e968a4417d2fe4194fe166f1953ba"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\PUBLIC_REPORT.json",
+    "bytes": 117,
+    "sha256": "1de07f2030c5f7448b5e4012bf8bc756629a310505e9ee0109c8133e4aa86921"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_OUTPUT_01.txt",
+    "bytes": 30481,
+    "sha256": "56d4d297c91fb35a30ad5560773b9ae37e6de7ac150ed9a441f452e132cd05c8"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_OUTPUT_02.txt",
+    "bytes": 101,
+    "sha256": "6150b13fb6163797e6ee67903f49d11a293977f75316df2f4a2ef77152453bb1"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_OUTPUT_03.txt",
+    "bytes": 101,
+    "sha256": "c106aae88845cbbd68f4e7660a75e878f6e19e3d3161dbf47e23cb8dc58952d7"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_OUTPUT_04.txt",
+    "bytes": 101,
+    "sha256": "4c430120adcbc603621b29a64751d9a35ba69da389083be999abd92f20a14b4d"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_RESULTS_01.xml",
+    "bytes": 39205,
+    "sha256": "57d93887344883aecb90584442e86a5f49f5cbd5edcfaa5f7154b43642a49871"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_RESULTS_02.xml",
+    "bytes": 9564,
+    "sha256": "56eafd98946e7df246c95009ed1e6030b5b3359f2ec2585d58db844c894af7ea"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_RESULTS_03.xml",
+    "bytes": 11494,
+    "sha256": "1473c78081a7c62b2c9e1d127ed43806257839cfdee77c1add6b39ff1e80c141"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_RESULTS_04.xml",
+    "bytes": 11932,
+    "sha256": "5d1a7514a7f7f20ec6109430e85cd4b966701c0c11f8cc2e354c76d8931e70f5"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_ROOT_01.txt",
+    "bytes": 87,
+    "sha256": "453a7da48a9e9a98572185e0ef00f26128fa26704c06ffd4da33cfea5f6449f7"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_ROOT_02.txt",
+    "bytes": 87,
+    "sha256": "c9cc170c994fd5ca7069ade7af5e6c5c248066d7c37b3be97e47e3221b08a85b"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_ROOT_03.txt",
+    "bytes": 87,
+    "sha256": "a0cbbbf69836de34b0b7c48298d8c71a66bbd1f43026301a8853bb46311a4c98"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\TEST_ROOT_04.txt",
+    "bytes": 87,
+    "sha256": "9d5c7cb7603ffb8dfb7484fa510baf94d56a27c933945fec6234fc32bf51f7c2"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\USAGE.md",
+    "bytes": 8916,
+    "sha256": "9b67bd9f20c4d4aa96ff349f1d820fd34c8188dc68e8525001ce8194fff46f2e"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\VALIDATION.json",
+    "bytes": 95987,
+    "sha256": "de7ffa2f3bfc77dd3706811d35f127d93351fcdd50157e65d089fc85369b00f7"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\controller\\engine.py",
+    "bytes": 9253,
+    "sha256": "6e7572001e426eacb651f6fe22540a54fa1d87dac099448d16fd75c51a3ff7c5"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\controller\\frozen.py",
+    "bytes": 6342,
+    "sha256": "a0fa70b455226a268b0dcc01ddc8664fedaacfaf3c478e0057b78fdf3e62875e"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\controller\\printed_results.py",
+    "bytes": 5475,
+    "sha256": "7297c11c8d39e1fd556e623067bab21f55a969f6cee066bcd2b8b97b163195a8"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\controller\\probe.py",
+    "bytes": 3086,
+    "sha256": "cae057e570d0ce71f7376f8ad011596ac8e6e3aaf053b9a98b3b2386ed43bbd2"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\controller\\records.py",
+    "bytes": 3160,
+    "sha256": "490b69823bb5aa6079af0fd2c2b31a26f39f2cb49800ca966317764480d018e4"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\controller\\windows_host.py",
+    "bytes": 7809,
+    "sha256": "a419fd857bfc208e3002840521918c2f47a054120538ecfd28738e6534c4777a"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\concurrency.json",
+    "bytes": 5242,
+    "sha256": "17fe2299746162213d886551cdd4290a8241f11ae66a3a8004a1836865f86e19"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\crash_created.json",
+    "bytes": 2494,
+    "sha256": "c0eb8c8a5e2f4870e41f2b6b9b0c5447f11735a2115af2cd9a0e8dce2bc9a26a"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\crash_intent.json",
+    "bytes": 1981,
+    "sha256": "345dc102d066b130c762f25a5db96df3a68aead9b4ba9778c1f9b37a84103915"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\readonly_check.json",
+    "bytes": 1968,
+    "sha256": "759f6b11920de2505546ee487eb35850839cf8f05d7e95172e0e25f90ff1bc75"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\readonly_default.json",
+    "bytes": 1965,
+    "sha256": "7a30261ca3db367f39be471e8761c86754fcb1a662e9408a8227d852b5ad1444"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\readonly_help.json",
+    "bytes": 1444,
+    "sha256": "3b6269ce2eec7454034ed7b3ace3039e024883d441e0635639b087afaeee6d5e"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\readonly_import.json",
+    "bytes": 1000,
+    "sha256": "6c4d995e82d6a0c20aaf02cc111f910676ebd86273b22125ab8596f811c6a767"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\readonly_report.json",
+    "bytes": 1112,
+    "sha256": "33322d683fc9a459f6595820a256b33c2be0e9e571f005efb063b8bb51c5a62f"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\survival_launcher.json",
+    "bytes": 4390,
+    "sha256": "7c40e45ce0cce84e9c4d85eda2dd65054e95b44ac0bda35cc7d3389652af097b"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_02\\survival_worker.json",
+    "bytes": 3314,
+    "sha256": "a2b2aa91848edd4476b8b74977bd0c83823d62a7e6d1997e9a50a3179d22d9c9"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\concurrency.json",
+    "bytes": 5240,
+    "sha256": "e50e860be92fa9d3615eb00078754835ef47b4433466cb774db7a510e39e90b9"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\crash_created.json",
+    "bytes": 2492,
+    "sha256": "bf1579ab8c0b8b05d5a89bc27cf3a5ebda77593e8aa7f21cb8c919e813c80665"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\crash_intent.json",
+    "bytes": 1983,
+    "sha256": "4d858cff1459ba9abf0540ee0657c631cd630a10b6b30a9be3417bfb083fb198"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\readonly_check.json",
+    "bytes": 1968,
+    "sha256": "f5937c1284183e3d44fbdbc0d0f9b6e86712691b49da746dfaa8bd9fefc287d3"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\readonly_default.json",
+    "bytes": 1966,
+    "sha256": "75ca27dfe169da505fa1a40957ea89aa42eb6efbea6fa8c2b5d0b7bafe61e8d1"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\readonly_help.json",
+    "bytes": 1444,
+    "sha256": "33c96365e876f32f6232520b656664f6bb6c3f3aa7f559d57269df17e93302f9"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\readonly_import.json",
+    "bytes": 1000,
+    "sha256": "b2951efe74e1b942c226bff0f127aa5fcb11c3ff1e27215b2b44e604c6aeb6c5"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\readonly_report.json",
+    "bytes": 1112,
+    "sha256": "03817ba202d61bedcda68d7d97aec5297b43cf920992bb52d5401bb065d703d7"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\survival_launcher.json",
+    "bytes": 4405,
+    "sha256": "c617a583ce3c8ea542c785cf32a0c83012733dc25a0d89a8c3a1f6700b54afcf"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\survival_worker.json",
+    "bytes": 3333,
+    "sha256": "f298787b19b195e436b1c3373333c8b30398b1faf5c0f3686a97664eee77f822"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_03\\unsafe_parameter.json",
+    "bytes": 966,
+    "sha256": "8e84cabef4d49d9508f70084e14e9abc9be0a4f2fd037b376f8f8d8d0b415b51"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\concurrency.json",
+    "bytes": 5242,
+    "sha256": "fcfa3817c5546d61296d0963513b43fb1dcfea1998154c21ca3b01681638a2d9"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\crash_created.json",
+    "bytes": 2494,
+    "sha256": "7b72dd4c941ae7169e71a5c429cb252234ea990fa31c789be22cb652b3bdf6fd"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\crash_intent.json",
+    "bytes": 1983,
+    "sha256": "a1ffb0f6a1320f576b23745abf53cbde7528e6c87051d4ce6bb647f0305a3336"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\readonly_check.json",
+    "bytes": 1968,
+    "sha256": "b2513e56651afae7145b4c6ef67041997700cfb02cd314eb23c027d7c76f1972"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\readonly_default.json",
+    "bytes": 1967,
+    "sha256": "eb95e5c7007b560db5b4c74b84aa7c2963cf0d5ef992c8e07c0f165684ee46fe"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\readonly_help.json",
+    "bytes": 1444,
+    "sha256": "8b27a0497b2397c38167ac0d43f00ec9a605bcaace9fbb85252b145f4bac8fe4"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\readonly_import.json",
+    "bytes": 1000,
+    "sha256": "69b6f04d90e9c4f60bc8de2faf4a16171e4a8bf8e51db53bd96ce8984f1eab16"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\readonly_report.json",
+    "bytes": 1110,
+    "sha256": "4765b3b44df48e2b2a5f733a0554042b5754f6bdd5835db1923e6ffb3262eac0"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\survival_launcher.json",
+    "bytes": 4388,
+    "sha256": "fe5fd94774cbc09e5053802992930b4914d916f5468faeefa765423854fb97cc"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\survival_worker.json",
+    "bytes": 3312,
+    "sha256": "cd14fa2232d44d48b949a01f54cf82e6226eb0debe92398b80a29b780aab4a84"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\evidence_04\\unsafe_parameter.json",
+    "bytes": 966,
+    "sha256": "9de89b2097729247dfbb5b83e025f7fc72e0499675a94aa5fe0ceb1769aab406"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\samples\\SYNTHETIC_DAT.txt",
+    "bytes": 209,
+    "sha256": "30fa8bbeb1e422cb4c230c5a4d0382cc5ca24dcaaafb555b6d044664bc7fa826"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\samples\\SYNTHETIC_RESULT.json",
+    "bytes": 2481,
+    "sha256": "bb4b024fd256b8871e584c7caf0c5277960025a75710e08b433c0858331b32af"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\tests\\conftest.py",
+    "bytes": 2211,
+    "sha256": "584937321e5b961f5e33aeac6fdffdcdc12fc19bce1ff05465d9f09aed791a37"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\tests\\fixture_driver.py",
+    "bytes": 2417,
+    "sha256": "078273e9d08001795b6195ea0982d392f80cc0ff50d695b4729cef1c8871c3a3"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\tests\\fixture_process.py",
+    "bytes": 2021,
+    "sha256": "bd4a496e8154bbc650528098796c503ead1304744aa44de45472d8b2ddfb775a"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\tests\\readonly_driver.py",
+    "bytes": 396,
+    "sha256": "9ead167a214151fc380a2b6d22718c1b28aa7b3d2f4283ca883d25853433ff08"
+  },
+  {
+    "path": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\tests\\test_candidate.py",
+    "bytes": 18706,
+    "sha256": "586a191f292a1cac1231c4c44d1ec8c11a49cb0fcfa20ce8d080c0f2f7a92a98"
+  }
+]

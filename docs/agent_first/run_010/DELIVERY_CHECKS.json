@@ -1,0 +1,24 @@
+{
+  "status": "OFFLINE_PACKAGE_UNCHANGED",
+  "experiment_id": "abq2024_r010_a19d17ea",
+  "manifest_digest": "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6",
+  "preview_digest": "sha256:1ed98f391032fe9b34a31f87200d5884266e312bb5f2ffc6ce3c0881b3b42b01",
+  "execution_authorized": false,
+  "run_created": false,
+  "runtime_verified": false,
+  "output_reserved": false,
+  "warning": "Read view only; changed materials or output competition require refusal before any future launch",
+  "public_sources_parsed": 53,
+  "source_rows": 53,
+  "preview_copy_matches": true,
+  "input_copy_matches": true,
+  "observations_extraction_scratch_empty": true,
+  "no_job_output_files": true,
+  "tests": {
+    "passed": 204,
+    "failed": 0,
+    "skipped": 0
+  },
+  "file_cleanup": "BLOCKED_BY_AUTOMATIC_POLICY",
+  "overall": "PARTIAL"
+}

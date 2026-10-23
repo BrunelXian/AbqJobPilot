@@ -1,0 +1,95 @@
+HOST_FIXTURE_EVIDENCE=C:\Users\wuxia\AppData\Local\Temp\AbqJobPilot_Run011_Host_eb2ab960c30b43039d807a84b5e18c6c\case_host
+{
+  "schema": "r011-host-compatibility-v1",
+  "status": "NOT_PASSED",
+  "evidence_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_Host_eb2ab960c30b43039d807a84b5e18c6c\\case_host",
+  "context": "ACTUAL_POWERSHELL_INVOCATION_NOT_ASSUMED_OPERATOR_DESKTOP",
+  "abaqus_calls": 0,
+  "real_execute_calls": 0,
+  "admission_changed": false,
+  "started_at": "2026-10-23T09:55:48.9822189Z",
+  "powershell_version": "7.6.5",
+  "child_creation": "ordinary Process.Start to registered venv, UseShellExecute=false, no breakaway",
+  "worker_creation": "frozen run_once + fixed Python worker; CREATE_NO_WINDOW/close_fds/DEVNULL/regular files",
+  "powershell": {
+    "pid": 18420,
+    "creation_time_100ns": 134372229485126233,
+    "image_path": "C:\\Users\\wuxia\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+  },
+  "controller_host": {
+    "controller_standard_handles": {
+      "stderr": {
+        "file_type": 2,
+        "ownership": "borrowed; never closed by controller"
+      },
+      "stdout": {
+        "file_type": 2,
+        "ownership": "borrowed; never closed by controller"
+      }
+    },
+    "identity": {
+      "creation_time_100ns": 134372229490272970,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "pid": 8716
+    },
+    "in_any_job": true,
+    "interpreter": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+    "job_query_error": null,
+    "job_query_succeeded": true,
+    "observed_at_ns": 1792749349118324900,
+    "python": "3.12.10"
+  },
+  "controller_chain_OS_evidence": {
+    "controller": {
+      "creation_time_100ns": 134372229490272970,
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "pid": 8716
+    },
+    "powershell": {
+      "creation_time_100ns": 134372229485126233,
+      "image_path": "C:\\Users\\wuxia\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "pid": 18420
+    },
+    "source": "controller_OS_Toolhelp_parent_links_and_retained_identities",
+    "venv_launcher": {
+      "creation_time_100ns": 134372229490017573,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "pid": 36308
+    }
+  },
+  "reason": "MISSING_worker_launcher.json",
+  "cleanup": [
+    {
+      "observation": {
+        "exited": true,
+        "identity": {
+          "pid": 36308,
+          "creation_time_100ns": 134372229490017573,
+          "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+        },
+        "observed_at": "2026-10-23T09:55:57.1850778Z",
+        "source": "PowerShell_retained_OS_process_reference",
+        "exit_code": 2
+      },
+      "action": "observe_only_then_close_own_reference",
+      "role": "controller_venv_launcher"
+    },
+    {
+      "observation": {
+        "exited": true,
+        "identity": {
+          "pid": 8716,
+          "creation_time_100ns": 134372229490272970,
+          "image_path": "D:\\Program Files\\Python312\\python.exe"
+        },
+        "observed_at": "2026-10-23T09:55:57.1884356Z",
+        "source": "PowerShell_retained_OS_process_reference",
+        "exit_code": 2
+      },
+      "action": "observe_only_then_close_own_reference",
+      "role": "actual_controller"
+    }
+  ],
+  "finished_at": "2026-10-23T09:55:57.1917025Z",
+  "scope": "Only this host invocation and fixed Python fixture; terminal/session remained alive; no full Job hierarchy or Abaqus proof"
+}

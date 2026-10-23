@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="8" time="1.079" timestamp="2026-10-23T21:28:01.787311+08:00" hostname="Boltzmann"><testcase classname="tests.test_standard_admission" name="test_approval_provision_does_not_start_or_resume_owner" time="0.298" /><testcase classname="tests.test_standard_admission" name="test_command_is_frozen_windows_template_with_only_new_identity" time="0.236" /><testcase classname="tests.test_standard_admission" name="test_host_policy_requires_queries_identity_and_regular_outputs[True-True-1-True]" time="0.001" /><testcase classname="tests.test_standard_admission" name="test_host_policy_requires_queries_identity_and_regular_outputs[True-False-1-True]" time="0.001" /><testcase classname="tests.test_standard_admission" name="test_host_policy_requires_queries_identity_and_regular_outputs[False-False-1-False]" time="0.001" /><testcase classname="tests.test_standard_admission" name="test_host_policy_requires_queries_identity_and_regular_outputs[True-True-3-False]" time="0.001" /><testcase classname="tests.test_standard_admission" name="test_host_policy_requires_queries_identity_and_regular_outputs[True-False-0-False]" time="0.001" /><testcase classname="tests.test_standard_admission" name="test_standard_has_no_existing_test_reconciliation_escape" time="0.432"><failure message="Failed: DID NOT RAISE Exception">case = &lt;test_standard_backend.Case object at 0x0000017EF072AB70&gt;
+
+    def test_standard_has_no_existing_test_reconciliation_escape(case):
+        c=case;rid=c.service.submit(c.ctx,c.request(c.approve()))['receipt']['run_id']
+        c.service.execute_pending(c.ctx,rid)
+&gt;       with pytest.raises(Exception):c.service.preview_reconciliation(c.ctx,rid)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE Exception
+
+tests\test_standard_admission.py:58: Failed</failure></testcase></testsuite></testsuites>

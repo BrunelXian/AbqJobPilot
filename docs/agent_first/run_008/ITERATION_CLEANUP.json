@@ -1,0 +1,153 @@
+{
+  "records": [
+    {
+      "path": "demo1\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "bootstrap.json",
+          "offer.json",
+          "setup.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "demo2\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "demo3\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [
+          "owner"
+        ],
+        "private_materials_removed": [
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "demo4\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "approve-validation.json",
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json",
+          "validation-ticket.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "full1\\test_standalone_operator_and_t0\\standalone_demo\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "approve-validation.json",
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json",
+          "validation-ticket.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "full2\\test_standalone_operator_and_t0\\standalone_demo\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "approve-validation.json",
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json",
+          "validation-ticket.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "full3\\test_standalone_operator_and_t0\\standalone_demo\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "approve-validation.json",
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json",
+          "validation-ticket.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "target2\\test_standalone_operator_and_t0\\standalone_demo\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "approve-validation.json",
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json",
+          "validation-ticket.json"
+        ],
+        "remaining_private_files": 0
+      }
+    },
+    {
+      "path": "target3\\test_standalone_operator_and_t0\\standalone_demo\\cleanup.json",
+      "record": {
+        "all_children_waited": true,
+        "all_handles_closed": true,
+        "cleanup_errors": [],
+        "private_materials_removed": [
+          "approve-validation.json",
+          "bootstrap.json",
+          "connection.json",
+          "offer.json",
+          "setup.json",
+          "validation-ticket.json"
+        ],
+        "remaining_private_files": 0
+      }
+    }
+  ],
+  "private_materials_remaining": []
+}

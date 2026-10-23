@@ -1,0 +1,18 @@
+HOST_FIXTURE_EVIDENCE=C:\Users\wuxia\AppData\Local\Temp\AbqJobPilot_Run011_Host_42e2315d8b954f3b85ed38960206514a\case_host
+{
+  "schema": "r011-host-compatibility-v1",
+  "status": "NOT_PASSED",
+  "evidence_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_Host_42e2315d8b954f3b85ed38960206514a\\case_host",
+  "context": "ACTUAL_POWERSHELL_INVOCATION_NOT_ASSUMED_OPERATOR_DESKTOP",
+  "abaqus_calls": 0,
+  "real_execute_calls": 0,
+  "admission_changed": false,
+  "started_at": "2026-10-23T09:55:31.4408013Z",
+  "powershell_version": "7.6.5",
+  "child_creation": "ordinary Process.Start to registered venv, UseShellExecute=false, no breakaway",
+  "worker_creation": "frozen run_once + fixed Python worker; CREATE_NO_WINDOW/close_fds/DEVNULL/regular files",
+  "reason": "Cannot overwrite variable ShellId because it is read-only or constant.",
+  "cleanup": [],
+  "finished_at": "2026-10-23T09:55:31.4989740Z",
+  "scope": "Only this host invocation and fixed Python fixture; terminal/session remained alive; no full Job hierarchy or Abaqus proof"
+}

@@ -1,0 +1,1802 @@
+{
+  "count": 359,
+  "previous_cases_rerun": 343,
+  "all_previous_names_present": true,
+  "cases": [
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_headless_submit_and_validation_run_persisted_before_effect",
+      "time": "1.019"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_idempotent_submit_and_execution_replay",
+      "time": "0.447"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_same_key_different_content_conflict[plan_id-other-plan]",
+      "time": "1.033"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_same_key_different_content_conflict[plan_digest-other-digest]",
+      "time": "3.131"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_same_key_different_content_conflict[grant_id-other-grant]",
+      "time": "5.402"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_same_key_different_content_conflict[retry_of-other-run]",
+      "time": "0.467"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_concurrent_submit_across_service_and_store_objects",
+      "time": "0.731"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_atomic_execution_claim_and_store_single_slot",
+      "time": "1.006"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_simultaneous_claim_same_run_only_one_effect",
+      "time": "7.022"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_wrong_context_rejected[project_id-wrong]",
+      "time": "0.343"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_wrong_context_rejected[project_instance_id-wrong]",
+      "time": "0.351"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_wrong_context_rejected[root-wrong]",
+      "time": "0.565"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_wrong_context_rejected[manifest_digest-wrong]",
+      "time": "0.361"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_changed_input_or_configuration_invalidates_plan[input-before_submit]",
+      "time": "0.431"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_changed_input_or_configuration_invalidates_plan[input-before_dispatch]",
+      "time": "0.704"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_changed_input_or_configuration_invalidates_plan[config_revision-before_submit]",
+      "time": "0.420"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_changed_input_or_configuration_invalidates_plan[config_revision-before_dispatch]",
+      "time": "0.689"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_changed_input_or_configuration_invalidates_plan[config_values-before_submit]",
+      "time": "1.522"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_changed_input_or_configuration_invalidates_plan[config_values-before_dispatch]",
+      "time": "6.124"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override0-GRANT_EXPIRED]",
+      "time": "1.576"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override1-GRANT_SCOPE_MISMATCH]",
+      "time": "0.313"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override2-GRANT_SCOPE_MISMATCH]",
+      "time": "2.137"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override3-GRANT_SCOPE_MISMATCH]",
+      "time": "1.350"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override4-GRANT_SCOPE_MISMATCH]",
+      "time": "0.700"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override5-GRANT_SCOPE_MISMATCH]",
+      "time": "0.670"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override6-GRANT_SCOPE_MISMATCH]",
+      "time": "0.358"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override7-GRANT_SCOPE_MISMATCH]",
+      "time": "0.366"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_conditions_reject[override8-TEST_GRANT_ONLY]",
+      "time": "0.751"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_missing_or_unregistered_grant[None]",
+      "time": "0.300"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_missing_or_unregistered_grant[]",
+      "time": "7.312"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_missing_or_unregistered_grant[unknown]",
+      "time": "3.379"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_self_approval_and_execution_options_rejected[extra0]",
+      "time": "2.032"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_self_approval_and_execution_options_rejected[extra1]",
+      "time": "2.397"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_self_approval_and_execution_options_rejected[extra2]",
+      "time": "1.376"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_self_approval_and_execution_options_rejected[extra3]",
+      "time": "1.047"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_self_approval_and_execution_options_rejected[extra4]",
+      "time": "1.895"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_resource_budget_rejected[simulated_cpus-2]",
+      "time": "0.211"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_resource_budget_rejected[simulated_gpus-1]",
+      "time": "0.379"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_resource_budget_rejected[slots-2]",
+      "time": "0.611"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_new_work_cannot_reuse_old_plan_or_grant[new_job]",
+      "time": "0.336"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_new_work_cannot_reuse_old_plan_or_grant[new_revision]",
+      "time": "0.433"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_new_work_cannot_reuse_old_plan_or_grant[new_plan]",
+      "time": "0.655"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_new_work_cannot_reuse_old_plan_or_grant[consumed]",
+      "time": "0.394"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_replay_survives_expired_grant_and_changed_input",
+      "time": "0.395"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_true_retry_creates_new_run_and_preserves_old_evidence",
+      "time": "0.746"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_invalid_retry_rejected[missing]",
+      "time": "0.548"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_invalid_retry_rejected[pending]",
+      "time": "0.390"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_invalid_retry_rejected[other_job]",
+      "time": "0.693"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_invalid_retry_rejected[other_project]",
+      "time": "0.423"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_canonical_values_and_event_pagination",
+      "time": "0.497"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_plan_is_detached_from_mutable_inputs_and_expiry_checked",
+      "time": "0.275"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_plan_expiry_after_prepare_blocks_execution[before_submit]",
+      "time": "0.307"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_plan_expiry_after_prepare_blocks_execution[before_dispatch]",
+      "time": "0.366"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_grant_expiry_after_accept_blocks_dispatch_but_keeps_receipt",
+      "time": "0.370"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_real_other_project_retry_and_request_scope_rejected",
+      "time": "0.959"
+    },
+    {
+      "classname": "tests.test_execution_contract",
+      "name": "test_single_slot_scope_is_per_experiment_store",
+      "time": "0.758"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_reopen_readonly_retains_receipt_run_events_validation_without_writes",
+      "time": "0.610"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_query_failures_never_initialize_migrate_or_repair[missing]",
+      "time": "0.252"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_query_failures_never_initialize_migrate_or_repair[corrupt]",
+      "time": "0.265"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_query_failures_never_initialize_migrate_or_repair[future_schema]",
+      "time": "0.273"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_query_failures_never_initialize_migrate_or_repair[wal]",
+      "time": "0.255"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_query_failures_never_initialize_migrate_or_repair[shm]",
+      "time": "0.272"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_query_failures_never_initialize_migrate_or_repair[journal]",
+      "time": "0.273"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_readonly_connection_enforces_query_only_and_foreign_keys",
+      "time": "0.269"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_accept_transaction_failure_rolls_back_all_acceptance_records",
+      "time": "0.353"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_lost_acceptance_response_replays_committed_receipt",
+      "time": "0.341"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_claim_transaction_failure_has_no_effect_or_partial_claim",
+      "time": "0.346"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[after_claim]",
+      "time": "0.545"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[file_write]",
+      "time": "0.522"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[observe]",
+      "time": "0.581"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal]",
+      "time": "0.678"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal_and_uncertain]",
+      "time": "0.655"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_fake_completion_and_artifact_validation_are_separate[missing]",
+      "time": "0.393"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_fake_completion_and_artifact_validation_are_separate[malformed]",
+      "time": "0.474"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_fake_completion_and_artifact_validation_are_separate[run_id]",
+      "time": "0.533"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_fake_completion_and_artifact_validation_are_separate[phase_attempt_id]",
+      "time": "0.482"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_fake_completion_and_artifact_validation_are_separate[plan_digest]",
+      "time": "0.532"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_fake_completion_and_artifact_validation_are_separate[old_success]",
+      "time": "0.455"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_fake_completion_and_artifact_validation_are_separate[digest]",
+      "time": "0.470"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_existing_old_output_is_not_overwritten_or_adopted",
+      "time": "0.376"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_copied_project_does_not_inherit_execution_permission",
+      "time": "0.335"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_malformed_manifest_is_structured_error_without_repair[value0]",
+      "time": "0.272"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_malformed_manifest_is_structured_error_without_repair[value1]",
+      "time": "0.275"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_response_failure_after_terminal_commit_does_not_repeat",
+      "time": "0.399"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_retry_of_uncertain_run_is_rejected",
+      "time": "0.412"
+    },
+    {
+      "classname": "tests.test_execution_store",
+      "name": "test_commit_acknowledgement_failure_queries_existing_acceptance",
+      "time": "0.417"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_dependency_graph_excludes_all_legacy_and_launch_modules",
+      "time": "0.082"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_all_runtime_io_confined_and_default_navigation_untouched",
+      "time": "0.482"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_path_escape_rejected_before_candidate_filesystem_access[outside]",
+      "time": "0.239"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_path_escape_rejected_before_candidate_filesystem_access[parent]",
+      "time": "0.255"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_path_escape_rejected_before_candidate_filesystem_access[unc]",
+      "time": "0.246"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_path_escape_rejected_before_candidate_filesystem_access[relative]",
+      "time": "0.248"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_path_escape_rejected_before_candidate_filesystem_access[ads]",
+      "time": "0.245"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_real_junction_or_symlink_is_rejected",
+      "time": "0.256"
+    },
+    {
+      "classname": "tests.test_execution_isolation",
+      "name": "test_creation_never_adopts_existing_directory",
+      "time": "0.269"
+    },
+    {
+      "classname": "tests.test_execution_ownership",
+      "name": "test_format_one_remains_readonly_and_never_migrated_or_adopted",
+      "time": "0.563"
+    },
+    {
+      "classname": "tests.test_execution_ownership",
+      "name": "test_local_owner_cannot_release_lock_during_active_fake",
+      "time": "0.414"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_independent_client_exit_owner_continues_and_reconnects",
+      "time": "2.544"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_accept_commit_response_lost_reconnect_reuses_receipt_and_effect",
+      "time": "1.957"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_multiclient_idempotency_and_different_requests_single_slot",
+      "time": "1.826"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_competing_supervisor_and_supported_writer_cannot_bypass_owner",
+      "time": "2.389"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_running_query_nonblocking_readonly_pages_reconnect_and_caps",
+      "time": "1.649"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes0-AUTHENTICATION_FAILED]",
+      "time": "1.291"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes1-PROTOCOL_MISMATCH]",
+      "time": "1.273"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes2-ENDPOINT_IDENTITY_MISMATCH]",
+      "time": "1.260"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes3-ENDPOINT_IDENTITY_MISMATCH]",
+      "time": "1.230"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes4-ENDPOINT_IDENTITY_MISMATCH]",
+      "time": "1.222"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes5-ENDPOINT_IDENTITY_MISMATCH]",
+      "time": "1.218"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes6-UNKNOWN_OPERATION]",
+      "time": "1.238"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes7-UNKNOWN_OPERATION]",
+      "time": "1.247"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes8-INVALID_REQUEST]",
+      "time": "1.271"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_message_bounds_truncation_partial_arrival_and_absolute_deadline",
+      "time": "3.334"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_connection_cap_is_bounded_and_recovers_after_frame_deadline",
+      "time": "3.359"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_actual_owner_crash_after_artifact_restart_uncertain_and_pending_blocked",
+      "time": "2.343"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_stale_endpoint_metadata_does_not_connect_takeover_or_autostart",
+      "time": "4.472"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_maintenance_query_never_repairs_existing_sidecars[-journal]",
+      "time": "2.041"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_maintenance_query_never_repairs_existing_sidecars[-wal]",
+      "time": "2.031"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_maintenance_query_never_repairs_existing_sidecars[-shm]",
+      "time": "2.088"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_wrong_bootstrap_authority_cannot_adopt_and_does_not_poison_owner",
+      "time": "1.883"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_client_timeout_after_accept_does_not_cancel_owner",
+      "time": "3.450"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_malformed_json_refused_and_owner_remains_responsive[\\xff]",
+      "time": "1.257"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_malformed_json_refused_and_owner_remains_responsive[{\"operation\":1,\"operation\":2}]",
+      "time": "1.379"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_malformed_json_refused_and_owner_remains_responsive[{\"number\":NaN}]",
+      "time": "1.276"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_malformed_json_refused_and_owner_remains_responsive[[]]",
+      "time": "1.279"
+    },
+    {
+      "classname": "tests.test_fake_supervisor",
+      "name": "test_response_serialization_bound_before_any_bytes_sent",
+      "time": "0.064"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_preview_is_readonly_deterministic_and_adoption_appends_bound_evidence",
+      "time": "0.729"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[missing]",
+      "time": "0.507"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[malformed]",
+      "time": "0.544"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[run_id]",
+      "time": "0.572"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[plan_digest]",
+      "time": "0.598"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[phase_attempt_id]",
+      "time": "0.629"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[config_digest]",
+      "time": "0.556"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[input_digests]",
+      "time": "0.600"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[format]",
+      "time": "0.632"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_bad_artifact_cannot_be_adopted_or_recreated[oversize]",
+      "time": "0.552"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_unsupported_plan_rejected_before_artifact_read[output_policy]",
+      "time": "0.471"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_unsupported_plan_rejected_before_artifact_read[backend_id]",
+      "time": "0.444"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_unsupported_plan_rejected_before_artifact_read[backend_version]",
+      "time": "0.451"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_unsupported_plan_rejected_before_artifact_read[validation_policy]",
+      "time": "0.480"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_unsupported_plan_rejected_before_artifact_read[canonicalization]",
+      "time": "0.561"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_preview_change_invalidates_submission[artifact]",
+      "time": "0.614"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_preview_change_invalidates_submission[revision]",
+      "time": "0.713"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_preview_change_invalidates_submission[gate]",
+      "time": "0.635"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_preview_change_invalidates_submission[owner]",
+      "time": "0.595"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override0]",
+      "time": "0.519"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override1]",
+      "time": "0.501"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override2]",
+      "time": "0.527"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override3]",
+      "time": "0.484"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override4]",
+      "time": "0.503"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override5]",
+      "time": "0.467"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override6]",
+      "time": "0.544"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_grant_exact_scope_and_expiry_required[override7]",
+      "time": "0.551"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_self_attested_management_fields_rejected[extra0]",
+      "time": "0.623"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_self_attested_management_fields_rejected[extra1]",
+      "time": "0.511"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_self_attested_management_fields_rejected[extra2]",
+      "time": "0.552"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_execution_grant_cannot_replace_management_permission[missing]",
+      "time": "0.497"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_execution_grant_cannot_replace_management_permission[execution_grant]",
+      "time": "0.482"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_concurrent_apply_idempotency_conflict_and_consumption",
+      "time": "0.680"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[reconciliation:before_snapshot]",
+      "time": "0.590"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[reconciliation:after_snapshot]",
+      "time": "0.554"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[management:before_commit]",
+      "time": "0.623"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[management:after_commit]",
+      "time": "0.644"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_separate_from_adoption_pending_revalidated_and_replay_no_reopen",
+      "time": "0.754"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[input]",
+      "time": "0.524"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[configuration]",
+      "time": "0.473"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[grant_expired]",
+      "time": "0.440"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[plan_expired]",
+      "time": "0.434"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[authority]",
+      "time": "0.463"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_historical_plan_is_used_without_reading_new_input_or_configuration",
+      "time": "0.578"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_missing_historical_evidence_never_infers_completion[claim]",
+      "time": "0.535"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_missing_historical_evidence_never_infers_completion[accept]",
+      "time": "0.557"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_missing_historical_evidence_never_infers_completion[consumption]",
+      "time": "0.510"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_missing_historical_evidence_never_infers_completion[historical_inputs]",
+      "time": "0.503"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_concurrent_distinct_keys_cannot_adopt_same_revision_twice",
+      "time": "0.591"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_requires_distinct_exact_management_permission[missing]",
+      "time": "0.606"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_requires_distinct_exact_management_permission[expired]",
+      "time": "0.493"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_requires_distinct_exact_management_permission[wrong_action]",
+      "time": "0.563"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_requires_distinct_exact_management_permission[wrong_gate]",
+      "time": "0.609"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_requires_distinct_exact_management_permission[wrong_owner]",
+      "time": "0.526"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_requires_distinct_exact_management_permission[approved]",
+      "time": "0.537"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_resume_atomic_idempotency_conflict_and_receipt_is_not_gate_view",
+      "time": "0.627"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_query_and_management_refuse_maintenance_without_repair",
+      "time": "0.587"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_real_junction_artifact_is_refused_before_read",
+      "time": "0.401"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_format_two_readonly_compatible_but_management_rejected",
+      "time": "0.368"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_hardlinked_artifact_is_not_accepted",
+      "time": "0.432"
+    },
+    {
+      "classname": "tests.test_fake_reconciliation",
+      "name": "test_management_commit_ack_unknown_is_resolved_by_original_key",
+      "time": "0.546"
+    },
+    {
+      "classname": "tests.test_reconciliation_supervisor",
+      "name": "test_windows_crash_reconcile_explicit_resume_end_to_end[False]",
+      "time": "3.880"
+    },
+    {
+      "classname": "tests.test_reconciliation_supervisor",
+      "name": "test_windows_crash_reconcile_explicit_resume_end_to_end[True]",
+      "time": "4.711"
+    },
+    {
+      "classname": "tests.test_reconciliation_supervisor",
+      "name": "test_owner_restart_invalidates_old_preview_and_management_permission",
+      "time": "2.988"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_pending_completed_and_historical_validation_are_distinct",
+      "time": "0.440"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_uncertain_insufficient_then_reconciled_paused_then_resumed",
+      "time": "0.524"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_actual_validator_failure_is_reported_without_rerunning_it",
+      "time": "0.435"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_snapshot_real_read_write_interleaving_and_transaction_released",
+      "time": "0.402"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_readonly_all_business_records_and_effect_traps",
+      "time": "0.401"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_honest_read_failures_no_repair_or_path_disclosure[missing]",
+      "time": "0.331"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_honest_read_failures_no_repair_or_path_disclosure[corrupt]",
+      "time": "0.381"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_honest_read_failures_no_repair_or_path_disclosure[future]",
+      "time": "0.354"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_honest_read_failures_no_repair_or_path_disclosure[journal]",
+      "time": "0.308"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_honest_read_failures_no_repair_or_path_disclosure[wal]",
+      "time": "0.321"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_honest_read_failures_no_repair_or_path_disclosure[shm]",
+      "time": "0.345"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_honest_read_failures_no_repair_or_path_disclosure[busy]",
+      "time": "1.023"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_schema_two_reports_missing_gate_without_migration",
+      "time": "0.431"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_global_event_gaps_are_not_run_history_gaps",
+      "time": "0.471"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_whitelist_secret_injection_and_export",
+      "time": "0.580"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_limits_explicit_no_truncation[events]",
+      "time": "0.383"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_limits_explicit_no_truncation[record_bytes]",
+      "time": "0.353"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_limits_explicit_no_truncation[raw_bytes]",
+      "time": "0.352"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_limits_explicit_no_truncation[field_chars]",
+      "time": "0.352"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_limits_explicit_no_truncation[serialized]",
+      "time": "0.304"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_limits_explicit_no_truncation[deadline]",
+      "time": "0.310"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_missing_history_and_unrecognized_error_not_success",
+      "time": "0.375"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_original_view_offline_without_store_network_or_owner",
+      "time": "0.473"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[escape]",
+      "time": "0.359"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[parent]",
+      "time": "0.331"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[existing]",
+      "time": "0.358"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[junction]",
+      "time": "0.337"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[write]",
+      "time": "0.327"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[publish_race]",
+      "time": "0.289"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[injected_report]",
+      "time": "0.337"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_path_and_failure_boundaries[changed_digest]",
+      "time": "0.329"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_audit_cannot_be_submitted_as_execution_or_management_request",
+      "time": "0.328"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_each_evidence_collection_has_hard_record_limit[observations-16-obs]",
+      "time": "0.355"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_each_evidence_collection_has_hard_record_limit[validations-16-val]",
+      "time": "0.466"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_each_evidence_collection_has_hard_record_limit[reconciliations-8-rec]",
+      "time": "0.362"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_reconciliation_private_fields_and_storage_error_are_not_echoed",
+      "time": "0.662"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_report_rule_computation_is_deterministic_for_same_snapshot",
+      "time": "0.381"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_inconsistent_persisted_bindings_are_not_misreported[runs-run_id]",
+      "time": "0.488"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_inconsistent_persisted_bindings_are_not_misreported[runs-project_instance_id]",
+      "time": "0.493"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_inconsistent_persisted_bindings_are_not_misreported[plans-plan_id]",
+      "time": "0.459"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_inconsistent_persisted_bindings_are_not_misreported[events-run_id]",
+      "time": "0.459"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_inconsistent_persisted_bindings_are_not_misreported[observations-run_id]",
+      "time": "0.473"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_actual_blocked_error_code_is_preserved_without_free_message",
+      "time": "0.422"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_export_cleanup_failure_leaves_identifiable_partial_and_no_success",
+      "time": "0.361"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_diagnostic_connection_metadata_and_manifest_are_bounded[manifest]",
+      "time": "0.391"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_diagnostic_connection_metadata_and_manifest_are_bounded[metadata_count]",
+      "time": "0.402"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_diagnostic_connection_metadata_and_manifest_are_bounded[metadata_field]",
+      "time": "0.377"
+    },
+    {
+      "classname": "tests.test_run_diagnostics",
+      "name": "test_diagnostic_connection_metadata_and_manifest_are_bounded[gate]",
+      "time": "0.370"
+    },
+    {
+      "classname": "tests.test_diagnostic_supervisor",
+      "name": "test_windows_three_stage_diagnostic_export_and_detached_response",
+      "time": "3.553"
+    },
+    {
+      "classname": "tests.test_diagnostic_supervisor",
+      "name": "test_authenticated_bound_diagnostic_rejects_dangerous_parameters_and_echo",
+      "time": "1.580"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_requires_exact_dedicated_test_grant_before_any_launch[changes0-TEST_GRANT_ONLY]",
+      "time": "0.340"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_requires_exact_dedicated_test_grant_before_any_launch[changes1-GRANT_SCOPE_MISMATCH]",
+      "time": "0.331"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_requires_exact_dedicated_test_grant_before_any_launch[changes2-GRANT_EXPIRED]",
+      "time": "0.329"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_requires_exact_dedicated_test_grant_before_any_launch[changes3-GRANT_SCOPE_MISMATCH]",
+      "time": "0.333"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_requires_exact_dedicated_test_grant_before_any_launch[changes4-GRANT_SCOPE_MISMATCH]",
+      "time": "0.337"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_execution_object_identity_and_budget_rejected[fixture_digest-sha256:wrong]",
+      "time": "0.303"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_execution_object_identity_and_budget_rejected[image_digest-sha256:wrong]",
+      "time": "0.310"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_execution_object_identity_and_budget_rejected[interpreter_digest-sha256:wrong]",
+      "time": "0.269"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_execution_object_identity_and_budget_rejected[interpreter-C:\\\\forbidden.exe]",
+      "time": "0.288"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_execution_object_identity_and_budget_rejected[max_seconds-1000]",
+      "time": "0.199"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_scenario_is_a_strict_enum_not_a_command[shell]",
+      "time": "0.232"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_scenario_is_a_strict_enum_not_a_command[normal --command evil]",
+      "time": "0.225"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_scenario_is_a_strict_enum_not_a_command[scenario2]",
+      "time": "0.187"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_scenario_is_a_strict_enum_not_a_command[1]",
+      "time": "0.215"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_client_cannot_supply_process_controls[command]",
+      "time": "0.234"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_client_cannot_supply_process_controls[environment]",
+      "time": "0.265"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_client_cannot_supply_process_controls[working_directory]",
+      "time": "0.245"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_client_cannot_supply_process_controls[backend]",
+      "time": "0.279"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_client_cannot_supply_process_controls[approved]",
+      "time": "0.260"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_accepted_process_plan_is_rechecked_at_dispatch_without_start[fixture]",
+      "time": "0.398"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_accepted_process_plan_is_rechecked_at_dispatch_without_start[input]",
+      "time": "0.441"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_accepted_process_plan_is_rechecked_at_dispatch_without_start[grant]",
+      "time": "0.367"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_accepted_process_plan_is_rechecked_at_dispatch_without_start[backend_configuration]",
+      "time": "0.277"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_delayed_start_rechecks_permission_and_input_before_os_creation[grant_expired]",
+      "time": "0.457"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_delayed_start_rechecks_permission_and_input_before_os_creation[input_changed]",
+      "time": "0.401"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_no_process_configuration_cannot_dispatch_process_plan",
+      "time": "0.300"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_invalid_trusted_backend_configuration_does_not_leak_owner_lock",
+      "time": "0.249"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_dedicated_process_grant_cannot_expand_original_fake",
+      "time": "0.244"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_opt_in_process_capability_does_not_change_fake_no_launch_path",
+      "time": "0.389"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_missing_historical_exit_records_are_not_filled_from_projection",
+      "time": "0.342"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_validator_rejects_lookalike_content_without_process_authority[boolean_version]",
+      "time": "0.356"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_validator_rejects_lookalike_content_without_process_authority[duplicate_key]",
+      "time": "0.351"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_validator_rejects_lookalike_content_without_process_authority[wrong_instance]",
+      "time": "0.379"
+    },
+    {
+      "classname": "tests.test_process_contract",
+      "name": "test_process_validator_rejects_lookalike_content_without_process_authority[wrong_phase]",
+      "time": "0.321"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_real_process_exit_and_independent_artifact_dimensions[normal-COMPLETED-VALID]",
+      "time": "2.209"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_real_process_exit_and_independent_artifact_dimensions[nonzero-FAILED-VALID]",
+      "time": "2.207"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_real_process_exit_and_independent_artifact_dimensions[invalid_result-COMPLETED-INVALID]",
+      "time": "2.159"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_launcher_exit_and_result_do_not_end_worker_or_release_slot[launcher_early]",
+      "time": "3.050"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_launcher_exit_and_result_do_not_end_worker_or_release_slot[result_wait]",
+      "time": "2.989"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:before_create]",
+      "time": "2.672"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:after_create]",
+      "time": "3.271"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:after_identity]",
+      "time": "3.076"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:after_handoff]",
+      "time": "3.568"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:before_exit_record]",
+      "time": "3.593"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:after_exit]",
+      "time": "3.414"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_owner_crash_windows_preserves_uncertainty_no_relaunch[process:before_terminal]",
+      "time": "3.500"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_actual_candidate_identity_mismatch_blocks_owner_without_guessing",
+      "time": "1.895"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_fixture_does_not_inherit_private_owner_environment",
+      "time": "1.975"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_multiclient_replay_lost_response_and_client_exit_do_not_start_twice",
+      "time": "2.701"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_identity_mismatch_is_not_exit_or_permission_to_kill",
+      "time": "2.144"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_post_creation_storage_failure_never_releases_claim_or_restarts[process_observe:before_commit]",
+      "time": "2.198"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_post_creation_storage_failure_never_releases_claim_or_restarts[terminal:before_commit]",
+      "time": "2.265"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_process_diagnosis_is_historical_readonly_redacted",
+      "time": "2.501"
+    },
+    {
+      "classname": "tests.test_process_fixture",
+      "name": "test_exit_code_query_failure_on_real_exited_reference_is_unknown",
+      "time": "2.141"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_real_exit_commit_owner_crash_reconcile_and_separate_resume[normal-COMPLETED]",
+      "time": "3.653"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_real_exit_commit_owner_crash_reconcile_and_separate_resume[nonzero-FAILED]",
+      "time": "3.761"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_real_exit_commit_owner_crash_reconcile_and_separate_resume[invalid_result-COMPLETED]",
+      "time": "4.454"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_preview_readonly_no_probe_artifact_validator_or_observer",
+      "time": "2.063"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[worker_identity]",
+      "time": "2.149"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[worker_exit]",
+      "time": "2.089"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[membership]",
+      "time": "2.006"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[pid_only]",
+      "time": "2.183"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[different_attempt]",
+      "time": "2.154"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[conflicting_exit]",
+      "time": "2.104"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[extra_start]",
+      "time": "2.150"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[projection]",
+      "time": "2.383"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_incomplete_or_conflicting_required_set_rejected[legacy_contract]",
+      "time": "2.542"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_result_self_report_controller_exits_are_not_service_evidence[process:after_identity]",
+      "time": "2.887"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_result_self_report_controller_exits_are_not_service_evidence[process:after_handoff]",
+      "time": "3.031"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_result_self_report_controller_exits_are_not_service_evidence[process:before_exit_record]",
+      "time": "3.079"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_exact_management_authority_required[override0]",
+      "time": "2.213"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_exact_management_authority_required[override1]",
+      "time": "2.199"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_exact_management_authority_required[override2]",
+      "time": "2.310"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_exact_management_authority_required[override3]",
+      "time": "2.182"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_exact_management_authority_required[override4]",
+      "time": "2.053"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_exact_management_authority_required[override5]",
+      "time": "2.172"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_exact_management_authority_required[override6]",
+      "time": "2.148"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_caller_cannot_supply_execution_facts[target_state]",
+      "time": "2.025"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_caller_cannot_supply_execution_facts[exit_code]",
+      "time": "2.240"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_caller_cannot_supply_execution_facts[members_complete]",
+      "time": "2.190"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_caller_cannot_supply_execution_facts[approved]",
+      "time": "2.103"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[backend_id]",
+      "time": "2.281"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[backend_version]",
+      "time": "2.052"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[run_id]",
+      "time": "2.183"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[plan_id]",
+      "time": "2.308"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[phase_attempt_id]",
+      "time": "2.085"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[evidence_fingerprint]",
+      "time": "2.237"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_changed_preview_preconditions_refused[revision]",
+      "time": "2.449"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_changed_preview_preconditions_refused[evidence]",
+      "time": "2.320"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_changed_preview_preconditions_refused[owner]",
+      "time": "2.324"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_concurrent_apply_conflict_replay_and_consumption",
+      "time": "2.155"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_atomic_management_failure_and_unknown_commit[management:before_commit]",
+      "time": "2.205"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_atomic_management_failure_and_unknown_commit[management:after_commit]",
+      "time": "2.290"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_lost_management_response_and_new_owner_replay",
+      "time": "4.671"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_apply_never_probes_or_validates_and_expired_execution_grant_is_history",
+      "time": "2.063"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_existing_independent_validation_preserved_without_revalidation[PASS-VALID]",
+      "time": "2.407"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_existing_independent_validation_preserved_without_revalidation[FAIL-INVALID]",
+      "time": "2.301"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_existing_independent_validation_preserved_without_revalidation[UNKNOWN-UNKNOWN]",
+      "time": "2.559"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_preview_consistent_read_transaction_and_serialized_owner_writer",
+      "time": "2.307"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_unknown_sql_commit_queries_original_key",
+      "time": "2.337"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_other_unresolved_run_still_blocks_resume",
+      "time": "2.128"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_preview_bound_and_maintenance_no_repair[events]",
+      "time": "2.241"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_preview_bound_and_maintenance_no_repair[oversize]",
+      "time": "2.203"
+    },
+    {
+      "classname": "tests.test_recorded_exit_reconciliation",
+      "name": "test_preview_bound_and_maintenance_no_repair[journal]",
+      "time": "2.027"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_plan_inspection_readonly_and_public_projection",
+      "time": "0.341"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_trusted_process_issuance_exact_and_no_self_approval",
+      "time": "0.319"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_explicit_validation_replay_concurrent_and_separate_state",
+      "time": "2.060"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_refusal_before_artifact_read[missing-MANAGEMENT_GRANT_REQUIRED]",
+      "time": "2.147"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_refusal_before_artifact_read[execution-MANAGEMENT_GRANT_REQUIRED]",
+      "time": "2.102"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_refusal_before_artifact_read[owner-STALE_OWNER]",
+      "time": "2.154"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_refusal_before_artifact_read[scope-MANAGEMENT_SCOPE_MISMATCH]",
+      "time": "2.183"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_refusal_before_artifact_read[approved-INVALID_REQUEST]",
+      "time": "2.184"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_pending_and_uncertain_are_ineligible",
+      "time": "2.051"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_transaction_and_lost_response[management:before_commit]",
+      "time": "2.224"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_validation_transaction_and_lost_response[management:after_commit]",
+      "time": "2.234"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_explicit_validation_invalid_does_not_rewrite_process_success",
+      "time": "2.444"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_new_ipc_operations_keep_auth_binding_and_strict_fields",
+      "time": "1.387"
+    },
+    {
+      "classname": "tests.test_public_workflow",
+      "name": "test_expired_and_stale_validation_permission_fail_before_read",
+      "time": "2.102"
+    },
+    {
+      "classname": "tests.test_public_client_example",
+      "name": "test_previous_v2_report_allowed_validation_source_remains_readable",
+      "time": "0.008"
+    },
+    {
+      "classname": "tests.test_public_client_example",
+      "name": "test_standalone_operator_and_two_public_clients_from_nonrepo_cwd",
+      "time": "3.266"
+    }
+  ]
+}

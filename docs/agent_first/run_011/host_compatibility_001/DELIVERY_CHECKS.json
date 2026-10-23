@@ -1,0 +1,14 @@
+{
+  "operator_acceptance": "PENDING",
+  "test_bundle_files_matching": 25,
+  "powershell_syntax": "PASS",
+  "conflicts": [],
+  "original_run011_files_checked": 77,
+  "abaqus_calls": 0,
+  "branch": "Develop",
+  "real_experiment_observation_entries": 0,
+  "head": "fb7912ec9e0107b18f65948b147c87579c87cded",
+  "real_execute_calls": 0,
+  "changed_original_run011_files": [],
+  "new_source_scope": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_011\\host_compatibility_001"
+}

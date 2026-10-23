@@ -1,0 +1,22 @@
+{
+  "process": {
+    "identity": {
+      "pid": 9044,
+      "creation_time_100ns": 134372142861792128,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+    },
+    "exit": {
+      "pid": 9044,
+      "creation_time_100ns": 134372142861792128,
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "exit_code": 0,
+      "exit_observed_at": 1792740686,
+      "exit_source": "retained_windows_handle"
+    },
+    "stdout": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_4540ba416b5448fda93344cea23d54b2\\pytest\\test_r11_01_public_readonly_en3\\case_f3e463cd\\stdout_556647ecbbf5460fba12a511365155d1.txt",
+    "stderr": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run011_4540ba416b5448fda93344cea23d54b2\\pytest\\test_r11_01_public_readonly_en3\\case_f3e463cd\\stderr_e26c68f74f594796b78f3b55af39cc38.txt",
+    "handles_closed": true
+  },
+  "stdout": "{\"numerical\": \"NOT_RUN\", \"odb_content_validation\": \"NOT_RUN\", \"solver\": \"NOT_RUN\", \"status\": \"NO_ATTEMPT_RECORDED\"}\n",
+  "real_root_unchanged": true
+}

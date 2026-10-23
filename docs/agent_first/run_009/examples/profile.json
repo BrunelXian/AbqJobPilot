@@ -1,0 +1,1 @@
+{"profile_id": "declared_2024", "profile_version": 1, "platform": "windows-local", "product": "Abaqus/Standard", "declared_version": "2024", "phase": "analysis", "cpus": 1, "gpus": 0, "memory_mb": 512, "wall_seconds": 60, "scratch_relative": "scratch"}

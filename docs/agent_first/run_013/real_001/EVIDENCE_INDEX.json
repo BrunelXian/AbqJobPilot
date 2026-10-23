@@ -1,0 +1,104 @@
+{
+  "verification": "PASS_EVIDENCE_CROSSCHECK_ONLY",
+  "overall_experiment": "PARTIAL",
+  "credential_found_in_exported_evidence": false,
+  "GUI_live_observation_verified": true,
+  "GUI_reconnect_receipt_verified": true,
+  "frozen_numeric_targets": "3 PASS",
+  "complete_process_membership": "UNKNOWN",
+  "owner_and_gui_B_intentionally_retained": true,
+  "files": [
+    {
+      "path": "AFTER_GUI_CLOSE.json",
+      "sha256": "a3fcf8b43a19d1fb730235fa469006366637dcfd994a3b88eb41f2ce81688789"
+    },
+    {
+      "path": "BASELINE_STATUS.txt",
+      "sha256": "b2787ee24a48b002cbad8c1f67e25e1e0e0c4e50bd5a4419b914da9617c0ad53"
+    },
+    {
+      "path": "BEFORE_GUI_CLOSE.json",
+      "sha256": "ebc5b662fa4734c7e89a7b93a825418418d1c197439ce0d505cf694911078176"
+    },
+    {
+      "path": "DIAGNOSTIC.json",
+      "sha256": "bee67d705997a0e71edf4a11c4d6daa6020cf09448fcf63361637b7aa9676806"
+    },
+    {
+      "path": "EARLY_EXIT_OBSERVATION.json",
+      "sha256": "24730f2368aa934d90b0f3ebd6cfd4f206d89ef4c4663b53dc120bb9da93d2c9"
+    },
+    {
+      "path": "FINAL_AUDIT.json",
+      "sha256": "63bac40ac8a1233e0da122ca324d7807ad687e6210b917d423e2ce66829cde5d"
+    },
+    {
+      "path": "FINAL_EVENTS.json",
+      "sha256": "718c8f7e8ab08a753efa0e0cdb968b562051f0484c66691eb662156e0891888e"
+    },
+    {
+      "path": "FINAL_GATE.json",
+      "sha256": "8a3937485bd20807b085267d93dbec0f2eaa9e23b0f8831e321258b43d577d06"
+    },
+    {
+      "path": "FINAL_GUI_VIEW.json",
+      "sha256": "688cee92e61536231cc27f35b7591b5436bc7e0faddbd5dd0c78f39b63682dd1"
+    },
+    {
+      "path": "FINAL_PUBLIC_RUN.json",
+      "sha256": "794533e00693d244bb110a0289cc2ed44bca65d47b591fcda728c5a464758005"
+    },
+    {
+      "path": "FINAL_STATUS.txt",
+      "sha256": "b2787ee24a48b002cbad8c1f67e25e1e0e0c4e50bd5a4419b914da9617c0ad53"
+    },
+    {
+      "path": "FINAL_SUMMARY.md",
+      "sha256": "b598231ededb8ae2cbe754d8ca9c745d0f670c4137120ce805c46525e151f9a0"
+    },
+    {
+      "path": "FINAL_VALIDATIONS.json",
+      "sha256": "5c00271fb89206ac0838f76137885d4813836306956749c9b7724f0da60f44f1"
+    },
+    {
+      "path": "GUI_RECONNECTED.json",
+      "sha256": "0e40e2cca55030fe3e03cc68f13902f7068a7b4cf2ec33c846e5733810a49a44"
+    },
+    {
+      "path": "LOG_UPDATE_AFTER_GUI_CLOSE.json",
+      "sha256": "5de6b700870c0cb48e5fa2f0be7dc326ee6a7ed5e434cbe37bb62180e0356e45"
+    },
+    {
+      "path": "MEASUREMENT_RESULT.json",
+      "sha256": "d9fb3b7284dc68dd975f55a0e9db2cb557a6dfb6bf6af1d24089867481c7e17d"
+    },
+    {
+      "path": "observe_gui.py",
+      "sha256": "abe4f85ec94a27b1ff70815063a3efeabb4c3b96767dc8f8d37c7011f520ef45"
+    },
+    {
+      "path": "ORIGINAL_RECEIPT.json",
+      "sha256": "6f114e8d1378ad4615422dfd8f42c0adbf5c0355ba0a024e026d3e4224904853"
+    },
+    {
+      "path": "PREFLIGHT.json",
+      "sha256": "218e39095c9754d6a2275d0b594fe282018ff09a4e51aebf50755b8c01603420"
+    },
+    {
+      "path": "PUBLIC_OBSERVATIONS.jsonl",
+      "sha256": "b7fc96c8be4a1d8a03353720766900e30174d0e608b755671a6cddad72c96d39"
+    },
+    {
+      "path": "README.md",
+      "sha256": "02bc6c550567e22a903450e7d1d5bd5a68ff83589d5dfccca9fe564ebae8844a"
+    },
+    {
+      "path": "READY.json",
+      "sha256": "cdbe19e73cdc87b49c78d24704db6dbbea7ce0e02e5bdd74b3ae193f494f61a6"
+    },
+    {
+      "path": "TEXT_FILE_IDENTITIES.json",
+      "sha256": "7b046c8a8fd50e964b9ad0509e1fcf1ce2cbdd9fccc52bc07709dc785aaa5091"
+    }
+  ]
+}

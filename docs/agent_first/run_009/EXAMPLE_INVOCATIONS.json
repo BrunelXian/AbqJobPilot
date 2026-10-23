@@ -1,0 +1,58 @@
+[
+  {
+    "argv": [
+      "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "-B",
+      "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+      "--source",
+      "D:\\Projects\\abqjobpilot_dev",
+      "--project",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\project.json",
+      "--profile",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\profile.json",
+      "--engineering-root",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\engineering",
+      "--submission-cwd",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\engineering",
+      "--main-input",
+      "source.inp",
+      "--job",
+      "candidate",
+      "--export-root",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\exports"
+    ],
+    "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\non_repository_cwd",
+    "popen_pid": 33732,
+    "client_pid": 9076,
+    "exit_code": 0,
+    "retained_popen_wait_completed": true
+  },
+  {
+    "argv": [
+      "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "-B",
+      "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+      "--source",
+      "D:\\Projects\\abqjobpilot_dev",
+      "--project",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\project.json",
+      "--profile",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\profile.json",
+      "--engineering-root",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\engineering",
+      "--submission-cwd",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\engineering",
+      "--main-input",
+      "rejected.inp",
+      "--job",
+      "candidate",
+      "--export-root",
+      "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\exports"
+    ],
+    "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run009_ecc0fb67b272432d8364f6267923dca6\\full1\\test_nonrepo_standalone_client0\\non_repository_cwd",
+    "popen_pid": 5632,
+    "client_pid": 24688,
+    "exit_code": 2,
+    "retained_popen_wait_completed": true
+  }
+]

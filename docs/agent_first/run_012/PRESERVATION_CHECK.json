@@ -1,0 +1,16 @@
+{
+  "baseline_prior_file_count": 345,
+  "protected_Run010_Run011_count": 221,
+  "protected_match": true,
+  "changed_prior_files": [
+    "abqjobpilot\\gui_app.py",
+    "abqjobpilot\\execution\\client.py",
+    "abqjobpilot\\execution\\process_fixture.py",
+    "abqjobpilot\\execution\\supervisor.py",
+    "tests\\test_execution_isolation.py"
+  ],
+  "version": "0.3.0.dev0",
+  "branch": "Develop",
+  "head": "fb7912ec9e0107b18f65948b147c87579c87cded",
+  "scope": "Dev files only; external real experiment files never accessed"
+}

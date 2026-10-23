@@ -1,0 +1,33 @@
+[
+  {
+    "iteration": 1,
+    "passed": 198,
+    "failed": 5,
+    "reasons": [
+      "four new tests matched human message instead of stable reason code; assertions corrected to inspect code",
+      "old pinned-file test callback accepts only positional arguments; old default internal call restored without changing test"
+    ]
+  },
+  {
+    "iteration": 2,
+    "passed": 203,
+    "failed": 0
+  },
+  {
+    "package_recheck": 1,
+    "result": "REFUSED",
+    "reason": "legitimate NTFS hardlinks on frozen system component; separated static metadata checks from unchanged INP single-link policy; initial manifest retained as revision01"
+  },
+  {
+    "iteration": 3,
+    "passed": 204,
+    "failed": 0,
+    "seconds": "28.38",
+    "added_test": "static metadata hardlinks do not relax INP policy"
+  },
+  {
+    "package_recheck": 2,
+    "result": "OFFLINE_PACKAGE_UNCHANGED",
+    "manifest_digest": "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6"
+  }
+]

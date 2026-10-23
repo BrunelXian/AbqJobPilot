@@ -1,0 +1,2079 @@
+{
+  "environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "interpreter": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "sqlite": "3.49.1",
+    "pytest": "9.1.0"
+  },
+  "test_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74",
+  "final_basetemp": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified",
+  "tests": {
+    "total": 239,
+    "prior_contracts_passed": 189,
+    "by_module": {
+      "tests.test_execution_contract": 56,
+      "tests.test_execution_store": 30,
+      "tests.test_execution_isolation": 9,
+      "tests.test_execution_ownership": 2,
+      "tests.test_fake_supervisor": 28,
+      "tests.test_fake_reconciliation": 61,
+      "tests.test_reconciliation_supervisor": 3,
+      "tests.test_run_diagnostics": 48,
+      "tests.test_diagnostic_supervisor": 2
+    }
+  },
+  "source_changes": {
+    "modified_preexisting": [
+      "abqjobpilot/execution/client.py",
+      "abqjobpilot/execution/store.py",
+      "abqjobpilot/execution/supervisor.py",
+      "tests/test_execution_isolation.py"
+    ],
+    "new_sources": [
+      "abqjobpilot/execution/audit_export.py",
+      "abqjobpilot/execution/diagnostics.py",
+      "tests/test_diagnostic_supervisor.py",
+      "tests/test_run_diagnostics.py"
+    ]
+  },
+  "process_summary": {
+    "cases": 32,
+    "actual_python_processes": 53,
+    "terminated_by_identity_verified_handle": 9,
+    "complete_io_records": 44,
+    "all_actual_handles_signaled_and_launchers_exited": true,
+    "all_iterations_processes_exited": 163,
+    "private_credentials_removed": true
+  },
+  "examples": [
+    {
+      "file": "examples/01_uncertain.json",
+      "source": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\audit_exports\\01_uncertain.json",
+      "sha256": "D45D2692B28A36270FD304E8A94574AA8C62CE8329A1C61B209021F4B282CE3D",
+      "bytes": 10096,
+      "content_digest": "sha256:84afd18ae6ca8fb1cf431c56e1e3ab15678e6f3fd4577e69c30f7b74bd908f87",
+      "run_id": "r_d2a0f5ae8b544fb3991f41343449ca63",
+      "read_at": 1792603417,
+      "run_revision": 2,
+      "gate": {
+        "owner_id": "owner_e24ad0f86b1e497984e90265ec05abbd",
+        "state": "PAUSED",
+        "version": 3
+      },
+      "diagnostics": [
+        "REQUEST_ACCEPTED",
+        "EXECUTION_STARTED",
+        "EXECUTION_UNCERTAIN",
+        "EVIDENCE_INSUFFICIENT",
+        "DISPATCH_PAUSED",
+        "NO_RECORDED_ERROR"
+      ]
+    },
+    {
+      "file": "examples/02_reconciled_paused.json",
+      "source": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\audit_exports\\02_reconciled_paused.json",
+      "sha256": "70E4094BE94F426EFA4C4F2FCCC0F058B25126F1FD3616707191295B95B9AF5D",
+      "bytes": 14133,
+      "content_digest": "sha256:ccd4892b45a2e66d601dbaf02d1663cd8d523c3af5ff9991562471f6dc78aaa2",
+      "run_id": "r_d2a0f5ae8b544fb3991f41343449ca63",
+      "read_at": 1792603417,
+      "run_revision": 3,
+      "gate": {
+        "owner_id": "owner_e24ad0f86b1e497984e90265ec05abbd",
+        "state": "PAUSED",
+        "version": 3
+      },
+      "diagnostics": [
+        "REQUEST_ACCEPTED",
+        "EXECUTION_STARTED",
+        "HISTORICAL_VALIDATION_PASSED",
+        "EXPLICITLY_RECONCILED",
+        "DISPATCH_PAUSED",
+        "FAKE_COMPLETED",
+        "NO_RECORDED_ERROR"
+      ]
+    },
+    {
+      "file": "examples/03_resumed.json",
+      "source": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\audit_exports\\03_resumed.json",
+      "sha256": "F961BF7C0F9B92D1B064A034B0477AB7BF69F81F38D6563FC8A56DFD28DFF2F1",
+      "bytes": 13065,
+      "content_digest": "sha256:88731930b1c794a61c0e2965c00628c4c2a5cb889b815d08705e2bbb4ee7ddde",
+      "run_id": "r_d2a0f5ae8b544fb3991f41343449ca63",
+      "read_at": 1792603417,
+      "run_revision": 3,
+      "gate": {
+        "owner_id": "owner_e24ad0f86b1e497984e90265ec05abbd",
+        "state": "OPEN",
+        "version": 4
+      },
+      "diagnostics": [
+        "REQUEST_ACCEPTED",
+        "EXECUTION_STARTED",
+        "HISTORICAL_VALIDATION_PASSED",
+        "EXPLICITLY_RECONCILED",
+        "FAKE_COMPLETED",
+        "NO_RECORDED_ERROR"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "case": "test_accept_commit_response_lo0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_accept_commit_response_lo0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_accept_commit_response_lo0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769286487482,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 3380,
+            "pid": 29828
+          },
+          "launcher_pid": 3380,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_accept_commit_response_lo0\\process_1",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769291001369,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 17856,
+            "pid": 35600
+          },
+          "launcher_pid": 17856,
+          "mode": "client",
+          "terminated_by_owned_handle": true
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_accept_commit_response_lo0"
+      },
+      "retained_file_count": 21,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_accept_commit_response_lo0\\process_0\\io.json",
+          "path_count": 8,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_accept_commit_response_lo0\\process_0\\submit_before_response.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769286487482,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 3380,
+            "pid": 29828
+          },
+          "stage": "submit:before_response"
+        }
+      ]
+    },
+    {
+      "case": "test_actual_owner_crash_after_0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_actual_owner_crash_after_0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_actual_owner_crash_after_0\\process_0",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769473905507,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 32996,
+            "pid": 31468
+          },
+          "launcher_pid": 32996,
+          "mode": "owner",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_actual_owner_crash_after_0\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769479473402,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 33712,
+            "pid": 4572
+          },
+          "launcher_pid": 33712,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_actual_owner_crash_after_0"
+      },
+      "retained_file_count": 20,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_actual_owner_crash_after_0\\process_1\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_actual_owner_crash_after_0\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769473905507,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 32996,
+            "pid": 31468
+          },
+          "stage": "dispatch:after_artifact"
+        }
+      ]
+    },
+    {
+      "case": "test_authenticated_bound_diagn0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_authenticated_bound_diagn0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_authenticated_bound_diagn0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370770182874819,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 16580,
+            "pid": 35388
+          },
+          "launcher_pid": 16580,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_authenticated_bound_diagn0"
+      },
+      "retained_file_count": 17,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_authenticated_bound_diagn0\\process_0\\io.json",
+          "path_count": 8,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_authenticated_bound_diagn0\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370770182874819,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 16580,
+            "pid": 35388
+          },
+          "stage": "dispatch:after_artifact"
+        }
+      ]
+    },
+    {
+      "case": "test_client_timeout_after_acce0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_client_timeout_after_acce0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_client_timeout_after_acce0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769577057562,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 8056,
+            "pid": 17980
+          },
+          "launcher_pid": 8056,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_client_timeout_after_acce0"
+      },
+      "retained_file_count": 19,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_client_timeout_after_acce0\\process_0\\io.json",
+          "path_count": 9,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_client_timeout_after_acce0\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769577057562,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 8056,
+            "pid": 17980
+          },
+          "stage": "dispatch:after_artifact"
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_client_timeout_after_acce0\\process_0\\submit_before_response.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769577057562,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 8056,
+            "pid": 17980
+          },
+          "stage": "submit:before_response"
+        }
+      ]
+    },
+    {
+      "case": "test_competing_supervisor_and_0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769313188805,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 14576,
+            "pid": 13012
+          },
+          "launcher_pid": 14576,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0\\process_1",
+          "exit_code": 2,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769316981844,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 9880,
+            "pid": 33284
+          },
+          "launcher_pid": 9880,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0\\process_2",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769320348419,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 35304,
+            "pid": 29832
+          },
+          "launcher_pid": 35304,
+          "mode": "writer_probe",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json",
+          "process_2\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0"
+      },
+      "retained_file_count": 26,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0\\process_1\\io.json",
+          "path_count": 4,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_competing_supervisor_and_0\\process_2\\io.json",
+          "path_count": 4,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_connection_cap_is_bounded0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_connection_cap_is_bounded0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_connection_cap_is_bounded0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769444379641,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 3036,
+            "pid": 32808
+          },
+          "launcher_pid": 3036,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_connection_cap_is_bounded0"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_connection_cap_is_bounded0\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_independent_client_exit_o0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769269389192,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 34216,
+            "pid": 3356
+          },
+          "launcher_pid": 34216,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0\\process_1",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769273087391,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 12076,
+            "pid": 27572
+          },
+          "launcher_pid": 12076,
+          "mode": "client",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0\\process_2",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769278109303,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 34660,
+            "pid": 14564
+          },
+          "launcher_pid": 34660,
+          "mode": "client",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json",
+          "process_2\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0"
+      },
+      "retained_file_count": 28,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0\\process_0\\io.json",
+          "path_count": 8,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0\\process_2\\io.json",
+          "path_count": 2,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_independent_client_exit_o0\\process_0\\dispatch_after_claim.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769269389192,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 34216,
+            "pid": 3356
+          },
+          "stage": "dispatch:after_claim"
+        }
+      ]
+    },
+    {
+      "case": "test_maintenance_query_never_r0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769525981903,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 15316,
+            "pid": 27344
+          },
+          "launcher_pid": 15316,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r0\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769530897073,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 20856,
+            "pid": 32308
+          },
+          "launcher_pid": 20856,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r0"
+      },
+      "retained_file_count": 21,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r0\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r0\\process_1\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_maintenance_query_never_r1",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r1",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r1\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769539116438,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 20272,
+            "pid": 34764
+          },
+          "launcher_pid": 20272,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r1\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769543996011,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 5156,
+            "pid": 35588
+          },
+          "launcher_pid": 5156,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r1"
+      },
+      "retained_file_count": 21,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r1\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r1\\process_1\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_maintenance_query_never_r2",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r2",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r2\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769551958103,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 32956,
+            "pid": 33832
+          },
+          "launcher_pid": 32956,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r2\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769557001577,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 3268,
+            "pid": 3380
+          },
+          "launcher_pid": 3268,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r2"
+      },
+      "retained_file_count": 21,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r2\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_maintenance_query_never_r2\\process_1\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_malformed_json_refused_an0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769607117346,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 32736,
+            "pid": 27872
+          },
+          "launcher_pid": 32736,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an0"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an0\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_malformed_json_refused_an1",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an1",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an1\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769615003134,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 31272,
+            "pid": 34192
+          },
+          "launcher_pid": 31272,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an1"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an1\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_malformed_json_refused_an2",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an2",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an2\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769623222120,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 32336,
+            "pid": 12848
+          },
+          "launcher_pid": 32336,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an2"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an2\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_malformed_json_refused_an3",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an3",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an3\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769632057437,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 21228,
+            "pid": 13372
+          },
+          "launcher_pid": 21228,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an3"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_malformed_json_refused_an3\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_message_bounds_truncation0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_message_bounds_truncation0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_message_bounds_truncation0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769416008462,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 29052,
+            "pid": 6068
+          },
+          "launcher_pid": 29052,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_message_bounds_truncation0"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_message_bounds_truncation0\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_multiclient_idempotency_a0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_multiclient_idempotency_a0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_multiclient_idempotency_a0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769300585423,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 6960,
+            "pid": 11548
+          },
+          "launcher_pid": 6960,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_multiclient_idempotency_a0"
+      },
+      "retained_file_count": 18,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_multiclient_idempotency_a0\\process_0\\io.json",
+          "path_count": 9,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_multiclient_idempotency_a0\\process_0\\dispatch_after_claim.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769300585423,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 6960,
+            "pid": 11548
+          },
+          "stage": "dispatch:after_claim"
+        }
+      ]
+    },
+    {
+      "case": "test_owner_restart_invalidates0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0\\process_0",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769945107990,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 9096,
+            "pid": 35292
+          },
+          "launcher_pid": 9096,
+          "mode": "owner",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769950054140,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 35576,
+            "pid": 34312
+          },
+          "launcher_pid": 35576,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0\\process_2",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769955085419,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 22544,
+            "pid": 10464
+          },
+          "launcher_pid": 22544,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json",
+          "process_2\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0"
+      },
+      "retained_file_count": 28,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0\\process_1\\io.json",
+          "path_count": 8,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0\\process_2\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_owner_restart_invalidates0\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769945107990,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 9096,
+            "pid": 35292
+          },
+          "stage": "dispatch:after_artifact"
+        }
+      ]
+    },
+    {
+      "case": "test_protocol_identity_authent0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769340799841,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 34276,
+            "pid": 4680
+          },
+          "launcher_pid": 34276,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent0"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent0\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent1",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent1",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent1\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769349119360,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 592,
+            "pid": 14124
+          },
+          "launcher_pid": 592,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent1"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent1\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent2",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent2",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent2\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769357425035,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 16944,
+            "pid": 23224
+          },
+          "launcher_pid": 16944,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent2"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent2\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent3",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent3",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent3\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769365838111,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 26628,
+            "pid": 34864
+          },
+          "launcher_pid": 26628,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent3"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent3\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent4",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent4",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent4\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769374184180,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 29840,
+            "pid": 26728
+          },
+          "launcher_pid": 29840,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent4"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent4\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent5",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent5",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent5\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769382991160,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 25792,
+            "pid": 33992
+          },
+          "launcher_pid": 25792,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent5"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent5\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent6",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent6",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent6\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769391204366,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 33928,
+            "pid": 20916
+          },
+          "launcher_pid": 33928,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent6"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent6\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent7",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent7",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent7\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769399308985,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 8292,
+            "pid": 9472
+          },
+          "launcher_pid": 8292,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent7"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent7\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_protocol_identity_authent8",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent8",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent8\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769407775875,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 12572,
+            "pid": 34116
+          },
+          "launcher_pid": 12572,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent8"
+      },
+      "retained_file_count": 14,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_protocol_identity_authent8\\process_0\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_running_query_nonblocking0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_running_query_nonblocking0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_running_query_nonblocking0\\process_0",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769328462004,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 31888,
+            "pid": 15684
+          },
+          "launcher_pid": 31888,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_running_query_nonblocking0"
+      },
+      "retained_file_count": 17,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_running_query_nonblocking0\\process_0\\io.json",
+          "path_count": 8,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_running_query_nonblocking0\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769328462004,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 31888,
+            "pid": 15684
+          },
+          "stage": "dispatch:after_artifact"
+        }
+      ]
+    },
+    {
+      "case": "test_stale_endpoint_metadata_d0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_stale_endpoint_metadata_d0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_stale_endpoint_metadata_d0\\process_0",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769488757951,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 33584,
+            "pid": 19216
+          },
+          "launcher_pid": 33584,
+          "mode": "owner",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_stale_endpoint_metadata_d0\\process_1",
+          "exit_code": 2,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769493366523,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 19740,
+            "pid": 34848
+          },
+          "launcher_pid": 19740,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_stale_endpoint_metadata_d0\\process_2",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769517577574,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 2940,
+            "pid": 21680
+          },
+          "launcher_pid": 2940,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json",
+          "process_2\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_stale_endpoint_metadata_d0"
+      },
+      "retained_file_count": 24,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_stale_endpoint_metadata_d0\\process_1\\io.json",
+          "path_count": 4,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_stale_endpoint_metadata_d0\\process_2\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    },
+    {
+      "case": "test_windows_crash_reconcile_e0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0\\process_0",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769890349755,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 14896,
+            "pid": 33472
+          },
+          "launcher_pid": 14896,
+          "mode": "owner",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769895399275,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 29816,
+            "pid": 33420
+          },
+          "launcher_pid": 29816,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0\\process_2",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769905672117,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 35296,
+            "pid": 28380
+          },
+          "launcher_pid": 35296,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json",
+          "process_2\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0"
+      },
+      "retained_file_count": 33,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0\\process_1\\io.json",
+          "path_count": 13,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0\\process_2\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e0\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769890349755,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 14896,
+            "pid": 33472
+          },
+          "stage": "dispatch:after_artifact"
+        }
+      ]
+    },
+    {
+      "case": "test_windows_crash_reconcile_e1",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_0",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769915663720,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 14148,
+            "pid": 33448
+          },
+          "launcher_pid": 14148,
+          "mode": "owner",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769920911547,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 7692,
+            "pid": 25976
+          },
+          "launcher_pid": 7692,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_2",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769926269604,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 32552,
+            "pid": 27252
+          },
+          "launcher_pid": 32552,
+          "mode": "client",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_3",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769934355067,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 5360,
+            "pid": 10924
+          },
+          "launcher_pid": 5360,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json",
+          "process_2\\private-process.json",
+          "process_3\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1"
+      },
+      "retained_file_count": 39,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_1\\io.json",
+          "path_count": 14,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_3\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769915663720,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 14148,
+            "pid": 33448
+          },
+          "stage": "dispatch:after_artifact"
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_crash_reconcile_e1\\process_1\\management_before_response.reached.json",
+          "process": {
+            "creation_time_100ns": 134370769920911547,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 7692,
+            "pid": 25976
+          },
+          "stage": "management:before_response"
+        }
+      ]
+    },
+    {
+      "case": "test_windows_three_stage_diagn0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\process_0",
+          "exit_code": 77,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370770120579898,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 35672,
+            "pid": 12972
+          },
+          "launcher_pid": 35672,
+          "mode": "owner",
+          "terminated_by_owned_handle": true
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370770145873867,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 25004,
+            "pid": 13788
+          },
+          "launcher_pid": 25004,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\process_2",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370770170006084,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 24212,
+            "pid": 1192
+          },
+          "launcher_pid": 24212,
+          "mode": "client",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json",
+          "process_2\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0"
+      },
+      "retained_file_count": 38,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\process_1\\io.json",
+          "path_count": 14,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\process_2\\io.json",
+          "path_count": 2,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\process_0\\dispatch_after_artifact.reached.json",
+          "process": {
+            "creation_time_100ns": 134370770120579898,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 35672,
+            "pid": 12972
+          },
+          "stage": "dispatch:after_artifact"
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_windows_three_stage_diagn0\\process_1\\diagnostic_before_response.reached.json",
+          "process": {
+            "creation_time_100ns": 134370770145873867,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 25004,
+            "pid": 13788
+          },
+          "stage": "diagnostic:before_response"
+        }
+      ],
+      "demonstration": {
+        "digests": [
+          "sha256:84afd18ae6ca8fb1cf431c56e1e3ab15678e6f3fd4577e69c30f7b74bd908f87",
+          "sha256:ccd4892b45a2e66d601dbaf02d1663cd8d523c3af5ff9991562471f6dc78aaa2",
+          "sha256:88731930b1c794a61c0e2965c00628c4c2a5cb889b815d08705e2bbb4ee7ddde"
+        ],
+        "explicit_control_operations": [
+          "apply_reconciliation",
+          "resume_dispatch"
+        ],
+        "original_effect_count": 1,
+        "reports": [
+          "01_uncertain.json",
+          "02_reconciled_paused.json",
+          "03_resumed.json"
+        ],
+        "run_id": "r_d2a0f5ae8b544fb3991f41343449ca63"
+      }
+    },
+    {
+      "case": "test_wrong_bootstrap_authority0",
+      "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_wrong_bootstrap_authority0",
+      "processes": [
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_wrong_bootstrap_authority0\\process_0",
+          "exit_code": 2,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769565288022,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 25740,
+            "pid": 26804
+          },
+          "launcher_pid": 25740,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        },
+        {
+          "actual_process_handle_signaled": true,
+          "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_wrong_bootstrap_authority0\\process_1",
+          "exit_code": 0,
+          "exited": true,
+          "identity": {
+            "creation_time_100ns": 134370769568920541,
+            "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "parent_pid": 14672,
+            "pid": 4060
+          },
+          "launcher_pid": 14672,
+          "mode": "owner",
+          "terminated_by_owned_handle": false
+        }
+      ],
+      "cleanup": {
+        "all_owned_processes_exited": true,
+        "credential_absent_from_remaining_files": true,
+        "private_credentials_removed": [
+          "private-bootstrap.json",
+          "process_0\\private-process.json",
+          "process_1\\private-process.json"
+        ],
+        "recent_unchanged": true,
+        "temporary_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_wrong_bootstrap_authority0"
+      },
+      "retained_file_count": 20,
+      "io_checks": [
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_wrong_bootstrap_authority0\\process_0\\io.json",
+          "path_count": 4,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        },
+        {
+          "file": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run005_d82227bef89642dd8a467f514192cc74\\verified\\test_wrong_bootstrap_authority0\\process_1\\io.json",
+          "path_count": 5,
+          "all_confined": true,
+          "launch_and_legacy_traps": true
+        }
+      ],
+      "barriers": []
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "prior_run010_run011_files_checked": 199,
+  "prior_files_changed": [],
+  "experiment_source_files_checked": 9,
+  "experiment_source_files_changed": [],
+  "original_34_old_21_new_37_materials": "MATCH",
+  "no_new_abaqus_calls": true,
+  "no_test_workers_or_background_processes_created": true,
+  "no_deletion_or_termination_performed": true,
+  "test_log_redaction": "first failure environment repr removed; oversized labels replaced; errors/counts retained",
+  "checked_at_utc": "2026-10-23T12:05:06.323117+00:00"
+}

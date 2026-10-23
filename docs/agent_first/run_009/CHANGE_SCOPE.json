@@ -1,0 +1,16 @@
+{
+  "predecessor_count": 44,
+  "predecessor_changed": [],
+  "new_code_tests": [
+    "abqjobpilot/abaqus_preview/inputs.py",
+    "abqjobpilot/abaqus_preview/preview.py",
+    "abqjobpilot/abaqus_preview/__init__.py",
+    "examples/agent_first/abaqus_offline_preview.py",
+    "tests/abaqus_preview_helpers.py",
+    "tests/test_abaqus_preview.py",
+    "tests/test_abaqus_preview_integration.py"
+  ],
+  "new_documents": "docs/agent_first/run_009",
+  "execution_core_changed": false,
+  "schema_changed": false
+}

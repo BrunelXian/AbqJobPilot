@@ -1,0 +1,44 @@
+{
+  "modified_preexisting": [
+    "abqjobpilot/execution/__init__.py",
+    "abqjobpilot/execution/authorization.py",
+    "abqjobpilot/execution/diagnostics.py",
+    "abqjobpilot/execution/planning.py",
+    "abqjobpilot/execution/service.py",
+    "abqjobpilot/execution/supervisor.py",
+    "tests/run003_process.py",
+    "tests/supervisor_helpers.py",
+    "tests/test_execution_isolation.py"
+  ],
+  "new_source": [
+    "abqjobpilot/execution/process_backend.py",
+    "abqjobpilot/execution/process_contract.py",
+    "abqjobpilot/execution/process_fixture.py",
+    "abqjobpilot/execution/process_handles.py",
+    "abqjobpilot/execution/process_validation.py",
+    "tests/test_process_contract.py",
+    "tests/test_process_fixture.py"
+  ],
+  "unchanged_preexisting": [
+    "abqjobpilot/execution/audit_export.py",
+    "abqjobpilot/execution/client.py",
+    "abqjobpilot/execution/fake_backend.py",
+    "abqjobpilot/execution/models.py",
+    "abqjobpilot/execution/ownership.py",
+    "abqjobpilot/execution/paths.py",
+    "abqjobpilot/execution/protocol.py",
+    "abqjobpilot/execution/reconciliation.py",
+    "abqjobpilot/execution/store.py",
+    "abqjobpilot/execution/validation.py",
+    "tests/execution_helpers.py",
+    "tests/reconciliation_helpers.py",
+    "tests/test_diagnostic_supervisor.py",
+    "tests/test_execution_contract.py",
+    "tests/test_execution_ownership.py",
+    "tests/test_execution_store.py",
+    "tests/test_fake_reconciliation.py",
+    "tests/test_fake_supervisor.py",
+    "tests/test_reconciliation_supervisor.py",
+    "tests/test_run_diagnostics.py"
+  ]
+}

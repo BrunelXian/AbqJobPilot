@@ -1,0 +1,358 @@
+{
+  "solver_processes_started": 0,
+  "test_backend_workers_started": 0,
+  "supervisor_test_records": [
+    {
+      "iteration": "offline_tests",
+      "actual_process_handle_signaled": true,
+      "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_existing_public_ipc_rejec0\\process_0",
+      "exit_code": 0,
+      "exited": true,
+      "identity": {
+        "creation_time_100ns": 134372064930571350,
+        "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "image_path": "D:\\Program Files\\Python312\\python.exe",
+        "parent_pid": 16184,
+        "pid": 15808
+      },
+      "launcher_pid": 16184,
+      "mode": "owner",
+      "terminated_by_owned_handle": false,
+      "recheck": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "iteration": "offline_tests_final",
+      "actual_process_handle_signaled": true,
+      "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_existing_public_ipc_rejec0\\process_0",
+      "exit_code": 0,
+      "exited": true,
+      "identity": {
+        "creation_time_100ns": 134372065357389308,
+        "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "image_path": "D:\\Program Files\\Python312\\python.exe",
+        "parent_pid": 26856,
+        "pid": 21332
+      },
+      "launcher_pid": 26856,
+      "mode": "owner",
+      "terminated_by_owned_handle": false,
+      "recheck": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "iteration": "offline_tests_release",
+      "actual_process_handle_signaled": true,
+      "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_existing_public_ipc_rejec0\\process_0",
+      "exit_code": 0,
+      "exited": true,
+      "identity": {
+        "creation_time_100ns": 134372069760385445,
+        "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "image_path": "D:\\Program Files\\Python312\\python.exe",
+        "parent_pid": 27080,
+        "pid": 10116
+      },
+      "launcher_pid": 27080,
+      "mode": "owner",
+      "terminated_by_owned_handle": false,
+      "recheck": "PROCESS_IDENTITY_UNKNOWN"
+    }
+  ],
+  "offline_test_client_invocations": [
+    {
+      "iteration": "offline_tests",
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--project",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\project.json",
+        "--profile",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\profile.json",
+        "--engineering-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\engineering",
+        "--submission-cwd",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\engineering",
+        "--main-input",
+        "source.inp",
+        "--job",
+        "candidate",
+        "--export-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\exports"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\non_repository_cwd",
+      "popen_pid": 11948,
+      "client_pid": 20808,
+      "exit_code": 0,
+      "retained_popen_wait_completed": true
+    },
+    {
+      "iteration": "offline_tests",
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--project",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\project.json",
+        "--profile",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\profile.json",
+        "--engineering-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\engineering",
+        "--submission-cwd",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\engineering",
+        "--main-input",
+        "rejected.inp",
+        "--job",
+        "candidate",
+        "--export-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\exports"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests\\test_nonrepo_standalone_client0\\non_repository_cwd",
+      "popen_pid": 29864,
+      "client_pid": 34572,
+      "exit_code": 2,
+      "retained_popen_wait_completed": true
+    },
+    {
+      "iteration": "offline_tests_final",
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--project",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\project.json",
+        "--profile",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\profile.json",
+        "--engineering-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\engineering",
+        "--submission-cwd",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\engineering",
+        "--main-input",
+        "source.inp",
+        "--job",
+        "candidate",
+        "--export-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\exports"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\non_repository_cwd",
+      "popen_pid": 20596,
+      "client_pid": 26088,
+      "exit_code": 0,
+      "retained_popen_wait_completed": true
+    },
+    {
+      "iteration": "offline_tests_final",
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--project",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\project.json",
+        "--profile",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\profile.json",
+        "--engineering-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\engineering",
+        "--submission-cwd",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\engineering",
+        "--main-input",
+        "rejected.inp",
+        "--job",
+        "candidate",
+        "--export-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\exports"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_final\\test_nonrepo_standalone_client0\\non_repository_cwd",
+      "popen_pid": 2384,
+      "client_pid": 7824,
+      "exit_code": 2,
+      "retained_popen_wait_completed": true
+    },
+    {
+      "iteration": "offline_tests_release",
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--project",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\project.json",
+        "--profile",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\profile.json",
+        "--engineering-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\engineering",
+        "--submission-cwd",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\engineering",
+        "--main-input",
+        "source.inp",
+        "--job",
+        "candidate",
+        "--export-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\exports"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\non_repository_cwd",
+      "popen_pid": 30032,
+      "client_pid": 23176,
+      "exit_code": 0,
+      "retained_popen_wait_completed": true
+    },
+    {
+      "iteration": "offline_tests_release",
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--project",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\project.json",
+        "--profile",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\profile.json",
+        "--engineering-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\engineering",
+        "--submission-cwd",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\engineering",
+        "--main-input",
+        "rejected.inp",
+        "--job",
+        "candidate",
+        "--export-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\exports"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\offline_tests_release\\test_nonrepo_standalone_client0\\non_repository_cwd",
+      "popen_pid": 4536,
+      "client_pid": 15104,
+      "exit_code": 2,
+      "retained_popen_wait_completed": true
+    }
+  ],
+  "test_private_cleanup": [
+    {
+      "iteration": "offline_tests",
+      "source": "offline_tests\\test_existing_public_ipc_rejec0\\inventory.json",
+      "all_owned_processes_exited": true,
+      "recent_unchanged": true,
+      "private_credentials_removed": [
+        "private-bootstrap.json",
+        "process_0\\private-process.json"
+      ],
+      "credential_absent_from_remaining_files": true
+    },
+    {
+      "iteration": "offline_tests_final",
+      "source": "offline_tests_final\\test_existing_public_ipc_rejec0\\inventory.json",
+      "all_owned_processes_exited": true,
+      "recent_unchanged": true,
+      "private_credentials_removed": [
+        "private-bootstrap.json",
+        "process_0\\private-process.json"
+      ],
+      "credential_absent_from_remaining_files": true
+    },
+    {
+      "iteration": "offline_tests_release",
+      "source": "offline_tests_release\\test_existing_public_ipc_rejec0\\inventory.json",
+      "all_owned_processes_exited": true,
+      "recent_unchanged": true,
+      "private_credentials_removed": [
+        "private-bootstrap.json",
+        "process_0\\private-process.json"
+      ],
+      "credential_absent_from_remaining_files": true
+    }
+  ],
+  "retained_package_clients": [
+    {
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_offline_preview.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--project",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\project.json",
+        "--profile",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\profile.json",
+        "--engineering-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\engineering",
+        "--submission-cwd",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\engineering",
+        "--main-input",
+        "axial_bar.inp",
+        "--job",
+        "r010_bar_a19d17ea",
+        "--support-profile",
+        "windows-standard-axial-print-v1",
+        "--export-root",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\client_cwd",
+      "identity": {
+        "pid": 7296,
+        "creation_time_100ns": 134372067833818742,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+      },
+      "exit": {
+        "pid": 7296,
+        "creation_time_100ns": 134372067833818742,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792733183,
+        "exit_source": "retained_windows_handle"
+      },
+      "reported_client_pid": 16756,
+      "popen_handle_wait_completed": true,
+      "native_handle_closed": true,
+      "popen_handle_closed": true,
+      "stdout_stderr_closed": true,
+      "abaqus_calls": 0,
+      "engineering_bytes_unchanged": true
+    },
+    {
+      "argv": [
+        "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "-B",
+        "D:\\Projects\\abqjobpilot_dev\\examples\\agent_first\\abaqus_probe_review.py",
+        "--source",
+        "D:\\Projects\\abqjobpilot_dev",
+        "--manifest",
+        "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\materials\\experiment_manifest.json",
+        "--expected-manifest-digest",
+        "sha256:04ed053817a7d05c2355d9a93a41216309bb5d28a235f569a250eea6ee4af2b6"
+      ],
+      "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run010_a19d17ea5ea74540a9cbd1db34261b0a\\client_cwd",
+      "identity": {
+        "pid": 23564,
+        "creation_time_100ns": 134372070146114748,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+      },
+      "exit": {
+        "pid": 23564,
+        "creation_time_100ns": 134372070146114748,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792733414,
+        "exit_source": "retained_windows_handle"
+      },
+      "native_handle_closed": true,
+      "popen_handle_closed": true,
+      "stdout_stderr_closed": true,
+      "no_file_changes": true,
+      "no_abaqus_invocations": true
+    }
+  ],
+  "first_recheck_refusal": {
+    "code": "UNSUPPORTED_PATH",
+    "reason": "System32 cmd.exe hardlinks refused by reused INP reader",
+    "process_result": "communicate completed with exit 2; finally closed all held handles",
+    "limitation": "PID was not saved by that failing controller assertion; no terminate action was performed"
+  },
+  "notes": "Only existing isolated Fake Supervisor rejection tests launched an owner; no Fake request accepted, no fixed worker or Abaqus process launched."
+}

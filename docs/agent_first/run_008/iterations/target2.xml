@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="13" time="20.836" timestamp="2026-10-22T23:48:15.077317+08:00" hostname="Boltzmann"><testcase classname="tests.test_public_workflow" name="test_plan_inspection_readonly_and_public_projection" time="0.262" /><testcase classname="tests.test_public_workflow" name="test_trusted_process_issuance_exact_and_no_self_approval" time="0.358" /><testcase classname="tests.test_public_workflow" name="test_explicit_validation_replay_concurrent_and_separate_state" time="1.909" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[missing-MANAGEMENT_GRANT_REQUIRED]" time="1.764" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[execution-MANAGEMENT_GRANT_REQUIRED]" time="1.686" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[owner-STALE_OWNER]" time="1.743" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[scope-MANAGEMENT_SCOPE_MISMATCH]" time="1.702" /><testcase classname="tests.test_public_workflow" name="test_validation_refusal_before_artifact_read[approved-INVALID_REQUEST]" time="1.622" /><testcase classname="tests.test_public_workflow" name="test_validation_pending_and_uncertain_are_ineligible" time="1.572" /><testcase classname="tests.test_public_workflow" name="test_validation_transaction_and_lost_response[management:before_commit]" time="1.743" /><testcase classname="tests.test_public_workflow" name="test_validation_transaction_and_lost_response[management:after_commit]" time="1.959" /><testcase classname="tests.test_public_workflow" name="test_explicit_validation_invalid_does_not_rewrite_process_success" time="1.779" /><testcase classname="tests.test_public_client_example" name="test_standalone_operator_and_two_public_clients_from_nonrepo_cwd" time="2.443"><failure message="assert ('management_grant_id' not in '{&quot;body&quot;:{&quot;c...8e47da48b2&quot;}'&#10;  &#10;  'management_grant_id' is contained here:&#10;    e47da48b2&quot;} and 'grant_id' not in '{&quot;body&quot;:{&quot;c...8e47da48b2&quot;}'&#10;  &#10;  'grant_id' is contained here:&#10;    e47da48b2&quot;} and 'credential' not in '{&quot;body&quot;:{&quot;c...8e47da48b2&quot;}'&#10;  &#10;  'credential' is contained here:&#10;    mitted&quot;:[&quot;credentials_and_grants&quot;,&quot;namespaces_and_idempotency_keys&quot;,&quot;absolute_paths_and_raw_job_names&quot;,&quot;raw_event_payloads_and_error_messages&quot;,&quot;configuration_inputs_environment_and_commands&quot;,&quot;artifact_bytes_and_raw_logs&quot;,&quot;management_receipts_and_other_runs&quot;,&quot;filesystem_and_process_snapshot&quot;]},&quot;facts&quot;:{&quot;dispatch_gate&quot;:{&quot;owner_id&quot;:&quot;owner_a7b4543fe5bc4f85addade9337fd74fe&quot;,&quot;state&quot;:&quot;OPEN&quot;,&quot;version&quot;:2},&quot;events&quot;:[{&quot;event_id&quot;:&quot;ev_b159d4990d4e4c47b75eff01f3fcc75e&quot;,&quot;evidence_refs&quot;:[],&quot;observed_at&quot;:1792684114,&quot;payload&quot;:{&quot;artifact_validation&quot;:null,&quot;backend_outcome&quot;...&#10;  &#10;  ...Full output truncated (2 lines hidden), use '-vv' to show)">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run008_4668b8a810324ba288be12587006710a/target2/test_standalone_operator_and_t0')
+
+    def test_standalone_operator_and_two_public_clients_from_nonrepo_cwd(tmp_path):
+        source = Path(__file__).resolve().parents[1]
+        root = tmp_path / "standalone_demo"
+        command = [sys.executable, "-B", str(source / "examples/agent_first/operator_demo.py"),
+                   "--source", str(source), "--root", str(root)]
+        # The operator owns all child cleanup. Its independent 90s control deadline
+        # bounds a failed invocation; no pytest fixture participates in the workflow.
+        process = subprocess.Popen(command, cwd=str(tmp_path), shell=False, close_fds=True,
+                      env={"SystemRoot": os.environ["SystemRoot"], "TEMP": str(tmp_path), "TMP": str(tmp_path),
+                           "PYTHONDONTWRITEBYTECODE": "1"}, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                      creationflags=subprocess.CREATE_NO_WINDOW)
+        stdout, stderr = process.communicate(timeout=120)
+        assert process.returncode == 0, stderr.decode()
+        assert stdout == stderr == b""
+        evidence = read_json(root / "workflow-evidence.json")
+        a = read_json(root / "client_session/accepted.json")
+        b = read_json(root / "client_session/complete.json")
+        assert len({evidence[k] for k in ("owner_pid", "client_A_pid", "client_B_pid")}) == 3
+        assert a["run_id"] == b["run_id"] == evidence["run_id"] and b["replayed"] and not a["replayed"]
+        assert evidence["launch_attempts"] == 1 and len(evidence["os_verified_members"]) == 4
+        assert len(evidence["service_recorded_exits"]) == 4 and all(e["exit_code"] == 0 for e in evidence["service_recorded_exits"])
+        assert evidence["original_receipt_preserved"] and evidence["client_import_and_execution_guard"] and evidence["recent_unchanged"]
+        assert not Path(evidence["non_repository_cwd"]).is_relative_to(source)
+        assert read_json(root / "control/client-exit-owner-continues.json")["worker_exit_not_yet_observed"]
+        assert read_json(root / "client_session/rejection.json")["code"] == "GRANT_REQUIRED"
+        assert b["run"] == {"execution": "FINISHED", "backend_outcome": "COMPLETED", "process_observation": "EXIT_OBSERVED",
+                            "exit_verification": "VERIFIED", "artifact_validation": "VALID", "solver_conclusion": "NOT_RUN", "reconciliation": "NONE"}
+        assert len(b["validation_records"]) == 2
+        assert sum(v["source"] == "explicit_client_validation" for v in b["validation_records"]) == 1
+        report = read_json(root / "exports/diagnostic.json")
+        assert digest(report["body"]) == b["export_content_digest"] == report["content_digest"]
+        assert len(report_bytes(report)) &lt;= 131072 and report["body"]["view"] == b["diagnostic_view"]
+        assert report["body"]["disclosure"]["artifact_bytes_included"] is False
+        assert report["body"]["disclosure"]["artifacts_revalidated_now"] is False
+        for directory in (root / "client_session", root / "exports"):
+            text = "".join(p.read_text(encoding="utf-8") for p in directory.glob("*.json"))
+&gt;           assert "management_grant_id" not in text and "grant_id" not in text and "credential" not in text
+E           assert ('management_grant_id' not in '{"body":{"c...8e47da48b2"}'
+E             
+E             'management_grant_id' is contained here:
+E               e47da48b2"} and 'grant_id' not in '{"body":{"c...8e47da48b2"}'
+E             
+E             'grant_id' is contained here:
+E               e47da48b2"} and 'credential' not in '{"body":{"c...8e47da48b2"}'
+E             
+E             'credential' is contained here:
+E               mitted":["credentials_and_grants","namespaces_and_idempotency_keys","absolute_paths_and_raw_job_names","raw_event_payloads_and_error_messages","configuration_inputs_environment_and_commands","artifact_bytes_and_raw_logs","management_receipts_and_other_runs","filesystem_and_process_snapshot"]},"facts":{"dispatch_gate":{"owner_id":"owner_a7b4543fe5bc4f85addade9337fd74fe","state":"OPEN","version":2},"events":[{"event_id":"ev_b159d4990d4e4c47b75eff01f3fcc75e","evidence_refs":[],"observed_at":1792684114,"payload":{"artifact_validation":null,"backend_outcome"...
+E             
+E             ...Full output truncated (2 lines hidden), use '-vv' to show)
+
+tests\test_public_client_example.py:50: AssertionError</failure></testcase></testsuite></testsuites>
