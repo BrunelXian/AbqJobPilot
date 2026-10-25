@@ -18,6 +18,7 @@ import uuid
 SOURCE=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(SOURCE))
 MANIFEST=SOURCE/'docs/agent_first/run_013/ACCEPTANCE_MANIFEST.json'
+PAIR_MANIFEST=SOURCE/'docs/agent_first/run_016/ACCEPTANCE_MANIFEST.json'
 KEY='run013-standard-once'
 
 
@@ -32,10 +33,10 @@ def write(path,value):
     write_new(Path(path),value)
 
 
-def package():
+def package(manifest=MANIFEST):
     from abqjobpilot.execution.models import digest,require,ProjectContext
     from abqjobpilot.execution.standard_contract import identity,StandardConfig
-    value=read(MANIFEST); body=value['body']
+    value=read(manifest); body=value['body']
     require(digest(body)==value['content_digest'],'PLAN_STALE','Acceptance manifest digest mismatch')
     require(all(identity(v['path'])==v for v in body['materials']),'PLAN_STALE','Acceptance code/material identity changed')
     ctx=ProjectContext(**body['context']); config=StandardConfig(body['standard_config'])
@@ -79,23 +80,28 @@ def prepare():
     return {'status':'PREPARED_NO_GRANT_NO_RUN','digest':value['content_digest'],'root':str(root),'plan_id':plan['plan_id']}
 
 
-def main_action(action, approval_source=None):
+def main_action(action, approval_source=None, *, pair=False, task='A'):
+    manifest=PAIR_MANIFEST if pair else MANIFEST
     # Connect-only viewing/submission/reporting never acquires a store or reads
     # installation configuration. Public IPC remains the authority for Run views.
     if action in ('gui','submit','report'):
         from abqjobpilot.execution.models import digest,require
-        value=read(MANIFEST);require(digest(value['body'])==value['content_digest'],'PLAN_STALE','Manifest changed')
+        value=read(manifest);require(digest(value['body'])==value['content_digest'],'PLAN_STALE','Manifest changed')
         root=Path(value['body']['context']['test_root'])
+        key=value['body']['request_keys'][task] if pair else KEY
         if action=='gui':
             from abqjobpilot.gui_app import AbqJobPilotApp
-            app=AbqJobPilotApp(execution_connection=root/'private/connection.json',request_key=KEY);app.mainloop()
+            app=AbqJobPilotApp(execution_connection=root/'private/connection.json',request_key=key);app.mainloop()
             return {'status':'GUI_CLOSED_NO_OWNER_ACTION'}
         if action=='submit':
+            if pair:
+                from standard_client import run_pair
+                return run_pair(root/'private/connection.json',root/'private/offer.json',root/'session')
             from standard_client import submit
             return submit(root/'private/connection.json',root/'private/offer.json',root/'session')
         from abqjobpilot.execution.client import FakeClient
         connection=read(root/'private/connection.json');client=FakeClient(connection['endpoint'],connection['credential'])
-        receipt=client.receipt(KEY);report=client.diagnose(receipt['run_id'])
+        receipt=client.receipt(key);report=client.diagnose(receipt['run_id'])
         target=root/'session'/('diagnostic_'+uuid.uuid4().hex+'.json')
         client.export_diagnostic(report,export_root=root/'session',target=target)
         return {'status':'HISTORICAL_READ_ONLY_REPORT','path':str(target),'run_id':receipt['run_id']}
@@ -105,8 +111,12 @@ def main_action(action, approval_source=None):
     from abqjobpilot.execution.supervisor import load_bootstrap,FakeSupervisor
     from abqjobpilot.execution.client import FakeClient
     from abqjobpilot.execution.store import ReadOnlyStore
-    if action=='prepare': return prepare()
-    value,ctx,config=package(); body=value['body']; root=Path(ctx.test_root)
+    if action=='prepare':
+        if pair:
+            from standard_pair_package import prepare_package
+            return prepare_package(PAIR_MANIFEST)
+        return prepare()
+    value,ctx,config=package(manifest); body=value['body']; root=Path(ctx.test_root)
     context,bootstrap=load_bootstrap(root,root/'private/bootstrap.json')
     if action in ('check','authorize'):
         # Authorization needs the existing exclusive writer lease; active owner
@@ -116,26 +126,32 @@ def main_action(action, approval_source=None):
             class ReadService: pass
             service=ReadService();service.context=ctx
             service._standard_backend=type('Binding',(),{'config':config})()
-            check_plan(service,body['plan'])
+            for plan in body['plans'] if pair else [body['plan']]:check_plan(service,plan)
             return {'status':'MATERIALS_MATCH_NO_EXECUTION','manifest_digest':value['content_digest'],
                     'host_admission':'MUST_BE_CHECKED_IN_ACTUAL_OWNER','grant_issued':False,'abaqus_calls':0}
         require(approval_source is not None,'GRANT_REQUIRED','Separate explicit human authorization source required')
         require(not (root/'private/offer.json').exists(),'GRANT_CONSUMED','Offer already registered; do not repeat')
         from abqjobpilot.execution.store import acquire_initial_preparation_store
         with closing(acquire_initial_preparation_store(ctx,bootstrap['authority_instance'])) as store:
-            service=ExecutionService(ctx,store,client_namespace='run013-standard',standard_config=config)
-            grant=issue_execution(service,body['plan']['plan_id'],expires_at=min(now()+86400,body['plan']['expires_at']),approval_source=approval_source)
-        plan=body['plan']
-        request={'contract_version':CONTRACT,'operation':'submit','project_id':ctx.project_id,'project_instance_id':ctx.project_instance_id,
+            service=ExecutionService(ctx,store,client_namespace=bootstrap['client_namespace'],standard_config=config)
+            if pair:
+                from abqjobpilot.execution.standard_sequence import issue_pair
+                grants=issue_pair(service,[p['plan_id'] for p in body['plans']],approval_source=approval_source)
+            else:
+                grants=[issue_execution(service,body['plan']['plan_id'],expires_at=min(now()+86400,body['plan']['expires_at']),approval_source=approval_source)]
+        requests=[]
+        for i,(plan,grant) in enumerate(zip(body['plans'] if pair else [body['plan']],grants)):
+            request={'contract_version':CONTRACT,'operation':'submit','project_id':ctx.project_id,'project_instance_id':ctx.project_instance_id,
             'job_id':plan['job_id'],'job_revision':1,'plan_id':plan['plan_id'],'plan_digest':plan['plan_digest'],
-            'grant_id':grant['grant_id'],'idempotency_key':KEY,'retry_of':None}
-        write(root/'private/offer.json',request)
-        return {'status':'EXACT_GRANT_REGISTERED_NOT_SUBMITTED','plan_id':plan['plan_id']}
+            'grant_id':grant['grant_id'],'idempotency_key':body['request_keys']['AB'[i]] if pair else KEY,'retry_of':None}
+            requests.append(request)
+        write(root/'private/offer.json',{'requests':requests} if pair else requests[0])
+        return {'status':'EXACT_GRANT_REGISTERED_NOT_SUBMITTED','plan_ids':[r['plan_id'] for r in requests]}
     if action=='start':
         require((root/'private/offer.json').exists(),'GRANT_REQUIRED','No real execution approval has been registered')
         require(not (root/'endpoint.json').exists(),'OWNER_UNCONFIRMED','Existing endpoint retained; no automatic owner restart')
         from dev_gui_demo import spawn
-        child=spawn(root,[str(Path(__file__).resolve()),'owner'],'standard-owner')
+        child=spawn(root,[str(Path(__file__).resolve()),'owner']+(['--pair'] if pair else []),'standard-owner')
         from abqjobpilot.execution.process_handles import ProcessReference
         with closing(ProcessReference(child.pid)) as ref: write(root/'control/owner-transport.json',ref.identity)
         return {'status':'OWNER_START_REQUESTED','submission':'NOT_PERFORMED'}
@@ -165,8 +181,10 @@ def main():
     p.add_argument('action',nargs='?',default='check',choices=['prepare','check','authorize','start','owner','submit','gui','report','stop'])
     p.add_argument('--approval-source',help='Trusted operator only, audit reference to separately granted authorization')
     p.add_argument('--notice',action='store_true')
+    p.add_argument('--pair',action='store_true',help='Run016 fixed managed A/B package; never modifies Run013')
+    p.add_argument('--task',choices=['A','B'],default='A',help='Read-only GUI/report selection within the pair')
     args=p.parse_args()
-    try: result=main_action(args.action,args.approval_source);code=0
+    try: result=main_action(args.action,args.approval_source,pair=args.pair,task=args.task);code=0
     except Exception as e: result={'status':'BLOCKED','reason':getattr(e,'code',type(e).__name__)};code=1
     text=json.dumps(result,ensure_ascii=False,indent=2)
     if args.notice and args.action!='gui':

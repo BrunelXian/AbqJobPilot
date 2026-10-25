@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="53" time="67.155" timestamp="2026-10-24T19:26:11.419610+08:00" hostname="Boltzmann"><testcase classname="tests.test_lifecycle_boundaries" name="test_inspect_connect_disconnect_no_business_writes" time="0.478" /><testcase classname="tests.test_lifecycle_boundaries" name="test_existing_owner_errors_never_replace[protocol]" time="1.134" /><testcase classname="tests.test_lifecycle_boundaries" name="test_existing_owner_errors_never_replace[project]" time="1.264" /><testcase classname="tests.test_lifecycle_boundaries" name="test_existing_owner_errors_never_replace[stale_owner]" time="1.133" /><testcase classname="tests.test_lifecycle_boundaries" name="test_existing_owner_errors_never_replace[unreachable]" time="1.138" /><testcase classname="tests.test_lifecycle_boundaries" name="test_existing_owner_errors_never_replace[capability]" time="1.241" /><testcase classname="tests.test_lifecycle_boundaries" name="test_unresolved_store_cannot_stop_or_start[PENDING]" time="0.574" /><testcase classname="tests.test_lifecycle_boundaries" name="test_unresolved_store_cannot_stop_or_start[UNKNOWN]" time="0.600" /><testcase classname="tests.test_lifecycle_boundaries" name="test_unresolved_store_cannot_stop_or_start[REAL_PLAN]" time="0.592" /><testcase classname="tests.test_lifecycle_boundaries" name="test_unresolved_store_cannot_stop_or_start[HELD_SLOT]" time="0.565" /><testcase classname="tests.test_lifecycle_boundaries" name="test_start_refuses_pending_without_owner_metadata" time="0.398"><failure message="abqjobpilot.execution.models.ExecutionError: Transaction failed; query durable state before retry: table runs has 8 columns but 2 values were supplied">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/core02/test_start_refuses_pending_wit0')
+
+    def test_start_refuses_pending_without_owner_metadata(tmp_path):
+        with prepared(tmp_path) as (h,m):
+            from abqjobpilot.execution.store import acquire_initial_preparation_store
+            from abqjobpilot.execution.service import ExecutionService
+            store=acquire_initial_preparation_store(h.context,m._profile()['authority_instance'])
+            try:
+                # Corrupt/unsupported pre-existing acceptance fixture: fail closed
+                # even without owner metadata; this is not a valid acceptance path.
+                with store.transaction('negative_fixture') as c:
+&gt;                   c.execute('INSERT INTO runs VALUES(?,?)',('r_negative',canonical_json({
+E                   sqlite3.OperationalError: table runs has 8 columns but 2 values were supplied
+
+tests\test_lifecycle_boundaries.py:104: OperationalError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/core02/test_start_refuses_pending_wit0')
+
+    def test_start_refuses_pending_without_owner_metadata(tmp_path):
+        with prepared(tmp_path) as (h,m):
+            from abqjobpilot.execution.store import acquire_initial_preparation_store
+            from abqjobpilot.execution.service import ExecutionService
+            store=acquire_initial_preparation_store(h.context,m._profile()['authority_instance'])
+            try:
+                # Corrupt/unsupported pre-existing acceptance fixture: fail closed
+                # even without owner metadata; this is not a valid acceptance path.
+&gt;               with store.transaction('negative_fixture') as c:
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_lifecycle_boundaries.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+D:\Program Files\Python312\Lib\contextlib.py:158: in __exit__
+    self.gen.throw(value)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;abqjobpilot.execution.store.ExperimentStore object at 0x0000017F3AEC91F0&gt;
+stage = 'negative_fixture'
+
+    @contextmanager
+    def transaction(self, stage):
+        with self._session.lock:
+            require(not self._session.closed, "OWNER_UNCONFIRMED", "Experiment session is closed")
+            require(not self._session.stopping or stage in {'lifecycle_stop','pause_on_error'},
+                    'SERVICE_STOPPING', 'Owner has committed or uncertain lifecycle stop')
+            self._session.lease.check()
+            connection = None
+            commit_attempted = False
+            try:
+                connection = _connection(self.context, read_only=False)
+                connection.execute("BEGIN IMMEDIATE")
+                yield connection
+                self._checkpoint(stage + ":before_commit")
+                commit_attempted = True
+                connection.commit()
+            except (sqlite3.Error, OSError) as exc:
+                if connection is not None:
+                    connection.rollback()
+                code = "ACCEPTANCE_UNKNOWN" if stage in {"accept", "management", "lifecycle_stop"} and commit_attempted else "STORE_UNAVAILABLE"
+&gt;               raise ExecutionError(code, f"Transaction failed; query durable state before retry: {exc}", stage=stage) from exc
+E               abqjobpilot.execution.models.ExecutionError: Transaction failed; query durable state before retry: table runs has 8 columns but 2 values were supplied
+
+abqjobpilot\execution\store.py:531: ExecutionError</failure></testcase><testcase classname="tests.test_lifecycle_boundaries" name="test_stop_transaction_failure_does_not_pause_or_unlock" time="0.507" /><testcase classname="tests.test_lifecycle_boundaries" name="test_concurrent_stop_one_commit_and_submit_race_blocked" time="0.525" /><testcase classname="tests.test_lifecycle_boundaries" name="test_stop_response_lost_queries_original_receipt" time="1.100" /><testcase classname="tests.test_lifecycle_boundaries" name="test_precreation_faults_fail_closed[partial_intent]" time="0.424" /><testcase classname="tests.test_lifecycle_boundaries" name="test_precreation_faults_fail_closed[bad_operator]" time="0.439" /><testcase classname="tests.test_lifecycle_boundaries" name="test_precreation_faults_fail_closed[host_unknown]" time="0.481" /><testcase classname="tests.test_lifecycle_boundaries" name="test_precreation_faults_fail_closed[intent_write_failure]" time="0.483" /><testcase classname="tests.test_service_lifecycle" name="test_idle_start_reuse_stop_restart_and_permission" time="1.911" /><testcase classname="tests.test_service_lifecycle" name="test_concurrent_start_single_reservation_and_owner" time="1.126" /><testcase classname="tests.test_service_lifecycle" name="test_lost_start_reply_never_second_creation[intent_persisted]" time="0.497" /><testcase classname="tests.test_service_lifecycle" name="test_lost_start_reply_never_second_creation[created]" time="1.101" /><testcase classname="tests.test_service_lifecycle" name="test_handshake_timeout_inspect_no_retry" time="1.094" /><testcase classname="tests.test_service_lifecycle" name="test_old_lock_or_bad_credentials_never_replace" time="1.150" /><testcase classname="tests.test_service_lifecycle" name="test_product_gui_start_worker_survives_normal_gui_and_launcher_exit" time="6.161" /><testcase classname="tests.test_service_attachment" name="test_discovery_authenticates_existing_owner_and_reads_without_mutation" time="1.310" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[credential-AUTHENTICATION_FAILED]" time="1.172" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[protocol-PROTOCOL_MISMATCH]" time="1.007" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[project-PROJECT_IDENTITY_MISMATCH]" time="1.082" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[process-PROCESS_IDENTITY_MISMATCH]" time="1.000" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[stale-ENDPOINT_IDENTITY_MISMATCH]" time="1.054" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[owner-ENDPOINT_IDENTITY_MISMATCH]" time="1.120" /><testcase classname="tests.test_service_attachment" name="test_missing_owner_and_future_project_do_not_initialize" time="0.375" /><testcase classname="tests.test_service_attachment" name="test_legacy_directory_rejected" time="0.005" /><testcase classname="tests.test_service_attachment" name="test_owner_without_new_capability_is_not_restarted" time="1.104" /><testcase classname="tests.test_project_view" name="test_project_page_readonly_and_no_authorization_fields" time="0.281" /><testcase classname="tests.test_project_view" name="test_project_page_namespace_and_public_projection" time="0.314" /><testcase classname="tests.test_project_view" name="test_keyset_pages_with_many_runs" time="4.586" /><testcase classname="tests.test_project_view" name="test_project_page_argument_bounds[args0]" time="0.193" /><testcase classname="tests.test_project_view" name="test_project_page_argument_bounds[args1]" time="0.198" /><testcase classname="tests.test_project_view" name="test_project_page_argument_bounds[args2]" time="0.175" /><testcase classname="tests.test_project_view" name="test_project_page_argument_bounds[args3]" time="0.208" /><testcase classname="tests.test_project_view" name="test_project_page_argument_bounds[args4]" time="0.187" /><testcase classname="tests.test_project_view" name="test_project_page_single_snapshot_and_transaction_ends_before_projection" time="0.433" /><testcase classname="tests.test_project_view" name="test_project_page_failures_do_not_repair[missing]" time="0.285" /><testcase classname="tests.test_project_view" name="test_project_page_failures_do_not_repair[future]" time="0.296" /><testcase classname="tests.test_project_view" name="test_project_page_failures_do_not_repair[journal]" time="0.331" /><testcase classname="tests.test_project_view" name="test_project_page_failures_do_not_repair[busy]" time="0.968" /><testcase classname="tests.test_project_view" name="test_project_page_failures_do_not_repair[corrupt]" time="0.342" /><testcase classname="tests.test_project_view" name="test_project_page_failures_do_not_repair[huge]" time="0.315" /><testcase classname="tests.test_attachment_gui" name="test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect" time="7.522" /><testcase classname="tests.test_attachment_gui" name="test_explicit_project_switch_missing_service_and_unknown_stay_readonly" time="5.778" /><testcase classname="tests.test_attachment_gui" name="test_normal_gui_large_run_list_pages_without_blocking_ui" time="9.016" /></testsuite></testsuites>

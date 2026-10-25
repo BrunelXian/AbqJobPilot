@@ -1,0 +1,29 @@
+{
+  "operation_status": "APPLIED",
+  "replayed": false,
+  "receipt": {
+    "operation_id": "op_ef7048a01b854129a1d32dac7e9f6417",
+    "operation": "release_standard_logical_slot",
+    "operation_status": "APPLIED",
+    "namespace": "[\"pi_776faf62f2d64a4ab23e83c53b665788\",\"run013-standard\",\"release_standard_logical_slot\"]",
+    "idempotency_key": "closeout-request_f26673ed6feb466d911748d5cd5533e0",
+    "request_digest": "sha256:a85c2ade75398715eaddd0b7825ace2320eba5a545bc9b681df80e3672fc3b36",
+    "applied_at": 1792826732,
+    "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+    "projection_at_commit": {
+      "run_id": "r_609c9bbfd9c54b3ca2fce23bbd6059e4",
+      "run_revision": 21,
+      "effect": "LOGICAL_SLOT_RELEASED_ONLY",
+      "gate": {
+        "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+        "version": 5,
+        "state": "PAUSED"
+      },
+      "evidence_conclusions_unchanged": true
+    },
+    "evidence_refs": [
+      "disposition_c225b0582c664a4d939821575e6f6549",
+      "control_7420682cb83043e4b8abf71e070bb26c"
+    ]
+  }
+}

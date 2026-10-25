@@ -99,7 +99,7 @@ RECEIPT = {"request_id": ref("req"), "request_status": choice("ACCEPTED"), "acce
            "run_id": ref("r"), "accepted_sequence": number, "initial_queue_state": choice("PENDING")}
 EVENT_TYPES = choice("REQUEST_ACCEPTED", "START_INTENT", "DISPATCH_BLOCKED", "FAKE_COMPLETED",
                      "VALIDATION_RECORDED", "RECONCILIATION_REQUIRED", "RECONCILIATION_APPLIED")
-RECORD_REF = ref("ev", "obs", "val", "rec", "op", "control", "r", "req", "plan")
+RECORD_REF = ref("ev", "obs", "val", "rec", "disposition", "op", "control", "r", "req", "plan")
 EVENT = {"event_id": ref("ev"), "run_id": ref("r"), "run_sequence": number, "project_sequence": number,
          "type": EVENT_TYPES, "observed_at": number, "recorded_at": number, "evidence_refs": [RECORD_REF],
          "payload": {k: RUN[k] for k in ("revision", "execution", "queue_state", "backend_outcome", "artifact_validation",
@@ -122,6 +122,8 @@ GATE = {"owner_id": ref("owner"), "version": number, "state": choice("OPEN", "PA
 
 # Stable explanation codes are not persisted execution states or permissions.
 RULES = {
+    'MANAGED_SCOPE_ENDED':('SIMULATION','A retained Job query recorded no active scoped processes after root creation; completion and slot release committed together. This is not Solver or artifact success.','review_recorded_evidence'),
+    'MANAGED_SCOPE_UNCONFIRMED':('UNCERTAINTY','Managed range completion has not committed; enumerated key-role exits do not prove the descendant range ended.','review_recorded_evidence'),
     "STANDARD_RECORDED_TEXT": ("EVIDENCE", "Recorded fixed Standard text and DAT checks have separate verdicts. Membership and overall exit remain unknown; no process or artifact was probed by this query.", "review_recorded_evidence"),
     "RECORDED_EXITS_RECONCILED": ("RECONCILIATION", "Explicit reconciliation used historical OS exit records only; no process probe or artifact validation occurred, and dispatch permission is separate.", "review_recorded_evidence"),
     "TEST_PROCESS_COMPLETED": ("SIMULATION", "Required fixed test processes have recorded zero exits; artifact validation is separate and Solver was not run.", "review_recorded_evidence"),
@@ -136,6 +138,7 @@ RULES = {
     "HISTORICAL_VALIDATION_FAILED": ("EVIDENCE", "A historical validator recorded failure; no validation was run now.", "review_recorded_evidence"),
     "HISTORICAL_VALIDATION_PASSED": ("EVIDENCE", "A historical validator recorded PASS in simulation scope only.", "review_recorded_evidence"),
     "EXPLICITLY_RECONCILED": ("RECONCILIATION", "An explicit reconciliation is recorded; it does not authorize dispatch.", "review_dispatch_prerequisites"),
+    "ADMINISTRATIVE_DISPOSITION": ("RECONCILIATION", "An operator disposition is recorded, not a verified complete process exit. Retained paths and separate dispatch permission still apply.", "review_dispatch_prerequisites"),
     "DISPATCH_PAUSED": ("DISPATCH", "The database gate was PAUSED in this snapshot.", "request_separate_resume_review"),
     "FAKE_COMPLETED": ("SIMULATION", "The stored Fake outcome is COMPLETED; Solver was not run.", "review_recorded_evidence"),
     "NO_RECORDED_ERROR": ("INFORMATION", "No Run error was recorded; absence of an error does not prove success.", "review_run"),
@@ -182,6 +185,14 @@ PROCESS_RECORD = {"pid": number, "creation_time_100ns": number,
                   "execution_object_digest": hash_ref, "image_digest": hash_ref}
 PROCESS_EXIT = {**PROCESS_RECORD, "exit_code": number, "exit_observed_at": number,
                 "exit_source": choice("retained_windows_handle")}
+MANAGED_SCOPE = {'scope_id':ref('scope'),'policy':choice('windows-job-list-v1'),
+    'run_id':ref('r'),'phase_attempt_id':ref('phase'),'owner_id':ref('owner'),
+    'project_instance_id':ref('pi'),'plan_digest':hash_ref,'owner_epoch':number,
+    'binding':choice('CREATE_PROCESS_JOB_LIST'),'scope':choice('ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS'),
+    'kill_on_job_close':boolean,'breakaway_allowed':boolean,'named':boolean,'observed_at':number,
+    'source':choice('QueryInformationJobObject.BasicAccounting'),'query_monotonic_ns':number,
+    'creation_confirmed':boolean,'pending_additions':boolean,'active_processes':number,'total_processes':number,
+    'limit_terminated_processes':number,'state':choice('EMPTY_CONFIRMED','NOT_COMPLETE')}
 RUN_V2 = {**RUN, "phase": choice("PROCESS_FIXTURE"), "backend_id": choice("python-process-fixture-v1"),
           "backend_outcome_basis": choice("RECONCILED_RECORDED_OS_EXITS"),
           "backend_outcome": choice("NOT_RUN", "UNKNOWN", "COMPLETED", "FAILED"),
@@ -189,14 +200,20 @@ RUN_V2 = {**RUN, "phase": choice("PROCESS_FIXTURE"), "backend_id": choice("pytho
           "exit_verification": choice("UNKNOWN", "PARTIAL", "VERIFIED"),
           "process_failure_code": choice("PROCESS_IDENTITY_UNKNOWN", "PROCESS_IDENTITY_MISMATCH", "PROCESS_EXIT_UNKNOWN",
                                         "PROCESS_IO_FAILURE", "STORE_UNAVAILABLE", "PLAN_STALE", "PLAN_EXPIRED",
-                                        "GRANT_EXPIRED", "GRANT_SCOPE_MISMATCH", "INVALID_REQUEST"),
-          "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT]}
+                                        "GRANT_EXPIRED", "GRANT_SCOPE_MISMATCH", "INVALID_REQUEST",
+                                        'MANAGED_SCOPE_UNKNOWN','MANAGED_SCOPE_UNAVAILABLE','MANAGED_CREATE_FAILED','MANAGED_SCOPE_POLICY_CHANGED'),
+          "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT],
+          'managed_scope':MANAGED_SCOPE,'managed_completion':choice('NOT_CONFIRMED','COMMITTED_EMPTY_SCOPE'),
+          'managed_completion_recorded_at':number}
 FACTS_V2 = {**FACTS, "run": RUN_V2,
             "plan": {**FACTS["plan"], "backend_id": choice("python-process-fixture-v1")},
             "events": [{**EVENT, "type": choice("REQUEST_ACCEPTED", "START_INTENT", "DISPATCH_BLOCKED", "PROCESS_IDENTITIES",
-                "PROCESS_EXIT_OBSERVED", "PROCESS_COMPLETED", "VALIDATION_RECORDED", "RECONCILIATION_REQUIRED", "PROCESS_RECONCILIATION_APPLIED"),
+                "PROCESS_EXIT_OBSERVED", "PROCESS_COMPLETED", "VALIDATION_RECORDED", "RECONCILIATION_REQUIRED", "PROCESS_RECONCILIATION_APPLIED",
+                'MANAGED_SCOPE_PREPARED','MANAGED_ROOT_CREATED','MANAGED_SCOPE_OBSERVED','MANAGED_SCOPE_COMPLETED'),
                 "payload": {**EVENT["payload"], "backend_outcome": RUN_V2["backend_outcome"],
-                            "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT]}}],
+                            "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT],
+                            'managed_scope':MANAGED_SCOPE,'managed_completion':RUN_V2['managed_completion'],
+                            'managed_completion_recorded_at':number}}],
             "observations": [{**OBSERVATION, "kind": choice("PROCESS_FIXTURE_JSON"), "provenance": choice("python-process-fixture-v1")}],
             "validations": [{**VALIDATION, "policy_id": choice("process-fixture-result-v1"), "validator_id": choice("process-fixture-validator"),
                              "source": choice("explicit_reconciliation", "explicit_client_validation")}],
@@ -204,14 +221,14 @@ FACTS_V2 = {**FACTS, "run": RUN_V2,
                 "owner_id": ref("owner"), "recorded_at": number, "source": choice("TEST_ONLY_RECORDED_OS_EXIT_RECONCILIATION"),
                 "action": choice("reconcile_recorded_process_exits"), "policy": choice("recorded-process-reconciliation-v1"),
                 "conclusion": choice("RECORDED_EXIT_SUCCESS", "RECORDED_EXIT_FAILURE"), "evidence_refs": [RECORD_REF]}]}
-BODY_V2 = {**BODY, "report_version": choice("af-run-diagnostic-v2"), "rules_version": choice("process-diagnostic-rules-v2", "process-diagnostic-rules-v3"),
+BODY_V2 = {**BODY, "report_version": choice("af-run-diagnostic-v2"), "rules_version": choice("process-diagnostic-rules-v2", "process-diagnostic-rules-v3",'process-diagnostic-rules-v4'),
            "facts": FACTS_V2,
            "diagnostics": [{**ITEM, "recorded_facts": {**ITEM["recorded_facts"], "backend_outcome": RUN_V2["backend_outcome"]}}]}
 
 STANDARD_PROCESS = {**PROCESS_RECORD, 'role': lambda v: type(v) is str and (v == 'wrapper' or
                     (v.startswith('candidate_') and v[10:].isdigit() and len(v)<30))}
 STANDARD_EXIT = {**STANDARD_PROCESS,'exit_code':number,'exit_observed_at':number,
-                 'exit_source':choice('retained_windows_handle','direct_Popen_handle')}
+                 'exit_source':choice('retained_windows_handle','direct_Popen_handle','direct_native_handle')}
 STANDARD_RUN = {**RUN_V2,'backend_id':choice('abaqus-standard-axial-2024-v1'),'phase':choice('STANDARD_ANALYSIS'),
     'execution_phase':choice('WAITING_START','STARTING','OBSERVING','OBSERVATION_ENDED','EVIDENCE_RECORDED'),
     'process_observation':choice('NOT_STARTED','UNKNOWN','OBSERVED_SUBSET'),
@@ -221,18 +238,32 @@ STANDARD_RUN = {**RUN_V2,'backend_id':choice('abaqus-standard-axial-2024-v1'),'p
     'odb_content_validation':choice('NOT_RUN'),'member_completeness':choice('UNKNOWN'),'overall_exit':choice('UNKNOWN'),
     'launch_state':choice('NOT_CALLED','INTENT_PERSISTED','CALL_ENTERED_OUTCOME_UNKNOWN','PROCESS_OBJECT_RETURNED'),
     'all_observed_exited':boolean,'observation_deadline_reached':boolean,'observation_ended_at':number,
+    'batch_position':choice('A','B'),'batch_observation_not_after':number,
+    'administrative_closeout':choice('LOGICAL_SLOT_RELEASED_WITH_RESIDUAL_UNCERTAINTY'),
+    'disposition_record_id':ref('disposition'),
+    'disposition_action':choice('retain_standard_resources','release_standard_logical_slot'),
     'validation_scope':choice('fixed_standard_dat_only')}
 STANDARD_FACTS = {**FACTS_V2,'run':STANDARD_RUN,
     'plan':{**FACTS['plan'],'backend_id':choice('abaqus-standard-axial-2024-v1')},
     'events':[{**EVENT,'type':choice('REQUEST_ACCEPTED','START_INTENT','DISPATCH_BLOCKED','RECONCILIATION_REQUIRED',
         'STANDARD_STARTING','STANDARD_LAUNCH_INTENT','STANDARD_CREATE_ENTERING','STANDARD_CREATED','STANDARD_PROCESS_OBSERVATION',
-        'STANDARD_OBSERVATION_ENDED','STANDARD_RESULT_RECORDED'),
-        'payload':{k:STANDARD_RUN[k] for k in ('revision','execution','launch_state','solver_conclusion','numerical_validation','member_completeness')}}],
+        'STANDARD_OBSERVATION_ENDED','STANDARD_RESULT_RECORDED','STANDARD_DISPOSITION_RECORDED',
+        'MANAGED_SCOPE_PREPARED','MANAGED_SCOPE_OBSERVED','STANDARD_MANAGED_COMPLETED'),
+        'payload':{k:STANDARD_RUN[k] for k in ('revision','execution','launch_state','solver_conclusion','numerical_validation','member_completeness',
+            'managed_scope','managed_completion','managed_completion_recorded_at')}}],
     'observations':[{'observation_id':ref('obs'),'run_id':ref('r'),'kind':choice('STANDARD_TEXT'),'observed_at':number,
         'artifacts':[{'logical_ref':choice('output:dat','output:sta','output:msg','output:log'),'digest':hash_ref,'size':number,'read_at':number}]}],
     'validations':[{**VALIDATION,'scope':choice('fixed_standard_dat_only'),'policy_id':choice('fixed-2024-axial-dat-v1'),
-        'validator_id':choice('standard-dat-validator')}], 'reconciliations':[RECONCILIATION]}
-BODY_V3 = {**BODY_V2,'report_version':choice('af-run-diagnostic-v3'),'rules_version':choice('standard-diagnostic-rules-v1'),'facts':STANDARD_FACTS}
+        'validator_id':choice('standard-dat-validator')}], 'reconciliations':[{
+            'reconciliation_id':ref('disposition'),'operation_id':ref('op'),'run_id':ref('r'),
+            'owner_id':ref('owner'),'recorded_at':number,'policy':choice('standard-closeout-v1'),
+            'action':choice('retain_standard_resources','release_standard_logical_slot'),
+            'source':choice('EXPLICIT_OPERATOR_POLICY_NOT_EXIT_EVIDENCE'),
+            'effect':choice('LOGICAL_SLOT_RELEASED_ONLY','ALL_RESOURCES_RETAINED'),'evidence_refs':[RECORD_REF]}]}
+BODY_V3 = {**BODY_V2,'report_version':choice('af-run-diagnostic-v3'),'rules_version':choice('standard-diagnostic-rules-v1','standard-diagnostic-rules-v2','standard-diagnostic-rules-v3'),'facts':STANDARD_FACTS}
+BODY_V3_LEGACY = {**BODY_V3, 'facts':{**STANDARD_FACTS,
+    'run':{k:v for k,v in STANDARD_RUN.items() if k not in {'administrative_closeout','disposition_record_id','disposition_action'}},
+    'reconciliations':[RECONCILIATION]}}
 
 
 def report_bytes(report):
@@ -243,7 +274,26 @@ def report_bytes(report):
     report = json.loads(encoded)  # Validate the exact detached bytes that will be exported.
     require(type(report) is dict and set(report) == {"body", "content_digest"}, "INVALID_REPORT", "Invalid audit envelope")
     schema = {'af-run-diagnostic-v2':BODY_V2,'af-run-diagnostic-v3':BODY_V3}.get(report['body'].get('report_version'),BODY)
-    require(project(report["body"], schema) == report["body"] and report["body"].get("report_version") in {REPORT_VERSION, "af-run-diagnostic-v2", 'af-run-diagnostic-v3'},
+    if report['body'].get('rules_version')=='standard-diagnostic-rules-v1': schema=BODY_V3_LEGACY
+    projected=project(report['body'],schema)
+    # Earlier frozen exports predate the managed-scope/batch fields. Permit
+    # their absence only in those explicit rule versions; never invent evidence
+    # or admit arbitrary fields. New reports keep the full strict projection.
+    rules=report['body'].get('rules_version')
+    if rules in ('process-diagnostic-rules-v2','process-diagnostic-rules-v3',
+                 'standard-diagnostic-rules-v1','standard-diagnostic-rules-v2'):
+        optional=('managed_scope','managed_completion','managed_completion_recorded_at',
+                  'batch_position','batch_observation_not_after')
+        def historical_fields(public,original):
+            if isinstance(public,dict) and isinstance(original,dict):
+                for key in optional:
+                    if key not in original and key in public and public[key] is None:del public[key]
+        facts=report['body'].get('facts',{})
+        if isinstance(facts,dict) and isinstance(projected.get('facts'),dict):
+            historical_fields(projected['facts'].get('run'),facts.get('run'))
+            for p,e in zip(projected['facts'].get('events') or [],facts.get('events') or []):
+                if isinstance(p,dict) and isinstance(e,dict):historical_fields(p.get('payload'),e.get('payload'))
+    require(projected == report["body"] and report["body"].get("report_version") in {REPORT_VERSION, "af-run-diagnostic-v2", 'af-run-diagnostic-v3'},
             "INVALID_REPORT", "Audit fields are outside the public projection")
     require(digest(report["body"]) == report["content_digest"], "INVALID_REPORT", "Audit projection digest mismatch")
     return encoded
@@ -298,12 +348,16 @@ def build_report(context, raw):
         if uncertain and not any(v["verdict"] == "PASS" for v in facts["validations"]): codes.append("EVIDENCE_INSUFFICIENT")
         if any(v["verdict"] == "FAIL" for v in facts["validations"]): codes.append("HISTORICAL_VALIDATION_FAILED")
         if not standard_run and any(v["verdict"] == "PASS" for v in facts["validations"]): codes.append("HISTORICAL_VALIDATION_PASSED")
-        if facts["reconciliations"]: codes.append("EXPLICITLY_RECONCILED")
+        if facts["reconciliations"]: codes.append("ADMINISTRATIVE_DISPOSITION" if standard_run else "EXPLICITLY_RECONCILED")
         if gate and gate["state"] == "PAUSED": codes.append("DISPATCH_PAUSED")
         if not process_run and not standard_run and run["backend_outcome"] == "COMPLETED": codes.append("FAKE_COMPLETED")
         if standard_run:
             codes.extend(['STANDARD_RECORDED_TEXT','PROCESS_EXIT_NOT_ESTABLISHED'])
+            if run.get('managed_scope'):
+                codes.append('MANAGED_SCOPE_ENDED' if run.get('managed_completion')=='COMMITTED_EMPTY_SCOPE' else 'MANAGED_SCOPE_UNCONFIRMED')
         if process_run:
+            if run.get('managed_scope'):
+                codes.append('MANAGED_SCOPE_ENDED' if run.get('managed_completion')=='COMMITTED_EMPTY_SCOPE' else 'MANAGED_SCOPE_UNCONFIRMED')
             records, exits = run.get("process_records") or [], run.get("process_exits") or []
             roles = {"launcher", "worker", "launcher_transport", "worker_transport"}
             complete_exits = (run["exit_verification"] == "VERIFIED" and len(records) == len(exits) == 4
@@ -329,8 +383,11 @@ def build_report(context, raw):
                                         "gate_state": gate["state"] if gate else None},
                      "inference": RULES[code][1], "unknowns": unknowns, "source_refs": refs,
                      "next_step": {"candidate": RULES[code][2], "preconditions": list(PRECONDITIONS)}} for code in codes]
+        if standard_run:
+            for finding in findings:
+                if finding['reason_code']=='MANAGED_SCOPE_ENDED':finding['classification']='EVIDENCE'
         body = project({"report_version": 'af-run-diagnostic-v3' if standard_run else "af-run-diagnostic-v2" if process_run else REPORT_VERSION,
-                        "rules_version": 'standard-diagnostic-rules-v1' if standard_run else "process-diagnostic-rules-v3" if process_run else RULES_VERSION,
+                        "rules_version": ('standard-diagnostic-rules-v3' if run.get('managed_scope') else 'standard-diagnostic-rules-v2') if standard_run else ('process-diagnostic-rules-v4' if run.get('managed_scope') else "process-diagnostic-rules-v3") if process_run else RULES_VERSION,
                         "identity": {"project_id": context.project_id, "project_instance_id": context.project_instance_id,
                                      "storage_generation": context.storage_generation, "context_digest": context.context_digest,
                                      "schema_version": context.schema_version, "run_id": run["run_id"],

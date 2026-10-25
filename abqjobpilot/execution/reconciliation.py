@@ -12,6 +12,8 @@ from .store import document, gate_view, needs_reconciliation, update_run
 from .validation import validate_artifact
 from .process_reconciliation import RECONCILE_PROCESS, SCOPE_FIELDS, apply_recorded
 from .public_workflow import VALIDATE, VALIDATION_SCOPE, validate_recorded
+from .closeout import (ACTIONS as CLOSEOUT_ACTIONS, SCOPE as CLOSEOUT_SCOPE,
+    administratively_released, check_permission, apply_recorded as apply_closeout_recorded, blocks_dispatch)
 
 MANAGEMENT_CONTRACT = "af-management-v1"
 ADOPT = "adopt_verified_fake_artifact"
@@ -124,7 +126,7 @@ def preview(service, context, run_id):
 
 
 def _request(service, request, action):
-    require(action in {ADOPT, RESUME, RECONCILE_PROCESS, VALIDATE}, "INVALID_REQUEST", "Unsupported management action")
+    require(action in {ADOPT, RESUME, RECONCILE_PROCESS, VALIDATE, *CLOSEOUT_ACTIONS}, "INVALID_REQUEST", "Unsupported management action")
     common = ("contract_version", "operation", "project_id", "project_instance_id", "owner_id",
               "management_grant_id", "idempotency_key")
     scope_names = ("run_id", "expected_run_revision", "preview_digest") if action == ADOPT else ("expected_gate_version",)
@@ -132,6 +134,8 @@ def _request(service, request, action):
         scope_names = SCOPE_FIELDS
     if action == VALIDATE:
         scope_names = VALIDATION_SCOPE
+    if action in CLOSEOUT_ACTIONS:
+        scope_names = CLOSEOUT_SCOPE
     fields(request, common + scope_names)
     require(request["contract_version"] == MANAGEMENT_CONTRACT and request["operation"] == action,
             "INVALID_REQUEST", "Unsupported management contract/action")
@@ -140,7 +144,10 @@ def _request(service, request, action):
             "PROJECT_IDENTITY_MISMATCH", "Management request targets another Project")
     for key in ("owner_id", "management_grant_id", "idempotency_key"):
         text(request[key])
-    if action == VALIDATE:
+    if action in CLOSEOUT_ACTIONS:
+        integer(request['expected_run_revision'],1)
+        for key in ('run_id','preview_digest','evidence_fingerprint','reason'):text(request[key])
+    elif action == VALIDATE:
         integer(request["expected_run_revision"], 1)
         for key in ("run_id", "plan_id", "plan_digest"):
             text(request[key])
@@ -172,7 +179,10 @@ def _authorize(service, connection, request, action, scope):
     require(request["owner_id"] == session.owner_id, "STALE_OWNER", "A new owner requires a new preview and permission")
     row = connection.execute("SELECT body FROM management_grants WHERE grant_id=?", (request["management_grant_id"],)).fetchone()
     used = connection.execute("SELECT 1 FROM management_consumption WHERE grant_id=?", (request["management_grant_id"],)).fetchone()
-    check_management_grant(service.context, json.loads(row[0]) if row else None,
+    real_disposition = action in CLOSEOUT_ACTIONS or (action == RESUME and any(
+        administratively_released(connection,json.loads(r[0])) for r in connection.execute('SELECT body FROM runs')))
+    checker = check_permission if real_disposition else check_management_grant
+    checker(service.context, json.loads(row[0]) if row else None,
                            session.authority_instance, session.owner_id, action, scope, used)
 
 
@@ -206,7 +216,9 @@ def manage(service, context, request, action):
                     and session.active_dispatches == 0, "GATE_PRECONDITION_FAILED", "Current owner must be paused and quiescent")
             operation_id = identifier("op")
             refs = []
-            if action == VALIDATE:
+            if action in CLOSEOUT_ACTIONS:
+                refs, projection = apply_closeout_recorded(service,connection,request,operation_id,gate)
+            elif action == VALIDATE:
                 refs, projection = validate_recorded(service, connection, request, operation_id, gate)
             elif action == RECONCILE_PROCESS:
                 refs, projection = apply_recorded(service, connection, request, operation_id, gate)
@@ -238,7 +250,7 @@ def manage(service, context, request, action):
             else:
                 require(gate["version"] == request["expected_gate_version"], "GATE_PRECONDITION_FAILED", "Gate version changed")
                 runs = [json.loads(r[0]) for r in connection.execute("SELECT body FROM runs")]
-                require(not any(needs_reconciliation(r) for r in runs)
+                require(not any(blocks_dispatch(connection,r) for r in runs)
                         and connection.execute("SELECT run_id FROM slot WHERE id=1").fetchone()[0] is None,
                         "RECONCILIATION_REQUIRED", "Unresolved execution or occupied slot blocks resumption")
                 connection.execute("UPDATE dispatch_gate SET state='OPEN',version=version+1 WHERE id=1")

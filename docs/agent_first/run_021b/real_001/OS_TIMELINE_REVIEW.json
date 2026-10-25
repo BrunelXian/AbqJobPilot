@@ -1,0 +1,224 @@
+{
+  "first_sample": 1792906008.5921907,
+  "last_sample": 1792906306.7501357,
+  "first_exit_observations": {
+    "record_7": {
+      "sample_at": 1792906095.8736722,
+      "identity": {
+        "pid": 22796,
+        "creation_time_100ns": 134373796863140274,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe"
+      },
+      "exit": {
+        "pid": 22796,
+        "creation_time_100ns": 134373796863140274,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906095,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_8": {
+      "sample_at": 1792906105.20373,
+      "identity": {
+        "pid": 7604,
+        "creation_time_100ns": 134373796956861492,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe"
+      },
+      "exit": {
+        "pid": 7604,
+        "creation_time_100ns": 134373796956861492,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906105,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_9": {
+      "sample_at": 1792906105.20373,
+      "identity": {
+        "pid": 11700,
+        "creation_time_100ns": 134373797044760547,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe"
+      },
+      "exit": {
+        "pid": 11700,
+        "creation_time_100ns": 134373797044760547,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906105,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "gui": {
+      "sample_at": 1792906105.7273748,
+      "identity": {
+        "pid": 12056,
+        "creation_time_100ns": 134373793791429002,
+        "image_path": "D:\\Program Files\\Python312\\pythonw.exe"
+      },
+      "exit": {
+        "pid": 12056,
+        "creation_time_100ns": 134373793791429002,
+        "image_path": "D:\\Program Files\\Python312\\pythonw.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906105,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "gui_venv": {
+      "sample_at": 1792906105.7273748,
+      "identity": {
+        "pid": 22576,
+        "creation_time_100ns": 134373793791271888,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\pythonw.exe"
+      },
+      "exit": {
+        "pid": 22576,
+        "creation_time_100ns": 134373793791271888,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\pythonw.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906105,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_0": {
+      "sample_at": 1792906106.869362,
+      "identity": {
+        "pid": 5716,
+        "creation_time_100ns": 134373796774248368,
+        "image_path": "C:\\Windows\\System32\\cmd.exe"
+      },
+      "exit": {
+        "pid": 5716,
+        "creation_time_100ns": 134373796774248368,
+        "image_path": "C:\\Windows\\System32\\cmd.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906106,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_1": {
+      "sample_at": 1792906106.869362,
+      "identity": {
+        "pid": 3480,
+        "creation_time_100ns": 134373796774404071,
+        "image_path": "C:\\Windows\\System32\\conhost.exe"
+      },
+      "exit": {
+        "pid": 3480,
+        "creation_time_100ns": 134373796774404071,
+        "image_path": "C:\\Windows\\System32\\conhost.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906106,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_2": {
+      "sample_at": 1792906106.869362,
+      "identity": {
+        "pid": 14340,
+        "creation_time_100ns": 134373796775321983,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe"
+      },
+      "exit": {
+        "pid": 14340,
+        "creation_time_100ns": 134373796775321983,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906106,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_3": {
+      "sample_at": 1792906106.869362,
+      "identity": {
+        "pid": 1332,
+        "creation_time_100ns": 134373796776064812,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe"
+      },
+      "exit": {
+        "pid": 1332,
+        "creation_time_100ns": 134373796776064812,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906106,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_5": {
+      "sample_at": 1792906106.869362,
+      "identity": {
+        "pid": 26224,
+        "creation_time_100ns": 134373796855744210,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe"
+      },
+      "exit": {
+        "pid": 26224,
+        "creation_time_100ns": 134373796855744210,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906106,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "record_6": {
+      "sample_at": 1792906106.869362,
+      "identity": {
+        "pid": 24376,
+        "creation_time_100ns": 134373796861560343,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe"
+      },
+      "exit": {
+        "pid": 24376,
+        "creation_time_100ns": 134373796861560343,
+        "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906106,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "owner": {
+      "sample_at": 1792906213.8361006,
+      "identity": {
+        "pid": 20864,
+        "creation_time_100ns": 134373795386097186,
+        "image_path": "D:\\Program Files\\Python312\\python.exe"
+      },
+      "exit": {
+        "pid": 20864,
+        "creation_time_100ns": 134373795386097186,
+        "image_path": "D:\\Program Files\\Python312\\python.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906215,
+        "exit_source": "retained_windows_handle"
+      }
+    },
+    "owner_venv": {
+      "sample_at": 1792906213.8361006,
+      "identity": {
+        "pid": 31428,
+        "creation_time_100ns": 134373795385854055,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe"
+      },
+      "exit": {
+        "pid": 31428,
+        "creation_time_100ns": 134373795385854055,
+        "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+        "exit_code": 0,
+        "exit_observed_at": 1792906215,
+        "exit_source": "retained_windows_handle"
+      }
+    }
+  },
+  "last_observed_solver_alive": 1792906104.6387055,
+  "gui_and_venv_exited_solver_alive_samples": [],
+  "gui_and_venv_exited_owner_alive_first_sample": 1792906105.7273748,
+  "cross_gui_close_solver_liveness": "NOT_OBSERVED",
+  "observer_closed": {
+    "at": 1792906309.2573307,
+    "handles_closed": 13,
+    "termination_calls": 0
+  },
+  "meaning": "Sample and retained-handle observations, not inferred exact exit times."
+}

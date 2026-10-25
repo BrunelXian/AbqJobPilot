@@ -1,0 +1,240 @@
+{
+  "read_at": 1792906491.8316534,
+  "files": [
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering\\r021_bar_42b9754e.dat",
+      "sha256": "05942b3b79aad64399d0618f7067435bb7dfdc4ffb292b8417655350c156110b",
+      "size": 10334,
+      "same_as_service_validation": true,
+      "same_file_identity": true,
+      "mtime_ns": 1792906104735621800,
+      "ctime_ns": 1792906094991063600,
+      "not_older_than_intent": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering\\r021_bar_42b9754e.sta",
+      "sha256": "b5bd561323563ce7b1f0791ff9846b14bd266ad5054a4885d61073477b0449ee",
+      "size": 444,
+      "same_as_service_validation": true,
+      "same_file_identity": true,
+      "mtime_ns": 1792906104735621800,
+      "ctime_ns": 1792906104727860400,
+      "not_older_than_intent": true
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering\\r021_bar_42b9754e.msg",
+      "sha256": "cec22819b9dae66760b91c64f59ee9ba907cd8225859a11153324068844b0e3d",
+      "size": 7606,
+      "same_as_service_validation": true,
+      "same_file_identity": true,
+      "mtime_ns": 1792906104735621800,
+      "ctime_ns": 1792906104248768600,
+      "not_older_than_intent": true
+    }
+  ],
+  "runtime_lines": [
+    {
+      "file": "dat",
+      "line": 3,
+      "text": "Abaqus 2024                                  Date 25-10月-2026   Time 13:28:14"
+    },
+    {
+      "file": "dat",
+      "line": 43,
+      "text": "*                       Abaqus 2024                       *"
+    },
+    {
+      "file": "dat",
+      "line": 49,
+      "text": "*  release Abaqus 2024 manuals                            *"
+    },
+    {
+      "file": "dat",
+      "line": 124,
+      "text": "Abaqus 2024                                  Date 25-10月-2026   Time 13:28:24"
+    },
+    {
+      "file": "msg",
+      "line": 3,
+      "text": "Abaqus 2024                                  Date 25-10月-2026   Time 13:28:24"
+    }
+  ],
+  "selected_dat_lines": [
+    {
+      "line": 183,
+      "text": "INCREMENT     1 SUMMARY"
+    },
+    {
+      "line": 187,
+      "text": "STEP TIME COMPLETED        1.00    ,  TOTAL TIME COMPLETED         1.00"
+    },
+    {
+      "line": 200,
+      "text": "ELEMENT  PT FOOT-       S11"
+    },
+    {
+      "line": 203,
+      "text": "1   1          1.000"
+    },
+    {
+      "line": 215,
+      "text": "NODE FOOT-  U1             U2             U3"
+    },
+    {
+      "line": 218,
+      "text": "2      1.0000000E-02  0.0000000E+00  0.0000000E+00"
+    },
+    {
+      "line": 224,
+      "text": "NODE FOOT-  RF1            RF2            RF3"
+    },
+    {
+      "line": 227,
+      "text": "1     -1.0000000E+00  0.0000000E+00  0.0000000E+00"
+    },
+    {
+      "line": 228,
+      "text": "2      0.0000000E+00  0.0000000E+00  0.0000000E+00"
+    },
+    {
+      "line": 231,
+      "text": "THE ANALYSIS HAS BEEN COMPLETED"
+    },
+    {
+      "line": 235,
+      "text": "ANALYSIS COMPLETE"
+    }
+  ],
+  "completion_lines": [
+    {
+      "file": "dat",
+      "line": 117,
+      "text": "JOB TIME SUMMARY"
+    },
+    {
+      "file": "dat",
+      "line": 231,
+      "text": "THE ANALYSIS HAS BEEN COMPLETED"
+    },
+    {
+      "file": "dat",
+      "line": 235,
+      "text": "ANALYSIS COMPLETE"
+    },
+    {
+      "file": "dat",
+      "line": 239,
+      "text": "JOB TIME SUMMARY"
+    },
+    {
+      "file": "sta",
+      "line": 8,
+      "text": "THE ANALYSIS HAS COMPLETED SUCCESSFULLY"
+    },
+    {
+      "file": "msg",
+      "line": 119,
+      "text": "THE ANALYSIS HAS BEEN COMPLETED"
+    },
+    {
+      "file": "msg",
+      "line": 141,
+      "text": "JOB TIME SUMMARY"
+    }
+  ],
+  "source": "post_execution_read_only_review_no_service_evidence_written",
+  "primary_comparisons": [
+    {
+      "absolute_error": "0E-9",
+      "actual": "0.010000000",
+      "effective_tolerance": "0.000001",
+      "expected": "0.01",
+      "group": "primary",
+      "quantity": "2_U1",
+      "source": {
+        "component": "U1",
+        "entity": "2",
+        "header_line": 215,
+        "line": 218,
+        "position": "global_node",
+        "raw": "1.0000000E-02"
+      },
+      "status": "PASS",
+      "unit": "mm"
+    },
+    {
+      "absolute_error": "0.000",
+      "actual": "1.000",
+      "effective_tolerance": "0.0001",
+      "expected": "1",
+      "group": "primary",
+      "quantity": "1_S11",
+      "source": {
+        "component": "S11",
+        "entity": "1",
+        "header_line": 200,
+        "line": 203,
+        "position": "integration_point_1",
+        "raw": "1.000"
+      },
+      "status": "PASS",
+      "unit": "MPa"
+    },
+    {
+      "absolute_error": "0E-7",
+      "actual": "-1.0000000",
+      "effective_tolerance": "0.0001",
+      "expected": "-1",
+      "group": "primary",
+      "quantity": "1_RF1",
+      "source": {
+        "component": "RF1",
+        "entity": "1",
+        "header_line": 224,
+        "line": 227,
+        "position": "global_node",
+        "raw": "-1.0000000E+00"
+      },
+      "status": "PASS",
+      "unit": "N"
+    }
+  ],
+  "odb_content_validation": "NOT_RUN",
+  "log_present": false,
+  "stdio": [
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\project\\runtime\\standard_runs\\r_711c0afc7d49462c8b5c4faf914923b4\\stdout.bin",
+      "size": 796,
+      "sha256": "25d93a1b8705ef74abb3f7ecfd1202f463c5a063ae090fe595af662225a885fe",
+      "selected_lines": [
+        {
+          "line": 6,
+          "text": "Abaqus JOB r021_bar_42b9754e"
+        },
+        {
+          "line": 7,
+          "text": "Abaqus 2024"
+        },
+        {
+          "line": 13,
+          "text": "Begin Abaqus/Standard Analysis"
+        },
+        {
+          "line": 17,
+          "text": "End Abaqus/Standard Analysis"
+        },
+        {
+          "line": 23,
+          "text": "Abaqus JOB r021_bar_42b9754e COMPLETED"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\project\\runtime\\standard_runs\\r_711c0afc7d49462c8b5c4faf914923b4\\stderr.bin",
+      "size": 176,
+      "sha256": "fda75c2059c73c179c0517166282db48e637da41d5e9b9b4e4719405fd1b93af",
+      "selected_lines": [],
+      "omissions": "Raw licensing and other stderr text retained only in original output; report contains identity/hash/size."
+    }
+  ]
+}

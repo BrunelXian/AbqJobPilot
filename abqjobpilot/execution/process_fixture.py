@@ -75,8 +75,9 @@ class Progress:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--role", choices=("launcher", "worker"), required=True)
+    parser.add_argument("--role", choices=("launcher", "worker", "branch", "leaf", "burst"), required=True)
     parser.add_argument("--directory", required=True)
+    parser.add_argument('--index',type=int,choices=range(6),default=0)
     args = parser.parse_args()
     root = Path(args.directory)
     # Only the backend creates this fixed bounded manifest in its exclusive Run directory.
@@ -86,8 +87,27 @@ def main():
     data = json.loads(raw)
     deadline = time.monotonic() + data["max_seconds"]
     binding = {k: data[k] for k in ("run_id", "project_instance_id", "phase_attempt_id", "plan_digest")}
-    write(root / (args.role + ".json"), {**binding, **identity(), "role": args.role,
+    label=args.role+str(args.index) if args.role=='burst' else args.role
+    write(root / (label + ".json"), {**binding, **identity(), "role": args.role,
                                        "environment_keys": sorted(os.environ)})
+    def child(role,index=0):
+        return subprocess.Popen([sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),
+            '--role',role,'--directory',str(root),'--index',str(index)],shell=False,close_fds=True,
+            cwd=str(root),env=dict(os.environ),stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,creationflags=subprocess.CREATE_NO_WINDOW)
+    if args.role=='burst':
+        if data['scenario']!='managed_burst':raise ValueError('Unexpected fixed child scenario')
+        return 0
+    if args.role=='leaf':
+        if data['scenario']!='managed_tree':raise ValueError('Unexpected fixed child scenario')
+        wait(root/'leaf-release.json',deadline)
+        return 0
+    if args.role=='branch':
+        if data['scenario']!='managed_tree':raise ValueError('Unexpected fixed child scenario')
+        wait(root/'branch-release.json',deadline)
+        child('leaf')
+        wait(root/'leaf.json',deadline)
+        return 0
     if args.role == "launcher":
         worker = subprocess.Popen([sys.executable, "-I", "-S", "-B", str(Path(__file__).resolve()),
                                    "--role", "worker", "--directory", str(root)],
@@ -101,6 +121,12 @@ def main():
     progress = Progress(root, binding)
     try:
         progress('WORKER_READY')
+        if data['scenario']=='managed_tree':
+            child('branch');wait(root/'branch.json',deadline)
+        if data['scenario']=='managed_burst':
+            # Deliberately do not enumerate/wait each transient child for completion.
+            # The retained Job's OS accounting, not these files, closes the range.
+            for index in range(6):child('burst',index)
         if data["scenario"] == "launcher_early":
             wait(root / "release.json", deadline, progress)
         value = data["expected_result"]

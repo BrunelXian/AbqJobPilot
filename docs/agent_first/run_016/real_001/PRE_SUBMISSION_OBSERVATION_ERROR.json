@@ -1,0 +1,1 @@
+{"client_spawn_performed":false,"code":"KeyError owner_id","new_submission_attempts":0,"reason":"health returns ownership object, corrected read only comparison; no changes to candidate","stage":"health shape assertion before spawn"}

@@ -1,0 +1,26 @@
+{
+  "body_sha256": "efdee66a3639bbfe95d084e90036e6376eaa3120c975918423afedf0b72220e1",
+  "plan_id": "plan_499a7ab80b804e11939fc760ac3a2243",
+  "materials_matching": 119,
+  "counts": {
+    "plans": 1,
+    "grants": 0,
+    "runs": 0,
+    "receipts": 0,
+    "consumption": 0
+  },
+  "gate": {
+    "owner_id": "owner_dc681826201446789de8e0a72c1d9dcd",
+    "version": 1,
+    "state": "PAUSED"
+  },
+  "supervisor_started": "0",
+  "service": {
+    "state": "NOT_RUNNING",
+    "reason": "EXPLICIT_START_REQUIRED"
+  },
+  "job_outputs": 0,
+  "attempts": 0,
+  "operator_action_records": 0,
+  "abaqus_calls": 0
+}

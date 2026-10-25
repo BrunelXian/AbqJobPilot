@@ -1,0 +1,79 @@
+{
+  "scope": "Git tracked + nonignored untracked, Dev only; excludes own output",
+  "group_counts": {
+    "other": 44,
+    "source": 91,
+    "run_docs": 1166,
+    "examples": 35,
+    "tests": 79
+  },
+  "group_bytes": {
+    "other": 661260,
+    "source": 866242,
+    "run_docs": 32001972,
+    "examples": 86776,
+    "tests": 760683
+  },
+  "findings": [
+    {
+      "path": "docs/agent_first/run_003/IMPLEMENTATION_AND_PROTOCOL.md",
+      "flags": [
+        "SECRET_KEY_LITERAL_REVIEW"
+      ],
+      "lines": [
+        51
+      ]
+    },
+    {
+      "path": "docs/agent_first/run_015/before/tests/test_execution_gui.py",
+      "flags": [
+        "SECRET_KEY_LITERAL_REVIEW"
+      ],
+      "lines": [
+        312
+      ]
+    },
+    {
+      "path": "runtime/logs/.gitkeep",
+      "flags": [
+        "PRIVATE_RUNTIME_DIRECTORY"
+      ],
+      "lines": []
+    },
+    {
+      "path": "runtime/reports/.gitkeep",
+      "flags": [
+        "PRIVATE_RUNTIME_DIRECTORY"
+      ],
+      "lines": []
+    },
+    {
+      "path": "tests/test_execution_gui.py",
+      "flags": [
+        "SECRET_KEY_LITERAL_REVIEW"
+      ],
+      "lines": [
+        325
+      ]
+    },
+    {
+      "path": "tests/test_product_windows.py",
+      "flags": [
+        "SECRET_KEY_LITERAL_REVIEW"
+      ],
+      "lines": [
+        244
+      ]
+    },
+    {
+      "path": "tests/test_standard_closeout.py",
+      "flags": [
+        "SECRET_KEY_LITERAL_REVIEW"
+      ],
+      "lines": [
+        248
+      ]
+    }
+  ],
+  "limitations": "Pattern and magic-byte screening, not proof of absence of all encoded or externally held secrets. No secret values emitted; no files deleted or staged."
+}

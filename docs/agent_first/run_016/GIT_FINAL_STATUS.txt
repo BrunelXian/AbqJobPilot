@@ -1,0 +1,50 @@
+ M abqjobpilot/execution/client.py
+ M abqjobpilot/execution/diagnostics.py
+ M abqjobpilot/execution/process_backend.py
+ M abqjobpilot/execution/process_contract.py
+ M abqjobpilot/execution/process_fixture.py
+ M abqjobpilot/execution/process_reconciliation.py
+ M abqjobpilot/execution/public_workflow.py
+ M abqjobpilot/execution/reconciliation.py
+ M abqjobpilot/execution/service.py
+ M abqjobpilot/execution/standard_backend.py
+ M abqjobpilot/execution/standard_contract.py
+ M abqjobpilot/execution/standard_process.py
+ M abqjobpilot/execution/supervisor.py
+ M abqjobpilot/execution_gui.py
+ M examples/agent_first/dev_gui_demo.py
+ M examples/agent_first/standard_client.py
+ M examples/agent_first/standard_service.py
+ M tests/run003_process.py
+ M tests/supervisor_helpers.py
+ M tests/test_execution_gui.py
+ M tests/test_execution_isolation.py
+?? abqjobpilot/execution/closeout.py
+?? abqjobpilot/execution/managed_process.py
+?? abqjobpilot/execution/standard_sequence.py
+?? docs/agent_first/run_014/
+?? docs/agent_first/run_015/
+?? docs/agent_first/run_016/
+?? examples/agent_first/R15_01_Start_TEST_Service.vbs
+?? examples/agent_first/R15_02_Submit_Two_Tests.vbs
+?? examples/agent_first/R15_03_Open_Dev_GUI.vbs
+?? examples/agent_first/R15_04_Stop_TEST_Service.vbs
+?? examples/agent_first/R15_05_View_Second_Task.vbs
+?? examples/agent_first/R16_01_Check.vbs
+?? examples/agent_first/R16_02_Start_Service.vbs
+?? examples/agent_first/R16_03_Run_A_Then_B.vbs
+?? examples/agent_first/R16_04_View_A.vbs
+?? examples/agent_first/R16_05_View_B.vbs
+?? examples/agent_first/R16_06_Read_A_Report.vbs
+?? examples/agent_first/R16_07_Read_B_Report.vbs
+?? examples/agent_first/R16_08_Stop_Owner.vbs
+?? examples/agent_first/standard_closeout_operator.py
+?? examples/agent_first/standard_pair_package.py
+?? tests/run014_process.py
+?? tests/run016_process.py
+?? tests/test_closeout_windows.py
+?? tests/test_managed_scope.py
+?? tests/test_standard_closeout.py
+?? tests/test_standard_managed.py
+?? tests/test_standard_managed_windows.py
+?? tests/test_standard_pair_client.py

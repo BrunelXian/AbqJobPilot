@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.977" timestamp="2026-10-24T15:48:29.697828+08:00" hostname="Boltzmann"><testcase classname="tests.test_managed_scope" name="test_managed_two_normal_tasks_are_transactionally_sequential" time="2.844"><failure message="abqjobpilot.execution.models.ExecutionError: Event page exceeds limit">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_R15_06ecb0a83e784491869644dc291d11a4/test_managed_two_normal_tasks_0')
+
+    def test_managed_two_normal_tasks_are_transactionally_sequential(tmp_path):
+        with managed(tmp_path,['normal','normal']) as h:
+            owner=h.owner();client=h.client()
+            receipts=[client.submit(req)['receipt'] for req in h.requests]
+            final=[terminal(h,r['run_id']) for r in receipts]
+&gt;           events=client.events(limit=1000)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_managed_scope.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+abqjobpilot\execution\client.py:70: in events
+    return self.call("events", {"after_sequence": after_sequence, "limit": limit})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;abqjobpilot.execution.client.FakeClient object at 0x000001807CE47D40&gt;
+operation = 'events', arguments = {'after_sequence': 0, 'limit': 1000}
+
+    def call(self, operation, arguments):
+        request_id = identifier("wire")
+        identity = {key: self.endpoint[key] for key in
+                    ("project_id", "project_instance_id", "context_digest", "owner_id")}
+        message = {"protocol": PROTOCOL, "request_id": request_id, **identity,
+                   "credential": self._credential, "operation": operation, "arguments": arguments}
+        try:
+            with connect(self.endpoint["port"]) as stream:
+                send(stream, message, MAX_REQUEST)
+                response = receive(stream, MAX_RESPONSE)
+        except (OSError, EOFError) as exc:
+            raise ExecutionError("ACCEPTANCE_UNKNOWN" if operation in {"submit", "apply_reconciliation", "apply_process_reconciliation", "apply_closeout", "resume_dispatch", "validate_run"} else "COMMUNICATION_UNKNOWN",
+                                 "Connection ended; query/replay original business key",
+                                 stage="TRANSPORT") from exc
+        fields(response, ("protocol", "request_id", "project_id", "project_instance_id", "context_digest",
+                          "owner_id", "ok", "result"))
+        require(response["protocol"] == PROTOCOL and response["request_id"] == request_id
+                and all(response[key] == value for key, value in identity.items()),
+                "ENDPOINT_IDENTITY_MISMATCH", "Response is from another or stale owner")
+        if response["ok"] is not True:
+            error = response["result"]["error"]
+&gt;           raise ExecutionError(error["code"], error["message"], stage=error["stage"],
+                                 run_id=error["run_id"], reconcile=error["requires_reconciliation"],
+                                 project_instance_id=error["project_instance_id"], evidence_refs=error["evidence_refs"])
+E           abqjobpilot.execution.models.ExecutionError: Event page exceeds limit
+
+abqjobpilot\execution\client.py:40: ExecutionError</failure></testcase></testsuite></testsuites>

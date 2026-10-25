@@ -1,0 +1,92 @@
+[
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_regression_888a1e1da0384810866d67371cb97ab0\\pytest\\test_public_sequencer_stops_on0\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_regression_888a1e1da0384810866d67371cb97ab0\\pytest\\test_public_sequencer_stops_on1\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_regression_888a1e1da0384810866d67371cb97ab0\\pytest\\test_public_sequencer_stops_on2\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_regression_888a1e1da0384810866d67371cb97ab0\\pytest\\test_public_sequencer_stops_on3\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_regression_888a1e1da0384810866d67371cb97ab0\\pytest\\test_public_sequencer_stops_on4\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_regression_888a1e1da0384810866d67371cb97ab0\\pytest\\test_public_sequencer_stops_on5\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_final_a676dc03514f4b289fc36c2f97e04bb7\\pytest\\test_public_sequencer_stops_on0\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_final_a676dc03514f4b289fc36c2f97e04bb7\\pytest\\test_public_sequencer_stops_on1\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_final_a676dc03514f4b289fc36c2f97e04bb7\\pytest\\test_public_sequencer_stops_on2\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_final_a676dc03514f4b289fc36c2f97e04bb7\\pytest\\test_public_sequencer_stops_on3\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_final_a676dc03514f4b289fc36c2f97e04bb7\\pytest\\test_public_sequencer_stops_on4\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_final_a676dc03514f4b289fc36c2f97e04bb7\\pytest\\test_public_sequencer_stops_on5\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_deadline_9e5293abddce411e8a0dc0511f519b81\\pytest\\test_public_sequencer_stops_on0\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_deadline_9e5293abddce411e8a0dc0511f519b81\\pytest\\test_public_sequencer_stops_on1\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_deadline_9e5293abddce411e8a0dc0511f519b81\\pytest\\test_public_sequencer_stops_on2\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_deadline_9e5293abddce411e8a0dc0511f519b81\\pytest\\test_public_sequencer_stops_on3\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_deadline_9e5293abddce411e8a0dc0511f519b81\\pytest\\test_public_sequencer_stops_on4\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  },
+  {
+    "sha256": "D8DB5D4734B1828647AB1914845978038A286EF4F9B6861528F38C717495911A",
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run016_deadline_9e5293abddce411e8a0dc0511f519b81\\pytest\\test_public_sequencer_stops_on5\\connection.json",
+    "scope": "THIS_RUN_DUMMY_UNIT_TEST_CONNECTION_ONLY"
+  }
+]

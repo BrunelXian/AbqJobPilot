@@ -55,6 +55,8 @@ def inspect(service, connection, run_id):
                 and plan["job_id"] == run["job_id"] and plan["job_revision"] == run["job_revision"],
                 "PROJECT_IDENTITY_MISMATCH", "Original identity binding differs")
         fixture = plan["process_fixture"]
+        require(not fixture.get('managed_scope'),'UNSUPPORTED_EVIDENCE_POLICY',
+                'Four recorded roles cannot reconcile an unresolved managed descendant scope')
         require(fixture.get("membership_contract") == MEMBERSHIP_CONTRACT
                 and fixture.get("required_roles") == list(REQUIRED_ROLES) and fixture["max_process_members"] == 4
                 and fixture["argument_policy"] == "isolated_python_fixture_v1" and fixture["scenario"] in SCENARIOS,

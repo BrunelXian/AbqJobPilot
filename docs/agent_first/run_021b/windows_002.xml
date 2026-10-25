@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="3.318" timestamp="2026-10-25T11:07:51.359727+08:00" hostname="Boltzmann"><testcase classname="tests.test_product_standard_windows" name="test_product_standard_gui_full_chain_and_safe_restart" time="1.899"><failure message="AssertionError: assert 'error' not in {'error': 'INVALID_REQUEST', 'client_exit': {'pid': 17068, 'creation_time_100ns': 134373712729464544, 'image_path': 'D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe', 'exit_code': 0, ...}}">product_host = (WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_product_standard_gui_full0/produc..._handles.ProcessReference object at 0x000001FBD7364B90&gt;], [&lt;test_execution_gui.Gui object at 0x000001FBD7365FD0&gt;], ...)
+
+    def test_product_standard_gui_full_chain_and_safe_restart(product_host):
+        root,p,m,op,refs,guis,e=product_host
+        gui=Gui(root.parent,None,None,'gui_a',attachment=True,product=True);guis.append(gui)
+        action(gui,'project',project=str(root))
+        wait_until(lambda:'NOT_RUNNING' in telemetry(gui.root/'lifecycle.json').get('status',''))
+        action(gui,'start');wait_until(lambda:m.inspect()['state']=='CONNECTED')
+        c,ctx,h=m.connect();owner=retain_owner_chain(m,h,refs)
+        assert m.start()['created'] is False and c.dispatch_gate()['state']=='PAUSED'
+&gt;       c,rid,submitted,request,approval=approve_submit(root,p,m,op)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_product_standard_windows.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_product_standard_windows.py:92: in approve_submit
+    result=independent(root.parent,root,offer=offer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_product_standard_gui_full0')
+project = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_product_standard_gui_full0/product')
+start = False
+offer = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_product_standard_gui_full0/product/private/offer.json')
+label = 'client'
+
+    def independent(root,project,*,start=False,offer=None,label='client'):
+        out=root/(label+'.json');err=root/(label+'.stderr')
+        command=[sys.executable,'-B',str(SOURCE/'tests/run020_client.py'),'--project',str(project),'--out',str(out)]
+        if start:command+=['--start']
+        if offer:command+=['--offer',str(offer)]
+        with err.open('wb') as log:
+            child=subprocess.Popen(command,cwd=root,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=log,
+                shell=False,close_fds=True,creationflags=subprocess.CREATE_NO_WINDOW,
+                env={**os.environ,'TEMP':str(root),'TMP':str(root),'PYTHONDONTWRITEBYTECODE':'1'})
+            ref=ProcessReference(child.pid)
+            try:
+                assert child.wait(timeout=15)==0,err.read_text()
+&gt;               result=read_json(out);result['client_exit']=ref.exit_evidence();assert 'error' not in result
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AssertionError: assert 'error' not in {'error': 'INVALID_REQUEST', 'client_exit': {'pid': 17068, 'creation_time_100ns': 134373712729464544, 'image_path': 'D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe', 'exit_code': 0, ...}}
+
+tests\test_product_windows.py:84: AssertionError</failure></testcase><testcase classname="tests.test_product_standard_windows" name="test_dispatch_response_loss_replay_no_second_start" time="1.176"><failure message="AssertionError: assert 'error' not in {'error': 'INVALID_REQUEST', 'client_exit': {'pid': 15116, 'creation_time_100ns': 134373712742582253, 'image_path': 'D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe', 'exit_code': 0, ...}}">product_host = (WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_dispatch_response_loss_re0/produc...t 0x000001FBD7351E80&gt;, &lt;abqjobpilot.execution.process_handles.ProcessReference object at 0x000001FBD73CDE80&gt;], [], ...)
+
+    def test_dispatch_response_loss_replay_no_second_start(product_host):
+        root,p,m,op,refs,guis,e=product_host;m.start();c,_,h=m.connect();retain_owner_chain(m,h,refs)
+&gt;       c,rid,submitted,request,approval=approve_submit(root,p,m,op)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_product_standard_windows.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_product_standard_windows.py:92: in approve_submit
+    result=independent(root.parent,root,offer=offer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_dispatch_response_loss_re0')
+project = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_dispatch_response_loss_re0/product')
+start = False
+offer = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_002/test_dispatch_response_loss_re0/product/private/offer.json')
+label = 'client'
+
+    def independent(root,project,*,start=False,offer=None,label='client'):
+        out=root/(label+'.json');err=root/(label+'.stderr')
+        command=[sys.executable,'-B',str(SOURCE/'tests/run020_client.py'),'--project',str(project),'--out',str(out)]
+        if start:command+=['--start']
+        if offer:command+=['--offer',str(offer)]
+        with err.open('wb') as log:
+            child=subprocess.Popen(command,cwd=root,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=log,
+                shell=False,close_fds=True,creationflags=subprocess.CREATE_NO_WINDOW,
+                env={**os.environ,'TEMP':str(root),'TMP':str(root),'PYTHONDONTWRITEBYTECODE':'1'})
+            ref=ProcessReference(child.pid)
+            try:
+                assert child.wait(timeout=15)==0,err.read_text()
+&gt;               result=read_json(out);result['client_exit']=ref.exit_evidence();assert 'error' not in result
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AssertionError: assert 'error' not in {'error': 'INVALID_REQUEST', 'client_exit': {'pid': 15116, 'creation_time_100ns': 134373712742582253, 'image_path': 'D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe', 'exit_code': 0, ...}}
+
+tests\test_product_windows.py:84: AssertionError</failure></testcase></testsuite></testsuites>

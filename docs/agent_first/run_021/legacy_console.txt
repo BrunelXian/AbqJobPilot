@@ -1,0 +1,3 @@
+ISOLATED_ROOT=C:\Users\wuxia\AppData\Local\Temp\AbqJobPilot_Run021_legacy_001\legacy_55snvpr4
+...............                                                          [100%]
+15 passed in 5.11s

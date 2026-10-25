@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="22.643" timestamp="2026-10-25T11:06:29.394011+08:00" hostname="Boltzmann"><testcase classname="tests.test_product_standard_windows" name="test_product_standard_gui_full_chain_and_safe_restart" time="13.420"><failure message="AssertionError: Deterministic condition did not arrive before deadline">product_host = (WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_001/test_product_standard_gui_full0/produc...ndard.StandardOperator object at 0x000001CE11CB3CE0&gt;, [], [&lt;test_execution_gui.Gui object at 0x000001CE11C927B0&gt;], ...)
+
+    def test_product_standard_gui_full_chain_and_safe_restart(product_host):
+        root,p,m,op,refs,guis,e=product_host
+        gui=Gui(root.parent,None,None,'gui_a',attachment=True,product=True);guis.append(gui)
+        action(gui,'project',project=str(root))
+        wait_until(lambda:'NOT_RUNNING' in telemetry(gui.root/'lifecycle.json').get('status',''))
+&gt;       action(gui,'start');wait_until(lambda:m.inspect()['state']=='CONNECTED')
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_product_standard_windows.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = &lt;function test_product_standard_gui_full_chain_and_safe_restart.&lt;locals&gt;.&lt;lambda&gt; at 0x000001CE12751F80&gt;
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() &lt; deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+&gt;       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError</failure></testcase><testcase classname="tests.test_product_standard_windows" name="test_dispatch_response_loss_replay_no_second_start" time="8.879"><failure message="abqjobpilot.execution.models.ExecutionError: Connection ended; query/replay original business key">self = &lt;abqjobpilot.execution.client.FakeClient object at 0x000001CE1272E420&gt;
+operation = 'health', arguments = {}
+
+    def call(self, operation, arguments):
+        request_id = identifier("wire")
+        identity = {key: self.endpoint[key] for key in
+                    ("project_id", "project_instance_id", "context_digest", "owner_id")}
+        message = {"protocol": PROTOCOL, "request_id": request_id, **identity,
+                   "credential": self._credential, "operation": operation, "arguments": arguments}
+        try:
+&gt;           with connect(self.endpoint["port"]) as stream:
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+abqjobpilot\execution\client.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+abqjobpilot\execution\protocol.py:64: in connect
+    return socket.create_connection(("127.0.0.1", port), timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\socket.py:865: in create_connection
+    raise exceptions[0]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+address = ('127.0.0.1', 56957), timeout = 2.0, source_address = None
+all_errors = False
+
+    def create_connection(address, timeout=_GLOBAL_DEFAULT_TIMEOUT,
+                          source_address=None, *, all_errors=False):
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        A host of '' or port 0 tells the OS to use the default. When a connection
+        cannot be created, raises the last error if *all_errors* is False,
+        and an ExceptionGroup of all errors if *all_errors* is True.
+        """
+    
+        host, port = address
+        exceptions = []
+        for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket(af, socktype, proto)
+                if timeout is not _GLOBAL_DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+&gt;               sock.connect(sa)
+E               PermissionError: [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。
+
+D:\Program Files\Python312\Lib\socket.py:850: PermissionError
+
+The above exception was the direct cause of the following exception:
+
+product_host = (WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_windows_001/test_dispatch_response_loss_re0/produc...ject at 0x000001CE125533E0&gt;, &lt;abqjobpilot.product_standard.StandardOperator object at 0x000001CE12756C30&gt;, [], [], ...)
+
+    def test_dispatch_response_loss_replay_no_second_start(product_host):
+&gt;       root,p,m,op,refs,guis,e=product_host;m.start();c,_,h=m.connect();retain_owner_chain(m,h,refs)
+                                                             ^^^^^^^^^^^
+
+tests\test_product_standard_windows.py:138: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+abqjobpilot\service_lifecycle.py:91: in connect
+    return discover(self.project,self.connection_file)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\service_discovery.py:78: in discover
+    health=client.health()
+           ^^^^^^^^^^^^^^^
+abqjobpilot\execution\client.py:46: in health
+    return self.call("health", {})
+           ^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;abqjobpilot.execution.client.FakeClient object at 0x000001CE1272E420&gt;
+operation = 'health', arguments = {}
+
+    def call(self, operation, arguments):
+        request_id = identifier("wire")
+        identity = {key: self.endpoint[key] for key in
+                    ("project_id", "project_instance_id", "context_digest", "owner_id")}
+        message = {"protocol": PROTOCOL, "request_id": request_id, **identity,
+                   "credential": self._credential, "operation": operation, "arguments": arguments}
+        try:
+            with connect(self.endpoint["port"]) as stream:
+                send(stream, message, MAX_REQUEST)
+                response = receive(stream, MAX_RESPONSE)
+        except (OSError, EOFError) as exc:
+&gt;           raise ExecutionError("ACCEPTANCE_UNKNOWN" if operation in {"submit", "apply_reconciliation", "apply_process_reconciliation", "apply_closeout", "resume_dispatch", "validate_run", "lifecycle_stop", "product_standard_control"} else "COMMUNICATION_UNKNOWN",
+                                 "Connection ended; query/replay original business key",
+                                 stage="TRANSPORT") from exc
+E           abqjobpilot.execution.models.ExecutionError: Connection ended; query/replay original business key
+
+abqjobpilot\execution\client.py:30: ExecutionError</failure></testcase></testsuite></testsuites>

@@ -32,7 +32,11 @@ def main():
     config_path = confined(root, args.config, exists=True)
     config = json.loads(config_path.read_text(encoding="utf-8"))
     control = config_path.parent
-    (control / "identity.json").write_text(canonical_json(current_process_identity()), encoding="utf-8")
+    # Publish only a complete identity. The parent intentionally treats file
+    # visibility as the handshake boundary before retaining the kernel handle.
+    identity_temporary = control / "identity.partial"
+    identity_temporary.write_text(canonical_json(current_process_identity()), encoding="utf-8")
+    identity_temporary.replace(control / "identity.json")
     identity_deadline = time.monotonic() + 12
     while not (control / "identity-bound.json").exists():
         if time.monotonic() >= identity_deadline:
@@ -42,11 +46,14 @@ def main():
     real_popen = subprocess.Popen
     process_config = None
     allowed_reads = set()
+    native_resources=[]
     if config.get("trusted_process_config"):
         from abqjobpilot.execution.process_backend import ProcessFixtureConfig
         process_config = ProcessFixtureConfig(**config["trusted_process_config"])
         fixture = Path(__file__).resolve().parents[1] / "abqjobpilot/execution/process_fixture.py"
         allowed_reads = {Path(process_config.interpreter), Path(process_config.image), fixture}
+        if process_config.managed_scope:
+            allowed_reads.add(fixture.with_name('managed_process.py'))
     guard_environment.__wrapped__(monkeypatch)  # Keep original launch/default/legacy traps in every child.
     if process_config is not None:
         physical_launches = []
@@ -68,6 +75,29 @@ def main():
                 reference.close()
             return process
         monkeypatch.setattr(subprocess, "Popen", fixed_launch)
+        if process_config.managed_scope:
+            from abqjobpilot.execution.managed_process import ManagedScope
+            original_create=ManagedScope.create
+            def native_guard(event, values):
+                if event=='abqjobpilot.managed_create':
+                    command,cwd,environment=values
+                    assert list(command[:5])==[process_config.interpreter,'-I','-S','-B',str(fixture)]
+                    assert list(command[5:8])==['--role','launcher','--directory'] and len(command)==9
+                    confined(root,command[8],exists=True)
+                    assert cwd==command[8] and set(environment)=={'SystemRoot','PYTHONDONTWRITEBYTECODE'}
+            sys.addaudithook(native_guard)
+            def native_launch(scope,command,**kwargs):
+                process=original_create(scope,command,**kwargs)
+                native_resources.append((scope,process))
+                from abqjobpilot.execution.process_handles import ProcessReference
+                reference=ProcessReference(process.pid)
+                try:
+                    physical_launches.append({'run_id':Path(command[8]).name,'identity':reference.identity,
+                        'source':'native_JOB_LIST_create_retained_os_reference','scope_id':scope.scope_id})
+                    (control/'physical-launches.json').write_text(canonical_json(physical_launches),encoding='utf-8')
+                finally:reference.close()
+                return process
+            monkeypatch.setattr(ManagedScope,'create',native_launch)
     real_open = Path.open
     accesses = []
     def checked_open(path, *pos, **kw):
@@ -111,6 +141,9 @@ def main():
                 while not stops.wait(0.02):
                     if stop_file.exists():
                         stops.set()
+                    if config.get('managed_control') and 'pause' not in processed and (control/'pause.json').exists():
+                        owner.store.pause_after_error()
+                        processed.add('pause')
                     # Explicit trusted test control, absent from production main and IPC.
                     # Registration happens through the owner Store, never a second writer.
                     if config.get("management_control"):
@@ -168,6 +201,8 @@ def main():
                     "all_data_accesses_confined": all(Path(p).is_relative_to(root) or Path(p) in allowed_reads for p in accesses),
                     "trusted_read_only_execution_objects": sorted(str(p) for p in allowed_reads),
                     "fixed_process_launch_whitelist": process_config is not None,
+                    'managed_handle_cleanup':[{'scope_id':s.scope_id,'job_handle_closed':s.handle is None,
+                        'root_handle_closed':p.handle is None} for s,p in native_resources],
                     "launch_and_legacy_traps": True}), encoding="utf-8")
         monkeypatch.undo()
     return 0

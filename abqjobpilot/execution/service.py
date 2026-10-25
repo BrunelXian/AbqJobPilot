@@ -12,6 +12,10 @@ from .validation import validate_artifact
 
 
 class ExecutionService:
+    def project_view(self, context, before_row=0, limit=32):
+        self._context(context)
+        return self.store.project_view(context, self.client_namespace, before_row, limit)
+
     def __init__(self, context, store, *, client_namespace="internal", process_config=None, standard_config=None):
         require(type(store) is ExperimentStore and store.context == context,
                 "PROJECT_IDENTITY_MISMATCH", "Explicit matching experimental store required")
@@ -22,6 +26,7 @@ class ExecutionService:
         self._backend = FakeBackend()
         self._process_backend = None
         self._standard_backend = None
+        self.product_control = None
         if standard_config is not None:
             from .standard_backend import StandardBackend
             self._standard_backend = StandardBackend(standard_config)
@@ -37,11 +42,23 @@ class ExecutionService:
         from .reconciliation import preview
         return preview(self, context, run_id)
 
+    def preview_closeout(self, context, run_id):
+        from .closeout import preview
+        return preview(self, context, run_id)
+
+    def apply_closeout(self, context, request):
+        from .closeout import ACTIONS
+        from .reconciliation import manage
+        require(type(request) is dict and request.get('operation') in ACTIONS,
+                'INVALID_REQUEST','Explicit supported closeout action required')
+        return manage(self,context,request,request['operation'])
+
     def apply_reconciliation(self, context, request):
         from .reconciliation import ADOPT, manage
         return manage(self, context, request, ADOPT)
 
     def resume_dispatch(self, context, request):
+        require(self.product_control is None, 'DISPATCH_POLICY_MISMATCH', 'Product single dispatch cannot open the general gate')
         from .reconciliation import RESUME, manage
         return manage(self, context, request, RESUME)
 
@@ -140,6 +157,13 @@ class ExecutionService:
             row = connection.execute('SELECT body FROM grants WHERE grant_id=?', (grant_id,)).fetchone()
             consumed = connection.execute('SELECT run_id FROM consumption WHERE grant_id=?', (grant_id,)).fetchone()
             check_standard_grant(self, plan, json.loads(row[0]) if row else None, consumed[0] if consumed else None, run_id)
+            from .standard_sequence import check_start
+            check_start(self,connection,plan,json.loads(row[0]),run_id)
+            from .product_standard import single
+            if single(plan):
+                require(self.product_control is not None, 'REAL_OPERATOR_REQUIRED', 'Provisioned product control required')
+                if run_id: self.product_control.start_check(self, connection, plan, run_id)
+                else: self.product_control.accept(self, connection, plan)
             return
         row = connection.execute("SELECT body FROM configuration WHERE id=1").fetchone()
         require(row is not None, "PLAN_STALE", "Missing explicit configuration")
@@ -167,7 +191,7 @@ class ExecutionService:
         self._context(context)
         request_digest = self._request(context, request)
         namespace = canonical_json([context.project_instance_id, self.client_namespace, "submit"])
-        if not self.store.dispatch_allowed():
+        if not self.store.dispatch_allowed() and self.product_control is None:
             # Restarted owners expose only read-only replay; the same digest and
             # receipt rules are shared by the direct API and IPC adapter.
             with self.store.read() as connection:
@@ -181,6 +205,7 @@ class ExecutionService:
                 replayed = True
             else:
                 plan = document(connection, "plans", "plan_id", request["plan_id"])
+                if self.product_control: self.product_control.accept(self, connection, plan)
                 require(plan["plan_digest"] == request["plan_digest"] and plan["job_id"] == request["job_id"]
                         and plan["job_revision"] == request["job_revision"], "GRANT_SCOPE_MISMATCH", "Request does not identify the fixed Job/Plan")
                 self._check(connection, context, plan, request["grant_id"])
@@ -211,12 +236,17 @@ class ExecutionService:
                         member_completeness='UNKNOWN',overall_exit='UNKNOWN',launch_state='NOT_CALLED',
                         execution_phase='WAITING_START',
                         numerical_validation='NOT_RUN',odb_content_validation='NOT_RUN')
+                    if 'standard_sequence' in plan:
+                        from .standard_sequence import batch_deadline,start_deadline
+                        run.update(batch_observation_not_after=batch_deadline(connection,plan,run),
+                                   start_not_after=start_deadline(connection,plan,document(connection,'grants','grant_id',request['grant_id'])),
+                                   batch_position=plan['standard_sequence']['position'])
                 connection.execute("INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)", (run["run_id"], run["job_id"], run["job_revision"],
                                    run["plan_id"], run["grant_id"], attempt, run["retry_of"], canonical_json(run)))
                 event = append_event(connection, run["run_id"], "REQUEST_ACCEPTED", {"revision": 1})
                 receipt = {"request_id": identifier("req"), "namespace": namespace,
                            "idempotency_key": request["idempotency_key"], "request_digest": request_digest,
-                           "request_status": "ACCEPTED", "accepted_at": now(), "run_id": run["run_id"],
+                           "request_status": "ACCEPTED", "accepted_at": run['created_at'] if 'standard_sequence' in plan else now(), "run_id": run["run_id"],
                            "job_id": run["job_id"], "accepted_sequence": event["project_sequence"], "initial_queue_state": "PENDING"}
                 connection.execute("INSERT INTO receipts VALUES(?,?,?,?,?)", (namespace, request["idempotency_key"],
                                    request_digest, run["run_id"], canonical_json(receipt)))
@@ -229,10 +259,11 @@ class ExecutionService:
 
     def execute_pending(self, context, run_id):
         try:
-            with self.store.dispatch_scope():
+            with self.store.dispatch_scope(product_service=self if self.product_control else None, run_id=run_id):
                 return self._execute_pending(context, run_id)
         except ExecutionError as exc:
             # A dispatch/storage failure never retracts a previously accepted receipt.
+            if self.product_control: self.product_control.blocked = True
             if exc.code in {"STORE_UNAVAILABLE", "ACCEPTANCE_UNKNOWN"}:
                 exc.run_id = run_id
                 exc.reconcile = True
@@ -247,6 +278,7 @@ class ExecutionService:
             if run["queue_state"] == "PENDING" and run["execution"] == "PLANNED":
                 plan = document(connection, "plans", "plan_id", run["plan_id"])
                 try:
+                    if self.product_control: self.product_control.check_plan(plan)
                     self._check(connection, context, plan, run["grant_id"], run_id)
                 except ExecutionError as exc:
                     exc.run_id, exc.stage = run_id, "PRE_DISPATCH"
@@ -265,12 +297,14 @@ class ExecutionService:
                                         if plan["backend_id"] == "python-process-fixture-v1" else {}))
                     if plan['backend_id'] == 'abaqus-standard-axial-2024-v1':
                         run=update_run(connection,run,'STANDARD_STARTING',execution_phase='STARTING')
+                        if self.product_control: run=self.product_control.claim(self, connection, run)
                     claimed = True
         if pre_error:
             raise pre_error
         if not claimed:
             return self.store.query_run(context, run_id)
         completed = False
+        managed_result = None
         try:
             self.store._checkpoint("dispatch:after_claim")
             if plan['backend_id'] == 'abaqus-standard-axial-2024-v1':
@@ -286,6 +320,9 @@ class ExecutionService:
                         grant=document(connection,'grants','grant_id',run['grant_id'])
                         consumed=connection.execute('SELECT run_id FROM consumption WHERE grant_id=?',(run['grant_id'],)).fetchone()
                         check_standard_grant(self,plan,grant,consumed[0] if consumed else None,run_id)
+                        from .standard_sequence import check_start
+                        check_start(self,connection,plan,grant,run_id)
+                        if self.product_control: self.product_control.start_check(self, connection, plan, run_id)
                 result=self._standard_backend.execute(context,plan,run,record_standard,self.store._checkpoint,authorize_standard)
                 from .standard_backend import persist_result
                 self.store._checkpoint('standard:before_result_commit')
@@ -307,7 +344,7 @@ class ExecutionService:
                     self.store._session.lease.check()
                     with self.store.read() as connection:
                         self._check(connection, context, plan, run["grant_id"], run_id)
-                self._process_backend.execute(context, plan, run, record, self.store._checkpoint, authorize_start)
+                managed_result = self._process_backend.execute(context, plan, run, record, self.store._checkpoint, authorize_start)
                 completed = True
                 from .process_validation import validate_process_artifact
                 observation, validation = validate_process_artifact(context, plan, run)
@@ -322,6 +359,21 @@ class ExecutionService:
                 observation, validation = validate_artifact(context, plan, run, emission)
             with self.store.transaction("terminal") as connection:
                 run = document(connection, "runs", "run_id", run_id)
+                managed_changes={}
+                if plan.get('process_fixture',{}).get('managed_scope'):
+                    from .managed_process import check_completion
+                    proof=managed_result.get('managed_scope') if isinstance(managed_result,dict) else None
+                    check_completion(proof,run)
+                    require(run.get('managed_scope',{}).get('scope_id')==proof['scope_id'],
+                            'MANAGED_SCOPE_UNKNOWN','Scope identity changed before terminal commit')
+                    managed_changes={'managed_scope':proof,'managed_completion':'COMMITTED_EMPTY_SCOPE',
+                                     'managed_completion_recorded_at':now()}
+                    update_run(connection,run,'MANAGED_SCOPE_COMPLETED',**managed_changes)
+                    run=document(connection,'runs','run_id',run_id)
+                    # The new profile only auto-continues on both successful key
+                    # exits and valid artifact; empty Job alone is not success.
+                    if run['backend_outcome']!='COMPLETED' or validation['verdict']!='PASS':
+                        connection.execute("UPDATE dispatch_gate SET state='PAUSED',version=version+1 WHERE id=1 AND state!='PAUSED'")
                 connection.execute("INSERT INTO observations VALUES(?,?,?)", (observation["observation_id"], run_id, canonical_json(observation)))
                 connection.execute("INSERT INTO validations VALUES(?,?,?)", (validation["validation_id"], run_id, canonical_json(validation)))
                 update_run(connection, run, "VALIDATION_RECORDED", execution="FINISHED",

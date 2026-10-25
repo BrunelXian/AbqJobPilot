@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="4.916" timestamp="2026-10-24T15:49:14.421373+08:00" hostname="Boltzmann"><testcase classname="tests.test_managed_scope" name="test_managed_two_normal_tasks_are_transactionally_sequential" time="4.784"><failure message="KeyError: 'sequence'">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_R15_32262c1bc1434a92b4c19db48669c008/test_managed_two_normal_tasks_0')
+
+    def test_managed_two_normal_tasks_are_transactionally_sequential(tmp_path):
+        with managed(tmp_path,['normal','normal']) as h:
+            owner=h.owner();client=h.client()
+            receipts=[client.submit(req)['receipt'] for req in h.requests]
+            final=[terminal(h,r['run_id']) for r in receipts]
+&gt;           events=all_events(client)
+                   ^^^^^^^^^^^^^^^^^^
+
+tests\test_managed_scope.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+client = &lt;abqjobpilot.execution.client.FakeClient object at 0x0000023053735BE0&gt;
+
+    def all_events(client):
+        events=[];cursor=0
+        while True:
+            page=client.events(after_sequence=cursor,limit=64)
+            if not page:return events
+&gt;           events.extend(page);cursor=page[-1]['sequence']
+                                       ^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'sequence'
+
+tests\test_managed_scope.py:66: KeyError</failure></testcase></testsuite></testsuites>

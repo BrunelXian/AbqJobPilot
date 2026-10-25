@@ -1,0 +1,8 @@
+{
+  "scope": "Design artifacts, not application regression",
+  "tests": 10,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "resource_keys_per_locale": 110
+}

@@ -1,0 +1,14 @@
+{
+  "contract_version": "af-management-v1",
+  "operation": "release_standard_logical_slot",
+  "project_id": "p_9204fe8fced549d28d8bd62d1b2f8455",
+  "project_instance_id": "pi_776faf62f2d64a4ab23e83c53b665788",
+  "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+  "management_grant_id": "mg_e3b2a681ca464f5f8d65e6ec8eb73cf5",
+  "idempotency_key": "closeout-request_f26673ed6feb466d911748d5cd5533e0",
+  "run_id": "r_609c9bbfd9c54b3ca2fce23bbd6059e4",
+  "expected_run_revision": 20,
+  "preview_digest": "sha256:1e0bf96b0401190743d337d62a76ba6d5012e6c48e029b76fb1dae44069eaa03",
+  "evidence_fingerprint": "sha256:2082ddb90fe082fe020edb0f6df9951582bd3f9c4fbfeaeafe9f3a85b58aff12",
+  "reason": "User explicitly accepts residual member-set/overall-exit uncertainty for this Run only; release logical slot, retain paths and PAUSED; no physical-exit assertion."
+}

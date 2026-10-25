@@ -20,9 +20,12 @@ def test_dependency_graph_excludes_all_legacy_and_launch_modules():
                "sqlite3", "threading", "os"}
     # Explicit owner/transport modules may use only these additional stdlib APIs.
     # Core Fake/plan/validation retain their original no-launch dependency bound.
-    additions = {"ownership": {"ctypes", "msvcrt", "sys"}, "protocol": {"socket", "struct"},
+    # Exact operator capability comparison only. No process/OS transport APIs
+    # are permitted in the new product control module; old bounds stay intact.
+    additions = {"interruption_probe": {"ctypes"}, "product_standard": {"hmac"}, "lifecycle": {"hmac"},"ownership": {"ctypes", "msvcrt", "sys"}, "protocol": {"socket", "struct"},
                  "supervisor": {"argparse", "hmac", "socket"}, "client": set(),
                  "process_handles": {"ctypes"}, "process_backend": {"subprocess", "sys"},
+                 'managed_process': {'ctypes', 'subprocess', 'sys', 'msvcrt'},
                  "process_fixture": {"argparse", "ctypes", "subprocess", "sys"},
                  "standard_contract": {"re"}, "standard_dat": {"decimal", "re"},
                  "standard_process": {"ctypes", "sys"}, "standard_backend": {"subprocess"}}
@@ -34,7 +37,7 @@ def test_dependency_graph_excludes_all_legacy_and_launch_modules():
             if isinstance(node, ast.Import):
                 assert all(item.name in permitted for item in node.names), (path, ast.dump(node))
             if isinstance(node, ast.ImportFrom):
-                assert (node.level == 1 and node.module in local_modules) or (node.level == 0 and node.module in permitted)
+                assert (node.level == 1 and node.module in local_modules) or (node.level == 0 and node.module in permitted) or (path.stem == "lifecycle" and node.level == 2 and node.module == "service_lifecycle")
                 if path.stem in {"fake_backend", "planning", "validation", "authorization", "paths", "models"} and node.level:
                     assert node.module in {"models", "paths"}
                 if path.stem == "client" and node.level:
@@ -54,10 +57,41 @@ def test_dependency_graph_excludes_all_legacy_and_launch_modules():
                     if path.stem == 'standard_process': permitted_os = {'getpid'}
                     assert node.func.attr in permitted_os
                 if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name) and node.func.value.id == "subprocess":
+                    if path.stem == 'managed_process':
+                        assert node.func.attr == 'list2cmdline'  # quoting only, no Popen fallback
+                        continue
                     assert path.stem in {"process_backend", "process_fixture", "standard_backend"}
                     assert node.func.attr == "Popen"
                     assert any(k.arg == "shell" and isinstance(k.value, ast.Constant) and k.value.value is False for k in node.keywords)
                     assert any(k.arg == "close_fds" and isinstance(k.value, ast.Constant) and k.value.value is True for k in node.keywords)
+        if path.stem == 'managed_process':
+            forbidden={'TerminateProcess','TerminateJobObject','OpenJobObjectW','AssignProcessToJobObject',
+                       'CREATE_BREAKAWAY_FROM_JOB','PROC_THREAD_ATTRIBUTE_PARENT_PROCESS'}
+            assert not forbidden.intersection(n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute))
+            assert not forbidden.intersection(n.id for n in ast.walk(tree) if isinstance(n,ast.Name))
+            calls=[n for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='CreateProcessW']
+            assert len(calls)==1
+            # Native inheritance is permitted only for the explicit three-file
+            # HANDLE_LIST; the fixed Python path continues with no handles.
+            assert ast.unparse(calls[0].args[4])=='bool(std_handles)'
+            assert 'k.UpdateProcThreadAttribute(attrs, 0, HANDLE_LIST, handles, C.sizeof(handles), None, None)' in ast.unparse(tree)
+            assert 'len(std_handles) == 3' in ast.unparse(tree)
+            def flags(node):
+                if isinstance(node,ast.Constant):return node.value
+                assert isinstance(node,ast.BinOp) and isinstance(node.op,ast.BitOr)
+                return flags(node.left)|flags(node.right)
+            assert flags(calls[0].args[5])==0x00080000|0x08000000|0x00000400
+            assert any(isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='UpdateProcThreadAttribute'
+                       and isinstance(n.args[2],ast.Name) and n.args[2].id=='JOB_LIST' for n in ast.walk(tree))
+        if path.stem in {'interruption','interruption_probe'}:
+            forbidden={'CreateProcessW','TerminateProcess','TerminateJobObject','OpenJobObjectW',
+                       'AssignProcessToJobObject','Popen','transaction','acquire_supervisor_store',
+                       'execute_pending','submit','apply_closeout','resume_dispatch','write_text','write_bytes'}
+            assert not forbidden.intersection(n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute))
+            assert not forbidden.intersection(n.id for n in ast.walk(tree) if isinstance(n,ast.Name))
+            for n in ast.walk(tree):
+                if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='ProcessReference':
+                    assert any(k.arg=='cleanup' and isinstance(k.value,ast.Constant) and k.value.value is False for k in n.keywords)
     assert "abqjobpilot.config" not in sys.modules
     assert "abqjobpilot.runner_core" not in sys.modules
     assert "tkinter" not in sys.modules

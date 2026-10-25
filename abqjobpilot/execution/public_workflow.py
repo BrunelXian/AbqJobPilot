@@ -26,6 +26,7 @@ def inspect_plan(service, context, plan_id, expected_digest):
             **{k: plan[k] for k in ("plan_id", "plan_digest", "job_id", "job_revision", "backend_id", "backend_version",
                                    "action", "phases", "resources", "validation_policy", "expires_at")},
             "scenario": fixture["scenario"], "membership_contract": fixture["membership_contract"],
+            **({'managed_scope':fixture['managed_scope'],'required_roles_meaning':'KEY_ROLES_NOT_DESCENDANT_COMPLETENESS'} if fixture.get('managed_scope') else {}),
             "required_roles": fixture["required_roles"], "fixture_digest": fixture["fixture_digest"],
             "interpreter_digest": fixture["interpreter_digest"], "image_digest": fixture["image_digest"],
             "input_dependencies": [{"ref": "input:" + str(i), "digest": v["digest"], "size": v["size"]}

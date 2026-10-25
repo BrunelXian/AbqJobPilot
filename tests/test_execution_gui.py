@@ -31,11 +31,13 @@ def public_run(run):
 
 
 class Gui:
-    def __init__(self, root, connection, key, label):
+    def __init__(self, root, connection, key, label, *, attachment=False, lifecycle=False, product=False):
         self.root=root/label; self.root.mkdir()
         self.logs=[(self.root/n).open('wb') for n in ('stdout.txt','stderr.txt')]
-        self.process=subprocess.Popen([sys.executable,'-B',str(SOURCE/'tests/run012_gui.py'),
-            '--connection',str(connection),'--key',key,'--control',str(self.root)],
+        arguments=([str(SOURCE/('tests/run020_gui.py' if product else 'tests/run019_gui.py' if lifecycle else 'tests/run018_gui.py')),'--control',str(self.root)] if attachment else
+                   [str(SOURCE/'tests/run012_gui.py'),'--connection',str(connection),'--key',key,'--control',str(self.root)])
+        interpreter=str(Path(sys.executable).with_name('pythonw.exe')) if attachment else sys.executable
+        self.process=subprocess.Popen([interpreter,'-B',*arguments],
             cwd=str(root),stdin=subprocess.DEVNULL,stdout=self.logs[0],stderr=self.logs[1],
             shell=False,close_fds=True,creationflags=subprocess.CREATE_NO_WINDOW,
             env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','TEMP':str(root),'TMP':str(root)})
@@ -206,13 +208,14 @@ def test_progress_auth_bounds_readonly_and_corruption(tmp_path):
     finally:h.close()
 
 
-def test_product_entries_starter_exits_and_owner_is_independent(tmp_path):
+@pytest.mark.parametrize('managed_scope',[False,True])
+def test_product_entries_starter_exits_and_owner_is_independent(tmp_path,managed_scope):
     root=tmp_path/'demo'
     script=SOURCE/'examples/agent_first/dev_gui_demo.py'
     children=[];refs=[];logs=[];guis=[];data={}
     def command(action):
         out=(tmp_path/(action+'.stdout')).open('wb');err=(tmp_path/(action+'.stderr')).open('wb');logs.extend((out,err))
-        p=subprocess.Popen([sys.executable,'-B',str(script),action,'--root',str(root)],
+        p=subprocess.Popen([sys.executable,'-B',str(script),action,'--root',str(root)]+(['--managed-scope'] if managed_scope else []),
             cwd=tmp_path,stdin=subprocess.DEVNULL,stdout=out,stderr=err,shell=False,close_fds=True,
             creationflags=subprocess.CREATE_NO_WINDOW,env={**os.environ,'TEMP':str(tmp_path),'TMP':str(tmp_path),'PYTHONDONTWRITEBYTECODE':'1'})
         children.append(p)
@@ -246,6 +249,16 @@ def test_product_entries_starter_exits_and_owner_is_independent(tmp_path):
         final=wait_until(lambda:(r if (r:=client.run(rid))['execution']=='FINISHED' else None),timeout=60)
         assert final['artifact_validation']=='VALID' and len(final['process_exits'])==4
         assert all(e['exit_code']==0 for e in final['process_exits'])
+        if managed_scope:
+            assert final['managed_completion']=='COMMITTED_EMPTY_SCOPE'
+            second_receipt=client.receipt('dev-gui-demo-request-1-2')
+            second=wait_until(lambda:r if (r:=client.run(second_receipt['run_id']))['execution']=='FINISHED' else None)
+            assert second['managed_completion']=='COMMITTED_EMPTY_SCOPE' and second['artifact_validation']=='VALID'
+            events=client.events()
+            first_end=next(e for e in events if e['run_id']==rid and e['type']=='VALIDATION_RECORDED')
+            second_start=next(e for e in events if e['run_id']==second['run_id'] and e['type']=='START_INTENT')
+            assert first_end['project_sequence']<second_start['project_sequence']
+            data.update(first_managed_scope=final['managed_scope'],second=second,second_receipt=second_receipt,events=events)
         data.update(root=str(root),waiting_gui=waiting,run=public_run(final),receipt=receipt,gate=client.dispatch_gate(),
                     owner_identity=client.health()['process'],progress=client.progress(rid))
     finally:
@@ -261,7 +274,7 @@ def test_product_entries_starter_exits_and_owner_is_independent(tmp_path):
         if (root/'control/cleanup.json').exists():
             data['cleanup']=read_json(root/'control/cleanup.json')
             assert data['cleanup']['private_remaining']==0
-        save_evidence('product_entries',data)
+        save_evidence('product_entries_managed' if managed_scope else 'product_entries',data)
 
 
 def test_gui_observes_crashed_owner_uncertainty_without_recovery(tmp_path):

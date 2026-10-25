@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-24T07:25:32.676641+00:00",
+  "same_original_ownership_sources": [
+    {
+      "digest": "sha256:01a2188b695ca7192b06a01df51f7ffb26efcdf736e4994c911b777bd969d66f",
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\execution\\ownership.py",
+      "size": 3196
+    },
+    {
+      "digest": "sha256:33429cc790596a1fad0b61a22954df070c46c9e256918f690d445eddc80975ae",
+      "path": "D:\\Projects\\abqjobpilot_dev\\abqjobpilot\\execution\\store.py",
+      "size": 28032
+    }
+  ],
+  "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+  "process": {
+    "pid": 1312,
+    "parent_pid": 3560,
+    "creation_time_100ns": 134373003323432514,
+    "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+    "image_path": "D:\\Program Files\\Python312\\python.exe"
+  },
+  "lock_path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\project\\owner.lock",
+  "lock_offset": 4096,
+  "lock_length": 1,
+  "lock_operation": "msvcrt.LK_NBLCK",
+  "handle_non_inheritable": true,
+  "lock_file_identity": {
+    "device": 5972476759961804666,
+    "inode": 562949954787379
+  },
+  "supervisor_created": false,
+  "dispatch_threads_created": 0,
+  "old_owner_process_operations": 0
+}

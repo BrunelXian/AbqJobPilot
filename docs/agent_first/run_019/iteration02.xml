@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="7" time="21.415" timestamp="2026-10-24T19:22:06.241681+08:00" hostname="Boltzmann"><testcase classname="tests.test_service_lifecycle" name="test_idle_start_reuse_stop_restart_and_permission" time="1.207"><failure message="AssertionError: Regex pattern did not match.&#10;  Expected regex: 'LIFECYCLE_PERMISSION_REQUIRED'&#10;  Actual message: 'Connection permission is not lifecycle permission'">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/iteration02/test_idle_start_reuse_stop_res0')
+
+    def test_idle_start_reuse_stop_restart_and_permission(tmp_path):
+        with prepared(tmp_path) as (h,m):
+            assert m.inspect()['state']=='NOT_RUNNING'
+            result=m.start();assert result['state']=='CONNECTED'
+            client,_,health=m.connect();identity=health['process']
+            ref=ProcessReference(identity['pid'],identity)
+            try:
+                assert m.start()['owner_id']==result['owner_id']
+                assert m.disconnect()['state']=='DISCONNECTED' and ref.exit_evidence() is None
+&gt;               with pytest.raises(ExecutionError,match='LIFECYCLE_PERMISSION_REQUIRED'):
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AssertionError: Regex pattern did not match.
+E                 Expected regex: 'LIFECYCLE_PERMISSION_REQUIRED'
+E                 Actual message: 'Connection permission is not lifecycle permission'
+
+tests\test_service_lifecycle.py:67: AssertionError</failure></testcase><testcase classname="tests.test_service_lifecycle" name="test_concurrent_start_single_reservation_and_owner" time="1.273" /><testcase classname="tests.test_service_lifecycle" name="test_lost_start_reply_never_second_creation[intent_persisted]" time="0.567" /><testcase classname="tests.test_service_lifecycle" name="test_lost_start_reply_never_second_creation[created]" time="1.126" /><testcase classname="tests.test_service_lifecycle" name="test_handshake_timeout_inspect_no_retry" time="1.125" /><testcase classname="tests.test_service_lifecycle" name="test_old_lock_or_bad_credentials_never_replace" time="0.448"><failure message="AssertionError: Regex pattern did not match.&#10;  Expected regex: 'OWNER_BUSY'&#10;  Actual message: 'The experiment already has an OS lock owner'">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/iteration02/test_old_lock_or_bad_credentia0')
+
+    def test_old_lock_or_bad_credentials_never_replace(tmp_path):
+        with prepared(tmp_path) as (h,m):
+            from abqjobpilot.execution.ownership import LocalOwnerLock
+            lock=LocalOwnerLock(h.context)
+            try:
+&gt;               with pytest.raises(ExecutionError,match='OWNER_BUSY'):m.start()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AssertionError: Regex pattern did not match.
+E                 Expected regex: 'OWNER_BUSY'
+E                 Actual message: 'The experiment already has an OS lock owner'
+
+tests\test_service_lifecycle.py:120: AssertionError</failure></testcase><testcase classname="tests.test_service_lifecycle" name="test_product_gui_start_worker_survives_normal_gui_and_launcher_exit" time="15.487"><failure message="AssertionError: Deterministic condition did not arrive before deadline">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/iteration02/test_product_gui_start_worker_0')
+
+    def test_product_gui_start_worker_survives_normal_gui_and_launcher_exit(tmp_path):
+        from test_execution_gui import Gui
+        from test_attachment_gui import action,choose
+        guis=[];refs=[];evidence={'abaqus_calls':0,'python':sys.executable}
+        with prepared(tmp_path,['result_wait']) as (h,m):
+            try:
+                gui=Gui(tmp_path,None,None,'gui_A',attachment=True,lifecycle=True);guis.append(gui)
+                action(gui,'project',project=h.context.root)
+                wait_until(lambda:'NOT_RUNNING' in read_json(gui.root/'lifecycle.json')['status'])
+                action(gui,'start')
+&gt;               wait_until(lambda:m.inspect()['state']=='CONNECTED')
+
+tests\test_service_lifecycle.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = &lt;function test_product_gui_start_worker_survives_normal_gui_and_launcher_exit.&lt;locals&gt;.&lt;lambda&gt; at 0x0000026633D35580&gt;
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() &lt; deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+&gt;       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError</failure></testcase></testsuite></testsuites>

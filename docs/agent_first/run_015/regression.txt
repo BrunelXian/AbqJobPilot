@@ -1,0 +1,36 @@
+........................................................................ [ 18%]
+................F....................................................... [ 37%]
+........................................................................ [ 56%]
+........................................................................ [ 75%]
+........................................................................ [ 93%]
+.......................                                                  [100%]
+================================== FAILURES ===================================
+________ test_dependency_graph_excludes_all_legacy_and_launch_modules _________
+
+    def test_dependency_graph_excludes_all_legacy_and_launch_modules():
+        root = Path(execution.__file__).parent
+        allowed = {"dataclasses", "hashlib", "json", "time", "uuid", "pathlib", "stat", "contextlib",
+                   "sqlite3", "threading", "os"}
+        # Explicit owner/transport modules may use only these additional stdlib APIs.
+        # Core Fake/plan/validation retain their original no-launch dependency bound.
+        additions = {"ownership": {"ctypes", "msvcrt", "sys"}, "protocol": {"socket", "struct"},
+                     "supervisor": {"argparse", "hmac", "socket"}, "client": set(),
+                     "process_handles": {"ctypes"}, "process_backend": {"subprocess", "sys"},
+                     "process_fixture": {"argparse", "ctypes", "subprocess", "sys"},
+                     "standard_contract": {"re"}, "standard_dat": {"decimal", "re"},
+                     "standard_process": {"ctypes", "sys"}, "standard_backend": {"subprocess"}}
+        local_modules = {p.stem for p in root.glob("*.py")}
+        for path in root.glob("*.py"):
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+            permitted = allowed | additions.get(path.stem, set())
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+>                   assert all(item.name in permitted for item in node.names), (path, ast.dump(node))
+E                   AssertionError: (WindowsPath('D:/Projects/abqjobpilot_dev/abqjobpilot/execution/managed_process.py'), "Import(names=[alias(name='ctypes', asname='C')])")
+E                   assert False
+E                    +  where False = all(<generator object test_dependency_graph_excludes_all_legacy_and_launch_modules.<locals>.<genexpr> at 0x0000024555B5D3C0>)
+
+tests\test_execution_isolation.py:35: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_execution_isolation.py::test_dependency_graph_excludes_all_legacy_and_launch_modules
+1 failed, 382 passed in 512.38s (0:08:32)

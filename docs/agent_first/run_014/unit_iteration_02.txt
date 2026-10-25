@@ -1,0 +1,18 @@
+.....................F                                                   [100%]
+================================== FAILURES ===================================
+__________ test_separate_resume_quarantine_and_pending_prerequisites __________
+tests\test_standard_closeout.py:189: in test_separate_resume_quarantine_and_pending_prerequisites
+    plan=prepare(c.service,c.engineering,'r013_bar_a123abcd',expires_at=now()+600).to_dict()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\standard_contract.py:86: in prepare
+    check_plan(service, body)
+abqjobpilot\execution\standard_contract.py:121: in check_plan
+    check_retained_paths(service,plan)
+abqjobpilot\execution\closeout.py:260: in check_retained_paths
+    require(not any(a.is_relative_to(b) or b.is_relative_to(a) for a in candidate for b in held),
+abqjobpilot\execution\models.py:38: in require
+    raise ExecutionError(code, message)
+E   abqjobpilot.execution.models.ExecutionError: Old Standard engineering/output scope remains quarantined
+=========================== short test summary info ===========================
+FAILED tests/test_standard_closeout.py::test_separate_resume_quarantine_and_pending_prerequisites
+1 failed, 21 passed in 15.77s

@@ -1,0 +1,52 @@
+{
+  "head": "271c6f82fd6a4599dbae2df30d903dab2cef1f63",
+  "branch": "Develop",
+  "conflicts": "",
+  "prior_file_changes": [
+    {
+      "path": "README.md",
+      "sha256": "a77aa37e2ce60001dceac7e4a18502c956643e518b53df6aecddac1b67972184",
+      "current_sha256": "627e14a6a78a799f361e7e4ab43e44c86a29c8d456d72805028197c7b2b2adc7"
+    },
+    {
+      "path": "README_CN.md",
+      "sha256": "81b3829b5b6dacdd3f40771db84ebbbc4f7547045857e89a83f83ceb0a8e9775",
+      "current_sha256": "4d0e54b9250309ad77bd8ddd84802aa8d5a9c7338dfd5d1d15e275b0b6c35a05"
+    },
+    {
+      "path": "abqjobpilot/execution/client.py",
+      "sha256": "60621928b07a31c0121a62b21aea3dcf90a979505144b09290acce593d7d138a",
+      "current_sha256": "592c716afb700506e53c9684238689054349b154295ec667b769094439188bab"
+    },
+    {
+      "path": "abqjobpilot/execution/store.py",
+      "sha256": "d3453d978fd3e45749cb1c35dc08374110773adb945fe54c24077d6bf43aec3c",
+      "current_sha256": "f4cd3961091acad28177d95dfad733536fdc0d6b68b953401ec7dbff92e75ade"
+    },
+    {
+      "path": "abqjobpilot/execution/supervisor.py",
+      "sha256": "8b25924b492c1070c3486b0deb190b68548722396dd318e6695725164dccdc82",
+      "current_sha256": "5c469e466eac78075fedc82e35e26751c6c3adaf38dbe3f3973620c7a94c4087"
+    },
+    {
+      "path": "abqjobpilot/execution_gui.py",
+      "sha256": "5de315dbd4fa74043bc396c4d6aecf035538dc8acc1df2ef4dbe8bb791a2b9d0",
+      "current_sha256": "61f17e75422c82fa0aca7baf8cec88d2eeac77d2a381740fc4a237f486e2cba4"
+    },
+    {
+      "path": "tests/test_execution_gui.py",
+      "sha256": "99f04cda7098dac70abd9ed0dfc31a5ac3bbcf741d12bd6ab29c478c82cc16dd",
+      "current_sha256": "3f298a43eb793f70af519b66f38eef1008414520283135506ff41d6e7559eafa"
+    },
+    {
+      "path": "tests/test_execution_isolation.py",
+      "sha256": "5fae03290e5dda4acbb305ed34025eaf5a4d17d2991c8511d7d3015ca2a0f6d6",
+      "current_sha256": "6cc94cee24f13438eef8131ff4c0209a2d3fa48f73819fb809edd5bf10178a36"
+    }
+  ],
+  "unexpected": [],
+  "excluded_live_views": [
+    "docs/agent_first/run_016/real_001/gui_A_reconnected/view.json",
+    "docs/agent_first/run_016/real_001/gui_B/view.json"
+  ]
+}

@@ -1,0 +1,82 @@
+................FF.........                                              [100%]
+================================== FAILURES ===================================
+____________ test_managed_standard_pair_public_gui_and_real_scope _____________
+
+pair_host = (WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_R16_windows_2a38337b2d7142f6926b0787c730d1ae/test_managed_...t 0x00000291F93FEC60>, <abqjobpilot.execution.process_handles.ProcessReference object at 0x00000291F93FDA90>], [], ...)
+
+    def test_managed_standard_pair_public_gui_and_real_scope(pair_host):
+        root,ctx,requests,start,refs,guis,e=pair_host
+        _,owner,c=start();first=c.submit(requests[0]);a=first['receipt']['run_id']
+        wait_until(lambda:(root/'case_0/worker.json').exists())
+        identity=read_json(root/'case_0/worker.json');worker=ProcessReference(identity['pid'],identity);refs.append(worker)
+>       before=wait_until(lambda:r if (r:=c.run(a)).get('managed_scope',{}).get('active_processes',0)>0 else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_standard_managed_windows.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = <function test_managed_standard_pair_public_gui_and_real_scope.<locals>.<lambda> at 0x00000291F9E379C0>
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+>       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError
+_________ test_managed_standard_owner_crash_does_not_adopt_or_start_b _________
+
+pair_host = (WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_R16_windows_2a38337b2d7142f6926b0787c730d1ae/test_managed_...t 0x00000291F9D71D90>, <abqjobpilot.execution.process_handles.ProcessReference object at 0x00000291F94113A0>], [], ...)
+
+    def test_managed_standard_owner_crash_does_not_adopt_or_start_b(pair_host):
+        import ctypes
+        root,ctx,requests,start,refs,guis,e=pair_host
+        child,owner,c=start();rid=c.submit(requests[0])['receipt']['run_id']
+        wait_until(lambda:(root/'case_0/worker.json').exists())
+        identity=read_json(root/'case_0/worker.json');worker=ProcessReference(identity['pid'],identity);refs.append(worker)
+        before=c.run(rid)
+        owner.api.TerminateProcess.argtypes=[ctypes.c_void_p,ctypes.c_uint32]
+        assert owner.api.TerminateProcess(owner.handle,97);wait_until(lambda:owner.exit_evidence() is not None)
+        child.wait(10);assert worker.exit_evidence() is None
+        # Only replace the dead test owner's connection handoff, never any business data or lock.
+        (root/'connection.json').unlink();_,new_owner,new=start()
+        assert new.dispatch_gate()['state']=='PAUSED' and new.run(rid)['reconciliation_requirement']=='RECONCILIATION_REQUIRED'
+        with pytest.raises(ExecutionError):new.submit(requests[1])
+>       assert worker.exit_evidence() is None and len(read_json(root/'physical-launches.json'))==1
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_standard_managed_windows.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\supervisor_helpers.py:33: in read_json
+    return json.loads(path.read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_R16_windows_2a38337b2d7142f6926b0787c730d1ae/test_managed_standard_owner_cr0/physical-launches.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_R16_windows_2a38337b2d7142f6926b0787c730d1ae\\test_managed_standard_owner_cr0\\physical-launches.json'
+
+D:\Program Files\Python312\Lib\pathlib.py:1013: FileNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_standard_managed_windows.py::test_managed_standard_pair_public_gui_and_real_scope
+FAILED tests/test_standard_managed_windows.py::test_managed_standard_owner_crash_does_not_adopt_or_start_b
+2 failed, 25 passed in 40.11s

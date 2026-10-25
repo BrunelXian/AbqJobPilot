@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="9" time="2.013" timestamp="2026-10-25T11:14:27.307280+08:00" hostname="Boltzmann"><testcase classname="tests.test_execution_isolation" name="test_dependency_graph_excludes_all_legacy_and_launch_modules" time="0.081" /><testcase classname="tests.test_execution_isolation" name="test_all_runtime_io_confined_and_default_navigation_untouched" time="0.451" /><testcase classname="tests.test_execution_isolation" name="test_path_escape_rejected_before_candidate_filesystem_access[outside]" time="0.197" /><testcase classname="tests.test_execution_isolation" name="test_path_escape_rejected_before_candidate_filesystem_access[parent]" time="0.188" /><testcase classname="tests.test_execution_isolation" name="test_path_escape_rejected_before_candidate_filesystem_access[unc]" time="0.186" /><testcase classname="tests.test_execution_isolation" name="test_path_escape_rejected_before_candidate_filesystem_access[relative]" time="0.181" /><testcase classname="tests.test_execution_isolation" name="test_path_escape_rejected_before_candidate_filesystem_access[ads]" time="0.182" /><testcase classname="tests.test_execution_isolation" name="test_real_junction_or_symlink_is_rejected" time="0.208"><failure message="AssertionError: 5&#10;assert 0&#10; +  where 0 = &lt;_FuncPtr object at 0x000002BCEFE8DD90&gt;(808, 589988, &lt;ctypes.c_char_Array_461 object at 0x000002BCEFE45FD0&gt;, 460, None, 0, &lt;cparam 'P' (0x000002BCEFE46C98)&gt;, None)&#10; +    where &lt;_FuncPtr object at 0x000002BCEFE8DD90&gt; = &lt;WinDLL 'kernel32', handle 7ffdfbfb0000 at 0x2bcee6e67b0&gt;.DeviceIoControl&#10; +    and   460 = len(b'\x03\x00\x00\xa0\xc4\x01\x00\x00\x00\x00\xe0\x00\xe2\x00\xd8\x00\\\x00?\x00?\x00\\\x00C\x00:\x00\\\x00U\x00s\x00e\x0...\x00n\x00_\x00o\x00r\x00_\x00s\x00y\x00m\x00l\x00i\x00n\x00k\x00_\x000\x00\\\x00t\x00a\x00r\x00g\x00e\x00t\x00\x00\x00')&#10; +    and   &lt;cparam 'P' (0x000002BCEFE46C98)&gt; = &lt;built-in function byref&gt;(c_ulong(0))&#10; +      where &lt;built-in function byref&gt; = ctypes.byref">harness = Harness(root=WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_isolation_final/test_real_junction_or_...symlink_0/inputs/source.txt'), config=ConfigSnapshot(_json='{"config_revision":1,"values":{"label":"simulation 测试"}}'))
+
+    def test_real_junction_or_symlink_is_rejected(harness):
+        h = harness
+        target = h.root / "target"
+        target.mkdir()
+        (target / "input.txt").write_text("fixture", encoding="utf-8")
+        link = h.root / "junction"
+&gt;       _junction(link, target)
+
+tests\test_execution_isolation.py:161: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+link = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_isolation_final/test_real_junction_or_symlink_0/junction')
+target = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run021B_isolation_final/test_real_junction_or_symlink_0/target')
+
+    def _junction(link, target):
+        if sys.platform != "win32":
+            os.symlink(target, link, target_is_directory=True)
+            return
+        # Test-only native junction creation in tmp_path; no shell or external process.
+        link.mkdir()
+        api = ctypes.WinDLL("kernel32", use_last_error=True)
+        api.CreateFileW.argtypes = [ctypes.c_wchar_p, ctypes.c_uint32, ctypes.c_uint32, ctypes.c_void_p,
+                                    ctypes.c_uint32, ctypes.c_uint32, ctypes.c_void_p]
+        api.CreateFileW.restype = ctypes.c_void_p
+        api.DeviceIoControl.argtypes = [ctypes.c_void_p, ctypes.c_uint32, ctypes.c_void_p, ctypes.c_uint32,
+                                        ctypes.c_void_p, ctypes.c_uint32, ctypes.c_void_p, ctypes.c_void_p]
+        api.CloseHandle.argtypes = [ctypes.c_void_p]
+        handle = api.CreateFileW(str(link), 0x40000000, 0, None, 3, 0x02200000, None)
+        assert handle != ctypes.c_void_p(-1).value, ctypes.get_last_error()
+        substitute = ("\\??\\" + str(target)).encode("utf-16le")
+        display = str(target).encode("utf-16le")
+        names = substitute + b"\0\0" + display + b"\0\0"
+        data = struct.pack("&lt;IHHHHHH", 0xA0000003, len(names) + 8, 0, 0, len(substitute), len(substitute) + 2, len(display)) + names
+        buffer, returned = ctypes.create_string_buffer(data), ctypes.c_uint32()
+        try:
+&gt;           assert api.DeviceIoControl(handle, 0x900A4, buffer, len(data), None, 0, ctypes.byref(returned), None), ctypes.get_last_error()
+E           AssertionError: 5
+E           assert 0
+E            +  where 0 = &lt;_FuncPtr object at 0x000002BCEFE8DD90&gt;(808, 589988, &lt;ctypes.c_char_Array_461 object at 0x000002BCEFE45FD0&gt;, 460, None, 0, &lt;cparam 'P' (0x000002BCEFE46C98)&gt;, None)
+E            +    where &lt;_FuncPtr object at 0x000002BCEFE8DD90&gt; = &lt;WinDLL 'kernel32', handle 7ffdfbfb0000 at 0x2bcee6e67b0&gt;.DeviceIoControl
+E            +    and   460 = len(b'\x03\x00\x00\xa0\xc4\x01\x00\x00\x00\x00\xe0\x00\xe2\x00\xd8\x00\\\x00?\x00?\x00\\\x00C\x00:\x00\\\x00U\x00s\x00e\x0...\x00n\x00_\x00o\x00r\x00_\x00s\x00y\x00m\x00l\x00i\x00n\x00k\x00_\x000\x00\\\x00t\x00a\x00r\x00g\x00e\x00t\x00\x00\x00')
+E            +    and   &lt;cparam 'P' (0x000002BCEFE46C98)&gt; = &lt;built-in function byref&gt;(c_ulong(0))
+E            +      where &lt;built-in function byref&gt; = ctypes.byref
+
+tests\test_execution_isolation.py:150: AssertionError</failure></testcase><testcase classname="tests.test_execution_isolation" name="test_creation_never_adopts_existing_directory" time="0.191" /></testsuite></testsuites>

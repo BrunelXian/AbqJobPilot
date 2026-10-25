@@ -1,0 +1,2962 @@
+[
+  {
+    "source": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_CRD02_new_2cq7o2my\\evidence\\015\\test_live_owner_worker_readonl0.json",
+    "source_sha256": "051b3a618eb09b5cf6223ffa51e89fe5d9f56982980feb84f9ac13d3f5896e9b",
+    "scope": "THIS_TURN_FIXED_PYTHON_NOT_SOLVER",
+    "reports": {
+      "active_diagnostic": {
+        "body": {
+          "current_observation": {
+            "boot": {
+              "clock_history": "NOT_VERIFIABLE",
+              "confidence": "ESTIMATE_NOT_SESSION_PROOF",
+              "estimated_boot_unix_ms": 1792918885695,
+              "observed_at": 1792926501,
+              "sampling_uncertainty_ms": 1000,
+              "source": "WALL_CLOCK_MINUS_GETTICKCOUNT64",
+              "state": "ESTIMATE_ONLY",
+              "uptime_ms": 7615546
+            },
+            "finished_at": 1792926501,
+            "lock": "NOT_ACQUIRED",
+            "members": [
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001009424376,
+                  "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+                  "pid": 31488
+                },
+                "observed_at": 1792926501,
+                "record_index": 0,
+                "source": "NONE",
+                "state": "PROCESS_UNAVAILABLE"
+              },
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001009641863,
+                  "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+                  "pid": 23932
+                },
+                "observed_at": 1792926501,
+                "record_index": 1,
+                "source": "NONE",
+                "state": "PROCESS_UNAVAILABLE"
+              },
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001010289554,
+                  "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+                  "pid": 31384
+                },
+                "observed_at": 1792926501,
+                "record_index": 2,
+                "source": "CURRENT_RETAINED_HANDLE",
+                "state": "EXACT_IDENTITY_ALIVE"
+              },
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001010502374,
+                  "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+                  "pid": 29088
+                },
+                "observed_at": 1792926501,
+                "record_index": 3,
+                "source": "CURRENT_RETAINED_HANDLE",
+                "state": "EXACT_IDENTITY_ALIVE"
+              }
+            ],
+            "owner": {
+              "exit_code": null,
+              "expected": {
+                "creation_time_100ns": 134374001003757964,
+                "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+                "pid": 8220
+              },
+              "observed_at": 1792926501,
+              "record_index": null,
+              "source": "CURRENT_RETAINED_HANDLE",
+              "state": "EXACT_IDENTITY_ALIVE"
+            },
+            "scope_handle": "NOT_QUERIED",
+            "source": "CURRENT_WINDOWS_READONLY",
+            "started_at": 1792926501
+          },
+          "decision_digest": "sha256:91042b2b813ad5efe0660ce74d72760f707f915990bbc2c390aedbe55927e216",
+          "diagnosis": {
+            "activity_coverage": "recorded_identities_only_not_complete_membership",
+            "classification": "EXECUTION_ACTIVITY_OBSERVED",
+            "display_projection": "EXECUTION_ACTIVITY_OBSERVED",
+            "interruption_confidence": "NOT_ASSERTED",
+            "known_member_active": true,
+            "message_key": "interruption.execution_activity_observed",
+            "reason_codes": [
+              "GUI_OR_CONNECTION_LOSS_IS_NOT_SOLVER_INTERRUPTION",
+              "KNOWN_MEMBER_ACTIVE_NO_RECOVERY_PERMISSION",
+              "MANAGED_COMPLETION_NOT_COMMITTED_OR_BINDING_INVALID",
+              "ARTIFACT_VALIDATION_INCOMPLETE_NOT_CRASH_PROOF"
+            ]
+          },
+          "disclosure": {
+            "absolute_image_paths_included": false,
+            "artifact_bytes_included": false,
+            "business_writes": false,
+            "credentials_included": false,
+            "digest_is_authorization": false
+          },
+          "facts": {
+            "dispatch_gate": {
+              "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+              "state": "OPEN",
+              "version": 2
+            },
+            "events": [
+              {
+                "event_id": "ev_dfc78da26a4b4558946ae5fff76984ec",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 1,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 1,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 1,
+                "type": "REQUEST_ACCEPTED"
+              },
+              {
+                "event_id": "ev_eac2055ac4b2413fa20676e0a61a8a2e",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": "UNKNOWN",
+                  "execution": "START_INTENT",
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": "DISPATCHED",
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 2,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 2,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 2,
+                "type": "START_INTENT"
+              },
+              {
+                "event_id": "ev_b0296b2e6c3442c9bfb89bbec122b88a",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": "NOT_CONFIRMED",
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": null,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": null,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": null,
+                    "named": false,
+                    "observed_at": 1792926500,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": null,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": null,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": null,
+                    "state": null,
+                    "total_processes": null
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 3,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 3,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 3,
+                "type": "MANAGED_SCOPE_PREPARED"
+              },
+              {
+                "event_id": "ev_78ccfb8a08a1459bb76487fb2b3fa42b",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 1,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926500,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615250000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 1
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 4,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 4,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 4,
+                "type": "MANAGED_ROOT_CREATED"
+              },
+              {
+                "event_id": "ev_7b5f7810df154f4da26dbb28cf69cf8c",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001009641863,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 23932,
+                      "role": "launcher"
+                    },
+                    {
+                      "creation_time_100ns": 134374001010289554,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31384,
+                      "role": "worker_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001010502374,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 29088,
+                      "role": "worker"
+                    }
+                  ],
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 5,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 5,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 5,
+                "type": "PROCESS_IDENTITIES"
+              },
+              {
+                "event_id": "ev_fce219e633ae469c8f0990c3765acd0b",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 6,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926501,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615421000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 6
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 6,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 6,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 6,
+                "type": "MANAGED_SCOPE_OBSERVED"
+              },
+              {
+                "event_id": "ev_201b548392854f12b13e31f3a8c8d1dd",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    }
+                  ],
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 7,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 7,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 7,
+                "type": "PROCESS_EXIT_OBSERVED"
+              },
+              {
+                "event_id": "ev_2cfe2f560a024ae7ba14adbde5d25f7b",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001009641863,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 23932,
+                      "role": "launcher"
+                    }
+                  ],
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 8,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 8,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 8,
+                "type": "PROCESS_EXIT_OBSERVED"
+              },
+              {
+                "event_id": "ev_b8cc3764dbef4996aa647e50f4441666",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 3,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926501,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615484000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 6
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 9,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 9,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 9,
+                "type": "MANAGED_SCOPE_OBSERVED"
+              }
+            ],
+            "observations": [],
+            "plan": {
+              "backend_id": "python-process-fixture-v1",
+              "backend_version": 1,
+              "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+              "plan_id": "plan_f71335a70dd24d7b864bf67f4d76060f"
+            },
+            "receipt": {
+              "accepted_at": 1792926500,
+              "accepted_sequence": 1,
+              "initial_queue_state": "PENDING",
+              "request_id": "req_6fb7408dbd6f484dbe18f61d00a6fbba",
+              "request_status": "ACCEPTED",
+              "run_id": "r_e0da784496f842629f6d21dab9b64f57"
+            },
+            "reconciliations": [],
+            "run": {
+              "artifact_validation": "NOT_RUN",
+              "attempt_no": 1,
+              "backend_id": "python-process-fixture-v1",
+              "backend_outcome": "UNKNOWN",
+              "backend_outcome_basis": null,
+              "created_at": 1792926500,
+              "error": null,
+              "execution": "START_INTENT",
+              "exit_verification": "PARTIAL",
+              "job_revision": 1,
+              "managed_completion": "NOT_CONFIRMED",
+              "managed_completion_recorded_at": null,
+              "managed_scope": {
+                "active_processes": 3,
+                "binding": "CREATE_PROCESS_JOB_LIST",
+                "breakaway_allowed": false,
+                "creation_confirmed": true,
+                "kill_on_job_close": false,
+                "limit_terminated_processes": 0,
+                "named": false,
+                "observed_at": 1792926501,
+                "owner_epoch": 1,
+                "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                "pending_additions": false,
+                "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                "policy": "windows-job-list-v1",
+                "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                "query_monotonic_ns": 7615484000000,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                "source": "QueryInformationJobObject.BasicAccounting",
+                "state": "NOT_COMPLETE",
+                "total_processes": 6
+              },
+              "owner_epoch": 1,
+              "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+              "phase": "PROCESS_FIXTURE",
+              "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+              "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+              "plan_id": "plan_f71335a70dd24d7b864bf67f4d76060f",
+              "process_exits": [
+                {
+                  "creation_time_100ns": 134374001009424376,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "exit_code": 0,
+                  "exit_observed_at": 1792926501,
+                  "exit_source": "retained_windows_handle",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926501,
+                  "pid": 31488,
+                  "role": "launcher_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001009641863,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "exit_code": 0,
+                  "exit_observed_at": 1792926501,
+                  "exit_source": "retained_windows_handle",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926501,
+                  "pid": 23932,
+                  "role": "launcher"
+                }
+              ],
+              "process_failure_code": null,
+              "process_observation": "EXIT_PARTIAL",
+              "process_records": [
+                {
+                  "creation_time_100ns": 134374001009424376,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926501,
+                  "pid": 31488,
+                  "role": "launcher_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001009641863,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926501,
+                  "pid": 23932,
+                  "role": "launcher"
+                },
+                {
+                  "creation_time_100ns": 134374001010289554,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926501,
+                  "pid": 31384,
+                  "role": "worker_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001010502374,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926501,
+                  "pid": 29088,
+                  "role": "worker"
+                }
+              ],
+              "queue_id": null,
+              "queue_state": "DISPATCHED",
+              "reconciled_at": null,
+              "reconciliation": "NONE",
+              "retry_of": null,
+              "revision": 9,
+              "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+              "simulation": true,
+              "solver_conclusion": "NOT_RUN",
+              "validation_scope": null
+            },
+            "validations": []
+          },
+          "identity": {
+            "context_digest": "sha256:29a39d1630bb0d239571520d5ebea5e6be1676f7c56a466e0d0a545897862363",
+            "historical_plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+            "job_ref": "sha256:2caf257e4e09c86c60184e72167f6c838984afec2924111f75c405b7ca72f766",
+            "plan_id": "plan_f71335a70dd24d7b864bf67f4d76060f",
+            "project_id": "p_e893c7a69f6d46a0852468e2a388dc40",
+            "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+            "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+            "schema_version": 3,
+            "storage_generation": "generation_2eecaa6a031a447699e86d5b2d6e8008"
+          },
+          "last_recorded_event": {
+            "event_id": "ev_b8cc3764dbef4996aa647e50f4441666",
+            "evidence_refs": [],
+            "observed_at": 1792926501,
+            "payload": {
+              "artifact_validation": null,
+              "backend_outcome": null,
+              "execution": null,
+              "managed_completion": null,
+              "managed_completion_recorded_at": null,
+              "managed_scope": {
+                "active_processes": 3,
+                "binding": "CREATE_PROCESS_JOB_LIST",
+                "breakaway_allowed": false,
+                "creation_confirmed": true,
+                "kill_on_job_close": false,
+                "limit_terminated_processes": 0,
+                "named": false,
+                "observed_at": 1792926501,
+                "owner_epoch": 1,
+                "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                "pending_additions": false,
+                "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                "policy": "windows-job-list-v1",
+                "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                "query_monotonic_ns": 7615484000000,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                "source": "QueryInformationJobObject.BasicAccounting",
+                "state": "NOT_COMPLETE",
+                "total_processes": 6
+              },
+              "process_exits": null,
+              "process_records": null,
+              "queue_state": null,
+              "reconciled_at": null,
+              "reconciliation": null,
+              "revision": 9,
+              "solver_conclusion": null,
+              "validation_scope": null
+            },
+            "project_sequence": 9,
+            "recorded_at": 1792926501,
+            "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+            "run_sequence": 9,
+            "type": "MANAGED_SCOPE_OBSERVED"
+          },
+          "managed_completion_checked": false,
+          "managed_scope_diagnostic": "RECORDED_UNCONFIRMED",
+          "owner": {
+            "process_identity_source": "owner.json only if exact binding matches",
+            "recorded_epoch": 1,
+            "recorded_owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+            "store_owner_id": "owner_d72ee446b4dc419693903e7c29dbc581"
+          },
+          "reason_evidence": [
+            {
+              "reason_code": "GUI_OR_CONNECTION_LOSS_IS_NOT_SOLVER_INTERRUPTION",
+              "report_pointers": [
+                "/current_observation/members",
+                "/current_observation/owner"
+              ]
+            },
+            {
+              "reason_code": "KNOWN_MEMBER_ACTIVE_NO_RECOVERY_PERMISSION",
+              "report_pointers": [
+                "/current_observation/members",
+                "/current_observation/owner"
+              ]
+            },
+            {
+              "reason_code": "MANAGED_COMPLETION_NOT_COMMITTED_OR_BINDING_INVALID",
+              "report_pointers": [
+                "/facts/run/managed_scope",
+                "/facts/events"
+              ]
+            },
+            {
+              "reason_code": "ARTIFACT_VALIDATION_INCOMPLETE_NOT_CRASH_PROOF",
+              "report_pointers": [
+                "/facts/run/artifact_validation",
+                "/facts/validations"
+              ]
+            }
+          ],
+          "recorded_process_identities": [
+            {
+              "creation_time_100ns": 134374001009424376,
+              "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+              "pid": 31488,
+              "record_index": 0
+            },
+            {
+              "creation_time_100ns": 134374001009641863,
+              "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+              "pid": 23932,
+              "record_index": 1
+            },
+            {
+              "creation_time_100ns": 134374001010289554,
+              "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+              "pid": 31384,
+              "record_index": 2
+            },
+            {
+              "creation_time_100ns": 134374001010502374,
+              "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+              "pid": 29088,
+              "record_index": 3
+            }
+          ],
+          "recovery_preview": {
+            "apply_allowed": false,
+            "eligibility_not_evaluated": true,
+            "may_request_readonly_review": false,
+            "policy": null,
+            "preconditions": [
+              "fresh matching snapshot",
+              "existing policy support",
+              "separate current owner admission"
+            ]
+          },
+          "report_version": "af-interruption-diagnostic-v1",
+          "resources": {
+            "administrative_release_committed": false,
+            "gate": {
+              "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+              "state": "OPEN",
+              "version": 2
+            },
+            "path_policy": "RECORDED_PLAN_SCOPE_NO_RELEASE_BY_DIAGNOSTIC",
+            "paths": [],
+            "slot_run_id": "r_e0da784496f842629f6d21dab9b64f57"
+          },
+          "rules_version": "interruption-rules-v1",
+          "unknowns": [
+            "DOMAIN_EXTERNAL_PROCESSES_UNKNOWN",
+            "CURRENT_ARTIFACT_BYTES_NOT_READ",
+            "NO_ATOMIC_DATABASE_AND_OS_VIEW",
+            "LOCK_OWNERSHIP_NOT_ACQUIRED",
+            "NO_RECOVERY_OR_EXECUTION_AUTHORITY",
+            "HISTORICAL_BOOT_SESSION_NOT_RECORDED",
+            "HISTORICAL_OWNER_OS_IDENTITY_NOT_IN_RUN",
+            "ORIGINAL_MANAGED_SCOPE_COMPLETION_UNCONFIRMED"
+          ],
+          "view": {
+            "all_run_records_within_limits": true,
+            "atomic_scope": "database_records_only; OS observation follows transaction close",
+            "project_event_sequences": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "project_event_upper_bound": 9,
+            "read_at": 1792926501,
+            "run_event_sequences": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "run_revision": 9,
+            "snapshot_digest": "sha256:8404fc3284e2341d8aa0993d04d14f9925b8a7dd2376242bdaef3d6753a3b7ff",
+            "source": "experiment_sqlite_read_transaction"
+          }
+        },
+        "content_digest": "sha256:1d3899145cfca888ee39f4b41c8a41f66582a74c17f8edeac9b8945799504edf"
+      },
+      "final_diagnostic": {
+        "body": {
+          "current_observation": {
+            "boot": {
+              "clock_history": null,
+              "confidence": "UNKNOWN",
+              "estimated_boot_unix_ms": null,
+              "observed_at": null,
+              "sampling_uncertainty_ms": null,
+              "source": null,
+              "state": "NOT_OBSERVED",
+              "uptime_ms": null
+            },
+            "finished_at": null,
+            "lock": "NOT_ACQUIRED",
+            "members": [],
+            "owner": {
+              "exit_code": null,
+              "expected": null,
+              "observed_at": null,
+              "record_index": null,
+              "source": null,
+              "state": "NOT_OBSERVED"
+            },
+            "scope_handle": "NOT_QUERIED",
+            "source": "NOT_REQUESTED",
+            "started_at": null
+          },
+          "decision_digest": "sha256:34c0c3f1f084e9bc8b21b012b1b894d84ad123b22284a57b2a18a70e8a6be3a7",
+          "diagnosis": {
+            "activity_coverage": "recorded_identities_only_not_complete_membership",
+            "classification": "COMPLETION_RECORDED",
+            "display_projection": "COMPLETION_RECORDED",
+            "interruption_confidence": "NOT_ASSERTED",
+            "known_member_active": false,
+            "message_key": "interruption.completion_recorded",
+            "reason_codes": [
+              "HISTORICAL_COMPLETION_NOT_CURRENT_PROCESS_HEALTH"
+            ]
+          },
+          "disclosure": {
+            "absolute_image_paths_included": false,
+            "artifact_bytes_included": false,
+            "business_writes": false,
+            "credentials_included": false,
+            "digest_is_authorization": false
+          },
+          "facts": {
+            "dispatch_gate": {
+              "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+              "state": "OPEN",
+              "version": 2
+            },
+            "events": [
+              {
+                "event_id": "ev_dfc78da26a4b4558946ae5fff76984ec",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 1,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 1,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 1,
+                "type": "REQUEST_ACCEPTED"
+              },
+              {
+                "event_id": "ev_eac2055ac4b2413fa20676e0a61a8a2e",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": "UNKNOWN",
+                  "execution": "START_INTENT",
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": "DISPATCHED",
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 2,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 2,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 2,
+                "type": "START_INTENT"
+              },
+              {
+                "event_id": "ev_b0296b2e6c3442c9bfb89bbec122b88a",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": "NOT_CONFIRMED",
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": null,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": null,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": null,
+                    "named": false,
+                    "observed_at": 1792926500,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": null,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": null,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": null,
+                    "state": null,
+                    "total_processes": null
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 3,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 3,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 3,
+                "type": "MANAGED_SCOPE_PREPARED"
+              },
+              {
+                "event_id": "ev_78ccfb8a08a1459bb76487fb2b3fa42b",
+                "evidence_refs": [],
+                "observed_at": 1792926500,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 1,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926500,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615250000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 1
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 4,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 4,
+                "recorded_at": 1792926500,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 4,
+                "type": "MANAGED_ROOT_CREATED"
+              },
+              {
+                "event_id": "ev_7b5f7810df154f4da26dbb28cf69cf8c",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001009641863,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 23932,
+                      "role": "launcher"
+                    },
+                    {
+                      "creation_time_100ns": 134374001010289554,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31384,
+                      "role": "worker_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001010502374,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 29088,
+                      "role": "worker"
+                    }
+                  ],
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 5,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 5,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 5,
+                "type": "PROCESS_IDENTITIES"
+              },
+              {
+                "event_id": "ev_fce219e633ae469c8f0990c3765acd0b",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 6,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926501,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615421000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 6
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 6,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 6,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 6,
+                "type": "MANAGED_SCOPE_OBSERVED"
+              },
+              {
+                "event_id": "ev_201b548392854f12b13e31f3a8c8d1dd",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    }
+                  ],
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 7,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 7,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 7,
+                "type": "PROCESS_EXIT_OBSERVED"
+              },
+              {
+                "event_id": "ev_2cfe2f560a024ae7ba14adbde5d25f7b",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001009641863,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 23932,
+                      "role": "launcher"
+                    }
+                  ],
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 8,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 8,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 8,
+                "type": "PROCESS_EXIT_OBSERVED"
+              },
+              {
+                "event_id": "ev_b8cc3764dbef4996aa647e50f4441666",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 3,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926501,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615484000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 6
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 9,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 9,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 9,
+                "type": "MANAGED_SCOPE_OBSERVED"
+              },
+              {
+                "event_id": "ev_a7bd73feb1814e65a8535c3d3c23cc97",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001009641863,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 23932,
+                      "role": "launcher"
+                    },
+                    {
+                      "creation_time_100ns": 134374001010502374,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 29088,
+                      "role": "worker"
+                    }
+                  ],
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 10,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 10,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 10,
+                "type": "PROCESS_EXIT_OBSERVED"
+              },
+              {
+                "event_id": "ev_68f24a5db7614abab1c5bf2d40cff89c",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 0,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926501,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615593000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "EMPTY_CONFIRMED",
+                    "total_processes": 6
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 11,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 11,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 11,
+                "type": "MANAGED_SCOPE_OBSERVED"
+              },
+              {
+                "event_id": "ev_40f425f6b6924da8a4f634aeb37272fa",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": [
+                    {
+                      "creation_time_100ns": 134374001009424376,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31488,
+                      "role": "launcher_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001009641863,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 23932,
+                      "role": "launcher"
+                    },
+                    {
+                      "creation_time_100ns": 134374001010502374,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926501,
+                      "pid": 29088,
+                      "role": "worker"
+                    },
+                    {
+                      "creation_time_100ns": 134374001010289554,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "exit_code": 0,
+                      "exit_observed_at": 1792926501,
+                      "exit_source": "retained_windows_handle",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926501,
+                      "pid": 31384,
+                      "role": "worker_transport"
+                    }
+                  ],
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 12,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 12,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 12,
+                "type": "PROCESS_EXIT_OBSERVED"
+              },
+              {
+                "event_id": "ev_bef94474594f4fedb1a2357ae7a58d24",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": "COMPLETED",
+                  "execution": "VALIDATING",
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 13,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 13,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 13,
+                "type": "PROCESS_COMPLETED"
+              },
+              {
+                "event_id": "ev_4b4e5e104a9149818eb41da9ba6046a3",
+                "evidence_refs": [],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": "COMMITTED_EMPTY_SCOPE",
+                  "managed_completion_recorded_at": 1792926501,
+                  "managed_scope": {
+                    "active_processes": 0,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926501,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                    "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                    "query_monotonic_ns": 7615640000000,
+                    "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "EMPTY_CONFIRMED",
+                    "total_processes": 6
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 14,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 14,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 14,
+                "type": "MANAGED_SCOPE_COMPLETED"
+              },
+              {
+                "event_id": "ev_b28d72246bb04f9e9f77f8d54f91a5df",
+                "evidence_refs": [
+                  "obs_ae8cdc6a56714b7494f58002b0f45164",
+                  "val_63191dd8c2a94fe8afd45a1d7d51fa3d"
+                ],
+                "observed_at": 1792926501,
+                "payload": {
+                  "artifact_validation": "VALID",
+                  "backend_outcome": null,
+                  "execution": "FINISHED",
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 15,
+                  "solver_conclusion": null,
+                  "validation_scope": "simulation"
+                },
+                "project_sequence": 15,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "run_sequence": 15,
+                "type": "VALIDATION_RECORDED"
+              }
+            ],
+            "observations": [
+              {
+                "binding_status": "MATCHED",
+                "digest": "sha256:48641170d68ca716d32ea921eed70ad49d5cd7b41c76cdc9f3ed9321466e7951",
+                "exists": true,
+                "file_identity": {
+                  "device": 5972476759961804666,
+                  "inode": 281474978233595
+                },
+                "kind": "PROCESS_FIXTURE_JSON",
+                "mtime": 1792926501135883000,
+                "observation_id": "obs_ae8cdc6a56714b7494f58002b0f45164",
+                "observed_at": 1792926501,
+                "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                "provenance": "python-process-fixture-v1",
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "size": 579,
+                "snapshot": null
+              }
+            ],
+            "plan": {
+              "backend_id": "python-process-fixture-v1",
+              "backend_version": 1,
+              "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+              "plan_id": "plan_f71335a70dd24d7b864bf67f4d76060f"
+            },
+            "receipt": {
+              "accepted_at": 1792926500,
+              "accepted_sequence": 1,
+              "initial_queue_state": "PENDING",
+              "request_id": "req_6fb7408dbd6f484dbe18f61d00a6fbba",
+              "request_status": "ACCEPTED",
+              "run_id": "r_e0da784496f842629f6d21dab9b64f57"
+            },
+            "reconciliations": [],
+            "run": {
+              "artifact_validation": "VALID",
+              "attempt_no": 1,
+              "backend_id": "python-process-fixture-v1",
+              "backend_outcome": "COMPLETED",
+              "backend_outcome_basis": null,
+              "created_at": 1792926500,
+              "error": null,
+              "execution": "FINISHED",
+              "exit_verification": "VERIFIED",
+              "job_revision": 1,
+              "managed_completion": "COMMITTED_EMPTY_SCOPE",
+              "managed_completion_recorded_at": 1792926501,
+              "managed_scope": {
+                "active_processes": 0,
+                "binding": "CREATE_PROCESS_JOB_LIST",
+                "breakaway_allowed": false,
+                "creation_confirmed": true,
+                "kill_on_job_close": false,
+                "limit_terminated_processes": 0,
+                "named": false,
+                "observed_at": 1792926501,
+                "owner_epoch": 1,
+                "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+                "pending_additions": false,
+                "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+                "policy": "windows-job-list-v1",
+                "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+                "query_monotonic_ns": 7615640000000,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                "scope_id": "scope_e293ad7e52da44fd8afc0283a7cbb91a",
+                "source": "QueryInformationJobObject.BasicAccounting",
+                "state": "EMPTY_CONFIRMED",
+                "total_processes": 6
+              },
+              "owner_epoch": 1,
+              "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+              "phase": "PROCESS_FIXTURE",
+              "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+              "plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+              "plan_id": "plan_f71335a70dd24d7b864bf67f4d76060f",
+              "process_exits": [
+                {
+                  "creation_time_100ns": 134374001009424376,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "exit_code": 0,
+                  "exit_observed_at": 1792926501,
+                  "exit_source": "retained_windows_handle",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926501,
+                  "pid": 31488,
+                  "role": "launcher_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001009641863,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "exit_code": 0,
+                  "exit_observed_at": 1792926501,
+                  "exit_source": "retained_windows_handle",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926501,
+                  "pid": 23932,
+                  "role": "launcher"
+                },
+                {
+                  "creation_time_100ns": 134374001010502374,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "exit_code": 0,
+                  "exit_observed_at": 1792926501,
+                  "exit_source": "retained_windows_handle",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926501,
+                  "pid": 29088,
+                  "role": "worker"
+                },
+                {
+                  "creation_time_100ns": 134374001010289554,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "exit_code": 0,
+                  "exit_observed_at": 1792926501,
+                  "exit_source": "retained_windows_handle",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926501,
+                  "pid": 31384,
+                  "role": "worker_transport"
+                }
+              ],
+              "process_failure_code": null,
+              "process_observation": "EXIT_OBSERVED",
+              "process_records": [
+                {
+                  "creation_time_100ns": 134374001009424376,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926501,
+                  "pid": 31488,
+                  "role": "launcher_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001009641863,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926501,
+                  "pid": 23932,
+                  "role": "launcher"
+                },
+                {
+                  "creation_time_100ns": 134374001010289554,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926501,
+                  "pid": 31384,
+                  "role": "worker_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001010502374,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926501,
+                  "pid": 29088,
+                  "role": "worker"
+                }
+              ],
+              "queue_id": null,
+              "queue_state": "DISPATCHED",
+              "reconciled_at": null,
+              "reconciliation": "NONE",
+              "retry_of": null,
+              "revision": 15,
+              "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+              "simulation": true,
+              "solver_conclusion": "NOT_RUN",
+              "validation_scope": "simulation"
+            },
+            "validations": [
+              {
+                "evidence_refs": [
+                  "obs_ae8cdc6a56714b7494f58002b0f45164"
+                ],
+                "phase_attempt_id": "phase_6bc316d03cb346a6a77524ca705a4c07",
+                "policy_id": "process-fixture-result-v1",
+                "policy_version": 1,
+                "recorded_at": 1792926501,
+                "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+                "scope": "simulation",
+                "snapshot": null,
+                "source": null,
+                "validation_id": "val_63191dd8c2a94fe8afd45a1d7d51fa3d",
+                "validator_id": "process-fixture-validator",
+                "validator_version": 1,
+                "verdict": "PASS"
+              }
+            ]
+          },
+          "identity": {
+            "context_digest": "sha256:29a39d1630bb0d239571520d5ebea5e6be1676f7c56a466e0d0a545897862363",
+            "historical_plan_digest": "sha256:cd758bc1297635488b9f5f7771e39f2075e9ece4c3f30ea547e98b3fc7cc5e5c",
+            "job_ref": "sha256:2caf257e4e09c86c60184e72167f6c838984afec2924111f75c405b7ca72f766",
+            "plan_id": "plan_f71335a70dd24d7b864bf67f4d76060f",
+            "project_id": "p_e893c7a69f6d46a0852468e2a388dc40",
+            "project_instance_id": "pi_d55c7c1ad4dc482096cb6dab4bd7bd09",
+            "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+            "schema_version": 3,
+            "storage_generation": "generation_2eecaa6a031a447699e86d5b2d6e8008"
+          },
+          "last_recorded_event": {
+            "event_id": "ev_b28d72246bb04f9e9f77f8d54f91a5df",
+            "evidence_refs": [
+              "obs_ae8cdc6a56714b7494f58002b0f45164",
+              "val_63191dd8c2a94fe8afd45a1d7d51fa3d"
+            ],
+            "observed_at": 1792926501,
+            "payload": {
+              "artifact_validation": "VALID",
+              "backend_outcome": null,
+              "execution": "FINISHED",
+              "managed_completion": null,
+              "managed_completion_recorded_at": null,
+              "managed_scope": null,
+              "process_exits": null,
+              "process_records": null,
+              "queue_state": null,
+              "reconciled_at": null,
+              "reconciliation": null,
+              "revision": 15,
+              "solver_conclusion": null,
+              "validation_scope": "simulation"
+            },
+            "project_sequence": 15,
+            "recorded_at": 1792926501,
+            "run_id": "r_e0da784496f842629f6d21dab9b64f57",
+            "run_sequence": 15,
+            "type": "VALIDATION_RECORDED"
+          },
+          "managed_completion_checked": true,
+          "managed_scope_diagnostic": "COMMITTED_BOUND_COMPLETION",
+          "owner": {
+            "process_identity_source": "owner.json only if exact binding matches",
+            "recorded_epoch": 1,
+            "recorded_owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+            "store_owner_id": "owner_d72ee446b4dc419693903e7c29dbc581"
+          },
+          "reason_evidence": [
+            {
+              "reason_code": "HISTORICAL_COMPLETION_NOT_CURRENT_PROCESS_HEALTH",
+              "report_pointers": [
+                "/facts/run",
+                "/facts/events",
+                "/view"
+              ]
+            }
+          ],
+          "recorded_process_identities": [
+            {
+              "creation_time_100ns": 134374001009424376,
+              "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+              "pid": 31488,
+              "record_index": 0
+            },
+            {
+              "creation_time_100ns": 134374001009641863,
+              "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+              "pid": 23932,
+              "record_index": 1
+            },
+            {
+              "creation_time_100ns": 134374001010289554,
+              "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+              "pid": 31384,
+              "record_index": 2
+            },
+            {
+              "creation_time_100ns": 134374001010502374,
+              "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+              "pid": 29088,
+              "record_index": 3
+            }
+          ],
+          "recovery_preview": {
+            "apply_allowed": false,
+            "eligibility_not_evaluated": true,
+            "may_request_readonly_review": false,
+            "policy": null,
+            "preconditions": [
+              "fresh matching snapshot",
+              "existing policy support",
+              "separate current owner admission"
+            ]
+          },
+          "report_version": "af-interruption-diagnostic-v1",
+          "resources": {
+            "administrative_release_committed": false,
+            "gate": {
+              "owner_id": "owner_d72ee446b4dc419693903e7c29dbc581",
+              "state": "OPEN",
+              "version": 2
+            },
+            "path_policy": "RECORDED_PLAN_SCOPE_NO_RELEASE_BY_DIAGNOSTIC",
+            "paths": [],
+            "slot_run_id": null
+          },
+          "rules_version": "interruption-rules-v1",
+          "unknowns": [
+            "DOMAIN_EXTERNAL_PROCESSES_UNKNOWN",
+            "CURRENT_ARTIFACT_BYTES_NOT_READ",
+            "NO_ATOMIC_DATABASE_AND_OS_VIEW",
+            "LOCK_OWNERSHIP_NOT_ACQUIRED",
+            "NO_RECOVERY_OR_EXECUTION_AUTHORITY",
+            "HISTORICAL_BOOT_SESSION_NOT_RECORDED",
+            "HISTORICAL_OWNER_OS_IDENTITY_NOT_IN_RUN",
+            "CURRENT_OS_NOT_OBSERVED"
+          ],
+          "view": {
+            "all_run_records_within_limits": true,
+            "atomic_scope": "database_records_only; OS observation follows transaction close",
+            "project_event_sequences": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "project_event_upper_bound": 15,
+            "read_at": 1792926501,
+            "run_event_sequences": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "run_revision": 15,
+            "snapshot_digest": "sha256:8847804aada090bb6bd6df41ff1cdf1a395ee7b780c3e1d45cef683c51276e97",
+            "source": "experiment_sqlite_read_transaction"
+          }
+        },
+        "content_digest": "sha256:4b3acc9bf00c3be4472f2791651e29970d47885a690284489613ac73348c7ebd"
+      }
+    },
+    "owner_cleanup": [
+      {
+        "actual_process_handle_signaled": true,
+        "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_CRD02_new_2cq7o2my\\cases\\test_live_owner_worker_readonl0\\process_0",
+        "exit_code": 0,
+        "exited": true,
+        "identity": {
+          "creation_time_100ns": 134374001003757964,
+          "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+          "image_path": "D:\\Program Files\\Python312\\python.exe",
+          "parent_pid": 30916,
+          "pid": 8220
+        },
+        "launcher_pid": 30916,
+        "mode": "owner",
+        "terminated_by_owned_handle": false
+      }
+    ],
+    "cleanup_exits": [
+      {
+        "creation_time_100ns": 134374001010502374,
+        "exit_code": 0,
+        "exit_observed_at": 1792926501,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\Program Files\\Python312\\python.exe",
+        "pid": 29088
+      }
+    ],
+    "private_credentials_removed": true,
+    "transient_read_refusals": [
+      "STORE_REQUIRES_MAINTENANCE",
+      "STORE_REQUIRES_MAINTENANCE"
+    ]
+  },
+  {
+    "source": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_CRD02_new_2cq7o2my\\evidence\\015\\test_owned_owner_exit_worker_a0.json",
+    "source_sha256": "2a99779b40403cace2d33b72439752df4ac009551ad027456886e9dae78069af",
+    "scope": "THIS_TURN_FIXED_PYTHON_NOT_SOLVER",
+    "reports": {
+      "interrupted_diagnostic": {
+        "body": {
+          "current_observation": {
+            "boot": {
+              "clock_history": "NOT_VERIFIABLE",
+              "confidence": "ESTIMATE_NOT_SESSION_PROOF",
+              "estimated_boot_unix_ms": 1792918885708,
+              "observed_at": 1792926502,
+              "sampling_uncertainty_ms": 1000,
+              "source": "WALL_CLOCK_MINUS_GETTICKCOUNT64",
+              "state": "ESTIMATE_ONLY",
+              "uptime_ms": 7616875
+            },
+            "finished_at": 1792926502,
+            "lock": "NOT_ACQUIRED",
+            "members": [
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001023508165,
+                  "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+                  "pid": 29480
+                },
+                "observed_at": 1792926502,
+                "record_index": 0,
+                "source": "NONE",
+                "state": "PROCESS_UNAVAILABLE"
+              },
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001023697587,
+                  "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+                  "pid": 32472
+                },
+                "observed_at": 1792926502,
+                "record_index": 1,
+                "source": "NONE",
+                "state": "PROCESS_UNAVAILABLE"
+              },
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001024269241,
+                  "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+                  "pid": 28872
+                },
+                "observed_at": 1792926502,
+                "record_index": 2,
+                "source": "CURRENT_RETAINED_HANDLE",
+                "state": "EXACT_IDENTITY_ALIVE"
+              },
+              {
+                "exit_code": null,
+                "expected": {
+                  "creation_time_100ns": 134374001024499312,
+                  "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+                  "pid": 29876
+                },
+                "observed_at": 1792926502,
+                "record_index": 3,
+                "source": "CURRENT_RETAINED_HANDLE",
+                "state": "EXACT_IDENTITY_ALIVE"
+              }
+            ],
+            "owner": {
+              "exit_code": null,
+              "expected": {
+                "creation_time_100ns": 134374001018770605,
+                "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+                "pid": 32240
+              },
+              "observed_at": 1792926502,
+              "record_index": null,
+              "source": "NONE",
+              "state": "PROCESS_UNAVAILABLE"
+            },
+            "scope_handle": "NOT_QUERIED",
+            "source": "CURRENT_WINDOWS_READONLY",
+            "started_at": 1792926502
+          },
+          "decision_digest": "sha256:da44b537aa3f6d0a24e341f36ef913b4982e0e8c1aa9ca1a4b01826d2d94036f",
+          "diagnosis": {
+            "activity_coverage": "recorded_identities_only_not_complete_membership",
+            "classification": "EXECUTION_ACTIVITY_OBSERVED",
+            "display_projection": "EXECUTION_ACTIVITY_OBSERVED",
+            "interruption_confidence": "NOT_ASSERTED",
+            "known_member_active": true,
+            "message_key": "interruption.execution_activity_observed",
+            "reason_codes": [
+              "GUI_OR_CONNECTION_LOSS_IS_NOT_SOLVER_INTERRUPTION",
+              "KNOWN_MEMBER_ACTIVE_NO_RECOVERY_PERMISSION",
+              "MANAGED_COMPLETION_NOT_COMMITTED_OR_BINDING_INVALID",
+              "ARTIFACT_VALIDATION_INCOMPLETE_NOT_CRASH_PROOF",
+              "OWNER_ABSENCE_OR_MISMATCH_IS_NOT_DESCENDANT_EXIT"
+            ]
+          },
+          "disclosure": {
+            "absolute_image_paths_included": false,
+            "artifact_bytes_included": false,
+            "business_writes": false,
+            "credentials_included": false,
+            "digest_is_authorization": false
+          },
+          "facts": {
+            "dispatch_gate": {
+              "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+              "state": "OPEN",
+              "version": 2
+            },
+            "events": [
+              {
+                "event_id": "ev_c0135daff2d6461089f0109551e3a65a",
+                "evidence_refs": [],
+                "observed_at": 1792926502,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 1,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 1,
+                "recorded_at": 1792926502,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "run_sequence": 1,
+                "type": "REQUEST_ACCEPTED"
+              },
+              {
+                "event_id": "ev_f91f21a996b4495d83daa3aad9ff339f",
+                "evidence_refs": [],
+                "observed_at": 1792926502,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": "UNKNOWN",
+                  "execution": "START_INTENT",
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": "DISPATCHED",
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 2,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 2,
+                "recorded_at": 1792926502,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "run_sequence": 2,
+                "type": "START_INTENT"
+              },
+              {
+                "event_id": "ev_9685ed34e8454dbaa8c0dbf615734f00",
+                "evidence_refs": [],
+                "observed_at": 1792926502,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": "NOT_CONFIRMED",
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": null,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": null,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": null,
+                    "named": false,
+                    "observed_at": 1792926502,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+                    "pending_additions": null,
+                    "phase_attempt_id": "phase_f9b50529149a4663af121d8b6860ae27",
+                    "plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_e7072663e820454cb4a04b512a26b16e",
+                    "query_monotonic_ns": null,
+                    "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_109d30347f4b4a939cbb12735c034cf9",
+                    "source": null,
+                    "state": null,
+                    "total_processes": null
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 3,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 4,
+                "recorded_at": 1792926502,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "run_sequence": 3,
+                "type": "MANAGED_SCOPE_PREPARED"
+              },
+              {
+                "event_id": "ev_7028ac9d46f749729bf0f67863bc3aa9",
+                "evidence_refs": [],
+                "observed_at": 1792926502,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 2,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926502,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_f9b50529149a4663af121d8b6860ae27",
+                    "plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_e7072663e820454cb4a04b512a26b16e",
+                    "query_monotonic_ns": 7616656000000,
+                    "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_109d30347f4b4a939cbb12735c034cf9",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 2
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 4,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 5,
+                "recorded_at": 1792926502,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "run_sequence": 4,
+                "type": "MANAGED_ROOT_CREATED"
+              },
+              {
+                "event_id": "ev_1926924f71e4476bb716d6f797e356dd",
+                "evidence_refs": [],
+                "observed_at": 1792926502,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": [
+                    {
+                      "creation_time_100ns": 134374001023508165,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926502,
+                      "pid": 29480,
+                      "role": "launcher_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001023697587,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926502,
+                      "pid": 32472,
+                      "role": "launcher"
+                    },
+                    {
+                      "creation_time_100ns": 134374001024269241,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                      "observed_at": 1792926502,
+                      "pid": 28872,
+                      "role": "worker_transport"
+                    },
+                    {
+                      "creation_time_100ns": 134374001024499312,
+                      "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                      "identity_status": "VERIFIED",
+                      "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                      "observed_at": 1792926502,
+                      "pid": 29876,
+                      "role": "worker"
+                    }
+                  ],
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 5,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 6,
+                "recorded_at": 1792926502,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "run_sequence": 5,
+                "type": "PROCESS_IDENTITIES"
+              },
+              {
+                "event_id": "ev_b72e6e774c1f4d06993b725f04718f33",
+                "evidence_refs": [],
+                "observed_at": 1792926502,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": {
+                    "active_processes": 6,
+                    "binding": "CREATE_PROCESS_JOB_LIST",
+                    "breakaway_allowed": false,
+                    "creation_confirmed": true,
+                    "kill_on_job_close": false,
+                    "limit_terminated_processes": 0,
+                    "named": false,
+                    "observed_at": 1792926502,
+                    "owner_epoch": 1,
+                    "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+                    "pending_additions": false,
+                    "phase_attempt_id": "phase_f9b50529149a4663af121d8b6860ae27",
+                    "plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+                    "policy": "windows-job-list-v1",
+                    "project_instance_id": "pi_e7072663e820454cb4a04b512a26b16e",
+                    "query_monotonic_ns": 7616828000000,
+                    "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                    "scope_id": "scope_109d30347f4b4a939cbb12735c034cf9",
+                    "source": "QueryInformationJobObject.BasicAccounting",
+                    "state": "NOT_COMPLETE",
+                    "total_processes": 6
+                  },
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 6,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 7,
+                "recorded_at": 1792926502,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "run_sequence": 6,
+                "type": "MANAGED_SCOPE_OBSERVED"
+              }
+            ],
+            "observations": [],
+            "plan": {
+              "backend_id": "python-process-fixture-v1",
+              "backend_version": 1,
+              "plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+              "plan_id": "plan_5a9759ef150b48269ebc513fcfc3c95b"
+            },
+            "receipt": {
+              "accepted_at": 1792926502,
+              "accepted_sequence": 1,
+              "initial_queue_state": "PENDING",
+              "request_id": "req_7f624a9b001d4f7e903dd978e3b57067",
+              "request_status": "ACCEPTED",
+              "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b"
+            },
+            "reconciliations": [],
+            "run": {
+              "artifact_validation": "NOT_RUN",
+              "attempt_no": 1,
+              "backend_id": "python-process-fixture-v1",
+              "backend_outcome": "UNKNOWN",
+              "backend_outcome_basis": null,
+              "created_at": 1792926502,
+              "error": null,
+              "execution": "START_INTENT",
+              "exit_verification": "UNKNOWN",
+              "job_revision": 1,
+              "managed_completion": "NOT_CONFIRMED",
+              "managed_completion_recorded_at": null,
+              "managed_scope": {
+                "active_processes": 6,
+                "binding": "CREATE_PROCESS_JOB_LIST",
+                "breakaway_allowed": false,
+                "creation_confirmed": true,
+                "kill_on_job_close": false,
+                "limit_terminated_processes": 0,
+                "named": false,
+                "observed_at": 1792926502,
+                "owner_epoch": 1,
+                "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+                "pending_additions": false,
+                "phase_attempt_id": "phase_f9b50529149a4663af121d8b6860ae27",
+                "plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+                "policy": "windows-job-list-v1",
+                "project_instance_id": "pi_e7072663e820454cb4a04b512a26b16e",
+                "query_monotonic_ns": 7616828000000,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                "scope_id": "scope_109d30347f4b4a939cbb12735c034cf9",
+                "source": "QueryInformationJobObject.BasicAccounting",
+                "state": "NOT_COMPLETE",
+                "total_processes": 6
+              },
+              "owner_epoch": 1,
+              "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+              "phase": "PROCESS_FIXTURE",
+              "phase_attempt_id": "phase_f9b50529149a4663af121d8b6860ae27",
+              "plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+              "plan_id": "plan_5a9759ef150b48269ebc513fcfc3c95b",
+              "process_exits": [],
+              "process_failure_code": null,
+              "process_observation": "IDENTITIES_VERIFIED",
+              "process_records": [
+                {
+                  "creation_time_100ns": 134374001023508165,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926502,
+                  "pid": 29480,
+                  "role": "launcher_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001023697587,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926502,
+                  "pid": 32472,
+                  "role": "launcher"
+                },
+                {
+                  "creation_time_100ns": 134374001024269241,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+                  "observed_at": 1792926502,
+                  "pid": 28872,
+                  "role": "worker_transport"
+                },
+                {
+                  "creation_time_100ns": 134374001024499312,
+                  "execution_object_digest": "sha256:031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+                  "identity_status": "VERIFIED",
+                  "image_digest": "sha256:4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+                  "observed_at": 1792926502,
+                  "pid": 29876,
+                  "role": "worker"
+                }
+              ],
+              "queue_id": null,
+              "queue_state": "DISPATCHED",
+              "reconciled_at": null,
+              "reconciliation": "NONE",
+              "retry_of": null,
+              "revision": 6,
+              "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+              "simulation": true,
+              "solver_conclusion": "NOT_RUN",
+              "validation_scope": null
+            },
+            "validations": []
+          },
+          "identity": {
+            "context_digest": "sha256:87c5715cdb4054bcb45efd3ba9ee6c9cf0f5c51b467a841aa25102f55642e941",
+            "historical_plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+            "job_ref": "sha256:2caf257e4e09c86c60184e72167f6c838984afec2924111f75c405b7ca72f766",
+            "plan_id": "plan_5a9759ef150b48269ebc513fcfc3c95b",
+            "project_id": "p_f8b3a4e052e940de8ac753e535f08bc6",
+            "project_instance_id": "pi_e7072663e820454cb4a04b512a26b16e",
+            "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+            "schema_version": 3,
+            "storage_generation": "generation_5f0cb9b820ce4e98832eef9e77977928"
+          },
+          "last_recorded_event": {
+            "event_id": "ev_b72e6e774c1f4d06993b725f04718f33",
+            "evidence_refs": [],
+            "observed_at": 1792926502,
+            "payload": {
+              "artifact_validation": null,
+              "backend_outcome": null,
+              "execution": null,
+              "managed_completion": null,
+              "managed_completion_recorded_at": null,
+              "managed_scope": {
+                "active_processes": 6,
+                "binding": "CREATE_PROCESS_JOB_LIST",
+                "breakaway_allowed": false,
+                "creation_confirmed": true,
+                "kill_on_job_close": false,
+                "limit_terminated_processes": 0,
+                "named": false,
+                "observed_at": 1792926502,
+                "owner_epoch": 1,
+                "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+                "pending_additions": false,
+                "phase_attempt_id": "phase_f9b50529149a4663af121d8b6860ae27",
+                "plan_digest": "sha256:641de82b770841ae01b13c27a934c7e7f7468f9df0a80f095b8d65efc1415962",
+                "policy": "windows-job-list-v1",
+                "project_instance_id": "pi_e7072663e820454cb4a04b512a26b16e",
+                "query_monotonic_ns": 7616828000000,
+                "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+                "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+                "scope_id": "scope_109d30347f4b4a939cbb12735c034cf9",
+                "source": "QueryInformationJobObject.BasicAccounting",
+                "state": "NOT_COMPLETE",
+                "total_processes": 6
+              },
+              "process_exits": null,
+              "process_records": null,
+              "queue_state": null,
+              "reconciled_at": null,
+              "reconciliation": null,
+              "revision": 6,
+              "solver_conclusion": null,
+              "validation_scope": null
+            },
+            "project_sequence": 7,
+            "recorded_at": 1792926502,
+            "run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b",
+            "run_sequence": 6,
+            "type": "MANAGED_SCOPE_OBSERVED"
+          },
+          "managed_completion_checked": false,
+          "managed_scope_diagnostic": "RECORDED_UNCONFIRMED",
+          "owner": {
+            "process_identity_source": "owner.json only if exact binding matches",
+            "recorded_epoch": 1,
+            "recorded_owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+            "store_owner_id": "owner_835a2c8349d648b796caaf795d68fe66"
+          },
+          "reason_evidence": [
+            {
+              "reason_code": "GUI_OR_CONNECTION_LOSS_IS_NOT_SOLVER_INTERRUPTION",
+              "report_pointers": [
+                "/current_observation/members",
+                "/current_observation/owner"
+              ]
+            },
+            {
+              "reason_code": "KNOWN_MEMBER_ACTIVE_NO_RECOVERY_PERMISSION",
+              "report_pointers": [
+                "/current_observation/members",
+                "/current_observation/owner"
+              ]
+            },
+            {
+              "reason_code": "MANAGED_COMPLETION_NOT_COMMITTED_OR_BINDING_INVALID",
+              "report_pointers": [
+                "/facts/run/managed_scope",
+                "/facts/events"
+              ]
+            },
+            {
+              "reason_code": "ARTIFACT_VALIDATION_INCOMPLETE_NOT_CRASH_PROOF",
+              "report_pointers": [
+                "/facts/run/artifact_validation",
+                "/facts/validations"
+              ]
+            },
+            {
+              "reason_code": "OWNER_ABSENCE_OR_MISMATCH_IS_NOT_DESCENDANT_EXIT",
+              "report_pointers": [
+                "/current_observation/owner"
+              ]
+            }
+          ],
+          "recorded_process_identities": [
+            {
+              "creation_time_100ns": 134374001023508165,
+              "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+              "pid": 29480,
+              "record_index": 0
+            },
+            {
+              "creation_time_100ns": 134374001023697587,
+              "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+              "pid": 32472,
+              "record_index": 1
+            },
+            {
+              "creation_time_100ns": 134374001024269241,
+              "image_digest": "sha256:3672bfc103a1a3c0df4f54482e9f2d1000b9a59c7bd1fb79b132c9873c0f75ef",
+              "pid": 28872,
+              "record_index": 2
+            },
+            {
+              "creation_time_100ns": 134374001024499312,
+              "image_digest": "sha256:563428c892b6a48d0c1e02484d26b2d7096ead7d840e8f849cdeaaf488c706ee",
+              "pid": 29876,
+              "record_index": 3
+            }
+          ],
+          "recovery_preview": {
+            "apply_allowed": false,
+            "eligibility_not_evaluated": true,
+            "may_request_readonly_review": false,
+            "policy": null,
+            "preconditions": [
+              "fresh matching snapshot",
+              "existing policy support",
+              "separate current owner admission"
+            ]
+          },
+          "report_version": "af-interruption-diagnostic-v1",
+          "resources": {
+            "administrative_release_committed": false,
+            "gate": {
+              "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+              "state": "OPEN",
+              "version": 2
+            },
+            "path_policy": "RECORDED_PLAN_SCOPE_NO_RELEASE_BY_DIAGNOSTIC",
+            "paths": [],
+            "slot_run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b"
+          },
+          "rules_version": "interruption-rules-v1",
+          "unknowns": [
+            "DOMAIN_EXTERNAL_PROCESSES_UNKNOWN",
+            "CURRENT_ARTIFACT_BYTES_NOT_READ",
+            "NO_ATOMIC_DATABASE_AND_OS_VIEW",
+            "LOCK_OWNERSHIP_NOT_ACQUIRED",
+            "NO_RECOVERY_OR_EXECUTION_AUTHORITY",
+            "HISTORICAL_BOOT_SESSION_NOT_RECORDED",
+            "HISTORICAL_OWNER_OS_IDENTITY_NOT_IN_RUN",
+            "PERSISTED_EXIT_EVIDENCE_MISSING",
+            "ORIGINAL_MANAGED_SCOPE_COMPLETION_UNCONFIRMED"
+          ],
+          "view": {
+            "all_run_records_within_limits": true,
+            "atomic_scope": "database_records_only; OS observation follows transaction close",
+            "project_event_sequences": [
+              1,
+              2,
+              4,
+              5,
+              6,
+              7
+            ],
+            "project_event_upper_bound": 7,
+            "read_at": 1792926502,
+            "run_event_sequences": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "run_revision": 6,
+            "snapshot_digest": "sha256:ce73174f271d3a66ab4e0adeef7add184815444c6ef810bef995164fe2ece190",
+            "source": "experiment_sqlite_read_transaction"
+          }
+        },
+        "content_digest": "sha256:702896d1336ae043e60a9bfd1c62e94459acc46fa34e72f02bbc4ea0a981880a"
+      },
+      "pending_diagnostic": {
+        "body": {
+          "current_observation": {
+            "boot": {
+              "clock_history": null,
+              "confidence": "UNKNOWN",
+              "estimated_boot_unix_ms": null,
+              "observed_at": null,
+              "sampling_uncertainty_ms": null,
+              "source": null,
+              "state": "NOT_OBSERVED",
+              "uptime_ms": null
+            },
+            "finished_at": null,
+            "lock": "NOT_ACQUIRED",
+            "members": [],
+            "owner": {
+              "exit_code": null,
+              "expected": null,
+              "observed_at": null,
+              "record_index": null,
+              "source": null,
+              "state": "NOT_OBSERVED"
+            },
+            "scope_handle": "NOT_QUERIED",
+            "source": "NOT_REQUESTED",
+            "started_at": null
+          },
+          "decision_digest": "sha256:c19eaac24fcc265674ca01f29b5983e5614b983dd81c5c7e13e5ea849c517ab8",
+          "diagnosis": {
+            "activity_coverage": "recorded_identities_only_not_complete_membership",
+            "classification": "NEVER_STARTED_RECORDED",
+            "display_projection": "NEVER_STARTED_RECORDED",
+            "interruption_confidence": "NOT_ASSERTED",
+            "known_member_active": false,
+            "message_key": "interruption.never_started_recorded",
+            "reason_codes": [
+              "ACCEPTED_PENDING_NO_RECORDED_START",
+              "ARTIFACT_VALIDATION_INCOMPLETE_NOT_CRASH_PROOF"
+            ]
+          },
+          "disclosure": {
+            "absolute_image_paths_included": false,
+            "artifact_bytes_included": false,
+            "business_writes": false,
+            "credentials_included": false,
+            "digest_is_authorization": false
+          },
+          "facts": {
+            "dispatch_gate": {
+              "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+              "state": "OPEN",
+              "version": 2
+            },
+            "events": [
+              {
+                "event_id": "ev_c08f220fa1d949eeb56b14f4ffdaad8f",
+                "evidence_refs": [],
+                "observed_at": 1792926502,
+                "payload": {
+                  "artifact_validation": null,
+                  "backend_outcome": null,
+                  "execution": null,
+                  "managed_completion": null,
+                  "managed_completion_recorded_at": null,
+                  "managed_scope": null,
+                  "process_exits": null,
+                  "process_records": null,
+                  "queue_state": null,
+                  "reconciled_at": null,
+                  "reconciliation": null,
+                  "revision": 1,
+                  "solver_conclusion": null,
+                  "validation_scope": null
+                },
+                "project_sequence": 3,
+                "recorded_at": 1792926502,
+                "run_id": "r_07fa26787b934ce29ff7a8d8d2747f93",
+                "run_sequence": 1,
+                "type": "REQUEST_ACCEPTED"
+              }
+            ],
+            "observations": [],
+            "plan": {
+              "backend_id": "python-process-fixture-v1",
+              "backend_version": 1,
+              "plan_digest": "sha256:73a24a91009ea4e6564d4b938364daa73ab62896d16e4cebfab6d40f0928a72e",
+              "plan_id": "plan_c536b8f25f4242798051bd71b24ea5c2"
+            },
+            "receipt": {
+              "accepted_at": 1792926502,
+              "accepted_sequence": 3,
+              "initial_queue_state": "PENDING",
+              "request_id": "req_603e69307f194ea7acc9e624400041dd",
+              "request_status": "ACCEPTED",
+              "run_id": "r_07fa26787b934ce29ff7a8d8d2747f93"
+            },
+            "reconciliations": [],
+            "run": {
+              "artifact_validation": "NOT_RUN",
+              "attempt_no": 1,
+              "backend_id": "python-process-fixture-v1",
+              "backend_outcome": "NOT_RUN",
+              "backend_outcome_basis": null,
+              "created_at": 1792926502,
+              "error": null,
+              "execution": "PLANNED",
+              "exit_verification": "UNKNOWN",
+              "job_revision": 1,
+              "managed_completion": null,
+              "managed_completion_recorded_at": null,
+              "managed_scope": null,
+              "owner_epoch": 1,
+              "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+              "phase": "PROCESS_FIXTURE",
+              "phase_attempt_id": "phase_ec8b46a1b45d4bdc8008379f06d3d2da",
+              "plan_digest": "sha256:73a24a91009ea4e6564d4b938364daa73ab62896d16e4cebfab6d40f0928a72e",
+              "plan_id": "plan_c536b8f25f4242798051bd71b24ea5c2",
+              "process_exits": [],
+              "process_failure_code": null,
+              "process_observation": "NOT_STARTED",
+              "process_records": [],
+              "queue_id": null,
+              "queue_state": "PENDING",
+              "reconciled_at": null,
+              "reconciliation": "NONE",
+              "retry_of": null,
+              "revision": 1,
+              "run_id": "r_07fa26787b934ce29ff7a8d8d2747f93",
+              "simulation": true,
+              "solver_conclusion": "NOT_RUN",
+              "validation_scope": null
+            },
+            "validations": []
+          },
+          "identity": {
+            "context_digest": "sha256:87c5715cdb4054bcb45efd3ba9ee6c9cf0f5c51b467a841aa25102f55642e941",
+            "historical_plan_digest": "sha256:73a24a91009ea4e6564d4b938364daa73ab62896d16e4cebfab6d40f0928a72e",
+            "job_ref": "sha256:d848ed177e7a17c6a70f441f5efada9e48232d68d8541f8b00bbc89e47a28797",
+            "plan_id": "plan_c536b8f25f4242798051bd71b24ea5c2",
+            "project_id": "p_f8b3a4e052e940de8ac753e535f08bc6",
+            "project_instance_id": "pi_e7072663e820454cb4a04b512a26b16e",
+            "run_id": "r_07fa26787b934ce29ff7a8d8d2747f93",
+            "schema_version": 3,
+            "storage_generation": "generation_5f0cb9b820ce4e98832eef9e77977928"
+          },
+          "last_recorded_event": {
+            "event_id": "ev_c08f220fa1d949eeb56b14f4ffdaad8f",
+            "evidence_refs": [],
+            "observed_at": 1792926502,
+            "payload": {
+              "artifact_validation": null,
+              "backend_outcome": null,
+              "execution": null,
+              "managed_completion": null,
+              "managed_completion_recorded_at": null,
+              "managed_scope": null,
+              "process_exits": null,
+              "process_records": null,
+              "queue_state": null,
+              "reconciled_at": null,
+              "reconciliation": null,
+              "revision": 1,
+              "solver_conclusion": null,
+              "validation_scope": null
+            },
+            "project_sequence": 3,
+            "recorded_at": 1792926502,
+            "run_id": "r_07fa26787b934ce29ff7a8d8d2747f93",
+            "run_sequence": 1,
+            "type": "REQUEST_ACCEPTED"
+          },
+          "managed_completion_checked": false,
+          "managed_scope_diagnostic": "NOT_STARTED",
+          "owner": {
+            "process_identity_source": "owner.json only if exact binding matches",
+            "recorded_epoch": 1,
+            "recorded_owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+            "store_owner_id": "owner_835a2c8349d648b796caaf795d68fe66"
+          },
+          "reason_evidence": [
+            {
+              "reason_code": "ACCEPTED_PENDING_NO_RECORDED_START",
+              "report_pointers": [
+                "/facts/run",
+                "/facts/events",
+                "/view"
+              ]
+            },
+            {
+              "reason_code": "ARTIFACT_VALIDATION_INCOMPLETE_NOT_CRASH_PROOF",
+              "report_pointers": [
+                "/facts/run/artifact_validation",
+                "/facts/validations"
+              ]
+            }
+          ],
+          "recorded_process_identities": [],
+          "recovery_preview": {
+            "apply_allowed": false,
+            "eligibility_not_evaluated": true,
+            "may_request_readonly_review": true,
+            "policy": "recorded-process-reconciliation-v1",
+            "preconditions": [
+              "fresh matching snapshot",
+              "existing policy support",
+              "separate current owner admission"
+            ]
+          },
+          "report_version": "af-interruption-diagnostic-v1",
+          "resources": {
+            "administrative_release_committed": false,
+            "gate": {
+              "owner_id": "owner_835a2c8349d648b796caaf795d68fe66",
+              "state": "OPEN",
+              "version": 2
+            },
+            "path_policy": "RECORDED_PLAN_SCOPE_NO_RELEASE_BY_DIAGNOSTIC",
+            "paths": [],
+            "slot_run_id": "r_0ae75ea893bc4cf8a9cfb7fefdc7480b"
+          },
+          "rules_version": "interruption-rules-v1",
+          "unknowns": [
+            "DOMAIN_EXTERNAL_PROCESSES_UNKNOWN",
+            "CURRENT_ARTIFACT_BYTES_NOT_READ",
+            "NO_ATOMIC_DATABASE_AND_OS_VIEW",
+            "LOCK_OWNERSHIP_NOT_ACQUIRED",
+            "NO_RECOVERY_OR_EXECUTION_AUTHORITY",
+            "HISTORICAL_BOOT_SESSION_NOT_RECORDED",
+            "HISTORICAL_OWNER_OS_IDENTITY_NOT_IN_RUN",
+            "PERSISTED_EXIT_EVIDENCE_MISSING",
+            "CURRENT_OS_NOT_OBSERVED"
+          ],
+          "view": {
+            "all_run_records_within_limits": true,
+            "atomic_scope": "database_records_only; OS observation follows transaction close",
+            "project_event_sequences": [
+              3
+            ],
+            "project_event_upper_bound": 7,
+            "read_at": 1792926502,
+            "run_event_sequences": [
+              1
+            ],
+            "run_revision": 1,
+            "snapshot_digest": "sha256:2a759afaef9f61b869fa8bb2bb57b76bbce5041e59fa83e0a7522d0255bb9ce6",
+            "source": "experiment_sqlite_read_transaction"
+          }
+        },
+        "content_digest": "sha256:dc77bac5ab632090324652e5eaebb4deb812a054877bec64c85fa0ea583876cf"
+      }
+    },
+    "owner_cleanup": [
+      {
+        "actual_process_handle_signaled": true,
+        "control": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_CRD02_new_2cq7o2my\\cases\\test_owned_owner_exit_worker_a0\\process_0",
+        "exit_code": 77,
+        "exited": true,
+        "identity": {
+          "creation_time_100ns": 134374001018770605,
+          "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+          "image_path": "D:\\Program Files\\Python312\\python.exe",
+          "parent_pid": 2216,
+          "pid": 32240
+        },
+        "launcher_pid": 2216,
+        "mode": "owner",
+        "terminated_by_owned_handle": true
+      }
+    ],
+    "cleanup_exits": [
+      {
+        "creation_time_100ns": 134374001024499312,
+        "exit_code": 0,
+        "exit_observed_at": 1792926502,
+        "exit_source": "retained_windows_handle",
+        "image_path": "D:\\Program Files\\Python312\\python.exe",
+        "pid": 29876
+      }
+    ],
+    "private_credentials_removed": true,
+    "transient_read_refusals": null
+  }
+]

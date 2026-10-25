@@ -1,0 +1,111 @@
+key	en	zh-CN	fr-FR	de-DE
+overview	Overview	概览	Vue d’ensemble	Übersicht
+projects	Projects	项目	Projets	Projekte
+queue	Queue	队列	File d’attente	Warteschlange
+runs	Runs	运行监控	Exécutions	Ausführungen
+results	Results	结果	Résultats	Ergebnisse
+agent	Agent Access	Agent 接入	Accès des agents	Agent-Zugriff
+classic	Classic Queue	经典队列	File classique	Klassische Warteschlange
+settings	Settings	设置	Paramètres	Einstellungen
+service	Service	服务	Service	Dienst
+new	New Project	新建项目	Nouveau projet	Neues Projekt
+open	Open Project	打开项目	Ouvrir un projet	Projekt öffnen
+recent	Recent Projects	最近项目	Projets récents	Zuletzt verwendete Projekte
+projectSettings	Project Settings	项目设置	Paramètres du projet	Projekteinstellungen
+noProject	No project selected	尚未选择项目	Aucun projet sélectionné	Kein Projekt ausgewählt
+welcome	Your engineering work, in one place.	在同一个工作区管理工程任务。	Votre travail d’ingénierie, au même endroit.	Ihre technischen Aufgaben an einem Ort.
+welcomeText	Create an AbqJobPilot Project, or open an existing one to view its tasks and evidence.	创建 AbqJobPilot 项目，或打开已有项目查看任务与证据。	Créez un projet AbqJobPilot ou ouvrez un projet existant pour consulter ses tâches et ses preuves.	Erstellen Sie ein AbqJobPilot-Projekt oder öffnen Sie ein vorhandenes Projekt, um Aufgaben und Nachweise anzuzeigen.
+noRecent	No projects opened yet	尚未打开任何项目	Aucun projet ouvert pour le moment	Noch keine Projekte geöffnet
+external	An .inp or .cae file is an engineering input, not an AbqJobPilot Project. External files stay in their original location.	.inp 或 .cae 是工程输入，不是 AbqJobPilot 项目。外部文件保留在原位置。	Un fichier .inp ou .cae est une entrée de calcul, pas un projet AbqJobPilot. Les fichiers externes restent à leur emplacement.	Eine .inp- oder .cae-Datei ist eine Modelleingabe, kein AbqJobPilot-Projekt. Externe Dateien bleiben an ihrem ursprünglichen Speicherort.
+startGuide	Create → start service explicitly → connect your client	创建项目 → 明确启动服务 → 连接客户端	Créer → démarrer explicitement le service → connecter le client	Erstellen → Dienst ausdrücklich starten → Client verbinden
+connected	Connected	已连接	Connecté	Verbunden
+disconnected	Disconnected · cached data	已断开 · 缓存数据	Déconnecté · données en cache	Getrennt · zwischengespeicherte Daten
+notRunning	Not running	服务未运行	Service arrêté	Nicht gestartet
+observed	Last successful read: {time}	最后成功读取：{time}	Dernière lecture réussie : {time}	Letzter erfolgreicher Abruf: {time}
+readScope	Recorded evidence · successive bounded reads, not one atomic snapshot	已记录证据 · 多次有界读取，非单一原子快照	Preuves enregistrées · lectures bornées successives, pas un instantané atomique	Gespeicherte Nachweise · begrenzte Einzelabfragen, kein atomarer Snapshot
+stale	Connection lost. Values below are from the last successful read; the task state has not been changed.	连接中断。下方显示最后成功读取的数据；任务状态没有改变。	Connexion perdue. Les valeurs datent de la dernière lecture réussie ; l’état de la tâche n’a pas été modifié.	Verbindung unterbrochen. Die Werte stammen vom letzten erfolgreichen Abruf; der Aufgabenstatus wurde nicht geändert.
+reconnect	Reconnect	重新连接	Reconnecter	Erneut verbinden
+disconnect	Disconnect	断开连接	Déconnecter	Verbindung trennen
+start	Start Service	启动服务	Démarrer le service	Dienst starten
+stop	Stop Service	停止服务	Arrêter le service	Dienst beenden
+monitor	Execution monitor	执行监控	Moniteur d’exécution	Ausführungsmonitor
+job	Job	作业	Calcul	Auftrag
+stage	Stage	阶段	Étape	Phase
+running	Running	运行中	En cours	Läuft
+waiting	Waiting for permission	等待派发许可	En attente d’autorisation	Wartet auf Freigabe
+finished	Execution ended	执行已结束	Exécution terminée	Ausführung beendet
+validation	Validation	验证	Validation	Validierung
+process	Managed process scope	受管进程范围	Périmètre des processus gérés	Verwalteter Prozessumfang
+solver	Solver conclusion	求解结论	Conclusion du solveur	Solver-Ergebnis
+dat	DAT numerical validation	DAT 数值验证	Validation numérique DAT	Numerische DAT-Validierung
+odb	ODB content validation	ODB 内容验证	Validation du contenu ODB	ODB-Inhaltsvalidierung
+outside	Out-of-scope completeness	域外完整性	Exhaustivité hors périmètre	Vollständigkeit außerhalb des Umfangs
+dispatch	Dispatch policy	派发策略	Politique de lancement	Startfreigabe
+slot	Execution slot	执行槽	Créneau d’exécution	Ausführungsplatz
+held	Occupied by {run}	由 {run} 占用	Occupé par {run}	Belegt durch {run}
+unknown	Unknown	未知	Inconnu	Unbekannt
+notRun	Not run	未执行	Non effectué	Nicht ausgeführt
+passed	Passed	通过	Réussi	Bestanden
+pending	Awaiting evidence	等待证据	En attente de preuves	Nachweise ausstehend
+scopeNote	A closed managed scope does not prove Solver success or that every external process has exited.	受管范围结束不证明求解成功，也不证明所有域外进程均已退出。	La fin du périmètre géré ne prouve ni la réussite du solveur ni la fin de tous les processus externes.	Ein beendeter verwalteter Umfang belegt weder den Solver-Erfolg noch das Ende aller externen Prozesse.
+evidence	Evidence	证据	Preuves	Nachweise
+identity	Identity & receipt	身份与回执	Identité et accusé de réception	Identität und Empfangsbeleg
+events	Events	事件	Événements	Ereignisse
+logs	Logs	日志	Journaux	Protokolle
+follow	Follow latest	跟随最新	Suivre les dernières lignes	Neueste Einträge verfolgen
+source	Source	来源	Source	Quelle
+time	Recorded at	记录时间	Enregistré à	Aufgezeichnet um
+record	Record	记录	Enregistrement	Datensatz
+status	Status	状态	État	Status
+detail	View run	查看运行	Voir l’exécution	Ausführung anzeigen
+accepted	Accepted runs only · read-only order	仅显示已接受任务 · 顺序只读	Exécutions acceptées · ordre en lecture seule	Nur angenommene Ausführungen · Reihenfolge schreibgeschützt
+noSubmit	Task preparation and approval use the trusted workflow. This view cannot approve or submit a Solver job.	任务准备与批准使用可信流程；此视图不能批准或提交求解任务。	La préparation et l’approbation suivent le circuit de confiance. Cette vue ne peut pas approuver ni soumettre un calcul.	Vorbereitung und Freigabe erfolgen über den vertrauenswürdigen Ablauf. Diese Ansicht kann keinen Solver-Auftrag freigeben oder einreichen.
+emptyProject	Your project is ready. No runs yet.	项目已就绪，尚无运行记录。	Votre projet est prêt. Aucune exécution.	Ihr Projekt ist bereit. Noch keine Ausführungen.
+emptyGuide	Start its service when you are ready, then connect a client. Creating a project grants no execution permission.	准备好后明确启动服务，再连接客户端。创建项目不授予执行许可。	Démarrez son service lorsque vous le souhaitez, puis connectez un client. La création n’accorde aucun droit d’exécution.	Starten Sie den Dienst bei Bedarf und verbinden Sie einen Client. Die Projekterstellung erteilt keine Ausführungsberechtigung.
+manageService	Manage service	管理服务	Gérer le service	Dienst verwalten
+older	Older runs	更早运行	Exécutions précédentes	Ältere Ausführungen
+page	Up to 32 runs per page	每页最多 32 项	32 exécutions au maximum par page	Höchstens 32 Ausführungen pro Seite
+classicNote	Classic Project · separate queue and history · no migration	经典项目 · 独立队列与历史 · 不迁移	Projet classique · file et historique distincts · aucune migration	Klassisches Projekt · separate Warteschlange und Historie · keine Migration
+classicSelect	Select a Classic Project to use this workspace. Execution Monitor remains available in the navigation.	明确选择经典项目后使用此工作区。导航中的运行监控始终可用。	Sélectionnez un projet classique. Le moniteur d’exécution reste accessible dans la navigation.	Wählen Sie ein klassisches Projekt. Der Ausführungsmonitor bleibt über die Navigation erreichbar.
+classicOpen	Open Classic Project	打开经典项目	Ouvrir un projet classique	Klassisches Projekt öffnen
+classicControls	Existing Classic actions · preview only	现有经典操作 · 仅预览	Actions classiques existantes · aperçu uniquement	Vorhandene klassische Aktionen · nur Vorschau
+addInput	Add INP	添加 INP	Ajouter un INP	INP hinzufügen
+startQueue	Start queue	启动队列	Démarrer la file	Warteschlange starten
+stopAfter	Stop after current	当前作业后停止	Arrêter après le calcul actuel	Nach aktuellem Auftrag anhalten
+projectName	Project name	项目名称	Nom du projet	Projektname
+location	Project directory	项目目录	Dossier du projet	Projektverzeichnis
+type	Project type	项目类型	Type de projet	Projekttyp
+format	Storage format	存储格式	Format de stockage	Speicherformat
+newDetail	Abaqus is the only available type. This does not enable arbitrary Abaqus analyses or grant execution permission.	当前仅可选择 Abaqus；这不代表开放任意分析模式，也不授予执行权限。	Abaqus est le seul type disponible. Cela n’autorise ni tous les types d’analyse ni leur exécution.	Abaqus ist der einzige verfügbare Typ. Dies schaltet weder beliebige Analysearten noch Ausführungsrechte frei.
+ownership	Project owns its metadata and execution history. No external engineering files will be copied.	项目拥有元数据和执行历史。不会复制外部工程文件。	Le projet possède ses métadonnées et son historique. Aucun fichier d’ingénierie externe ne sera copié.	Das Projekt besitzt seine Metadaten und Ausführungshistorie. Externe Modelldateien werden nicht kopiert.
+review	Review	检查	Vérifier	Prüfen
+create	Create Project	创建项目	Créer le projet	Projekt erstellen
+cancel	Cancel	取消	Annuler	Abbrechen
+back	Back	上一步	Retour	Zurück
+initial	Initial state: PAUSED · 0 grants · 0 runs · service not started	初始状态：PAUSED · 0 授权 · 0 运行 · 服务未启动	État initial : PAUSED · 0 autorisation · 0 exécution · service arrêté	Anfangszustand: PAUSED · 0 Berechtigungen · 0 Ausführungen · Dienst nicht gestartet
+stopNote	Stop requires the correct owner and safe idle conditions. Active, unknown or retained resources can block it. No force stop is offered.	停服需核对 owner 并满足安全空闲条件。活跃、未知或保留资源可导致拒绝。不提供强制停止。	L’arrêt exige le bon propriétaire et un état inactif sûr. Des ressources actives, inconnues ou retenues peuvent le bloquer. Aucun arrêt forcé.	Das Beenden erfordert den richtigen Owner und einen sicheren Leerlauf. Aktive, unbekannte oder zurückgehaltene Ressourcen können es verhindern. Kein erzwungenes Beenden.
+closeNote	Closing this window disconnects the GUI. It does not stop the service or a running job.	关闭窗口只断开 GUI，不停止服务或正在执行的作业。	Fermer cette fenêtre déconnecte l’interface, sans arrêter le service ni les calculs en cours.	Das Schließen dieses Fensters trennt nur die Oberfläche. Dienst und laufende Aufträge werden nicht beendet.
+permission	Connection is not execution permission	连接权限不等于执行权限	Se connecter n’autorise pas l’exécution	Verbindung bedeutet keine Ausführungsberechtigung
+pythonText	Python clients use the same Project service. An exact trusted Grant is required for execution; the GUI need not stay open.	Python 客户端使用同一项目服务。执行需要精确可信授权，GUI 无需持续打开。	Les clients Python utilisent le même service. L’exécution exige une autorisation précise ; l’interface peut être fermée.	Python-Clients verwenden denselben Projektdienst. Die Ausführung erfordert eine genaue Freigabe; die Oberfläche muss nicht geöffnet bleiben.
+mcpText	Current MCP: five Classic read-only / preview tools. No execution, approval or service-control tools.	当前 MCP：五个经典只读／预览工具。无执行、批准或服务控制工具。	MCP actuel : cinq outils classiques de lecture ou d’aperçu. Aucun outil d’exécution, d’approbation ou de gestion du service.	Aktuelles MCP: fünf klassische Lese- und Vorschauwerkzeuge. Keine Ausführungs-, Freigabe- oder Dienststeuerung.
+secretText	Local user credentials remain private. Connection secrets are never shown or copied here.	本机用户凭据保持私密；此处不显示或复制连接秘密。	Les identifiants locaux restent privés. Aucun secret de connexion n’est affiché ni copié ici.	Lokale Benutzerzugangsdaten bleiben privat. Verbindungsgeheimnisse werden hier weder angezeigt noch kopiert.
+documentation	API documentation	API 文档	Documentation de l’API	API-Dokumentation
+language	Display language	显示语言	Langue d’affichage	Anzeigesprache
+languageNote	Applies to this user’s interface only. Project data, API codes and original evidence remain unchanged.	仅改变当前用户的界面显示。项目数据、API 代码和原始证据不变。	Modifie uniquement l’interface de cet utilisateur. Données, codes API et preuves originales restent inchangés.	Gilt nur für die Oberfläche dieses Benutzers. Projektdaten, API-Codes und Originalnachweise bleiben unverändert.
+coverage	Design text translated · production translation pending	设计文案已翻译 · 产品翻译待实施	Textes de maquette traduits · traduction du produit à réaliser	Entwurfstexte übersetzt · Produktübersetzung ausstehend
+reviewPending	French and German require native-language review before release.	法语和德语需母语审校后才能发布。	Le français et l’allemand nécessitent une relecture native avant publication.	Französisch und Deutsch benötigen vor der Veröffentlichung eine muttersprachliche Prüfung.
+layout	Workspace layout	工作区布局	Disposition de l’espace de travail	Anordnung des Arbeitsbereichs
+resetLayout	Reset panel sizes	重置面板尺寸	Réinitialiser les panneaux	Bereichsgrößen zurücksetzen
+layoutNote	Drag dividers to resize. Display preferences are separate from Project and execution settings.	拖动分隔条调整比例。显示偏好与项目和执行配置分开。	Faites glisser les séparateurs. Les préférences d’affichage sont distinctes des paramètres du projet et d’exécution.	Ziehen Sie die Trennlinien. Anzeigeeinstellungen sind von Projekt- und Ausführungseinstellungen getrennt.
+machine	Local system · sampled independently	本机资源 · 独立采样	Système local · échantillonnage distinct	Lokales System · separat erfasst
+unavailable	Not available	不可用	Indisponible	Nicht verfügbar
+retain	Paths retained · explicit review required	路径隔离保留 · 需显式审查	Chemins réservés · examen explicite requis	Pfade bleiben reserviert · ausdrückliche Prüfung erforderlich
+noResult	No completed result for the selected run	所选运行尚无完成结果	Aucun résultat final pour cette exécution	Noch kein abgeschlossenes Ergebnis für diese Ausführung
+resultNote	Validation belongs to this Run and its recorded artifacts. File presence alone is not a pass.	验证归属于本次运行及其记录的产物。文件存在不等于通过。	La validation concerne cette exécution et ses artefacts. La présence d’un fichier ne vaut pas validation.	Die Validierung gehört zu dieser Ausführung und ihren Artefakten. Das Vorhandensein einer Datei genügt nicht.
+error.PROJECT_IDENTITY_MISMATCH	Project identity does not match. Select the correct Project; no service was changed.	项目身份不匹配。请选择正确项目；服务没有改变。	L’identité du projet ne correspond pas. Sélectionnez le bon projet ; aucun service n’a été modifié.	Die Projektidentität stimmt nicht überein. Wählen Sie das richtige Projekt; kein Dienst wurde geändert.
+error.COMMUNICATION_UNKNOWN	The service could not be reached. Last successful read: {time}. Reconnect to check its state.	无法连接服务。最后成功读取：{time}。请重新连接以核对状态。	Service inaccessible. Dernière lecture réussie : {time}. Reconnectez-vous pour vérifier son état.	Der Dienst ist nicht erreichbar. Letzter erfolgreicher Abruf: {time}. Verbinden Sie sich erneut, um den Status zu prüfen.
+error.UNSUPPORTED_FORMAT	Unsupported Project format. Opening did not initialize, repair or migrate it.	项目格式不兼容。打开操作未初始化、修复或迁移它。	Format de projet non pris en charge. L’ouverture n’a effectué ni initialisation, ni réparation, ni migration.	Nicht unterstütztes Projektformat. Beim Öffnen wurde es weder initialisiert noch repariert oder migriert.
+error.generic	Operation unavailable ({code}). No automatic retry. Check the recorded reason before continuing.	操作不可用（{code}）。不会自动重试；继续前请核对记录的原因。	Opération indisponible ({code}). Aucun nouvel essai automatique. Vérifiez la raison avant de continuer.	Vorgang nicht verfügbar ({code}). Kein automatischer Wiederholungsversuch. Prüfen Sie zuerst die aufgezeichnete Ursache.
+workspace	WORKSPACE	工作区	ESPACE DE TRAVAIL	ARBEITSBEREICH
+noLogs	No run selected · logs appear here after selection	尚未选择运行 · 选择后在此查看日志	Aucune exécution sélectionnée · les journaux apparaîtront ici	Keine Ausführung ausgewählt · Protokolle erscheinen nach der Auswahl
+classicSelected	Classic Project selected for this workspace only. Use Runs to return to the Project service monitor.	本工作区已选择经典项目。通过运行监控可返回项目服务视图。	Projet classique sélectionné pour cet espace uniquement. Revenez au moniteur du service via Exécutions.	Klassisches Projekt nur für diesen Arbeitsbereich ausgewählt. Über Ausführungen kehren Sie zum Dienstmonitor zurück.

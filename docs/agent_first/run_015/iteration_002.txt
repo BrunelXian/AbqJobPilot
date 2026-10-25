@@ -1,0 +1,33 @@
+F
+================================== FAILURES ===================================
+________ test_managed_two_normal_tasks_are_transactionally_sequential _________
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_R15_32262c1bc1434a92b4c19db48669c008/test_managed_two_normal_tasks_0')
+
+    def test_managed_two_normal_tasks_are_transactionally_sequential(tmp_path):
+        with managed(tmp_path,['normal','normal']) as h:
+            owner=h.owner();client=h.client()
+            receipts=[client.submit(req)['receipt'] for req in h.requests]
+            final=[terminal(h,r['run_id']) for r in receipts]
+>           events=all_events(client)
+                   ^^^^^^^^^^^^^^^^^^
+
+tests\test_managed_scope.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+client = <abqjobpilot.execution.client.FakeClient object at 0x0000023053735BE0>
+
+    def all_events(client):
+        events=[];cursor=0
+        while True:
+            page=client.events(after_sequence=cursor,limit=64)
+            if not page:return events
+>           events.extend(page);cursor=page[-1]['sequence']
+                                       ^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'sequence'
+
+tests\test_managed_scope.py:66: KeyError
+=========================== short test summary info ===========================
+FAILED tests/test_managed_scope.py::test_managed_two_normal_tasks_are_transactionally_sequential
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed in 4.99s

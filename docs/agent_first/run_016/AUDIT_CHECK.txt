@@ -1,0 +1,81 @@
+{
+  "protected_count": 517,
+  "protected_changed": [],
+  "changed_prior_sources": [
+    "abqjobpilot\\execution\\closeout.py",
+    "abqjobpilot\\execution\\diagnostics.py",
+    "abqjobpilot\\execution\\managed_process.py",
+    "abqjobpilot\\execution\\service.py",
+    "abqjobpilot\\execution\\standard_backend.py",
+    "abqjobpilot\\execution\\standard_contract.py",
+    "abqjobpilot\\execution\\standard_process.py",
+    "abqjobpilot\\execution_gui.py",
+    "examples\\agent_first\\standard_service.py",
+    "examples\\agent_first\\standard_client.py",
+    "tests\\test_execution_isolation.py"
+  ],
+  "test_batches": [
+    {
+      "batch": "unit_001",
+      "counts": {
+        "FAIL": 1,
+        "PASS": 37
+      },
+      "seconds": "24.548"
+    },
+    {
+      "batch": "windows_001",
+      "counts": {
+        "PASS": 25,
+        "FAIL": 2
+      },
+      "seconds": "39.918"
+    },
+    {
+      "batch": "windows_002",
+      "counts": {
+        "PASS": 2
+      },
+      "seconds": "8.275"
+    },
+    {
+      "batch": "regression_001",
+      "counts": {
+        "PASS": 304,
+        "FAIL": 1
+      },
+      "seconds": "463.288"
+    },
+    {
+      "batch": "final_affected",
+      "counts": {
+        "PASS": 58
+      },
+      "seconds": "67.504"
+    },
+    {
+      "batch": "deadline_final",
+      "counts": {
+        "PASS": 182
+      },
+      "seconds": "113.273"
+    },
+    {
+      "batch": "client_cleanup",
+      "counts": {
+        "PASS": 7
+      },
+      "seconds": "0.184"
+    }
+  ],
+  "latest_unique": {
+    "PASS": 355
+  },
+  "json_evidence_files": 4126,
+  "recorded_python_identities_checked": 743,
+  "current_process_status_counts": {
+    "PROCESS_IDENTITY_UNKNOWN": 738,
+    "PROCESS_IDENTITY_MISMATCH": 5
+  },
+  "private_connection_material_remaining": []
+}

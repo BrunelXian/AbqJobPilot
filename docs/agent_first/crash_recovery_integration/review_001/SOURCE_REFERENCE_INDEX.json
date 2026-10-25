@@ -1,0 +1,244 @@
+{
+  "test_managed_true_crash_after_empty_before_commit_does_not_release": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_managed_scope.py",
+        "line": 183
+      }
+    ]
+  },
+  "test_attachment_gui": {
+    "kind": "existing_test_module",
+    "path": "tests/test_attachment_gui.py"
+  },
+  "test_execution_contract": {
+    "kind": "existing_test_module",
+    "path": "tests/test_execution_contract.py"
+  },
+  "test_execution_gui": {
+    "kind": "existing_test_module",
+    "path": "tests/test_execution_gui.py"
+  },
+  "test_execution_ownership": {
+    "kind": "existing_test_module",
+    "path": "tests/test_execution_ownership.py"
+  },
+  "test_execution_store": {
+    "kind": "existing_test_module",
+    "path": "tests/test_execution_store.py"
+  },
+  "test_fake_reconciliation": {
+    "kind": "existing_test_module",
+    "path": "tests/test_fake_reconciliation.py"
+  },
+  "test_insufficient_evidence_cannot_release": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_standard_closeout.py",
+        "line": 161
+      }
+    ]
+  },
+  "test_lifecycle_boundaries": {
+    "kind": "existing_test_module",
+    "path": "tests/test_lifecycle_boundaries.py"
+  },
+  "test_managed_owner_crash_leaves_worker_alive_and_restart_blocked": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_managed_scope.py",
+        "line": 165
+      }
+    ]
+  },
+  "test_managed_scope": {
+    "kind": "existing_test_module",
+    "path": "tests/test_managed_scope.py"
+  },
+  "test_mcp_readonly": {
+    "kind": "existing_test_module",
+    "path": "tests/test_mcp_readonly.py"
+  },
+  "test_product_project": {
+    "kind": "existing_test_module",
+    "path": "tests/test_product_project.py"
+  },
+  "test_product_standard_control": {
+    "kind": "existing_test_module",
+    "path": "tests/test_product_standard_control.py"
+  },
+  "test_real_owner_crash_not_automatically_replaced": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_lifecycle_boundaries.py",
+        "line": 209
+      }
+    ]
+  },
+  "test_recorded_exit_reconciliation": {
+    "kind": "existing_test_module",
+    "path": "tests/test_recorded_exit_reconciliation.py"
+  },
+  "test_retry_of_uncertain_run_is_rejected": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_execution_store.py",
+        "line": 250
+      }
+    ]
+  },
+  "test_run_diagnostics": {
+    "kind": "existing_test_module",
+    "path": "tests/test_run_diagnostics.py"
+  },
+  "test_separate_resume_quarantine_and_pending_prerequisites": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_standard_closeout.py",
+        "line": 178
+      }
+    ]
+  },
+  "test_service_attachment": {
+    "kind": "existing_test_module",
+    "path": "tests/test_service_attachment.py"
+  },
+  "test_standard_closeout": {
+    "kind": "existing_test_module",
+    "path": "tests/test_standard_closeout.py"
+  },
+  "test_standard_managed_windows": {
+    "kind": "existing_test_module",
+    "path": "tests/test_standard_managed_windows.py"
+  },
+  "test_true_retry_creates_new_run_and_preserves_old_evidence": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_execution_contract.py",
+        "line": 247
+      }
+    ]
+  },
+  "test_trusted_operator_entry_refuses_active_owner_and_has_no_backend": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_standard_closeout.py",
+        "line": 242
+      }
+    ]
+  },
+  "test_two_os_clients_race_same_original_owner_lock": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_lifecycle_boundaries.py",
+        "line": 241
+      }
+    ]
+  },
+  "test_unknown_sql_commit_queries_original_key": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_recorded_exit_reconciliation.py",
+        "line": 370
+      }
+    ]
+  },
+  "test_g2_task_workspace": {
+    "kind": "existing_test_module",
+    "path": "tests/test_g2_task_workspace.py"
+  },
+  "test_interruption_diagnostics": {
+    "kind": "proposed_not_implemented"
+  },
+  "test_interruption_probe": {
+    "kind": "proposed_not_implemented"
+  },
+  "test_run006_native_evidence": {
+    "kind": "existing_test_module",
+    "path": "tests/test_run006_native_evidence.py"
+  },
+  "test_atomic_management_failure_and_unknown_commit": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_recorded_exit_reconciliation.py",
+        "line": 244
+      }
+    ]
+  },
+  "test_closeout_windows": {
+    "kind": "existing_test_module",
+    "path": "tests/test_closeout_windows.py"
+  },
+  "test_diagnostic_supervisor": {
+    "kind": "existing_test_module",
+    "path": "tests/test_diagnostic_supervisor.py"
+  },
+  "test_execution_isolation": {
+    "kind": "existing_test_module",
+    "path": "tests/test_execution_isolation.py"
+  },
+  "test_explicit_release_preserves_evidence_receipt_gate_and_intent": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_standard_closeout.py",
+        "line": 56
+      }
+    ]
+  },
+  "test_lost_management_response_and_new_owner_replay": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_recorded_exit_reconciliation.py",
+        "line": 262
+      }
+    ]
+  },
+  "test_managed_fault_never_releases_slot_or_restarts": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_managed_scope.py",
+        "line": 149
+      }
+    ]
+  },
+  "test_reconciliation_supervisor": {
+    "kind": "existing_test_module",
+    "path": "tests/test_reconciliation_supervisor.py"
+  },
+  "test_stale_assessment_rejected": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_standard_closeout.py",
+        "line": 85
+      }
+    ]
+  },
+  "test_standard_managed": {
+    "kind": "existing_test_module",
+    "path": "tests/test_standard_managed.py"
+  },
+  "test_true_owner_crash_during_disposition_no_unrecorded_unlock": {
+    "kind": "test_function",
+    "locations": [
+      {
+        "path": "tests/test_closeout_windows.py",
+        "line": 153
+      }
+    ]
+  }
+}

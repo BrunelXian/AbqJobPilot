@@ -1,0 +1,52 @@
+{
+  "review": "CR-D01",
+  "checked_at": "2026-10-25T18:30:07.875675+08:00",
+  "head": "271c6f82fd6a4599dbae2df30d903dab2cef1f63",
+  "branch": "Develop",
+  "conflicts": [],
+  "existing_files_sha256_checked": 1503,
+  "existing_files_changed": [],
+  "initial_snapshot_crosschecked": true,
+  "prior_git_status_preserved": true,
+  "writes_scope": "docs/agent_first/crash_recovery_integration/review_001/",
+  "new_files_before_this_report": [
+    "docs/agent_first/crash_recovery_integration/review_001/BASELINE.json",
+    "docs/agent_first/crash_recovery_integration/review_001/CRASH_RECOVERY_INTEGRATION_REVIEW.md",
+    "docs/agent_first/crash_recovery_integration/review_001/DEV_CAPABILITY_GAP_MATRIX.md",
+    "docs/agent_first/crash_recovery_integration/review_001/FINAL_SUMMARY.md",
+    "docs/agent_first/crash_recovery_integration/review_001/IMPLEMENTATION_AND_ROLLBACK_PLAN.md",
+    "docs/agent_first/crash_recovery_integration/review_001/RECOVERY_STATE_AND_API_CONTRACT.md",
+    "docs/agent_first/crash_recovery_integration/review_001/SOURCE_REFERENCE_INDEX.json",
+    "docs/agent_first/crash_recovery_integration/review_001/TEST_AND_ACCEPTANCE_MATRIX.md"
+  ],
+  "documents": {
+    "CRASH_RECOVERY_INTEGRATION_REVIEW.md": "31b98f198105c7d4abc59f24fce8971fad4790b305a98c56fd13a433a2bb4a67",
+    "DEV_CAPABILITY_GAP_MATRIX.md": "96c493e7b27d1f6cdf40a4f73b46629792966edf03d15b164e5c0e5ab7de0123",
+    "FINAL_SUMMARY.md": "469db4ec079f6aeec6a62321f0dbc760689d0015b68b8601d4cc7e586ba39b94",
+    "IMPLEMENTATION_AND_ROLLBACK_PLAN.md": "0569650ec6091a1b9c64a4e739f8206993152b3edd5b61d38a8a93d42e213d72",
+    "RECOVERY_STATE_AND_API_CONTRACT.md": "da8ca9d6db552099b56606826ae49675c9758a8608b5907d351b8348ea2424d3",
+    "TEST_AND_ACCEPTANCE_MATRIX.md": "2f0be942fb82ce5d77074b58c16961d6ef6280f7c1da8db0f2c026ba6621123e"
+  },
+  "markdown_local_links_checked": 11,
+  "test_references_indexed": 41,
+  "proposed_not_implemented": [
+    "test_interruption_diagnostics",
+    "test_interruption_probe"
+  ],
+  "missing_references": [],
+  "application_tests_executed": 0,
+  "actual_abaqus_calls": 0,
+  "application_processes_created": 0,
+  "live_owner_operations": 0,
+  "project_mutations": 0,
+  "git_mutations": 0,
+  "ignored_or_external_project_data_hashed": false,
+  "static_check_failures_corrected": [
+    "rg wildcard/incorrect path lookups corrected",
+    "overlarge output reread in bounded chunks",
+    "two documentation patch context mismatches rejected atomically, corrected patch applied",
+    "overlarge baseline JSON comparison reread in bounded chunks",
+    "future test paths marked proposed; abbreviated existing test name expanded after reference check"
+  ],
+  "cleanup": "No application test processes, native handles or private credentials created; no deletion performed."
+}

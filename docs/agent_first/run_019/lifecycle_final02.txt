@@ -1,0 +1,93 @@
+............................F                                            [100%]
+================================== FAILURES ===================================
+_____ test_product_gui_start_worker_survives_normal_gui_and_launcher_exit _____
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/lifecycle_final02/test_product_gui_start_worker_0')
+
+    def test_product_gui_start_worker_survives_normal_gui_and_launcher_exit(tmp_path):
+        from test_execution_gui import Gui
+        from test_attachment_gui import action,choose
+        guis=[];refs=[];evidence={'abaqus_calls':0,'python':sys.executable}
+        with prepared(tmp_path,['result_wait']) as (h,m):
+            try:
+                gui=Gui(tmp_path,None,None,'gui_A',attachment=True,lifecycle=True);guis.append(gui)
+                action(gui,'project',project=h.context.root)
+                wait_until(lambda:'NOT_RUNNING' in telemetry(gui.root/'lifecycle.json').get('status',''))
+                action(gui,'start')
+                wait_until(lambda:m.inspect()['state']=='CONNECTED')
+                gui.view(lambda v:v['connected'])
+                client,_,health=m.connect();owner=health['process'];owner_id=client.endpoint['owner_id']
+                owner_ref=ProcessReference(owner['pid'],owner);refs.append(owner_ref)
+                action(gui,'start');assert m.start()['owner_id']==owner_id
+                receipt=client.submit(h.requests[0])['receipt'];rid=receipt['run_id']
+                run=wait_until(lambda:r if len((r:=client.run(rid))['process_records'])==4 else None)
+                worker=next(p for p in run['process_records'] if p['role']=='worker')
+                worker_ref=ProcessReference(worker['pid'],worker);refs.append(worker_ref)
+                choose(gui,h,rid);shown=gui.view(lambda v:'WAITING' in v['progress_text'])
+                with pytest.raises(ExecutionError) as rejected:m.stop(owner_id=owner_id,operation_key='active-refused')
+                assert rejected.value.code=='SERVICE_NOT_IDLE'
+                gate=client.dispatch_gate();before=client.run(rid)
+                closed=gui.normal_close()
+                assert owner_ref.exit_evidence() is None and worker_ref.exit_evidence() is None
+                cursor=client.progress(rid)['next_sequence']
+                wait_until(lambda:client.progress(rid)['next_sequence']>cursor)
+                assert client.health()['process']==owner
+                evidence['after_gui_chain_exit']={'owner_exit_evidence':owner_ref.exit_evidence(),
+                    'worker_exit_evidence':worker_ref.exit_evidence(),'progress_sequence_before':cursor,
+                    'progress_sequence_after':client.progress(rid)['next_sequence'],'owner_health_identity':client.health()['process'],
+                    'observed_at':time.time(),'basis':'retained identity-matched Windows handles, after both GUI exits'}
+                gui2=Gui(tmp_path,None,None,'gui_B',attachment=True,lifecycle=True);guis.append(gui2)
+                reopened=choose(gui2,h,rid)
+                assert client.run(rid)==before and client.dispatch_gate()==gate
+                assert client.submit(h.requests[0])['replayed']
+                (Path(h.context.runtime_root)/'process_runs'/rid/'release.json').write_text('{}')
+                finished=wait_until(lambda:r if (r:=client.run(rid))['execution']=='FINISHED' else None,timeout=30)
+                assert finished['managed_completion']=='COMMITTED_EMPTY_SCOPE'
+                gui2.view(lambda v:dict(v['rows']).get('Artifact ������֤')=='VALID')
+                assert len([e for e in client.events() if e['type']=='START_INTENT'])==1
+                # Explicit GUI stop, not closing the window, invokes the one exact idle policy.
+                action(gui2,'stop')
+                wait_until(lambda:owner_ref.exit_evidence())
+                wait_until(lambda:m.inspect()['state']=='NOT_RUNNING')
+                stopped=m._stopped(m._current())
+                evidence.update(owner=owner,worker=worker,gui=gui.identity,gui_exit=closed,
+                    owner_host=read_json(m._path(m._current()['start_id']+'/host.json')),
+                    before=shown,reopened=reopened,final=finished,stop=stopped,
+                    owner_exit=owner_ref.exit_evidence(),worker_exit=worker_ref.exit_evidence())
+                gui2.normal_close()
+                # Restart is explicit and remains PAUSED. No second test execution.
+                newer=m.start();assert newer['owner_id']!=owner_id
+                assert m.connect()[0].dispatch_gate()['state']=='PAUSED'
+>               (tmp_path/'windows_product_lifecycle.json').write_text(canonical_json(evidence),encoding='utf-8')
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_service_lifecycle.py:193: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+abqjobpilot\execution\models.py:54: in canonical_json
+    check(value)
+abqjobpilot\execution\models.py:51: in check
+    check(child)
+abqjobpilot\execution\models.py:51: in check
+    check(child)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+item = 1792842057.6259007
+
+    def check(item):
+        if item is None or type(item) in (str, bool, int):
+            return
+        if type(item) is list:
+            for child in item:
+                check(child)
+            return
+        if type(item) is dict and all(type(key) is str for key in item):
+            for child in item.values():
+                check(child)
+            return
+>       raise ExecutionError("INVALID_REQUEST", "Only strict JSON without floats is supported")
+E       abqjobpilot.execution.models.ExecutionError: Only strict JSON without floats is supported
+
+abqjobpilot\execution\models.py:53: ExecutionError
+=========================== short test summary info ===========================
+FAILED tests/test_service_lifecycle.py::test_product_gui_start_worker_survives_normal_gui_and_launcher_exit
+1 failed, 28 passed in 31.23s

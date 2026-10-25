@@ -1,0 +1,3296 @@
+{
+  "health": {
+    "backend": "abaqus-standard-axial-2024-v1",
+    "backends": [
+      {
+        "backend_id": "fake-v1",
+        "version": 1
+      },
+      {
+        "backend_id": "abaqus-standard-axial-2024-v1",
+        "version": 1
+      }
+    ],
+    "dispatch_enabled": false,
+    "execution_scope": "REAL_FIXED_STANDARD_AND_TEST_ONLY",
+    "io_timeout_ms": 2000,
+    "last_error": null,
+    "lifecycle_start_id": "start_8509ac7269304fbe93099be574fc1de0",
+    "max_connections": 8,
+    "max_events": 64,
+    "max_request": 65536,
+    "max_response": 262144,
+    "operations": [
+      "health",
+      "submit",
+      "receipt",
+      "run",
+      "events",
+      "validations",
+      "preview_reconciliation",
+      "apply_reconciliation",
+      "resume_dispatch",
+      "dispatch_gate",
+      "management_receipt",
+      "reconciliations",
+      "diagnose",
+      "preview_process_reconciliation",
+      "apply_process_reconciliation",
+      "inspect_plan",
+      "validate_run",
+      "progress",
+      "preview_closeout",
+      "apply_closeout",
+      "project_view",
+      "lifecycle_stop",
+      "product_standard_control"
+    ],
+    "plan_preparation": "trusted_operator_preprovisioned",
+    "process": {
+      "creation_time_100ns": 134373795386097186,
+      "executable": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "parent_pid": 31428,
+      "pid": 20864
+    },
+    "process_fixture_enabled": false,
+    "simulation": false,
+    "slot_scope": "experiment_store"
+  },
+  "project_view": {
+    "consistency": "single_read_transaction; pages are successive snapshots",
+    "context_digest": "sha256:360c491afca2964429e1cb642a17dcd5e731180adee30a961a3782d93bc24de1",
+    "gate": {
+      "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+      "state": "PAUSED",
+      "version": 2
+    },
+    "next_before_row": null,
+    "project_id": "p_fa698230f3e6499caf08517e3e82dbc2",
+    "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+    "read_at": 1792906200,
+    "runs": [
+      {
+        "artifact_validation": "VALID",
+        "backend_id": "abaqus-standard-axial-2024-v1",
+        "created_at": 1792906054,
+        "execution": "FINISHED",
+        "execution_phase": "EVIDENCE_RECORDED",
+        "job_id": "job_1905f846e90e493797585dfb024ae7c2",
+        "job_name": "r021_bar_42b9754e",
+        "plan_id": "plan_499a7ab80b804e11939fc760ac3a2243",
+        "queue_state": "DISPATCHED",
+        "receipt": {
+          "accepted_at": 1792906054,
+          "idempotency_key": "run021-product-submit-42b9754e",
+          "request_id": "req_9fc6585f5f1741f3b30c802c0116c1b3",
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4"
+        },
+        "reconciliation": "NONE",
+        "revision": 43,
+        "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+        "solver_conclusion": "COMPLETED_TEXT_EVIDENCE"
+      }
+    ],
+    "slot_run_id": null,
+    "view_version": "af-project-view-v1"
+  },
+  "validations": [
+    {
+      "details": {
+        "artifacts": [
+          {
+            "device": 5972476759961804666,
+            "digest": "sha256:05942b3b79aad64399d0618f7067435bb7dfdc4ffb292b8417655350c156110b",
+            "inode": 562949954899483,
+            "logical_ref": "output:dat",
+            "mtime_ns": 1792906104735621800,
+            "read_at": 1792906106,
+            "size": 10334
+          },
+          {
+            "device": 5972476759961804666,
+            "digest": "sha256:b5bd561323563ce7b1f0791ff9846b14bd266ad5054a4885d61073477b0449ee",
+            "inode": 1407374885031458,
+            "logical_ref": "output:sta",
+            "mtime_ns": 1792906104735621800,
+            "read_at": 1792906106,
+            "size": 444
+          },
+          {
+            "device": 5972476759961804666,
+            "digest": "sha256:cec22819b9dae66760b91c64f59ee9ba907cd8225859a11153324068844b0e3d",
+            "inode": 4503599628847187,
+            "logical_ref": "output:msg",
+            "mtime_ns": 1792906104735621800,
+            "read_at": 1792906106,
+            "size": 7606
+          }
+        ],
+        "comparisons": [
+          {
+            "absolute_error": "0E-9",
+            "actual": "0.010000000",
+            "effective_tolerance": "0.000001",
+            "expected": "0.01",
+            "group": "primary",
+            "quantity": "2_U1",
+            "source": {
+              "component": "U1",
+              "entity": "2",
+              "header_line": 215,
+              "line": 218,
+              "position": "global_node",
+              "raw": "1.0000000E-02"
+            },
+            "status": "PASS",
+            "unit": "mm"
+          },
+          {
+            "absolute_error": "0.000",
+            "actual": "1.000",
+            "effective_tolerance": "0.0001",
+            "expected": "1",
+            "group": "primary",
+            "quantity": "1_S11",
+            "source": {
+              "component": "S11",
+              "entity": "1",
+              "header_line": 200,
+              "line": 203,
+              "position": "integration_point_1",
+              "raw": "1.000"
+            },
+            "status": "PASS",
+            "unit": "MPa"
+          },
+          {
+            "absolute_error": "0E-7",
+            "actual": "-1.0000000",
+            "effective_tolerance": "0.0001",
+            "expected": "-1",
+            "group": "primary",
+            "quantity": "1_RF1",
+            "source": {
+              "component": "RF1",
+              "entity": "1",
+              "header_line": 224,
+              "line": 227,
+              "position": "global_node",
+              "raw": "-1.0000000E+00"
+            },
+            "status": "PASS",
+            "unit": "N"
+          },
+          {
+            "absolute_error": null,
+            "actual": null,
+            "effective_tolerance": "0.00000001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "1_U1",
+            "reason": "NO_PRINTED_ROW; not inferred as zero",
+            "status": "NOT_RECORDED",
+            "unit": "mm"
+          },
+          {
+            "absolute_error": null,
+            "actual": null,
+            "effective_tolerance": "0.00000001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "1_U2",
+            "reason": "NO_PRINTED_ROW; not inferred as zero",
+            "status": "NOT_RECORDED",
+            "unit": "mm"
+          },
+          {
+            "absolute_error": null,
+            "actual": null,
+            "effective_tolerance": "0.00000001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "1_U3",
+            "reason": "NO_PRINTED_ROW; not inferred as zero",
+            "status": "NOT_RECORDED",
+            "unit": "mm"
+          },
+          {
+            "absolute_error": "0E-7",
+            "actual": "0E-7",
+            "effective_tolerance": "0.00000001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "2_U2",
+            "source": {
+              "component": "U2",
+              "entity": "2",
+              "header_line": 215,
+              "line": 218,
+              "position": "global_node",
+              "raw": "0.0000000E+00"
+            },
+            "status": "PASS",
+            "unit": "mm"
+          },
+          {
+            "absolute_error": "0E-7",
+            "actual": "0E-7",
+            "effective_tolerance": "0.00000001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "2_U3",
+            "source": {
+              "component": "U3",
+              "entity": "2",
+              "header_line": 215,
+              "line": 218,
+              "position": "global_node",
+              "raw": "0.0000000E+00"
+            },
+            "status": "PASS",
+            "unit": "mm"
+          },
+          {
+            "absolute_error": "0E-7",
+            "actual": "0E-7",
+            "effective_tolerance": "0.0001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "2_RF1",
+            "source": {
+              "component": "RF1",
+              "entity": "2",
+              "header_line": 224,
+              "line": 228,
+              "position": "global_node",
+              "raw": "0.0000000E+00"
+            },
+            "status": "PASS",
+            "unit": "N"
+          },
+          {
+            "absolute_error": "0E-7",
+            "actual": "0E-7",
+            "effective_tolerance": "0.0001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "2_RF2",
+            "source": {
+              "component": "RF2",
+              "entity": "2",
+              "header_line": 224,
+              "line": 228,
+              "position": "global_node",
+              "raw": "0.0000000E+00"
+            },
+            "status": "PASS",
+            "unit": "N"
+          },
+          {
+            "absolute_error": "0E-7",
+            "actual": "0E-7",
+            "effective_tolerance": "0.0001",
+            "expected": "0",
+            "group": "additional",
+            "quantity": "2_RF3",
+            "source": {
+              "component": "RF3",
+              "entity": "2",
+              "header_line": 224,
+              "line": 228,
+              "position": "global_node",
+              "raw": "0.0000000E+00"
+            },
+            "status": "PASS",
+            "unit": "N"
+          },
+          {
+            "absolute_error": "0E-7",
+            "effective_tolerance": "0.0002",
+            "group": "additional",
+            "quantity": "X_force_balance",
+            "status": "PASS",
+            "unit": "N"
+          }
+        ],
+        "context": {
+          "completion_line": 231,
+          "final_time_line": 187,
+          "footer_line": 235,
+          "heading_line": 127,
+          "summary_line": 183
+        },
+        "dat_sha256": "05942b3b79aad64399d0618f7067435bb7dfdc4ffb292b8417655350c156110b",
+        "decoding": "strict CP936; non-ASCII allowed only as month glyph in page date",
+        "final_time": "1",
+        "full_frozen_checks": "NOT_ALL_ESTABLISHED",
+        "increment": 1,
+        "managed_observation_complete": true,
+        "managed_scope": {
+          "active_processes": 0,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906106,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58289640000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "EMPTY_CONFIRMED",
+          "total_processes": 12
+        },
+        "numerical": "PRIMARY_THREE_PASS",
+        "observed_exit_success": true,
+        "odb_content_validation": "NOT_RUN",
+        "solver": "COMPLETED_TEXT_EVIDENCE",
+        "source": "current_run_bounded_text_read",
+        "step": 1,
+        "validation_policy": "fixed-2024-axial-dat-v1"
+      },
+      "evidence_refs": [
+        "obs_9243be07832c4c6f816a878905b4b4ba"
+      ],
+      "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+      "policy_id": "fixed-2024-axial-dat-v1",
+      "policy_version": 1,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "scope": "fixed_standard_dat_only",
+      "validation_id": "val_496426121dee47c59a075ba9b57fb8cf",
+      "validator_id": "standard-dat-validator",
+      "validator_version": 1,
+      "verdict": "PASS"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "ev_cff2e037a6424bf6bcca15553f8a86ba",
+      "evidence_refs": [],
+      "observed_at": 1792906054,
+      "payload": {
+        "revision": 1
+      },
+      "project_sequence": 1,
+      "recorded_at": 1792906054,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 1,
+      "type": "REQUEST_ACCEPTED"
+    },
+    {
+      "event_id": "ev_eb2214c822f64f5289a9d741990c7907",
+      "evidence_refs": [],
+      "observed_at": 1792906076,
+      "payload": {
+        "revision": 2,
+        "single_dispatch": {
+          "grant_id": "grant_095b0af73ea8425d99c71ef9dc063510",
+          "operation_id": "op_d979d5510466497c902652e4066dfaf8",
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "start_not_after": 1792906101,
+          "state": "ARMED"
+        },
+        "start_not_after": 1792906101
+      },
+      "project_sequence": 2,
+      "recorded_at": 1792906076,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 2,
+      "type": "PRODUCT_DISPATCH_AUTHORIZED"
+    },
+    {
+      "event_id": "ev_13b747f05a11436684ad404e747446e3",
+      "evidence_refs": [],
+      "observed_at": 1792906076,
+      "payload": {
+        "execution": "START_INTENT",
+        "owner_epoch": 1,
+        "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+        "queue_state": "DISPATCHED",
+        "revision": 3
+      },
+      "project_sequence": 3,
+      "recorded_at": 1792906076,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 3,
+      "type": "START_INTENT"
+    },
+    {
+      "event_id": "ev_a1e2d9dbc50c4025a77aa4e882d80cdc",
+      "evidence_refs": [],
+      "observed_at": 1792906076,
+      "payload": {
+        "execution_phase": "STARTING",
+        "revision": 4
+      },
+      "project_sequence": 4,
+      "recorded_at": 1792906076,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 4,
+      "type": "STANDARD_STARTING"
+    },
+    {
+      "event_id": "ev_c33a34d61c1543d4934f6733339fae4c",
+      "evidence_refs": [],
+      "observed_at": 1792906076,
+      "payload": {
+        "batch_observation_not_after": 1792906376,
+        "revision": 5,
+        "single_dispatch": {
+          "claimed_at": 1792906076,
+          "grant_id": "grant_095b0af73ea8425d99c71ef9dc063510",
+          "operation_id": "op_d979d5510466497c902652e4066dfaf8",
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "start_not_after": 1792906101,
+          "state": "CLAIMED"
+        }
+      },
+      "project_sequence": 5,
+      "recorded_at": 1792906076,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 5,
+      "type": "PRODUCT_DISPATCH_CONSUMED"
+    },
+    {
+      "event_id": "ev_bc5d0b8e57364f448432e56067007418",
+      "evidence_refs": [],
+      "observed_at": 1792906076,
+      "payload": {
+        "host_observation": {
+          "abaqus_survival": "NOT_VALIDATED",
+          "eligible": true,
+          "full_job_hierarchy": "UNKNOWN",
+          "in_any_job": true,
+          "job_query_succeeded": true,
+          "observed_at": 1792906076,
+          "owner_or_session_exit_survival": "NOT_PROMISED",
+          "policy": "independent-service-same-windows-session-v1",
+          "process": {
+            "creation_time_100ns": 134373795386097186,
+            "image_path": "D:\\Program Files\\Python312\\python.exe",
+            "pid": 20864
+          },
+          "scope": "independent_owner_while_windows_session_remains_alive",
+          "standard_file_handles": [
+            1,
+            1
+          ]
+        },
+        "launch_intent": {
+          "intent_at_ns": 1792906076937049700,
+          "output_key": "sha256:a61597a6d97af061fc237bc10ec648c9b736d775e9eb0573b8cd78b684426a33",
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "state": "START_INTENT"
+        },
+        "launch_state": "INTENT_PERSISTED",
+        "member_completeness": "UNKNOWN",
+        "overall_exit": "UNKNOWN",
+        "revision": 6
+      },
+      "project_sequence": 6,
+      "recorded_at": 1792906076,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 6,
+      "type": "STANDARD_LAUNCH_INTENT"
+    },
+    {
+      "event_id": "ev_36456e65e206439d8e7bd6c27ad8fb23",
+      "evidence_refs": [],
+      "observed_at": 1792906077,
+      "payload": {
+        "managed_completion": "NOT_CONFIRMED",
+        "managed_scope": {
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "kill_on_job_close": false,
+          "named": false,
+          "observed_at": 1792906077,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8"
+        },
+        "revision": 7
+      },
+      "project_sequence": 7,
+      "recorded_at": 1792906077,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 7,
+      "type": "MANAGED_SCOPE_PREPARED"
+    },
+    {
+      "event_id": "ev_8a342d40921946079a7c549a6f6013c3",
+      "evidence_refs": [],
+      "observed_at": 1792906077,
+      "payload": {
+        "launch_state": "CALL_ENTERED_OUTCOME_UNKNOWN",
+        "revision": 8
+      },
+      "project_sequence": 8,
+      "recorded_at": 1792906077,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 8,
+      "type": "STANDARD_CREATE_ENTERING"
+    },
+    {
+      "event_id": "ev_18ce3eef117d42fbb5de442eb8b8e453",
+      "evidence_refs": [],
+      "observed_at": 1792906077,
+      "payload": {
+        "creation_duration_ms": 219,
+        "execution_phase": "OBSERVING",
+        "launch_state": "PROCESS_OBJECT_RETURNED",
+        "revision": 9
+      },
+      "project_sequence": 9,
+      "recorded_at": 1792906077,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 9,
+      "type": "STANDARD_CREATED"
+    },
+    {
+      "event_id": "ev_0be3d34401ad411bb8be4c46ae4781b7",
+      "evidence_refs": [],
+      "observed_at": 1792906077,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          }
+        ],
+        "revision": 10
+      },
+      "project_sequence": 10,
+      "recorded_at": 1792906077,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 10,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_68587174d1784c31a667a4941c51acf8",
+      "evidence_refs": [],
+      "observed_at": 1792906077,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 2,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906077,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58260234000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 2
+        },
+        "revision": 11
+      },
+      "project_sequence": 11,
+      "recorded_at": 1792906077,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 11,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_87ce775e64c34fc1a60cdba21f60faf6",
+      "evidence_refs": [],
+      "observed_at": 1792906077,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          }
+        ],
+        "revision": 12
+      },
+      "project_sequence": 12,
+      "recorded_at": 1792906077,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 12,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_d21ef86e3c694b13b87a074bae66c118",
+      "evidence_refs": [],
+      "observed_at": 1792906077,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 4,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906077,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58260390000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 4
+        },
+        "revision": 13
+      },
+      "project_sequence": 13,
+      "recorded_at": 1792906077,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 13,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_b7b8de9373444acf84f9da3470e637d3",
+      "evidence_refs": [],
+      "observed_at": 1792906081,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 4,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906081,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58264656000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 5
+        },
+        "revision": 14
+      },
+      "project_sequence": 14,
+      "recorded_at": 1792906081,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 14,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_01c96512436544729f833f97bceee2f0",
+      "evidence_refs": [],
+      "observed_at": 1792906085,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          }
+        ],
+        "revision": 15
+      },
+      "project_sequence": 15,
+      "recorded_at": 1792906085,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 15,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_7606b12bb63d41e4b64bf1c6823361a8",
+      "evidence_refs": [],
+      "observed_at": 1792906085,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 5,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906085,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58268171000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 6
+        },
+        "revision": 16
+      },
+      "project_sequence": 16,
+      "recorded_at": 1792906085,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 16,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_7801dc7367bd4fcba85f84ea9018c01b",
+      "evidence_refs": [],
+      "observed_at": 1792906085,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          }
+        ],
+        "revision": 17
+      },
+      "project_sequence": 17,
+      "recorded_at": 1792906085,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 17,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_15041219029441e3bc8743e1506a9da4",
+      "evidence_refs": [],
+      "observed_at": 1792906085,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 4,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906085,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58268328000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 6
+        },
+        "revision": 18
+      },
+      "project_sequence": 18,
+      "recorded_at": 1792906085,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 18,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_eb5fbaa61032451a9103727603d454f4",
+      "evidence_refs": [],
+      "observed_at": 1792906085,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          }
+        ],
+        "revision": 19
+      },
+      "project_sequence": 19,
+      "recorded_at": 1792906085,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 19,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_443d5ce1ed9e429ca7f39b39fa2c84d1",
+      "evidence_refs": [],
+      "observed_at": 1792906085,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 5,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906085,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58268484000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 7
+        },
+        "revision": 20
+      },
+      "project_sequence": 20,
+      "recorded_at": 1792906085,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 20,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_66004e3c14f24d1595812442c00963ea",
+      "evidence_refs": [],
+      "observed_at": 1792906086,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          }
+        ],
+        "revision": 21
+      },
+      "project_sequence": 21,
+      "recorded_at": 1792906086,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 21,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_2e7301e3d7ff4b8fb70c57ede293c6c3",
+      "evidence_refs": [],
+      "observed_at": 1792906086,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 6,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906086,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58269000000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 8
+        },
+        "revision": 22
+      },
+      "project_sequence": 22,
+      "recorded_at": 1792906086,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 22,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_3128177efda446f6925e9d3269f45148",
+      "evidence_refs": [],
+      "observed_at": 1792906086,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          }
+        ],
+        "revision": 23
+      },
+      "project_sequence": 23,
+      "recorded_at": 1792906086,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 23,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_fcca47522c244539953b6afa4fb87bed",
+      "evidence_refs": [],
+      "observed_at": 1792906086,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 7,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906086,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58269156000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 9
+        },
+        "revision": 24
+      },
+      "project_sequence": 24,
+      "recorded_at": 1792906086,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 24,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_6e2d4eb9e95944429ffb3a5cc485bc1b",
+      "evidence_refs": [],
+      "observed_at": 1792906095,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          }
+        ],
+        "revision": 25
+      },
+      "project_sequence": 25,
+      "recorded_at": 1792906095,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 25,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_e9618d9a6dfd43b59e741e6cd387d511",
+      "evidence_refs": [],
+      "observed_at": 1792906095,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 6,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906095,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58278437000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 9
+        },
+        "revision": 26
+      },
+      "project_sequence": 26,
+      "recorded_at": 1792906095,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 26,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_37a236b912524cec8782d7e8fc7fc196",
+      "evidence_refs": [],
+      "observed_at": 1792906095,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          }
+        ],
+        "revision": 27
+      },
+      "project_sequence": 27,
+      "recorded_at": 1792906095,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 27,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_36a06eae9d4140189412cef441262f17",
+      "evidence_refs": [],
+      "observed_at": 1792906095,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 7,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906095,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58278578000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 10
+        },
+        "revision": 28
+      },
+      "project_sequence": 28,
+      "recorded_at": 1792906095,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 28,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_4093ef60d06b48999fdd423d88df7f17",
+      "evidence_refs": [],
+      "observed_at": 1792906104,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          }
+        ],
+        "revision": 29
+      },
+      "project_sequence": 29,
+      "recorded_at": 1792906104,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 29,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_815ec83d36c2494d884df7bde8453f9c",
+      "evidence_refs": [],
+      "observed_at": 1792906104,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 8,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906104,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58287265000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 11
+        },
+        "revision": 30
+      },
+      "project_sequence": 30,
+      "recorded_at": 1792906104,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 30,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_1c25066da4ea480caea7caeddea1ce22",
+      "evidence_refs": [],
+      "observed_at": 1792906104,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 7,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906104,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58287500000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 11
+        },
+        "revision": 31
+      },
+      "project_sequence": 31,
+      "recorded_at": 1792906104,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 31,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_4c8a705c2e5e4b239e4ed30115fb6a03",
+      "evidence_refs": [],
+      "observed_at": 1792906104,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "exit_code": 0,
+            "exit_observed_at": 1792906104,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          }
+        ],
+        "revision": 32
+      },
+      "project_sequence": 32,
+      "recorded_at": 1792906104,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 32,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_2c274c15c4514bdda2cf4b57131ffd80",
+      "evidence_refs": [],
+      "observed_at": 1792906105,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "exit_code": 0,
+            "exit_observed_at": 1792906104,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "exit_code": 0,
+            "exit_observed_at": 1792906105,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          }
+        ],
+        "revision": 33
+      },
+      "project_sequence": 33,
+      "recorded_at": 1792906105,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 33,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_24eade2ff31f45eca93796d87bdcad96",
+      "evidence_refs": [],
+      "observed_at": 1792906105,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 6,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906105,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58287906000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 11
+        },
+        "revision": 34
+      },
+      "project_sequence": 34,
+      "recorded_at": 1792906105,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 34,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_96d4b8e712714df6ba154e0fd4915707",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "exit_code": 0,
+            "exit_observed_at": 1792906104,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "exit_code": 0,
+            "exit_observed_at": 1792906105,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          }
+        ],
+        "revision": 35
+      },
+      "project_sequence": 35,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 35,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_bcae8ed7a6ef43028bbf906e2c0c5e43",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 6,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906106,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58289343000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "NOT_COMPLETE",
+          "total_processes": 12
+        },
+        "revision": 36
+      },
+      "project_sequence": 36,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 36,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_9af283d233b74620be2b182410655886",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "exit_code": 0,
+            "exit_observed_at": 1792906104,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "exit_code": 0,
+            "exit_observed_at": 1792906105,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797065643888,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMASimUtility.exe",
+            "observed_at": 1792906106,
+            "pid": 15004,
+            "role": "candidate_15004"
+          }
+        ],
+        "revision": 37
+      },
+      "project_sequence": 37,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 37,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_69aec85fcb7447409b1ea0e93bb93fcb",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "all_observed_exited": false,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "exit_code": 0,
+            "exit_observed_at": 1792906104,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "exit_code": 0,
+            "exit_observed_at": 1792906105,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797065643888,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMASimUtility.exe",
+            "observed_at": 1792906106,
+            "pid": 15004,
+            "role": "candidate_15004"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797065643888,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMASimUtility.exe",
+            "observed_at": 1792906106,
+            "pid": 15004,
+            "role": "candidate_15004"
+          }
+        ],
+        "revision": 38
+      },
+      "project_sequence": 38,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 38,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_5980f41e2da648a4a408eddc9ce34800",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "managed_scope": {
+          "active_processes": 0,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906106,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58289640000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "EMPTY_CONFIRMED",
+          "total_processes": 12
+        },
+        "revision": 39
+      },
+      "project_sequence": 39,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 39,
+      "type": "MANAGED_SCOPE_OBSERVED"
+    },
+    {
+      "event_id": "ev_f526de49216d42b499eaf5d609059af2",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "all_observed_exited": true,
+        "exit_verification": "UNKNOWN",
+        "member_completeness": "UNKNOWN",
+        "observation_unknowns": [],
+        "process_exits": [
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "exit_code": 0,
+            "exit_observed_at": 1792906085,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "exit_code": 0,
+            "exit_observed_at": 1792906095,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "exit_code": 0,
+            "exit_observed_at": 1792906104,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "exit_code": 0,
+            "exit_observed_at": 1792906105,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797065643888,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "retained_windows_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMASimUtility.exe",
+            "observed_at": 1792906106,
+            "pid": 15004,
+            "role": "candidate_15004"
+          },
+          {
+            "creation_time_100ns": 134373796774248368,
+            "exit_code": 0,
+            "exit_observed_at": 1792906106,
+            "exit_source": "direct_native_handle",
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          }
+        ],
+        "process_observation": "OBSERVED_SUBSET",
+        "process_records": [
+          {
+            "creation_time_100ns": 134373796774248368,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\cmd.exe",
+            "observed_at": 1792906077,
+            "pid": 5716,
+            "role": "wrapper"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796774404071,
+            "identity_status": "VERIFIED",
+            "image_path": "C:\\Windows\\System32\\conhost.exe",
+            "observed_at": 1792906077,
+            "pid": 3480,
+            "role": "candidate_3480"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796775321983,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMALauncher.exe",
+            "observed_at": 1792906077,
+            "pid": 14340,
+            "role": "candidate_14340"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796776064812,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906077,
+            "pid": 1332,
+            "role": "candidate_1332"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796852815345,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_CheckLicense.exe",
+            "observed_at": 1792906085,
+            "pid": 19688,
+            "role": "candidate_19688"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796855744210,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAPython.exe",
+            "observed_at": 1792906085,
+            "pid": 26224,
+            "role": "candidate_26224"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796861560343,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\eliT_DriverLM.exe",
+            "observed_at": 1792906086,
+            "pid": 24376,
+            "role": "candidate_24376"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796863140274,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\pre.exe",
+            "observed_at": 1792906086,
+            "pid": 22796,
+            "role": "candidate_22796"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373796956861492,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\standard.exe",
+            "observed_at": 1792906095,
+            "pid": 7604,
+            "role": "candidate_7604"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797044760547,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMAEqsDirSolverSymmetric.exe",
+            "observed_at": 1792906104,
+            "pid": 11700,
+            "role": "candidate_11700"
+          },
+          {
+            "attribution": "OS_parent_candidate_not_complete_solver_membership",
+            "creation_time_100ns": 134373797065643888,
+            "identity_status": "VERIFIED",
+            "image_path": "D:\\ABAQUS2024\\product\\win_b64\\code\\bin\\SMASimUtility.exe",
+            "observed_at": 1792906106,
+            "pid": 15004,
+            "role": "candidate_15004"
+          }
+        ],
+        "revision": 40
+      },
+      "project_sequence": 40,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 40,
+      "type": "STANDARD_PROCESS_OBSERVATION"
+    },
+    {
+      "event_id": "ev_3c312934ea724831a41384a5c9bbf4cb",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "execution": "VALIDATING",
+        "execution_phase": "OBSERVATION_ENDED",
+        "observation_deadline_reached": false,
+        "observation_ended_at": 1792906106,
+        "revision": 41
+      },
+      "project_sequence": 41,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 41,
+      "type": "STANDARD_OBSERVATION_ENDED"
+    },
+    {
+      "event_id": "ev_2c130d8958864394a9abf91af66a3ee2",
+      "evidence_refs": [],
+      "observed_at": 1792906106,
+      "payload": {
+        "managed_completion": "COMMITTED_EMPTY_SCOPE",
+        "managed_completion_recorded_at": 1792906106,
+        "managed_scope": {
+          "active_processes": 0,
+          "binding": "CREATE_PROCESS_JOB_LIST",
+          "breakaway_allowed": false,
+          "creation_confirmed": true,
+          "kill_on_job_close": false,
+          "limit_terminated_processes": 0,
+          "named": false,
+          "observed_at": 1792906106,
+          "owner_epoch": 1,
+          "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+          "pending_additions": false,
+          "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+          "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+          "policy": "windows-job-list-v1",
+          "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+          "query_monotonic_ns": 58289640000000,
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+          "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+          "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+          "source": "QueryInformationJobObject.BasicAccounting",
+          "state": "EMPTY_CONFIRMED",
+          "total_processes": 12
+        },
+        "revision": 42
+      },
+      "project_sequence": 42,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 42,
+      "type": "STANDARD_MANAGED_COMPLETED"
+    },
+    {
+      "event_id": "ev_01bdaeab8d24469d98fa3f155fbbb282",
+      "evidence_refs": [
+        "obs_9243be07832c4c6f816a878905b4b4ba",
+        "val_496426121dee47c59a075ba9b57fb8cf"
+      ],
+      "observed_at": 1792906106,
+      "payload": {
+        "artifact_validation": "VALID",
+        "backend_outcome": "COMPLETED",
+        "execution": "FINISHED",
+        "execution_phase": "EVIDENCE_RECORDED",
+        "numerical_validation": "PRIMARY_THREE_PASS",
+        "odb_content_validation": "NOT_RUN",
+        "reconciliation": "NONE",
+        "result_reason": null,
+        "revision": 43,
+        "solver_conclusion": "COMPLETED_TEXT_EVIDENCE",
+        "validation_scope": "fixed_standard_dat_only"
+      },
+      "project_sequence": 43,
+      "recorded_at": 1792906106,
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+      "run_sequence": 43,
+      "type": "STANDARD_RESULT_RECORDED"
+    }
+  ],
+  "authorization_receipt": {
+    "action": "authorize",
+    "dispatch_state": "PAUSED",
+    "expires_at": 1792906632,
+    "grant_id": "grant_095b0af73ea8425d99c71ef9dc063510",
+    "operation_id": "op_2a3da0ad99664dffb22ebfcdeef4702a",
+    "operation_key": "run021-product-authorize-42b9754e",
+    "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+    "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+    "plan_id": "plan_499a7ab80b804e11939fc760ac3a2243",
+    "project_id": "p_fa698230f3e6499caf08517e3e82dbc2",
+    "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+    "recorded_at": 1792906032,
+    "scope_digest": "sha256:fded4e07d41b2eb21b142694554ce86e2eec6df029927ed922683bce5519b3de",
+    "source": "Current user message: AbqJobPilot Run021B unique real Standard acceptance authorization; body efdee66a3639bbfe95d084e90036e6376eaa3120c975918423afedf0b72220e1",
+    "subject": "user_wuxia"
+  },
+  "dispatch_receipt": {
+    "action": "dispatch_once",
+    "dispatch_state": "PAUSED",
+    "grant_id": "grant_095b0af73ea8425d99c71ef9dc063510",
+    "operation_id": "op_d979d5510466497c902652e4066dfaf8",
+    "operation_key": "run021-product-dispatch-42b9754e",
+    "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+    "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+    "plan_id": "plan_499a7ab80b804e11939fc760ac3a2243",
+    "project_id": "p_fa698230f3e6499caf08517e3e82dbc2",
+    "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+    "recorded_at": 1792906076,
+    "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+    "start_not_after": 1792906101
+  }
+}

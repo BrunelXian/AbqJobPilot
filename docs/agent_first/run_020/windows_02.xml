@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="20.411" timestamp="2026-10-25T00:10:16.449352+08:00" hostname="Boltzmann"><testcase classname="tests.test_product_windows" name="test_gui_new_empty_product_start_reopen_independent_client_stop" time="3.930" /><testcase classname="tests.test_product_windows" name="test_fixed_worker_product_gui_chain_and_secret_free_reports" time="14.549"><failure message="AssertionError: Deterministic condition did not arrive before deadline">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_windows_02/test_fixed_worker_product_gui_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002D489570500&gt;
+
+    def test_fixed_worker_product_gui_chain_and_secret_free_reports(tmp_path,monkeypatch):
+        project=tmp_path/'test_product';offer=trusted_fixture_during_initial_lease(project,monkeypatch);guis=[]
+        with own_project(project) as refs:
+            try:
+                first=Gui(tmp_path,None,None,'gui_A',attachment=True,product=True);guis.append(first)
+                action(first,'project',project=str(project))
+                wait_until(lambda:'NOT_RUNNING' in telemetry(first.root/'lifecycle.json').get('status',''))
+                action(first,'start');m=ServiceLifecycleManager(project);wait_until(lambda:m.inspect()['state']=='CONNECTED')
+                client,ctx,health=m.connect();owner=health['process'];owner_ref=ProcessReference(owner['pid'],owner);refs.append(owner_ref)
+                submitted=independent(tmp_path,project,offer=offer);rid=submitted['submission']['receipt']['run_id']
+                run=wait_until(lambda:r if len((r:=client.run(rid))['process_records'])==4 else None)
+                worker=next(p for p in run['process_records'] if p['role']=='worker')
+                worker_ref=ProcessReference(worker['pid'],worker);refs.append(worker_ref)
+&gt;               attach(first,project,rid);first.view(lambda v:'WAITING' in v['progress_text'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_product_windows.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_product_windows.py:79: in attach
+    if rid:action(gui,'select',run_id=rid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_attachment_gui.py:26: in action
+    wait_until((gui.root/('ack_'+action_id+'.json')).exists)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = &lt;bound method Path.exists of WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_windows_02/test_fixed_worker_product_gui_0/gui_A/ack_10406828000000.json')&gt;
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() &lt; deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+&gt;       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError</failure></testcase><testcase classname="tests.test_product_windows" name="test_product_credentials_wrong_context_copies_and_connection_permission" time="1.692" /></testsuite></testsuites>

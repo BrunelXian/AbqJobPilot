@@ -1,0 +1,87 @@
+........................................................................ [ 12%]
+........................................................................ [ 24%]
+................F....................................................... [ 36%]
+........................................................................ [ 48%]
+........................................................................ [ 61%]
+........................................................................ [ 73%]
+........................................................................ [ 85%]
+........................................................................ [ 97%]
+..............                                                           [100%]
+================================== FAILURES ===================================
+________ test_dependency_graph_excludes_all_legacy_and_launch_modules _________
+
+    def test_dependency_graph_excludes_all_legacy_and_launch_modules():
+        root = Path(execution.__file__).parent
+        allowed = {"dataclasses", "hashlib", "json", "time", "uuid", "pathlib", "stat", "contextlib",
+                   "sqlite3", "threading", "os"}
+        # Explicit owner/transport modules may use only these additional stdlib APIs.
+        # Core Fake/plan/validation retain their original no-launch dependency bound.
+        additions = {"ownership": {"ctypes", "msvcrt", "sys"}, "protocol": {"socket", "struct"},
+                     "supervisor": {"argparse", "hmac", "socket"}, "client": set(),
+                     "process_handles": {"ctypes"}, "process_backend": {"subprocess", "sys"},
+                     'managed_process': {'ctypes', 'subprocess', 'sys', 'msvcrt'},
+                     "process_fixture": {"argparse", "ctypes", "subprocess", "sys"},
+                     "standard_contract": {"re"}, "standard_dat": {"decimal", "re"},
+                     "standard_process": {"ctypes", "sys"}, "standard_backend": {"subprocess"}}
+        local_modules = {p.stem for p in root.glob("*.py")}
+        for path in root.glob("*.py"):
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+            permitted = allowed | additions.get(path.stem, set())
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    assert all(item.name in permitted for item in node.names), (path, ast.dump(node))
+                if isinstance(node, ast.ImportFrom):
+                    assert (node.level == 1 and node.module in local_modules) or (node.level == 0 and node.module in permitted)
+                    if path.stem in {"fake_backend", "planning", "validation", "authorization", "paths", "models"} and node.level:
+                        assert node.module in {"models", "paths"}
+                    if path.stem == "client" and node.level:
+                        assert node.module in {"models", "protocol", "audit_export"}
+                    if path.stem == "audit_export" and node.level:
+                        assert node.module in {"models", "paths", "diagnostics"}
+                    if path.stem == "diagnostics" and node.level:
+                        assert node.module == "models"
+                if isinstance(node, ast.Call):
+                    assert not (isinstance(node.func, ast.Name) and node.func.id in {"eval", "exec", "__import__", "compile"})
+                    if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name) and node.func.value.id == "os":
+                        permitted_os = {"getpid", "getppid", "fstat", "set_inheritable"} if path.stem == "ownership" else {"fsync"}
+                        if path.stem in {"reconciliation", "audit_export", "progress_log"}:
+                            permitted_os = {"fsync", "fstat"}
+                        if path.stem == "process_fixture":
+                            permitted_os = {"fsync", "getpid", "getppid"}
+                        if path.stem == 'standard_process': permitted_os = {'getpid'}
+                        assert node.func.attr in permitted_os
+                    if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name) and node.func.value.id == "subprocess":
+                        if path.stem == 'managed_process':
+                            assert node.func.attr == 'list2cmdline'  # quoting only, no Popen fallback
+                            continue
+                        assert path.stem in {"process_backend", "process_fixture", "standard_backend"}
+                        assert node.func.attr == "Popen"
+                        assert any(k.arg == "shell" and isinstance(k.value, ast.Constant) and k.value.value is False for k in node.keywords)
+                        assert any(k.arg == "close_fds" and isinstance(k.value, ast.Constant) and k.value.value is True for k in node.keywords)
+            if path.stem == 'managed_process':
+                forbidden={'TerminateProcess','TerminateJobObject','OpenJobObjectW','AssignProcessToJobObject',
+                           'CREATE_BREAKAWAY_FROM_JOB','PROC_THREAD_ATTRIBUTE_PARENT_PROCESS'}
+                assert not forbidden.intersection(n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute))
+                assert not forbidden.intersection(n.id for n in ast.walk(tree) if isinstance(n,ast.Name))
+                calls=[n for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='CreateProcessW']
+                assert len(calls)==1
+                # Native inheritance is permitted only for the explicit three-file
+                # HANDLE_LIST; the fixed Python path continues with no handles.
+                assert ast.unparse(calls[0].args[4])=='bool(std_handles)'
+                assert 'k.UpdateProcThreadAttribute(attrs, 0, HANDLE_LIST, handles, C.sizeof(handles), None, None)' in ast.unparse(tree)
+                assert 'len(std_handles) == 3' in ast.unparse(tree)
+                def flags(node):
+                    if isinstance(node,ast.Constant):return node.value
+                    assert isinstance(node,ast.BinOp) and isinstance(node.op,ast.BitOr)
+                    return flags(node.left)|flags(node.right)
+                assert flags(calls[0].args[5])==0x00080000|0x08000000|0x00000400
+                assert any(isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='UpdateProcThreadAttribute'
+                           and isinstance(n.args[2],ast.Name) and n.args[2].id=='JOB_LIST' for n in ast.walk(tree))
+>       assert "abqjobpilot.config" not in sys.modules
+E       AssertionError: assert 'abqjobpilot.config' not in {'sys': <module 'sys' (built-in)>, 'builtins': <module 'builtins' (built-in)>, '_frozen_importlib': <module '_frozen_importlib' (frozen)>, '_imp': <module '_imp' (built-in)>, ...}
+E        +  where {'sys': <module 'sys' (built-in)>, 'builtins': <module 'builtins' (built-in)>, '_frozen_importlib': <module '_frozen_importlib' (frozen)>, '_imp': <module '_imp' (built-in)>, ...} = sys.modules
+
+tests\test_execution_isolation.py:84: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_execution_isolation.py::test_dependency_graph_excludes_all_legacy_and_launch_modules
+1 failed, 589 passed in 619.42s (0:10:19)

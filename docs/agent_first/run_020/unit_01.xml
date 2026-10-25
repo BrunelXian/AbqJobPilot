@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="19" time="3.450" timestamp="2026-10-25T00:06:01.299564+08:00" hostname="Boltzmann"><testcase classname="tests.test_product_project" name="test_create_empty_paused_and_readonly_reopen" time="0.362" /><testcase classname="tests.test_product_project" name="test_atomic_concurrent_creation" time="0.272" /><testcase classname="tests.test_product_project" name="test_failed_creation_never_opens_or_reuses[configuration]" time="0.194" /><testcase classname="tests.test_product_project" name="test_failed_creation_never_opens_or_reuses[publication]" time="0.194" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[plain]" time="0.003" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[legacy]" time="0.013" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[future]" time="0.264" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[corrupt]" time="0.256" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[missing_db]" time="0.248" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[journal]" time="0.265" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[moved]" time="0.231" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[copy]" time="0.264" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[]" time="0.002" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[     ]" time="0.001" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]" time="0.002" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[bad\nname]" time="0.002" /><testcase classname="tests.test_product_project" name="test_reparse_and_escape_rejected_before_write" time="0.160"><failure message="TypeError: function() argument 'code' must be code, not str">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_unit_01/test_reparse_and_escape_reject0')
+
+    def test_reparse_and_escape_rejected_before_write(tmp_path):
+        with pytest.raises(ExecutionError):create_project(tmp_path/'..'/'escape','x')
+        # Local test symlink privileges vary; exercise actual reparse classification without enabling privileges.
+        import stat
+&gt;       from unittest.mock import patch
+
+tests\test_product_project.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+D:\Program Files\Python312\Lib\unittest\mock.py:26: in &lt;module&gt;
+    import asyncio
+D:\Program Files\Python312\Lib\asyncio\__init__.py:43: in &lt;module&gt;
+    from .windows_events import *
+D:\Program Files\Python312\Lib\asyncio\windows_events.py:26: in &lt;module&gt;
+    from . import windows_utils
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    """Various Windows specific bits and pieces."""
+    
+    import sys
+    
+    if sys.platform != 'win32':  # pragma: no cover
+        raise ImportError('win32 only')
+    
+    import _winapi
+    import itertools
+    import msvcrt
+    import os
+    import subprocess
+    import tempfile
+    import warnings
+    
+    
+    __all__ = 'pipe', 'Popen', 'PIPE', 'PipeHandle'
+    
+    
+    # Constants/globals
+    
+    
+    BUFSIZE = 8192
+    PIPE = subprocess.PIPE
+    STDOUT = subprocess.STDOUT
+    _mmap_counter = itertools.count()
+    
+    
+    # Replacement for os.pipe() using handles instead of fds
+    
+    
+    def pipe(*, duplex=False, overlapped=(True, True), bufsize=BUFSIZE):
+        """Like os.pipe() but with overlapped support and using handles not fds."""
+        address = tempfile.mktemp(
+            prefix=r'\\.\pipe\python-pipe-{:d}-{:d}-'.format(
+                os.getpid(), next(_mmap_counter)))
+    
+        if duplex:
+            openmode = _winapi.PIPE_ACCESS_DUPLEX
+            access = _winapi.GENERIC_READ | _winapi.GENERIC_WRITE
+            obsize, ibsize = bufsize, bufsize
+        else:
+            openmode = _winapi.PIPE_ACCESS_INBOUND
+            access = _winapi.GENERIC_WRITE
+            obsize, ibsize = 0, bufsize
+    
+        openmode |= _winapi.FILE_FLAG_FIRST_PIPE_INSTANCE
+    
+        if overlapped[0]:
+            openmode |= _winapi.FILE_FLAG_OVERLAPPED
+    
+        if overlapped[1]:
+            flags_and_attribs = _winapi.FILE_FLAG_OVERLAPPED
+        else:
+            flags_and_attribs = 0
+    
+        h1 = h2 = None
+        try:
+            h1 = _winapi.CreateNamedPipe(
+                address, openmode, _winapi.PIPE_WAIT,
+                1, obsize, ibsize, _winapi.NMPWAIT_WAIT_FOREVER, _winapi.NULL)
+    
+            h2 = _winapi.CreateFile(
+                address, access, 0, _winapi.NULL, _winapi.OPEN_EXISTING,
+                flags_and_attribs, _winapi.NULL)
+    
+            ov = _winapi.ConnectNamedPipe(h1, overlapped=True)
+            ov.GetOverlappedResult(True)
+            return h1, h2
+        except:
+            if h1 is not None:
+                _winapi.CloseHandle(h1)
+            if h2 is not None:
+                _winapi.CloseHandle(h2)
+            raise
+    
+    
+    # Wrapper for a pipe handle
+    
+    
+    class PipeHandle:
+        """Wrapper for an overlapped pipe handle which is vaguely file-object like.
+    
+        The IOCP event loop can use these instead of socket objects.
+        """
+        def __init__(self, handle):
+            self._handle = handle
+    
+        def __repr__(self):
+            if self._handle is not None:
+                handle = f'handle={self._handle!r}'
+            else:
+                handle = 'closed'
+            return f'&lt;{self.__class__.__name__} {handle}&gt;'
+    
+        @property
+        def handle(self):
+            return self._handle
+    
+        def fileno(self):
+            if self._handle is None:
+                raise ValueError("I/O operation on closed pipe")
+            return self._handle
+    
+        def close(self, *, CloseHandle=_winapi.CloseHandle):
+            if self._handle is not None:
+                CloseHandle(self._handle)
+                self._handle = None
+    
+        def __del__(self, _warn=warnings.warn):
+            if self._handle is not None:
+                _warn(f"unclosed {self!r}", ResourceWarning, source=self)
+                self.close()
+    
+        def __enter__(self):
+            return self
+    
+        def __exit__(self, t, v, tb):
+            self.close()
+    
+    
+    # Replacement for subprocess.Popen using overlapped pipe handles
+    
+    
+&gt;   class Popen(subprocess.Popen):
+E   TypeError: function() argument 'code' must be code, not str
+
+D:\Program Files\Python312\Lib\asyncio\windows_utils.py:125: TypeError</failure></testcase><testcase classname="tests.test_product_project" name="test_windows_dpapi_binding_tamper_and_plaintext_downgrade" time="0.265" /><testcase classname="tests.test_product_project" name="test_private_acl_restricted_from_creation" time="0.201" /></testsuite></testsuites>

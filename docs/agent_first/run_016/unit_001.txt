@@ -1,0 +1,28 @@
+F.....................................                                   [100%]
+================================== FAILURES ===================================
+__________________ test_pair_server_guards_and_success_order __________________
+
+pair = <test_standard_backend.Case object at 0x000001DA0C8D7B90>
+
+    def test_pair_server_guards_and_success_order(pair):
+        c=pair
+        assert_code('PREDECESSOR_NOT_QUALIFIED',lambda:c.service.submit(c.ctx,c.requests[1]))
+        a=execute(c,0)
+        assert a['execution']=='FINISHED' and a['managed_completion']=='COMMITTED_EMPTY_SCOPE'
+        assert a['member_completeness']==a['overall_exit']=='UNKNOWN'
+        assert a['solver_conclusion']=='COMPLETED_TEXT_EVIDENCE' and a['numerical_validation']=='PRIMARY_THREE_PASS'
+        b=execute(c,1);assert b['managed_completion']=='COMMITTED_EMPTY_SCOPE' and len(c.calls)==2
+        for i in (0,1):assert c.service.submit(c.ctx,c.requests[i])['replayed']
+        with c.store.read() as db:
+            events=[json.loads(r[0]) for r in db.execute('SELECT body FROM events ORDER BY sequence')]
+            assert db.execute('SELECT run_id FROM slot').fetchone()[0] is None
+        end=next(e for e in events if e['run_id']==a['run_id'] and e['type']=='STANDARD_MANAGED_COMPLETED')
+        start=next(e for e in events if e['run_id']==b['run_id'] and e['type']=='START_INTENT')
+>       assert end['project_sequence']<start['project_sequence'] and c.store.gate()['state']=='OPEN'
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'project_sequence'
+
+tests\test_standard_managed.py:76: KeyError
+=========================== short test summary info ===========================
+FAILED tests/test_standard_managed.py::test_pair_server_guards_and_success_order
+1 failed, 37 passed in 24.64s

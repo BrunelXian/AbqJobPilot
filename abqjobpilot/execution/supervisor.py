@@ -16,7 +16,8 @@ from .store import acquire_supervisor_store
 
 OPERATIONS = ("health", "submit", "receipt", "run", "events", "validations", "preview_reconciliation",
               "apply_reconciliation", "resume_dispatch", "dispatch_gate", "management_receipt", "reconciliations", "diagnose",
-              "preview_process_reconciliation", "apply_process_reconciliation", "inspect_plan", "validate_run", "progress")
+              "preview_process_reconciliation", "apply_process_reconciliation", "inspect_plan", "validate_run", "progress",
+              "preview_closeout", "apply_closeout", "project_view", "lifecycle_stop", "product_standard_control")
 
 
 def load_bootstrap(explicit_test_root, path):
@@ -35,9 +36,18 @@ def load_bootstrap(explicit_test_root, path):
 
 
 class FakeSupervisor:
-    def __init__(self, context, bootstrap, *, process_config=None, standard_config=None):
+    def __init__(self, context, bootstrap, *, process_config=None, standard_config=None, lifecycle=None):
         self.context = context
-        self.store = acquire_supervisor_store(context, bootstrap["authority_instance"])
+        if lifecycle is not None:
+            from .lifecycle import LifecycleControl
+            require(type(lifecycle) is LifecycleControl and
+                    ((standard_config is None and lifecycle.standard_binding is None) or
+                     (standard_config is not None and lifecycle.standard_binding is not None)),
+                    'LIFECYCLE_SCOPE_UNSUPPORTED','Exact provisioned lifecycle profile required')
+        self.lifecycle=lifecycle
+        self.store = acquire_supervisor_store(context, bootstrap["authority_instance"],idle_only=lifecycle is not None,
+                                              lifecycle_admit=lifecycle.admit if lifecycle else None,
+                                              standard_binding=lifecycle.standard_binding if lifecycle else None)
         self._stop = threading.Event()
         self._handlers = set()
         self._handlers_lock = threading.Lock()
@@ -47,6 +57,9 @@ class FakeSupervisor:
         self.listener = None
         try:
             self.service = ExecutionService(context, self.store, client_namespace=bootstrap["client_namespace"], process_config=process_config, standard_config=standard_config)
+            if lifecycle and lifecycle.standard_binding:
+                from .product_standard import ProductStandardControl
+                self.service.product_control=ProductStandardControl(lifecycle.standard_binding)
             self.listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.listener.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
             self.listener.bind(("127.0.0.1", 0))
@@ -73,6 +86,7 @@ class FakeSupervisor:
 
     @property
     def dispatch_enabled(self):
+        if self.service.product_control: return self.service.product_control.pending(self.service) is not None
         return self.store.dispatch_allowed()
 
     def _work(self):
@@ -80,7 +94,8 @@ class FakeSupervisor:
             try:
                 if not self.dispatch_enabled:
                     continue
-                run_id = self.store.pending_for_owner()
+                run_id = (self.service.product_control.pending(self.service) if self.service.product_control
+                          else self.store.pending_for_owner())
                 if run_id:
                     self.service.execute_pending(self.context, run_id)
             except ExecutionError as exc:
@@ -100,6 +115,21 @@ class FakeSupervisor:
 
     def _invoke(self, operation, args):
         ctx = self.context
+        if operation == 'product_standard_control':
+            fields(args, ('request',))
+            require(self.service.product_control is not None, 'CAPABILITY_UNAVAILABLE', 'No product Standard control')
+            result=self.service.product_control.invoke(self.service,args['request'])
+            self._checkpoint('product_control:before_response')
+            return result
+        if operation == 'lifecycle_stop':
+            fields(args,('request',))
+            require(self.lifecycle is not None,'CAPABILITY_UNAVAILABLE','Existing owner has no product stop capability')
+            result=self.lifecycle.stop(self.service,args['request'])
+            self._checkpoint('lifecycle_stop:before_response')
+            return result
+        if operation == 'project_view':
+            fields(args, ('before_row','limit'))
+            return self.service.project_view(ctx, args['before_row'], args['limit'])
         if operation == "progress":
             fields(args, ("run_id", "after_sequence", "limit"))
             from .progress_log import read_progress
@@ -119,7 +149,8 @@ class FakeSupervisor:
             return result
         if operation == "health":
             fields(args, ())
-            return {"operations": list(OPERATIONS), "backend": "abaqus-standard-axial-2024-v1" if self.service._standard_backend is not None else "fake-v1", "simulation": self.service._standard_backend is None,
+            return {"operations": [v for v in OPERATIONS if v!='lifecycle_stop' or self.lifecycle is not None], "backend": "abaqus-standard-axial-2024-v1" if self.service._standard_backend is not None else "fake-v1", "simulation": self.service._standard_backend is None,
+                    'lifecycle_start_id':self.lifecycle.start_id if self.lifecycle else None,
                     "execution_scope": "REAL_FIXED_STANDARD_AND_TEST_ONLY" if self.service._standard_backend is not None else "TEST_ONLY", "plan_preparation": "trusted_operator_preprovisioned",
                     "backends": [{"backend_id": "fake-v1", "version": 1}] +
                                 ([{"backend_id": "python-process-fixture-v1", "version": 1}] if self.service._process_backend is not None else []) +
@@ -137,6 +168,14 @@ class FakeSupervisor:
         if operation == "preview_reconciliation":
             fields(args, ("run_id",))
             return self.service.preview_reconciliation(ctx, args["run_id"])
+        if operation == 'preview_closeout':
+            fields(args,('run_id',))
+            return self.service.preview_closeout(ctx,args['run_id'])
+        if operation == 'apply_closeout':
+            fields(args,('request',))
+            result=self.service.apply_closeout(ctx,args['request'])
+            self._checkpoint('management:before_response')
+            return result
         if operation == "preview_process_reconciliation":
             fields(args, ("run_id",))
             return self.service.preview_process_reconciliation(ctx, args["run_id"])
@@ -224,7 +263,7 @@ class FakeSupervisor:
         worker = threading.Thread(target=self._work, name="fake-owner-worker")
         worker.start()
         try:
-            while not self._stop.is_set() and not (stop_event and stop_event.is_set()):
+            while not self._stop.is_set() and not (stop_event and stop_event.is_set()) and not (self.lifecycle and self.lifecycle.stop_requested.is_set()):
                 try:
                     stream, _ = self.listener.accept()
                 except TimeoutError:
@@ -244,6 +283,9 @@ class FakeSupervisor:
                 handlers = list(self._handlers)
             for thread in handlers:
                 thread.join()
+            # A normal owner shutdown is control-plane quiescence, never Solver
+            # exit evidence. Persist PAUSED without clearing Runs, slots/intents.
+            self.store.pause_after_error()
             self.store.close()
 
 

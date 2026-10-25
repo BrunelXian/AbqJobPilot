@@ -1,0 +1,577 @@
+--- before/abqjobpilot/execution/diagnostics.py
++++ after/abqjobpilot/execution/diagnostics.py
+@@ -122,6 +122,8 @@
+ 
+ # Stable explanation codes are not persisted execution states or permissions.
+ RULES = {
++    'MANAGED_SCOPE_ENDED':('SIMULATION','A retained Job query recorded no active scoped processes after root creation; completion and slot release committed together. This is not Solver or artifact success.','review_recorded_evidence'),
++    'MANAGED_SCOPE_UNCONFIRMED':('UNCERTAINTY','Managed range completion has not committed; enumerated key-role exits do not prove the descendant range ended.','review_recorded_evidence'),
+     "STANDARD_RECORDED_TEXT": ("EVIDENCE", "Recorded fixed Standard text and DAT checks have separate verdicts. Membership and overall exit remain unknown; no process or artifact was probed by this query.", "review_recorded_evidence"),
+     "RECORDED_EXITS_RECONCILED": ("RECONCILIATION", "Explicit reconciliation used historical OS exit records only; no process probe or artifact validation occurred, and dispatch permission is separate.", "review_recorded_evidence"),
+     "TEST_PROCESS_COMPLETED": ("SIMULATION", "Required fixed test processes have recorded zero exits; artifact validation is separate and Solver was not run.", "review_recorded_evidence"),
+@@ -183,6 +185,14 @@
+                   "execution_object_digest": hash_ref, "image_digest": hash_ref}
+ PROCESS_EXIT = {**PROCESS_RECORD, "exit_code": number, "exit_observed_at": number,
+                 "exit_source": choice("retained_windows_handle")}
++MANAGED_SCOPE = {'scope_id':ref('scope'),'policy':choice('windows-job-list-v1'),
++    'run_id':ref('r'),'phase_attempt_id':ref('phase'),'owner_id':ref('owner'),
++    'project_instance_id':ref('pi'),'plan_digest':hash_ref,'owner_epoch':number,
++    'binding':choice('CREATE_PROCESS_JOB_LIST'),'scope':choice('ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS'),
++    'kill_on_job_close':boolean,'breakaway_allowed':boolean,'named':boolean,'observed_at':number,
++    'source':choice('QueryInformationJobObject.BasicAccounting'),'query_monotonic_ns':number,
++    'creation_confirmed':boolean,'pending_additions':boolean,'active_processes':number,'total_processes':number,
++    'limit_terminated_processes':number,'state':choice('EMPTY_CONFIRMED','NOT_COMPLETE')}
+ RUN_V2 = {**RUN, "phase": choice("PROCESS_FIXTURE"), "backend_id": choice("python-process-fixture-v1"),
+           "backend_outcome_basis": choice("RECONCILED_RECORDED_OS_EXITS"),
+           "backend_outcome": choice("NOT_RUN", "UNKNOWN", "COMPLETED", "FAILED"),
+@@ -190,14 +200,20 @@
+           "exit_verification": choice("UNKNOWN", "PARTIAL", "VERIFIED"),
+           "process_failure_code": choice("PROCESS_IDENTITY_UNKNOWN", "PROCESS_IDENTITY_MISMATCH", "PROCESS_EXIT_UNKNOWN",
+                                         "PROCESS_IO_FAILURE", "STORE_UNAVAILABLE", "PLAN_STALE", "PLAN_EXPIRED",
+-                                        "GRANT_EXPIRED", "GRANT_SCOPE_MISMATCH", "INVALID_REQUEST"),
+-          "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT]}
++                                        "GRANT_EXPIRED", "GRANT_SCOPE_MISMATCH", "INVALID_REQUEST",
++                                        'MANAGED_SCOPE_UNKNOWN','MANAGED_SCOPE_UNAVAILABLE','MANAGED_CREATE_FAILED','MANAGED_SCOPE_POLICY_CHANGED'),
++          "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT],
++          'managed_scope':MANAGED_SCOPE,'managed_completion':choice('NOT_CONFIRMED','COMMITTED_EMPTY_SCOPE'),
++          'managed_completion_recorded_at':number}
+ FACTS_V2 = {**FACTS, "run": RUN_V2,
+             "plan": {**FACTS["plan"], "backend_id": choice("python-process-fixture-v1")},
+             "events": [{**EVENT, "type": choice("REQUEST_ACCEPTED", "START_INTENT", "DISPATCH_BLOCKED", "PROCESS_IDENTITIES",
+-                "PROCESS_EXIT_OBSERVED", "PROCESS_COMPLETED", "VALIDATION_RECORDED", "RECONCILIATION_REQUIRED", "PROCESS_RECONCILIATION_APPLIED"),
++                "PROCESS_EXIT_OBSERVED", "PROCESS_COMPLETED", "VALIDATION_RECORDED", "RECONCILIATION_REQUIRED", "PROCESS_RECONCILIATION_APPLIED",
++                'MANAGED_SCOPE_PREPARED','MANAGED_ROOT_CREATED','MANAGED_SCOPE_OBSERVED','MANAGED_SCOPE_COMPLETED'),
+                 "payload": {**EVENT["payload"], "backend_outcome": RUN_V2["backend_outcome"],
+-                            "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT]}}],
++                            "process_records": [PROCESS_RECORD], "process_exits": [PROCESS_EXIT],
++                            'managed_scope':MANAGED_SCOPE,'managed_completion':RUN_V2['managed_completion'],
++                            'managed_completion_recorded_at':number}}],
+             "observations": [{**OBSERVATION, "kind": choice("PROCESS_FIXTURE_JSON"), "provenance": choice("python-process-fixture-v1")}],
+             "validations": [{**VALIDATION, "policy_id": choice("process-fixture-result-v1"), "validator_id": choice("process-fixture-validator"),
+                              "source": choice("explicit_reconciliation", "explicit_client_validation")}],
+@@ -205,7 +221,7 @@
+                 "owner_id": ref("owner"), "recorded_at": number, "source": choice("TEST_ONLY_RECORDED_OS_EXIT_RECONCILIATION"),
+                 "action": choice("reconcile_recorded_process_exits"), "policy": choice("recorded-process-reconciliation-v1"),
+                 "conclusion": choice("RECORDED_EXIT_SUCCESS", "RECORDED_EXIT_FAILURE"), "evidence_refs": [RECORD_REF]}]}
+-BODY_V2 = {**BODY, "report_version": choice("af-run-diagnostic-v2"), "rules_version": choice("process-diagnostic-rules-v2", "process-diagnostic-rules-v3"),
++BODY_V2 = {**BODY, "report_version": choice("af-run-diagnostic-v2"), "rules_version": choice("process-diagnostic-rules-v2", "process-diagnostic-rules-v3",'process-diagnostic-rules-v4'),
+            "facts": FACTS_V2,
+            "diagnostics": [{**ITEM, "recorded_facts": {**ITEM["recorded_facts"], "backend_outcome": RUN_V2["backend_outcome"]}}]}
+ 
+@@ -317,6 +333,8 @@
+         if standard_run:
+             codes.extend(['STANDARD_RECORDED_TEXT','PROCESS_EXIT_NOT_ESTABLISHED'])
+         if process_run:
++            if run.get('managed_scope'):
++                codes.append('MANAGED_SCOPE_ENDED' if run.get('managed_completion')=='COMMITTED_EMPTY_SCOPE' else 'MANAGED_SCOPE_UNCONFIRMED')
+             records, exits = run.get("process_records") or [], run.get("process_exits") or []
+             roles = {"launcher", "worker", "launcher_transport", "worker_transport"}
+             complete_exits = (run["exit_verification"] == "VERIFIED" and len(records) == len(exits) == 4
+@@ -343,7 +361,7 @@
+                      "inference": RULES[code][1], "unknowns": unknowns, "source_refs": refs,
+                      "next_step": {"candidate": RULES[code][2], "preconditions": list(PRECONDITIONS)}} for code in codes]
+         body = project({"report_version": 'af-run-diagnostic-v3' if standard_run else "af-run-diagnostic-v2" if process_run else REPORT_VERSION,
+-                        "rules_version": 'standard-diagnostic-rules-v2' if standard_run else "process-diagnostic-rules-v3" if process_run else RULES_VERSION,
++                        "rules_version": 'standard-diagnostic-rules-v2' if standard_run else ('process-diagnostic-rules-v4' if run.get('managed_scope') else "process-diagnostic-rules-v3") if process_run else RULES_VERSION,
+                         "identity": {"project_id": context.project_id, "project_instance_id": context.project_instance_id,
+                                      "storage_generation": context.storage_generation, "context_digest": context.context_digest,
+                                      "schema_version": context.schema_version, "run_id": run["run_id"],
+--- before/abqjobpilot/execution/process_backend.py
++++ after/abqjobpilot/execution/process_backend.py
+@@ -24,23 +24,32 @@
+     image_digest: str
+     fixture_digest: str
+     max_seconds: int = 40
++    managed_scope: bool = False
+ 
+     @classmethod
+-    def current(cls):
++    def current(cls, *, managed_scope=False):
+         actual = current_process_identity()
+         return cls(str(Path(sys.executable).resolve()), actual["image_path"],
+                    bytes_digest(Path(sys.executable).read_bytes()), bytes_digest(Path(actual["image_path"]).read_bytes()),
+-                   bytes_digest(Path(__file__).with_name("process_fixture.py").read_bytes()))
++                   bytes_digest(Path(__file__).with_name("process_fixture.py").read_bytes()), managed_scope=managed_scope)
+ 
+     def binding(self, scenario):
+         require(scenario in SCENARIOS and type(scenario) is str, "INVALID_REQUEST", "Unsupported fixed test scenario")
++        require(type(self.managed_scope) is bool and (not scenario.startswith('managed_') or self.managed_scope),
++                'INVALID_REQUEST', 'Descendant scenarios require the explicit managed profile')
+         require(type(self.max_seconds) is int and 5 <= self.max_seconds <= 60,
+                 "RESOURCE_LIMIT", "Fixture lifetime must be 5..60 seconds")
+-        return {"interpreter": self.interpreter, "image": self.image,
++        binding = {"interpreter": self.interpreter, "image": self.image,
+                 "interpreter_digest": self.interpreter_digest, "image_digest": self.image_digest,
+                 "fixture_digest": self.fixture_digest, "scenario": scenario, "max_seconds": self.max_seconds,
+                 "max_process_members": 4, "argument_policy": "isolated_python_fixture_v1",
+                 "membership_contract": MEMBERSHIP_CONTRACT, "required_roles": list(REQUIRED_ROLES)}
++        if self.managed_scope:
++            from .managed_process import POLICY
++            binding['max_process_members'] = 12  # fixed fixture bound, not a host resource limit
++            binding['managed_scope'] = {'policy':POLICY,'implementation_digest':bytes_digest(
++                Path(__file__).with_name('managed_process.py').read_bytes())}
++        return binding
+ 
+     def verify(self, binding):
+         fields(binding, self.binding("normal"))
+@@ -71,16 +80,28 @@
+             stream.flush()
+             os.fsync(stream.fileno())
+         refs, observations, exits = {}, [], []
+-        process = None
++        process = scope = None
+         deadline = time.monotonic() + self.config.max_seconds + 5
+         try:
+             checkpoint("process:before_create")
+             authorize_start()  # Recheck after any startup delay, before the irreversible OS effect.
+             # No inherited IPC/auth/DB handles; only Windows system location is required.
+             environment = {"SystemRoot": os.environ["SystemRoot"], "PYTHONDONTWRITEBYTECODE": "1"}
+-            process = subprocess.Popen([self.config.interpreter, "-I", "-S", "-B",
++            command = [self.config.interpreter, "-I", "-S", "-B",
+                                         str(Path(__file__).with_name("process_fixture.py").resolve()),
+-                                        "--role", "launcher", "--directory", str(root)],
++                                        "--role", "launcher", "--directory", str(root)]
++            if self.config.managed_scope:
++                from .managed_process import ManagedScope
++                checkpoint('managed:before_scope')
++                scope = ManagedScope(run)
++                record('MANAGED_SCOPE_PREPARED', managed_scope=scope.description(), managed_completion='NOT_CONFIRMED')
++                checkpoint('managed:before_create')
++                authorize_start()
++                process = scope.create(command,cwd=str(root),env=environment)
++                checkpoint('managed:after_create')
++                record('MANAGED_ROOT_CREATED', managed_scope=scope.query())
++            else:
++                process = subprocess.Popen(command,
+                                        shell=False, close_fds=True, cwd=str(root), env=environment,
+                                        stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                        creationflags=subprocess.CREATE_NO_WINDOW)
+@@ -116,11 +137,14 @@
+                           "backend_version": 1, "required_roles": list(REQUIRED_ROLES),
+                           "basis": "FIXED_FIXTURE_ALL_ROLES_OS_VERIFIED_BEFORE_RELEASE",
+                           "fixture_digest": self.config.fixture_digest}
++            if scope:
++                membership['basis'] = 'KEY_ROLES_ONLY_NOT_MANAGED_DESCENDANT_COMPLETENESS'
+             record("PROCESS_IDENTITIES", process_observation="IDENTITIES_VERIFIED", process_records=observations,
+                    process_membership=membership)
+             checkpoint("process:after_identity")
+             (root / "owner-bound.json").write_text("{}", encoding="utf-8")
+             checkpoint("process:after_handoff")
++            last_scope_counts = None
+             while len(exits) < len(refs):
+                 require(time.monotonic() < deadline, "PROCESS_EXIT_UNKNOWN", "No complete exit evidence before deadline")
+                 for role, ref in refs.items():
+@@ -133,16 +157,41 @@
+                                       **binding, "exit_contract": EXIT_CONTRACT})
+                         record("PROCESS_EXIT_OBSERVED", process_exits=list(exits),
+                                process_observation="EXIT_PARTIAL", exit_verification="PARTIAL")
++                if scope:
++                    checkpoint('managed:before_query')
++                    view=scope.query()
++                    counts=(view['active_processes'],view['total_processes'])
++                    if counts!=last_scope_counts:
++                        record('MANAGED_SCOPE_OBSERVED',managed_scope=view)
++                        last_scope_counts=counts
+                 time.sleep(0.01)
+             process.wait(timeout=2)
+             checkpoint("process:after_exit")
++            proof=None
++            if scope:
++                while True:
++                    require(time.monotonic()<deadline,'MANAGED_SCOPE_UNKNOWN','Managed range did not end within observation budget')
++                    checkpoint('managed:before_query')
++                    proof=scope.query()
++                    counts=(proof['active_processes'],proof['total_processes'])
++                    if counts!=last_scope_counts:
++                        record('MANAGED_SCOPE_OBSERVED',managed_scope=proof)
++                        last_scope_counts=counts
++                    if proof['state']=='EMPTY_CONFIRMED':break
++                    time.sleep(.02)
++                checkpoint('managed:after_empty')
+             success = all(e["exit_code"] == 0 for e in exits)
+             record("PROCESS_COMPLETED", execution="VALIDATING", process_observation="EXIT_OBSERVED",
+                    exit_verification="VERIFIED", backend_outcome="COMPLETED" if success else "FAILED")
+-            return success
++            return {'success':success,'managed_scope':proof} if scope else success
+         finally:
+             # Failure never kills/adopts/restarts a possibly running worker. It expires or harness cleans it.
+             for ref in refs.values():
+                 ref.close()
+-            if process is not None and process.poll() is not None:
+-                process.wait()
++            try:
++                if process is not None and process.poll() is not None:
++                    process.wait(timeout=2)
++            finally:
++                if scope:
++                    if process is not None:process.close()
++                    scope.close()  # no KILL_ON_JOB_CLOSE, no hidden observer
+--- before/abqjobpilot/execution/process_contract.py
++++ after/abqjobpilot/execution/process_contract.py
+@@ -6,7 +6,7 @@
+ 
+ BACKEND = "python-process-fixture-v1"
+ ACTION = "launch_fixed_python_fixture"
+-SCENARIOS = ("normal", "launcher_early", "result_wait", "nonzero", "invalid_result")
++SCENARIOS = ("normal", "launcher_early", "result_wait", "nonzero", "invalid_result", "managed_tree", "managed_burst")
+ MEMBERSHIP_CONTRACT = "fixed-windows-members-v1"
+ EXIT_CONTRACT = "recorded-os-exit-v1"
+ REQUIRED_ROLES = ("launcher_transport", "launcher", "worker_transport", "worker")
+--- before/abqjobpilot/execution/process_fixture.py
++++ after/abqjobpilot/execution/process_fixture.py
+@@ -75,8 +75,9 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser()
+-    parser.add_argument("--role", choices=("launcher", "worker"), required=True)
++    parser.add_argument("--role", choices=("launcher", "worker", "branch", "leaf", "burst"), required=True)
+     parser.add_argument("--directory", required=True)
++    parser.add_argument('--index',type=int,choices=range(6),default=0)
+     args = parser.parse_args()
+     root = Path(args.directory)
+     # Only the backend creates this fixed bounded manifest in its exclusive Run directory.
+@@ -86,8 +87,27 @@
+     data = json.loads(raw)
+     deadline = time.monotonic() + data["max_seconds"]
+     binding = {k: data[k] for k in ("run_id", "project_instance_id", "phase_attempt_id", "plan_digest")}
+-    write(root / (args.role + ".json"), {**binding, **identity(), "role": args.role,
++    label=args.role+str(args.index) if args.role=='burst' else args.role
++    write(root / (label + ".json"), {**binding, **identity(), "role": args.role,
+                                        "environment_keys": sorted(os.environ)})
++    def child(role,index=0):
++        return subprocess.Popen([sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),
++            '--role',role,'--directory',str(root),'--index',str(index)],shell=False,close_fds=True,
++            cwd=str(root),env=dict(os.environ),stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,
++            stderr=subprocess.DEVNULL,creationflags=subprocess.CREATE_NO_WINDOW)
++    if args.role=='burst':
++        if data['scenario']!='managed_burst':raise ValueError('Unexpected fixed child scenario')
++        return 0
++    if args.role=='leaf':
++        if data['scenario']!='managed_tree':raise ValueError('Unexpected fixed child scenario')
++        wait(root/'leaf-release.json',deadline)
++        return 0
++    if args.role=='branch':
++        if data['scenario']!='managed_tree':raise ValueError('Unexpected fixed child scenario')
++        wait(root/'branch-release.json',deadline)
++        child('leaf')
++        wait(root/'leaf.json',deadline)
++        return 0
+     if args.role == "launcher":
+         worker = subprocess.Popen([sys.executable, "-I", "-S", "-B", str(Path(__file__).resolve()),
+                                    "--role", "worker", "--directory", str(root)],
+@@ -101,6 +121,12 @@
+     progress = Progress(root, binding)
+     try:
+         progress('WORKER_READY')
++        if data['scenario']=='managed_tree':
++            child('branch');wait(root/'branch.json',deadline)
++        if data['scenario']=='managed_burst':
++            # Deliberately do not enumerate/wait each transient child for completion.
++            # The retained Job's OS accounting, not these files, closes the range.
++            for index in range(6):child('burst',index)
+         if data["scenario"] == "launcher_early":
+             wait(root / "release.json", deadline, progress)
+         value = data["expected_result"]
+--- before/abqjobpilot/execution/process_reconciliation.py
++++ after/abqjobpilot/execution/process_reconciliation.py
+@@ -55,6 +55,8 @@
+                 and plan["job_id"] == run["job_id"] and plan["job_revision"] == run["job_revision"],
+                 "PROJECT_IDENTITY_MISMATCH", "Original identity binding differs")
+         fixture = plan["process_fixture"]
++        require(not fixture.get('managed_scope'),'UNSUPPORTED_EVIDENCE_POLICY',
++                'Four recorded roles cannot reconcile an unresolved managed descendant scope')
+         require(fixture.get("membership_contract") == MEMBERSHIP_CONTRACT
+                 and fixture.get("required_roles") == list(REQUIRED_ROLES) and fixture["max_process_members"] == 4
+                 and fixture["argument_policy"] == "isolated_python_fixture_v1" and fixture["scenario"] in SCENARIOS,
+--- before/abqjobpilot/execution/public_workflow.py
++++ after/abqjobpilot/execution/public_workflow.py
+@@ -26,6 +26,7 @@
+             **{k: plan[k] for k in ("plan_id", "plan_digest", "job_id", "job_revision", "backend_id", "backend_version",
+                                    "action", "phases", "resources", "validation_policy", "expires_at")},
+             "scenario": fixture["scenario"], "membership_contract": fixture["membership_contract"],
++            **({'managed_scope':fixture['managed_scope'],'required_roles_meaning':'KEY_ROLES_NOT_DESCENDANT_COMPLETENESS'} if fixture.get('managed_scope') else {}),
+             "required_roles": fixture["required_roles"], "fixture_digest": fixture["fixture_digest"],
+             "interpreter_digest": fixture["interpreter_digest"], "image_digest": fixture["image_digest"],
+             "input_dependencies": [{"ref": "input:" + str(i), "digest": v["digest"], "size": v["size"]}
+--- before/abqjobpilot/execution/service.py
++++ after/abqjobpilot/execution/service.py
+@@ -282,6 +282,7 @@
+         if not claimed:
+             return self.store.query_run(context, run_id)
+         completed = False
++        managed_result = None
+         try:
+             self.store._checkpoint("dispatch:after_claim")
+             if plan['backend_id'] == 'abaqus-standard-axial-2024-v1':
+@@ -318,7 +319,7 @@
+                     self.store._session.lease.check()
+                     with self.store.read() as connection:
+                         self._check(connection, context, plan, run["grant_id"], run_id)
+-                self._process_backend.execute(context, plan, run, record, self.store._checkpoint, authorize_start)
++                managed_result = self._process_backend.execute(context, plan, run, record, self.store._checkpoint, authorize_start)
+                 completed = True
+                 from .process_validation import validate_process_artifact
+                 observation, validation = validate_process_artifact(context, plan, run)
+@@ -333,6 +334,21 @@
+                 observation, validation = validate_artifact(context, plan, run, emission)
+             with self.store.transaction("terminal") as connection:
+                 run = document(connection, "runs", "run_id", run_id)
++                managed_changes={}
++                if plan.get('process_fixture',{}).get('managed_scope'):
++                    from .managed_process import check_completion
++                    proof=managed_result.get('managed_scope') if isinstance(managed_result,dict) else None
++                    check_completion(proof,run)
++                    require(run.get('managed_scope',{}).get('scope_id')==proof['scope_id'],
++                            'MANAGED_SCOPE_UNKNOWN','Scope identity changed before terminal commit')
++                    managed_changes={'managed_scope':proof,'managed_completion':'COMMITTED_EMPTY_SCOPE',
++                                     'managed_completion_recorded_at':now()}
++                    update_run(connection,run,'MANAGED_SCOPE_COMPLETED',**managed_changes)
++                    run=document(connection,'runs','run_id',run_id)
++                    # The new profile only auto-continues on both successful key
++                    # exits and valid artifact; empty Job alone is not success.
++                    if run['backend_outcome']!='COMPLETED' or validation['verdict']!='PASS':
++                        connection.execute("UPDATE dispatch_gate SET state='PAUSED',version=version+1 WHERE id=1 AND state!='PAUSED'")
+                 connection.execute("INSERT INTO observations VALUES(?,?,?)", (observation["observation_id"], run_id, canonical_json(observation)))
+                 connection.execute("INSERT INTO validations VALUES(?,?,?)", (validation["validation_id"], run_id, canonical_json(validation)))
+                 update_run(connection, run, "VALIDATION_RECORDED", execution="FINISHED",
+--- before/abqjobpilot/execution_gui.py
++++ after/abqjobpilot/execution_gui.py
+@@ -184,6 +184,12 @@
+                 rows += [('对账需求',run.get('reconciliation_requirement','UNKNOWN')
+                           if run.get('owner_id') != ep['owner_id'] else run['reconciliation'])]
+                 rows += [('已记录 OS 退出', '; '.join(str(e['role'])+'='+str(e['exit_code']) for e in run.get('process_exits',[])) or '尚无退出证据')]
++                if run.get('managed_scope'):
++                    scope=run['managed_scope']
++                    rows += [('受管进程范围',scope.get('scope_id','未记录')),
++                             ('范围最后活动数',str(scope.get('active_processes','未记录'))+'（历史 OS 查询）'),
++                             ('范围收尾',run.get('managed_completion','NOT_CONFIRMED')),
++                             ('范围保证','该 Job 的继承后代；不是系统所有进程或 Solver 结论')]
+                 rows += [('独立验证记录（历史）',json.dumps(value['validations'],ensure_ascii=False))]
+             rows += [('派发门',str(value['gate']['state']))]
+             assessment = value.get('closeout')
+--- before/examples/agent_first/dev_gui_demo.py
++++ after/examples/agent_first/dev_gui_demo.py
+@@ -35,7 +35,7 @@
+         f.write(canonical_json(value)); f.flush(); os.fsync(f.fileno())
+ 
+ 
+-def prepare(root):
++def prepare(root, *, managed_scope=False):
+     from abqjobpilot.execution import ConfigSnapshot, ExecutionService, ExperimentStore, JobSpec, create_experiment
+     from abqjobpilot.execution.models import CONTRACT, RESOURCES, now
+     from abqjobpilot.execution.process_backend import ProcessFixtureConfig
+@@ -45,7 +45,7 @@
+     write(root/'recent-fixture.json', {'untouched':True})
+     source = root/'input.txt'; source.write_text('Dev GUI fixed TEST_ONLY process',encoding='utf-8')
+     ctx = create_experiment(root,root/'project')
+-    config = replace(ProcessFixtureConfig.current(),max_seconds=60)
++    config = replace(ProcessFixtureConfig.current(managed_scope=managed_scope),max_seconds=60)
+     with closing(ExperimentStore(ctx)) as store:
+         service = ExecutionService(ctx,store,client_namespace='dev-gui-demo',process_config=config)
+         spec = JobSpec.from_dict({'job_id':'gui_demo','revision':1,'project_id':ctx.project_id,
+@@ -61,7 +61,15 @@
+         request = {'contract_version':CONTRACT,'operation':'submit','project_id':ctx.project_id,
+             'project_instance_id':ctx.project_instance_id,'job_id':plan['job_id'],'job_revision':plan['job_revision'],
+             'plan_id':plan['plan_id'],'plan_digest':plan['plan_digest'],'grant_id':grant,'idempotency_key':KEY,'retry_of':None}
+-        write(root/'private/offer.json',{'request':request})
++        offer={'request':request}
++        if managed_scope:
++            second=service.prepare(ctx,JobSpec.from_dict({**plan['job_spec'],'job_id':'gui_demo_second'}),
++                ConfigSnapshot.from_dict({'config_revision':1,'values':{'label':'explicit demo'}}),
++                expires_at=now()+900,process_scenario='normal').to_dict()
++            second_grant=issue_process_execution(service,second['plan_id'],expires_at=now()+900)
++            offer['additional_requests']=[{**request,'job_id':second['job_id'],'plan_id':second['plan_id'],
++                'plan_digest':second['plan_digest'],'grant_id':second_grant,'idempotency_key':KEY+'-2'}]
++        write(root/'private/offer.json',offer)
+     return ctx
+ 
+ 
+@@ -118,18 +126,19 @@
+                'process_termination_used':False,'reason':'explicit_stop_or_900_second_demo_lifetime'})
+ 
+ 
+-def entry(action, root=None):
++def entry(action, root=None, *, managed_scope=False, task=1):
+     from abqjobpilot.execution.paths import confined
+     publish = root is None
++    pointer=SOURCE/'docs/agent_first/run_015/LOCAL_DEMO.json' if managed_scope else POINTER
+     if root is None:
+         if action == 'start':
+-            if POINTER.exists(): raise ValueError('Existing demo retained. Use View or Stop; no automatic replacement.')
+-            root = Path(tempfile.gettempdir())/('AbqJobPilot_Run012_'+uuid.uuid4().hex)
+-        else: root=Path(read(POINTER)['root'])
++            if pointer.exists(): raise ValueError('Existing demo retained. Use View or Stop; no automatic replacement.')
++            root = Path(tempfile.gettempdir())/(('AbqJobPilot_Run015_' if managed_scope else 'AbqJobPilot_Run012_')+uuid.uuid4().hex)
++        else: root=Path(read(pointer)['root'])
+     root=confined(Path(tempfile.gettempdir()),root)
+     if action=='start':
+-        ctx=prepare(root)
+-        if publish: write(POINTER,{'root':str(root),'project_instance_id':ctx.project_instance_id,'request_key':KEY})
++        ctx=prepare(root,managed_scope=managed_scope)
++        if publish: write(pointer,{'root':str(root),'project_instance_id':ctx.project_instance_id,'request_key':KEY})
+         child=spawn(root,[str(Path(__file__).resolve()),'owner','--root',str(root)],'owner')
+         from abqjobpilot.execution.process_handles import ProcessReference
+         with closing(ProcessReference(child.pid)) as ref: write(root/'control/owner-transport.json',ref.identity)
+@@ -137,17 +146,23 @@
+     if action=='owner': return serve(root)
+     if action=='gui':
+         from abqjobpilot.gui_app import AbqJobPilotApp
+-        app=AbqJobPilotApp(execution_connection=root/'private/connection.json',request_key=KEY)
++        if task==2 and not managed_scope:raise ValueError('Second task belongs only to managed demo')
++        app=AbqJobPilotApp(execution_connection=root/'private/connection.json',request_key=KEY+('-2' if task==2 else ''))
+         app.mainloop()
+         return {'status':'VIEW_CLOSED_NO_OWNER_ACTION'}
+     if action=='submit':
+         from abqjobpilot.execution.client import FakeClient
+         connection=read(root/'private/connection.json')
+         client=FakeClient(connection['endpoint'],connection['credential'])
+-        request=read(root/'private/offer.json')['request']
++        offer=read(root/'private/offer.json');request=offer['request']
+         client.inspect_plan(request['plan_id'],request['plan_digest'])
+         accepted=client.submit(request)
+         if not (root/'session/accepted.json').exists(): write(root/'session/accepted.json',accepted)
++        if offer.get('additional_requests'):
++            subsequent=[]
++            for other in offer['additional_requests']:
++                client.inspect_plan(other['plan_id'],other['plan_digest']);subsequent.append(client.submit(other))
++            return {'first':accepted,'subsequent':subsequent,'scope':'TEST_ONLY_MANAGED_PYTHON'}
+         return accepted
+     if action=='stop':
+         # Explicit trusted stop, outside the GUI. No RPC stop/cancel or process kill.
+@@ -160,9 +175,11 @@
+     parser.add_argument('action',choices=['start','submit','gui','stop','owner'])
+     parser.add_argument('--root',type=Path,help='Explicit temporary demo root; trusted operator only')
+     parser.add_argument('--notice',action='store_true',help='Show a local result message for click entries')
++    parser.add_argument('--managed-scope',action='store_true',help='New isolated two-task Windows Job demonstration; TEST_ONLY')
++    parser.add_argument('--task',type=int,choices=(1,2),default=1,help='GUI request selection only; never submits')
+     args=parser.parse_args()
+     try:
+-        result=entry(args.action,args.root)
++        result=entry(args.action,args.root,managed_scope=args.managed_scope,task=args.task)
+         if args.notice and args.action!='gui':
+             import ctypes
+             ctypes.windll.user32.MessageBoxW(None,json.dumps(result,ensure_ascii=False,indent=2),'AbqJobPilot TEST_ONLY',0)
+--- before/tests/run003_process.py
++++ after/tests/run003_process.py
+@@ -46,11 +46,14 @@
+     real_popen = subprocess.Popen
+     process_config = None
+     allowed_reads = set()
++    native_resources=[]
+     if config.get("trusted_process_config"):
+         from abqjobpilot.execution.process_backend import ProcessFixtureConfig
+         process_config = ProcessFixtureConfig(**config["trusted_process_config"])
+         fixture = Path(__file__).resolve().parents[1] / "abqjobpilot/execution/process_fixture.py"
+         allowed_reads = {Path(process_config.interpreter), Path(process_config.image), fixture}
++        if process_config.managed_scope:
++            allowed_reads.add(fixture.with_name('managed_process.py'))
+     guard_environment.__wrapped__(monkeypatch)  # Keep original launch/default/legacy traps in every child.
+     if process_config is not None:
+         physical_launches = []
+@@ -72,6 +75,29 @@
+                 reference.close()
+             return process
+         monkeypatch.setattr(subprocess, "Popen", fixed_launch)
++        if process_config.managed_scope:
++            from abqjobpilot.execution.managed_process import ManagedScope
++            original_create=ManagedScope.create
++            def native_guard(event, values):
++                if event=='abqjobpilot.managed_create':
++                    command,cwd,environment=values
++                    assert list(command[:5])==[process_config.interpreter,'-I','-S','-B',str(fixture)]
++                    assert list(command[5:8])==['--role','launcher','--directory'] and len(command)==9
++                    confined(root,command[8],exists=True)
++                    assert cwd==command[8] and set(environment)=={'SystemRoot','PYTHONDONTWRITEBYTECODE'}
++            sys.addaudithook(native_guard)
++            def native_launch(scope,command,**kwargs):
++                process=original_create(scope,command,**kwargs)
++                native_resources.append((scope,process))
++                from abqjobpilot.execution.process_handles import ProcessReference
++                reference=ProcessReference(process.pid)
++                try:
++                    physical_launches.append({'run_id':Path(command[8]).name,'identity':reference.identity,
++                        'source':'native_JOB_LIST_create_retained_os_reference','scope_id':scope.scope_id})
++                    (control/'physical-launches.json').write_text(canonical_json(physical_launches),encoding='utf-8')
++                finally:reference.close()
++                return process
++            monkeypatch.setattr(ManagedScope,'create',native_launch)
+     real_open = Path.open
+     accesses = []
+     def checked_open(path, *pos, **kw):
+@@ -115,6 +141,9 @@
+                 while not stops.wait(0.02):
+                     if stop_file.exists():
+                         stops.set()
++                    if config.get('managed_control') and 'pause' not in processed and (control/'pause.json').exists():
++                        owner.store.pause_after_error()
++                        processed.add('pause')
+                     # Explicit trusted test control, absent from production main and IPC.
+                     # Registration happens through the owner Store, never a second writer.
+                     if config.get("management_control"):
+@@ -172,6 +201,8 @@
+                     "all_data_accesses_confined": all(Path(p).is_relative_to(root) or Path(p) in allowed_reads for p in accesses),
+                     "trusted_read_only_execution_objects": sorted(str(p) for p in allowed_reads),
+                     "fixed_process_launch_whitelist": process_config is not None,
++                    'managed_handle_cleanup':[{'scope_id':s.scope_id,'job_handle_closed':s.handle is None,
++                        'root_handle_closed':p.handle is None} for s,p in native_resources],
+                     "launch_and_legacy_traps": True}), encoding="utf-8")
+         monkeypatch.undo()
+     return 0
+--- before/tests/supervisor_helpers.py
++++ after/tests/supervisor_helpers.py
+@@ -95,7 +95,7 @@
+ 
+ 
+ class ProcessHarness:
+-    def __init__(self, root, *, process_scenarios=None):
++    def __init__(self, root, *, process_scenarios=None, managed_scope=False):
+         self.root, self.children = root, []
+         source = root / "input.txt"
+         source.write_text("simulation fixture", encoding="utf-8")
+@@ -105,7 +105,7 @@
+         self.process_config = None
+         if process_scenarios is not None:
+             from abqjobpilot.execution.process_backend import ProcessFixtureConfig
+-            self.process_config = ProcessFixtureConfig.current()
++            self.process_config = ProcessFixtureConfig.current(managed_scope=managed_scope)
+         service = ExecutionService(self.context, store, client_namespace="stable-test-client", process_config=self.process_config)
+         config = ConfigSnapshot.from_dict({"config_revision": 1, "values": {"label": "Run003 simulation"}})
+         h = Harness(root, self.context, store, service, source, config)
+--- before/tests/test_execution_isolation.py
++++ after/tests/test_execution_isolation.py
+@@ -23,6 +23,7 @@
+     additions = {"ownership": {"ctypes", "msvcrt", "sys"}, "protocol": {"socket", "struct"},
+                  "supervisor": {"argparse", "hmac", "socket"}, "client": set(),
+                  "process_handles": {"ctypes"}, "process_backend": {"subprocess", "sys"},
++                 'managed_process': {'ctypes', 'subprocess', 'sys'},
+                  "process_fixture": {"argparse", "ctypes", "subprocess", "sys"},
+                  "standard_contract": {"re"}, "standard_dat": {"decimal", "re"},
+                  "standard_process": {"ctypes", "sys"}, "standard_backend": {"subprocess"}}
+@@ -54,10 +55,27 @@
+                     if path.stem == 'standard_process': permitted_os = {'getpid'}
+                     assert node.func.attr in permitted_os
+                 if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name) and node.func.value.id == "subprocess":
++                    if path.stem == 'managed_process':
++                        assert node.func.attr == 'list2cmdline'  # quoting only, no Popen fallback
++                        continue
+                     assert path.stem in {"process_backend", "process_fixture", "standard_backend"}
+                     assert node.func.attr == "Popen"
+                     assert any(k.arg == "shell" and isinstance(k.value, ast.Constant) and k.value.value is False for k in node.keywords)
+                     assert any(k.arg == "close_fds" and isinstance(k.value, ast.Constant) and k.value.value is True for k in node.keywords)
++        if path.stem == 'managed_process':
++            forbidden={'TerminateProcess','TerminateJobObject','OpenJobObjectW','AssignProcessToJobObject',
++                       'CREATE_BREAKAWAY_FROM_JOB','PROC_THREAD_ATTRIBUTE_PARENT_PROCESS'}
++            assert not forbidden.intersection(n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute))
++            assert not forbidden.intersection(n.id for n in ast.walk(tree) if isinstance(n,ast.Name))
++            calls=[n for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='CreateProcessW']
++            assert len(calls)==1 and isinstance(calls[0].args[4],ast.Constant) and calls[0].args[4].value is False
++            def flags(node):
++                if isinstance(node,ast.Constant):return node.value
++                assert isinstance(node,ast.BinOp) and isinstance(node.op,ast.BitOr)
++                return flags(node.left)|flags(node.right)
++            assert flags(calls[0].args[5])==0x00080000|0x08000000|0x00000400
++            assert any(isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='UpdateProcThreadAttribute'
++                       and isinstance(n.args[2],ast.Name) and n.args[2].id=='JOB_LIST' for n in ast.walk(tree))
+     assert "abqjobpilot.config" not in sys.modules
+     assert "abqjobpilot.runner_core" not in sys.modules
+     assert "tkinter" not in sys.modules

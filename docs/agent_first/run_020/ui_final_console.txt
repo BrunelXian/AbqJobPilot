@@ -1,0 +1,55 @@
+..............................F.                                         [100%]
+================================== FAILURES ===================================
+___ test_explicit_project_switch_missing_service_and_unknown_stay_readonly ____
+
+tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_ui_final/cases/test_explicit_project_switch_m0')
+
+    def test_explicit_project_switch_missing_service_and_unknown_stay_readonly(tmp_path):
+        roots=[tmp_path/n for n in ('first','second')]
+        for root in roots:root.mkdir()
+        first,second=[ProcessHarness(root) for root in roots]
+        private=[];guis=[]
+        try:
+            owner=first.owner(barriers=['dispatch:after_artifact'])
+            private.append(connection(first));client=first.client()
+            rid=client.submit(first.requests[0])['receipt']['run_id'];owner.reached('dispatch:after_artifact')
+            owner.terminate() # only identity-bound test owner; never a user process
+            first.owner();connection(first)
+            before=db_facts(client:=first.client(),rid)
+            assert before['gate']['state']=='PAUSED'
+            gui=Gui(tmp_path,None,None,'switch',attachment=True);guis.append(gui)
+            unknown=choose(gui,first,rid)
+            assert 'PAUSED' in unknown['status']
+            action(gui,'project',project=second.context.root)
+            missing=gui.view(lambda v:not v['connected'] and not v['rows'] and not v['run_list'])
+            assert not second.children and rid not in json.dumps(missing)
+            other=second.owner();private.append(connection(second));c2=second.client()
+            rid2=c2.submit(second.requests[0])['receipt']['run_id'];second.finished(rid2)
+>           shown=choose(gui,second,rid2)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_attachment_gui.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_attachment_gui.py:32: in choose
+    action(gui,'select',run_id=rid)
+tests\test_attachment_gui.py:26: in action
+    wait_until((gui.root/('ack_'+action_id+'.json')).exists)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = <bound method Path.exists of WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_ui_final/cases/test_explicit_project_switch_m0/switch/ack_11599968000000.json')>
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+>       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_attachment_gui.py::test_explicit_project_switch_missing_service_and_unknown_stay_readonly
+1 failed, 31 passed in 61.35s (0:01:01)

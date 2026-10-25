@@ -34,12 +34,14 @@ class StandardConfig:
     _json: str
 
     @classmethod
-    def fixed(cls, installation_files):
+    def fixed(cls, installation_files, *, managed=False):
         paths = [ENTRY, CMD, PYTHON, *installation_files]
         require(len(paths) == len(set(paths)) and len(paths) <= 32, 'INVALID_REQUEST', 'Bounded explicit installation list required')
-        return cls(canonical_json({'backend_id': BACKEND, 'backend_version': 1,
+        value={'backend_id': BACKEND, 'backend_version': 1,
             'entry': ENTRY, 'cmd': CMD, 'interpreter': PYTHON, 'host_policy': HOST_POLICY,
-            'materials': [identity(p) for p in paths]}))
+            'materials': [identity(p) for p in paths]}
+        if managed:value['process_management']=management_binding()
+        return cls(canonical_json(value))
 
     def value(self):
         import json
@@ -51,14 +53,25 @@ class StandardConfig:
                 value['entry'] == ENTRY and value['cmd'] == CMD and value['interpreter'] == PYTHON and
                 value['host_policy'] == HOST_POLICY, 'PLAN_STALE', 'Fixed Standard configuration changed')
         require(all(identity(m['path']) == m for m in value['materials']), 'PLAN_STALE', 'Runtime declaration identity changed')
+        if 'process_management' in value:
+            require(value['process_management']==management_binding(),'PLAN_STALE','Managed creation implementation changed')
 
 
-def prepare(service, engineering, job_name, *, expires_at):
+def management_binding():
+    from .managed_process import POLICY
+    return {'policy':POLICY,'stdio':'explicit-file-handle-list-v1',
+            'implementation_digest':identity(Path(__file__).with_name('managed_process.py'))['digest']}
+
+
+def prepare(service, engineering, job_name, *, expires_at, sequence=None, product_single=False):
     """Trusted explicit preparation; not a conversion or execution of an offline preview."""
     context = service.context
     require(service._standard_backend is not None, 'BACKEND_DISABLED', 'Standard capability not configured')
     service._standard_backend.config.verify()
-    require(type(job_name) is str and re.fullmatch(r'r013_bar_[a-f0-9]{8}', job_name), 'INVALID_REQUEST', 'Fixed acceptance Job name required')
+    managed=service._standard_backend.config.value().get('process_management')
+    require(not product_single or (managed and sequence is None), 'INVALID_REQUEST', 'Single product Plan requires managed creation')
+    pattern = r'r021_bar_[a-f0-9]{8}' if product_single else (r'r016_bar_[ab]_[a-f0-9]{8}' if managed else r'r013_bar_[a-f0-9]{8}')
+    require(type(job_name) is str and re.fullmatch(pattern, job_name), 'INVALID_REQUEST', 'Fixed acceptance Job name required')
     root = confined(context.test_root, engineering, exists=True)
     require(not root.is_relative_to(Path(context.root)), 'OUTPUT_SCOPE_VIOLATION', 'External engineering directory required')
     # Windows cmd quoting: reject expansion/metacharacters in all variable paths.
@@ -82,6 +95,13 @@ def prepare(service, engineering, job_name, *, expires_at):
         'canonicalization': 'af-experiment-json-v1', 'plan_schema': 'standard-fixed-plan-v1',
         'environment_policy': 'isolated_home_temp_minimal_windows_v1', 'extra_abaqus_calls': 0,
         'member_completeness_policy': 'UNKNOWN_no_automatic_release', 'host_policy': HOST_POLICY}
+    if managed:
+        body.update(process_management=managed,standard_sequence=sequence,plan_schema='standard-managed-pair-plan-v1',
+                    member_completeness_policy='ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS_ONLY')
+        if product_single:
+            from .product_standard import SCHEMA, POLICY
+            body.pop('standard_sequence')
+            body.update(plan_schema=SCHEMA, product_dispatch=dict(POLICY))
     body['plan_digest'] = digest(body)
     check_plan(service, body)
     with service.store.transaction('prepare_standard') as conn:
@@ -105,17 +125,37 @@ def check_plan(service, plan, *, started=False):
     require(plan['expires_at'] > now(), 'PLAN_EXPIRED', 'Fixed plan expired')
     backend.config.verify()
     require(plan['runtime_binding'] == backend.config.value(), 'PLAN_STALE', 'Runtime configuration differs')
+    managed=backend.config.value().get('process_management')
+    if managed:
+        from .standard_sequence import check_shape
+        from .product_standard import single, shape
+        require(plan.get('process_management')==managed and (single(plan) or plan['plan_schema']=='standard-managed-pair-plan-v1')
+                and plan['member_completeness_policy']=='ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS_ONLY',
+                'PLAN_STALE','Explicit managed Plan required; no fallback')
+        shape(plan) if single(plan) else check_shape(plan)
+    else:
+        require('process_management' not in plan and 'standard_sequence' not in plan,
+                'PLAN_STALE','Unmanaged capability cannot dispatch a managed Plan')
     root = confined(ctx.test_root, plan['engineering'], exists=True)
+    from .product_standard import single
+    pattern = r'r021_bar_[a-f0-9]{8}' if single(plan) else (r'r016_bar_[ab]_[a-f0-9]{8}' if managed else r'r013_bar_[a-f0-9]{8}')
     require(plan['input_manifest'] == [identity(root/'axial_bar.inp',65536)] and
             plan['input_manifest'][0]['digest'] == INPUT_DIGEST and
-            plan['scratch'] == str(root/'scratch') and re.fullmatch(r'r013_bar_[a-f0-9]{8}',plan['job_name']) and
+            plan['scratch'] == str(root/'scratch') and re.fullmatch(pattern,plan['job_name']) and
             plan['output_key'] == digest({'cwd': str(root).casefold(), 'job': plan['job_name'].casefold()}),
             'PLAN_STALE', 'Input, working directory or output changed')
     no_reparse(root/'scratch')
+    from .closeout import check_retained_paths
+    # During standalone no-Solver checks, the existing read adapter has no Store.
+    # Use the same explicit read-only store; no initialization or ownership claim.
+    if not hasattr(service,'store'):
+        from .store import ReadOnlyStore
+        service.store=ReadOnlyStore(ctx)
+    check_retained_paths(service,plan)
     require(not (root/'abaqus_v6.env').exists(), 'PLAN_STALE', 'Job environment files are outside the fixed profile')
     require(not any(c in str(root) for c in '\"%!?&|<>^\r\n'), 'OUTPUT_SCOPE_VIOLATION', 'Unsupported command path')
     if not started:
-        require(not list(root.glob(plan['job_name']+'.*')) and not (root/('.'+plan['job_name']+'.intent.json')).exists(),
+        require(not list(root.glob(plan['job_name']+'.*')) and not list(root.glob('.*.intent.json')),
                 'OUTPUT_CONFLICT', 'Output or durable attempt already exists; no retry permitted')
         require(not any((root/'scratch').iterdir()), 'OUTPUT_CONFLICT', 'Scratch must be empty before first launch')
 
@@ -129,6 +169,15 @@ def issue_execution(service, plan_id, *, expires_at, approval_source):
     require(type(approval_source) is str and 1 <= len(approval_source) <= 128, 'GRANT_REQUIRED', 'Explicit authorization source required')
     with service.store.transaction('grant_standard') as conn:
         plan = document(conn,'plans','plan_id',plan_id); check_plan(service,plan)
+        from .product_standard import single
+        require(not single(plan), 'REAL_OPERATOR_REQUIRED', 'Product approval requires active-owner exact operator control')
+        require('standard_sequence' not in plan,'GRANT_SCOPE_MISMATCH','Managed pair requires one exact pair registration')
+        grant = _issue(service,conn,plan,expires_at,approval_source)
+    return grant
+
+
+def _issue(service,conn,plan,expires_at,approval_source,sequence_grant=None):
+        plan_id=plan['plan_id']
         require(conn.execute('SELECT COUNT(*) FROM grants WHERE plan_id=?',(plan_id,)).fetchone()[0] == 0,
                 'GRANT_CONSUMED','A Plan receives at most one real execution approval')
         integer(expires_at); require(now() < expires_at <= plan['expires_at'], 'GRANT_EXPIRED', 'Approval validity outside Plan')
@@ -137,8 +186,11 @@ def issue_execution(service, plan_id, *, expires_at, approval_source):
             'context_digest':service.context.context_digest,'plan_id':plan_id,'plan_digest':plan['plan_digest'],
             'allowed_action':ACTION,'output_key':plan['output_key'],'resource_limits':RESOURCES,
             'expires_at':expires_at,'max_runs':1,'approval_source':approval_source}
+        if sequence_grant:
+            grant.update(process_management=plan['process_management'],standard_sequence=plan['standard_sequence'],
+                         sequence_grant=sequence_grant)
         conn.execute('INSERT INTO grants VALUES(?,?,?)',(grant['grant_id'],plan_id,canonical_json(grant)))
-    return grant
+        return grant
 
 
 def check_grant(service, plan, grant, consumed, run_id):
@@ -151,6 +203,14 @@ def check_grant(service, plan, grant, consumed, run_id):
             'REAL_GRANT_REQUIRED', 'TEST_ONLY or mismatched authority cannot authorize Standard')
     require(grant['expires_at'] > now(), 'GRANT_EXPIRED', 'Real fixed approval expired')
     require(consumed is None or consumed == run_id, 'GRANT_CONSUMED', 'Approval consumed by another Run')
+    if 'process_management' in plan:
+        from .product_standard import single, scope
+        if single(plan):
+            require(grant.get('product_scope') == scope(plan) and grant.get('project_id') == service.context.project_id
+                    and grant.get('approval_owner') == service.store._session.owner_id,
+                    'REAL_GRANT_REQUIRED', 'Exact product approval and current owner required')
+        else: require(grant.get('process_management')==plan['process_management'] and
+                grant.get('standard_sequence')==plan['standard_sequence'], 'REAL_GRANT_REQUIRED','Managed scope/sequence approval differs')
 
 
 def inspect(service, plan_id, expected_digest):
@@ -158,5 +218,10 @@ def inspect(service, plan_id, expected_digest):
     require(plan['plan_digest'] == expected_digest, 'PLAN_STALE', 'Expected plan digest differs')
     original = dict(plan); original.pop('plan_digest')
     require(digest(original) == expected_digest, 'PLAN_STALE', 'Stored plan digest differs')
-    return {k:plan[k] for k in ('plan_id','plan_digest','backend_id','backend_version','project_instance_id',
+    result={k:plan[k] for k in ('plan_id','plan_digest','backend_id','backend_version','project_instance_id',
         'resources','action','job_name','output_key','validation_policy','host_policy','expires_at')}
+    if 'process_management' in plan:
+        result.update(process_management=plan['process_management'])
+        if 'standard_sequence' in plan:result['standard_sequence']=plan['standard_sequence']
+        if 'product_dispatch' in plan:result['product_dispatch']=plan['product_dispatch']
+    return result

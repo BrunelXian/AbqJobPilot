@@ -95,7 +95,7 @@ class Child:
 
 
 class ProcessHarness:
-    def __init__(self, root, *, process_scenarios=None):
+    def __init__(self, root, *, process_scenarios=None, managed_scope=False, fake_jobs=3):
         self.root, self.children = root, []
         source = root / "input.txt"
         source.write_text("simulation fixture", encoding="utf-8")
@@ -105,12 +105,12 @@ class ProcessHarness:
         self.process_config = None
         if process_scenarios is not None:
             from abqjobpilot.execution.process_backend import ProcessFixtureConfig
-            self.process_config = ProcessFixtureConfig.current()
+            self.process_config = ProcessFixtureConfig.current(managed_scope=managed_scope)
         service = ExecutionService(self.context, store, client_namespace="stable-test-client", process_config=self.process_config)
         config = ConfigSnapshot.from_dict({"config_revision": 1, "values": {"label": "Run003 simulation"}})
         h = Harness(root, self.context, store, service, source, config)
         self.requests = []
-        for index, scenario in enumerate(process_scenarios if process_scenarios is not None else [None] * 3):
+        for index, scenario in enumerate(process_scenarios if process_scenarios is not None else [None] * fake_jobs):
             if scenario is None:
                 plan = h.plan(h.spec(job_id="job_" + str(index)))
                 grant = h.grant(plan)

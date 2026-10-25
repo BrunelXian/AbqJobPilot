@@ -1,0 +1,27 @@
+.......................F................................F........        [100%]
+================================== FAILURES ===================================
+__________ test_remaining_uncertainty_blocks_independent_resumption ___________
+tests\test_standard_closeout.py:214: in test_remaining_uncertainty_blocks_independent_resumption
+    db.execute('INSERT INTO runs(run_id,plan_id,body) VALUES(?,?,?)',(r['run_id'],r['plan_id'],canonical_json(r)))
+E   sqlite3.IntegrityError: NOT NULL constraint failed: runs.job_id
+
+The above exception was the direct cause of the following exception:
+tests\test_standard_closeout.py:212: in test_remaining_uncertainty_blocks_independent_resumption
+    with c.store.transaction('isolated_second_uncertain') as db:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\contextlib.py:158: in __exit__
+    self.gen.throw(value)
+abqjobpilot\execution\store.py:462: in transaction
+    raise ExecutionError(code, f"Transaction failed; query durable state before retry: {exc}", stage=stage) from exc
+E   abqjobpilot.execution.models.ExecutionError: Transaction failed; query durable state before retry: NOT NULL constraint failed: runs.job_id
+________ test_dependency_graph_excludes_all_legacy_and_launch_modules _________
+tests\test_execution_isolation.py:37: in test_dependency_graph_excludes_all_legacy_and_launch_modules
+    assert (node.level == 1 and node.module in local_modules) or (node.level == 0 and node.module in permitted)
+E   AssertionError: assert ((1 == 1 and None in {'__init__', 'audit_export', 'authorization', 'client', 'closeout', 'diagnostics', ...}) or (1 == 0))
+E    +  where 1 = <ast.ImportFrom object at 0x0000017A453E8810>.level
+E    +  and   None = <ast.ImportFrom object at 0x0000017A453E8810>.module
+E    +  and   1 = <ast.ImportFrom object at 0x0000017A453E8810>.level
+=========================== short test summary info ===========================
+FAILED tests/test_standard_closeout.py::test_remaining_uncertainty_blocks_independent_resumption
+FAILED tests/test_execution_isolation.py::test_dependency_graph_excludes_all_legacy_and_launch_modules
+2 failed, 63 passed in 33.00s

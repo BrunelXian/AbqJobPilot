@@ -1,0 +1,8 @@
+{
+  "issue": "Reused cleanup reporter collected private profile records by filename; corrected to exclude them, before delivery",
+  "temporary_report_original_sha256": "dddce24d03dbafccf5ec92ffe3afc868be8a9ff24d2ec3abc843a88d21dae546",
+  "excluded_profile_records": 45,
+  "post_correction_known_material_matches": [],
+  "scope": "new isolated test credentials only; no historical Project accessed",
+  "original_secret_payload_not_retained": true
+}

@@ -198,9 +198,9 @@ class BasicSettingsDialog(tk.Toplevel):
 
 
 class AbqJobPilotApp(tk.Tk):
-    def __init__(self, *, execution_connection=None, request_key=None, on_execution_view=None):
+    def __init__(self, *, execution_connection=None, request_key=None, on_execution_view=None, attachment_mode=False):
         super().__init__()
-        if execution_connection is not None:
+        if execution_connection is not None or attachment_mode:
             from .execution_gui import ExecutionView
             self.execution_view = ExecutionView(self, execution_connection, request_key, on_execution_view)
             return
@@ -2494,8 +2494,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="AbqJobPilot Dev GUI")
     parser.add_argument("--execution-connection")
     parser.add_argument("--request-key")
+    parser.add_argument("--legacy", action="store_true", help="Explicitly open the legacy queue workspace")
     args = parser.parse_args()
     if bool(args.execution_connection) != bool(args.request_key):
         parser.error("Explicit connection and request key are required together")
-    app = AbqJobPilotApp(execution_connection=args.execution_connection, request_key=args.request_key)
+    if args.legacy and args.execution_connection: parser.error('Choose one GUI mode')
+    app = AbqJobPilotApp(execution_connection=args.execution_connection, request_key=args.request_key,
+                        attachment_mode=not args.legacy)
     app.mainloop()
+    if getattr(app,'legacy_requested',False):
+        app=AbqJobPilotApp()
+        app.mainloop()

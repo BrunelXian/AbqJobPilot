@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.692" timestamp="2026-10-24T14:46:59.143959+08:00" hostname="Boltzmann"><testcase classname="tests.test_standard_closeout" name="test_preview_cannot_mix_concurrent_sqlite_views" time="0.562" /></testsuite></testsuites>

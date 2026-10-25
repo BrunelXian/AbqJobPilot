@@ -1,0 +1,1507 @@
+{
+  "interpreter": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "final_unique_count": 353,
+  "batches": [
+    {
+      "report": "new_final.xml",
+      "sha256": "2acc24361602eeaab77af6be778cfdaf25f221e926e25002544e5fef68aafb45",
+      "collected_executed_unique": 47,
+      "pass": 47,
+      "fail": 0,
+      "skip": 0,
+      "cases": [
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_pending_then_completed_without_any_observation_or_write",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[EXACT_IDENTITY_ALIVE-EXACT_IDENTITY_ALIVE-NOT_OBSERVED-EXECUTION_ACTIVITY_OBSERVED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[EXACT_IDENTITY_EXITED-EXACT_IDENTITY_ALIVE-NOT_OBSERVED-OWNER_LOST_WORKER_ACTIVE]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[PROCESS_UNAVAILABLE-None-LATER_BOOT_ESTIMATE-SUPERVISION_INTERRUPTION_SUSPECTED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[IDENTITY_MISMATCH-None-NOT_OBSERVED-EXECUTION_STATE_UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[PROCESS_UNAVAILABLE-None-ESTIMATE_ONLY-EXECUTION_STATE_UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[QUERY_FAILED-None-LATER_BOOT_ESTIMATE-EXECUTION_STATE_UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[PROCESS_UNAVAILABLE-None-CLOCK_UNSTABLE-EXECUTION_STATE_UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[IDENTITY_UNRECORDED-None-LATER_BOOT_ESTIMATE-EXECUTION_STATE_UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[EXACT_IDENTITY_ALIVE-None-LATER_BOOT_ESTIMATE-EXECUTION_ACTIVITY_OBSERVED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_simulated_observation_classification_no_state_change[PROCESS_UNAVAILABLE-EXACT_IDENTITY_ALIVE-LATER_BOOT_ESTIMATE-EXECUTION_ACTIVITY_OBSERVED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_owner_change_missing_scope_and_unrelated_files_do_not_prove_completion",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_corrupt_history_fails_closed_without_repair[plan_digest]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_corrupt_history_fails_closed_without_repair[missing_start]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_corrupt_history_fails_closed_without_repair[missing_receipt]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_corrupt_history_fails_closed_without_repair[missing_consumption]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_corrupt_history_fails_closed_without_repair[owner_identity]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_corrupt_history_fails_closed_without_repair[backend_identity]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_wrong_project_format_and_invalid_flag_safe_rejection",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_effect_traps_and_os_observation_after_snapshot_closed",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_snapshot_limits_and_no_payload_leak",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_atomic_database_view_writer_progress_and_no_owned_lock",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_sidecar_refused_without_repair_or_probe",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_incoherent_snapshot_never_probes_and_original_failed_validation_kept",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_diagnostics::test_control_metadata_bound_checked_before_materialization",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_standard::test_administrative_release_preserves_unknown_and_retention",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_standard::test_managed_completion_validation_and_scope_loss_remain_distinct[None]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_standard::test_managed_completion_validation_and_scope_loss_remain_distinct[scope_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_standard::test_managed_completion_validation_and_scope_loss_remain_distinct[missing_scope]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_standard::test_managed_completion_validation_and_scope_loss_remain_distinct[missing_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_standard::test_managed_completion_validation_and_scope_loss_remain_distinct[validation_only]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_actual_current_process_identity_and_handle_cleanup",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_query_failure_never_exit_or_payload[PROCESS_IDENTITY_UNKNOWN-PROCESS_UNAVAILABLE]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_query_failure_never_exit_or_payload[PROCESS_EXIT_UNKNOWN-QUERY_FAILED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_query_failure_never_exit_or_payload[PROCESS_IDENTITY_MISMATCH-IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_owner_metadata_is_bounded_bound_and_no_repair[wrong_project]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_owner_metadata_is_bounded_bound_and_no_repair[wrong_owner]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_owner_metadata_is_bounded_bound_and_no_repair[oversize]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_owner_metadata_is_bounded_bound_and_no_repair[malformed]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_owner_metadata_is_bounded_bound_and_no_repair[missing]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_boot_estimate_combines_recorded_creation_but_is_not_session_proof[False]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_boot_estimate_combines_recorded_creation_but_is_not_session_proof[True]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_real_boot_api_is_estimate_only",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_probe_limits_and_budget",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_probe::test_clock_jump_during_sampling_and_os_api_failure",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_windows::test_live_owner_worker_readonly_then_normal_completion",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_interruption_windows::test_owned_owner_exit_worker_alive_no_requeue_or_takeover",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "report": "regression_iteration_02.xml",
+      "sha256": "d63e4f4d128c26548483bc2b9c6114ac9526d546c62c49f9484c821b366a2112",
+      "collected_executed_unique": 170,
+      "pass": 170,
+      "fail": 0,
+      "skip": 0,
+      "cases": [
+        {
+          "nodeid": "tests.test_run_diagnostics::test_pending_completed_and_historical_validation_are_distinct",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_uncertain_insufficient_then_reconciled_paused_then_resumed",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_actual_validator_failure_is_reported_without_rerunning_it",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_snapshot_real_read_write_interleaving_and_transaction_released",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_readonly_all_business_records_and_effect_traps",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_honest_read_failures_no_repair_or_path_disclosure[missing]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_honest_read_failures_no_repair_or_path_disclosure[corrupt]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_honest_read_failures_no_repair_or_path_disclosure[future]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_honest_read_failures_no_repair_or_path_disclosure[journal]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_honest_read_failures_no_repair_or_path_disclosure[wal]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_honest_read_failures_no_repair_or_path_disclosure[shm]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_honest_read_failures_no_repair_or_path_disclosure[busy]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_schema_two_reports_missing_gate_without_migration",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_global_event_gaps_are_not_run_history_gaps",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_whitelist_secret_injection_and_export",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_limits_explicit_no_truncation[events]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_limits_explicit_no_truncation[record_bytes]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_limits_explicit_no_truncation[raw_bytes]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_limits_explicit_no_truncation[field_chars]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_limits_explicit_no_truncation[serialized]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_limits_explicit_no_truncation[deadline]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_missing_history_and_unrecognized_error_not_success",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_original_view_offline_without_store_network_or_owner",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[escape]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[parent]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[existing]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[junction]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[write]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[publish_race]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[injected_report]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_path_and_failure_boundaries[changed_digest]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_audit_cannot_be_submitted_as_execution_or_management_request",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_each_evidence_collection_has_hard_record_limit[observations-16-obs]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_each_evidence_collection_has_hard_record_limit[validations-16-val]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_each_evidence_collection_has_hard_record_limit[reconciliations-8-rec]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_reconciliation_private_fields_and_storage_error_are_not_echoed",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_report_rule_computation_is_deterministic_for_same_snapshot",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_inconsistent_persisted_bindings_are_not_misreported[runs-run_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_inconsistent_persisted_bindings_are_not_misreported[runs-project_instance_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_inconsistent_persisted_bindings_are_not_misreported[plans-plan_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_inconsistent_persisted_bindings_are_not_misreported[events-run_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_inconsistent_persisted_bindings_are_not_misreported[observations-run_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_actual_blocked_error_code_is_preserved_without_free_message",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_export_cleanup_failure_leaves_identifiable_partial_and_no_success",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_diagnostic_connection_metadata_and_manifest_are_bounded[manifest]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_diagnostic_connection_metadata_and_manifest_are_bounded[metadata_count]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_diagnostic_connection_metadata_and_manifest_are_bounded[metadata_field]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_run_diagnostics::test_diagnostic_connection_metadata_and_manifest_are_bounded[gate]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_diagnostic_supervisor::test_windows_three_stage_diagnostic_export_and_detached_response",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_diagnostic_supervisor::test_authenticated_bound_diagnostic_rejects_dangerous_parameters_and_echo",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_real_exit_commit_owner_crash_reconcile_and_separate_resume[normal-COMPLETED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_real_exit_commit_owner_crash_reconcile_and_separate_resume[nonzero-FAILED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_real_exit_commit_owner_crash_reconcile_and_separate_resume[invalid_result-COMPLETED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_preview_readonly_no_probe_artifact_validator_or_observer",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[worker_identity]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[worker_exit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[membership]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[pid_only]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[different_attempt]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[conflicting_exit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[extra_start]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[projection]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_incomplete_or_conflicting_required_set_rejected[legacy_contract]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_result_self_report_controller_exits_are_not_service_evidence[process:after_identity]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_result_self_report_controller_exits_are_not_service_evidence[process:after_handoff]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_result_self_report_controller_exits_are_not_service_evidence[process:before_exit_record]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_exact_management_authority_required[override0]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_exact_management_authority_required[override1]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_exact_management_authority_required[override2]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_exact_management_authority_required[override3]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_exact_management_authority_required[override4]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_exact_management_authority_required[override5]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_exact_management_authority_required[override6]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_caller_cannot_supply_execution_facts[target_state]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_caller_cannot_supply_execution_facts[exit_code]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_caller_cannot_supply_execution_facts[members_complete]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_caller_cannot_supply_execution_facts[approved]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_wrong_exact_scope_cannot_reinterpret_approved_operation[backend_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_wrong_exact_scope_cannot_reinterpret_approved_operation[backend_version]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_wrong_exact_scope_cannot_reinterpret_approved_operation[run_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_wrong_exact_scope_cannot_reinterpret_approved_operation[plan_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_wrong_exact_scope_cannot_reinterpret_approved_operation[phase_attempt_id]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_wrong_exact_scope_cannot_reinterpret_approved_operation[evidence_fingerprint]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_changed_preview_preconditions_refused[revision]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_changed_preview_preconditions_refused[evidence]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_changed_preview_preconditions_refused[owner]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_concurrent_apply_conflict_replay_and_consumption",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_atomic_management_failure_and_unknown_commit[management:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_atomic_management_failure_and_unknown_commit[management:after_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_lost_management_response_and_new_owner_replay",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_apply_never_probes_or_validates_and_expired_execution_grant_is_history",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_existing_independent_validation_preserved_without_revalidation[PASS-VALID]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_existing_independent_validation_preserved_without_revalidation[FAIL-INVALID]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_existing_independent_validation_preserved_without_revalidation[UNKNOWN-UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_preview_consistent_read_transaction_and_serialized_owner_writer",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_unknown_sql_commit_queries_original_key",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_other_unresolved_run_still_blocks_resume",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_preview_bound_and_maintenance_no_repair[events]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_preview_bound_and_maintenance_no_repair[oversize]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_recorded_exit_reconciliation::test_preview_bound_and_maintenance_no_repair[journal]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_preview_consistent_read_only_and_no_external_probes",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_explicit_release_preserves_evidence_receipt_gate_and_intent",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_retain_is_independent_and_does_not_release",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_stale_assessment_rejected[revision]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_stale_assessment_rejected[event]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_stale_assessment_rejected[gate]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_stale_assessment_rejected[owner]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_disposition_requires_independent_exact_operator_permission[missing]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_disposition_requires_independent_exact_operator_permission[expired]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_disposition_requires_independent_exact_operator_permission[wrong_scope]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_disposition_requires_independent_exact_operator_permission[test_only]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_disposition_requires_independent_exact_operator_permission[approved]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_replay_conflict_concurrent_effect_once_and_new_owner_replay",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_competing_dispositions_cannot_both_change_same_revision",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_transaction_and_lost_response_no_unrecorded_release[management:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_transaction_and_lost_response_no_unrecorded_release[management:after_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_insufficient_evidence_cannot_release[member]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_insufficient_evidence_cannot_release[exit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_insufficient_evidence_cannot_release[identity]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_insufficient_evidence_cannot_release[observation_end]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_insufficient_evidence_cannot_release[consumption]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_separate_resume_quarantine_and_pending_prerequisites",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_test_only_resume_cannot_approve_real_residual_risk",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_remaining_uncertainty_blocks_independent_resumption",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_preview_limit_busy_and_legacy_diagnostic_compatibility",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_trusted_operator_entry_refuses_active_owner_and_has_no_backend",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_closeout::test_preview_cannot_mix_concurrent_sqlite_views",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_closeout_windows::test_normal_owner_stop_leaves_worker_alive_and_restart_blocked",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_closeout_windows::test_public_disposition_lost_response_gui_and_restart",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_closeout_windows::test_true_owner_crash_during_disposition_no_unrecorded_unlock",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_two_normal_tasks_are_transactionally_sequential",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_delayed_grandchild_holds_slot_without_pid_list_completion",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_transient_children_counted_without_individual_pid_poll",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_empty_scope_does_not_turn_failure_into_success_or_continue[nonzero]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_empty_scope_does_not_turn_failure_into_success_or_continue[invalid_result]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_paused_gate_survives_first_terminal_commit",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_scope]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_create]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:after_create]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_query]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[terminal:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_owner_crash_leaves_worker_alive_and_restart_blocked",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_true_crash_after_empty_before_commit_does_not_release",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_managed_actual_gui_close_and_reconnect_does_not_own_job_handle",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_managed_scope::test_empty_unstarted_job_and_association_query_failures_are_not_success",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_pair_server_guards_and_success_order",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[solver]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[numerical]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[exit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_b_rechecks_current_preconditions[administrative-PREDECESSOR_NOT_QUALIFIED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_b_rechecks_current_preconditions[scope_missing-PREDECESSOR_NOT_QUALIFIED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_b_rechecks_current_preconditions[window-START_WINDOW_EXPIRED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_b_rechecks_current_preconditions[grant-GRANT_EXPIRED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_b_rechecks_current_preconditions[output-OUTPUT_CONFLICT]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_b_rechecks_current_preconditions[input-PLAN_STALE]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_b_rechecks_current_preconditions[paused-DISPATCH_PAUSED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard:before_scope_query]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard:before_result_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard_result:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_ack_loss_replay_and_expiry_between_b_accept_and_create",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_no_unmanaged_fallback_and_test_grant_stays_separate",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_known_off_scope_execution_is_not_automatically_closed",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_deadline_never_releases_slot_or_enables_late_b[False]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_deadline_never_releases_slot_or_enables_late_b[True]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_paused_during_a_completion_does_not_open_gate",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed::test_changed_management_is_not_a_new_runtime_choice",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed_windows::test_managed_standard_pair_public_gui_and_real_scope",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed_windows::test_managed_standard_owner_crash_does_not_adopt_or_start_b",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed_windows::test_public_pair_orchestrator_uses_existing_server",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_standard_managed_windows::test_native_creation_deadline_checked_after_attribute_preparation",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "report": "product_final.xml",
+      "sha256": "21af7b6c0d060b9b13ed96d70806b0b2764c24e7bb97bf6bfefb7724a4e1fb18",
+      "collected_executed_unique": 127,
+      "pass": 127,
+      "fail": 0,
+      "skip": 0,
+      "cases": [
+        {
+          "nodeid": "tests.test_service_attachment::test_discovery_authenticates_existing_owner_and_reads_without_mutation",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[credential-AUTHENTICATION_FAILED]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[protocol-PROTOCOL_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[project-PROJECT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[process-PROCESS_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[stale-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[owner-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_missing_owner_and_future_project_do_not_initialize",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_legacy_directory_rejected",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_attachment::test_owner_without_new_capability_is_not_restarted",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_readonly_and_no_authorization_fields",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_namespace_and_public_projection",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_keyset_pages_with_many_runs",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_argument_bounds[args0]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_argument_bounds[args1]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_argument_bounds[args2]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_argument_bounds[args3]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_argument_bounds[args4]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_single_snapshot_and_transaction_ends_before_projection",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_failures_do_not_repair[missing]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_failures_do_not_repair[future]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_failures_do_not_repair[journal]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_failures_do_not_repair[busy]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_failures_do_not_repair[corrupt]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_project_view::test_project_page_failures_do_not_repair[huge]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_attachment_gui::test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_attachment_gui::test_explicit_project_switch_missing_service_and_unknown_stay_readonly",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_attachment_gui::test_normal_gui_large_run_list_pages_without_blocking_ui",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_gui::test_actual_gui_close_reopen_public_client_worker_survives",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_gui::test_progress_auth_bounds_readonly_and_corruption",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_gui::test_product_entries_starter_exits_and_owner_is_independent[False]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_gui::test_product_entries_starter_exits_and_owner_is_independent[True]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_gui::test_gui_observes_crashed_owner_uncertainty_without_recovery",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_gui::test_stalled_ipc_keeps_tk_responsive_and_close_is_bounded",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_lifecycle::test_idle_start_reuse_stop_restart_and_permission",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_lifecycle::test_concurrent_start_single_reservation_and_owner",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_lifecycle::test_lost_start_reply_never_second_creation[intent_persisted]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_lifecycle::test_lost_start_reply_never_second_creation[created]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_lifecycle::test_handshake_timeout_inspect_no_retry",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_lifecycle::test_old_lock_or_bad_credentials_never_replace",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_service_lifecycle::test_product_gui_start_worker_survives_normal_gui_and_launcher_exit",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_inspect_connect_disconnect_no_business_writes",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[protocol]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[project]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[stale_owner]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[unreachable]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[capability]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[PENDING]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[REAL_PLAN]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[HELD_SLOT]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_start_refuses_pending_without_owner_metadata",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_stop_transaction_failure_does_not_pause_or_unlock",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_concurrent_stop_one_commit_and_submit_race_blocked",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_stop_response_lost_queries_original_receipt",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[partial_intent]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[bad_operator]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[host_unknown]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[intent_write_failure]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_unknown_stop_commit_replay_uses_durable_decision",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_real_owner_crash_not_automatically_replaced",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_first_explicit_start_preserves_preexisting_paused_gate",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_lifecycle_boundaries::test_two_os_clients_race_same_original_owner_lock",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_create_empty_paused_and_readonly_reopen",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_atomic_concurrent_creation",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_failed_creation_never_opens_or_reuses[configuration]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_failed_creation_never_opens_or_reuses[publication]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[plain]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[legacy]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[future]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[corrupt]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[missing_db]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[journal]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[moved]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_format_and_copy_boundaries[copy]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_invalid_name_no_directory[]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_invalid_name_no_directory[     ]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_invalid_name_no_directory[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_invalid_name_no_directory[bad\\nname]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_reparse_and_escape_rejected_before_write",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_windows_dpapi_binding_tamper_and_plaintext_downgrade",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_project::test_private_acl_restricted_from_creation",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_gui_new_empty_product_start_reopen_independent_client_stop",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_fixed_worker_product_gui_chain_and_secret_free_reports",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_product_credentials_wrong_context_copies_and_connection_permission",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[old_endpoint]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[wrong_project]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[protocol]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[plaintext]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_two_product_gui_switch_and_pause_remain_isolated",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_windows::test_public_readonly_example_in_non_repository_cwd",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_exact_approval_paused_accept_single_dispatch_and_idle_stop",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[connection]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[lifecycle]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[self_admin]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[input]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[plan_digest]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[project]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[approved]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[output]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[expiry]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[test_grant]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_consumption_keys_and_concurrent_dispatch",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_precise_dispatch_preconditions[revision]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_precise_dispatch_preconditions[gate]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_precise_dispatch_preconditions[owner]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_precise_dispatch_preconditions[wrong_run]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_precise_dispatch_preconditions[expired_window]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_precise_dispatch_preconditions[output]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[management:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[product_control:after_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[claim:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:after_intent]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:after_create]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:before_scope_query]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard_result:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_window_checked_again_after_launch_intent_barrier",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_stop_pending_unknown_and_racing_submit",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_general_resume_and_direct_issuer_cannot_bypass",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_stop_races_acceptance_under_same_owner_mutex",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_claimed_unknown_scope_prevents_stop",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_readonly_preparation_and_management_receipt",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_control::test_fixed_example_check_is_readonly_and_hashes_actual_materials",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_windows::test_product_standard_gui_full_chain_and_safe_restart",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_windows::test_dispatch_response_loss_replay_no_second_start",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[dispatch:after_claim]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[standard:after_create]",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "report": "isolation_current.xml",
+      "sha256": "c66dcc6418259680b1a54a69ed9f86a061fbf5d0510d974515426077265da8ec",
+      "collected_executed_unique": 9,
+      "pass": 9,
+      "fail": 0,
+      "skip": 0,
+      "cases": [
+        {
+          "nodeid": "tests.test_execution_isolation::test_dependency_graph_excludes_all_legacy_and_launch_modules",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_all_runtime_io_confined_and_default_navigation_untouched",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[outside]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[parent]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[unc]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[relative]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[ads]",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_real_junction_or_symlink_is_rejected",
+          "result": "PASS"
+        },
+        {
+          "nodeid": "tests.test_execution_isolation::test_creation_never_adopts_existing_directory",
+          "result": "PASS"
+        }
+      ]
+    }
+  ],
+  "prior_iterations_not_added": [
+    {
+      "report": "isolation_final.xml",
+      "executed": 9,
+      "failures": []
+    },
+    {
+      "report": "new_iteration_01.xml",
+      "executed": 12,
+      "failures": [
+        "test_owner_change_missing_scope_and_unrelated_files_do_not_prove_completion"
+      ]
+    },
+    {
+      "report": "new_iteration_02.xml",
+      "executed": 39,
+      "failures": [
+        "test_owned_owner_exit_worker_alive_no_requeue_or_takeover"
+      ]
+    },
+    {
+      "report": "new_iteration_03.xml",
+      "executed": 38,
+      "failures": [
+        "test_live_owner_worker_readonly_then_normal_completion"
+      ]
+    },
+    {
+      "report": "new_iteration_04.xml",
+      "executed": 39,
+      "failures": []
+    },
+    {
+      "report": "new_iteration_05.xml",
+      "executed": 43,
+      "failures": []
+    },
+    {
+      "report": "regression_final.xml",
+      "executed": 129,
+      "failures": [
+        "test_public_disposition_lost_response_gui_and_restart"
+      ]
+    }
+  ],
+  "abaqus_calls": 0,
+  "counting": "Unique classname::name including parameter IDs; final batches only, no sum of repeated iterations or prior Runs"
+}

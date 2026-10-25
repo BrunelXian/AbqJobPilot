@@ -1,0 +1,25 @@
+{
+  "applied_at": 1792826732,
+  "evidence_refs": [
+    "disposition_c225b0582c664a4d939821575e6f6549",
+    "control_7420682cb83043e4b8abf71e070bb26c"
+  ],
+  "idempotency_key": "closeout-request_f26673ed6feb466d911748d5cd5533e0",
+  "namespace": "[\"pi_776faf62f2d64a4ab23e83c53b665788\",\"run013-standard\",\"release_standard_logical_slot\"]",
+  "operation": "release_standard_logical_slot",
+  "operation_id": "op_ef7048a01b854129a1d32dac7e9f6417",
+  "operation_status": "APPLIED",
+  "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+  "projection_at_commit": {
+    "effect": "LOGICAL_SLOT_RELEASED_ONLY",
+    "evidence_conclusions_unchanged": true,
+    "gate": {
+      "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+      "state": "PAUSED",
+      "version": 5
+    },
+    "run_id": "r_609c9bbfd9c54b3ca2fce23bbd6059e4",
+    "run_revision": 21
+  },
+  "request_digest": "sha256:a85c2ade75398715eaddd0b7825ace2320eba5a545bc9b681df80e3672fc3b36"
+}

@@ -1,0 +1,37 @@
+........................................................................ [ 23%]
+........................................................................ [ 47%]
+.................................................F...................... [ 70%]
+........................................................................ [ 94%]
+.................                                                        [100%]
+================================== FAILURES ===================================
+_____ test_previous_v2_report_allowed_validation_source_remains_readable ______
+
+    def test_previous_v2_report_allowed_validation_source_remains_readable():
+        # Preserve the prior envelope's accepted enum even though the normal R7
+        # process path did not emit Fake reconciliation validations.
+        source = Path(__file__).resolve().parents[1]
+        report = read_json(source / "docs/agent_first/run_007/examples/historical_invalid_after.json")
+        assert report["body"]["facts"]["validations"]
+        report["body"]["facts"]["validations"][0]["source"] = "explicit_reconciliation"
+        report["content_digest"] = digest(report["body"])
+>       assert json.loads(report_bytes(report)) == report
+                          ^^^^^^^^^^^^^^^^^^^^
+
+tests\test_public_client_example.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+abqjobpilot\execution\diagnostics.py:278: in report_bytes
+    require(project(report["body"], schema) == report["body"] and report["body"].get("report_version") in {REPORT_VERSION, "af-run-diagnostic-v2", 'af-run-diagnostic-v3'},
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, code = 'INVALID_REPORT'
+message = 'Audit fields are outside the public projection'
+
+    def require(condition, code, message):
+        if not condition:
+>           raise ExecutionError(code, message)
+E           abqjobpilot.execution.models.ExecutionError: Audit fields are outside the public projection
+
+abqjobpilot\execution\models.py:38: ExecutionError
+=========================== short test summary info ===========================
+FAILED tests/test_public_client_example.py::test_previous_v2_report_allowed_validation_source_remains_readable
+1 failed, 304 passed in 463.38s (0:07:43)

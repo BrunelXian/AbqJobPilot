@@ -24,23 +24,35 @@ class ProcessFixtureConfig:
     image_digest: str
     fixture_digest: str
     max_seconds: int = 40
+    managed_scope: bool = False
 
     @classmethod
-    def current(cls):
+    def current(cls, *, managed_scope=False):
         actual = current_process_identity()
         return cls(str(Path(sys.executable).resolve()), actual["image_path"],
                    bytes_digest(Path(sys.executable).read_bytes()), bytes_digest(Path(actual["image_path"]).read_bytes()),
-                   bytes_digest(Path(__file__).with_name("process_fixture.py").read_bytes()))
+                   bytes_digest(Path(__file__).with_name("process_fixture.py").read_bytes()), managed_scope=managed_scope)
 
     def binding(self, scenario):
         require(scenario in SCENARIOS and type(scenario) is str, "INVALID_REQUEST", "Unsupported fixed test scenario")
+        require(type(self.managed_scope) is bool and (not scenario.startswith('managed_') or self.managed_scope),
+                'INVALID_REQUEST', 'Descendant scenarios require the explicit managed profile')
         require(type(self.max_seconds) is int and 5 <= self.max_seconds <= 60,
                 "RESOURCE_LIMIT", "Fixture lifetime must be 5..60 seconds")
-        return {"interpreter": self.interpreter, "image": self.image,
+        binding = {"interpreter": self.interpreter, "image": self.image,
                 "interpreter_digest": self.interpreter_digest, "image_digest": self.image_digest,
                 "fixture_digest": self.fixture_digest, "scenario": scenario, "max_seconds": self.max_seconds,
                 "max_process_members": 4, "argument_policy": "isolated_python_fixture_v1",
                 "membership_contract": MEMBERSHIP_CONTRACT, "required_roles": list(REQUIRED_ROLES)}
+        if self.managed_scope:
+            from .managed_process import POLICY
+            # Up to eight fixed invocations, including this Windows venv's
+            # transport chain (24 cumulative processes observed in burst tests).
+            # This is a fixture declaration, not an OS-enforced resource limit.
+            binding['max_process_members'] = 32
+            binding['managed_scope'] = {'policy':POLICY,'implementation_digest':bytes_digest(
+                Path(__file__).with_name('managed_process.py').read_bytes())}
+        return binding
 
     def verify(self, binding):
         fields(binding, self.binding("normal"))
@@ -71,16 +83,28 @@ class ProcessBackend:
             stream.flush()
             os.fsync(stream.fileno())
         refs, observations, exits = {}, [], []
-        process = None
+        process = scope = None
         deadline = time.monotonic() + self.config.max_seconds + 5
         try:
             checkpoint("process:before_create")
             authorize_start()  # Recheck after any startup delay, before the irreversible OS effect.
             # No inherited IPC/auth/DB handles; only Windows system location is required.
             environment = {"SystemRoot": os.environ["SystemRoot"], "PYTHONDONTWRITEBYTECODE": "1"}
-            process = subprocess.Popen([self.config.interpreter, "-I", "-S", "-B",
+            command = [self.config.interpreter, "-I", "-S", "-B",
                                         str(Path(__file__).with_name("process_fixture.py").resolve()),
-                                        "--role", "launcher", "--directory", str(root)],
+                                        "--role", "launcher", "--directory", str(root)]
+            if self.config.managed_scope:
+                from .managed_process import ManagedScope
+                checkpoint('managed:before_scope')
+                scope = ManagedScope(run)
+                record('MANAGED_SCOPE_PREPARED', managed_scope=scope.description(), managed_completion='NOT_CONFIRMED')
+                checkpoint('managed:before_create')
+                authorize_start()
+                process = scope.create(command,cwd=str(root),env=environment)
+                checkpoint('managed:after_create')
+                record('MANAGED_ROOT_CREATED', managed_scope=scope.query())
+            else:
+                process = subprocess.Popen(command,
                                        shell=False, close_fds=True, cwd=str(root), env=environment,
                                        stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                                        creationflags=subprocess.CREATE_NO_WINDOW)
@@ -116,11 +140,14 @@ class ProcessBackend:
                           "backend_version": 1, "required_roles": list(REQUIRED_ROLES),
                           "basis": "FIXED_FIXTURE_ALL_ROLES_OS_VERIFIED_BEFORE_RELEASE",
                           "fixture_digest": self.config.fixture_digest}
+            if scope:
+                membership['basis'] = 'KEY_ROLES_ONLY_NOT_MANAGED_DESCENDANT_COMPLETENESS'
             record("PROCESS_IDENTITIES", process_observation="IDENTITIES_VERIFIED", process_records=observations,
                    process_membership=membership)
             checkpoint("process:after_identity")
             (root / "owner-bound.json").write_text("{}", encoding="utf-8")
             checkpoint("process:after_handoff")
+            last_scope_counts = None
             while len(exits) < len(refs):
                 require(time.monotonic() < deadline, "PROCESS_EXIT_UNKNOWN", "No complete exit evidence before deadline")
                 for role, ref in refs.items():
@@ -133,16 +160,41 @@ class ProcessBackend:
                                       **binding, "exit_contract": EXIT_CONTRACT})
                         record("PROCESS_EXIT_OBSERVED", process_exits=list(exits),
                                process_observation="EXIT_PARTIAL", exit_verification="PARTIAL")
+                if scope:
+                    checkpoint('managed:before_query')
+                    view=scope.query()
+                    counts=(view['active_processes'],view['total_processes'])
+                    if counts!=last_scope_counts:
+                        record('MANAGED_SCOPE_OBSERVED',managed_scope=view)
+                        last_scope_counts=counts
                 time.sleep(0.01)
             process.wait(timeout=2)
             checkpoint("process:after_exit")
+            proof=None
+            if scope:
+                while True:
+                    require(time.monotonic()<deadline,'MANAGED_SCOPE_UNKNOWN','Managed range did not end within observation budget')
+                    checkpoint('managed:before_query')
+                    proof=scope.query()
+                    counts=(proof['active_processes'],proof['total_processes'])
+                    if counts!=last_scope_counts:
+                        record('MANAGED_SCOPE_OBSERVED',managed_scope=proof)
+                        last_scope_counts=counts
+                    if proof['state']=='EMPTY_CONFIRMED':break
+                    time.sleep(.02)
+                checkpoint('managed:after_empty')
             success = all(e["exit_code"] == 0 for e in exits)
             record("PROCESS_COMPLETED", execution="VALIDATING", process_observation="EXIT_OBSERVED",
                    exit_verification="VERIFIED", backend_outcome="COMPLETED" if success else "FAILED")
-            return success
+            return {'success':success,'managed_scope':proof} if scope else success
         finally:
             # Failure never kills/adopts/restarts a possibly running worker. It expires or harness cleans it.
             for ref in refs.values():
                 ref.close()
-            if process is not None and process.poll() is not None:
-                process.wait()
+            try:
+                if process is not None and process.poll() is not None:
+                    process.wait(timeout=2)
+            finally:
+                if scope:
+                    if process is not None:process.close()
+                    scope.close()  # no KILL_ON_JOB_CLOSE, no hidden observer

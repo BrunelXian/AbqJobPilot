@@ -1,0 +1,25 @@
+{
+  "not_collected_as_files": [
+    "tests/test_a4_project_automation.py",
+    "tests/test_abaqus_preview.py",
+    "tests/test_abaqus_preview_integration.py",
+    "tests/test_agent_command_console_ui.py",
+    "tests/test_agent_project_session.py",
+    "tests/test_automation_surface.py",
+    "tests/test_command_parser.py",
+    "tests/test_g2_5_project_multiselect.py",
+    "tests/test_parsers.py",
+    "tests/test_probe_preparation.py",
+    "tests/test_process_identity.py",
+    "tests/test_project_data_defaults.py",
+    "tests/test_queue_store.py",
+    "tests/test_recent_projects.py",
+    "tests/test_recovery_workflow.py",
+    "tests/test_run006_native_evidence.py",
+    "tests/test_run006_retry_preparation.py",
+    "tests/test_runner_core.py",
+    "tests/test_runtime_coordination.py"
+  ],
+  "partial_file": "tests/test_public_api.py: TestPublicApi only; TestPublicCli not executed",
+  "reason": "Outside statically audited RC selection; no PASS or SKIP inferred"
+}

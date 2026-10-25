@@ -1,0 +1,7 @@
+{
+  "status": "MATERIALS_MATCH_NO_EXECUTION",
+  "manifest_digest": "sha256:88ddae420d2fd73f0ecb7bace4171bb8f0eb6a6b2098b0d91e558c94338f3fd7",
+  "host_admission": "MUST_BE_CHECKED_IN_ACTUAL_OWNER",
+  "grant_issued": false,
+  "abaqus_calls": 0
+}

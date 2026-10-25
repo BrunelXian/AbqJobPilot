@@ -1,0 +1,10 @@
+{
+  "interpreter": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "windows": "sys.getwindowsversion(major=10, minor=0, build=26300, platform=2, service_pack='')",
+  "pytest": "9.1.0",
+  "sqlite": "3.49.1",
+  "tk": 8.6,
+  "optional_mcp_version": "2.3.0"
+}

@@ -1,0 +1,82 @@
+{
+  "observed_at": 1792906491.8161001,
+  "manifest_body_sha256": "efdee66a3639bbfe95d084e90036e6376eaa3120c975918423afedf0b72220e1",
+  "referenced_material_count": 119,
+  "materials": "MATCH",
+  "stored_plan_matches_manifest": true,
+  "counts": {
+    "plans": 1,
+    "grants": 1,
+    "runs": 1,
+    "receipts": 1,
+    "consumption": 1,
+    "events": 43,
+    "validations": 1,
+    "reconciliations": 0
+  },
+  "consumption": [
+    {
+      "grant_id": "grant_095b0af73ea8425d99c71ef9dc063510",
+      "run_id": "r_711c0afc7d49462c8b5c4faf914923b4"
+    }
+  ],
+  "slot_run_id": null,
+  "owner_id": "owner_ea3be94dcfcf4210b9fc6fc41f62154a",
+  "owner_os": {
+    "identity": {
+      "pid": 11216,
+      "creation_time_100ns": 134373798333408496,
+      "image_path": "D:\\Program Files\\Python312\\python.exe"
+    },
+    "exit": null
+  },
+  "gate": {
+    "owner_id": "owner_ea3be94dcfcf4210b9fc6fc41f62154a",
+    "state": "PAUSED",
+    "version": 4
+  },
+  "project_view": {
+    "consistency": "single_read_transaction; pages are successive snapshots",
+    "context_digest": "sha256:360c491afca2964429e1cb642a17dcd5e731180adee30a961a3782d93bc24de1",
+    "gate": {
+      "owner_id": "owner_ea3be94dcfcf4210b9fc6fc41f62154a",
+      "state": "PAUSED",
+      "version": 4
+    },
+    "next_before_row": null,
+    "project_id": "p_fa698230f3e6499caf08517e3e82dbc2",
+    "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+    "read_at": 1792906491,
+    "runs": [
+      {
+        "artifact_validation": "VALID",
+        "backend_id": "abaqus-standard-axial-2024-v1",
+        "created_at": 1792906054,
+        "execution": "FINISHED",
+        "execution_phase": "EVIDENCE_RECORDED",
+        "job_id": "job_1905f846e90e493797585dfb024ae7c2",
+        "job_name": "r021_bar_42b9754e",
+        "plan_id": "plan_499a7ab80b804e11939fc760ac3a2243",
+        "queue_state": "DISPATCHED",
+        "receipt": {
+          "accepted_at": 1792906054,
+          "idempotency_key": "run021-product-submit-42b9754e",
+          "request_id": "req_9fc6585f5f1741f3b30c802c0116c1b3",
+          "run_id": "r_711c0afc7d49462c8b5c4faf914923b4"
+        },
+        "reconciliation": "NONE",
+        "revision": 43,
+        "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+        "solver_conclusion": "COMPLETED_TEXT_EVIDENCE"
+      }
+    ],
+    "slot_run_id": null,
+    "view_version": "af-project-view-v1"
+  },
+  "receipt_equal_before_stop": true,
+  "run_equal_before_stop": true,
+  "run_revision": 43,
+  "attempt_no": 1,
+  "abaqus_calls_this_audit": 0,
+  "mutation_calls_this_audit": 0
+}

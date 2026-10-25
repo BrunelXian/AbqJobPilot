@@ -1,0 +1,121 @@
+{
+  "policy": "standard-closeout-v1",
+  "assessment_version": 1,
+  "project_id": "p_9204fe8fced549d28d8bd62d1b2f8455",
+  "project_instance_id": "pi_776faf62f2d64a4ab23e83c53b665788",
+  "context_digest": "sha256:f8c3c0c40e3335cec10a88794ffed013ca8d259653c056abd2ef017500e5b2df",
+  "run_id": "r_609c9bbfd9c54b3ca2fce23bbd6059e4",
+  "run_revision": 20,
+  "plan_id": "plan_ed1ac113f464496497d8787268189c4f",
+  "plan_digest": "sha256:62dc0aa95bad8c5e0d61d62515a4451a9d3f694016339fe68d7ca2c55239d46a",
+  "phase_attempt_id": "phase_5b46d6d7f0aa42bf82d3a353a4b1e359",
+  "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+  "recorded_gate": {
+    "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+    "version": 4,
+    "state": "PAUSED"
+  },
+  "evidence_fingerprint": "sha256:2082ddb90fe082fe020edb0f6df9951582bd3f9c4fbfeaeafe9f3a85b58aff12",
+  "scope": "recorded database snapshot only; no OS or artifact revalidation",
+  "historical_facts": {
+    "execution": "BLOCKED",
+    "execution_phase": "EVIDENCE_RECORDED",
+    "launch_state": "PROCESS_OBJECT_RETURNED",
+    "process_observation": "OBSERVED_SUBSET",
+    "all_observed_exited": true,
+    "member_completeness": "UNKNOWN",
+    "overall_exit": "UNKNOWN",
+    "exit_verification": "UNKNOWN",
+    "solver_conclusion": "COMPLETED_TEXT_EVIDENCE",
+    "numerical_validation": "PRIMARY_THREE_PASS",
+    "artifact_validation": "VALID",
+    "odb_content_validation": "NOT_RUN",
+    "administrative_closeout": null
+  },
+  "observation_ended_recorded": true,
+  "observed_exits_matched": true,
+  "unknowns": [
+    "COMPLETE_SOLVER_MEMBERSHIP",
+    "OVERALL_PROCESS_EXIT",
+    "PHYSICAL_RESOURCES_RETURNED",
+    "CURRENT_OS_STATE"
+  ],
+  "source_refs": [
+    "ev_0a07e340d8e1423eb43b1cce49d06d33",
+    "ev_6ca7da76b06840808c931238351ecf53",
+    "ev_a3c372e67b294a5a9ce71dd3185a5377",
+    "ev_b399206d284744e89d3948d2ad7c05d0",
+    "ev_a9cb4330bcd84278a4eae33d2eac9af6",
+    "ev_1d8758dd27a84bd2b16deeab29e4af32",
+    "ev_c4e3163912004fd9921388d32fbd3e23",
+    "ev_6eaf63cfb5be4e54b94717ffcd52faaa",
+    "ev_801528ed7cfe4b2bbbfd3265d9a28dbb",
+    "ev_ee5884a328f34c0a8d873941cc43b7bd",
+    "ev_f78605a4b6564af6832e1347556e0050",
+    "ev_a632796386d34c759f0f2324e0b120dd",
+    "ev_79d7c92562c54c779b2b8b390ea24ec9",
+    "ev_6314911a9c3346cfa7fd2ef3fb6902d6",
+    "ev_80ba6a6bbe2c4ef885df8f5c1dfba0d6",
+    "ev_a232765ec542484db025fd59502d3a41",
+    "ev_a060e36b565249d8907fd9294bfc6fdd",
+    "ev_c03e23e614d848108c6fe896b2499a27",
+    "ev_070e2c3598ed4df78e4a9a43657ab481",
+    "ev_692027e5ec2c4dceaf747826a92e00d6",
+    "val_67bc37128dcb48d7b4978095713a3174",
+    "obs_3805c9e40111420291557e6eabd12c6a"
+  ],
+  "resources": {
+    "slot_run_id": "r_609c9bbfd9c54b3ca2fce23bbd6059e4",
+    "engineering_ref": "engineering",
+    "scratch_ref": "engineering/scratch",
+    "output_key": "sha256:564c957021567b457c4b78009b133d80740d053539891d8ec66a6b70b8b2b03f",
+    "job_name": "r013_bar_d48c54f7",
+    "retention": "RETAINED_NO_REUSE",
+    "intent": "historical persisted intent; file not reread"
+  },
+  "automatic_evidence_closeout": {
+    "eligible": false,
+    "reason": "NO_COMPLETE_MANAGED_PROCESS_SCOPE_CONTRACT"
+  },
+  "actions": [
+    {
+      "action": "retain_standard_resources",
+      "eligible": true,
+      "changes": [
+        "append disposition and revision"
+      ],
+      "preserves": [
+        "slot",
+        "engineering/output quarantine",
+        "UNKNOWN",
+        "PAUSED",
+        "all execution evidence"
+      ]
+    },
+    {
+      "action": "release_standard_logical_slot",
+      "eligible": true,
+      "changes": [
+        "append administrative disposition",
+        "release logical slot only",
+        "increment gate version, remain PAUSED"
+      ],
+      "requires": [
+        "exact independent operator grant",
+        "explicit residual uncertainty acceptance"
+      ],
+      "preserves": [
+        "engineering/output quarantine",
+        "UNKNOWN",
+        "all execution evidence",
+        "no retry",
+        "PAUSED"
+      ]
+    }
+  ],
+  "reasons": [],
+  "resume_dispatch": "separate permission; never implied by a closeout receipt",
+  "stop_owner": "separate operator action; requires quiescent worker and durable store; never Solver exit evidence",
+  "preview_digest": "sha256:1e0bf96b0401190743d337d62a76ba6d5012e6c48e029b76fb1dae44069eaa03",
+  "read_at": 1792826732
+}

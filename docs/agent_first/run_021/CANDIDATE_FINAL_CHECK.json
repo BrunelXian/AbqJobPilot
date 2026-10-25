@@ -1,0 +1,24 @@
+{
+  "body_sha256": "c5b2ab1edd4d4c3c7d8ccc8803409b02bdde583a60ba8c7d6179fc887334736c",
+  "counts": {
+    "plans": 0,
+    "grants": 0,
+    "runs": 0,
+    "receipts": 0,
+    "consumption": 0,
+    "events": 0,
+    "management_grants": 0
+  },
+  "gate": {
+    "id": 1,
+    "owner_id": "owner_dc681826201446789de8e0a72c1d9dcd",
+    "version": 1,
+    "state": "PAUSED"
+  },
+  "supervisor_started": "0",
+  "input_matches": true,
+  "job_outputs": 0,
+  "launch_intents": 0,
+  "credentials": "retained encrypted private material; no exported values",
+  "execution_plan_id": null
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="22" time="24.274" timestamp="2026-10-25T00:09:19.322024+08:00" hostname="Boltzmann"><testcase classname="tests.test_product_project" name="test_create_empty_paused_and_readonly_reopen" time="0.341" /><testcase classname="tests.test_product_project" name="test_atomic_concurrent_creation" time="0.220" /><testcase classname="tests.test_product_project" name="test_failed_creation_never_opens_or_reuses[configuration]" time="0.178" /><testcase classname="tests.test_product_project" name="test_failed_creation_never_opens_or_reuses[publication]" time="0.419" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[plain]" time="0.004" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[legacy]" time="0.013" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[future]" time="0.247" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[corrupt]" time="0.241" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[missing_db]" time="0.257" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[journal]" time="0.317" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[moved]" time="0.245" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[copy]" time="0.289" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[]" time="0.003" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[     ]" time="0.002" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]" time="0.002" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[bad\nname]" time="0.003" /><testcase classname="tests.test_product_project" name="test_reparse_and_escape_rejected_before_write" time="0.004" /><testcase classname="tests.test_product_project" name="test_windows_dpapi_binding_tamper_and_plaintext_downgrade" time="0.292" /><testcase classname="tests.test_product_project" name="test_private_acl_restricted_from_creation" time="0.259" /><testcase classname="tests.test_product_windows" name="test_gui_new_empty_product_start_reopen_independent_client_stop" time="13.513"><failure message="AssertionError: Deterministic condition did not arrive before deadline">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_windows_01/test_gui_new_empty_product_sta0')
+
+    def test_gui_new_empty_product_start_reopen_independent_client_stop(tmp_path):
+        project=tmp_path/'created_by_gui';guis=[]
+        first=Gui(tmp_path,None,None,'gui_A',attachment=True,product=True);guis.append(first)
+        try:
+            action(first,'new',project=str(project),name='Run020 GUI Project')
+&gt;           wait_until(lambda:(project/'agent_project.json').exists())
+
+tests\test_product_windows.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = &lt;function test_gui_new_empty_product_start_reopen_independent_client_stop.&lt;locals&gt;.&lt;lambda&gt; at 0x000001F6FC0B7EC0&gt;
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() &lt; deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+&gt;       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError</failure></testcase><testcase classname="tests.test_product_windows" name="test_fixed_worker_product_gui_chain_and_secret_free_reports" time="5.771"><failure message="PermissionError: [Errno 13] Permission denied: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run020_windows_01\\test_fixed_worker_product_gui_0\\gui_A\\lifecycle.json'">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_windows_01/test_fixed_worker_product_gui_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001F6FC053A70&gt;
+
+    def test_fixed_worker_product_gui_chain_and_secret_free_reports(tmp_path,monkeypatch):
+        project=tmp_path/'test_product';offer=trusted_fixture_during_initial_lease(project,monkeypatch);guis=[]
+        with own_project(project) as refs:
+            try:
+                first=Gui(tmp_path,None,None,'gui_A',attachment=True,product=True);guis.append(first)
+                action(first,'project',project=str(project))
+&gt;               wait_until(lambda:'NOT_RUNNING' in read_json(first.root/'lifecycle.json')['status'])
+
+tests\test_product_windows.py:175: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\supervisor_helpers.py:25: in wait_until
+    result = predicate()
+             ^^^^^^^^^^^
+tests\test_product_windows.py:175: in &lt;lambda&gt;
+    wait_until(lambda:'NOT_RUNNING' in read_json(first.root/'lifecycle.json')['status'])
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:33: in read_json
+    return json.loads(path.read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_windows_01/test_fixed_worker_product_gui_0/gui_A/lifecycle.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+&gt;       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run020_windows_01\\test_fixed_worker_product_gui_0\\gui_A\\lifecycle.json'
+
+D:\Program Files\Python312\Lib\pathlib.py:1013: PermissionError</failure></testcase><testcase classname="tests.test_product_windows" name="test_product_credentials_wrong_context_copies_and_connection_permission" time="1.361" /></testsuite></testsuites>

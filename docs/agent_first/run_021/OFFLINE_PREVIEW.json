@@ -1,0 +1,117 @@
+{
+  "body": {
+    "checks": {
+      "artifact_validation": "NOT_RUN",
+      "dependency_coverage": "COMPLETE_FOR_SUPPORTED_SUBSET",
+      "output": "NOT_RESERVED",
+      "real_execution_capability": "UNAVAILABLE",
+      "resources": "NOT_RESERVED",
+      "run": "NOT_CREATED",
+      "runtime": "NOT_VERIFIED",
+      "solver_conclusion": "NOT_RUN",
+      "solver_input_semantics": "NOT_VERIFIED",
+      "static_check": "COMPLETED_FOR_SUPPORTED_SUBSET"
+    },
+    "directory_identity": {
+      "device": 5972476759961804666,
+      "file_id": 20266198323748173
+    },
+    "engineering_root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering",
+    "execution_plan_compatible": false,
+    "include_edges": [],
+    "input_manifest": [
+      {
+        "bytes": 420,
+        "content_digest": "sha256:e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3",
+        "reference": "axial_bar.inp"
+      }
+    ],
+    "invocation_intent": {
+      "input": "axial_bar.inp",
+      "job": "r021_bar_42b9754e",
+      "kind": "structured_declaration_only",
+      "phase": "analysis"
+    },
+    "limits": {
+      "file_bytes": 65536,
+      "files": 8,
+      "include_depth": 4,
+      "option_blocks": 512,
+      "report_bytes": 32768,
+      "total_bytes": 262144
+    },
+    "main_input": "axial_bar.inp",
+    "output": {
+      "candidate_key": "sha256:dc8f20820e12354fa938c535f07bc2f8b26c87362865e30754c4c2587e16c8ea",
+      "directory": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering",
+      "existing_outputs_checked": false,
+      "job_name": "r021_bar_42b9754e",
+      "reservation": "NONE",
+      "scratch_declaration": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering\\scratch"
+    },
+    "project": {
+      "project_id": "p_fa698230f3e6499caf08517e3e82dbc2",
+      "project_instance_id": "pi_88118c5738214496aa2757ef5265df50"
+    },
+    "reference_manual_version": "2025",
+    "resources": {
+      "cpus": 1,
+      "gpus": 0,
+      "memory_mb": 2048,
+      "wall_seconds": 300
+    },
+    "runtime_profile": {
+      "cpus": 1,
+      "declared_version": "2024",
+      "gpus": 0,
+      "memory_mb": 2048,
+      "phase": "analysis",
+      "platform": "windows-local",
+      "product": "Abaqus/Standard",
+      "profile_id": "run021_fixed_standard_2024",
+      "profile_version": 1,
+      "scratch_relative": "scratch",
+      "wall_seconds": 300
+    },
+    "runtime_profile_digest": "sha256:3d7784c4ff56510dad74e03ba5c5527b50e4d441c32849f55d7fd929de395276",
+    "schema_version": "abaqus-offline-preview-v1",
+    "submission_cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering",
+    "support_profile_version": "windows-standard-axial-print-v1",
+    "supported_keywords_encountered": [
+      "BOUNDARY",
+      "CLOAD",
+      "EL PRINT",
+      "ELASTIC",
+      "ELEMENT",
+      "END STEP",
+      "HEADING",
+      "MATERIAL",
+      "NODE",
+      "NODE PRINT",
+      "SOLID SECTION",
+      "STATIC",
+      "STEP"
+    ],
+    "target": {
+      "declared_version": "2024",
+      "phase": "analysis",
+      "product": "Abaqus/Standard"
+    },
+    "unresolved": [
+      "TARGET_2024_DOCUMENTATION_NOT_CONFIRMED",
+      "SOLVER_MODEL_SEMANTICS_UNVERIFIED",
+      "INSTALLATION_AND_ENVIRONMENT_UNVERIFIED",
+      "LICENSE_AND_RESOURCES_UNVERIFIED",
+      "OUTPUT_EXCLUSIVITY_NOT_ACQUIRED",
+      "REAL_BACKEND_AND_APPROVAL_UNIMPLEMENTED",
+      "NO_CROSS_FILE_ATOMIC_SNAPSHOT",
+      "EXECUTION_TIME_INPUT_RECHECK_REQUIRED"
+    ]
+  },
+  "content_digest": "sha256:83ad167e6f940e04e52f41a4e3ccd05cd5265200304825c38a712863c4b8cc50",
+  "observation": {
+    "atomic_filesystem_snapshot": false,
+    "file_view": "PINNED_LOCAL_READS_WITH_SECOND_CONTENT_CHECK",
+    "read_at": 1792895294
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "scope": "Static HTML only; not Tk implementation or service regression",
+  "results": [
+    {
+      "name": "01-empty-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "01-empty-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "01-empty-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "02-overview-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "02-overview-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "02-overview-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "03-runs-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "03-runs-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "03-runs-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "04-classic-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "04-classic-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "04-classic-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "05-service-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "05-service-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "05-service-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "06-agent-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "06-agent-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "06-agent-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "07-settings-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "07-settings-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "07-settings-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "08-disconnected-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "08-disconnected-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "08-disconnected-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "09-unknown-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "09-unknown-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "09-unknown-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "10-empty-project-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "10-empty-project-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "10-empty-project-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "11-completed-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "11-completed-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "11-completed-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "locale-zh-CN-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "locale-zh-CN-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "locale-zh-CN-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "locale-fr-FR-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "locale-fr-FR-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "locale-fr-FR-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "locale-de-DE-render",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "locale-de-DE-no-document-horizontal-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "locale-de-DE-button-fit",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "en-wizard-only-abaqus",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "en-review-paused",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "en-create-is-simulation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zh-CN-wizard-only-abaqus",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zh-CN-review-paused",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zh-CN-create-is-simulation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fr-FR-wizard-only-abaqus",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fr-FR-review-paused",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fr-FR-create-is-simulation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "de-DE-wizard-only-abaqus",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "de-DE-review-paused",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "de-DE-create-is-simulation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-classic",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-runs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-projects",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-queue",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-results",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-agent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-service",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "navigation-overview",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tab-identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tab-events",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tab-evidence",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "keyboard-resize",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "classic-logs-isolated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "classic-results-no-dat-proof",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "en-service-buttons-fit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zh-CN-service-buttons-fit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fr-FR-service-buttons-fit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "de-DE-service-buttons-fit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "german-compact-no-document-overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "german-compact-scroll-available",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "browser-closed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no-web-requests",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "owned-render-temp-removed",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "errors": [],
+  "external_requests": [],
+  "browser_closed": true
+}

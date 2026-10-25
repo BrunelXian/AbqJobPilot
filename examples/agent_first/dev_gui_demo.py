@@ -35,7 +35,7 @@ def write(path, value):
         f.write(canonical_json(value)); f.flush(); os.fsync(f.fileno())
 
 
-def prepare(root):
+def prepare(root, *, managed_scope=False):
     from abqjobpilot.execution import ConfigSnapshot, ExecutionService, ExperimentStore, JobSpec, create_experiment
     from abqjobpilot.execution.models import CONTRACT, RESOURCES, now
     from abqjobpilot.execution.process_backend import ProcessFixtureConfig
@@ -45,7 +45,7 @@ def prepare(root):
     write(root/'recent-fixture.json', {'untouched':True})
     source = root/'input.txt'; source.write_text('Dev GUI fixed TEST_ONLY process',encoding='utf-8')
     ctx = create_experiment(root,root/'project')
-    config = replace(ProcessFixtureConfig.current(),max_seconds=60)
+    config = replace(ProcessFixtureConfig.current(managed_scope=managed_scope),max_seconds=60)
     with closing(ExperimentStore(ctx)) as store:
         service = ExecutionService(ctx,store,client_namespace='dev-gui-demo',process_config=config)
         spec = JobSpec.from_dict({'job_id':'gui_demo','revision':1,'project_id':ctx.project_id,
@@ -61,7 +61,15 @@ def prepare(root):
         request = {'contract_version':CONTRACT,'operation':'submit','project_id':ctx.project_id,
             'project_instance_id':ctx.project_instance_id,'job_id':plan['job_id'],'job_revision':plan['job_revision'],
             'plan_id':plan['plan_id'],'plan_digest':plan['plan_digest'],'grant_id':grant,'idempotency_key':KEY,'retry_of':None}
-        write(root/'private/offer.json',{'request':request})
+        offer={'request':request}
+        if managed_scope:
+            second=service.prepare(ctx,JobSpec.from_dict({**plan['job_spec'],'job_id':'gui_demo_second'}),
+                ConfigSnapshot.from_dict({'config_revision':1,'values':{'label':'explicit demo'}}),
+                expires_at=now()+900,process_scenario='normal').to_dict()
+            second_grant=issue_process_execution(service,second['plan_id'],expires_at=now()+900)
+            offer['additional_requests']=[{**request,'job_id':second['job_id'],'plan_id':second['plan_id'],
+                'plan_digest':second['plan_digest'],'grant_id':second_grant,'idempotency_key':KEY+'-2'}]
+        write(root/'private/offer.json',offer)
     return ctx
 
 
@@ -118,18 +126,19 @@ def serve(root):
                'process_termination_used':False,'reason':'explicit_stop_or_900_second_demo_lifetime'})
 
 
-def entry(action, root=None):
+def entry(action, root=None, *, managed_scope=False, task=1):
     from abqjobpilot.execution.paths import confined
     publish = root is None
+    pointer=SOURCE/'docs/agent_first/run_015/LOCAL_DEMO.json' if managed_scope else POINTER
     if root is None:
         if action == 'start':
-            if POINTER.exists(): raise ValueError('Existing demo retained. Use View or Stop; no automatic replacement.')
-            root = Path(tempfile.gettempdir())/('AbqJobPilot_Run012_'+uuid.uuid4().hex)
-        else: root=Path(read(POINTER)['root'])
+            if pointer.exists(): raise ValueError('Existing demo retained. Use View or Stop; no automatic replacement.')
+            root = Path(tempfile.gettempdir())/(('AbqJobPilot_Run015_' if managed_scope else 'AbqJobPilot_Run012_')+uuid.uuid4().hex)
+        else: root=Path(read(pointer)['root'])
     root=confined(Path(tempfile.gettempdir()),root)
     if action=='start':
-        ctx=prepare(root)
-        if publish: write(POINTER,{'root':str(root),'project_instance_id':ctx.project_instance_id,'request_key':KEY})
+        ctx=prepare(root,managed_scope=managed_scope)
+        if publish: write(pointer,{'root':str(root),'project_instance_id':ctx.project_instance_id,'request_key':KEY})
         child=spawn(root,[str(Path(__file__).resolve()),'owner','--root',str(root)],'owner')
         from abqjobpilot.execution.process_handles import ProcessReference
         with closing(ProcessReference(child.pid)) as ref: write(root/'control/owner-transport.json',ref.identity)
@@ -137,17 +146,23 @@ def entry(action, root=None):
     if action=='owner': return serve(root)
     if action=='gui':
         from abqjobpilot.gui_app import AbqJobPilotApp
-        app=AbqJobPilotApp(execution_connection=root/'private/connection.json',request_key=KEY)
+        if task==2 and not managed_scope:raise ValueError('Second task belongs only to managed demo')
+        app=AbqJobPilotApp(execution_connection=root/'private/connection.json',request_key=KEY+('-2' if task==2 else ''))
         app.mainloop()
         return {'status':'VIEW_CLOSED_NO_OWNER_ACTION'}
     if action=='submit':
         from abqjobpilot.execution.client import FakeClient
         connection=read(root/'private/connection.json')
         client=FakeClient(connection['endpoint'],connection['credential'])
-        request=read(root/'private/offer.json')['request']
+        offer=read(root/'private/offer.json');request=offer['request']
         client.inspect_plan(request['plan_id'],request['plan_digest'])
         accepted=client.submit(request)
         if not (root/'session/accepted.json').exists(): write(root/'session/accepted.json',accepted)
+        if offer.get('additional_requests'):
+            subsequent=[]
+            for other in offer['additional_requests']:
+                client.inspect_plan(other['plan_id'],other['plan_digest']);subsequent.append(client.submit(other))
+            return {'first':accepted,'subsequent':subsequent,'scope':'TEST_ONLY_MANAGED_PYTHON'}
         return accepted
     if action=='stop':
         # Explicit trusted stop, outside the GUI. No RPC stop/cancel or process kill.
@@ -160,9 +175,11 @@ def main():
     parser.add_argument('action',choices=['start','submit','gui','stop','owner'])
     parser.add_argument('--root',type=Path,help='Explicit temporary demo root; trusted operator only')
     parser.add_argument('--notice',action='store_true',help='Show a local result message for click entries')
+    parser.add_argument('--managed-scope',action='store_true',help='New isolated two-task Windows Job demonstration; TEST_ONLY')
+    parser.add_argument('--task',type=int,choices=(1,2),default=1,help='GUI request selection only; never submits')
     args=parser.parse_args()
     try:
-        result=entry(args.action,args.root)
+        result=entry(args.action,args.root,managed_scope=args.managed_scope,task=args.task)
         if args.notice and args.action!='gui':
             import ctypes
             ctypes.windll.user32.MessageBoxW(None,json.dumps(result,ensure_ascii=False,indent=2),'AbqJobPilot TEST_ONLY',0)

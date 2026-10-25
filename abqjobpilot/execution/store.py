@@ -56,6 +56,7 @@ class _Session:
     lease: object = None
     active_dispatches: int = 0
     dispatch_enabled: bool = True
+    stopping: bool = False
 
 
 _SESSIONS = {}
@@ -248,6 +249,68 @@ class ReadOnlyStore:
             require(row is not None, "NOT_FOUND", "No committed receipt")
             return json.loads(row[0])
 
+    def project_view(self, context, client_namespace, before_row=0, limit=32):
+        """Bounded keyset page and gate/slot from one short read-only transaction."""
+        from .models import integer
+        from .diagnostics import bounded_tree, read_error
+        require(context == self.context, 'PROJECT_IDENTITY_MISMATCH', 'Wrong query context')
+        require(context.schema_version == 3, 'UNSUPPORTED_FORMAT', 'Project view requires format 3')
+        integer(before_row); integer(limit, 1)
+        require(before_row < 2**63 and limit <= 32, 'LIMIT_EXCEEDED', 'Project page bound exceeded')
+        namespace = canonical_json([context.project_instance_id, client_namespace, 'submit'])
+        connection = None
+        deadline = time.monotonic() + .75
+        try:
+            connection = _connection(context, read_only=True, timeout=.2, deadline=deadline)
+            connection.execute('BEGIN')
+            rows = connection.execute(
+                'SELECT r.rowid, CASE WHEN length(CAST(r.body AS BLOB))<=65536 THEN r.body END AS run, '
+                'CASE WHEN length(CAST(q.body AS BLOB))<=4096 THEN q.body END AS receipt, '
+                'CASE WHEN length(CAST(p.body AS BLOB))<=65536 THEN p.body END AS plan '
+                'FROM runs r JOIN receipts q ON q.run_id=r.run_id JOIN plans p ON p.plan_id=r.plan_id '
+                'WHERE q.namespace=? AND (?=0 OR r.rowid<?) ORDER BY r.rowid DESC LIMIT ?',
+                (namespace, before_row, before_row, limit + 1)).fetchall()
+            self._diagnostic_checkpoint('project_view:after_runs')
+            gate = gate_view(connection)
+            slot = connection.execute('SELECT run_id FROM slot WHERE id=1').fetchone()
+            require(slot is not None, 'STORE_UNAVAILABLE', 'Execution slot record missing')
+            require(all(row[k] is not None for row in rows for k in ('run','receipt','plan')),
+                    'LIMIT_EXCEEDED', 'Project record exceeds bound')
+            require(sum(len(row[k].encode('utf-8')) for row in rows for k in ('run','receipt','plan')) <= 262144,
+                    'LIMIT_EXCEEDED', 'Project page bytes exceed bound')
+            require(time.monotonic() < deadline, 'STORE_UNAVAILABLE', 'Project read deadline exceeded')
+            slot_run_id = slot[0]
+            read_at = now()
+        except (ExecutionError, sqlite3.Error, OSError, ValueError, TypeError, RecursionError) as exc:
+            raise read_error(exc) from None
+        finally:
+            if connection is not None: connection.close()
+        self._diagnostic_checkpoint('project_view:after_close')
+        try:
+            items=[]
+            for row in rows[:limit]:
+                run, receipt, plan = (json.loads(row[k]) for k in ('run','receipt','plan'))
+                require(all(type(v) is dict for v in (run,receipt,plan)), 'STORE_UNAVAILABLE', 'Invalid Project record')
+                item={k:run.get(k) for k in ('run_id','job_id','plan_id','backend_id','revision',
+                      'created_at','queue_state','execution','execution_phase','solver_conclusion',
+                      'artifact_validation','reconciliation')}
+                item['job_name']=plan.get('job_name')  # Fake has a logical job_id, no invented name.
+                item['receipt']={k:receipt.get(k) for k in ('request_id','idempotency_key','accepted_at','run_id')}
+                require(all(v is None or type(v) in (str,int) for k,v in item.items() if k!='receipt')
+                        and all(type(v) in (str,int) for v in item['receipt'].values()),
+                        'STORE_UNAVAILABLE', 'Invalid Project public field')
+                items.append(item)
+            result={'view_version':'af-project-view-v1','project_id':context.project_id,
+                    'project_instance_id':context.project_instance_id,'context_digest':context.context_digest,
+                    'gate':gate,'slot_run_id':slot_run_id,'read_at':read_at,'runs':items,
+                    'next_before_row':rows[limit-1][0] if len(rows)>limit else None,
+                    'consistency':'single_read_transaction; pages are successive snapshots'}
+            bounded_tree(result)
+            require(len(canonical_json(result).encode('utf-8')) <= 131072, 'LIMIT_EXCEEDED', 'Project response exceeds bound')
+            return result
+        except (ExecutionError, ValueError, TypeError, RecursionError) as exc:
+            raise read_error(exc) from None
+
     def query_run(self, context, run_id):
         require(context == self.context, "PROJECT_IDENTITY_MISMATCH", "Wrong query context")
         with self.read() as connection:
@@ -300,7 +363,16 @@ class ReadOnlyStore:
         """Read-only test barrier; never supplied through a request."""
 
     def diagnose(self, context, run_id):
-        from .diagnostics import build_report, read_error, valid_id, MAX_RECORD_BYTES, MAX_RAW_BYTES
+        from .diagnostics import build_report
+        return build_report(context, self._diagnostic_snapshot(context, run_id))
+
+    def inspect_interrupted_execution(self, context, run_id, *, observe_os=False):
+        """Read-only classification; optional bounded current observations, never recovery."""
+        from .interruption import inspect_store
+        return inspect_store(self, context, run_id, observe_os=observe_os)
+
+    def _diagnostic_snapshot(self, context, run_id, *, interruption=False):
+        from .diagnostics import read_error, valid_id, MAX_RECORD_BYTES, MAX_RAW_BYTES
         require(context == self.context, "PROJECT_IDENTITY_MISMATCH", "Wrong diagnostic context")
         require(valid_id(run_id, "r"), "INVALID_REQUEST", "A generated Run ID is required")
         connection = None
@@ -345,6 +417,23 @@ class ReadOnlyStore:
                    "gate": gate,
                    "event_upper_bound": connection.execute("SELECT COALESCE(MAX(sequence),0) FROM events").fetchone()[0],
                    "read_at": now(), "requested_run_id": run_id}
+            if interruption:
+                require(context.schema_version == 3, 'UNSUPPORTED_FORMAT', 'Interruption diagnostics require format 3')
+                slot = connection.execute('SELECT CASE WHEN run_id IS NULL OR length(run_id)<=64 THEN 1 ELSE 0 END, '
+                    'CASE WHEN length(run_id)<=64 THEN run_id END FROM slot WHERE id=1').fetchone()
+                owner = connection.execute("SELECT CASE WHEN length(value)<=64 THEN value END FROM meta WHERE key='owner_id'").fetchone()
+                require(slot is not None and owner is not None, 'STORE_UNAVAILABLE', 'Control metadata missing')
+                require(slot[0] == 1 and owner[0] is not None, 'LIMIT_EXCEEDED', 'Control metadata exceeds bound')
+                require((slot[1] is None or valid_id(slot[1], 'r')) and valid_id(owner[0], 'owner'),
+                        'STORE_UNAVAILABLE', 'Control identity invalid')
+                raw['interruption'] = {'slot_run_id': slot[1], 'store_owner_id': owner[0],
+                    'consumption': [tuple(r) for r in connection.execute(
+                        'SELECT CASE WHEN length(grant_id)<=64 THEN grant_id END,run_id FROM consumption WHERE run_id=? LIMIT 2', (run_id,))],
+                    'committed_operations': [r[0] for r in connection.execute(
+                        'SELECT CASE WHEN length(m.operation_id)<=64 THEN m.operation_id END FROM management_receipts m '
+                        'JOIN management_consumption g ON g.operation_id=m.operation_id '
+                        'WHERE m.operation_id IN (SELECT json_extract(body,\'$.operation_id\') '
+                        'FROM reconciliations WHERE run_id=?) LIMIT 9', (run_id,))]}
             require(time.monotonic() < deadline, "STORE_UNAVAILABLE", "Diagnostic read deadline exceeded")
         except (ExecutionError, sqlite3.Error, OSError, ValueError, TypeError, RecursionError) as exc:
             raise read_error(exc) from None
@@ -352,7 +441,7 @@ class ReadOnlyStore:
             if connection is not None:
                 connection.close()  # Ends the read transaction before projection or serialization.
         self._diagnostic_checkpoint("diagnostic:after_close")
-        return build_report(context, raw)
+        return raw
 
 
 def gate_view(connection):
@@ -367,7 +456,7 @@ def open_existing_read_only(context):
     return ReadOnlyStore(context)
 
 
-def acquire_supervisor_store(context, authority_instance):
+def acquire_supervisor_store(context, authority_instance, *, idle_only=False, lifecycle_admit=None, standard_binding=None):
     """Explicit trusted owner handoff, never called by a client or a query.
 
     Only v3, original root identity, and exact pre-registered fixture authority.
@@ -385,7 +474,13 @@ def acquire_supervisor_store(context, authority_instance):
             metadata = dict(connection.execute("SELECT key,value FROM meta"))
             require(metadata.get("authority_instance") == authority_instance,
                     "GRANT_SCOPE_MISMATCH", "Trusted bootstrap authority does not match fixture registration")
+            if idle_only:
+                from .lifecycle import require_idle
+                require_idle(connection, standard_binding=standard_binding)
+            if lifecycle_admit:lifecycle_admit(context)
             fresh = metadata.get("supervisor_started") == "0" and connection.execute("SELECT COUNT(*) FROM runs").fetchone()[0] == 0
+            if idle_only:
+                fresh = fresh and connection.execute("SELECT state FROM dispatch_gate WHERE id=1").fetchone()[0]=='OPEN'
             session = _Session(authority_instance=authority_instance, lease=lease, dispatch_enabled=fresh)
             connection.execute("BEGIN IMMEDIATE")
             connection.execute("UPDATE meta SET value='1' WHERE key='supervisor_started'")
@@ -445,6 +540,8 @@ class ExperimentStore(ReadOnlyStore):
     def transaction(self, stage):
         with self._session.lock:
             require(not self._session.closed, "OWNER_UNCONFIRMED", "Experiment session is closed")
+            require(not self._session.stopping or stage in {'lifecycle_stop','pause_on_error'},
+                    'SERVICE_STOPPING', 'Owner has committed or uncertain lifecycle stop')
             self._session.lease.check()
             connection = None
             commit_attempted = False
@@ -458,7 +555,7 @@ class ExperimentStore(ReadOnlyStore):
             except (sqlite3.Error, OSError) as exc:
                 if connection is not None:
                     connection.rollback()
-                code = "ACCEPTANCE_UNKNOWN" if stage in {"accept", "management"} and commit_attempted else "STORE_UNAVAILABLE"
+                code = "ACCEPTANCE_UNKNOWN" if stage in {"accept", "management", "lifecycle_stop"} and commit_attempted else "STORE_UNAVAILABLE"
                 raise ExecutionError(code, f"Transaction failed; query durable state before retry: {exc}", stage=stage) from exc
             except BaseException:
                 if connection is not None:
@@ -476,10 +573,15 @@ class ExperimentStore(ReadOnlyStore):
             self._session.lease.close()
 
     @contextmanager
-    def dispatch_scope(self):
+    def dispatch_scope(self, *, product_service=None, run_id=None):
         with self._session.lock:
             self._session.lease.check()
-            require(self.dispatch_allowed(), "DISPATCH_PAUSED", "Owner dispatch gate is paused")
+            if product_service is not None:
+                require(not self._session.stopping and product_service.store is self and
+                        product_service.product_control.pending(product_service) == run_id,
+                        'DISPATCH_PAUSED', 'No exact current-owner product dispatch permission')
+            else:
+                require(self.dispatch_allowed(), "DISPATCH_PAUSED", "Owner dispatch gate is paused")
             self._session.active_dispatches += 1
         try:
             yield
@@ -499,7 +601,7 @@ class ExperimentStore(ReadOnlyStore):
         return None
 
     def dispatch_allowed(self):
-        if self._session.closed:
+        if self._session.closed or self._session.stopping:
             return False
         gate = self.gate()
         return gate["state"] == "OPEN" and gate["owner_id"] == self._session.owner_id

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="32" time="61.279" timestamp="2026-10-25T00:29:35.507238+08:00" hostname="Boltzmann"><testcase classname="tests.test_product_project" name="test_create_empty_paused_and_readonly_reopen" time="0.404" /><testcase classname="tests.test_product_project" name="test_atomic_concurrent_creation" time="0.272" /><testcase classname="tests.test_product_project" name="test_failed_creation_never_opens_or_reuses[configuration]" time="0.202" /><testcase classname="tests.test_product_project" name="test_failed_creation_never_opens_or_reuses[publication]" time="0.222" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[plain]" time="0.004" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[legacy]" time="0.013" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[future]" time="0.278" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[corrupt]" time="0.316" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[missing_db]" time="0.290" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[journal]" time="0.290" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[moved]" time="0.269" /><testcase classname="tests.test_product_project" name="test_format_and_copy_boundaries[copy]" time="0.286" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[]" time="0.003" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[     ]" time="0.002" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]" time="0.002" /><testcase classname="tests.test_product_project" name="test_invalid_name_no_directory[bad\nname]" time="0.002" /><testcase classname="tests.test_product_project" name="test_reparse_and_escape_rejected_before_write" time="0.002" /><testcase classname="tests.test_product_project" name="test_windows_dpapi_binding_tamper_and_plaintext_downgrade" time="0.293" /><testcase classname="tests.test_product_project" name="test_private_acl_restricted_from_creation" time="0.251" /><testcase classname="tests.test_product_windows" name="test_gui_new_empty_product_start_reopen_independent_client_stop" time="4.328" /><testcase classname="tests.test_product_windows" name="test_fixed_worker_product_gui_chain_and_secret_free_reports" time="6.321" /><testcase classname="tests.test_product_windows" name="test_product_credentials_wrong_context_copies_and_connection_permission" time="1.408" /><testcase classname="tests.test_product_windows" name="test_encrypted_handoff_fail_closed_no_second_owner[old_endpoint]" time="1.120" /><testcase classname="tests.test_product_windows" name="test_encrypted_handoff_fail_closed_no_second_owner[wrong_project]" time="0.926" /><testcase classname="tests.test_product_windows" name="test_encrypted_handoff_fail_closed_no_second_owner[protocol]" time="0.947" /><testcase classname="tests.test_product_windows" name="test_encrypted_handoff_fail_closed_no_second_owner[plaintext]" time="0.943" /><testcase classname="tests.test_product_windows" name="test_two_product_gui_switch_and_pause_remain_isolated" time="2.599" /><testcase classname="tests.test_product_windows" name="test_public_readonly_example_in_non_repository_cwd" time="1.211" /><testcase classname="tests.test_service_lifecycle" name="test_product_gui_start_worker_survives_normal_gui_and_launcher_exit" time="6.063" /><testcase classname="tests.test_attachment_gui" name="test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect" time="6.800" /><testcase classname="tests.test_attachment_gui" name="test_explicit_project_switch_missing_service_and_unknown_stay_readonly" time="16.327"><failure message="AssertionError: Deterministic condition did not arrive before deadline">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_ui_final/cases/test_explicit_project_switch_m0')
+
+    def test_explicit_project_switch_missing_service_and_unknown_stay_readonly(tmp_path):
+        roots=[tmp_path/n for n in ('first','second')]
+        for root in roots:root.mkdir()
+        first,second=[ProcessHarness(root) for root in roots]
+        private=[];guis=[]
+        try:
+            owner=first.owner(barriers=['dispatch:after_artifact'])
+            private.append(connection(first));client=first.client()
+            rid=client.submit(first.requests[0])['receipt']['run_id'];owner.reached('dispatch:after_artifact')
+            owner.terminate() # only identity-bound test owner; never a user process
+            first.owner();connection(first)
+            before=db_facts(client:=first.client(),rid)
+            assert before['gate']['state']=='PAUSED'
+            gui=Gui(tmp_path,None,None,'switch',attachment=True);guis.append(gui)
+            unknown=choose(gui,first,rid)
+            assert 'PAUSED' in unknown['status']
+            action(gui,'project',project=second.context.root)
+            missing=gui.view(lambda v:not v['connected'] and not v['rows'] and not v['run_list'])
+            assert not second.children and rid not in json.dumps(missing)
+            other=second.owner();private.append(connection(second));c2=second.client()
+            rid2=c2.submit(second.requests[0])['receipt']['run_id'];second.finished(rid2)
+&gt;           shown=choose(gui,second,rid2)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_attachment_gui.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_attachment_gui.py:32: in choose
+    action(gui,'select',run_id=rid)
+tests\test_attachment_gui.py:26: in action
+    wait_until((gui.root/('ack_'+action_id+'.json')).exists)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = &lt;bound method Path.exists of WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run020_ui_final/cases/test_explicit_project_switch_m0/switch/ack_11599968000000.json')&gt;
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() &lt; deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+&gt;       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError</failure></testcase><testcase classname="tests.test_attachment_gui" name="test_normal_gui_large_run_list_pages_without_blocking_ui" time="8.563" /></testsuite></testsuites>

@@ -1,0 +1,3229 @@
+{
+  "unique_count": 392,
+  "PASS": 392,
+  "FAIL": 0,
+  "SKIP": 0,
+  "deduplication": "classname::parameterized name; final verified result, retries not extra cases",
+  "cases": {
+    "tests.test_standard_backend::test_real_requires_separate_grant_and_opt_in": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[input]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[project]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[output]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[approved]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[digest]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[expired]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_durable_receipt_single_launch_separate_partial_dimensions": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:after_intent]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:before_create]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:after_create]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:before_result_commit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_host_failure_before_external_attempt": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_historical_cp936_sample_and_malformed_data": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_parser_failure_does_not_erase_os_evidence": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_concurrent_service_claim_single_effect": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_intent_fsync_failure_and_uncertain_creation_preserve_claim": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_creation_error_never_means_safe_to_repeat": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_one_grant_budget_and_dispatch_rechecks": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_cross_project_same_output_identity_cannot_restart": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_live_and_old_text_cannot_be_promoted": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_backend::test_initial_preparation_lease_cannot_bypass_started_owner": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_approval_provision_does_not_start_or_resume_owner": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_command_is_frozen_windows_template_with_only_new_identity": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-True-1-True]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-False-1-True]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[False-False-1-False]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-True-3-False]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-False-0-False]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_admission::test_standard_has_no_existing_test_reconciliation_escape": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_pair_server_guards_and_success_order": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[solver]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[numerical]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[exit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_b_rechecks_current_preconditions[administrative-PREDECESSOR_NOT_QUALIFIED]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_b_rechecks_current_preconditions[scope_missing-PREDECESSOR_NOT_QUALIFIED]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_b_rechecks_current_preconditions[window-START_WINDOW_EXPIRED]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_b_rechecks_current_preconditions[grant-GRANT_EXPIRED]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_b_rechecks_current_preconditions[output-OUTPUT_CONFLICT]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_b_rechecks_current_preconditions[input-PLAN_STALE]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_b_rechecks_current_preconditions[paused-DISPATCH_PAUSED]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard:before_scope_query]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard:before_result_commit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard_result:before_commit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_ack_loss_replay_and_expiry_between_b_accept_and_create": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_no_unmanaged_fallback_and_test_grant_stays_separate": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_known_off_scope_execution_is_not_automatically_closed": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_deadline_never_releases_slot_or_enables_late_b[False]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_deadline_never_releases_slot_or_enables_late_b[True]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_paused_during_a_completion_does_not_open_gate": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_standard_managed::test_changed_management_is_not_a_new_runtime_choice": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_service_lifecycle::test_idle_start_reuse_stop_restart_and_permission": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_service_lifecycle::test_concurrent_start_single_reservation_and_owner": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_service_lifecycle::test_lost_start_reply_never_second_creation[intent_persisted]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_service_lifecycle::test_lost_start_reply_never_second_creation[created]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_service_lifecycle::test_handshake_timeout_inspect_no_retry": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_service_lifecycle::test_old_lock_or_bad_credentials_never_replace": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_service_lifecycle::test_product_gui_start_worker_survives_normal_gui_and_launcher_exit": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_inspect_connect_disconnect_no_business_writes": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[protocol]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[project]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[stale_owner]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[unreachable]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[capability]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[PENDING]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[UNKNOWN]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[REAL_PLAN]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[HELD_SLOT]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_start_refuses_pending_without_owner_metadata": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_stop_transaction_failure_does_not_pause_or_unlock": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_concurrent_stop_one_commit_and_submit_race_blocked": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_stop_response_lost_queries_original_receipt": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[partial_intent]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[bad_operator]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[host_unknown]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[intent_write_failure]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_unknown_stop_commit_replay_uses_durable_decision": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_real_owner_crash_not_automatically_replaced": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_first_explicit_start_preserves_preexisting_paused_gate": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_lifecycle_boundaries::test_two_os_clients_race_same_original_owner_lock": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_create_empty_paused_and_readonly_reopen": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_atomic_concurrent_creation": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_failed_creation_never_opens_or_reuses[configuration]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_failed_creation_never_opens_or_reuses[publication]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[plain]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[legacy]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[future]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[corrupt]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[missing_db]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[journal]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[moved]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_format_and_copy_boundaries[copy]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_invalid_name_no_directory[]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_invalid_name_no_directory[     ]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_invalid_name_no_directory[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_invalid_name_no_directory[bad\\nname]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_reparse_and_escape_rejected_before_write": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_windows_dpapi_binding_tamper_and_plaintext_downgrade": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_project::test_private_acl_restricted_from_creation": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_headless_submit_and_validation_run_persisted_before_effect": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_idempotent_submit_and_execution_replay": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_same_key_different_content_conflict[plan_id-other-plan]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_same_key_different_content_conflict[plan_digest-other-digest]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_same_key_different_content_conflict[grant_id-other-grant]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_same_key_different_content_conflict[retry_of-other-run]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_concurrent_submit_across_service_and_store_objects": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_atomic_execution_claim_and_store_single_slot": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_simultaneous_claim_same_run_only_one_effect": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_wrong_context_rejected[project_id-wrong]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_wrong_context_rejected[project_instance_id-wrong]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_wrong_context_rejected[root-wrong]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_wrong_context_rejected[manifest_digest-wrong]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[input-before_submit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[input-before_dispatch]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_revision-before_submit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_revision-before_dispatch]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_values-before_submit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_values-before_dispatch]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override0-GRANT_EXPIRED]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override1-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override2-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override3-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override4-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override5-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override6-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override7-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_conditions_reject[override8-TEST_GRANT_ONLY]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_missing_or_unregistered_grant[None]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_missing_or_unregistered_grant[]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_missing_or_unregistered_grant[unknown]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra0]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra1]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra2]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra3]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra4]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_resource_budget_rejected[simulated_cpus-2]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_resource_budget_rejected[simulated_gpus-1]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_resource_budget_rejected[slots-2]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[new_job]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[new_revision]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[new_plan]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[consumed]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_replay_survives_expired_grant_and_changed_input": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_true_retry_creates_new_run_and_preserves_old_evidence": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_invalid_retry_rejected[missing]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_invalid_retry_rejected[pending]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_invalid_retry_rejected[other_job]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_invalid_retry_rejected[other_project]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_canonical_values_and_event_pagination": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_plan_is_detached_from_mutable_inputs_and_expiry_checked": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_plan_expiry_after_prepare_blocks_execution[before_submit]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_plan_expiry_after_prepare_blocks_execution[before_dispatch]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_grant_expiry_after_accept_blocks_dispatch_but_keeps_receipt": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_real_other_project_retry_and_request_scope_rejected": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_contract::test_single_slot_scope_is_per_experiment_store": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_reopen_readonly_retains_receipt_run_events_validation_without_writes": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[missing]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[corrupt]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[future_schema]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[wal]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[shm]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[journal]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_readonly_connection_enforces_query_only_and_foreign_keys": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_accept_transaction_failure_rolls_back_all_acceptance_records": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_lost_acceptance_response_replays_committed_receipt": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_claim_transaction_failure_has_no_effect_or_partial_claim": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[after_claim]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[file_write]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[observe]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal_and_uncertain]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[missing]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[malformed]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[run_id]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[phase_attempt_id]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[plan_digest]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[old_success]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[digest]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_existing_old_output_is_not_overwritten_or_adopted": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_copied_project_does_not_inherit_execution_permission": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_malformed_manifest_is_structured_error_without_repair[value0]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_malformed_manifest_is_structured_error_without_repair[value1]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_response_failure_after_terminal_commit_does_not_repeat": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_retry_of_uncertain_run_is_rejected": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_execution_store::test_commit_acknowledgement_failure_queries_existing_acceptance": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_independent_client_exit_owner_continues_and_reconnects": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_accept_commit_response_lost_reconnect_reuses_receipt_and_effect": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_multiclient_idempotency_and_different_requests_single_slot": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_competing_supervisor_and_supported_writer_cannot_bypass_owner": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_running_query_nonblocking_readonly_pages_reconnect_and_caps": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes0-AUTHENTICATION_FAILED]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes1-PROTOCOL_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes2-ENDPOINT_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes3-ENDPOINT_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes4-ENDPOINT_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes5-ENDPOINT_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes6-UNKNOWN_OPERATION]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes7-UNKNOWN_OPERATION]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes8-INVALID_REQUEST]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_message_bounds_truncation_partial_arrival_and_absolute_deadline": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_connection_cap_is_bounded_and_recovers_after_frame_deadline": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_actual_owner_crash_after_artifact_restart_uncertain_and_pending_blocked": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_stale_endpoint_metadata_does_not_connect_takeover_or_autostart": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_maintenance_query_never_repairs_existing_sidecars[-journal]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_maintenance_query_never_repairs_existing_sidecars[-wal]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_maintenance_query_never_repairs_existing_sidecars[-shm]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_wrong_bootstrap_authority_cannot_adopt_and_does_not_poison_owner": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_client_timeout_after_accept_does_not_cancel_owner": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[\\xff]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[{\"operation\":1,\"operation\":2}]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[{\"number\":NaN}]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[[]]": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_fake_supervisor::test_response_serialization_bound_before_any_bytes_sent": {
+      "result": "PASS",
+      "source": "regression_002.xml"
+    },
+    "tests.test_product_windows::test_gui_new_empty_product_start_reopen_independent_client_stop": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_fixed_worker_product_gui_chain_and_secret_free_reports": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_product_credentials_wrong_context_copies_and_connection_permission": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[old_endpoint]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[wrong_project]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[protocol]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[plaintext]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_two_product_gui_switch_and_pause_remain_isolated": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_windows::test_public_readonly_example_in_non_repository_cwd": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_attachment_gui::test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_attachment_gui::test_explicit_project_switch_missing_service_and_unknown_stay_readonly": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_attachment_gui::test_normal_gui_large_run_list_pages_without_blocking_ui": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_discovery_authenticates_existing_owner_and_reads_without_mutation": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[credential-AUTHENTICATION_FAILED]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[protocol-PROTOCOL_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[project-PROJECT_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[process-PROCESS_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[stale-ENDPOINT_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[owner-ENDPOINT_IDENTITY_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_missing_owner_and_future_project_do_not_initialize": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_legacy_directory_rejected": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_service_attachment::test_owner_without_new_capability_is_not_restarted": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_readonly_and_no_authorization_fields": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_namespace_and_public_projection": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_keyset_pages_with_many_runs": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_argument_bounds[args0]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_argument_bounds[args1]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_argument_bounds[args2]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_argument_bounds[args3]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_argument_bounds[args4]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_single_snapshot_and_transaction_ends_before_projection": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_failures_do_not_repair[missing]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_failures_do_not_repair[future]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_failures_do_not_repair[journal]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_failures_do_not_repair[busy]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_failures_do_not_repair[corrupt]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_project_view::test_project_page_failures_do_not_repair[huge]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_two_normal_tasks_are_transactionally_sequential": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_delayed_grandchild_holds_slot_without_pid_list_completion": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_transient_children_counted_without_individual_pid_poll": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_empty_scope_does_not_turn_failure_into_success_or_continue[nonzero]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_empty_scope_does_not_turn_failure_into_success_or_continue[invalid_result]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_paused_gate_survives_first_terminal_commit": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_scope]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_create]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:after_create]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_query]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[terminal:before_commit]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_owner_crash_leaves_worker_alive_and_restart_blocked": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_true_crash_after_empty_before_commit_does_not_release": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_managed_actual_gui_close_and_reconnect_does_not_own_job_handle": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_managed_scope::test_empty_unstarted_job_and_association_query_failures_are_not_success": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_managed_windows::test_managed_standard_pair_public_gui_and_real_scope": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_managed_windows::test_managed_standard_owner_crash_does_not_adopt_or_start_b": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_managed_windows::test_public_pair_orchestrator_uses_existing_server": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_managed_windows::test_native_creation_deadline_checked_after_attribute_preparation": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[success]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[lost_a_response]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[lost_b_response]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[connection_lost]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[a_blocked]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[a_deadline]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_standard_pair_client::test_legacy_export_compatibility_does_not_allow_extra_fields": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_gui::test_actual_gui_close_reopen_public_client_worker_survives": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_gui::test_progress_auth_bounds_readonly_and_corruption": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_gui::test_product_entries_starter_exits_and_owner_is_independent[False]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_gui::test_product_entries_starter_exits_and_owner_is_independent[True]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_gui::test_gui_observes_crashed_owner_uncertainty_without_recovery": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_gui::test_stalled_ipc_keeps_tk_responsive_and_close_is_bounded": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_ownership::test_format_one_remains_readonly_and_never_migrated_or_adopted": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_ownership::test_local_owner_cannot_release_lock_during_active_fake": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_execution_isolation::test_dependency_graph_excludes_all_legacy_and_launch_modules": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_all_runtime_io_confined_and_default_navigation_untouched": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[outside]": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[parent]": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[unc]": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[relative]": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[ads]": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_real_junction_or_symlink_is_rejected": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_execution_isolation::test_creation_never_adopts_existing_directory": {
+      "result": "PASS",
+      "source": "isolation_verified.xml"
+    },
+    "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes0-TEST_GRANT_ONLY]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes1-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes2-GRANT_EXPIRED]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes3-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes4-GRANT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[fixture_digest-sha256:wrong]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[image_digest-sha256:wrong]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[interpreter_digest-sha256:wrong]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[interpreter-C:\\\\forbidden.exe]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[max_seconds-1000]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[shell]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[normal --command evil]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[scenario2]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[1]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_client_cannot_supply_process_controls[command]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_client_cannot_supply_process_controls[environment]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_client_cannot_supply_process_controls[working_directory]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_client_cannot_supply_process_controls[backend]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_client_cannot_supply_process_controls[approved]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[fixture]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[input]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[grant]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[backend_configuration]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_delayed_start_rechecks_permission_and_input_before_os_creation[grant_expired]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_delayed_start_rechecks_permission_and_input_before_os_creation[input_changed]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_no_process_configuration_cannot_dispatch_process_plan": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_invalid_trusted_backend_configuration_does_not_leak_owner_lock": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_dedicated_process_grant_cannot_expand_original_fake": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_opt_in_process_capability_does_not_change_fake_no_launch_path": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_missing_historical_exit_records_are_not_filled_from_projection": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[boolean_version]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[duplicate_key]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[wrong_instance]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[wrong_phase]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_plan_inspection_readonly_and_public_projection": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_trusted_process_issuance_exact_and_no_self_approval": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_explicit_validation_replay_concurrent_and_separate_state": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_refusal_before_artifact_read[missing-MANAGEMENT_GRANT_REQUIRED]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_refusal_before_artifact_read[execution-MANAGEMENT_GRANT_REQUIRED]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_refusal_before_artifact_read[owner-STALE_OWNER]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_refusal_before_artifact_read[scope-MANAGEMENT_SCOPE_MISMATCH]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_refusal_before_artifact_read[approved-INVALID_REQUEST]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_pending_and_uncertain_are_ineligible": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_transaction_and_lost_response[management:before_commit]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_validation_transaction_and_lost_response[management:after_commit]": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_explicit_validation_invalid_does_not_rewrite_process_success": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_new_ipc_operations_keep_auth_binding_and_strict_fields": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_public_workflow::test_expired_and_stale_validation_permission_fail_before_read": {
+      "result": "PASS",
+      "source": "regression_003.xml"
+    },
+    "tests.test_product_standard_control::test_exact_approval_paused_accept_single_dispatch_and_idle_stop": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[connection]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[lifecycle]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[self_admin]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[input]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[plan_digest]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[project]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[approved]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[output]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[expiry]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[test_grant]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_consumption_keys_and_concurrent_dispatch": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_precise_dispatch_preconditions[revision]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_precise_dispatch_preconditions[gate]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_precise_dispatch_preconditions[owner]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_precise_dispatch_preconditions[wrong_run]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_precise_dispatch_preconditions[expired_window]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_precise_dispatch_preconditions[output]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[management:before_commit]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[product_control:after_commit]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[claim:before_commit]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:after_intent]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:after_create]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:before_scope_query]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard_result:before_commit]": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_window_checked_again_after_launch_intent_barrier": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_stop_pending_unknown_and_racing_submit": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_general_resume_and_direct_issuer_cannot_bypass": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_stop_races_acceptance_under_same_owner_mutex": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_claimed_unknown_scope_prevents_stop": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_readonly_preparation_and_management_receipt": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_control::test_fixed_example_check_is_readonly_and_hashes_actual_materials": {
+      "result": "PASS",
+      "source": "control_verified.xml"
+    },
+    "tests.test_product_standard_windows::test_product_standard_gui_full_chain_and_safe_restart": {
+      "result": "PASS",
+      "source": "windows_verified.xml"
+    },
+    "tests.test_product_standard_windows::test_dispatch_response_loss_replay_no_second_start": {
+      "result": "PASS",
+      "source": "windows_verified.xml"
+    },
+    "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[dispatch:after_claim]": {
+      "result": "PASS",
+      "source": "windows_verified.xml"
+    },
+    "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[standard:after_create]": {
+      "result": "PASS",
+      "source": "windows_verified.xml"
+    },
+    "tests.test_project_gui.ProjectGuiTests::test_export_defaults_to_metadata_and_explains_external_references": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_project_gui.ProjectGuiTests::test_project_switch_reloads_queue_and_results_without_runner": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_gui_table_state.TestGuiTableState::test_queue_preserves_runner_order_and_identity": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_gui_table_state.TestGuiTableState::test_result_selection_restores_by_id_after_reorder": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_gui_table_state.TestGuiTableState::test_results_newest_first_with_timestamp_fallbacks": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.PresentationTests::test_app_version_and_agent_reference_are_canonical": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.PresentationTests::test_filter_preserves_order_and_does_not_modify_records": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.PresentationTests::test_log_tail_is_bounded_and_chronological": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.PresentationTests::test_success_with_warnings_uses_exact_same_tag_and_keeps_identity": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.PresentationTests::test_verified_github_remote_normalization": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.TaskWorkspaceGuiTests::test_g2_3_log_access_running_highlight_and_about": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.TaskWorkspaceGuiTests::test_g2_5_multiselect_visible_bulk_and_default_project_dialog": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "tests.test_g2_task_workspace.TaskWorkspaceGuiTests::test_workspace_gui_end_to_end": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "docs.agent_first.run_017.test_format_boundaries::test_legacy_reader_rejects_experimental_project_without_writes": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    },
+    "docs.agent_first.run_017.test_format_boundaries::test_experimental_reader_rejects_legacy_project_without_writes": {
+      "result": "PASS",
+      "source": "legacy.xml"
+    }
+  },
+  "batches": [
+    {
+      "file": "regression_002.xml",
+      "rows": [
+        {
+          "id": "tests.test_standard_backend::test_real_requires_separate_grant_and_opt_in",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[input]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[project]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[output]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[approved]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[digest]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_changed_or_unapproved_request_never_launches[expired]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_durable_receipt_single_launch_separate_partial_dimensions",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:after_intent]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:before_create]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:after_create]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_creation_commit_crash_windows_remain_blocked[standard:before_result_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_host_failure_before_external_attempt",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_historical_cp936_sample_and_malformed_data",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_parser_failure_does_not_erase_os_evidence",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_concurrent_service_claim_single_effect",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_intent_fsync_failure_and_uncertain_creation_preserve_claim",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_creation_error_never_means_safe_to_repeat",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_one_grant_budget_and_dispatch_rechecks",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_cross_project_same_output_identity_cannot_restart",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_live_and_old_text_cannot_be_promoted",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_backend::test_initial_preparation_lease_cannot_bypass_started_owner",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_approval_provision_does_not_start_or_resume_owner",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_command_is_frozen_windows_template_with_only_new_identity",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-True-1-True]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-False-1-True]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[False-False-1-False]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-True-3-False]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_host_policy_requires_queries_identity_and_regular_outputs[True-False-0-False]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_admission::test_standard_has_no_existing_test_reconciliation_escape",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_pair_server_guards_and_success_order",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[solver]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[numerical]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_empty_scope_does_not_qualify_failed_a[exit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_b_rechecks_current_preconditions[administrative-PREDECESSOR_NOT_QUALIFIED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_b_rechecks_current_preconditions[scope_missing-PREDECESSOR_NOT_QUALIFIED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_b_rechecks_current_preconditions[window-START_WINDOW_EXPIRED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_b_rechecks_current_preconditions[grant-GRANT_EXPIRED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_b_rechecks_current_preconditions[output-OUTPUT_CONFLICT]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_b_rechecks_current_preconditions[input-PLAN_STALE]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_b_rechecks_current_preconditions[paused-DISPATCH_PAUSED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard:before_scope_query]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard:before_result_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_scope_or_transaction_failure_holds_slot[standard_result:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_ack_loss_replay_and_expiry_between_b_accept_and_create",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_no_unmanaged_fallback_and_test_grant_stays_separate",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_known_off_scope_execution_is_not_automatically_closed",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_deadline_never_releases_slot_or_enables_late_b[False]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_deadline_never_releases_slot_or_enables_late_b[True]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_paused_during_a_completion_does_not_open_gate",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed::test_changed_management_is_not_a_new_runtime_choice",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_lifecycle::test_idle_start_reuse_stop_restart_and_permission",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_lifecycle::test_concurrent_start_single_reservation_and_owner",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_lifecycle::test_lost_start_reply_never_second_creation[intent_persisted]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_lifecycle::test_lost_start_reply_never_second_creation[created]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_lifecycle::test_handshake_timeout_inspect_no_retry",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_lifecycle::test_old_lock_or_bad_credentials_never_replace",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_lifecycle::test_product_gui_start_worker_survives_normal_gui_and_launcher_exit",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_inspect_connect_disconnect_no_business_writes",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[protocol]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[project]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[stale_owner]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[unreachable]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_existing_owner_errors_never_replace[capability]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[PENDING]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[UNKNOWN]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[REAL_PLAN]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_unresolved_store_cannot_stop_or_start[HELD_SLOT]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_start_refuses_pending_without_owner_metadata",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_stop_transaction_failure_does_not_pause_or_unlock",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_concurrent_stop_one_commit_and_submit_race_blocked",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_stop_response_lost_queries_original_receipt",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[partial_intent]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[bad_operator]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[host_unknown]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_precreation_faults_fail_closed[intent_write_failure]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_unknown_stop_commit_replay_uses_durable_decision",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_real_owner_crash_not_automatically_replaced",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_first_explicit_start_preserves_preexisting_paused_gate",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_lifecycle_boundaries::test_two_os_clients_race_same_original_owner_lock",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_create_empty_paused_and_readonly_reopen",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_atomic_concurrent_creation",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_failed_creation_never_opens_or_reuses[configuration]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_failed_creation_never_opens_or_reuses[publication]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[plain]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[legacy]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[future]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[corrupt]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[missing_db]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[journal]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[moved]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_format_and_copy_boundaries[copy]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_invalid_name_no_directory[]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_invalid_name_no_directory[     ]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_invalid_name_no_directory[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_invalid_name_no_directory[bad\\nname]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_reparse_and_escape_rejected_before_write",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_windows_dpapi_binding_tamper_and_plaintext_downgrade",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_project::test_private_acl_restricted_from_creation",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_headless_submit_and_validation_run_persisted_before_effect",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_idempotent_submit_and_execution_replay",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_same_key_different_content_conflict[plan_id-other-plan]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_same_key_different_content_conflict[plan_digest-other-digest]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_same_key_different_content_conflict[grant_id-other-grant]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_same_key_different_content_conflict[retry_of-other-run]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_concurrent_submit_across_service_and_store_objects",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_atomic_execution_claim_and_store_single_slot",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_simultaneous_claim_same_run_only_one_effect",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_wrong_context_rejected[project_id-wrong]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_wrong_context_rejected[project_instance_id-wrong]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_wrong_context_rejected[root-wrong]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_wrong_context_rejected[manifest_digest-wrong]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[input-before_submit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[input-before_dispatch]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_revision-before_submit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_revision-before_dispatch]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_values-before_submit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_changed_input_or_configuration_invalidates_plan[config_values-before_dispatch]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override0-GRANT_EXPIRED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override1-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override2-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override3-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override4-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override5-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override6-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override7-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_conditions_reject[override8-TEST_GRANT_ONLY]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_missing_or_unregistered_grant[None]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_missing_or_unregistered_grant[]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_missing_or_unregistered_grant[unknown]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra0]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra1]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra2]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra3]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_self_approval_and_execution_options_rejected[extra4]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_resource_budget_rejected[simulated_cpus-2]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_resource_budget_rejected[simulated_gpus-1]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_resource_budget_rejected[slots-2]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[new_job]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[new_revision]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[new_plan]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_new_work_cannot_reuse_old_plan_or_grant[consumed]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_replay_survives_expired_grant_and_changed_input",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_true_retry_creates_new_run_and_preserves_old_evidence",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_invalid_retry_rejected[missing]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_invalid_retry_rejected[pending]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_invalid_retry_rejected[other_job]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_invalid_retry_rejected[other_project]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_canonical_values_and_event_pagination",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_plan_is_detached_from_mutable_inputs_and_expiry_checked",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_plan_expiry_after_prepare_blocks_execution[before_submit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_plan_expiry_after_prepare_blocks_execution[before_dispatch]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_grant_expiry_after_accept_blocks_dispatch_but_keeps_receipt",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_real_other_project_retry_and_request_scope_rejected",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_contract::test_single_slot_scope_is_per_experiment_store",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_reopen_readonly_retains_receipt_run_events_validation_without_writes",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[missing]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[corrupt]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[future_schema]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[wal]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[shm]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_query_failures_never_initialize_migrate_or_repair[journal]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_readonly_connection_enforces_query_only_and_foreign_keys",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_accept_transaction_failure_rolls_back_all_acceptance_records",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_lost_acceptance_response_replays_committed_receipt",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_claim_transaction_failure_has_no_effect_or_partial_claim",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[after_claim]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[file_write]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[observe]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal_and_uncertain]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[missing]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[malformed]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[run_id]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[phase_attempt_id]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[plan_digest]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[old_success]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_fake_completion_and_artifact_validation_are_separate[digest]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_existing_old_output_is_not_overwritten_or_adopted",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_copied_project_does_not_inherit_execution_permission",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_malformed_manifest_is_structured_error_without_repair[value0]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_malformed_manifest_is_structured_error_without_repair[value1]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_response_failure_after_terminal_commit_does_not_repeat",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_retry_of_uncertain_run_is_rejected",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_store::test_commit_acknowledgement_failure_queries_existing_acceptance",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_independent_client_exit_owner_continues_and_reconnects",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_accept_commit_response_lost_reconnect_reuses_receipt_and_effect",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_multiclient_idempotency_and_different_requests_single_slot",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_competing_supervisor_and_supported_writer_cannot_bypass_owner",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_running_query_nonblocking_readonly_pages_reconnect_and_caps",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes0-AUTHENTICATION_FAILED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes1-PROTOCOL_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes2-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes3-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes4-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes5-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes6-UNKNOWN_OPERATION]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes7-UNKNOWN_OPERATION]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_protocol_identity_authentication_whitelist_rejected_without_effect[changes8-INVALID_REQUEST]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_message_bounds_truncation_partial_arrival_and_absolute_deadline",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_connection_cap_is_bounded_and_recovers_after_frame_deadline",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_actual_owner_crash_after_artifact_restart_uncertain_and_pending_blocked",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_stale_endpoint_metadata_does_not_connect_takeover_or_autostart",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_maintenance_query_never_repairs_existing_sidecars[-journal]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_maintenance_query_never_repairs_existing_sidecars[-wal]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_maintenance_query_never_repairs_existing_sidecars[-shm]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_wrong_bootstrap_authority_cannot_adopt_and_does_not_poison_owner",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_client_timeout_after_accept_does_not_cancel_owner",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[\\xff]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[{\"operation\":1,\"operation\":2}]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[{\"number\":NaN}]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_malformed_json_refused_and_owner_remains_responsive[[]]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_fake_supervisor::test_response_serialization_bound_before_any_bytes_sent",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "file": "regression_003.xml",
+      "rows": [
+        {
+          "id": "tests.test_product_windows::test_gui_new_empty_product_start_reopen_independent_client_stop",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_fixed_worker_product_gui_chain_and_secret_free_reports",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_product_credentials_wrong_context_copies_and_connection_permission",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[old_endpoint]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[wrong_project]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[protocol]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_encrypted_handoff_fail_closed_no_second_owner[plaintext]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_two_product_gui_switch_and_pause_remain_isolated",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_windows::test_public_readonly_example_in_non_repository_cwd",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_attachment_gui::test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_attachment_gui::test_explicit_project_switch_missing_service_and_unknown_stay_readonly",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_attachment_gui::test_normal_gui_large_run_list_pages_without_blocking_ui",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_discovery_authenticates_existing_owner_and_reads_without_mutation",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[credential-AUTHENTICATION_FAILED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[protocol-PROTOCOL_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[project-PROJECT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[process-PROCESS_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[stale-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_discovery_rejects_wrong_or_stale_identity[owner-ENDPOINT_IDENTITY_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_missing_owner_and_future_project_do_not_initialize",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_legacy_directory_rejected",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_service_attachment::test_owner_without_new_capability_is_not_restarted",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_readonly_and_no_authorization_fields",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_namespace_and_public_projection",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_keyset_pages_with_many_runs",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_argument_bounds[args0]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_argument_bounds[args1]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_argument_bounds[args2]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_argument_bounds[args3]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_argument_bounds[args4]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_single_snapshot_and_transaction_ends_before_projection",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_failures_do_not_repair[missing]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_failures_do_not_repair[future]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_failures_do_not_repair[journal]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_failures_do_not_repair[busy]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_failures_do_not_repair[corrupt]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_view::test_project_page_failures_do_not_repair[huge]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_two_normal_tasks_are_transactionally_sequential",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_delayed_grandchild_holds_slot_without_pid_list_completion",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_transient_children_counted_without_individual_pid_poll",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_empty_scope_does_not_turn_failure_into_success_or_continue[nonzero]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_empty_scope_does_not_turn_failure_into_success_or_continue[invalid_result]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_paused_gate_survives_first_terminal_commit",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_scope]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_create]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:after_create]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[managed:before_query]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_fault_never_releases_slot_or_restarts[terminal:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_owner_crash_leaves_worker_alive_and_restart_blocked",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_true_crash_after_empty_before_commit_does_not_release",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_managed_actual_gui_close_and_reconnect_does_not_own_job_handle",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_managed_scope::test_empty_unstarted_job_and_association_query_failures_are_not_success",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed_windows::test_managed_standard_pair_public_gui_and_real_scope",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed_windows::test_managed_standard_owner_crash_does_not_adopt_or_start_b",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed_windows::test_public_pair_orchestrator_uses_existing_server",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_managed_windows::test_native_creation_deadline_checked_after_attribute_preparation",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[success]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[lost_a_response]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[lost_b_response]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[connection_lost]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[a_blocked]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_pair_client::test_public_sequencer_stops_on_loss_and_never_resubmits[a_deadline]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_standard_pair_client::test_legacy_export_compatibility_does_not_allow_extra_fields",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_gui::test_actual_gui_close_reopen_public_client_worker_survives",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_gui::test_progress_auth_bounds_readonly_and_corruption",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_gui::test_product_entries_starter_exits_and_owner_is_independent[False]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_gui::test_product_entries_starter_exits_and_owner_is_independent[True]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_gui::test_gui_observes_crashed_owner_uncertainty_without_recovery",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_gui::test_stalled_ipc_keeps_tk_responsive_and_close_is_bounded",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_ownership::test_format_one_remains_readonly_and_never_migrated_or_adopted",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_ownership::test_local_owner_cannot_release_lock_during_active_fake",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_dependency_graph_excludes_all_legacy_and_launch_modules",
+          "result": "FAIL"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_all_runtime_io_confined_and_default_navigation_untouched",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[outside]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[parent]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[unc]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[relative]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[ads]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_real_junction_or_symlink_is_rejected",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_creation_never_adopts_existing_directory",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes0-TEST_GRANT_ONLY]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes1-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes2-GRANT_EXPIRED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes3-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_requires_exact_dedicated_test_grant_before_any_launch[changes4-GRANT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[fixture_digest-sha256:wrong]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[image_digest-sha256:wrong]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[interpreter_digest-sha256:wrong]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[interpreter-C:\\\\forbidden.exe]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_execution_object_identity_and_budget_rejected[max_seconds-1000]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[shell]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[normal --command evil]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[scenario2]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_scenario_is_a_strict_enum_not_a_command[1]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_client_cannot_supply_process_controls[command]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_client_cannot_supply_process_controls[environment]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_client_cannot_supply_process_controls[working_directory]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_client_cannot_supply_process_controls[backend]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_client_cannot_supply_process_controls[approved]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[fixture]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[input]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[grant]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_accepted_process_plan_is_rechecked_at_dispatch_without_start[backend_configuration]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_delayed_start_rechecks_permission_and_input_before_os_creation[grant_expired]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_delayed_start_rechecks_permission_and_input_before_os_creation[input_changed]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_no_process_configuration_cannot_dispatch_process_plan",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_invalid_trusted_backend_configuration_does_not_leak_owner_lock",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_dedicated_process_grant_cannot_expand_original_fake",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_opt_in_process_capability_does_not_change_fake_no_launch_path",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_missing_historical_exit_records_are_not_filled_from_projection",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[boolean_version]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[duplicate_key]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[wrong_instance]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_process_contract::test_process_validator_rejects_lookalike_content_without_process_authority[wrong_phase]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_plan_inspection_readonly_and_public_projection",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_trusted_process_issuance_exact_and_no_self_approval",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_explicit_validation_replay_concurrent_and_separate_state",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_refusal_before_artifact_read[missing-MANAGEMENT_GRANT_REQUIRED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_refusal_before_artifact_read[execution-MANAGEMENT_GRANT_REQUIRED]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_refusal_before_artifact_read[owner-STALE_OWNER]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_refusal_before_artifact_read[scope-MANAGEMENT_SCOPE_MISMATCH]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_refusal_before_artifact_read[approved-INVALID_REQUEST]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_pending_and_uncertain_are_ineligible",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_transaction_and_lost_response[management:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_validation_transaction_and_lost_response[management:after_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_explicit_validation_invalid_does_not_rewrite_process_success",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_new_ipc_operations_keep_auth_binding_and_strict_fields",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_public_workflow::test_expired_and_stale_validation_permission_fail_before_read",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "file": "control_verified.xml",
+      "rows": [
+        {
+          "id": "tests.test_product_standard_control::test_exact_approval_paused_accept_single_dispatch_and_idle_stop",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[connection]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[lifecycle]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_connection_and_stop_permissions_cannot_approve[self_admin]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[input]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[plan_digest]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[project]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[approved]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[output]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[expiry]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_admission_denies_changed_or_test_authority[test_grant]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_consumption_keys_and_concurrent_dispatch",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_precise_dispatch_preconditions[revision]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_precise_dispatch_preconditions[gate]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_precise_dispatch_preconditions[owner]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_precise_dispatch_preconditions[wrong_run]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_precise_dispatch_preconditions[expired_window]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_precise_dispatch_preconditions[output]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[management:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[product_control:after_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[claim:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:after_intent]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:after_create]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard:before_scope_query]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_faults_never_unrecorded_open_or_retry[standard_result:before_commit]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_window_checked_again_after_launch_intent_barrier",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_stop_pending_unknown_and_racing_submit",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_general_resume_and_direct_issuer_cannot_bypass",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_stop_races_acceptance_under_same_owner_mutex",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_claimed_unknown_scope_prevents_stop",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_readonly_preparation_and_management_receipt",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_control::test_fixed_example_check_is_readonly_and_hashes_actual_materials",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_windows::test_product_standard_gui_full_chain_and_safe_restart",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_windows::test_dispatch_response_loss_replay_no_second_start",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[dispatch:after_claim]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[standard:after_create]",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "file": "isolation_verified.xml",
+      "rows": [
+        {
+          "id": "tests.test_execution_isolation::test_dependency_graph_excludes_all_legacy_and_launch_modules",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_all_runtime_io_confined_and_default_navigation_untouched",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[outside]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[parent]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[unc]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[relative]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[ads]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_real_junction_or_symlink_is_rejected",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_execution_isolation::test_creation_never_adopts_existing_directory",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "file": "legacy.xml",
+      "rows": [
+        {
+          "id": "tests.test_project_gui.ProjectGuiTests::test_export_defaults_to_metadata_and_explains_external_references",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_project_gui.ProjectGuiTests::test_project_switch_reloads_queue_and_results_without_runner",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_gui_table_state.TestGuiTableState::test_queue_preserves_runner_order_and_identity",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_gui_table_state.TestGuiTableState::test_result_selection_restores_by_id_after_reorder",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_gui_table_state.TestGuiTableState::test_results_newest_first_with_timestamp_fallbacks",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.PresentationTests::test_app_version_and_agent_reference_are_canonical",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.PresentationTests::test_filter_preserves_order_and_does_not_modify_records",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.PresentationTests::test_log_tail_is_bounded_and_chronological",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.PresentationTests::test_success_with_warnings_uses_exact_same_tag_and_keeps_identity",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.PresentationTests::test_verified_github_remote_normalization",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.TaskWorkspaceGuiTests::test_g2_3_log_access_running_highlight_and_about",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.TaskWorkspaceGuiTests::test_g2_5_multiselect_visible_bulk_and_default_project_dialog",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_g2_task_workspace.TaskWorkspaceGuiTests::test_workspace_gui_end_to_end",
+          "result": "PASS"
+        },
+        {
+          "id": "docs.agent_first.run_017.test_format_boundaries::test_legacy_reader_rejects_experimental_project_without_writes",
+          "result": "PASS"
+        },
+        {
+          "id": "docs.agent_first.run_017.test_format_boundaries::test_experimental_reader_rejects_legacy_project_without_writes",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "file": "windows_verified.xml",
+      "rows": [
+        {
+          "id": "tests.test_product_standard_windows::test_product_standard_gui_full_chain_and_safe_restart",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_windows::test_dispatch_response_loss_replay_no_second_start",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[dispatch:after_claim]",
+          "result": "PASS"
+        },
+        {
+          "id": "tests.test_product_standard_windows::test_owner_hard_exit_does_not_rearm_or_auto_restart[standard:after_create]",
+          "result": "PASS"
+        }
+      ]
+    }
+  ]
+}

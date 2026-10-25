@@ -69,7 +69,7 @@ class Observer:
     def __init__(self, child):
         self.child=child
         # Popen retains the direct object even if it exits before OpenProcess.
-        k=kernel(); handle=int(child._handle)
+        k=kernel(); handle=int(child.handle if hasattr(child,'handle') else child._handle)
         k.GetProcessTimes.argtypes=[ctypes.c_void_p]*5
         k.QueryFullProcessImageNameW.argtypes=[ctypes.c_void_p,ctypes.c_uint32,ctypes.c_void_p,ctypes.c_void_p]
         times=[ctypes.c_uint64() for _ in range(4)]
@@ -82,7 +82,8 @@ class Observer:
 
     def sample(self):
         if self.child.poll() is not None and not any(e['role']=='wrapper' for e in self.exits):
-            self.exits.append({**self.direct,'exit_code':self.child.returncode,'exit_observed_at':now(),'exit_source':'direct_Popen_handle'})
+            self.exits.append({**self.direct,'exit_code':self.child.returncode,'exit_observed_at':now(),
+                              'exit_source':'direct_native_handle' if hasattr(self.child,'handle') else 'direct_Popen_handle'})
         live={self.direct['pid']:self.direct} if self.child.poll() is None else {}
         for pid,ref in self.refs.items():
             if ref.exit_evidence() is None: live[pid]=ref.identity
@@ -116,9 +117,16 @@ class Observer:
     def close(self):
         for ref in self.refs.values(): ref.close()
 
+    def in_scope(self,scope):
+        handles=[self.child.handle if hasattr(self.child,'handle') else int(self.child._handle)]
+        handles.extend(ref.handle for ref in self.refs.values())
+        return all(scope.contains(handle) for handle in handles)
+
 
 def close_reference(child):
     # Explicitly close only our Popen handle. Do not use Popen context manager,
     # communicate(timeout), kill-on-close resources, terminate or forced cleanup.
-    child._handle.Close()
-    child._child_created=False
+    if hasattr(child,'handle'):child.close()
+    else:
+        child._handle.Close()
+        child._child_created=False

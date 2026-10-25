@@ -1,0 +1,594 @@
+{
+  "abqjobpilot/__init__.py": [],
+  "abqjobpilot/abaqus_preview/__init__.py": [],
+  "abqjobpilot/abaqus_preview/inputs.py": [
+    "relative:25",
+    "directory:35",
+    "_identity:51",
+    "_open_pinned:57",
+    "_parameters:102",
+    "_block:117",
+    "read_inputs:166"
+  ],
+  "abqjobpilot/abaqus_preview/preview.py": [
+    "_public:36",
+    "AbaqusPlanPreview:51",
+    "_label:55",
+    "_profile:59",
+    "_context:73",
+    "prepare:82",
+    "inspect:122",
+    "export_preview:198"
+  ],
+  "abqjobpilot/agent_session.py": [
+    "AgentCommandSession:17"
+  ],
+  "abqjobpilot/api/__init__.py": [],
+  "abqjobpilot/api/cli.py": [
+    "CliArgumentError:16",
+    "JsonArgumentParser:20",
+    "_selector_args:25",
+    "_selector:31",
+    "_project_commands:37",
+    "main:77",
+    "_emit:195",
+    "_add_request_args:209",
+    "_request_from_args:224"
+  ],
+  "abqjobpilot/api/client.py": [
+    "AbqJobPilotClient:29",
+    "_resolve_request:324",
+    "_command_preview:393",
+    "_abaqus_cmd_prefix_preview:403",
+    "_exists:410",
+    "enqueue_job_queue_only:414",
+    "snapshot_runtime:498",
+    "compare_runtime_snapshots:508",
+    "_runtime_dir:522",
+    "_queue_file:526",
+    "_live_status_file:532",
+    "_snapshot_path:538",
+    "_failed_queue_only_result:562",
+    "_cmdline:585",
+    "_quote_arg:589",
+    "_job_stub_from_inp:596"
+  ],
+  "abqjobpilot/api/errors.py": [
+    "error_detail:6"
+  ],
+  "abqjobpilot/api/models.py": [
+    "JsonModel:14",
+    "JobRequest:33",
+    "JobPreflightResult:49",
+    "JobSubmitResult:66",
+    "JobStatusResult:86",
+    "JobOutputResult:101"
+  ],
+  "abqjobpilot/api/project_surface.py": [
+    "AutomationResult:24",
+    "SurfaceFailure:40",
+    "safe_project_folder:48",
+    "_summary:57",
+    "ProjectAutomationSurface:65"
+  ],
+  "abqjobpilot/api/status_reader.py": [
+    "read_queue_file:14",
+    "read_live_status_file:18",
+    "read_report_jobs:24",
+    "find_job:39",
+    "expected_paths:66",
+    "last_log_lines:93",
+    "public_status_from_job:110",
+    "_normalize_optional_path:116",
+    "_matches:125",
+    "_job_from_live_status:134"
+  ],
+  "abqjobpilot/app_metadata.py": [
+    "github_url_from_remote:9"
+  ],
+  "abqjobpilot/command_console.py": [
+    "summarize_result:105",
+    "detail_result:156",
+    "AgentCommandConsole:163"
+  ],
+  "abqjobpilot/command_parser.py": [
+    "command_help_text:25",
+    "CommandParseError:37",
+    "_Parser:41",
+    "_str_to_bool:46",
+    "_build_parser:57",
+    "parse_agent_command:102",
+    "extract_agent_commands:125"
+  ],
+  "abqjobpilot/config.py": [
+    "default_runtime_path:11",
+    "use_runtime_dir:66"
+  ],
+  "abqjobpilot/database/__init__.py": [],
+  "abqjobpilot/database/connection.py": [
+    "open_connection:13",
+    "inspect_schema_version:31",
+    "backup_database:44",
+    "ensure_project_database:63"
+  ],
+  "abqjobpilot/database/migrations.py": [
+    "DatabaseFailure:13",
+    "get_schema_version:23",
+    "set_schema_version:40",
+    "initialize_database:48"
+  ],
+  "abqjobpilot/database/portability.py": [
+    "_relative_marker:19",
+    "_restored_path:30",
+    "_rewrite_paths:45",
+    "portabilize_database_snapshot:55",
+    "restore_database_snapshot:69"
+  ],
+  "abqjobpilot/database/reconciliation.py": [
+    "sync_history_from_runtime:15"
+  ],
+  "abqjobpilot/database/repository.py": [
+    "_as_dict:26",
+    "_logical_key:30",
+    "ProjectHistoryRepository:47"
+  ],
+  "abqjobpilot/database/schema.py": [],
+  "abqjobpilot/execution/__init__.py": [
+    "__getattr__:9"
+  ],
+  "abqjobpilot/execution/audit_export.py": [
+    "export_report:12"
+  ],
+  "abqjobpilot/execution/authorization.py": [
+    "check_grant:6",
+    "check_management_grant:29"
+  ],
+  "abqjobpilot/execution/client.py": [
+    "FakeClient:7"
+  ],
+  "abqjobpilot/execution/diagnostics.py": [
+    "valid_id:15",
+    "ref:20",
+    "number:24",
+    "boolean:28",
+    "hash_ref:32",
+    "choice:36",
+    "project:40",
+    "bounded_tree:55",
+    "read_error:76",
+    "report_bytes:269",
+    "build_report:302"
+  ],
+  "abqjobpilot/execution/fake_backend.py": [
+    "FakeBackend:9"
+  ],
+  "abqjobpilot/execution/models.py": [
+    "ExecutionError:16",
+    "require:36",
+    "canonical_json:41",
+    "digest:58",
+    "bytes_digest:62",
+    "identifier:66",
+    "now:70",
+    "fixed_fake_content:74",
+    "fields:82",
+    "text:88",
+    "integer:92",
+    "ProjectContext:97",
+    "Document:120",
+    "JobSpec:132",
+    "ConfigSnapshot:136",
+    "ExecutionPlan:140",
+    "ExecutionGrant:144",
+    "SubmissionReceipt:148"
+  ],
+  "abqjobpilot/execution/ownership.py": [
+    "current_process_identity:15",
+    "LocalOwnerLock:31"
+  ],
+  "abqjobpilot/execution/paths.py": [
+    "local_path:9",
+    "no_reparse:18",
+    "confined:31",
+    "result_path:44"
+  ],
+  "abqjobpilot/execution/planning.py": [
+    "configuration:8",
+    "input_manifest:19",
+    "prepare_plan:34",
+    "check_plan:61"
+  ],
+  "abqjobpilot/execution/process_backend.py": [
+    "ProcessFixtureConfig:20",
+    "ProcessBackend:69"
+  ],
+  "abqjobpilot/execution/process_contract.py": [
+    "directory:15",
+    "expected_result:19"
+  ],
+  "abqjobpilot/execution/process_fixture.py": [
+    "identity:13",
+    "write:36",
+    "wait:45",
+    "Progress:54",
+    "main:76"
+  ],
+  "abqjobpilot/execution/process_handles.py": [
+    "ProcessReference:9"
+  ],
+  "abqjobpilot/execution/process_reconciliation.py": [
+    "_rows:18",
+    "inspect:29",
+    "preview:142",
+    "apply_recorded:152"
+  ],
+  "abqjobpilot/execution/process_validation.py": [
+    "validate_process_artifact:9"
+  ],
+  "abqjobpilot/execution/progress_log.py": [
+    "read_progress:14"
+  ],
+  "abqjobpilot/execution/protocol.py": [
+    "_remaining:18",
+    "_read_exact:25",
+    "receive:36",
+    "send:55",
+    "connect:62"
+  ],
+  "abqjobpilot/execution/public_workflow.py": [
+    "inspect_plan:12",
+    "validation_scope:39",
+    "validate_recorded:45"
+  ],
+  "abqjobpilot/execution/reconciliation.py": [
+    "_owner:23",
+    "_inspect:30",
+    "preview:120",
+    "_request:128",
+    "_prior:169",
+    "_authorize:177",
+    "_snapshot:189",
+    "manage:202"
+  ],
+  "abqjobpilot/execution/service.py": [
+    "ExecutionService:14"
+  ],
+  "abqjobpilot/execution/standard_backend.py": [
+    "write_new:18",
+    "call_data:23",
+    "_launch:37",
+    "collect:43",
+    "StandardBackend:80",
+    "persist_result:160",
+    "progress:201"
+  ],
+  "abqjobpilot/execution/standard_contract.py": [
+    "identity:21",
+    "StandardConfig:32",
+    "management_binding:60",
+    "prepare:66",
+    "check_plan:107",
+    "issue_execution:154",
+    "_issue:168",
+    "check_grant:185",
+    "inspect:200"
+  ],
+  "abqjobpilot/execution/standard_dat.py": [
+    "Refusal:15",
+    "require:19",
+    "number:24",
+    "lines_of:31",
+    "parse:45"
+  ],
+  "abqjobpilot/execution/standard_process.py": [
+    "kernel:16",
+    "check_host:25",
+    "process_rows:45",
+    "Observer:68",
+    "close_reference:126"
+  ],
+  "abqjobpilot/execution/store.py": [
+    "_Session:51",
+    "_session:65",
+    "validate_context:70",
+    "_check_sidecars:106",
+    "_connection:116",
+    "create_experiment:149",
+    "document:194",
+    "append_event:203",
+    "update_run:213",
+    "ReadOnlyStore:222",
+    "gate_view:358",
+    "needs_reconciliation:362",
+    "open_existing_read_only:366",
+    "acquire_supervisor_store:370",
+    "acquire_initial_preparation_store:406",
+    "ExperimentStore:433"
+  ],
+  "abqjobpilot/execution/supervisor.py": [
+    "load_bootstrap:23",
+    "FakeSupervisor:38",
+    "main:262"
+  ],
+  "abqjobpilot/execution/test_authority.py": [
+    "issue_process_execution:13",
+    "issue_validation:31"
+  ],
+  "abqjobpilot/execution/validation.py": [
+    "validate_artifact:9"
+  ],
+  "abqjobpilot/execution_gui.py": [
+    "read_connection:22",
+    "Reader:33",
+    "ExecutionView:109"
+  ],
+  "abqjobpilot/gui_app.py": [
+    "_load_legacy:23",
+    "__getattr__:30",
+    "BasicSettingsDialog:99",
+    "AbqJobPilotApp:200",
+    "main:2492"
+  ],
+  "abqjobpilot/gui_legacy.py": [],
+  "abqjobpilot/gui_presentation.py": [
+    "status_presentation:15",
+    "filter_jobs:38",
+    "read_log_tail:64"
+  ],
+  "abqjobpilot/gui_table_state.py": [
+    "queue_display_jobs:10",
+    "result_display_jobs:15",
+    "_result_time:21",
+    "row_iid:33",
+    "selected_job_id:38",
+    "restore_iid:44",
+    "restore_iids:50"
+  ],
+  "abqjobpilot/mcp/__init__.py": [],
+  "abqjobpilot/mcp/server.py": [
+    "build_server:16",
+    "main:72"
+  ],
+  "abqjobpilot/mcp/tools.py": [
+    "ReadOnlyTools:16"
+  ],
+  "abqjobpilot/monitor.py": [
+    "read_sta_tail:10",
+    "read_console_tail:14"
+  ],
+  "abqjobpilot/parsers.py": [
+    "_contains_success:29",
+    "_fatal_matches:33",
+    "_warning_count:46",
+    "parse_sta_status:69",
+    "parse_console_status:101",
+    "latest_attempt_block:112",
+    "_contains_abaqus_job_completed:131",
+    "_contains_invalid_datacheck_gpu_option:136",
+    "classify_datacheck_attempt:141",
+    "classify_final_verdict:188"
+  ],
+  "abqjobpilot/passive_lineage.py": [
+    "sample_lineage:12"
+  ],
+  "abqjobpilot/process_identity.py": [
+    "_FILETIME:29",
+    "_PROCESSENTRY32W:33",
+    "_kernel32:41",
+    "inspect_pid:65",
+    "capture_identity:97",
+    "verify_identity:111",
+    "_process_snapshot:135",
+    "observe_descendants:158",
+    "new_launch_evidence:209",
+    "refresh_launch_evidence:220",
+    "verify_launch_evidence:236"
+  ],
+  "abqjobpilot/project/__init__.py": [],
+  "abqjobpilot/project/archive.py": [
+    "_within:27",
+    "_portable_json:35",
+    "_restore_json:66",
+    "_is_metadata:86",
+    "export_project_archive:92",
+    "_validated_members:154",
+    "import_project_archive:176"
+  ],
+  "abqjobpilot/project/legacy_import.py": [
+    "import_legacy_runtime:16"
+  ],
+  "abqjobpilot/project/manager.py": [
+    "get_app_state_dir:20",
+    "default_recent_file:29",
+    "default_projects_root:33",
+    "set_default_projects_root:45",
+    "ensure_default_projects_root:61",
+    "load_project_info:67",
+    "ProjectManager:99"
+  ],
+  "abqjobpilot/project/models.py": [
+    "ProjectInfo:10"
+  ],
+  "abqjobpilot/queue_store.py": [
+    "_queue_path:21",
+    "_queue_write_locked:25",
+    "_jobs_from_payload:44",
+    "read_queue:52",
+    "init_storage:62",
+    "load_queue:73",
+    "save_queue:79",
+    "_queue_id:89",
+    "_normalize_path:93",
+    "_bool_value:97",
+    "build_queue_record:101",
+    "_validate_new_job:152",
+    "add_inp_job_to_queue:192",
+    "enqueue_record:210",
+    "add_folder_to_queue:278",
+    "queued_jobs:315",
+    "result_jobs:319",
+    "update_job:324",
+    "mark_job_skipped:337",
+    "remove_result_job:354",
+    "remove_queued_job:378",
+    "remove_queued_jobs:390",
+    "remove_result_jobs:403",
+    "move_queued_job:415",
+    "requeue_result_job:442",
+    "apply_resources_to_queued_jobs:460"
+  ],
+  "abqjobpilot/recovery_assessment.py": [
+    "_json_file:18",
+    "assess_runtime:24"
+  ],
+  "abqjobpilot/recovery_dialog.py": [
+    "RecoveryDialog:11"
+  ],
+  "abqjobpilot/recovery_workflow.py": [
+    "probe_solver_processes:32",
+    "_read_live:53",
+    "_file_signature:63",
+    "_fingerprint:73",
+    "RecoveryPlan:95",
+    "build_recovery_plan:115",
+    "approve_local_plan:231",
+    "apply_approved_recovery:254"
+  ],
+  "abqjobpilot/run_evidence.py": [
+    "evidence_reference:16",
+    "_strength:22",
+    "save_phase_evidence:36",
+    "read_process_evidence:61"
+  ],
+  "abqjobpilot/runner_core.py": [
+    "_effective_gpus:21",
+    "_effective_cpus:28",
+    "_abaqus_cmd_prefix:35",
+    "_hidden_startupinfo:45",
+    "_hidden_creationflags:54",
+    "_with_resources:58",
+    "build_abaqus_datacheck_command:68",
+    "build_abaqus_full_run_command:74",
+    "_read_text:80",
+    "_duration_seconds:90",
+    "_odb_size:100",
+    "_write_live_status:110",
+    "_refresh_job_paths:147",
+    "_write_report:159",
+    "_run_command:193",
+    "run_next_job:261",
+    "QueueRunner:369"
+  ],
+  "abqjobpilot/runtime_coordination.py": [
+    "CoordinationError:25",
+    "runtime_path:36",
+    "_local_lock:40",
+    "_try_lock:45",
+    "_unlock:53",
+    "_acquire_file:61",
+    "queue_transaction:80",
+    "runner_ownership_state:107",
+    "_require_no_unconfirmed_run:135",
+    "RunnerOwnership:157",
+    "require_enqueue_admission:210",
+    "require_output_admission:220"
+  ],
+  "abqjobpilot/settings_store.py": [
+    "load_settings:23",
+    "load_settings_for_runtime:29",
+    "_merged_settings:34",
+    "save_settings:48"
+  ],
+  "abqjobpilot/status_codes.py": [
+    "normalize_status:12"
+  ],
+  "abqjobpilot/utils.py": [
+    "now_iso:20",
+    "ensure_runtime_dirs:24",
+    "read_json:30",
+    "write_json:43",
+    "tail_text:70",
+    "format_bytes:81",
+    "open_folder:92"
+  ],
+  "examples/agent_first/abaqus_offline_preview.py": [
+    "main:10"
+  ],
+  "examples/agent_first/abaqus_probe_review.py": [
+    "review:15",
+    "main:63"
+  ],
+  "examples/agent_first/client_workflow.py": [
+    "main:11"
+  ],
+  "examples/agent_first/dev_gui_demo.py": [
+    "read:26",
+    "write:32",
+    "prepare:38",
+    "spawn:76",
+    "serve:86",
+    "entry:129",
+    "main:173"
+  ],
+  "examples/agent_first/operator_demo.py": [
+    "main:20"
+  ],
+  "examples/agent_first/standard_client.py": [
+    "read:12",
+    "submit:18",
+    "submit_known:23",
+    "run_pair:37",
+    "main:71"
+  ],
+  "examples/agent_first/standard_service.py": [
+    "read:25",
+    "write:31",
+    "package:36",
+    "prepare:47",
+    "main_action:83",
+    "main:179"
+  ],
+  "abqjobpilot/execution/closeout.py": [
+    "_rows:23",
+    "snapshot:31",
+    "_path_ref:50",
+    "assess:57",
+    "preview_store:132",
+    "preview:147",
+    "check_permission:158",
+    "issue:172",
+    "apply_recorded:200",
+    "administratively_released:231",
+    "blocks_dispatch:244",
+    "issue_resume:248",
+    "check_retained_paths:271"
+  ],
+  "abqjobpilot/execution/managed_process.py": [
+    "StartupInfo:22",
+    "StartupInfoEx:29",
+    "ProcessInfo:33",
+    "BasicLimits:37",
+    "ExtendedLimits:43",
+    "Accounting:49",
+    "api:54",
+    "checked:76",
+    "CreatedProcess:81",
+    "ManagedScope:106",
+    "check_completion:206"
+  ],
+  "abqjobpilot/execution/standard_sequence.py": [
+    "check_shape:11",
+    "prepare_pair:21",
+    "issue_pair:31",
+    "predecessor:49",
+    "check_start:60",
+    "batch_deadline:92",
+    "start_deadline:97"
+  ],
+  "examples/agent_first/standard_closeout_operator.py": [
+    "main:22"
+  ],
+  "examples/agent_first/standard_pair_package.py": [
+    "prepare_package:12"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "historical_count": 295,
+  "run014_files": {
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\ACCEPTANCE_MATRIX.md": "4b1678a74b6f0f9bc933e288d8021b03d5c742b9182c09ca7b90b84517baf294",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\BASELINE.md": "81db3a18e05a8ebf6da80ea69bbff366531b9748905571cf751f2bbf8424e28f",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\CLEANUP_SUMMARY.json": "04808284014edfde1e2a2ada072f8833e3152ad8b13f2c7bc945b534a979c549",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\CONTRACT.md": "7d71951f57a67e9343fc67cba58cf971dfdebaf49f4b75e3ef9c954a17096eb2",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\CURRENT_CLOSEOUT_PREVIEW.json": "3ea2a0bb2963524c4e35ecb599dc9f2201dc3eda439b1261c90175f805f6f6dc",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\CURRENT_READONLY.json": "e6131e7f59d14265fb034d5026fcf5200be5a0ab7c5081b853e4f6f9834a703e",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\CURRENT_RECOMMENDATION.md": "14a81f27d4d9441a018e8eb0c6b1729c28572d796e0221f0fd92b711f465122a",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\FINAL_AUDIT.json": "425572f9ac8c32e59d6bfb4c7dde444e62082d0c5c035316ebe542c7b8a2a83e",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\FINAL_STATUS.txt": "0395a10cafcad811f7b30182736ad46409075954adab7b6b7ce45b22689c2e2e",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\FINAL_SUMMARY.md": "68cb3b2e4ea65c52d3893cff2ee5f3d4b9ea8b395a2fc132fab6199e825d74a4",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\FIXTURE_RACE_CLEANUP.json": "a7d45b2ccbaa2d2ff59f8630b7ba4105101d8aa516a6c8cceade9f139724280e",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\new_iteration_01.txt": "b9ea42b391317a0965ef598707710f5860a5a4eef7a9bfdea4ad5510a9b605ac",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\NEW_TEMP_01.txt": "59a907a1cb09a9a1363ee9f60be2d58ab4e8f9d9f3534686873bb8ec55a22812",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\OPERATOR_READONLY_OUTPUT.json": "e3a579345fe963e3b20a7b3a37b66b6a1b3ac66c4d8e9a2b1fbec623420c8558",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\PROTECTED_BASELINE.json": "1b9d055e804f69cf0a4a6cf397d7c4908faca38978a36ee7714c4953f209d7ce",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\read_current.py": "f60819b08b682aeb90dea0038836e75e3d242135f7334d4a392590aed888e6ed",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\regression_final.txt": "30b1d4500a9af1bfcf19f15b8666bbdc3b0dbed7e6b88a5782f105413ffbd0bd",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\regression_final.xml": "1a6bc1fe127dac683c162114b20c84eaae00ac26669edbfbc7d7849fc0af3981",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\REGRESSION_TEMP.txt": "a101a765b31f4cbc3913d7b43257dc8b5caf6450a1c7e1641a21cc8f6425d980",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\snapshot_final.txt": "3b1d4f2d5fcf76bdf770cedfa8af676d4f13e05ea4a69f5634ff663fb69a5269",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\snapshot_final.xml": "82bf1f06cc5d813fd4be63b6dbaf615a2adec94516395813326f0b1f48ea4853",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\SNAPSHOT_TEMP.txt": "b63fbdbdd29213cd99532668a020d5d9b704c52d2f7e131db10fa84c914262e8",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\TEST_CASE_INDEX.json": "d24e1d1727600e70ef7a1871568810d1df5da07af6452247227a35f95a73b9b4",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\test_normal_owner_stop_leaves_0.json": "f1e5be5ad8affc8faff1d76996c3c27e3ada666a32adc2d4415d353cbd941cab",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\test_public_disposition_lost_r0.json": "a9e5b92c847cfc135f7e81b9e20f3bd4f5a15c77b29bd98369a1ca0584071fb1",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\TEST_RESULTS.md": "361abb34dbb2f2556a9a53e5c106c0fc21f92fa80dedfe4dcbae257d2f14e0fa",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\test_true_owner_crash_during_d0.json": "471161fa976fbdc3bdd9dc9d20e223a50a3c5dda8712613e6af7ac2a45f0124e",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\unit_final.txt": "262a54addbc563c7f1d21d4d04076948a1b6d137278409677276870ed1e15349",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\unit_final.xml": "a8788c6c04d0655bb14cc47e4a1b7a533474eacc0ca0362b9a64016a34b99cb6",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\unit_iteration_01.txt": "1e3a03450d1d90ded3fa0e9523243dab05f11adb29fd758651698c3aae1807e2",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\unit_iteration_02.txt": "77aa2fbb9d78db1471a248ffefb089e68415388d1d8136f794cca5acc0a0dbf6",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\unit_regression_01.txt": "d2b0eaca89f5824bd7d6c50b1652f557417e6377e5e1d14b1ac55c31967c47e5",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\unit_regression_01.xml": "109dbe0b41aba5994bfdf58ffbca1d9125b6db2b13622a1886bff99c4dfd3054",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\UNIT_TEMP_01.txt": "ff7b3f4175841f3780060e4339a45ffea1394a922e710287dcb54052bad6effa",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\UNIT_TEMP_02.txt": "61427decb9eac97b07a8a69fa493c3e1a8eee1ff244031bec50d85feed9f085c",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\UNIT_TEMP_03.txt": "e19a7750398c9f853f97cee58712c5859f19fe7ead862f5c9ee7efa6fae97ae3",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\UNIT_TEMP_FINAL.txt": "76772717850df2613a99dfc0b49dcefa4760e5b18462f5d640ed423e78f58756",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\USAGE.md": "6ce5baa9611ff41bbf16829a8a0339a885c2d22180b068f8c872f1b0a46bc766",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\verified_final.txt": "6f81e32422d8d3ae338f04bd7e81f84e3db94a211ca20aadd4ef14296b5468bc",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\verified_final.xml": "478a5eb33d6e8ceb3e38f7df2862ec89eaeb007dc6ef841fa9425a0983bb9573",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\VERIFIED_TEMP.txt": "83399e83e34de14afaf8d2a6b4011815549e07e6c704d7b4645a433719095ce2",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\audit_export.py": "08c2da9e8b7046511cb09c09519f4300b2a5f0243d8cb4e9eceba97f4555428f",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\authorization.py": "855a37f066f8b7bafd14a1663cde3aa10cd04db95945fcb7805cb2ab86a8f4d3",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\client.py": "1c971d0f2b249bdd24938b3a7f422a6239c0e080838be429eff3d709e336c513",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\diagnostics.py": "f9a5c611f4912f949d9e69f3a29983ebe724c4560f022a5c407773293149071a",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\execution_gui.py": "092c2140b729dba0904f870a24830d27bec4948173fc3d104e8a1fd54babae59",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\fake_backend.py": "daa2c9949be9741597de245e0a40eb3cb41421d9a21b0821d119318d0d985032",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\models.py": "7242ae21ca764628dd3a2aefc5311d021184364139d53572127437c0bd5a1825",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\ownership.py": "01a2188b695ca7192b06a01df51f7ffb26efcdf736e4994c911b777bd969d66f",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\paths.py": "4c78b31ce3aacebdc407f5ba0bd732aece5154418c6a8ddc247b66ed0dc77f71",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\planning.py": "d1da4ca59114ab1a84c313c1e709647c7cc0227d22b80da551ba30d58225abf4",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\process_backend.py": "5fb1add5ef31ca71b88d7dd42116a23e4a7fc0ad2478f5cc2455c17b04e746f1",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\process_contract.py": "1d826966817e387068ed9c2ca28aeb468d07371c76aa485a7cae2340566f1550",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\process_fixture.py": "a4ad9d7f6df3bf416d1e5c4f5274ef20738213e9e56374af799c41e6183ba3c0",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\process_handles.py": "905e05e70d77b0fdf5504935c56be6413865439e9219e63f55642fbc1f014b96",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\process_reconciliation.py": "c71202e0149e18fe03f951c8eb2b712262a03e388a5e3606c5c2990e14d7a074",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\process_validation.py": "3c3dab14b5edd97b8b066c0762b3b1f48de115f83027277f86f9f5a53e8f151d",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\progress_log.py": "422b7f83eb0bc748cdc5e1e88db343339fe20e12f6591be4400d7a5164603c4a",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\protocol.py": "e5583e17261db8924cfc09804a675845d9a869c5ad881cfe78f119797f8188c6",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\public_workflow.py": "07ae43d5c1bd5af6b7ae0848315a6a7f8a83d70c49be12a4361617ecad3c634e",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\reconciliation.py": "b38cc24cce383c914dee8861c02339cef8a4818088763ca7af26d1bbdd5eac5b",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\service.py": "a2e4b15699df1a48ef105d6998af696c3e4c61475a18543b3dcdd47a029ce001",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\standard_backend.py": "2f22943e357b8faabe9111fdf8721befd82fb4ec9276b75dc2b32d40b9910a21",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\standard_contract.py": "fd0ead4159a5c2ee27768828629771c11a2da198eb70c448c092efdba2c8cb2d",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\standard_dat.py": "6946666f0bd1040fc849ea0684a75382483aeaf0326397863dbfe64a47e08c74",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\standard_process.py": "45a8d08e933f21f09c2ba8c3d2e2e79060a9318a8568fce00d0861053f746a9a",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\standard_service.py": "474e841602b6826c0bc26cb064c8801c20003e0bba4ee4e1e6703f37c4f14734",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\store.py": "33429cc790596a1fad0b61a22954df070c46c9e256918f690d445eddc80975ae",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\supervisor.py": "1a8093e333ceb0e928a6c59d76a2dc2f12be5b2fa574ce52a5f0bfd586e96605",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\test_authority.py": "670a3fbf6adae55e9fe9c24b65080915fb6d7bf613692805e96f23319ac300ba",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\validation.py": "107f8fd6ad27b923cf281e5686458a277e9087676c9f54f3377b80ddaf979f22",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\before\\__init__.py": "d01f3fab0e1bc7762d76635f09b030c6854b29eb5f88235832828d00aa7ea078",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\windows_final\\test_normal_owner_stop_leaves_0.json": "b0533b9a7f554cb5aa4722ff1e361bdb1750e838985e2a20754264882368c9fc",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\windows_final\\test_public_disposition_lost_r0.json": "7210738136202b177a3b5f912ae50060138dfef1ba3956e878b2b58f247eaae5",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\windows_final\\test_true_owner_crash_during_d0.json": "a55603fa2594133258f84d735acb1f15200a0f156059d3e15029f9e8807a8072",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\windows_verified\\test_normal_owner_stop_leaves_0.json": "553353f79353bd9538d34291846e6c1016cb472fc15ac1144aa1b37684fb207f",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\windows_verified\\test_public_disposition_lost_r0.json": "99f9b4f0a4c46c0fc8810ab2ad86ab88586876be3f2d8257bc37d024ba7e0084",
+    "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\run_014\\windows_verified\\test_true_owner_crash_during_d0.json": "82f5627c08bd606c1d58f1168888e415a504d9bb0641dd1e7a012d209053491d"
+  },
+  "execution_files": [
+    {
+      "path": "abqjobpilot/execution/client.py",
+      "sha256": "14abae1cfde28c958dc4e0c9fc2b7996e5837c7abec39fc559c73d6306e97f7d"
+    },
+    {
+      "path": "abqjobpilot/execution/diagnostics.py",
+      "sha256": "0a7c098a9ebbef8c0f55502c015c4e313c0de8d39ee1d4c31a31c7467f8c297e"
+    },
+    {
+      "path": "abqjobpilot/execution/reconciliation.py",
+      "sha256": "0b7ae506407ae51288f504901f3eed27f2db59835a9d71f57670ac7b58f46ffb"
+    },
+    {
+      "path": "abqjobpilot/execution/service.py",
+      "sha256": "fa7d815a6222ff3218823ea202194bf4c4b7d4ac36686bca17855d2967a4bfbb"
+    },
+    {
+      "path": "abqjobpilot/execution/standard_contract.py",
+      "sha256": "a37c9598ca17b7c7dfa5d786cd7fda982b75b9683275e85cebcfe15d14e3d050"
+    },
+    {
+      "path": "abqjobpilot/execution/supervisor.py",
+      "sha256": "17ed55717068704098e718772e253ed813fa6116c65a6385b497c70c612037e7"
+    },
+    {
+      "path": "abqjobpilot/execution_gui.py",
+      "sha256": "0d00eeb9d9bdd658f396e257df2f2bc24ed8001bbf77f9aa886b7ab913456842"
+    },
+    {
+      "path": "tests/run003_process.py",
+      "sha256": "fca2bfaedbc6eda5b9b3cf4a722d27e2545d386189d4cd5e09593fc8b44c2221"
+    },
+    {
+      "path": "abqjobpilot/execution/closeout.py",
+      "sha256": "8ee68baa213ea87520959c7ed82dd0f905f39a7a79c52a2ba053625f5ccef662"
+    },
+    {
+      "path": "examples/agent_first/standard_closeout_operator.py",
+      "sha256": "8cb23644cfabf1e2bff04012ec4817550c3dedec1f21195f9119560b0b15572c"
+    },
+    {
+      "path": "tests/run014_process.py",
+      "sha256": "4809aa1ea41869360084aa2e236f243c21c4459abc04e5ad79a7f20c85ec8854"
+    },
+    {
+      "path": "tests/test_closeout_windows.py",
+      "sha256": "483eba4614daf9cbf655e9a6e9533d0e148337ab0957eef980b8daa7440c7e43"
+    },
+    {
+      "path": "tests/test_standard_closeout.py",
+      "sha256": "934b1c581c40747c4eb3ac0520c5fa6e5b4678443239144781614d0495c74c9a"
+    }
+  ]
+}

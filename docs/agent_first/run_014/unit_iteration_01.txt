@@ -1,0 +1,63 @@
+.FF.....FF
+================================== FAILURES ===================================
+______ test_explicit_release_preserves_evidence_receipt_gate_and_intent _______
+tests\test_standard_closeout.py:58: in test_explicit_release_preserves_evidence_receipt_gate_and_intent
+    result=c.service.apply_closeout(c.ctx,req);run=c.store.query_run(c.ctx,c.rid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\service.py:49: in apply_closeout
+    return manage(self,context,request,request['operation'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\reconciliation.py:219: in manage
+    refs, projection = closeout.apply_recorded(service,connection,request,operation_id,gate)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\closeout.py:182: in apply_recorded
+    grant=document(c,'management_grants','grant_id',request['management_grant_id'])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\store.py:196: in document
+    require((table, key) in {("plans", "plan_id"), ("grants", "grant_id"), ("runs", "run_id")},
+abqjobpilot\execution\models.py:38: in require
+    raise ExecutionError(code, message)
+E   abqjobpilot.execution.models.ExecutionError: Unsupported internal lookup
+_______________ test_retain_is_independent_and_does_not_release _______________
+tests\test_standard_closeout.py:78: in test_retain_is_independent_and_does_not_release
+    c=finished;retained=c.service.apply_closeout(c.ctx,c.permission(closeout.RETAIN))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\service.py:49: in apply_closeout
+    return manage(self,context,request,request['operation'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\reconciliation.py:219: in manage
+    refs, projection = closeout.apply_recorded(service,connection,request,operation_id,gate)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\closeout.py:182: in apply_recorded
+    grant=document(c,'management_grants','grant_id',request['management_grant_id'])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\store.py:196: in document
+    require((table, key) in {("plans", "plan_id"), ("grants", "grant_id"), ("runs", "run_id")},
+abqjobpilot\execution\models.py:38: in require
+    raise ExecutionError(code, message)
+E   abqjobpilot.execution.models.ExecutionError: Unsupported internal lookup
+__ test_disposition_requires_independent_exact_operator_permission[expired] ___
+tests\test_standard_closeout.py:108: in test_disposition_requires_independent_exact_operator_permission
+    grant=document(db,'management_grants','grant_id',req['management_grant_id'])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\store.py:196: in document
+    require((table, key) in {("plans", "plan_id"), ("grants", "grant_id"), ("runs", "run_id")},
+abqjobpilot\execution\models.py:38: in require
+    raise ExecutionError(code, message)
+E   abqjobpilot.execution.models.ExecutionError: Unsupported internal lookup
+_ test_disposition_requires_independent_exact_operator_permission[wrong_scope] _
+tests\test_standard_closeout.py:108: in test_disposition_requires_independent_exact_operator_permission
+    grant=document(db,'management_grants','grant_id',req['management_grant_id'])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+abqjobpilot\execution\store.py:196: in document
+    require((table, key) in {("plans", "plan_id"), ("grants", "grant_id"), ("runs", "run_id")},
+abqjobpilot\execution\models.py:38: in require
+    raise ExecutionError(code, message)
+E   abqjobpilot.execution.models.ExecutionError: Unsupported internal lookup
+=========================== short test summary info ===========================
+FAILED tests/test_standard_closeout.py::test_explicit_release_preserves_evidence_receipt_gate_and_intent
+FAILED tests/test_standard_closeout.py::test_retain_is_independent_and_does_not_release
+FAILED tests/test_standard_closeout.py::test_disposition_requires_independent_exact_operator_permission[expired]
+FAILED tests/test_standard_closeout.py::test_disposition_requires_independent_exact_operator_permission[wrong_scope]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 4 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+4 failed, 6 passed in 7.21s

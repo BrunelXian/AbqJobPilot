@@ -1,0 +1,78 @@
+{
+  "scope": "POST_TEST_OFFLINE_EVALUATION_WITH_ASSUMED_QUIESCENCE_NOT_ORIGINAL_LIVE_PREVIEW",
+  "reasons": [],
+  "eligible_assuming_quiescence": true,
+  "run_revision": 10,
+  "exits": [
+    {
+      "creation_time_100ns": 134373995431383535,
+      "exit_code": 0,
+      "exit_observed_at": 1792925943,
+      "exit_source": "direct_Popen_handle",
+      "identity_status": "VERIFIED",
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "observed_at": 1792925943,
+      "pid": 31312,
+      "role": "wrapper"
+    },
+    {
+      "attribution": "OS_parent_candidate_not_complete_solver_membership",
+      "creation_time_100ns": 134373995431440758,
+      "exit_code": 0,
+      "exit_observed_at": 1792925943,
+      "exit_source": "retained_windows_handle",
+      "identity_status": "VERIFIED",
+      "image_path": "C:\\Windows\\System32\\conhost.exe",
+      "observed_at": 1792925943,
+      "pid": 22700,
+      "role": "candidate_22700"
+    },
+    {
+      "attribution": "OS_parent_candidate_not_complete_solver_membership",
+      "creation_time_100ns": 134373995431556190,
+      "exit_code": 0,
+      "exit_observed_at": 1792925943,
+      "exit_source": "retained_windows_handle",
+      "identity_status": "VERIFIED",
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "observed_at": 1792925943,
+      "pid": 30036,
+      "role": "candidate_30036"
+    }
+  ],
+  "members": [
+    {
+      "creation_time_100ns": 134373995431383535,
+      "identity_status": "VERIFIED",
+      "image_path": "D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe",
+      "observed_at": 1792925943,
+      "pid": 31312,
+      "role": "wrapper"
+    },
+    {
+      "attribution": "OS_parent_candidate_not_complete_solver_membership",
+      "creation_time_100ns": 134373995431440758,
+      "identity_status": "VERIFIED",
+      "image_path": "C:\\Windows\\System32\\conhost.exe",
+      "observed_at": 1792925943,
+      "pid": 22700,
+      "role": "candidate_22700"
+    },
+    {
+      "attribution": "OS_parent_candidate_not_complete_solver_membership",
+      "creation_time_100ns": 134373995431556190,
+      "identity_status": "VERIFIED",
+      "image_path": "D:\\Program Files\\Python312\\python.exe",
+      "observed_at": 1792925943,
+      "pid": 30036,
+      "role": "candidate_30036"
+    }
+  ],
+  "gate": {
+    "id": 1,
+    "owner_id": "owner_4e86af83ac29438d97076722e7688d0a",
+    "version": 3,
+    "state": "PAUSED"
+  },
+  "observation_ended": true
+}

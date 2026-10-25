@@ -1,0 +1,38 @@
+{
+  "scope": "nonignored baseline files only; not general secret scanning",
+  "structured_sensitive_key_candidates": [],
+  "data_or_large_files": [
+    {
+      "file": "docs/agent_first/run_010/axial_bar.inp",
+      "bytes": 420
+    },
+    {
+      "file": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/observations/stderr.bin",
+      "bytes": 0
+    },
+    {
+      "file": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/observations/stdout.bin",
+      "bytes": 0
+    },
+    {
+      "file": "docs/agent_first/run_011/result_review_001/ORIGINAL_DAT.bin",
+      "bytes": 10334
+    },
+    {
+      "file": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_report_read_does_n0/case_4ae0e9e3/observations/stderr.bin",
+      "bytes": 0
+    },
+    {
+      "file": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_report_read_does_n0/case_4ae0e9e3/observations/stdout.bin",
+      "bytes": 0
+    },
+    {
+      "file": "docs/agent_first/run_013/real_001/PUBLIC_OBSERVATIONS.jsonl",
+      "bytes": 4982433
+    },
+    {
+      "file": "tests/fixtures/Job_test.inp",
+      "bytes": 76
+    }
+  ]
+}

@@ -1,0 +1,2255 @@
+{
+  "batches": [
+    {
+      "file": "unit_final.xml",
+      "passed": 65,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "regression_final.xml",
+      "passed": 302,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0
+    },
+    {
+      "file": "snapshot_final.xml",
+      "passed": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "verified_final.xml",
+      "passed": 83,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "unique_latest": {
+    "passed": 369,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "new_tests": 30,
+  "cases": [
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_preview_consistent_read_only_and_no_external_probes",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_explicit_release_preserves_evidence_receipt_gate_and_intent",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_retain_is_independent_and_does_not_release",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_stale_assessment_rejected[revision]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_stale_assessment_rejected[event]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_stale_assessment_rejected[gate]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_stale_assessment_rejected[owner]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_disposition_requires_independent_exact_operator_permission[missing]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_disposition_requires_independent_exact_operator_permission[expired]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_disposition_requires_independent_exact_operator_permission[wrong_scope]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_disposition_requires_independent_exact_operator_permission[test_only]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_disposition_requires_independent_exact_operator_permission[approved]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_replay_conflict_concurrent_effect_once_and_new_owner_replay",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_competing_dispositions_cannot_both_change_same_revision",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_transaction_and_lost_response_no_unrecorded_release[management:before_commit]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_transaction_and_lost_response_no_unrecorded_release[management:after_commit]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_insufficient_evidence_cannot_release[member]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_insufficient_evidence_cannot_release[exit]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_insufficient_evidence_cannot_release[identity]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_insufficient_evidence_cannot_release[observation_end]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_insufficient_evidence_cannot_release[consumption]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_separate_resume_quarantine_and_pending_prerequisites",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_test_only_resume_cannot_approve_real_residual_risk",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_remaining_uncertainty_blocks_independent_resumption",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_preview_limit_busy_and_legacy_diagnostic_compatibility",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_trusted_operator_entry_refuses_active_owner_and_has_no_backend",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_real_requires_separate_grant_and_opt_in",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_changed_or_unapproved_request_never_launches[input]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_changed_or_unapproved_request_never_launches[project]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_changed_or_unapproved_request_never_launches[output]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_changed_or_unapproved_request_never_launches[approved]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_changed_or_unapproved_request_never_launches[digest]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_changed_or_unapproved_request_never_launches[expired]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_durable_receipt_single_launch_separate_partial_dimensions",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_creation_commit_crash_windows_remain_blocked[standard:after_intent]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_creation_commit_crash_windows_remain_blocked[standard:before_create]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_creation_commit_crash_windows_remain_blocked[standard:after_create]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_creation_commit_crash_windows_remain_blocked[standard:before_result_commit]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_host_failure_before_external_attempt",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_historical_cp936_sample_and_malformed_data",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_parser_failure_does_not_erase_os_evidence",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_concurrent_service_claim_single_effect",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_intent_fsync_failure_and_uncertain_creation_preserve_claim",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_creation_error_never_means_safe_to_repeat",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_one_grant_budget_and_dispatch_rechecks",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_cross_project_same_output_identity_cannot_restart",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_live_and_old_text_cannot_be_promoted",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_backend",
+      "test": "test_initial_preparation_lease_cannot_bypass_started_owner",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_approval_provision_does_not_start_or_resume_owner",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_command_is_frozen_windows_template_with_only_new_identity",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_host_policy_requires_queries_identity_and_regular_outputs[True-True-1-True]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_host_policy_requires_queries_identity_and_regular_outputs[True-False-1-True]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_host_policy_requires_queries_identity_and_regular_outputs[False-False-1-False]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_host_policy_requires_queries_identity_and_regular_outputs[True-True-3-False]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_host_policy_requires_queries_identity_and_regular_outputs[True-False-0-False]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_standard_admission",
+      "test": "test_standard_has_no_existing_test_reconciliation_escape",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_dependency_graph_excludes_all_legacy_and_launch_modules",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_all_runtime_io_confined_and_default_navigation_untouched",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_path_escape_rejected_before_candidate_filesystem_access[outside]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_path_escape_rejected_before_candidate_filesystem_access[parent]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_path_escape_rejected_before_candidate_filesystem_access[unc]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_path_escape_rejected_before_candidate_filesystem_access[relative]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_path_escape_rejected_before_candidate_filesystem_access[ads]",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_real_junction_or_symlink_is_rejected",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_isolation",
+      "test": "test_creation_never_adopts_existing_directory",
+      "status": "passed",
+      "batch": "unit_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_headless_submit_and_validation_run_persisted_before_effect",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_idempotent_submit_and_execution_replay",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_same_key_different_content_conflict[plan_id-other-plan]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_same_key_different_content_conflict[plan_digest-other-digest]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_same_key_different_content_conflict[grant_id-other-grant]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_same_key_different_content_conflict[retry_of-other-run]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_concurrent_submit_across_service_and_store_objects",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_atomic_execution_claim_and_store_single_slot",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_simultaneous_claim_same_run_only_one_effect",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_wrong_context_rejected[project_id-wrong]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_wrong_context_rejected[project_instance_id-wrong]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_wrong_context_rejected[root-wrong]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_wrong_context_rejected[manifest_digest-wrong]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_changed_input_or_configuration_invalidates_plan[input-before_submit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_changed_input_or_configuration_invalidates_plan[input-before_dispatch]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_changed_input_or_configuration_invalidates_plan[config_revision-before_submit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_changed_input_or_configuration_invalidates_plan[config_revision-before_dispatch]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_changed_input_or_configuration_invalidates_plan[config_values-before_submit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_changed_input_or_configuration_invalidates_plan[config_values-before_dispatch]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override0-GRANT_EXPIRED]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override1-GRANT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override2-GRANT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override3-GRANT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override4-GRANT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override5-GRANT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override6-GRANT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override7-GRANT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_conditions_reject[override8-TEST_GRANT_ONLY]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_missing_or_unregistered_grant[None]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_missing_or_unregistered_grant[]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_missing_or_unregistered_grant[unknown]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_self_approval_and_execution_options_rejected[extra0]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_self_approval_and_execution_options_rejected[extra1]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_self_approval_and_execution_options_rejected[extra2]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_self_approval_and_execution_options_rejected[extra3]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_self_approval_and_execution_options_rejected[extra4]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_resource_budget_rejected[simulated_cpus-2]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_resource_budget_rejected[simulated_gpus-1]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_resource_budget_rejected[slots-2]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_new_work_cannot_reuse_old_plan_or_grant[new_job]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_new_work_cannot_reuse_old_plan_or_grant[new_revision]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_new_work_cannot_reuse_old_plan_or_grant[new_plan]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_new_work_cannot_reuse_old_plan_or_grant[consumed]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_replay_survives_expired_grant_and_changed_input",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_true_retry_creates_new_run_and_preserves_old_evidence",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_invalid_retry_rejected[missing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_invalid_retry_rejected[pending]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_invalid_retry_rejected[other_job]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_invalid_retry_rejected[other_project]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_canonical_values_and_event_pagination",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_plan_is_detached_from_mutable_inputs_and_expiry_checked",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_plan_expiry_after_prepare_blocks_execution[before_submit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_plan_expiry_after_prepare_blocks_execution[before_dispatch]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_grant_expiry_after_accept_blocks_dispatch_but_keeps_receipt",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_real_other_project_retry_and_request_scope_rejected",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_contract",
+      "test": "test_single_slot_scope_is_per_experiment_store",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_reopen_readonly_retains_receipt_run_events_validation_without_writes",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_query_failures_never_initialize_migrate_or_repair[missing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_query_failures_never_initialize_migrate_or_repair[corrupt]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_query_failures_never_initialize_migrate_or_repair[future_schema]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_query_failures_never_initialize_migrate_or_repair[wal]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_query_failures_never_initialize_migrate_or_repair[shm]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_query_failures_never_initialize_migrate_or_repair[journal]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_readonly_connection_enforces_query_only_and_foreign_keys",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_accept_transaction_failure_rolls_back_all_acceptance_records",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_lost_acceptance_response_replays_committed_receipt",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_claim_transaction_failure_has_no_effect_or_partial_claim",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[after_claim]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[file_write]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[observe]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_post_claim_failures_preserve_uncertainty_and_never_repeat_effect[terminal_and_uncertain]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_fake_completion_and_artifact_validation_are_separate[missing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_fake_completion_and_artifact_validation_are_separate[malformed]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_fake_completion_and_artifact_validation_are_separate[run_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_fake_completion_and_artifact_validation_are_separate[phase_attempt_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_fake_completion_and_artifact_validation_are_separate[plan_digest]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_fake_completion_and_artifact_validation_are_separate[old_success]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_fake_completion_and_artifact_validation_are_separate[digest]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_existing_old_output_is_not_overwritten_or_adopted",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_copied_project_does_not_inherit_execution_permission",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_malformed_manifest_is_structured_error_without_repair[value0]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_malformed_manifest_is_structured_error_without_repair[value1]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_response_failure_after_terminal_commit_does_not_repeat",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_retry_of_uncertain_run_is_rejected",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_store",
+      "test": "test_commit_acknowledgement_failure_queries_existing_acceptance",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_ownership",
+      "test": "test_format_one_remains_readonly_and_never_migrated_or_adopted",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_ownership",
+      "test": "test_local_owner_cannot_release_lock_during_active_fake",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_preview_is_readonly_deterministic_and_adoption_appends_bound_evidence",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[missing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[malformed]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[run_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[plan_digest]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[phase_attempt_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[config_digest]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[input_digests]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[format]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_bad_artifact_cannot_be_adopted_or_recreated[oversize]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_unsupported_plan_rejected_before_artifact_read[output_policy]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_unsupported_plan_rejected_before_artifact_read[backend_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_unsupported_plan_rejected_before_artifact_read[backend_version]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_unsupported_plan_rejected_before_artifact_read[validation_policy]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_unsupported_plan_rejected_before_artifact_read[canonicalization]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_preview_change_invalidates_submission[artifact]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_preview_change_invalidates_submission[revision]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_preview_change_invalidates_submission[gate]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_preview_change_invalidates_submission[owner]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override0]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override1]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override2]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override3]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override4]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override5]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override6]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_grant_exact_scope_and_expiry_required[override7]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_self_attested_management_fields_rejected[extra0]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_self_attested_management_fields_rejected[extra1]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_self_attested_management_fields_rejected[extra2]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_execution_grant_cannot_replace_management_permission[missing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_execution_grant_cannot_replace_management_permission[execution_grant]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_concurrent_apply_idempotency_conflict_and_consumption",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[reconciliation:before_snapshot]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[reconciliation:after_snapshot]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[management:before_commit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_snapshot_and_commit_failures_preserve_truth_and_receipt[management:after_commit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_separate_from_adoption_pending_revalidated_and_replay_no_reopen",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[input]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[configuration]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[grant_expired]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[plan_expired]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_pending_does_not_revive_stale_plan_or_grant_after_resume[authority]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_historical_plan_is_used_without_reading_new_input_or_configuration",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_missing_historical_evidence_never_infers_completion[claim]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_missing_historical_evidence_never_infers_completion[accept]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_missing_historical_evidence_never_infers_completion[consumption]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_missing_historical_evidence_never_infers_completion[historical_inputs]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_concurrent_distinct_keys_cannot_adopt_same_revision_twice",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_requires_distinct_exact_management_permission[missing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_requires_distinct_exact_management_permission[expired]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_requires_distinct_exact_management_permission[wrong_action]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_requires_distinct_exact_management_permission[wrong_gate]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_requires_distinct_exact_management_permission[wrong_owner]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_requires_distinct_exact_management_permission[approved]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_resume_atomic_idempotency_conflict_and_receipt_is_not_gate_view",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_query_and_management_refuse_maintenance_without_repair",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_real_junction_artifact_is_refused_before_read",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_format_two_readonly_compatible_but_management_rejected",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_hardlinked_artifact_is_not_accepted",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_reconciliation",
+      "test": "test_management_commit_ack_unknown_is_resolved_by_original_key",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_independent_client_exit_owner_continues_and_reconnects",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_accept_commit_response_lost_reconnect_reuses_receipt_and_effect",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_multiclient_idempotency_and_different_requests_single_slot",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_competing_supervisor_and_supported_writer_cannot_bypass_owner",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_running_query_nonblocking_readonly_pages_reconnect_and_caps",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes0-AUTHENTICATION_FAILED]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes1-PROTOCOL_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes2-ENDPOINT_IDENTITY_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes3-ENDPOINT_IDENTITY_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes4-ENDPOINT_IDENTITY_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes5-ENDPOINT_IDENTITY_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes6-UNKNOWN_OPERATION]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes7-UNKNOWN_OPERATION]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_protocol_identity_authentication_whitelist_rejected_without_effect[changes8-INVALID_REQUEST]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_message_bounds_truncation_partial_arrival_and_absolute_deadline",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_connection_cap_is_bounded_and_recovers_after_frame_deadline",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_actual_owner_crash_after_artifact_restart_uncertain_and_pending_blocked",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_stale_endpoint_metadata_does_not_connect_takeover_or_autostart",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_maintenance_query_never_repairs_existing_sidecars[-journal]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_maintenance_query_never_repairs_existing_sidecars[-wal]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_maintenance_query_never_repairs_existing_sidecars[-shm]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_wrong_bootstrap_authority_cannot_adopt_and_does_not_poison_owner",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_client_timeout_after_accept_does_not_cancel_owner",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_malformed_json_refused_and_owner_remains_responsive[\\xff]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_malformed_json_refused_and_owner_remains_responsive[{\"operation\":1,\"operation\":2}]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_malformed_json_refused_and_owner_remains_responsive[{\"number\":NaN}]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_malformed_json_refused_and_owner_remains_responsive[[]]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_fake_supervisor",
+      "test": "test_response_serialization_bound_before_any_bytes_sent",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_reconciliation_supervisor",
+      "test": "test_windows_crash_reconcile_explicit_resume_end_to_end[False]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_reconciliation_supervisor",
+      "test": "test_windows_crash_reconcile_explicit_resume_end_to_end[True]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_reconciliation_supervisor",
+      "test": "test_owner_restart_invalidates_old_preview_and_management_permission",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_pending_completed_and_historical_validation_are_distinct",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_uncertain_insufficient_then_reconciled_paused_then_resumed",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_actual_validator_failure_is_reported_without_rerunning_it",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_snapshot_real_read_write_interleaving_and_transaction_released",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_readonly_all_business_records_and_effect_traps",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_honest_read_failures_no_repair_or_path_disclosure[missing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_honest_read_failures_no_repair_or_path_disclosure[corrupt]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_honest_read_failures_no_repair_or_path_disclosure[future]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_honest_read_failures_no_repair_or_path_disclosure[journal]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_honest_read_failures_no_repair_or_path_disclosure[wal]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_honest_read_failures_no_repair_or_path_disclosure[shm]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_honest_read_failures_no_repair_or_path_disclosure[busy]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_schema_two_reports_missing_gate_without_migration",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_global_event_gaps_are_not_run_history_gaps",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_whitelist_secret_injection_and_export",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_limits_explicit_no_truncation[events]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_limits_explicit_no_truncation[record_bytes]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_limits_explicit_no_truncation[raw_bytes]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_limits_explicit_no_truncation[field_chars]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_limits_explicit_no_truncation[serialized]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_limits_explicit_no_truncation[deadline]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_missing_history_and_unrecognized_error_not_success",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_original_view_offline_without_store_network_or_owner",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[escape]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[parent]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[existing]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[junction]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[write]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[publish_race]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[injected_report]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_path_and_failure_boundaries[changed_digest]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_audit_cannot_be_submitted_as_execution_or_management_request",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_each_evidence_collection_has_hard_record_limit[observations-16-obs]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_each_evidence_collection_has_hard_record_limit[validations-16-val]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_each_evidence_collection_has_hard_record_limit[reconciliations-8-rec]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_reconciliation_private_fields_and_storage_error_are_not_echoed",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_report_rule_computation_is_deterministic_for_same_snapshot",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_inconsistent_persisted_bindings_are_not_misreported[runs-run_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_inconsistent_persisted_bindings_are_not_misreported[runs-project_instance_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_inconsistent_persisted_bindings_are_not_misreported[plans-plan_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_inconsistent_persisted_bindings_are_not_misreported[events-run_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_inconsistent_persisted_bindings_are_not_misreported[observations-run_id]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_actual_blocked_error_code_is_preserved_without_free_message",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_export_cleanup_failure_leaves_identifiable_partial_and_no_success",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_diagnostic_connection_metadata_and_manifest_are_bounded[manifest]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_diagnostic_connection_metadata_and_manifest_are_bounded[metadata_count]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_diagnostic_connection_metadata_and_manifest_are_bounded[metadata_field]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_run_diagnostics",
+      "test": "test_diagnostic_connection_metadata_and_manifest_are_bounded[gate]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_diagnostic_supervisor",
+      "test": "test_windows_three_stage_diagnostic_export_and_detached_response",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_diagnostic_supervisor",
+      "test": "test_authenticated_bound_diagnostic_rejects_dangerous_parameters_and_echo",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_real_exit_commit_owner_crash_reconcile_and_separate_resume[normal-COMPLETED]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_real_exit_commit_owner_crash_reconcile_and_separate_resume[nonzero-FAILED]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_real_exit_commit_owner_crash_reconcile_and_separate_resume[invalid_result-COMPLETED]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_preview_readonly_no_probe_artifact_validator_or_observer",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[worker_identity]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[worker_exit]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[membership]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[pid_only]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[different_attempt]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[conflicting_exit]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[extra_start]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[projection]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_incomplete_or_conflicting_required_set_rejected[legacy_contract]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_result_self_report_controller_exits_are_not_service_evidence[process:after_identity]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_result_self_report_controller_exits_are_not_service_evidence[process:after_handoff]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_result_self_report_controller_exits_are_not_service_evidence[process:before_exit_record]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_exact_management_authority_required[override0]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_exact_management_authority_required[override1]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_exact_management_authority_required[override2]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_exact_management_authority_required[override3]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_exact_management_authority_required[override4]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_exact_management_authority_required[override5]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_exact_management_authority_required[override6]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_caller_cannot_supply_execution_facts[target_state]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_caller_cannot_supply_execution_facts[exit_code]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_caller_cannot_supply_execution_facts[members_complete]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_caller_cannot_supply_execution_facts[approved]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[backend_id]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[backend_version]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[run_id]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[plan_id]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[phase_attempt_id]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_wrong_exact_scope_cannot_reinterpret_approved_operation[evidence_fingerprint]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_changed_preview_preconditions_refused[revision]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_changed_preview_preconditions_refused[evidence]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_changed_preview_preconditions_refused[owner]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_concurrent_apply_conflict_replay_and_consumption",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_atomic_management_failure_and_unknown_commit[management:before_commit]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_atomic_management_failure_and_unknown_commit[management:after_commit]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_lost_management_response_and_new_owner_replay",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_apply_never_probes_or_validates_and_expired_execution_grant_is_history",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_existing_independent_validation_preserved_without_revalidation[PASS-VALID]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_existing_independent_validation_preserved_without_revalidation[FAIL-INVALID]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_existing_independent_validation_preserved_without_revalidation[UNKNOWN-UNKNOWN]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_preview_consistent_read_transaction_and_serialized_owner_writer",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_unknown_sql_commit_queries_original_key",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_other_unresolved_run_still_blocks_resume",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_preview_bound_and_maintenance_no_repair[events]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_preview_bound_and_maintenance_no_repair[oversize]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_recorded_exit_reconciliation",
+      "test": "test_preview_bound_and_maintenance_no_repair[journal]",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_plan_inspection_readonly_and_public_projection",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_trusted_process_issuance_exact_and_no_self_approval",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_explicit_validation_replay_concurrent_and_separate_state",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_refusal_before_artifact_read[missing-MANAGEMENT_GRANT_REQUIRED]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_refusal_before_artifact_read[execution-MANAGEMENT_GRANT_REQUIRED]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_refusal_before_artifact_read[owner-STALE_OWNER]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_refusal_before_artifact_read[scope-MANAGEMENT_SCOPE_MISMATCH]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_refusal_before_artifact_read[approved-INVALID_REQUEST]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_pending_and_uncertain_are_ineligible",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_transaction_and_lost_response[management:before_commit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_validation_transaction_and_lost_response[management:after_commit]",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_explicit_validation_invalid_does_not_rewrite_process_success",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_new_ipc_operations_keep_auth_binding_and_strict_fields",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_public_workflow",
+      "test": "test_expired_and_stale_validation_permission_fail_before_read",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_gui",
+      "test": "test_actual_gui_close_reopen_public_client_worker_survives",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_gui",
+      "test": "test_progress_auth_bounds_readonly_and_corruption",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_gui",
+      "test": "test_product_entries_starter_exits_and_owner_is_independent",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_gui",
+      "test": "test_gui_observes_crashed_owner_uncertainty_without_recovery",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_execution_gui",
+      "test": "test_stalled_ipc_keeps_tk_responsive_and_close_is_bounded",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_standard_supervisor",
+      "test": "test_windows_public_standard_path_gui_reconnect_substitute",
+      "status": "passed",
+      "batch": "regression_final.xml"
+    },
+    {
+      "class": "tests.test_closeout_windows",
+      "test": "test_normal_owner_stop_leaves_worker_alive_and_restart_blocked",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_closeout_windows",
+      "test": "test_public_disposition_lost_response_gui_and_restart",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_closeout_windows",
+      "test": "test_true_owner_crash_during_disposition_no_unrecorded_unlock",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    },
+    {
+      "class": "tests.test_standard_closeout",
+      "test": "test_preview_cannot_mix_concurrent_sqlite_views",
+      "status": "passed",
+      "batch": "verified_final.xml"
+    }
+  ]
+}

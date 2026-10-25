@@ -27,7 +27,11 @@
 
 本文介绍 **`Develop` 分支（`0.3.0.dev0`）**。稳定版 `main` 与开发版功能不完全相同，详情见[版本与分支](#版本与分支)。
 
-`0.3.0.dev0` 标识面向 `0.3.0` 的开发阶段。[Agent-first 设计与实施计划](docs/agent_first/run_001_resume/FINAL_SUMMARY.md)不表示拟议执行服务已经实现，也不表示真实 Abaqus 执行已通过验收。
+`0.3.0.dev0` 仍是开发版本。独立 ExecutionService 已接入 Fake、固定 Python ProcessFixture 和受限 Abaqus 2024 Standard Backend。[Run016 实测](docs/agent_first/run_016/real_001/FINAL_SUMMARY.md)覆盖两个固定轴向杆分析、受管范围收尾、DAT 检查和 GUI 重连；不代表通用 Abaqus 模式、ODB 内容、生产迁移或正式 0.3.0 已验收。当前边界见 [Run017 产品基线](docs/agent_first/run_017/FINAL_SUMMARY.md)。
+
+默认 `run_gui.py` 打开 Project／服务连接视图。在登记的 Dev 主机双击 `Open_Dev_GUI.vbs`，新建或明确选择受支持的 Project，显式 **Start Service** 或 **Reconnect** 后选择 Run。打开、重连或关闭视图不批准、不提交、不恢复派发。启动与安全空闲停服需要独立生命周期能力；不会替换不兼容或状态不明的 owner。**Legacy 队列界面**按钮或 `run_gui.py --legacy` 打开独立的 Classic 工作流，不是同一执行数据库的另一视图。见 [Run020 使用说明](docs/agent_first/run_020/USAGE.md)。
+
+**New Agent-first Project…** 与 Python 共用 `create_project / open_project`。新 Project 为空且 PAUSED，没有 Grant、Run 或自动启动服务；本机 IPC／操作者材料采用 Windows 当前用户保护，复制／移动不会静默连接原 owner。Run021B 已接入单独配置的固定 Standard 操作者能力，以及服务端限定单一 Run 的短时派发；连接权限或 TEST_ONLY 权限不能批准真实执行。这是可信本机操作者边界，不是通用审批 UI，也不隔离同一用户下的任意代码。[Run021B 实测](docs/agent_first/run_021b/real_001/FINAL_SUMMARY.md)记录一次分析、受管收尾、DAT 检查和安全停服重启；其 GUI 退出后 Solver 仍存活的观察为 **NOT_OBSERVED**，原报告保持 PARTIAL。见 [Run022 范围与证据](docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md)及 [Project／凭据边界](docs/agent_first/run_020/PROJECT_AND_CREDENTIAL_CONTRACT.md)。
 
 ## 软件界面
 
@@ -41,13 +45,16 @@
 
 ## 功能亮点
 
+首行描述新执行服务；队列、归档及命令控制台各行属于独立 Classic 工作区，不扩大固定 Standard 服务的能力范围。
+
 | 领域 | Develop 当前能力 |
 | --- | --- |
+| **Agent-first Execution MVP** | 显式 Project、认证连接的独立 Supervisor、公共 Python 客户端、精确授权／单次派发、固定 Standard 受管范围、分离的 Solver／DAT 证据、GUI 观察与安全空闲生命周期。限已记录主机与模型；没有通用 Solver 审批 UI。 |
 | **作业队列** | 添加单个 INP 或扫描文件夹；配置 CPU/GPU、可选 datacheck，在 GUI 中顺序执行。 |
 | **实时监控** | 查看作业阶段、状态、STA/Console 尾部、CPU/内存/GPU 信息和结果路径。 |
 | **安全控制** | 当前作业结束后停止队列；显式处理 Runner 所有权、输出冲突和不确定中断。 |
 | **Project** | 各项目独立的 Queue、SQLite Job/Run 历史、报告与文件引用；不搬运工程文件。 |
-| **执行证据** | 对 datacheck/full-run 原生采集部分进程身份，终态保存可用证据；最后一次真实 Abaqus 端到端验收仍待完成。 |
+| **执行证据** | 对 datacheck/full-run 原生采集部分进程身份，终态保存可用证据；仍有 legacy 证据边界；固定服务链验收另见 Run016。 |
 | **项目归档** | 以元数据为主的导入导出；只有显式选择时才包含 Project 内部自有文件。 |
 | **Agent Command** | 带紧凑说明、多行输入及摘要式 Output 的内部命令工作台。 |
 | **Automation / MCP** | Python API、JSON CLI 和可选的五工具只读/预览 MCP stdio 接口。 |
@@ -65,7 +72,16 @@ python -m pip install -r requirements.txt
 python run_gui.py
 ```
 
-启动 GUI 后，按照以下流程操作：
+默认产品视图的操作：
+
+1. **New Agent-first Project…** 指定全新目录及名称，或明确选择已有的受支持 Project。
+2. 对空的受支持 Project 显式 **Start Service**；已有服务使用 **Reconnect**。新 Project 保持 PAUSED，没有执行授权。
+3. 选择已有 Run，读取状态、有界日志、进程范围、Solver 和验证证据。GUI 不创建真实 Grant 或提交分析。
+4. 关闭 GUI 只断开观察。**Stop Service** 是独立显式操作；存在活跃或未决执行时拒绝。
+
+固定 Standard 操作者流程见 [Run021B 使用说明](docs/agent_first/run_021b/USAGE.md)。历史验收命令不是再次运行该实验的许可；新的真实执行必须重新准备固定 Plan 并获明确批准。既有 TEST_ONLY 示例仍为测试支架。
+
+以下步骤**仅属于 Classic／Legacy 队列**。先选择 **Legacy 队列界面**，或使用 `python run_gui.py --legacy`：
 
 1. 在 **Settings** 配置本机已授权的 Abaqus 命令，确认 CPU/GPU 和 datacheck 参数。
 2. 建议先创建或打开一个 **Project**；不必将 Abaqus 工程文件移动到 Project 目录。
@@ -73,20 +89,20 @@ python run_gui.py
 4. 点击 **Start Queue** 执行；**Stop After Current Job** 不会强杀当前求解器。
 5. 在 **Results**、STA/Console、任务详情及 Project 历史中查看执行结果。
 
-**入队不等于启动 Abaqus。** 真正求解需要已安装并获得授权的 Abaqus；公开 Agent API 不提供 Solver Start 命令。
+**入队不等于启动 Abaqus。** 真正求解需要已安装并获得授权的 Abaqus；legacy Python/JSON CLI 和 MCP 不提供 Solver Start 命令。独立服务的 Python 客户端只能提交明确绑定该服务并获得精确授权的计划。
 
 ## 安装与环境
 
 | 条件 | 说明 |
 | --- | --- |
 | 操作系统 | Windows 桌面环境 |
-| Python | 源码 GUI 为 3.10+；MCP 开发协议测试使用 Python 3.12.10 |
+| Python | Classic 源码 GUI 声明 3.10+；Agent-first 产品路径目前绑定已登记 LangChainEnv／Python 3.12.10，验收限已记录 Windows 主机，并非任意新 venv |
 | GUI | Tkinter / ttk（在含对应组件的 Python 安装中属于标准库） |
 | Abaqus | 真实求解需要单独安装并获得许可证 |
 | 核心依赖 | 当前 `requirements.txt` 不声明额外第三方运行依赖 |
 | MCP（可选） | `requirements-mcp.txt`，声明 `mcp>=2,<3`；开发测试使用 SDK 2.3.0 |
 
-如果只使用稳定版 `main`，可以不加 `--branch Develop` 克隆，但应以该分支自己的版本和功能为准。以上为**源码运行**，不代表仓库已提供可下载的 Windows 独立安装包。Abaqus 命令路径应在 Settings 配置，避免提交个人电脑路径到公共仓库。
+以上为**源码运行**，不代表已提供安装包；通用新 venv 尚未通过完整产品生命周期验收。`Open_Dev_GUI.vbs` 和产品生命周期当前绑定 `D:\XianLab\envs\LangChainEnv`，可移植解释器配置仍是发布门槛，并非自动发现。Classic Settings 只配置旧 Runner；受限服务 Backend 独立绑定审阅过的 Abaqus 2024 入口、输入字节及 CPU1/GPU0/2048MB 策略，不读取 Classic Settings。Stable、Dev 及活动数据须保持分离。
 
 ## 核心工作流
 
@@ -108,9 +124,11 @@ MCP 客户端 → 绑定单个 Project 的 stdio 服务
            → 不提供真实入队和 Solver Start 工具
 ```
 
-**执行权限仍属于本地 GUI Runner。** Python/JSON CLI 的 `--enqueue-only` 能写入队列元数据；MCP 的 `abq_prepare_enqueue` 更保守，只做 Dry-run，**绝不会写入队列**。
+**在此 legacy API／MCP 路径中，执行权限仍属于 GUI Runner。** 新 Agent-first 服务独立管理实验执行存储，两类存储不能互换。 Python/JSON CLI 的 `--enqueue-only` 能写入队列元数据；MCP 的 `abq_prepare_enqueue` 更保守，只做 Dry-run，**绝不会写入队列**。
 
 ## Project 模型与数据所有权
+
+以下目录示例、默认位置及归档规则属于 **Classic Project**。新 Agent-first 产品 Project 必须显式指定全新根目录，发布 `agent_project.json`，使用 `project/execution.sqlite3`（执行格式 3），本地受保护凭据独立保存在根内。不得使用 Classic 数据库写入器或归档契约处理该新格式。复制／移动后的重新配置和自动迁移尚未实现。
 
 **Project 拥有自己的运行数据；原工程目录继续拥有 Abaqus 文件。** AbqJobPilot 只负责发现、打开和操作 Project。软件级最近项目列表主要保存导航信息，不保存唯一的运行历史；大型 ODB/CAE 文件不会被塞进数据库。
 
@@ -139,6 +157,8 @@ Project 导出默认选择 **Metadata Archive（元数据归档）**；只有显
 ## Agent 与 MCP（开发版）
 
 AbqJobPilot 有 **三种不同接口**，不能混为一谈：
+
+下表描述 Classic 自动化接口。独立的 `abqjobpilot.execution.client` 和 `ServiceLifecycleManager` 通过认证 IPC 服务于 Agent-first Project；MCP 五工具和 JSON CLI 尚未扩展为新服务写入／真实批准接口。
 
 | 接口 | 面向对象 | 能力边界 |
 | --- | --- | --- |
@@ -220,7 +240,7 @@ Project 必须已经存在并包含 `project.json`。不同客户端的配置字
 
 AbqJobPilot 的设计要求区分：**用户请求了什么、系统记录了什么、哪些行为获得真实证据验证。**
 
-- 真正的 Abaqus 执行由 GUI Runner 管理；公开 Agent 接口不直接启动 Solver。
+- legacy 队列由 GUI Runner 执行；新的 Python 客户端向独立 Supervisor 提交精确授权的计划。客户端及只读服务 GUI 不拥有 Solver 生命周期。
 - Datacheck 与 Full-run 分阶段记录运行过程与可用的原生进程证据。
 - 进程身份尽可能使用 Windows **PID + 创建时间**，防止 PID 重用导致错误关联；父子关系必须有证据。
 - 执行证据可保存在 `runtime/reports/process_evidence/<queue_id>.json`，并由 Project 历史引用。
@@ -292,7 +312,7 @@ python -m compileall abqjobpilot
 ## 已知限制
 
 - 以 Windows 本地工作站为目标，不是分布式 HPC 作业调度器。
-- 公开 Agent 接口不提供系统 Shell 或 Solver Start 能力。
+- 不提供通用系统 Shell；legacy CLI/MCP 没有 Solver Start 能力，独立服务只接受受支持且精确授权的 Backend 计划。
 - MCP 仅绑定单个 Project 的 stdio 服务，目前为五个只读/预览工具，而非完整自主工程 Agent。
 - Project 历史引用外部文件路径；工程文件位置变化后可能需要修复引用。
 - 短暂进程可能漏采，物理结果仍需工程验证。
@@ -303,7 +323,7 @@ python -m compileall abqjobpilot
 
 以下为研发方向，并非承诺的发布日期：
 
-- 对原生进程证据与 Project 重开执行最后一次真实 Abaqus 端到端验收。
+- 扩大 Abaqus 模式／宿主证据、生产 Project 兼容及隔离 TEST_ONLY 之外的服务生命周期；Run019 已提供空闲测试服务的显式启动／停止，Run016 仅覆盖其固定 Standard 验收范围。
 - 完善 Runtime JSON、报告与 SQLite 投影不一致时的对账机制。
 - 增加显式 Project 迁移与外部工程路径修复能力。
 - Windows 独立打包和干净机器部署验证。

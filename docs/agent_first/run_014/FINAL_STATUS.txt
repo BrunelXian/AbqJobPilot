@@ -1,0 +1,14 @@
+M abqjobpilot/execution/client.py
+ M abqjobpilot/execution/diagnostics.py
+ M abqjobpilot/execution/reconciliation.py
+ M abqjobpilot/execution/service.py
+ M abqjobpilot/execution/standard_contract.py
+ M abqjobpilot/execution/supervisor.py
+ M abqjobpilot/execution_gui.py
+ M tests/run003_process.py
+?? abqjobpilot/execution/closeout.py
+?? docs/agent_first/run_014/
+?? examples/agent_first/standard_closeout_operator.py
+?? tests/run014_process.py
+?? tests/test_closeout_windows.py
+?? tests/test_standard_closeout.py

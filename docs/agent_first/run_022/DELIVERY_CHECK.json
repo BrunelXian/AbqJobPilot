@@ -1,0 +1,9 @@
+{
+  "changed_prior_files": [
+    "README.md",
+    "README_CN.md"
+  ],
+  "missing_prior_files": [],
+  "broken_local_delivery_links": [],
+  "version": "__version__ = \"0.3.0.dev0\""
+}

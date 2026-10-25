@@ -6,7 +6,7 @@ from .paths import confined
 
 BACKEND = "python-process-fixture-v1"
 ACTION = "launch_fixed_python_fixture"
-SCENARIOS = ("normal", "launcher_early", "result_wait", "nonzero", "invalid_result")
+SCENARIOS = ("normal", "launcher_early", "result_wait", "nonzero", "invalid_result", "managed_tree", "managed_burst")
 MEMBERSHIP_CONTRACT = "fixed-windows-members-v1"
 EXIT_CONTRACT = "recorded-os-exit-v1"
 REQUIRED_ROLES = ("launcher_transport", "launcher", "worker_transport", "worker")

@@ -1,0 +1,83 @@
+{
+  "body": {
+    "format": "run021-incomplete-preparation-v1",
+    "experiment_id": "run021_42b9754ee29b457d8c86b2e97a26ec4b",
+    "readiness": "PARTIAL_NOT_AN_EXECUTION_ACCEPTANCE_PACKAGE",
+    "project": {
+      "context_digest": "sha256:360c491afca2964429e1cb642a17dcd5e731180adee30a961a3782d93bc24de1",
+      "created_at": 1792895264,
+      "credential_policy": "windows-user-dpapi-v1",
+      "display_name": "Run021 Standard product candidate",
+      "format": "abqjobpilot-agent-first-project",
+      "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729",
+      "initial_dispatch": "PAUSED",
+      "project_id": "p_fa698230f3e6499caf08517e3e82dbc2",
+      "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+      "store_directory": "project",
+      "store_format_version": 3,
+      "version": 1
+    },
+    "root": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b",
+    "store": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\project\\execution.sqlite3",
+    "execution_plan_id": null,
+    "execution_plan_status": "NOT_CREATED_BLOCKED_INTEGRATION",
+    "offline_preview_digest": "sha256:83ad167e6f940e04e52f41a4e3ccd05cd5265200304825c38a712863c4b8cc50",
+    "input": {
+      "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering\\axial_bar.inp",
+      "sha256": "e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3"
+    },
+    "entry": {
+      "path": "D:\\ABAQUS2024\\Commands\\abq2024.bat",
+      "sha256": "e9bb42ba164b08b57b07828d4b826a4c9d38d82dc070887f2d7cdea6bcefc711",
+      "evidence": "STATIC_BYTES_ONLY_NOT_RUNTIME_VALIDATION"
+    },
+    "job": "r021_bar_42b9754e",
+    "cwd": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering",
+    "scratch": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering\\scratch",
+    "outputs": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run021_42b9754ee29b457d8c86b2e97a26ec4b\\engineering",
+    "resources": {
+      "cpus": 1,
+      "gpus": 0,
+      "memory_mb": 2048
+    },
+    "proposed_budget": {
+      "analysis": 1,
+      "extra_abaqus_calls": 0,
+      "observe_seconds": 300,
+      "timeout": "STOP_OBSERVING_ONLY",
+      "retry": false,
+      "terminate": false
+    },
+    "dispatch": "PAUSED_UNCHANGED",
+    "real_grant": "NOT_ISSUED",
+    "run": "NOT_SUBMITTED",
+    "numerical_checks": [
+      {
+        "entity": "node2 U1",
+        "reference": "0.01 mm",
+        "tolerance": "1e-6 mm"
+      },
+      {
+        "entity": "element1 ip1 S11",
+        "reference": "1 MPa",
+        "tolerance": "1e-4 MPa"
+      },
+      {
+        "entity": "node1 RF1",
+        "reference": "-1 N",
+        "tolerance": "1e-4 N"
+      }
+    ],
+    "odb": "NOT_RUN",
+    "blocking_items": [
+      "PRODUCT_STANDARD_PROFILE_NOT_IMPLEMENTED",
+      "MANAGED_SINGLE_PLAN_NOT_IMPLEMENTED",
+      "LIVE_OWNER_PRECISE_APPROVAL_NOT_IMPLEMENTED",
+      "SINGLE_DISPATCH_AND_RETURN_PAUSED_NOT_IMPLEMENTED",
+      "STANDARD_IDLE_STOP_NOT_SUPPORTED"
+    ],
+    "authorization": "NO_EXECUTION_AUTHORITY; further implementation review required"
+  },
+  "body_sha256": "c5b2ab1edd4d4c3c7d8ccc8803409b02bdde583a60ba8c7d6179fc887334736c",
+  "digest_rule": "SHA256 UTF8 canonical_json(body): sorted keys, compact separators; not whole file"
+}

@@ -27,7 +27,7 @@ class FakeClient:
                 send(stream, message, MAX_REQUEST)
                 response = receive(stream, MAX_RESPONSE)
         except (OSError, EOFError) as exc:
-            raise ExecutionError("ACCEPTANCE_UNKNOWN" if operation in {"submit", "apply_reconciliation", "apply_process_reconciliation", "resume_dispatch", "validate_run"} else "COMMUNICATION_UNKNOWN",
+            raise ExecutionError("ACCEPTANCE_UNKNOWN" if operation in {"submit", "apply_reconciliation", "apply_process_reconciliation", "apply_closeout", "resume_dispatch", "validate_run", "lifecycle_stop", "product_standard_control"} else "COMMUNICATION_UNKNOWN",
                                  "Connection ended; query/replay original business key",
                                  stage="TRANSPORT") from exc
         fields(response, ("protocol", "request_id", "project_id", "project_instance_id", "context_digest",
@@ -44,6 +44,18 @@ class FakeClient:
 
     def health(self):
         return self.call("health", {})
+
+    def project_view(self, before_row=0, limit=32):
+        return self.call('project_view', {'before_row':before_row, 'limit':limit})
+
+    def stop_service(self, owner_id, operation_key, operator_token):
+        return self.call('lifecycle_stop',{'request':{'owner_id':owner_id,'operation_key':operation_key,'operator_token':operator_token}})
+
+    def preview_closeout(self, run_id):
+        return self.call('preview_closeout', {'run_id':run_id})
+
+    def apply_closeout(self, request):
+        return self.call('apply_closeout', {'request':request})
 
     def inspect_plan(self, plan_id, expected_digest):
         return self.call("inspect_plan", {"plan_id": plan_id, "expected_digest": expected_digest})

@@ -1,0 +1,35 @@
+{
+  "read_at": "2026-10-24T07:27:28.855396+00:00",
+  "checks": {
+    "current_state_matches_after_commit": true,
+    "counts_unchanged": true,
+    "same_key_same_receipt": true,
+    "committed_administrative_release": true,
+    "prior_run014_files_unchanged": true,
+    "reviewed_sources_unchanged": true
+  },
+  "counts": {
+    "runs": 1,
+    "events": 21,
+    "consumption": 1,
+    "observations": 1,
+    "validations": 1,
+    "reconciliations": 1,
+    "management_grants": 1,
+    "management_receipts": 1,
+    "management_consumption": 1,
+    "control_events": 1
+  },
+  "gate": {
+    "owner_id": "owner_fdadb9803c7a48f4b5428025509b052b",
+    "version": 5,
+    "state": "PAUSED"
+  },
+  "revision": 21,
+  "slot": null,
+  "operation_id": "op_ef7048a01b854129a1d32dac7e9f6417",
+  "abaqus_calls": 0,
+  "old_owner_process_operations": 0,
+  "prior_run014_file_count": 78,
+  "historical_protected_files": 295
+}

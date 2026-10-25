@@ -1,0 +1,113 @@
+{
+  "status": "PARTIAL",
+  "reason": "GUI_EXITED_AND_SAME_SOLVER_ALIVE_NOT_OBSERVED",
+  "analysis_calls": 1,
+  "additional_abaqus_calls": 0,
+  "event_type_counts": {
+    "REQUEST_ACCEPTED": 1,
+    "PRODUCT_DISPATCH_AUTHORIZED": 1,
+    "START_INTENT": 1,
+    "STANDARD_STARTING": 1,
+    "PRODUCT_DISPATCH_CONSUMED": 1,
+    "STANDARD_LAUNCH_INTENT": 1,
+    "MANAGED_SCOPE_PREPARED": 1,
+    "STANDARD_CREATE_ENTERING": 1,
+    "STANDARD_CREATED": 1,
+    "STANDARD_PROCESS_OBSERVATION": 16,
+    "MANAGED_SCOPE_OBSERVED": 15,
+    "STANDARD_OBSERVATION_ENDED": 1,
+    "STANDARD_MANAGED_COMPLETED": 1,
+    "STANDARD_RESULT_RECORDED": 1
+  },
+  "primary_dat_reparse": "PASS",
+  "three_primary_comparisons": [
+    {
+      "quantity": "2_U1",
+      "expected": "0.01",
+      "effective_tolerance": "0.000001",
+      "unit": "mm",
+      "group": "primary",
+      "actual": "0.010000000",
+      "absolute_error": "0E-9",
+      "status": "PASS",
+      "source": {
+        "line": 218,
+        "header_line": 215,
+        "raw": "1.0000000E-02",
+        "entity": "2",
+        "component": "U1",
+        "position": "global_node"
+      }
+    },
+    {
+      "quantity": "1_S11",
+      "expected": "1",
+      "effective_tolerance": "0.0001",
+      "unit": "MPa",
+      "group": "primary",
+      "actual": "1.000",
+      "absolute_error": "0.000",
+      "status": "PASS",
+      "source": {
+        "line": 203,
+        "header_line": 200,
+        "raw": "1.000",
+        "entity": "1",
+        "component": "S11",
+        "position": "integration_point_1"
+      }
+    },
+    {
+      "quantity": "1_RF1",
+      "expected": "-1",
+      "effective_tolerance": "0.0001",
+      "unit": "N",
+      "group": "primary",
+      "actual": "-1.0000000",
+      "absolute_error": "0E-7",
+      "status": "PASS",
+      "source": {
+        "line": 227,
+        "header_line": 224,
+        "raw": "-1.0000000E+00",
+        "entity": "1",
+        "component": "RF1",
+        "position": "global_node"
+      }
+    }
+  ],
+  "stored_projection_preserved_after_restart": true,
+  "final_gate": {
+    "owner_id": "owner_ea3be94dcfcf4210b9fc6fc41f62154a",
+    "state": "PAUSED",
+    "version": 4
+  },
+  "final_slot": null,
+  "managed_scope": {
+    "active_processes": 0,
+    "binding": "CREATE_PROCESS_JOB_LIST",
+    "breakaway_allowed": false,
+    "creation_confirmed": true,
+    "kill_on_job_close": false,
+    "limit_terminated_processes": 0,
+    "named": false,
+    "observed_at": 1792906106,
+    "owner_epoch": 1,
+    "owner_id": "owner_f29fe7de57304435b755896ce8a0599a",
+    "pending_additions": false,
+    "phase_attempt_id": "phase_5ad46f94fb954afe84d730e894f7e8bc",
+    "plan_digest": "sha256:627392a372ffd209e216d7a4f494c206db0fe28ff1e5a98c2d9c5d0bb5c9bf4a",
+    "policy": "windows-job-list-v1",
+    "project_instance_id": "pi_88118c5738214496aa2757ef5265df50",
+    "query_monotonic_ns": 58289640000000,
+    "run_id": "r_711c0afc7d49462c8b5c4faf914923b4",
+    "scope": "ROOT_AND_INHERITING_CREATEPROCESS_DESCENDANTS",
+    "scope_id": "scope_9fd35094d0a246b09c7cc3cc154a2ac8",
+    "source": "QueryInformationJobObject.BasicAccounting",
+    "state": "EMPTY_CONFIRMED",
+    "total_processes": 12
+  },
+  "original_full_membership": "UNKNOWN",
+  "odb": "NOT_RUN",
+  "review_only_no_database_writes": true
+}

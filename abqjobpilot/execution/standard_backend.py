@@ -1,7 +1,7 @@
 """One fixed analysis, dispatched ONLY by ExecutionService's owner worker.
 
 No registration by clients, automatic retries, result imports or termination.
-Observation is bounded; unresolved membership permanently retains the slot.
+Observation is bounded; unresolved declared management scope retains the slot.
 """
 import os
 from pathlib import Path
@@ -35,7 +35,7 @@ def call_data(context, plan, run):
 
 
 def _launch(call, out, err):
-    # Only production creation seam; tests replace this function, never the command via IPC.
+    # Legacy unmanaged creation only; managed Plans never fall back here.
     return subprocess.Popen(call['command_line'],executable=call['application'],cwd=call['cwd'],env=call['environment'],
         stdin=subprocess.DEVNULL,stdout=out,stderr=err,shell=False,close_fds=True,creationflags=0x08000000)
 
@@ -86,6 +86,7 @@ class StandardBackend:
         authorize_start(); host=check_host(self.config)
         require(host['eligible'],'HOST_UNVERIFIED','Service host contract not satisfied')
         call=call_data(context,plan,run)
+        if 'process_management' in plan:call['start_not_after']=run['start_not_after']
         output=confined(context.test_root,call['output']); output.mkdir(parents=True,exist_ok=False)
         for name in ('home/AppData/Roaming','home/AppData/Local','tmp'): (output/name).mkdir(parents=True,exist_ok=True)
         intent={'run_id':run['run_id'],'plan_digest':plan['plan_digest'],'phase_attempt_id':run['phase_attempt_id'],
@@ -99,25 +100,44 @@ class StandardBackend:
         require(not list(Path(plan['engineering']).glob(plan['job_name']+'.*')),'OUTPUT_CONFLICT','Output appeared after claim')
         authorize_start(started=True)
         require(check_host(self.config)['eligible'],'HOST_UNVERIFIED','Service host changed before creation')
-        child=observer=None
+        child=observer=scope=None
         try:
             with (output/'stdout.bin').open('xb',buffering=0) as out, (output/'stderr.bin').open('xb',buffering=0) as err:
+                if 'process_management' in plan:
+                    from .managed_process import ManagedScope
+                    scope=ManagedScope(run)
+                    record('MANAGED_SCOPE_PREPARED',managed_scope=scope.description(),managed_completion='NOT_CONFIRMED')
                 record('STANDARD_CREATE_ENTERING',launch_state='CALL_ENTERED_OUTCOME_UNKNOWN')
                 begin=time.monotonic(); checkpoint('standard:before_create')
-                child=_launch(call,out,err)  # Exactly one call; no exception replay.
+                authorize_start(started=True)  # Window/gate/inputs rechecked after any startup barrier.
+                child=scope.create_standard(call,out,err) if scope else _launch(call,out,err)
                 creation_ms=int((time.monotonic()-begin)*1000)
                 checkpoint('standard:after_create')
                 record('STANDARD_CREATED',launch_state='PROCESS_OBJECT_RETURNED',creation_duration_ms=creation_ms,execution_phase='OBSERVING')
                 observer=Observer(child); previous=None
                 deadline=time.monotonic()+plan['resources']['observation_seconds']
+                if scope:deadline=min(deadline,time.monotonic()+max(0,run['batch_observation_not_after']-now()))
+                scope_view=None;scope_complete=False;last_counts=None
                 while True:
                     view=observer.sample()
                     if view!=previous:
                         record('STANDARD_PROCESS_OBSERVATION',process_observation='OBSERVED_SUBSET',**view)
                         previous=view
+                    if scope:
+                        require(observer.in_scope(scope),'MANAGED_SCOPE_UNCOVERED','An observed execution candidate is outside the approved scope')
+                        checkpoint('standard:before_scope_query')
+                        scope_view=scope.query()
+                        counts=(scope_view['active_processes'],scope_view['total_processes'],scope_view['state'])
+                        if counts!=last_counts:
+                            record('MANAGED_SCOPE_OBSERVED',managed_scope=scope_view);last_counts=counts
+                        if scope_view['state']=='EMPTY_CONFIRMED' and time.monotonic()<deadline:
+                            view=observer.sample()
+                            require(observer.in_scope(scope),'MANAGED_SCOPE_UNCOVERED','Final observed execution candidate is outside scope')
+                            record('STANDARD_PROCESS_OBSERVATION',process_observation='OBSERVED_SUBSET',**view)
+                            scope_complete=True;break
                     if time.monotonic()>=deadline: break
                     time.sleep(min(.1,max(0,deadline-time.monotonic())))
-                record('STANDARD_OBSERVATION_ENDED',observation_deadline_reached=True,
+                record('STANDARD_OBSERVATION_ENDED',observation_deadline_reached=not scope_complete,
                        observation_ended_at=now(),execution='VALIDATING',execution_phase='OBSERVATION_ENDED')
                 checkpoint('standard:before_validation')
                 try: result=collect(context,plan,run,intent,view)
@@ -125,10 +145,16 @@ class StandardBackend:
                     result={'solver':'EVIDENCE_INSUFFICIENT','numerical':'EVIDENCE_INSUFFICIENT',
                         'odb_content_validation':'NOT_RUN','reason':exc.code if isinstance(exc,ExecutionError) else 'TEXT_READ_FAILED',
                         'artifacts':[]}
+                if scope:
+                    result.update(managed_scope=scope_view if scope_complete else None,
+                        managed_observation_complete=scope_complete,
+                        observed_exit_success=bool(view['all_observed_exited'] and view['process_exits'] and
+                            all(e['exit_code']==0 for e in view['process_exits'])))
                 return result
         finally:
             if observer is not None: observer.close()
             if child is not None: close_reference(child)
+            if scope is not None: scope.close()  # no kill-on-close, timeout never terminates descendants
 
 
 def persist_result(service,run_id,result):
@@ -136,6 +162,14 @@ def persist_result(service,run_id,result):
     store=service.store
     with store.transaction('standard_result') as conn:
         run=document(conn,'runs','run_id',run_id)
+        plan=document(conn,'plans','plan_id',run['plan_id'])
+        managed=bool(plan.get('process_management'))
+        closed=managed and result.get('managed_observation_complete') is True
+        if closed:
+            from .managed_process import check_completion
+            check_completion(result.get('managed_scope'),run)
+            require(run.get('managed_scope',{}).get('scope_id')==result['managed_scope']['scope_id'],
+                    'MANAGED_SCOPE_UNKNOWN','Recorded scope differs')
         obs={'observation_id':identifier('obs'),'run_id':run_id,'phase_attempt_id':run['phase_attempt_id'],
              'kind':'STANDARD_TEXT','observed_at':now(),'artifacts':result.get('artifacts',[])}
         verdict={'PRIMARY_THREE_PASS':'PASS','NUMERICAL_FAIL':'FAIL'}.get(result['numerical'],'UNKNOWN')
@@ -145,14 +179,23 @@ def persist_result(service,run_id,result):
              'evidence_refs':[obs['observation_id']],'details':result}
         conn.execute('INSERT INTO observations VALUES(?,?,?)',(obs['observation_id'],run_id,canonical_json(obs)))
         conn.execute('INSERT INTO validations VALUES(?,?,?)',(val['validation_id'],run_id,canonical_json(val)))
-        update_run(conn,run,'STANDARD_RESULT_RECORDED',execution='BLOCKED',reconciliation='RECONCILIATION_REQUIRED',
+        success=closed and result['solver']=='COMPLETED_TEXT_EVIDENCE' and verdict=='PASS' and result.get('observed_exit_success') is True
+        if closed:
+            update_run(conn,run,'STANDARD_MANAGED_COMPLETED',managed_scope=result['managed_scope'],
+                       managed_completion='COMMITTED_EMPTY_SCOPE',managed_completion_recorded_at=now())
+            run=document(conn,'runs','run_id',run_id)
+        update_run(conn,run,'STANDARD_RESULT_RECORDED',execution='FINISHED' if closed else 'BLOCKED',
+            reconciliation='NONE' if closed else 'RECONCILIATION_REQUIRED',
             execution_phase='EVIDENCE_RECORDED',
             solver_conclusion=result['solver'],numerical_validation=result['numerical'],odb_content_validation='NOT_RUN',
             artifact_validation={'PASS':'VALID','FAIL':'INVALID','UNKNOWN':'UNKNOWN'}[verdict],
-            validation_scope='fixed_standard_dat_only',backend_outcome='UNKNOWN',
+            validation_scope='fixed_standard_dat_only',backend_outcome=('COMPLETED' if success else 'FAILED') if closed else 'UNKNOWN',
             result_reason=result.get('reason'),evidence_refs=[obs['observation_id'],val['validation_id']])
-        # No slot release: observed-subset exits cannot establish complete closure.
-    store.pause_after_error()
+        if closed:conn.execute('UPDATE slot SET run_id=NULL WHERE id=1 AND run_id=?',(run_id,))
+        if managed and not success:
+            conn.execute("UPDATE dispatch_gate SET state='PAUSED',version=version+1 WHERE id=1 AND state!='PAUSED'")
+        # Unmanaged legacy evidence and incomplete managed observation retain slot.
+    if not managed:store.pause_after_error()
 
 
 def progress(store,context,run_id,after_sequence,limit):

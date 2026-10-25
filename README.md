@@ -27,7 +27,11 @@ Its **Agent-ready** interfaces let an external coding assistant or automation sc
 
 This README describes the **`Develop` branch (`0.3.0.dev0`)**. Features and validation boundaries differ from the stable `main` branch; see [Release Channels](#release-channels).
 
-`0.3.0.dev0` marks development toward `0.3.0`. The [Agent-first design and implementation plan](docs/agent_first/run_001_resume/FINAL_SUMMARY.md) does not imply that the proposed execution service is implemented or that real Abaqus execution has passed acceptance.
+`0.3.0.dev0` remains a development version. The independent ExecutionService now supports Fake, fixed Python ProcessFixture, and a restricted Abaqus 2024 Standard backend. [Run016 recorded acceptance](docs/agent_first/run_016/real_001/FINAL_SUMMARY.md) covers two fixed axial-bar analyses, managed-scope completion, DAT checks, and GUI reconnect. It does not validate general Abaqus modes, ODB contents, production migration, or release 0.3.0. See the [Run017 product baseline](docs/agent_first/run_017/FINAL_SUMMARY.md) for current boundaries.
+
+The default `run_gui.py` opens the Project/service connection view. On the registered Dev host, double-click `Open_Dev_GUI.vbs`, create or explicitly select a supported Project, then use **Start Service** or **Reconnect** and select a Run. Opening, reconnecting or closing the view never grants execution, submits a Run or resumes dispatch. Service start and safe idle stop are explicit operations using the separate lifecycle capability. Existing incompatible or uncertain owners are not replaced. The **Legacy queue** button (or `run_gui.py --legacy`) opens the separate Classic workflow; it is not a second view of the service's execution database. See [Run020 usage](docs/agent_first/run_020/USAGE.md).
+
+**New Agent-first Project…** and the shared `create_project / open_project` Python API create an empty PAUSED Project, without Grants, Runs or automatic service start. Local IPC/operator material uses current-user Windows protection; copied/moved Projects cannot silently connect to their original owner. Run021B adds a separately provisioned, exact fixed-Standard operator capability and a server-enforced one-Run dispatch window; connection or TEST_ONLY permissions cannot approve real execution. This is a trusted local operator boundary, not a general human-approval UI or OS isolation from arbitrary code running as the same user. [Run021B real acceptance](docs/agent_first/run_021b/real_001/FINAL_SUMMARY.md) records one analysis, managed completion, DAT checks and safe stop/restart; its Solver-across-GUI-exit observation remains **NOT_OBSERVED**, and the report remains PARTIAL. See [Run022 scope/evidence](docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md) and [Project/credential boundaries](docs/agent_first/run_020/PROJECT_AND_CREDENTIAL_CONTRACT.md).
 
 ## Interface
 
@@ -41,13 +45,16 @@ The dashboard is designed around one question: **what is running, what is waitin
 
 ## Highlights
 
+The first row is the new service path. The queue, archive and command-console rows describe the separate Classic workspace; they do not widen the fixed Standard service contract.
+
 | Area | What is available in Develop |
 | --- | --- |
+| **Agent-first Execution MVP** | Explicit Project, authenticated independent Supervisor, public Python client, exact approval/one-shot dispatch, fixed Standard managed scope, separate Solver/DAT evidence, GUI observation and safe idle lifecycle. Restricted to the documented host/model; no general Solver approval UI. |
 | **Job Queue** | Add an INP or discover INPs from a folder; configure CPU/GPU and optional datacheck, then run sequentially from the GUI. |
 | **Live Operations** | View active phase, job status, STA/console tails, CPU/memory/GPU readings, and result-file locations. |
 | **Safe Control** | Stop *after* the current Job; keep runner ownership, output collisions, and uncertain interruptions explicit. |
 | **Projects** | Project-local queue, SQLite Job/Run history, reports, and artifact-path references—without moving solver files. |
-| **Execution Evidence** | Best-effort launcher/child process identities for datacheck and full-run, with evidence retained after terminal status; final real-Abaqus acceptance remains pending. |
+| **Execution Evidence** | Best-effort launcher/child process identities for datacheck and full-run, with evidence retained after terminal status; legacy evidence limits remain; fixed service acceptance is documented separately in Run016. |
 | **Portability** | Metadata-focused Project export/import; optional inclusion of files physically owned by a Project. |
 | **Agent Command** | A compact GUI console for allow-listed internal commands, multiline input, and readable execution summaries. |
 | **Automation & MCP** | Python API/JSON CLI for controlled operations; optional Project-bound stdio MCP with five read-only/preview tools. |
@@ -66,7 +73,16 @@ python -m pip install -r requirements.txt
 python run_gui.py
 ```
 
-Then, in the GUI:
+For the default product view:
+
+1. Select **New Agent-first Project…** and an explicit new directory/name, or select a supported existing Project.
+2. Explicitly select **Start Service** for an empty supported Project, or **Reconnect** for its existing owner. A new Project remains PAUSED and has no execution authorization.
+3. Select an existing Run to read state, bounded logs, process scope, Solver and validation evidence. The GUI does not create real Grants or submit analyses.
+4. Closing the GUI disconnects observation. **Stop Service** is a separate explicit action and is refused for active or unresolved execution.
+
+The fixed Standard operator workflow is documented in [Run021B usage](docs/agent_first/run_021b/USAGE.md). Its historical acceptance commands are not permission to repeat that experiment. New real execution requires a new, reviewed fixed Plan and explicit approval. Existing TEST_ONLY examples remain test harnesses.
+
+For the **Classic / Legacy queue** only, first choose **Legacy queue** or launch `python run_gui.py --legacy`, then:
 
 1. Open **Settings** and set the Abaqus command provided by your licensed installation. Review CPU/GPU and datacheck settings.
 2. Create or open a **Project** (recommended); a Project may reference Abaqus models in any engineering folder.
@@ -74,7 +90,7 @@ Then, in the GUI:
 4. Click **Start Queue** to run the queued Jobs sequentially. **Stop After Current Job** does not kill the active solver.
 5. Review **Results**, log/STA tails, task details, and the Project's retained run history.
 
-**Adding/queueing a Job is not the same as starting Abaqus.** A real solver run requires a valid Abaqus installation and license. The public Agent APIs do not include a solver-start operation.
+**Adding/queueing a Job is not the same as starting Abaqus.** A real solver run requires a valid Abaqus installation and license. The legacy Python/JSON CLI and MCP do not include a solver-start operation. The separate experimental Python client can submit only a service-bound, precisely authorized plan.
 
 For source setup and Project behavior, see [Installation](#installation) and [Project Model](#project-model--data-ownership).
 
@@ -83,13 +99,13 @@ For source setup and Project behavior, see [Installation](#installation) and [Pr
 | Requirement | Details |
 | --- | --- |
 | OS | Windows desktop |
-| Python | 3.10+ for the source GUI; Python 3.12.10 is used in the documented MCP development tests |
+| Python | Classic source GUI declares 3.10+; the Agent-first product path is currently verified and bound to registered LangChainEnv / Python 3.12.10 on the documented Windows host, not an arbitrary new venv |
 | GUI | Tkinter/ttk (Python standard library, when included in your installation) |
 | Abaqus | Separately installed and licensed; required only for actual solver runs |
 | Core packages | `requirements.txt` currently declares no third-party runtime dependencies |
 | Optional MCP | `requirements-mcp.txt` (`mcp>=2,<3`); validated with MCP SDK 2.3.0 in development testing |
 
-To use the stable branch instead, clone the repository without `--branch Develop` and inspect that checkout's feature set. The commands above launch from **source**, not from a standalone Windows executable. Set machine-specific Abaqus commands through Settings rather than hard-coding personal paths in versioned files.
+These commands launch from **source**, not an installer. A fresh generic venv has not passed the full product lifecycle acceptance. `Open_Dev_GUI.vbs` and the product lifecycle currently bind `D:\XianLab\envs\LangChainEnv`; portable interpreter configuration is a release gate, not automatic discovery. Classic Settings configures the legacy Runner only. The restricted service Backend pins its own reviewed Abaqus 2024 entry, input bytes and CPU1/GPU0/2048MB policy; it does not use Classic Settings. Keep stable and Dev installations and active data separate.
 
 ## Core Workflows
 
@@ -111,9 +127,11 @@ MCP client → Project-bound stdio server
            → No enqueue and no solver-start tool
 ```
 
-**Execution authority remains with the local GUI Runner.** The API's `--enqueue-only` can add queue metadata; the MCP tool named `abq_prepare_enqueue` is more restrictive and **never** writes a queue entry.
+**For this legacy API/MCP path, execution authority remains with the GUI Runner.** The independent Agent-first service is a separate authority over its experimental store; these stores must not be treated as interchangeable. The API's `--enqueue-only` can add queue metadata; the MCP tool named `abq_prepare_enqueue` is more restrictive and **never** writes a queue entry.
 
 ## Project Model & Data Ownership
+
+The diagram and archive/default-directory behavior below describe **Classic Projects**. New Agent-first product Projects instead require an explicit new root, publish `agent_project.json`, use `project/execution.sqlite3` (execution format 3), and keep protected local credentials separately under that root. Do not open them with the Classic database writer or export them using the Classic archive contract. Moving/copying an Agent-first product Project requires future explicit reconfiguration; automatic migration/rebinding is not implemented.
 
 **Project owns its operational data; the engineering workspace owns the solver files.** AbqJobPilot discovers, opens, and operates Projects, while its application-level recent-project list stores navigation metadata rather than run history. It tracks paths instead of collecting large ODB/CAE files into an application database.
 
@@ -142,6 +160,8 @@ Read the [Project model and ownership contract](docs/ABQJOBPILOT_PROJECT_MODEL.m
 ## Agent Integration & MCP (Development)
 
 There are **three distinct interfaces**, with different execution permissions:
+
+This table describes the Classic automation surface. The separate `abqjobpilot.execution.client` and `ServiceLifecycleManager` serve Agent-first Projects through authenticated IPC. MCP's five tools and the JSON CLI have not been upgraded to service write/real-approval tools.
 
 | Interface | Typical user | Supported boundary |
 | --- | --- | --- |
@@ -223,7 +243,7 @@ MCP tests cover stdio initialization, tool enumeration, calls, and invalid argum
 
 AbqJobPilot is designed to distinguish **what was requested**, **what was recorded**, and **what has actually been verified**:
 
-- The GUI Runner controls local Abaqus execution; public Agent interfaces never start the solver directly.
+- The legacy GUI Runner controls legacy queue execution. The new Python client submits authorized plans to an independent Supervisor; neither client nor read-only service GUI owns the Solver lifecycle.
 - Datacheck and full-run keep distinct execution phases and best-effort native process evidence.
 - Process identity uses Windows **PID + creation time** when available; a PID by itself can be reused. Child relationships need actual supporting evidence.
 - Evidence files may be stored under `runtime/reports/process_evidence/<queue_id>.json`, with references retained by Project history.
@@ -295,7 +315,7 @@ The non-solver suite covers GUI logic, Project history compatibility, warnings, 
 ## Known Limitations
 
 - Windows-first local desktop workflow; not a distributed HPC scheduler.
-- No general-purpose system shell or solver-start capability in the public automation interfaces.
+- No general-purpose shell. Legacy CLI/MCP have no solver-start capability; the independent service accepts only its supported, precisely authorized Backend plans.
 - MCP is Project-bound, stdio-based and read-only/preview-only; it is not a full autonomous engineering Agent.
 - Per-Project history stores referenced external paths; moving original engineering files may require relinking.
 - Process evidence is best effort and can miss short-lived processes; physical correctness requires engineering verification.
@@ -306,7 +326,7 @@ The non-solver suite covers GUI logic, Project history compatibility, warnings, 
 
 Planned directions, not release commitments:
 
-- Final real-Abaqus end-to-end validation for native process evidence and Project reopening.
+- General Abaqus mode/host coverage, production Project migration, and service lifecycle beyond isolated TEST_ONLY stores; Run019 adds explicit idle test-service startup/stop, while Run016 covers only its fixed Standard acceptance scope.
 - Improved reconciliation when JSON/report/SQLite projections diverge.
 - Safer explicit Project migration and external artifact path repair.
 - Packaging and clean-machine Windows deployment validation.

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="12" time="33.730" timestamp="2026-10-24T18:41:02.734419+08:00" hostname="Boltzmann"><testcase classname="tests.test_service_attachment" name="test_discovery_authenticates_existing_owner_and_reads_without_mutation" time="1.715" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[credential-AUTHENTICATION_FAILED]" time="1.231" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[protocol-PROTOCOL_MISMATCH]" time="1.393" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[project-PROJECT_IDENTITY_MISMATCH]" time="1.299" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[process-PROCESS_IDENTITY_MISMATCH]" time="1.189" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[stale-ENDPOINT_IDENTITY_MISMATCH]" time="1.268" /><testcase classname="tests.test_service_attachment" name="test_discovery_rejects_wrong_or_stale_identity[owner-ENDPOINT_IDENTITY_MISMATCH]" time="1.252" /><testcase classname="tests.test_service_attachment" name="test_missing_owner_and_future_project_do_not_initialize" time="0.505" /><testcase classname="tests.test_service_attachment" name="test_legacy_directory_and_reparse_rejected" time="0.020" /><testcase classname="tests.test_service_attachment" name="test_owner_without_new_capability_is_not_restarted" time="1.122" /><testcase classname="tests.test_attachment_gui" name="test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect" time="8.794" /><testcase classname="tests.test_attachment_gui" name="test_explicit_project_switch_missing_service_and_unknown_stay_readonly" time="13.717"><failure message="AssertionError: Deterministic condition did not arrive before deadline">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run018_eobivebj/attach01/test_explicit_project_switch_m0')
+
+    def test_explicit_project_switch_missing_service_and_unknown_stay_readonly(tmp_path):
+        roots=[tmp_path/n for n in ('first','second')]
+        for root in roots:root.mkdir()
+        first,second=[ProcessHarness(root) for root in roots]
+        private=[];guis=[]
+        try:
+            owner=first.owner(barriers=['fake:after_output'])
+            private.append(connection(first));client=first.client()
+&gt;           rid=client.submit(first.requests[0])['receipt']['run_id'];owner.reached('fake:after_output')
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_attachment_gui.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\supervisor_helpers.py:76: in reached
+    wait_until(path.exists)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = &lt;bound method Path.exists of WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run018_eobivebj/attach01/test_explicit_project_switch_m0/first/process_0/fake_after_output.reached.json')&gt;
+timeout = 12
+
+    def wait_until(predicate, *, timeout=12):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() &lt; deadline:
+            result = predicate()
+            if result:
+                return result
+            time.sleep(0.02)
+&gt;       raise AssertionError("Deterministic condition did not arrive before deadline")
+E       AssertionError: Deterministic condition did not arrive before deadline
+
+tests\supervisor_helpers.py:29: AssertionError</failure></testcase></testsuite></testsuites>

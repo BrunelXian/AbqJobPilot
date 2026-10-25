@@ -1,0 +1,56 @@
+........................................................................ [ 23%]
+........................................................................ [ 47%]
+........................................................................ [ 71%]
+.........................EE............................................. [ 94%]
+................                                                         [100%]
+=================================== ERRORS ====================================
+_ ERROR at setup of test_incomplete_or_conflicting_required_set_rejected[projection] _
+tests\test_recorded_exit_reconciliation.py:47: in local
+    rid, receipt, recorded = exited(h)
+                             ^^^^^^^^^
+tests\test_recorded_exit_reconciliation.py:28: in exited
+    owner = h.owner(barriers=["process:after_identity", stage])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:164: in owner
+    child = self.spawn("owner", **options)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:156: in spawn
+    child.identity = read_json(control / "identity.json")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:33: in read_json
+    return json.loads(path.read_text(encoding="utf-8"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\json\decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\json\decoder.py:356: in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+E   json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+_ ERROR at teardown of test_incomplete_or_conflicting_required_set_rejected[projection] _
+tests\supervisor_helpers.py:190: in close
+    child.process.wait(timeout=8)
+D:\Program Files\Python312\Lib\subprocess.py:1264: in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\subprocess.py:1593: in _wait
+    raise TimeoutExpired(self.args, timeout)
+E   subprocess.TimeoutExpired: Command '['D:\\XianLab\\envs\\LangChainEnv\\Scripts\\python.exe', '-B', 'D:\\Projects\\abqjobpilot_dev\\tests\\run003_process.py', '--test-root', 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_R14_regression_433800369c734c479507c27a42ca6359\\test_incomplete_or_conflicting7\\experiment_0', '--config', 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_R14_regression_433800369c734c479507c27a42ca6359\\test_incomplete_or_conflicting7\\experiment_0\\process_0\\private-process.json']' timed out after 8 seconds
+
+During handling of the above exception, another exception occurred:
+tests\test_process_fixture.py:82: in factory
+    h.close()
+tests\test_process_fixture.py:63: in close
+    super().close()
+tests\supervisor_helpers.py:192: in close
+    child.terminate()
+tests\supervisor_helpers.py:89: in terminate
+    assert self.native is not None, "An identity-verified actual child handle is required"
+           ^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: An identity-verified actual child handle is required
+=========================== short test summary info ===========================
+ERROR tests/test_recorded_exit_reconciliation.py::test_incomplete_or_conflicting_required_set_rejected[projection]
+ERROR tests/test_recorded_exit_reconciliation.py::test_incomplete_or_conflicting_required_set_rejected[projection]
+302 passed, 2 errors in 394.43s (0:06:34)

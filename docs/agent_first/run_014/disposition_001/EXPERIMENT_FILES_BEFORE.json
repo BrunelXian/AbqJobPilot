@@ -1,0 +1,62 @@
+{
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\.r013_bar_d48c54f7.intent.json": {
+    "size": 452,
+    "mtime_ns": 1792764214426323400,
+    "sha256": "67cb209c1009e3f34c68f1da85c021fee9fd79cebf3364def575507cdfd14b73"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\axial_bar.inp": {
+    "size": 420,
+    "mtime_ns": 1792762205323576000,
+    "sha256": "e2f91730b68f3af72b8054bc168d31b72a3f21ae186e899d64ab4b6b761523a3"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.com": {
+    "size": 3507,
+    "mtime_ns": 1792764216281494000,
+    "sha256": "519b266e1c635f27b3c93005b8791c0ff164f982559ff99f88c9225cc546091a"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.dat": {
+    "size": 10334,
+    "mtime_ns": 1792764230172145400,
+    "sha256": "41488640e73e3d3d4ac8d19b26b5a512e125c7e731e6463b1f7e89bfee8be363"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.msg": {
+    "size": 7605,
+    "mtime_ns": 1792764230172145400,
+    "sha256": "850fd3222b2537292f8aa63093449e96604837b854abba1cd3ef0dec0cd3a9a9"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.odb": {
+    "size": 214556,
+    "mtime_ns": 1792764230347056300,
+    "sha256": null
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.prt": {
+    "size": 113,
+    "mtime_ns": 1792764230351271900,
+    "sha256": "905a798402f45a97124c121214756a88cf8eb91124e71986326e9e01336595cb"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\engineering\\r013_bar_d48c54f7.sta": {
+    "size": 444,
+    "mtime_ns": 1792764230172145400,
+    "sha256": "8334ebd98af39141ce4a15a2a4c57cd2d3a4df77df83c12a5b047e5dac449165"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\private\\bootstrap.json": {
+    "size": 1196,
+    "mtime_ns": 1792762205953599500,
+    "sha256": "f35467aa60ba854aeef9d0b736b77f80a203928e1ebf8a41adf8303832673783"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\private\\connection.json": {
+    "size": 741,
+    "mtime_ns": 1792764115124280700,
+    "sha256": "bdc2bcd62013e8b6dec85a72bb5b7565ef0132742127b6a23055788981434677"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\project\\owner.json": {
+    "size": 664,
+    "mtime_ns": 1792764115121048300,
+    "sha256": "9cb473e42e9bd884f5bb6545c2d2973cdfe2e47f04037bd64b0d2a98faac1303"
+  },
+  "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run013_e52135d71d2c43d2a45301c586cbfb7e\\project\\owner.lock": {
+    "size": 1,
+    "mtime_ns": 1792762205484757600,
+    "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+  }
+}

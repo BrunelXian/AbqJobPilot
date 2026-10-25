@@ -1,0 +1,27 @@
+{
+  "facts": {
+    "counts": {
+      "plans": 0,
+      "grants": 0,
+      "runs": 0,
+      "receipts": 0,
+      "consumption": 0,
+      "events": 0,
+      "management_grants": 0
+    },
+    "gate": {
+      "id": 1,
+      "owner_id": "owner_dc681826201446789de8e0a72c1d9dcd",
+      "version": 1,
+      "state": "PAUSED"
+    },
+    "supervisor_started": "0"
+  },
+  "service": {
+    "state": "NOT_RUNNING",
+    "reason": "EXPLICIT_START_REQUIRED"
+  },
+  "execution_processes_created": 0,
+  "abaqus_calls": 0,
+  "credentials": "retained protected private files; never exported"
+}

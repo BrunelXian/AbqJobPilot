@@ -1,0 +1,1390 @@
+{
+  "branch": "Develop",
+  "head": "271c6f82fd6a4599dbae2df30d903dab2cef1f63",
+  "conflicts": "",
+  "changed_prior_files": [
+    "README.md",
+    "README_CN.md",
+    "abqjobpilot/execution/client.py",
+    "abqjobpilot/execution/service.py",
+    "abqjobpilot/execution/store.py",
+    "abqjobpilot/execution/supervisor.py",
+    "abqjobpilot/execution_gui.py",
+    "abqjobpilot/gui_app.py",
+    "tests/supervisor_helpers.py",
+    "tests/test_execution_gui.py"
+  ],
+  "new_files": [
+    "Open_Dev_GUI.vbs",
+    "abqjobpilot/service_discovery.py",
+    "docs/agent_first/run_018/ACCEPTANCE_MATRIX.md",
+    "docs/agent_first/run_018/BASELINE.json",
+    "docs/agent_first/run_018/CLEANUP.json",
+    "docs/agent_first/run_018/FINAL_CHECKS.json",
+    "docs/agent_first/run_018/FINAL_SUMMARY.md",
+    "docs/agent_first/run_018/IMPLEMENTATION_AND_CONTRACT.md",
+    "docs/agent_first/run_018/TEST_RESULTS.json",
+    "docs/agent_first/run_018/TEST_RESULTS.md",
+    "docs/agent_first/run_018/USAGE.md",
+    "docs/agent_first/run_018/collect_results.py",
+    "docs/agent_first/run_018/final_checks.py",
+    "docs/agent_first/run_018/run_legacy_gui_tests.py",
+    "docs/agent_first/run_018/test_evidence/attach01.xml",
+    "docs/agent_first/run_018/test_evidence/attach02.xml",
+    "docs/agent_first/run_018/test_evidence/final_attachment.xml",
+    "docs/agent_first/run_018/test_evidence/legacy.xml",
+    "docs/agent_first/run_018/test_evidence/regression.xml",
+    "docs/agent_first/run_018/windows_evidence/actual_dev_gui.png",
+    "docs/agent_first/run_018/windows_evidence/gui_owner_crash_block.json",
+    "docs/agent_first/run_018/windows_evidence/gui_stalled_transport.json",
+    "docs/agent_first/run_018/windows_evidence/large_list.json",
+    "docs/agent_first/run_018/windows_evidence/normal_gui_cleanup.json",
+    "docs/agent_first/run_018/windows_evidence/normal_gui_lifecycle.json",
+    "docs/agent_first/run_018/windows_evidence/normal_gui_lifecycle.png",
+    "docs/agent_first/run_018/windows_evidence/product_entries.json",
+    "docs/agent_first/run_018/windows_evidence/product_entries_managed.json",
+    "docs/agent_first/run_018/windows_evidence/project_switch_and_paused_unknown.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_actual_gui_close_0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_delayed_grandchil0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_empty_scope_does_0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_empty_scope_does_1.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_fault_never_relea0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_fault_never_relea1.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_fault_never_relea2.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_fault_never_relea3.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_fault_never_relea4.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_owner_crash_leave0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_paused_gate_survi0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_standard_owner_cr0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_standard_pair_pub0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_transient_childre0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_true_crash_after_0.json",
+    "docs/agent_first/run_018/windows_evidence/test_managed_two_normal_tasks_0.json",
+    "docs/agent_first/run_018/windows_evidence/test_normal_dev_entry_managed_0.json",
+    "docs/agent_first/run_018/windows_evidence/test_public_pair_orchestrator_0.json",
+    "docs/agent_first/run_018/windows_evidence/windows_gui_lifecycle.json",
+    "tests/run018_gui.py",
+    "tests/test_attachment_gui.py",
+    "tests/test_project_view.py",
+    "tests/test_service_attachment.py"
+  ],
+  "external_new_paths_not_read_or_modified": [
+    "docs/agent_first/run_016/real_001/gui_B/exit.json"
+  ],
+  "unchanged_prior_files": 1125,
+  "missing_prior_files": [],
+  "excluded_retained_gui_views": [
+    "docs/agent_first/run_016/real_001/gui_A_reconnected/view.json",
+    "docs/agent_first/run_016/real_001/gui_B/view.json"
+  ],
+  "own_test_identity_followup": [
+    {
+      "pid": 17852,
+      "creation_time_100ns": 134373120634168809,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9292,
+      "creation_time_100ns": 134373120650001526,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30316,
+      "creation_time_100ns": 134373120663814217,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20784,
+      "creation_time_100ns": 134373120677193918,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 11224,
+      "creation_time_100ns": 134373120690049878,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 14472,
+      "creation_time_100ns": 134373120701927927,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22548,
+      "creation_time_100ns": 134373120715126381,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34008,
+      "creation_time_100ns": 134373120835757027,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37572,
+      "creation_time_100ns": 134373120757815758,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37580,
+      "creation_time_100ns": 134373120785793608,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13140,
+      "creation_time_100ns": 134373120742465538,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29812,
+      "creation_time_100ns": 134373120811137145,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16664,
+      "creation_time_100ns": 134373120731973576,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 15704,
+      "creation_time_100ns": 134373121888661011,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20516,
+      "creation_time_100ns": 134373121875817410,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16760,
+      "creation_time_100ns": 134373121882633510,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 21240,
+      "creation_time_100ns": 134373121901364846,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24596,
+      "creation_time_100ns": 134373121812412012,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 2252,
+      "creation_time_100ns": 134373121831187953,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 26328,
+      "creation_time_100ns": 134373121798280958,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 31796,
+      "creation_time_100ns": 134373121857181387,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13360,
+      "creation_time_100ns": 134373121999472723,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24056,
+      "creation_time_100ns": 134373121960170941,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 464,
+      "creation_time_100ns": 134373127713296859,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32916,
+      "creation_time_100ns": 134373127727590913,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30748,
+      "creation_time_100ns": 134373127739352997,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 10104,
+      "creation_time_100ns": 134373127750491320,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30856,
+      "creation_time_100ns": 134373127761329887,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19172,
+      "creation_time_100ns": 134373127771670096,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 11252,
+      "creation_time_100ns": 134373127782326455,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22112,
+      "creation_time_100ns": 134373127908075342,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18920,
+      "creation_time_100ns": 134373127893649505,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16076,
+      "creation_time_100ns": 134373127901203255,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19368,
+      "creation_time_100ns": 134373127920054758,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30808,
+      "creation_time_100ns": 134373127821803559,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 31804,
+      "creation_time_100ns": 134373127849572400,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 15456,
+      "creation_time_100ns": 134373127806826179,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 14768,
+      "creation_time_100ns": 134373127874862599,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 11876,
+      "creation_time_100ns": 134373128014143238,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18024,
+      "creation_time_100ns": 134373127975941250,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19976,
+      "creation_time_100ns": 134373127796729247,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13452,
+      "creation_time_100ns": 134373124651013864,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18408,
+      "creation_time_100ns": 134373124656024868,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 10248,
+      "creation_time_100ns": 134373125461037112,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 33492,
+      "creation_time_100ns": 134373125475805650,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12784,
+      "creation_time_100ns": 134373125445765482,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23284,
+      "creation_time_100ns": 134373125509463096,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 35572,
+      "creation_time_100ns": 134373124877836731,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18588,
+      "creation_time_100ns": 134373124885020834,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 8776,
+      "creation_time_100ns": 134373125020501508,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12964,
+      "creation_time_100ns": 134373124681891861,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 33164,
+      "creation_time_100ns": 134373124686941597,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29552,
+      "creation_time_100ns": 134373124691252517,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 15344,
+      "creation_time_100ns": 134373124844686484,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34924,
+      "creation_time_100ns": 134373123804115436,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 35552,
+      "creation_time_100ns": 134373123822485429,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 11864,
+      "creation_time_100ns": 134373123835387865,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29628,
+      "creation_time_100ns": 134373123849087245,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24036,
+      "creation_time_100ns": 134373123861328215,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18132,
+      "creation_time_100ns": 134373123873851778,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 8044,
+      "creation_time_100ns": 134373123886636726,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 6536,
+      "creation_time_100ns": 134373125427584452,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 36096,
+      "creation_time_100ns": 134373124025444661,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 27064,
+      "creation_time_100ns": 134373124010595836,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 33216,
+      "creation_time_100ns": 134373124018582848,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18396,
+      "creation_time_100ns": 134373124039142964,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23560,
+      "creation_time_100ns": 134373125397217959,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 15732,
+      "creation_time_100ns": 134373125224056180,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30192,
+      "creation_time_100ns": 134373126532370746,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 15384,
+      "creation_time_100ns": 134373126540416041,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34436,
+      "creation_time_100ns": 134373126547489750,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 31792,
+      "creation_time_100ns": 134373124629346236,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23180,
+      "creation_time_100ns": 134373124634393295,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 35464,
+      "creation_time_100ns": 134373124640629432,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22800,
+      "creation_time_100ns": 134373124945534360,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37300,
+      "creation_time_100ns": 134373124953144526,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9156,
+      "creation_time_100ns": 134373124964945854,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20616,
+      "creation_time_100ns": 134373124971850097,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19312,
+      "creation_time_100ns": 134373124983766248,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 33736,
+      "creation_time_100ns": 134373124990854052,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13188,
+      "creation_time_100ns": 134373125054081381,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 5724,
+      "creation_time_100ns": 134373125066028798,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19156,
+      "creation_time_100ns": 134373125077630098,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22912,
+      "creation_time_100ns": 134373125089448072,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 6268,
+      "creation_time_100ns": 134373126876772384,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12000,
+      "creation_time_100ns": 134373126886896345,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32700,
+      "creation_time_100ns": 134373126866305990,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 35048,
+      "creation_time_100ns": 134373126622811603,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 10924,
+      "creation_time_100ns": 134373126681774755,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19324,
+      "creation_time_100ns": 134373126700276843,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22224,
+      "creation_time_100ns": 134373126737059169,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18504,
+      "creation_time_100ns": 134373126751228474,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32324,
+      "creation_time_100ns": 134373126764998553,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 28736,
+      "creation_time_100ns": 134373126781134422,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24208,
+      "creation_time_100ns": 134373126799215794,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 14472,
+      "creation_time_100ns": 134373126819374756,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 8888,
+      "creation_time_100ns": 134373126829894474,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 26072,
+      "creation_time_100ns": 134373126718234493,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12088,
+      "creation_time_100ns": 134373127081890973,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30464,
+      "creation_time_100ns": 134373127088584113,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9076,
+      "creation_time_100ns": 134373126654899119,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 26000,
+      "creation_time_100ns": 134373126842466516,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29968,
+      "creation_time_100ns": 134373126853626779,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 3684,
+      "creation_time_100ns": 134373126594585294,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30760,
+      "creation_time_100ns": 134373124813134153,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37212,
+      "creation_time_100ns": 134373124667389236,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 1496,
+      "creation_time_100ns": 134373125415236349,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12300,
+      "creation_time_100ns": 134373123930366649,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 324,
+      "creation_time_100ns": 134373123959145463,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 6556,
+      "creation_time_100ns": 134373123915839113,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 8084,
+      "creation_time_100ns": 134373123986317727,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 27076,
+      "creation_time_100ns": 134373124270855989,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 28580,
+      "creation_time_100ns": 134373124217390298,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 2224,
+      "creation_time_100ns": 134373123904570559,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20300,
+      "creation_time_100ns": 134373125585861055,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22612,
+      "creation_time_100ns": 134373125573381863,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 17896,
+      "creation_time_100ns": 134373126067001747,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22464,
+      "creation_time_100ns": 134373126051273835,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30292,
+      "creation_time_100ns": 134373125544639914,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 31508,
+      "creation_time_100ns": 134373124717598823,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12960,
+      "creation_time_100ns": 134373124728141598,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24992,
+      "creation_time_100ns": 134373124738391971,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 14824,
+      "creation_time_100ns": 134373124748567462,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 21784,
+      "creation_time_100ns": 134373124758718610,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34708,
+      "creation_time_100ns": 134373124769097589,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9108,
+      "creation_time_100ns": 134373124779696081,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32036,
+      "creation_time_100ns": 134373124790827946,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25000,
+      "creation_time_100ns": 134373124801482338,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32992,
+      "creation_time_100ns": 134373124701913441,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 11596,
+      "creation_time_100ns": 134373124900448905,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18052,
+      "creation_time_100ns": 134373124906164157,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34796,
+      "creation_time_100ns": 134373124931373961,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 11308,
+      "creation_time_100ns": 134373126565316667,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 1200,
+      "creation_time_100ns": 134373125341234257,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23348,
+      "creation_time_100ns": 134373125242876472,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 7176,
+      "creation_time_100ns": 134373125262466317,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16232,
+      "creation_time_100ns": 134373125282079704,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16940,
+      "creation_time_100ns": 134373125302384521,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24628,
+      "creation_time_100ns": 134373125320315661,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20728,
+      "creation_time_100ns": 134373125358932483,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25180,
+      "creation_time_100ns": 134373125377024277,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22172,
+      "creation_time_100ns": 134373125002997787,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23196,
+      "creation_time_100ns": 134373125009498420,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9148,
+      "creation_time_100ns": 134373125570102600,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25172,
+      "creation_time_100ns": 134373126047747725,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29176,
+      "creation_time_100ns": 134373120753627272,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18316,
+      "creation_time_100ns": 134373121808660625,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 15384,
+      "creation_time_100ns": 134373127817433005,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29820,
+      "creation_time_100ns": 134373125457982851,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 36584,
+      "creation_time_100ns": 134373125435772858,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 36136,
+      "creation_time_100ns": 134373125404988437,
+      "result": "PROCESS_IDENTITY_MISMATCH"
+    },
+    {
+      "pid": 14656,
+      "creation_time_100ns": 134373125231577114,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32332,
+      "creation_time_100ns": 134373126896620543,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29476,
+      "creation_time_100ns": 134373126875019261,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19336,
+      "creation_time_100ns": 134373126632099960,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 35464,
+      "creation_time_100ns": 134373126642256886,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 14600,
+      "creation_time_100ns": 134373126690120934,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18632,
+      "creation_time_100ns": 134373126708722529,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20516,
+      "creation_time_100ns": 134373126773767070,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 21536,
+      "creation_time_100ns": 134373126789940413,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9884,
+      "creation_time_100ns": 134373126807704526,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 17572,
+      "creation_time_100ns": 134373126827938739,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 14988,
+      "creation_time_100ns": 134373126726193312,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 8564,
+      "creation_time_100ns": 134373127119863578,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 33932,
+      "creation_time_100ns": 134373127079343495,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30684,
+      "creation_time_100ns": 134373127101444841,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 17592,
+      "creation_time_100ns": 134373126670870495,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34920,
+      "creation_time_100ns": 134373126663766613,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22480,
+      "creation_time_100ns": 134373126850215089,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 35592,
+      "creation_time_100ns": 134373126609897960,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12448,
+      "creation_time_100ns": 134373126603407481,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9584,
+      "creation_time_100ns": 134373123926636972,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32044,
+      "creation_time_100ns": 134373125583990952,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22228,
+      "creation_time_100ns": 134373126521296099,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9792,
+      "creation_time_100ns": 134373126065043785,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13752,
+      "creation_time_100ns": 134373125552567204,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37392,
+      "creation_time_100ns": 134373127138088348,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25684,
+      "creation_time_100ns": 134373127146107342,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 6952,
+      "creation_time_100ns": 134373125349413325,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 36344,
+      "creation_time_100ns": 134373125250289241,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 8748,
+      "creation_time_100ns": 134373125269887317,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22856,
+      "creation_time_100ns": 134373125291206934,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 28352,
+      "creation_time_100ns": 134373125310279168,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 21180,
+      "creation_time_100ns": 134373125328614480,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24904,
+      "creation_time_100ns": 134373125366201194,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12156,
+      "creation_time_100ns": 134373125385525201,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30216,
+      "creation_time_100ns": 134373120752482481,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 33928,
+      "creation_time_100ns": 134373121807505329,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 5524,
+      "creation_time_100ns": 134373127816088246,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 1252,
+      "creation_time_100ns": 134373125456759361,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23848,
+      "creation_time_100ns": 134373125434455636,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29112,
+      "creation_time_100ns": 134373125403767273,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37740,
+      "creation_time_100ns": 134373125230292558,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 8840,
+      "creation_time_100ns": 134373126895330062,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 28948,
+      "creation_time_100ns": 134373126873928607,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 21616,
+      "creation_time_100ns": 134373126630834972,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 27448,
+      "creation_time_100ns": 134373126640664051,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 27020,
+      "creation_time_100ns": 134373126688880765,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22668,
+      "creation_time_100ns": 134373126707598564,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13092,
+      "creation_time_100ns": 134373126772452545,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 5248,
+      "creation_time_100ns": 134373126788655409,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30096,
+      "creation_time_100ns": 134373126806491461,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 10052,
+      "creation_time_100ns": 134373126826618185,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20892,
+      "creation_time_100ns": 134373126724854642,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37212,
+      "creation_time_100ns": 134373126669625226,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 11584,
+      "creation_time_100ns": 134373126662150056,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29468,
+      "creation_time_100ns": 134373126848986173,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37300,
+      "creation_time_100ns": 134373126608468130,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9636,
+      "creation_time_100ns": 134373126602181357,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 20692,
+      "creation_time_100ns": 134373123925446809,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 7772,
+      "creation_time_100ns": 134373125582807491,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37496,
+      "creation_time_100ns": 134373126519816657,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 31044,
+      "creation_time_100ns": 134373126063870657,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25540,
+      "creation_time_100ns": 134373125551327818,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 36188,
+      "creation_time_100ns": 134373125347865875,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16696,
+      "creation_time_100ns": 134373125249084784,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 17956,
+      "creation_time_100ns": 134373125268641123,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 33768,
+      "creation_time_100ns": 134373125290010435,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13116,
+      "creation_time_100ns": 134373125309115404,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22712,
+      "creation_time_100ns": 134373125327215375,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 27760,
+      "creation_time_100ns": 134373125365071862,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 17588,
+      "creation_time_100ns": 134373125383997182,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 37508,
+      "creation_time_100ns": 134373120753333474,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 9532,
+      "creation_time_100ns": 134373121808348894,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 7436,
+      "creation_time_100ns": 134373127817000033,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 19044,
+      "creation_time_100ns": 134373125457657534,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34956,
+      "creation_time_100ns": 134373125435451227,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34760,
+      "creation_time_100ns": 134373125404696238,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29312,
+      "creation_time_100ns": 134373125231173104,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23480,
+      "creation_time_100ns": 134373126896289716,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 31736,
+      "creation_time_100ns": 134373126874712044,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 7020,
+      "creation_time_100ns": 134373126631737910,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 7596,
+      "creation_time_100ns": 134373126641689226,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 13016,
+      "creation_time_100ns": 134373126689745571,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18040,
+      "creation_time_100ns": 134373126708389307,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25072,
+      "creation_time_100ns": 134373126773349439,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 12736,
+      "creation_time_100ns": 134373126789519131,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 3436,
+      "creation_time_100ns": 134373126807334531,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 2528,
+      "creation_time_100ns": 134373126827577502,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 18072,
+      "creation_time_100ns": 134373126725718508,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 31756,
+      "creation_time_100ns": 134373126670481256,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 24896,
+      "creation_time_100ns": 134373126663155703,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 30736,
+      "creation_time_100ns": 134373126849839271,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16860,
+      "creation_time_100ns": 134373126609366816,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32832,
+      "creation_time_100ns": 134373126603078352,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25988,
+      "creation_time_100ns": 134373123926267319,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32664,
+      "creation_time_100ns": 134373125583658932,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 16172,
+      "creation_time_100ns": 134373126520957379,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29312,
+      "creation_time_100ns": 134373126064755395,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 6932,
+      "creation_time_100ns": 134373125552222616,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 17660,
+      "creation_time_100ns": 134373125348813920,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 4304,
+      "creation_time_100ns": 134373125249962228,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 32588,
+      "creation_time_100ns": 134373125269489238,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 14188,
+      "creation_time_100ns": 134373125290904789,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 25412,
+      "creation_time_100ns": 134373125309987099,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 3684,
+      "creation_time_100ns": 134373125328246853,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 23636,
+      "creation_time_100ns": 134373125365895000,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 29636,
+      "creation_time_100ns": 134373125385226027,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 34996,
+      "creation_time_100ns": 134373126633640292,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    },
+    {
+      "pid": 22952,
+      "creation_time_100ns": 134373126635905894,
+      "result": "PROCESS_IDENTITY_UNKNOWN"
+    }
+  ],
+  "note": "Absent/mismatched now does not retroactively prove historical exit; retained-handle evidence remains authoritative",
+  "cleanup_counts": {
+    "inventories": 98,
+    "lifecycles": 98,
+    "managed_handles": 14
+  },
+  "abaqus_calls": 0,
+  "historical_instance_queried_or_stopped": false
+}

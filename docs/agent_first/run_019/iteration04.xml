@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="7" time="8.499" timestamp="2026-10-24T19:23:36.075004+08:00" hostname="Boltzmann"><testcase classname="tests.test_service_lifecycle" name="test_idle_start_reuse_stop_restart_and_permission" time="1.941" /><testcase classname="tests.test_service_lifecycle" name="test_concurrent_start_single_reservation_and_owner" time="1.120" /><testcase classname="tests.test_service_lifecycle" name="test_lost_start_reply_never_second_creation[intent_persisted]" time="0.520" /><testcase classname="tests.test_service_lifecycle" name="test_lost_start_reply_never_second_creation[created]" time="1.086" /><testcase classname="tests.test_service_lifecycle" name="test_handshake_timeout_inspect_no_retry" time="1.269" /><testcase classname="tests.test_service_lifecycle" name="test_old_lock_or_bad_credentials_never_replace" time="1.262" /><testcase classname="tests.test_service_lifecycle" name="test_product_gui_start_worker_survives_normal_gui_and_launcher_exit" time="1.096"><failure message="PermissionError: [Errno 13] Permission denied: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run019_4uyet2rj\\iteration04\\test_product_gui_start_worker_0\\gui_A\\lifecycle.json'">tmp_path = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/iteration04/test_product_gui_start_worker_0')
+
+    def test_product_gui_start_worker_survives_normal_gui_and_launcher_exit(tmp_path):
+        from test_execution_gui import Gui
+        from test_attachment_gui import action,choose
+        guis=[];refs=[];evidence={'abaqus_calls':0,'python':sys.executable}
+        with prepared(tmp_path,['result_wait']) as (h,m):
+            try:
+                gui=Gui(tmp_path,None,None,'gui_A',attachment=True,lifecycle=True);guis.append(gui)
+                action(gui,'project',project=h.context.root)
+&gt;               wait_until(lambda:'NOT_RUNNING' in read_json(gui.root/'lifecycle.json')['status'])
+
+tests\test_service_lifecycle.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\supervisor_helpers.py:25: in wait_until
+    result = predicate()
+             ^^^^^^^^^^^
+tests\test_service_lifecycle.py:142: in &lt;lambda&gt;
+    wait_until(lambda:'NOT_RUNNING' in read_json(gui.root/'lifecycle.json')['status'])
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\supervisor_helpers.py:33: in read_json
+    return json.loads(path.read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files\Python312\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/wuxia/AppData/Local/Temp/AbqJobPilot_Run019_4uyet2rj/iteration04/test_product_gui_start_worker_0/gui_A/lifecycle.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+&gt;       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run019_4uyet2rj\\iteration04\\test_product_gui_start_worker_0\\gui_A\\lifecycle.json'
+
+D:\Program Files\Python312\Lib\pathlib.py:1013: PermissionError</failure></testcase></testsuite></testsuites>
