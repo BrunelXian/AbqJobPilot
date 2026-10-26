@@ -1,0 +1,200 @@
+[
+  {
+    "path": "README.md",
+    "status": "MODIFY",
+    "bytes": 27501,
+    "sha256": "eb7fa3582aa7ee2da867f43dceb91f4a5018d8dac1d49d528d6c259c509013b3"
+  },
+  {
+    "path": "README_CN.md",
+    "status": "MODIFY",
+    "bytes": 24919,
+    "sha256": "f2c2881e8b419cd10693787c4ec4d2e13d741f9646cb832d95bfb96c122db9ad"
+  },
+  {
+    "path": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 5162,
+    "sha256": "d55b62e182213821e88c636514fbd8e4700da79ec2f225e38d891f4520107f42"
+  },
+  {
+    "path": "docs/agent_first/crash_recovery_integration/cr_d03/IMPLEMENTATION_AND_SCOPE.md",
+    "status": "ADD",
+    "bytes": 4636,
+    "sha256": "5b5aa6b7e8374fd9c9538ca6b9dd1d8d6a951d897ce3da1b577df4efb7a35790"
+  },
+  {
+    "path": "docs/agent_first/crash_recovery_integration/cr_d03/RECOVERY_CONTRACT.md",
+    "status": "ADD",
+    "bytes": 6382,
+    "sha256": "e966e418acd54c08153cc519b9f056479a6f1c8d06db5cfb28ef1f0ea2d30e83"
+  },
+  {
+    "path": "docs/agent_first/crash_recovery_integration/cr_d03/REMAINING_AND_NEXT_STEPS.md",
+    "status": "ADD",
+    "bytes": 2530,
+    "sha256": "086f87cd549bea1d5b091ea48f478ebb7ca475984918be97e6f18660d021ee29"
+  },
+  {
+    "path": "docs/agent_first/crash_recovery_integration/cr_d03/RUN024_GUI_HANDOFF.md",
+    "status": "ADD",
+    "bytes": 4904,
+    "sha256": "d732aa86848f45bbd89c5aebbd61f5d2b5cfb2e65fa3efaa920b7f8cb107e2dd"
+  },
+  {
+    "path": "docs/agent_first/crash_recovery_integration/cr_d03/TEST_AND_ACCEPTANCE.md",
+    "status": "ADD",
+    "bytes": 9985,
+    "sha256": "8d314891e6bc2ad1297828313b3e5d24402ef0873f79544c20ebb48035721786"
+  },
+  {
+    "path": "docs/agent_first/crash_recovery_integration/cr_d03/USAGE.md",
+    "status": "ADD",
+    "bytes": 2923,
+    "sha256": "75e1b081f8469c3daf0295c100a27b0c5a7308b844dad59ac6ec6ec6a36a0089"
+  },
+  {
+    "path": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 5392,
+    "sha256": "ff9bd808f3053cfcfbf680bab52636c3947fd88c63bfaeaaaf6d398ec1b05513"
+  },
+  {
+    "path": "docs/agent_first/run_024/IMPLEMENTATION_AND_NAVIGATION.md",
+    "status": "ADD",
+    "bytes": 4653,
+    "sha256": "c8380161a33acf72f756892e2f3ca6fdeef32177e90d7dc9c2c785f294995eb5"
+  },
+  {
+    "path": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+    "status": "ADD",
+    "bytes": 3113,
+    "sha256": "d7bca66eb6b1bc92ca75723442743a563328c6da53b9c36f2b16c38e3a4d7a52"
+  },
+  {
+    "path": "docs/agent_first/run_024/READONLY_RECOVERY_CONTRACT.md",
+    "status": "ADD",
+    "bytes": 2753,
+    "sha256": "2757d24d7afbc98f972ca9584fba749cf4681748d70022504d0e9d4704738c67"
+  },
+  {
+    "path": "docs/agent_first/run_024/REMAINING_AND_GIT_CHECKPOINT.md",
+    "status": "ADD",
+    "bytes": 3146,
+    "sha256": "ef7377674dcc7965c6e0584d921597235ad22efbc8b0b6d2bd4b01c9479e4583"
+  },
+  {
+    "path": "docs/agent_first/run_024/TEST_AND_ACCEPTANCE.md",
+    "status": "ADD",
+    "bytes": 6975,
+    "sha256": "5ca89eb4950ddfd833b0e41328fa35f3d196c599a649bc7c749ad25061209ff9"
+  },
+  {
+    "path": "docs/agent_first/run_024/USAGE.md",
+    "status": "ADD",
+    "bytes": 3103,
+    "sha256": "9e2f8bfb6a848c9d4a0459d2484fc59cb3f0545cc556eac7db398d3a64e89f2b"
+  },
+  {
+    "path": "docs/agent_first/run_024r/CLASSIC_REUSE_ANALYSIS.md",
+    "status": "ADD",
+    "bytes": 3077,
+    "sha256": "f3c3c1cb766764ba424cf65018c2cb896828ec2c468afc084abf3e65657e6cc2"
+  },
+  {
+    "path": "docs/agent_first/run_024r/COCKPIT_AND_AGENT_COMMAND_DESIGN.md",
+    "status": "ADD",
+    "bytes": 5186,
+    "sha256": "397fd27f81b27f5b8b4b0ba41fe85255f134ee111316b61e38051715b1b77b4f"
+  },
+  {
+    "path": "docs/agent_first/run_024r/CURRENT_GUI_REVIEW.md",
+    "status": "ADD",
+    "bytes": 3533,
+    "sha256": "aae993ab81df155128c04b01c18b54cecc4e2ea3d753529fd06b1fb4c02b9018"
+  },
+  {
+    "path": "docs/agent_first/run_024r/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 3127,
+    "sha256": "a64988051d57bbeaf5cc0ec00a2f85631f1f1ce05f980b7854690347a2565f26"
+  },
+  {
+    "path": "docs/agent_first/run_024r/IMPLEMENTATION_PLAN.md",
+    "status": "ADD",
+    "bytes": 3719,
+    "sha256": "5b5d25a35c91991611625dcb9e232b82fac1548ac598f808e3abb01caee4d099"
+  },
+  {
+    "path": "docs/agent_first/run_024r/USAGE.md",
+    "status": "ADD",
+    "bytes": 2396,
+    "sha256": "54036a4e4f09a06d2f348be6df95f8eae8e2e245ed8940f0f28335b2279fff53"
+  },
+  {
+    "path": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+    "status": "ADD",
+    "bytes": 4861,
+    "sha256": "0fa8680ac585c13f679122422e72b691e1bd3ef31c320a5f060d470defd5a30a"
+  },
+  {
+    "path": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 3558,
+    "sha256": "59445ac39977f3b53854938fce49a85e5bbc761ebc8a0651a294c40076036ecf"
+  },
+  {
+    "path": "docs/agent_first/run_024r/final_acceptance_001/RETAINED_TEST_DATA_AUDIT.md",
+    "status": "ADD",
+    "bytes": 4663,
+    "sha256": "f236ba1cdbf84b3b52ff59766d422ebf593d77301394d748b4bd0229329e0670"
+  },
+  {
+    "path": "docs/agent_first/run_024r/final_acceptance_001/SEMANTIC_REVIEW.md",
+    "status": "ADD",
+    "bytes": 4919,
+    "sha256": "117e152f51057d38135648c5d56321a94bed913de56ccddc8ea54635f191410a"
+  },
+  {
+    "path": "docs/agent_first/run_024r/final_acceptance_001/TEST_AND_ACCEPTANCE.md",
+    "status": "ADD",
+    "bytes": 4588,
+    "sha256": "36d280b8c1e89a01cd063ff9e9a0118241c22c34e50280d5b97e037a2915ce03"
+  },
+  {
+    "path": "docs/agent_first/run_024r/integration_001/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 3477,
+    "sha256": "bf342d658b333083c590f3083ca80e11489f28da3e409e9d5e4dff9f1b03fedc"
+  },
+  {
+    "path": "docs/agent_first/run_024r/integration_001/IMPLEMENTATION_AND_USAGE.md",
+    "status": "ADD",
+    "bytes": 4752,
+    "sha256": "82183aa18e42b9c63da2ee0cfba88de282d3b683540fcfa0b402e25109eae459"
+  },
+  {
+    "path": "docs/agent_first/run_024r/integration_001/TEST_AND_ACCEPTANCE.md",
+    "status": "ADD",
+    "bytes": 4770,
+    "sha256": "c9f576509fb2b8e2762a48c398c16365214e7795afadd3578ecdda99b2897a58"
+  },
+  {
+    "path": "docs/agent_first/run_024r/refinement_001/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 1824,
+    "sha256": "cbb51a6f64a2c94f34a26b881d632d0ef7365b7d7e082e68cd65ac088ec0b86d"
+  },
+  {
+    "path": "docs/agent_first/run_024r/refinement_001/REFINEMENT_NOTES.md",
+    "status": "ADD",
+    "bytes": 4323,
+    "sha256": "005f401651e795a920e4360a106a5f092269a726e14557d28ab0e785c027437e"
+  },
+  {
+    "path": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+    "status": "ADD",
+    "bytes": 2221,
+    "sha256": "a338b24379603660c6674f7ebb4a37e6263a77f88a1061d70c3e94cf0e822128"
+  }
+]

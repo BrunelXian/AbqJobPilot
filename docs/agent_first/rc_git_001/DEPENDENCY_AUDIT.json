@@ -1,0 +1,1531 @@
+{
+  "product_relative_imports_checked": 354,
+  "missing_product_imports": [],
+  "test_data_blockers": [
+    "docs/agent_first/run_011/result_review_001/ORIGINAL_DAT.bin",
+    "docs/agent_first/run_007/examples/historical_invalid_after.json"
+  ],
+  "document_links_outside_candidate": [
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d02/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d02/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d02/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d02/WINDOWS_DIAGNOSTIC_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d02/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d02/CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d02/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d02/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d02/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d02/FINAL_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d02/IMPLEMENTATION_AND_SCOPE.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d02/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d03/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d03/WINDOWS_RECOVERY_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d03/CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d03/CLEANUP_FINAL.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/review_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/review_001/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/crash_recovery_integration/review_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/crash_recovery_integration/review_001/READ_ONLY_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_001/ADR_AND_CONTRACTS.md",
+      "target": "docs/agent_first/run_001/BASELINE.md",
+      "classification": "MISSING_OR_DIRECTORY"
+    },
+    {
+      "source": "docs/agent_first/run_001/ADR_AND_CONTRACTS.md",
+      "target": "docs/agent_first/run_001/ARCHITECTURE_REVIEW.md",
+      "classification": "MISSING_OR_DIRECTORY"
+    },
+    {
+      "source": "docs/agent_first/run_001/ADR_AND_CONTRACTS.md",
+      "target": "docs/agent_first/run_001/MVP_ACCEPTANCE_MATRIX.md",
+      "classification": "MISSING_OR_DIRECTORY"
+    },
+    {
+      "source": "docs/agent_first/run_002/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_002/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_002/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_002/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_002/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_002/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_002/BASELINE.md",
+      "target": "docs/agent_first/run_002/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_002/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_002/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_002/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_002/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_002/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_002/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_003/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_003/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_003/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_003/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_003/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_003/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_003/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_003/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_003/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_003/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_003/PROCESS_AND_ISOLATION_EVIDENCE.md",
+      "target": "docs/agent_first/run_003/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_004/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_004/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_004/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_004/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_004/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_004/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_004/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_004/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_004/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_004/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_004/PROCESS_AND_FAILURE_EVIDENCE.md",
+      "target": "docs/agent_first/run_004/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_005/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_005/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_005/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_005/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_005/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_005/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_005/examples/01_uncertain.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_005/examples/02_reconciled_paused.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_005/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_005/examples/03_resumed.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_006/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_006/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/BASELINE.md",
+      "target": "docs/agent_first/run_006/TEMP_ROOT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_006/CHANGE_SCOPE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_006/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_006/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_006/examples/normal.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_006/examples/owner_crash_blocked.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_006/ENVIRONMENT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_006/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_006/TEMP_ROOT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_006/ITERATION_CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_006/examples/normal.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_006/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_006/examples/owner_crash_blocked.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_007/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_007/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_007/CHANGE_SCOPE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/SOURCE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/ENVIRONMENT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/TEMP_ROOT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/ITERATION_CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/CLEANUP_AUDIT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/examples/zero_exit_unvalidated_before.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/examples/zero_exit_unvalidated_after.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/examples/nonzero_exit_unvalidated_before.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/examples/nonzero_exit_unvalidated_after.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_007/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_007/examples/historical_invalid_after.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_008/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_008/TEST_CASES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_008/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_008/CLEANUP_AUDIT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/BASELINE.md",
+      "target": "docs/agent_first/run_008/CHANGE_SCOPE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_008/CHANGE_SCOPE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/TEST_CASES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/ENVIRONMENT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/EXAMPLE_INVOCATION.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/examples/plan.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/examples/accepted.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/examples/rejection.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/examples/complete.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/examples/diagnostic.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/PROCESS_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/EXAMPLE_LIFECYCLE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/EXAMPLE_WORKFLOW_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/EXAMPLE_CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/CLEANUP_AUDIT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_008/ITERATION_CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_008/USAGE.md",
+      "target": "docs/agent_first/run_008/EXAMPLE_INVOCATION.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_009/TEST_RESULTS.xml",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_009/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_009/TEST_CASES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_009/ITERATIONS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_009/EXAMPLE_FILE_INTEGRITY.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/ACCEPTANCE_MATRIX.md",
+      "target": "docs/agent_first/run_009/PROCESS_AND_CLEANUP_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/BASELINE.md",
+      "target": "docs/agent_first/run_009/BASELINE_HASHES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/BASELINE.md",
+      "target": "docs/agent_first/run_009/BASELINE_STATUS.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/BASELINE.md",
+      "target": "docs/agent_first/run_009/TEMP_ROOT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_009/CHANGE_SCOPE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_009/ENVIRONMENT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_009/TEST_OUTPUT.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/TEST_AND_PROCESS_EVIDENCE.md",
+      "target": "docs/agent_first/run_009/PROCESS_AND_CLEANUP_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/USAGE.md",
+      "target": "docs/agent_first/run_009/examples/profile.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_009/USAGE.md",
+      "target": "docs/agent_first/run_009/EXAMPLE_INVOCATIONS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_014/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_014/CURRENT_CLOSEOUT_PREVIEW.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_014/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_014/FINAL_AUDIT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_014/disposition_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_014/disposition_001/EXACT_REQUEST.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_014/disposition_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_014/disposition_001/DURABLE_RECEIPT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_014/disposition_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_014/disposition_001/EXCLUSIVE_MANAGEMENT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_014/disposition_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_014/disposition_001/LOCKED_ASSESSMENT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_014/disposition_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_014/disposition_001/VERIFICATION.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_015/verified_final/test_managed_two_normal_tasks_0.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_015/GUI_RECONNECTED.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_015/gui_final/product_entries_managed.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/USAGE.md",
+      "target": "examples/agent_first/R15_01_Start_TEST_Service.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/USAGE.md",
+      "target": "examples/agent_first/R15_02_Submit_Two_Tests.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/USAGE.md",
+      "target": "examples/agent_first/R15_03_Open_Dev_GUI.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/USAGE.md",
+      "target": "examples/agent_first/R15_05_View_Second_Task.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_015/USAGE.md",
+      "target": "examples/agent_first/R15_04_Stop_TEST_Service.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/ACCEPTANCE_MANIFEST.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_01_Check.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_02_Start_Service.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_03_Run_A_Then_B.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_04_View_A.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_05_View_B.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_01_Check.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_02_Start_Service.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_04_View_A.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_03_Run_A_Then_B.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_05_View_B.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_06_Read_A_Report.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_07_Read_B_Report.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/USAGE.md",
+      "target": "examples/agent_first/R16_08_Stop_Owner.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/PREFLIGHT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/POST_RUN_AUDIT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/FINAL_EVENTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/FINAL_RUN_A.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/FINAL_RUN_B.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/VALIDATIONS_A.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/VALIDATIONS_B.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/BEFORE_GUI_CLOSE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/AFTER_GUI_CLOSE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/GUI_RECONNECTED.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/MEASUREMENT_RESULT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/gui_A_reconnected.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/gui_B.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/REMAINING_STATE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_04_View_A.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_05_View_B.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_06_Read_A_Report.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "examples/agent_first/R16_07_Read_B_Report.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/DIAGNOSTIC_A.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_016/real_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_016/real_001/DIAGNOSTIC_B.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/BASELINE_AND_CHANGE_INVENTORY.md",
+      "target": "docs/agent_first/run_017/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/BASELINE_AND_CHANGE_INVENTORY.md",
+      "target": "docs/agent_first/run_017/GIT_BEFORE.txt",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/BASELINE_AND_CHANGE_INVENTORY.md",
+      "target": "docs/agent_first/run_017/SOURCE_SYMBOLS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/BASELINE_AND_CHANGE_INVENTORY.md",
+      "target": "docs/agent_first/run_017/SOURCE_ASSETS.csv",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/BASELINE_AND_CHANGE_INVENTORY.md",
+      "target": "docs/agent_first/run_017/GIT_DATA_REVIEW.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/PRODUCT_CAPABILITY_MATRIX.md",
+      "target": "docs/agent_first/run_017/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/TEST_AND_RELEASE_GATES.md",
+      "target": "docs/agent_first/run_017/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/TEST_AND_RELEASE_GATES.md",
+      "target": "docs/agent_first/run_017/TEST_CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_017/TEST_AND_RELEASE_GATES.md",
+      "target": "docs/agent_first/run_017/windows_evidence",
+      "classification": "MISSING_OR_DIRECTORY"
+    },
+    {
+      "source": "docs/agent_first/run_018/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_018/windows_evidence/normal_gui_lifecycle.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_018/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_018/windows_evidence/normal_gui_lifecycle.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_018/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_018/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_018/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_018/FINAL_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_020/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_020/windows_verified/fixed_worker_product.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_020/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_020/windows_verified/product_gui.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_020/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_020/windows_verified/empty_gui_product.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_020/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_020/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_022/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_022/WINDOWS_EVIDENCE_INDEX.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_022/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_022/FINAL_INVENTORY.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_022/CANDIDATE_CONTENT_REVIEW.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_022/CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/GIT_CHECKPOINT_PLAN.md",
+      "target": "docs/agent_first/run_022/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/GIT_CHECKPOINT_PLAN.md",
+      "target": "docs/agent_first/run_022/CANDIDATE_CONTENT_REVIEW.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md",
+      "target": "docs/agent_first/run_022/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md",
+      "target": "docs/agent_first/run_013/real_001/AFTER_GUI_CLOSE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md",
+      "target": "docs/agent_first/run_016/real_001/AFTER_GUI_CLOSE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md",
+      "target": "docs/agent_first/run_021b/real_001/EVIDENCE_SUMMARY.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/ENVIRONMENT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/UNEXECUTED_TEST_FILES.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/PRIVATE_RESIDUAL_REVIEW.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/WINDOWS_EVIDENCE_INDEX.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/windows/empty_gui_product.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/windows/fixed_worker_product.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_022/TEST_AND_DEPLOYMENT_REVIEW.md",
+      "target": "docs/agent_first/run_022/windows/test_product_standard_gui_full0.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_023/design/screenshots/02-overview.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_023/design/screenshots/03-runs.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_023/design/screenshots/04-classic.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_023/design/screenshots/01-empty.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/GUI_AUDIT.md",
+      "target": "docs/agent_first/run_023/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/GUI_AUDIT.md",
+      "target": "docs/agent_first/run_020/windows_verified/product_gui.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/01-empty.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/02-overview.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/03-runs.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/04-classic.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/wizard-en.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/05-service.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/06-agent.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/07-settings.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/08-disconnected.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/09-unknown.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/11-completed.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/10-empty-project.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/locale-zh-CN.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/locale-fr-FR.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/locale-de-DE.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/german-1100.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/wizard-fr-FR.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LAYOUT_AND_COMPONENTS.md",
+      "target": "docs/agent_first/run_023/design/screenshots/wizard-de-DE.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LOCALIZATION_SPEC.md",
+      "target": "docs/agent_first/run_023/design/strings.tsv",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_023/LOCALIZATION_SPEC.md",
+      "target": "docs/agent_first/run_023/design/build.py",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024/evidence/NATIVE_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024/evidence/RECOVERY_IPC.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024/FINAL_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024/CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024/CLEANUP_FINAL.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024/WINDOWS_EVIDENCE_INDEX.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/running.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/classic_connected.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/execution_return.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/de-DE_wizard.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/fr-FR_narrow.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/zh-CN_overview.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/en_agent.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024/screenshots/en_service.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/CLASSIC_REUSE_ANALYSIS.md",
+      "target": "docs/agent_first/run_024/screenshots/classic_connected.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/CURRENT_GUI_REVIEW.md",
+      "target": "docs/agent_first/run_024r/FINAL_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/Open_Cockpit_Prototype.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/screenshots/COMPARE_1600.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/screenshots/COMPARE_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/BASELINE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/FINAL_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/USAGE.md",
+      "target": "docs/agent_first/run_024r/Open_Cockpit_Prototype.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/USAGE.md",
+      "target": "docs/agent_first/run_024r/screenshots/COMPARE_1600.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/USAGE.md",
+      "target": "docs/agent_first/run_024r/screenshots/COMPARE_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/COMPARE_1600.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/A_overview_1600.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_live_1600_final.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/COMPARE_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/A_runs_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_live_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_live_1600_final.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_live_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_empty_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_classic_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_command_1600.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_evidence_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_recovery_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_integration_1600.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_zh_125.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_fr_125.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_de_150.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_de_150_recovery.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/screenshots/B_disconnected_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+      "target": "docs/agent_first/run_024r/FINAL_CHECKS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/screenshots/cockpit_1600.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/screenshots/cockpit_1366.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/screenshots/agent_command.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/screenshots/selection_linked.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/CURRENT_TEST_CLEANUP.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/PRESERVATION.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/RETAINED_TEST_DATA_AUDIT.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/LEGACY_TEMP_AUDIT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/RETAINED_TEST_DATA_AUDIT.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/REPARSE_REVIEW.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/RETAINED_TEST_DATA_AUDIT.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/TEMP_ACL_AUDIT.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/RETAINED_TEST_DATA_AUDIT.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/CREDENTIAL_FILE_ACL.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/RETAINED_TEST_DATA_AUDIT.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/UNCERTAIN_QUERY_REVIEW.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/SEMANTIC_REVIEW.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/evidence/SELECTION_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/SEMANTIC_REVIEW.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/PRESERVATION.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/SEMANTIC_REVIEW.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/SCREENSHOT_MANIFEST.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/TEST_AND_ACCEPTANCE.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/TEST_RESULTS.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/TEST_AND_ACCEPTANCE.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/evidence/NATIVE_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/final_acceptance_001/TEST_AND_ACCEPTANCE.md",
+      "target": "docs/agent_first/run_024r/final_acceptance_001/evidence/SELECTION_EVIDENCE.json",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/integration_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/integration_001/screenshots/cockpit_1600x900.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/integration_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/integration_001/screenshots/cockpit_1366x768.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/integration_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/integration_001/screenshots/agent_command.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/integration_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/integration_001/screenshots/selection_linked.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/integration_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/integration_001/screenshots/classic_connected.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/refinement_001/Open_Refined_Prototype.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/refined_1600_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/refined_1366_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/agent_command_1600_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/FINAL_SUMMARY.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/queue_selected_1366_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+      "target": "docs/agent_first/run_024r/refinement_001/Open_Refined_Prototype.vbs",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/refined_1600_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/refined_1366_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/agent_command_1600_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/queue_selected_1366_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/result_selected_1600_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    },
+    {
+      "source": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+      "target": "docs/agent_first/run_024r/refinement_001/screenshots/de_150_drawer_client.png",
+      "classification": "LOCAL_EVIDENCE_EXCLUDED"
+    }
+  ],
+  "scope": "Static product relative imports and literal documentation links; dynamic historical scripts may still require old local manifests. No script executed by link audit."
+}

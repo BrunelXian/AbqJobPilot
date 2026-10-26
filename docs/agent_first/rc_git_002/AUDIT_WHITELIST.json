@@ -1,0 +1,338 @@
+[
+  {
+    "path": "docs/agent_first/rc_git_001/ADD_MODIFY_WHITELIST.txt",
+    "status": "ADD",
+    "bytes": 3145,
+    "sha256": "2a927150e8ea577914c89f203c6ddfc47af2d86e87868f8acd912743e0d9e611"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/AUDIT_ARTIFACT_WHITELIST.json",
+    "status": "ADD",
+    "bytes": 7176,
+    "sha256": "e9fe4e4f2438aca23db916b95092591fb59abd2eb1c61ebfbd3a6bf0f086af63"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/BASELINE_AND_INVENTORY.md",
+    "status": "ADD",
+    "bytes": 3655,
+    "sha256": "468b1d97ffb70dfe494a7ac4c96f18673c16537c3dcfedb48914ecf216774cb9"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/CANDIDATE_SNAPSHOT_WHITELIST.json",
+    "status": "ADD",
+    "bytes": 223904,
+    "sha256": "962226da4809ac30bdca4bcf9ddc8250da4528d5cb903fbe897a215527e55224"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/CHANGE_ESTIMATE.json",
+    "status": "ADD",
+    "bytes": 1020,
+    "sha256": "4e4d4bd6322c7a87d5102c5d7879112b1dc39cb98b2f5b158c5d18a0a1439fe1"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/COMMIT_GROUPS.json",
+    "status": "ADD",
+    "bytes": 41697,
+    "sha256": "c836ffe45aeb59a7d1d5515ce9d28c94a621e0281152f20017daa83a184c2b46"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/COMMIT_PLAN.md",
+    "status": "ADD",
+    "bytes": 3828,
+    "sha256": "ca0361db1ec7e443a5b8f6caec78fdf1f3adc00eecbafb62ae0ef6c943d1a184"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/DEPENDENCY_AND_SECURITY.md",
+    "status": "ADD",
+    "bytes": 7431,
+    "sha256": "341748667ed2ca11ccb3196dc4730b1a62706a3102824e4fe5c7ae9cba06b8c5"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/DEPENDENCY_AUDIT.json",
+    "status": "ADD",
+    "bytes": 64152,
+    "sha256": "5986bb66d7ee8b693b21b38129f153b7ad1ffe1ee31dd99c24a47f0db18c2218"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/EXCLUSIONS.json",
+    "status": "ADD",
+    "bytes": 839457,
+    "sha256": "2234b79a75a1fd5f5df0774018f6f60056d4f955b16984649508719400f1f17b"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/FILE_CLASSIFICATION.json",
+    "status": "ADD",
+    "bytes": 1063358,
+    "sha256": "d523fe495b75000e1e22153b2ff11818a77846189fd5fc1723c5ed7e0209fe64"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 2964,
+    "sha256": "01018209efae3f1511f8206ae35db6f741d94f717641a74e3f396790dbf878c5"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/FIXTURE_REVIEW.json",
+    "status": "ADD",
+    "bytes": 3296,
+    "sha256": "aed43ead4f6f8dc96f22609d4842ee9aeb198f379fe5e38486a5cb85110b6cbe"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/GIT_DIFF_CHECK.txt",
+    "status": "ADD",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/GROUP_1_PATHS.txt",
+    "status": "ADD",
+    "bytes": 1286,
+    "sha256": "62ec1a9b9bc3a0818f14d57389d4508016c99a8101d0b5b06db6e26e840feab8"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/GROUP_2_PATHS.txt",
+    "status": "ADD",
+    "bytes": 1859,
+    "sha256": "c33627b62f81e24db6c263ee5d23784e0101fac0cc9494ca2592ee9f81e41fe0"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/LANGUAGE_REVIEW.json",
+    "status": "ADD",
+    "bytes": 255,
+    "sha256": "9d42146159d668a1d2130726f6eb91511147e17f99f253fb0dd938d3457210ff"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/LOCAL_UNTRACKED_EXCLUSIONS.txt",
+    "status": "ADD",
+    "bytes": 27608,
+    "sha256": "761ae0e05d5538705f2458e39816aa57a8834d55c3354b807e9a2412d513c57c"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/MANUAL_DECISIONS.txt",
+    "status": "ADD",
+    "bytes": 138,
+    "sha256": "1eb47a6408c080dda737a7864929e130e9052ca0784e5df3f0c3eb34a8d2b31c"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/PRESERVATION.json",
+    "status": "ADD",
+    "bytes": 342,
+    "sha256": "a78030786f7b3ce82877de3ee79f75adebd2f715bf01b0c81bfa16a344f35888"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/RELEASE_BLOCKERS.md",
+    "status": "ADD",
+    "bytes": 2447,
+    "sha256": "4546c668a0c1b91d8f002233d180303ce81806312248a20342b8d1b910fd3ded"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/REMOTE_SCOPE.json",
+    "status": "ADD",
+    "bytes": 272,
+    "sha256": "d6f2aeb52840c930d8b47ca7d0e26ef8ff08427fcce9a9023071f70c2fc52b03"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/SENSITIVE_FINDING.json",
+    "status": "ADD",
+    "bytes": 794,
+    "sha256": "d9790314694975bfae042f7b1d0465b113815050ae56cb3d8793834d160c072e"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/TEST_AND_REPRODUCIBILITY.md",
+    "status": "ADD",
+    "bytes": 2897,
+    "sha256": "ad66e6b9df6367239fd360900389b277cd5ff0c22992da4ab292e9265ddcc416"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/TEST_RESULTS.json",
+    "status": "ADD",
+    "bytes": 3959,
+    "sha256": "577fc884bddf4e41ae0733bd93aaebe547ccb44c79ec2c80364e1f5196154006"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/TRACKED_EXCLUSION_PROPOSAL.txt",
+    "status": "ADD",
+    "bytes": 67679,
+    "sha256": "42e3bcb9ccb4e21f9e2999af8945a856f44790667a0984f70c1733a4e1cd2efe"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/audit_checkpoint.py",
+    "status": "ADD",
+    "bytes": 4905,
+    "sha256": "6773e120d06859cc58080f0c132e2b0fa00014ae4daf0b4be36739c3377ddd7d"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/classify_candidate.py",
+    "status": "ADD",
+    "bytes": 8316,
+    "sha256": "691c8e02fda2f3d54425adabaeed09c8222c53c5faae107c7ff29fc652ad5291"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/finalize_audit.py",
+    "status": "ADD",
+    "bytes": 5675,
+    "sha256": "7a682b936d15160e056d2afd85353a2c4dd08f6a1299e196f16f9295a474b8f7"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/isolation_TEST.xml",
+    "status": "ADD",
+    "bytes": 1473,
+    "sha256": "45662a63e4ff339a53622c811c903e61efb59e720db73a74a989ee185389fcdf"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/semantics_TEST.xml",
+    "status": "ADD",
+    "bytes": 1196,
+    "sha256": "22b8e89b1a5c18bb424f029d3d09fd117a34f7b1ee08725dc1a438a0a7f4dfeb"
+  },
+  {
+    "path": "docs/agent_first/rc_git_001/verify_snapshot.py",
+    "status": "ADD",
+    "bytes": 2692,
+    "sha256": "02f48132f679774fe5bf92f2152453fe2758aa0b36d7d66724dfdda7750d2001"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/CANDIDATE_COUNTS.json",
+    "status": "ADD",
+    "bytes": 1672,
+    "sha256": "8f1cf7e6cbd0dffac7632aa973ddd18e1b828187bab595a13a684c68cfefcd12"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/CLOSURE_REVIEW.json",
+    "status": "ADD",
+    "bytes": 385,
+    "sha256": "df348740cf1e39fde7db095a4d73353e6b2f5992064898019d91bc067a7ce08c"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/CREDENTIAL_RISK_REVIEW.md",
+    "status": "ADD",
+    "bytes": 3809,
+    "sha256": "5799153b7cefe5c67211e61147829be103cd80affd2eb7958ba665ad4137aa8d"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/FINAL_SUMMARY.md",
+    "status": "ADD",
+    "bytes": 3214,
+    "sha256": "5cb131cd54beaf9e4ff5cdf16dc585c93cc59812a3d1cc6ea432c5537274ff51"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/FIXTURE_REPLACEMENT_REPORT.md",
+    "status": "ADD",
+    "bytes": 2760,
+    "sha256": "08e37ac288ced166087147c011f8949e181c5de534ca7f3cfcad3c99673608d0"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/HISTORY_AND_REMOTE_REACHABILITY.md",
+    "status": "ADD",
+    "bytes": 2798,
+    "sha256": "42504ab54d173fc67041c2e912be1ae1b6423b1965c50955b80ab540a1c3fa7f"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/HISTORY_METADATA.json",
+    "status": "ADD",
+    "bytes": 3497,
+    "sha256": "4af11a1725c5a2c22d705ffc9ccbbd2eab18c3935416a533b33a8682c3ba61b1"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/NEW_TEST_CLEANUP_SUMMARY.json",
+    "status": "ADD",
+    "bytes": 685,
+    "sha256": "54c0c69654cce0ef41f915f72a08eecdbb821e384a7fc3a7a945535d1aa1e01b"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/PRESERVATION.json",
+    "status": "ADD",
+    "bytes": 3606,
+    "sha256": "1785c098bf7d6a04b317d3be2bfebf454855118a04faa8ca812592e3c3367da5"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/PROPOSED_UNTRACK.json",
+    "status": "ADD",
+    "bytes": 11592,
+    "sha256": "7bc17e76f5f10c8d9a26d9065d21628f288466e0c709b6e05ed0ae6f2ee193d5"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/PROPOSED_UNTRACK_PATHS.txt",
+    "status": "ADD",
+    "bytes": 1985,
+    "sha256": "48b52ed524c6fd8199d66d4bd4d99369d1cd514a3ebf9745df0f3b81bd52360e"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/REDACTED_VALUE_SCAN.json",
+    "status": "ADD",
+    "bytes": 165,
+    "sha256": "fb56920c5327ed49e142d5e6643f44f14c8b93f7e176d8c80baa7a945bb09c19"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/REDACTION_RECEIPT.json",
+    "status": "ADD",
+    "bytes": 2666,
+    "sha256": "872cb0f048717bd2590adf171cf1192eb70479e0889b59b2837abcb3de179ad5"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/RELEASE_EXCLUSIONS.json",
+    "status": "ADD",
+    "bytes": 1063,
+    "sha256": "c322d86f827adf07d08dd380862fabcb1a03101984e9cab8e262370905eccab9"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/RELEASE_RUNTIME_WHITELIST.json",
+    "status": "ADD",
+    "bytes": 22032,
+    "sha256": "6f8b77941f558b810c9228b603c6deef4338bdd3792920cb782350d3a8c508b7"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/RETAINED_ROOTS_EXCLUSION.json",
+    "status": "ADD",
+    "bytes": 462,
+    "sha256": "dc2648e42b504edbe08940b2ce43b6b8dc270ff0b75db1f15877cf6ec2b9f8f7"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/SNAPSHOT_FILES.json",
+    "status": "ADD",
+    "bytes": 77385,
+    "sha256": "22b30dab10012e35734fe3ccb1c935098bad97e5043eec975fa7006c41908e60"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/TEST_AND_ACCEPTANCE.md",
+    "status": "ADD",
+    "bytes": 4519,
+    "sha256": "d8aa19e6d50cc5bcd648368814538e06fe9e843ed24e1e6ce8971e9c9d81f15e"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/TEST_RESULTS.json",
+    "status": "ADD",
+    "bytes": 231882,
+    "sha256": "2b78aa07d6779730ef0f0f18f01488df46f54b7f5f4de137ac774b1686cbe945"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/TRACKED_EXCLUSION_REVIEW.json",
+    "status": "ADD",
+    "bytes": 559865,
+    "sha256": "8b7171cb7f19c5756c4df31b81864b158c40b62a596674fa731fae4ec475d5bc"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/TRACKED_VS_RELEASE_EXCLUSIONS.md",
+    "status": "ADD",
+    "bytes": 2137,
+    "sha256": "8a7f0eff45a1e9830db8d7258d5d529e9086b86cb564a5bd6e87e2c546838f91"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/UPDATED_COMMIT_PLAN.md",
+    "status": "ADD",
+    "bytes": 3729,
+    "sha256": "e873aed39cc333600f54f42971086a5bccea005b1354e30fb05ede1412d587d3"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/prepare_snapshot.py",
+    "status": "ADD",
+    "bytes": 988,
+    "sha256": "cfac220a339df775e7c83dfd88f4485ad54a8e832b139b69e20f70d17ede8202"
+  },
+  {
+    "path": "docs/agent_first/rc_git_002/run_regression.py",
+    "status": "ADD",
+    "bytes": 5846,
+    "sha256": "5245b2ac510320e4a5a42dec93ff158f24a9c7bbbe9b65726df2333f0ba2fac1"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "tracked_modified": 19,
+  "untracked_additions": 52,
+  "groups": {
+    "1": 40,
+    "2": 31
+  },
+  "new_file_lines": 4166,
+  "existing_tracked_numstat": "8\t0\tabqjobpilot/execution/client.py\n2\t1\tabqjobpilot/execution/interruption_probe.py\n6\t1\tabqjobpilot/execution/process_handles.py\n18\t4\tabqjobpilot/execution/reconciliation.py\n4\t1\tabqjobpilot/execution/store.py\n9\t1\tabqjobpilot/execution/supervisor.py\n17\t5\tabqjobpilot/execution_gui.py\n17\t9\tabqjobpilot/gui_app.py\n6\t1\tabqjobpilot/gui_presentation.py\n2\t2\ttests/run018_gui.py\n2\t2\ttests/run019_gui.py\n8\t4\ttests/run020_gui.py\n3\t3\ttests/test_attachment_gui.py\n2\t2\ttests/test_execution_isolation.py\n1\t1\ttests/test_interruption_probe.py\n4\t3\ttests/test_interruption_windows.py\n1\t1\ttests/test_product_standard_windows.py\n3\t3\ttests/test_product_windows.py\n1\t1\ttests/test_service_lifecycle.py\n",
+  "tracked_exclusion_proposals": 1159,
+  "does_not_include_future_fixture_changes_or_this_audit_reports": true
+}

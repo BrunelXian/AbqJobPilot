@@ -1,0 +1,12 @@
+{
+  "source": "docs/agent_first/run_024r/final_acceptance_001/LEGACY_TEMP_AUDIT.json",
+  "source_sha256": "261aed8d63edfbd47f62923f30be40a299d25d1091e760cc01c854dcaac74554",
+  "old_root_count": 45,
+  "all_outside_repository": true,
+  "revisited_or_deleted": false,
+  "excluded_prefixes": [
+    "docs/agent_first/rc_git_001/local_verification/",
+    "docs/agent_first/rc_git_002/local_verification/"
+  ],
+  "no_current_OS_claim_for_old_roots": true
+}

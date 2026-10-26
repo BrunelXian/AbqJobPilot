@@ -1,0 +1,102 @@
+{
+  "path": "docs/agent_first/run_022/CLEANUP.json",
+  "commits": [
+    "9553755a24ff521dd2ac694ea39cab5a03f88466"
+  ],
+  "local_refs": [
+    {
+      "ref": "refs/backup/dev-recovery-20261021-stash",
+      "commit": "48f0e911a9e3d9b744aecc1ac244adcfe21e49e6",
+      "contains_sensitive_HEAD": false,
+      "query_exit": 1,
+      "object_type": "commit"
+    },
+    {
+      "ref": "refs/codex/turn-diffs/checkpoints/66ec5f4ff3283ecebd885e6bdff6c7d8/a215a13a3f33e5473596d27c09203167/1792950051378/08fc8b74-afb8-4ea0-af20-08227837e79c",
+      "commit": "41bf6ceb7b25109f3188b4e4905fc449a2a4a705",
+      "contains_sensitive_HEAD": null,
+      "query_exit": 128,
+      "object_type": "tree",
+      "same_sensitive_blob_at_path": true
+    },
+    {
+      "ref": "refs/codex/turn-diffs/checkpoints/7795ec962f21ef131bc9f1e1686ad45f/f3bd9ce14d10a20a36e207bc398a3fe3/1792590499991/0e3eb4b8-fa22-4cac-a98d-d3afa44bb471",
+      "commit": "b7024f67b715c9337a44fb207cad367320aba885",
+      "contains_sensitive_HEAD": null,
+      "query_exit": 128,
+      "object_type": "tree",
+      "same_sensitive_blob_at_path": null
+    },
+    {
+      "ref": "refs/codex/turn-diffs/checkpoints/a924752c8ea92d61072df8ba7ed60bd3/820bcf07e5a76a0185ea463a553df243/1792576622273/705d2464-2a4c-4045-ad4d-646fe3d3a0b9",
+      "commit": "7ff38555eb8bff12b829246ebb617c0050ddf9f3",
+      "contains_sensitive_HEAD": null,
+      "query_exit": 128,
+      "object_type": "tree",
+      "same_sensitive_blob_at_path": null
+    },
+    {
+      "ref": "refs/heads/Develop",
+      "commit": "9553755a24ff521dd2ac694ea39cab5a03f88466",
+      "contains_sensitive_HEAD": true,
+      "query_exit": 0,
+      "object_type": "commit"
+    },
+    {
+      "ref": "refs/heads/codex/main-release-0.2.2",
+      "commit": "0dfdb22205535c88d3ef068d895c15b6a1ab051b",
+      "contains_sensitive_HEAD": false,
+      "query_exit": 1,
+      "object_type": "commit"
+    },
+    {
+      "ref": "refs/heads/main",
+      "commit": "7012133e7cc0176bb3e56fc24d7154ee3b90bb81",
+      "contains_sensitive_HEAD": false,
+      "query_exit": 1,
+      "object_type": "commit"
+    },
+    {
+      "ref": "refs/remotes/origin/Develop",
+      "commit": "9553755a24ff521dd2ac694ea39cab5a03f88466",
+      "contains_sensitive_HEAD": true,
+      "query_exit": 0,
+      "object_type": "commit"
+    },
+    {
+      "ref": "refs/remotes/origin/HEAD",
+      "commit": "7012133e7cc0176bb3e56fc24d7154ee3b90bb81",
+      "contains_sensitive_HEAD": false,
+      "query_exit": 1,
+      "object_type": "commit"
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "commit": "7012133e7cc0176bb3e56fc24d7154ee3b90bb81",
+      "contains_sensitive_HEAD": false,
+      "query_exit": 1,
+      "object_type": "commit"
+    }
+  ],
+  "remote_advertised_refs": [
+    "9553755a24ff521dd2ac694ea39cab5a03f88466\trefs/heads/Develop",
+    "7012133e7cc0176bb3e56fc24d7154ee3b90bb81\trefs/heads/main"
+  ],
+  "anonymous_metadata": [
+    {
+      "url": "https://api.github.com/repos/BrunelXian/AbqJobPilot",
+      "method": "GET",
+      "anonymous": true,
+      "status": 200,
+      "private": false,
+      "visibility": "public"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/BrunelXian/AbqJobPilot/9553755a24ff521dd2ac694ea39cab5a03f88466/docs/agent_first/run_022/CLEANUP.json",
+      "method": "HEAD",
+      "anonymous": true,
+      "status": 200
+    }
+  ],
+  "history_not_modified": true
+}

@@ -1,0 +1,15 @@
+{
+  "keys": {
+    "en": 168,
+    "zh-CN": 168,
+    "fr-FR": 168,
+    "de-DE": 168
+  },
+  "missing_or_parameter_differences": [],
+  "default": "en",
+  "preview_languages": [
+    "fr-FR",
+    "de-DE"
+  ],
+  "native_review_not_repeated": true
+}

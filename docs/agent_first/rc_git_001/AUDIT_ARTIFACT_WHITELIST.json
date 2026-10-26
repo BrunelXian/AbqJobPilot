@@ -1,0 +1,180 @@
+{
+  "body": {
+    "schema": "rc-g01-audit-candidate-v1",
+    "state": "DRAFT_BLOCKED_NOT_AUTHORIZATION",
+    "base_HEAD": "9553755a24ff521dd2ac694ea39cab5a03f88466",
+    "source_delta_file": "ADD_MODIFY_WHITELIST.txt",
+    "functional_group_count": 40,
+    "historical_document_group_count": 31,
+    "audit_artifacts": [
+      {
+        "path": "docs/agent_first/rc_git_001/BASELINE_AND_INVENTORY.md",
+        "bytes": 3655,
+        "sha256": "468b1d97ffb70dfe494a7ac4c96f18673c16537c3dcfedb48914ecf216774cb9"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/DEPENDENCY_AND_SECURITY.md",
+        "bytes": 7431,
+        "sha256": "341748667ed2ca11ccb3196dc4730b1a62706a3102824e4fe5c7ae9cba06b8c5"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/TEST_AND_REPRODUCIBILITY.md",
+        "bytes": 2897,
+        "sha256": "ad66e6b9df6367239fd360900389b277cd5ff0c22992da4ab292e9265ddcc416"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/RELEASE_BLOCKERS.md",
+        "bytes": 2447,
+        "sha256": "4546c668a0c1b91d8f002233d180303ce81806312248a20342b8d1b910fd3ded"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/COMMIT_PLAN.md",
+        "bytes": 3828,
+        "sha256": "ca0361db1ec7e443a5b8f6caec78fdf1f3adc00eecbafb62ae0ef6c943d1a184"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/FINAL_SUMMARY.md",
+        "bytes": 2964,
+        "sha256": "01018209efae3f1511f8206ae35db6f741d94f717641a74e3f396790dbf878c5"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/audit_checkpoint.py",
+        "bytes": 4905,
+        "sha256": "6773e120d06859cc58080f0c132e2b0fa00014ae4daf0b4be36739c3377ddd7d"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/classify_candidate.py",
+        "bytes": 8316,
+        "sha256": "691c8e02fda2f3d54425adabaeed09c8222c53c5faae107c7ff29fc652ad5291"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/verify_snapshot.py",
+        "bytes": 2692,
+        "sha256": "02f48132f679774fe5bf92f2152453fe2758aa0b36d7d66724dfdda7750d2001"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/finalize_audit.py",
+        "bytes": 5675,
+        "sha256": "7a682b936d15160e056d2afd85353a2c4dd08f6a1299e196f16f9295a474b8f7"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/FILE_CLASSIFICATION.json",
+        "bytes": 1063358,
+        "sha256": "d523fe495b75000e1e22153b2ff11818a77846189fd5fc1723c5ed7e0209fe64"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/CANDIDATE_SNAPSHOT_WHITELIST.json",
+        "bytes": 223904,
+        "sha256": "962226da4809ac30bdca4bcf9ddc8250da4528d5cb903fbe897a215527e55224"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/EXCLUSIONS.json",
+        "bytes": 839457,
+        "sha256": "2234b79a75a1fd5f5df0774018f6f60056d4f955b16984649508719400f1f17b"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/FIXTURE_REVIEW.json",
+        "bytes": 3296,
+        "sha256": "aed43ead4f6f8dc96f22609d4842ee9aeb198f379fe5e38486a5cb85110b6cbe"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/DEPENDENCY_AUDIT.json",
+        "bytes": 64152,
+        "sha256": "5986bb66d7ee8b693b21b38129f153b7ad1ffe1ee31dd99c24a47f0db18c2218"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/LANGUAGE_REVIEW.json",
+        "bytes": 255,
+        "sha256": "9d42146159d668a1d2130726f6eb91511147e17f99f253fb0dd938d3457210ff"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/TEST_RESULTS.json",
+        "bytes": 3959,
+        "sha256": "577fc884bddf4e41ae0733bd93aaebe547ccb44c79ec2c80364e1f5196154006"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/COMMIT_GROUPS.json",
+        "bytes": 41697,
+        "sha256": "c836ffe45aeb59a7d1d5515ce9d28c94a621e0281152f20017daa83a184c2b46"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/CHANGE_ESTIMATE.json",
+        "bytes": 1020,
+        "sha256": "4e4d4bd6322c7a87d5102c5d7879112b1dc39cb98b2f5b158c5d18a0a1439fe1"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/PRESERVATION.json",
+        "bytes": 342,
+        "sha256": "a78030786f7b3ce82877de3ee79f75adebd2f715bf01b0c81bfa16a344f35888"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/SENSITIVE_FINDING.json",
+        "bytes": 794,
+        "sha256": "d9790314694975bfae042f7b1d0465b113815050ae56cb3d8793834d160c072e"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/REMOTE_SCOPE.json",
+        "bytes": 272,
+        "sha256": "d6f2aeb52840c930d8b47ca7d0e26ef8ff08427fcce9a9023071f70c2fc52b03"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/ADD_MODIFY_WHITELIST.txt",
+        "bytes": 3145,
+        "sha256": "2a927150e8ea577914c89f203c6ddfc47af2d86e87868f8acd912743e0d9e611"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/GROUP_1_PATHS.txt",
+        "bytes": 1286,
+        "sha256": "62ec1a9b9bc3a0818f14d57389d4508016c99a8101d0b5b06db6e26e840feab8"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/GROUP_2_PATHS.txt",
+        "bytes": 1859,
+        "sha256": "c33627b62f81e24db6c263ee5d23784e0101fac0cc9494ca2592ee9f81e41fe0"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/TRACKED_EXCLUSION_PROPOSAL.txt",
+        "bytes": 67679,
+        "sha256": "42e3bcb9ccb4e21f9e2999af8945a856f44790667a0984f70c1733a4e1cd2efe"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/LOCAL_UNTRACKED_EXCLUSIONS.txt",
+        "bytes": 27608,
+        "sha256": "761ae0e05d5538705f2458e39816aa57a8834d55c3354b807e9a2412d513c57c"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/MANUAL_DECISIONS.txt",
+        "bytes": 138,
+        "sha256": "1eb47a6408c080dda737a7864929e130e9052ca0784e5df3f0c3eb34a8d2b31c"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/GIT_DIFF_CHECK.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/isolation_TEST.xml",
+        "bytes": 1473,
+        "sha256": "45662a63e4ff339a53622c811c903e61efb59e720db73a74a989ee185389fcdf"
+      },
+      {
+        "path": "docs/agent_first/rc_git_001/semantics_TEST.xml",
+        "bytes": 1196,
+        "sha256": "22b8e89b1a5c18bb424f029d3d09fd117a34f7b1ee08725dc1a438a0a7f4dfeb"
+      }
+    ],
+    "actions_performed": [],
+    "push_allowed": false,
+    "excluded": {
+      "tracked_proposal": "TRACKED_EXCLUSION_PROPOSAL.txt",
+      "untracked": "LOCAL_UNTRACKED_EXCLUSIONS.txt",
+      "manual": "MANUAL_DECISIONS.txt",
+      "this_audit_local": "AUDIT_LOCAL_EXCLUSIONS.json"
+    },
+    "hash_rule": "UTF-8 json.dumps(body,sort_keys=True,separators=(comma,colon),ensure_ascii=False). Manifest file itself excluded from its own body; all other approved artifact hashes explicit.",
+    "total_current_delta_paths": 103,
+    "tracked_modified": 19,
+    "new_additions": 84
+  },
+  "body_sha256": "14e5eb69cf28d6c01e78c41cefc2d17c9d23346fa2d03b24ae755d4dc65dbc19"
+}

@@ -1,0 +1,106 @@
+{
+  "HEAD": "9553755a24ff521dd2ac694ea39cab5a03f88466",
+  "branch": "Develop",
+  "version": "0.3.0.dev0",
+  "index_sha256_before": "b0d9c5d4677a5023a874b982b8d706894b5b1cfca700abe56c692f9ad5a189e6",
+  "index_sha256_after": "b0d9c5d4677a5023a874b982b8d706894b5b1cfca700abe56c692f9ad5a189e6",
+  "baseline_files": 2937,
+  "planned_changed_existing_files": [
+    {
+      "path": "README.md",
+      "status": "MODIFY",
+      "bytes": 27501,
+      "sha256": "eb7fa3582aa7ee2da867f43dceb91f4a5018d8dac1d49d528d6c259c509013b3"
+    },
+    {
+      "path": "README_CN.md",
+      "status": "MODIFY",
+      "bytes": 24919,
+      "sha256": "f2c2881e8b419cd10693787c4ec4d2e13d741f9646cb832d95bfb96c122db9ad"
+    },
+    {
+      "path": "docs/agent_first/run_022/CLEANUP.json",
+      "status": "MODIFY",
+      "bytes": 1402706,
+      "sha256": "0cfaa016cfee2c738d7591f93138aaa2350dbdcf4e60c359500a128aafd7a5fc"
+    },
+    {
+      "path": "docs/agent_first/run_022/verify_cleanup.py",
+      "status": "MODIFY",
+      "bytes": 5174,
+      "sha256": "758fd98c11a77f38d842fc3d0e77dd9bd2233bc77e71bf4fe0650be1e1e838b6"
+    },
+    {
+      "path": "tests/run013_process.py",
+      "status": "MODIFY",
+      "bytes": 3599,
+      "sha256": "d1039610f81723d273f3633bcd98b6923c993452dd5ebe36ae16355ad5ed9539"
+    },
+    {
+      "path": "tests/test_product_project.py",
+      "status": "MODIFY",
+      "bytes": 7714,
+      "sha256": "05c161c0fa0e189c68e8fdcc434a1574a4aa551ebadb1ba29cc17fb1a02ac8b9"
+    },
+    {
+      "path": "tests/test_product_standard_control.py",
+      "status": "MODIFY",
+      "bytes": 17406,
+      "sha256": "a47a5ac8de6260f433b15723699f0633edcb9ae1950dab496ddbffc84ddf3c8c"
+    },
+    {
+      "path": "tests/test_product_standard_windows.py",
+      "status": "MODIFY",
+      "bytes": 12573,
+      "sha256": "ae4f73d07a134232f9d6f98291e0c452c092c44079df7f973b6210b71d1c70ee"
+    },
+    {
+      "path": "tests/test_public_client_example.py",
+      "status": "MODIFY",
+      "bytes": 4600,
+      "sha256": "79a9e58efdb91eb6db3c9596a6330d04a838e0b543864cdff58b3af78bcdaaa4"
+    },
+    {
+      "path": "tests/test_standard_backend.py",
+      "status": "MODIFY",
+      "bytes": 15042,
+      "sha256": "deb922c0b8b263695dae2fee87e41923f31ad3d03d82dccce84a68cb55cd7d12"
+    },
+    {
+      "path": "tests/test_standard_managed.py",
+      "status": "MODIFY",
+      "bytes": 12826,
+      "sha256": "7f24459f408ff5e0720b30ded1817f413e57d17d992d1c95d4499427660185a5"
+    },
+    {
+      "path": "tests/test_standard_managed_windows.py",
+      "status": "MODIFY",
+      "bytes": 11016,
+      "sha256": "b11ffb085b1adaa2249f49725fdb0f909483194be8ff2c33c0ca82ee5629c6aa"
+    },
+    {
+      "path": "tests/test_standard_pair_client.py",
+      "status": "MODIFY",
+      "bytes": 3245,
+      "sha256": "d82a3b1a8a9de556fa30c0c0fb60b9cece264c2d9f767e731578aee738dd1ea6"
+    }
+  ],
+  "unplanned_changed_files": [],
+  "missing_files": [],
+  "all_other_baseline_hashes_unchanged": true,
+  "original_fixture_hashes": [
+    {
+      "path": "docs/agent_first/run_011/result_review_001/ORIGINAL_DAT.bin",
+      "status": "KEEP_HEAD",
+      "bytes": 10334,
+      "sha256": "23ac0cdd7714ef956f481fdf1ec97530cd0cf44a160ae286cd689400efc3f045"
+    },
+    {
+      "path": "docs/agent_first/run_007/examples/historical_invalid_after.json",
+      "status": "KEEP_HEAD",
+      "bytes": 29955,
+      "sha256": "b22d2750ebe7025a76b62c199eabddb10c47a5b47d2326cbc46442d291fe43e3"
+    }
+  ],
+  "product_core_and_GUI_unchanged_this_turn": true
+}

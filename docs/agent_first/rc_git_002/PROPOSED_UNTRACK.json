@@ -1,0 +1,211 @@
+[
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/HOST_REPORT.json.ready",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/controller_ready.json.ready",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/controller_reference_held.json.ready",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/function_returned.json.ready",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/observations/controller_events.jsonl",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "743d6c01743f3bddc7cf0cb5943fd95e2e36ff6029439db6a7fd491683e1e9df",
+    "bytes": 2408,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/observations/stderr.bin",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/observations/stdout.bin",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/observer_context.json.ready",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/worker_launcher.json.ready",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/host_policy_candidate_001/operator_evidence/worker_references_held.json.ready",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_input_change_durin0/case_df10abf5/engineering/input.txt",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "d67e2e944994496c8d8ec76eed0cf9f09679448d584b532bebf941852a37f5ed",
+    "bytes": 7,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_report_read_does_n0/case_4ae0e9e3/observations/attempt.json",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "2aace9cbc7ed9aa45684a699f1229fe54adb9e271d703b29bba6a01f0fbf6a10",
+    "bytes": 608,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_report_read_does_n0/case_4ae0e9e3/observations/controller_events.jsonl",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "961aba04a5a265c40905111d9bbcf73fe22a4b4310b716acaca86135758038c6",
+    "bytes": 415,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_report_read_does_n0/case_4ae0e9e3/observations/controller_report.json",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e56ed4236cd20c64c6b88a057376a39c940475939fd3d21ab5a173d81932a972",
+    "bytes": 605,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_report_read_does_n0/case_4ae0e9e3/observations/stderr.bin",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_011/result_review_001/old_tests_tmp_001/test_r11_07_report_read_does_n0/case_4ae0e9e3/observations/stdout.bin",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_013/real_001/PUBLIC_OBSERVATIONS.jsonl",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "b7fc96c8be4a1d8a03353720766900e30174d0e608b755671a6cddad72c96d39",
+    "bytes": 4982433,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_016/real_001/PUBLIC_OBSERVATIONS.jsonl",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "dbe63ee9a4c12f876894725fd84737a598335e99954dfb75cd8818eafaee29d1",
+    "bytes": 629241,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  },
+  {
+    "path": "docs/agent_first/run_021b/real_001/OBSERVATIONS.jsonl",
+    "category": "A_UNTRACK_PROPOSAL_ONLY",
+    "reason": "Transient or bulk execution record; preserve local original/history; separate exact index approval required.",
+    "sha256": "7609d42c4370b26c39c5e889a48feed498c07dfbbd87d2dd9d3b92834d3a08de",
+    "bytes": 4110669,
+    "tracked": true,
+    "credential_shaped_field_locations": [],
+    "history_contains_original": true,
+    "history_effect": "None: index removal would not erase ancestor objects; not authorized here"
+  }
+]

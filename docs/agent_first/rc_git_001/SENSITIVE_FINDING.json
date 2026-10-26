@@ -1,0 +1,16 @@
+{
+  "path": "docs/agent_first/run_022/CLEANUP.json",
+  "tracked_in_HEAD": true,
+  "same_bytes_as_HEAD": false,
+  "plaintext_fields": 1,
+  "encrypted_container_fields": 44,
+  "plaintext_location": "$.lifecycle_records[881].record.credential",
+  "source_metadata": {
+    "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_windows_dpapi_binding_tam0\\new\\private\\lifecycle.json"
+  },
+  "secret_exported": false,
+  "action": "EXCLUDE; do not push HEAD ancestry without separate history/privacy decision. No credential used or changed.",
+  "same_JSON_as_HEAD": true,
+  "HEAD_has_same_plaintext_credential": true,
+  "byte_difference_explanation": "Git LF versus working-tree CRLF; parsed JSON comparison is authoritative for content."
+}

@@ -1,0 +1,42 @@
+{
+  "policy": "Positive runtime whitelist only; not git untracking approval",
+  "prefixes": [
+    ".git/",
+    "tests/",
+    "examples/",
+    "docs/",
+    "runtime/",
+    "projects/",
+    "backups/"
+  ],
+  "raw_output_extensions": [
+    ".odb",
+    ".dat",
+    ".sta",
+    ".msg",
+    ".log",
+    ".bin",
+    ".sqlite3",
+    ".db"
+  ],
+  "private_runtime_names": [
+    "private/",
+    "connection.json",
+    "operator.json",
+    "lifecycle.json",
+    "bootstrap.json"
+  ],
+  "explicit_source_fixture_exceptions_for_Git_only": [
+    "tests/fixtures/Job_test.inp",
+    "docs/agent_first/run_010/axial_bar.inp",
+    "tests/fixtures/synthetic/standard_axial_cp936.txt",
+    "tests/fixtures/synthetic/diagnostic_v2.json"
+  ],
+  "tracked_A_B_C_table": "TRACKED_EXCLUSION_REVIEW.json",
+  "old_45_roots": "RETAINED_ROOTS_EXCLUSION.json",
+  "untracked_new_verification_prefixes": [
+    "docs/agent_first/rc_git_001/local_verification/",
+    "docs/agent_first/rc_git_002/local_verification/"
+  ],
+  "actual_package_built": false
+}

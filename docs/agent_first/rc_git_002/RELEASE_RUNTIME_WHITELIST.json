@@ -1,0 +1,660 @@
+{
+  "status": "PROPOSED_REGISTERED_DEV_HOST_ONLY_NOT_RELEASE_APPROVAL",
+  "files": [
+    {
+      "path": "LICENSE",
+      "status": "KEEP_HEAD",
+      "bytes": 1088,
+      "sha256": "27539cc1089c53b5af494f004bf36224ee0f8e613d5920311a7a3f8634609f7f"
+    },
+    {
+      "path": "Open_Dev_GUI.vbs",
+      "status": "KEEP_HEAD",
+      "bytes": 585,
+      "sha256": "363af7228c129aa3b14acfd5d9d11b6cc4c1c4977600317a05ce0ac42c71014e"
+    },
+    {
+      "path": "abqjobpilot/__init__.py",
+      "status": "KEEP_HEAD",
+      "bytes": 91,
+      "sha256": "ffe48486be792813b57ebf73bdc9d47e64b49dc7b3894844f76bc378d2491208"
+    },
+    {
+      "path": "abqjobpilot/abaqus_preview/__init__.py",
+      "status": "KEEP_HEAD",
+      "bytes": 231,
+      "sha256": "1b74c8e9b0f117d1eb68cb20e53bcb63a286651e10d963e81be01b17c8f51b3e"
+    },
+    {
+      "path": "abqjobpilot/abaqus_preview/inputs.py",
+      "status": "KEEP_HEAD",
+      "bytes": 13809,
+      "sha256": "66f9b58d79b66161770a91a33111cd270bbf1d21a2b10a501056fdbe756948de"
+    },
+    {
+      "path": "abqjobpilot/abaqus_preview/preview.py",
+      "status": "KEEP_HEAD",
+      "bytes": 14385,
+      "sha256": "beda61c592784e0d78ac2283b9e64cac1ddc16554937e13d767f1b680e2305d0"
+    },
+    {
+      "path": "abqjobpilot/agent_session.py",
+      "status": "KEEP_HEAD",
+      "bytes": 11924,
+      "sha256": "fe6a544bdae2f07ef56483a0eb3646b313ba38254a4fe1b6c2248e519a9b1bd6"
+    },
+    {
+      "path": "abqjobpilot/api/__init__.py",
+      "status": "KEEP_HEAD",
+      "bytes": 466,
+      "sha256": "e4eafded208a5f06ebd8af5c845de0bc4200c458075945bf17b207f43e349386"
+    },
+    {
+      "path": "abqjobpilot/api/cli.py",
+      "status": "KEEP_HEAD",
+      "bytes": 11605,
+      "sha256": "266b456be6354f9b4b9d971d6a3a0932a9626e5b3b709589c93fa34b7f662eec"
+    },
+    {
+      "path": "abqjobpilot/api/client.py",
+      "status": "KEEP_HEAD",
+      "bytes": 26240,
+      "sha256": "274ee8c46b998ee84ecf1b67d77b3b93f7cdb708f9a774ef3c0c2b1635a68348"
+    },
+    {
+      "path": "abqjobpilot/api/errors.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1464,
+      "sha256": "1038953c45589250e2f53a01fccb03a92c694dbc0c72afa2a0313b7346d2bd93"
+    },
+    {
+      "path": "abqjobpilot/api/models.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3485,
+      "sha256": "72484d3fa1f2b3eebac636e521a823de8101b8679e438144ea3d49b4e0ef8bc6"
+    },
+    {
+      "path": "abqjobpilot/api/project_surface.py",
+      "status": "KEEP_HEAD",
+      "bytes": 14327,
+      "sha256": "07eee9f825ed6d9483420e9014860343e276a46f98eb9906de45d8fde57df35d"
+    },
+    {
+      "path": "abqjobpilot/api/status_reader.py",
+      "status": "KEEP_HEAD",
+      "bytes": 5653,
+      "sha256": "79725c3145654bfe0ff65b0076761de0233b903c50e67d24400d1ab4f492f8b1"
+    },
+    {
+      "path": "abqjobpilot/app_metadata.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1130,
+      "sha256": "baccd0c11ee2a26586241767c7bc98c073f96370f23ec74366b95ae3e4058313"
+    },
+    {
+      "path": "abqjobpilot/classic_workspace.py",
+      "status": "ADD",
+      "bytes": 3302,
+      "sha256": "52c9daf1a6a9fbc4f6d645e9547ba6ad539b2d161212b9e0c03a777d730383ad"
+    },
+    {
+      "path": "abqjobpilot/cockpit_display.py",
+      "status": "ADD",
+      "bytes": 605,
+      "sha256": "e3b4c03f7826c86ce220b7fcf7a5360e38b2ca2bd2b46a24df6d493ce73f2a82"
+    },
+    {
+      "path": "abqjobpilot/cockpit_layout.py",
+      "status": "ADD",
+      "bytes": 13577,
+      "sha256": "17f8ecd6f9ffc0c9ba5cbb8e1a45ed7584839c7b217396c6845802fdf32c0c80"
+    },
+    {
+      "path": "abqjobpilot/command_console.py",
+      "status": "KEEP_HEAD",
+      "bytes": 26970,
+      "sha256": "74335d1352c549d9550dae0768f4aa202cf5bbc3b8d10002bf70cd79d5a38f9d"
+    },
+    {
+      "path": "abqjobpilot/command_parser.py",
+      "status": "KEEP_HEAD",
+      "bytes": 6017,
+      "sha256": "3f16f9f67c6ab6ae08f500ced92998bfe3c6780e75e75be4b5d2b846a92c088d"
+    },
+    {
+      "path": "abqjobpilot/config.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2383,
+      "sha256": "7bef9479a29bcfd33e931e2f20a9d44fe848db30d64e2a345bf263e024e2651b"
+    },
+    {
+      "path": "abqjobpilot/database/__init__.py",
+      "status": "KEEP_HEAD",
+      "bytes": 526,
+      "sha256": "78725ef9195189c1551a3d6202475094d3bc842d09445b84e386fa9ff4c610f3"
+    },
+    {
+      "path": "abqjobpilot/database/connection.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3086,
+      "sha256": "d2e3e01a3b99747c4e21aec51fc30894c00cbadc02c985728735e0dc4ecde546"
+    },
+    {
+      "path": "abqjobpilot/database/migrations.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2733,
+      "sha256": "e4a12c3b47c020865bbe81f0d6089b3c39ce46ab9a8ab65427f56f6bde74da32"
+    },
+    {
+      "path": "abqjobpilot/database/portability.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3942,
+      "sha256": "370436174c8ac35faa912c0b22ab2ace51827b246d538f5bee6d14da1601cf00"
+    },
+    {
+      "path": "abqjobpilot/database/reconciliation.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1792,
+      "sha256": "fa69d43a5a9ab602f54c56eca7409a74e30859d4f1076ab42a5a0935524a7762"
+    },
+    {
+      "path": "abqjobpilot/database/repository.py",
+      "status": "KEEP_HEAD",
+      "bytes": 18647,
+      "sha256": "cd5706c0e1b3e03027a2b2bc457466364872f62c6e057f1dd2cf04798c4f9dd1"
+    },
+    {
+      "path": "abqjobpilot/database/schema.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1906,
+      "sha256": "8125422170e3a1eda54c479f912d8f441b348073e2792f095f29fad4a7b5bfcb"
+    },
+    {
+      "path": "abqjobpilot/desktop_workspace.py",
+      "status": "ADD",
+      "bytes": 33924,
+      "sha256": "2aece38f1abc57c2d10cc189b6f958666b10e6b70cd8e80377518b5c86e7ed3c"
+    },
+    {
+      "path": "abqjobpilot/execution/__init__.py",
+      "status": "KEEP_HEAD",
+      "bytes": 967,
+      "sha256": "d01f3fab0e1bc7762d76635f09b030c6854b29eb5f88235832828d00aa7ea078"
+    },
+    {
+      "path": "abqjobpilot/execution/audit_export.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2772,
+      "sha256": "08c2da9e8b7046511cb09c09519f4300b2a5f0243d8cb4e9eceba97f4555428f"
+    },
+    {
+      "path": "abqjobpilot/execution/authorization.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3301,
+      "sha256": "855a37f066f8b7bafd14a1663cde3aa10cd04db95945fcb7805cb2ab86a8f4d3"
+    },
+    {
+      "path": "abqjobpilot/execution/client.py",
+      "status": "MODIFY",
+      "bytes": 5948,
+      "sha256": "f61c4b5dd23f9944aa6f7fe85b9e85222b7262838065f31fc57724b725cadfc3"
+    },
+    {
+      "path": "abqjobpilot/execution/closeout.py",
+      "status": "KEEP_HEAD",
+      "bytes": 20883,
+      "sha256": "1217fe3a61a8eed838cdb5a85c8a8a61ad5fae014099009992fe2b5b8ed05b2b"
+    },
+    {
+      "path": "abqjobpilot/execution/diagnostics.py",
+      "status": "KEEP_HEAD",
+      "bytes": 34046,
+      "sha256": "911c181663c041442acb2031dc50b737a21b266ee2c6571d71a57a688d07a0a7"
+    },
+    {
+      "path": "abqjobpilot/execution/fake_backend.py",
+      "status": "KEEP_HEAD",
+      "bytes": 888,
+      "sha256": "daa2c9949be9741597de245e0a40eb3cb41421d9a21b0821d119318d0d985032"
+    },
+    {
+      "path": "abqjobpilot/execution/interruption.py",
+      "status": "KEEP_HEAD",
+      "bytes": 15876,
+      "sha256": "cb2d592a585fd2508808f9c3e585a6ea1e02ef8a7e30cca2c8d74c6e35d44617"
+    },
+    {
+      "path": "abqjobpilot/execution/interruption_probe.py",
+      "status": "MODIFY",
+      "bytes": 7269,
+      "sha256": "b7a9496d9df7f369b01718b86dff54ec18e2750f169ec84c9ab5c620b5b64240"
+    },
+    {
+      "path": "abqjobpilot/execution/lifecycle.py",
+      "status": "KEEP_HEAD",
+      "bytes": 7441,
+      "sha256": "7f41ae389de57e9efddec1a95fa8efd14de9943d653f0c74c77e6b1e9a70ca1e"
+    },
+    {
+      "path": "abqjobpilot/execution/managed_process.py",
+      "status": "KEEP_HEAD",
+      "bytes": 12029,
+      "sha256": "d7678b3dc89bbc9fcb3a0fc9e7d44f28c6f8b982171793e1165cd37d7d80f48d"
+    },
+    {
+      "path": "abqjobpilot/execution/models.py",
+      "status": "KEEP_HEAD",
+      "bytes": 4596,
+      "sha256": "7242ae21ca764628dd3a2aefc5311d021184364139d53572127437c0bd5a1825"
+    },
+    {
+      "path": "abqjobpilot/execution/ownership.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3196,
+      "sha256": "01a2188b695ca7192b06a01df51f7ffb26efcdf736e4994c911b777bd969d66f"
+    },
+    {
+      "path": "abqjobpilot/execution/paths.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2017,
+      "sha256": "4c78b31ce3aacebdc407f5ba0bd732aece5154418c6a8ddc247b66ed0dc77f71"
+    },
+    {
+      "path": "abqjobpilot/execution/planning.py",
+      "status": "KEEP_HEAD",
+      "bytes": 5008,
+      "sha256": "d1da4ca59114ab1a84c313c1e709647c7cc0227d22b80da551ba30d58225abf4"
+    },
+    {
+      "path": "abqjobpilot/execution/process_backend.py",
+      "status": "KEEP_HEAD",
+      "bytes": 12527,
+      "sha256": "660b50e378db49c8d38edc9b169ddfeff3cfa8e3229ddc6632c49f0d07f54a61"
+    },
+    {
+      "path": "abqjobpilot/execution/process_contract.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1176,
+      "sha256": "310f3d6ee08684412ec38bf80c2b091d0c0a71976219fbb769459cb5ebb69fe8"
+    },
+    {
+      "path": "abqjobpilot/execution/process_fixture.py",
+      "status": "KEEP_HEAD",
+      "bytes": 6760,
+      "sha256": "031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7"
+    },
+    {
+      "path": "abqjobpilot/execution/process_handles.py",
+      "status": "MODIFY",
+      "bytes": 3229,
+      "sha256": "1c3f7961c49c72d55c011d095404413668ea606488db49e05d5c182ad99e453d"
+    },
+    {
+      "path": "abqjobpilot/execution/process_reconciliation.py",
+      "status": "KEEP_HEAD",
+      "bytes": 13703,
+      "sha256": "aff565901c54050572a446c12181e54c33a554aa1f55aaa10203682f846efaa5"
+    },
+    {
+      "path": "abqjobpilot/execution/process_validation.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2362,
+      "sha256": "3c3dab14b5edd97b8b066c0762b3b1f48de115f83027277f86f9f5a53e8f151d"
+    },
+    {
+      "path": "abqjobpilot/execution/product_standard.py",
+      "status": "KEEP_HEAD",
+      "bytes": 10566,
+      "sha256": "ca3a3b738f1afed2744638e577005af32a0373ba8a419f58845e1b73ac8a7c61"
+    },
+    {
+      "path": "abqjobpilot/execution/progress_log.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3876,
+      "sha256": "422b7f83eb0bc748cdc5e1e88db343339fe20e12f6591be4400d7a5164603c4a"
+    },
+    {
+      "path": "abqjobpilot/execution/protocol.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2119,
+      "sha256": "e5583e17261db8924cfc09804a675845d9a869c5ad881cfe78f119797f8188c6"
+    },
+    {
+      "path": "abqjobpilot/execution/public_workflow.py",
+      "status": "KEEP_HEAD",
+      "bytes": 5601,
+      "sha256": "82317a92d18c7b594dadd0e79c462a2aca8c5fbf52b8abdf54af155880346075"
+    },
+    {
+      "path": "abqjobpilot/execution/reconciliation.py",
+      "status": "MODIFY",
+      "bytes": 20404,
+      "sha256": "bb20bac14d7b8d5dd6cfb1ef7ddc8e41bdf81efcd2790397f7065c5f08a83ba8"
+    },
+    {
+      "path": "abqjobpilot/execution/recovery.py",
+      "status": "ADD",
+      "bytes": 25749,
+      "sha256": "a01cefe131e5a13d481e75d6e6018dd3eae9cfa1c02cbc087ef124fc7e2f44e9"
+    },
+    {
+      "path": "abqjobpilot/execution/service.py",
+      "status": "KEEP_HEAD",
+      "bytes": 28912,
+      "sha256": "b9cfe432acbbac522460639b36dabe4b2b72308ec49cd6ecad55fdeaa0ce877d"
+    },
+    {
+      "path": "abqjobpilot/execution/standard_backend.py",
+      "status": "KEEP_HEAD",
+      "bytes": 15160,
+      "sha256": "543440f5b7e3c146555ebba842c5d70c33c8cf42e1ca4287447ed6bbca5e8d40"
+    },
+    {
+      "path": "abqjobpilot/execution/standard_contract.py",
+      "status": "KEEP_HEAD",
+      "bytes": 15237,
+      "sha256": "4ba5522e935a37f809a1e79e9555363cbb58b9f6e3c1c093d260aa6e72a2e373"
+    },
+    {
+      "path": "abqjobpilot/execution/standard_dat.py",
+      "status": "KEEP_HEAD",
+      "bytes": 8555,
+      "sha256": "6946666f0bd1040fc849ea0684a75382483aeaf0326397863dbfe64a47e08c74"
+    },
+    {
+      "path": "abqjobpilot/execution/standard_process.py",
+      "status": "KEEP_HEAD",
+      "bytes": 7319,
+      "sha256": "6c291f21a4200a1bc1d5535f8aa822d416d04a8f9574466b841e4a0f84fcc623"
+    },
+    {
+      "path": "abqjobpilot/execution/standard_sequence.py",
+      "status": "KEEP_HEAD",
+      "bytes": 6619,
+      "sha256": "49c5ac932b99041e5e0b04b699482f4379626fa61298b6ff7fec90644f747b7b"
+    },
+    {
+      "path": "abqjobpilot/execution/store.py",
+      "status": "MODIFY",
+      "bytes": 35945,
+      "sha256": "343b77f974da6133e593c37f246b8636db73bc87f8306a0181af7845c14a3116"
+    },
+    {
+      "path": "abqjobpilot/execution/supervisor.py",
+      "status": "MODIFY",
+      "bytes": 17750,
+      "sha256": "a3741ca600ad6d7a93d0427ebeb26af78d4118b5c6f75511f47e4978183a4ea0"
+    },
+    {
+      "path": "abqjobpilot/execution/test_authority.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3522,
+      "sha256": "670a3fbf6adae55e9fe9c24b65080915fb6d7bf613692805e96f23319ac300ba"
+    },
+    {
+      "path": "abqjobpilot/execution/validation.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3275,
+      "sha256": "107f8fd6ad27b923cf281e5686458a277e9087676c9f54f3377b80ddaf979f22"
+    },
+    {
+      "path": "abqjobpilot/execution_gui.py",
+      "status": "MODIFY",
+      "bytes": 32975,
+      "sha256": "d2c268555c7a6c0223c13233ae663ef7644ae818422b1f43b3cb0acee2019b43"
+    },
+    {
+      "path": "abqjobpilot/gui_app.py",
+      "status": "MODIFY",
+      "bytes": 138906,
+      "sha256": "1c89dced79843f9c1d60adead75f5957ce3a7b40cdd1d7976d9d4abbb5470d46"
+    },
+    {
+      "path": "abqjobpilot/gui_legacy.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1506,
+      "sha256": "26ce4ba7e66537d3169461a1ff636738c4bc8bef8f42eb52d7fe46e0d82b0638"
+    },
+    {
+      "path": "abqjobpilot/gui_presentation.py",
+      "status": "MODIFY",
+      "bytes": 3489,
+      "sha256": "3e096a97338d8e6dfb47bbfa63d9f34dd1b5563278207726e4f404ce9ccc4874"
+    },
+    {
+      "path": "abqjobpilot/gui_table_state.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2011,
+      "sha256": "3ed4910a071eb0b7dad96fe610c659dd286ea476296660803e7a1075bc14a9b3"
+    },
+    {
+      "path": "abqjobpilot/local_credentials.py",
+      "status": "KEEP_HEAD",
+      "bytes": 5625,
+      "sha256": "3b39bec883452bf8af2b3b74913d15ff5b3b63e85d62bb7b29b754573bc767bb"
+    },
+    {
+      "path": "abqjobpilot/locales/de-DE.json",
+      "status": "ADD",
+      "bytes": 10431,
+      "sha256": "f10f294689e85360d1acfa5005f0f3a018700e0c09655684332a26023e68dacd"
+    },
+    {
+      "path": "abqjobpilot/locales/en.json",
+      "status": "ADD",
+      "bytes": 9280,
+      "sha256": "2025926c1287072c192b3626021d2fa370540dd04f2361ca756e3dadb12eb61c"
+    },
+    {
+      "path": "abqjobpilot/locales/fr-FR.json",
+      "status": "ADD",
+      "bytes": 10265,
+      "sha256": "b8abdb3739d5214c405732e35b536cc809b779d86637213cc717190126a5e529"
+    },
+    {
+      "path": "abqjobpilot/locales/zh-CN.json",
+      "status": "ADD",
+      "bytes": 8517,
+      "sha256": "e8db8b6911924c8b6f1a37e4a0936efee9facd39e5df49b06754be7ae3a285ff"
+    },
+    {
+      "path": "abqjobpilot/mcp/__init__.py",
+      "status": "KEEP_HEAD",
+      "bytes": 120,
+      "sha256": "fb33b415d1aaad9290178756903c38ddf328c26ed7f1d9a33bbf98070baf86ad"
+    },
+    {
+      "path": "abqjobpilot/mcp/server.py",
+      "status": "KEEP_HEAD",
+      "bytes": 4226,
+      "sha256": "eb9a7712fc93ab24085f526bb510bfa1d4e32b03392ed7716c3e2ace903c23bc"
+    },
+    {
+      "path": "abqjobpilot/mcp/tools.py",
+      "status": "KEEP_HEAD",
+      "bytes": 11206,
+      "sha256": "ec2af28dcb141a699b1538c08507b6619f8dfd2656f4131afb4a7d4eea2aa5dd"
+    },
+    {
+      "path": "abqjobpilot/monitor.py",
+      "status": "KEEP_HEAD",
+      "bytes": 502,
+      "sha256": "da48154d130aca9fa3d865d280b158c0ed96a86dc3d13f36b0bc494c895b34eb"
+    },
+    {
+      "path": "abqjobpilot/parsers.py",
+      "status": "KEEP_HEAD",
+      "bytes": 7718,
+      "sha256": "1a09574c9c13bcd28b4369732da8d8838864842a58bf563c27327e9fe6f5bf91"
+    },
+    {
+      "path": "abqjobpilot/passive_lineage.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1489,
+      "sha256": "b559c25b2b7654c710c7ecaf647826ef2ef92d39185bd7808ddeef98b8ec351c"
+    },
+    {
+      "path": "abqjobpilot/process_identity.py",
+      "status": "KEEP_HEAD",
+      "bytes": 14714,
+      "sha256": "ae8c3b8eace9c1a3e741837556914e0c80bc911a4e57e70c32003b0a66207897"
+    },
+    {
+      "path": "abqjobpilot/product_project.py",
+      "status": "KEEP_HEAD",
+      "bytes": 6068,
+      "sha256": "e613e2aea2183f2d09f656b4b4e3ab203e9619b83d9204a224fdcb1fc65a14a3"
+    },
+    {
+      "path": "abqjobpilot/product_standard.py",
+      "status": "KEEP_HEAD",
+      "bytes": 6685,
+      "sha256": "29bfabe1288f532d6a7de1dd6caeafec3c6ddd51d124d6f399416f0fd5879fda"
+    },
+    {
+      "path": "abqjobpilot/project/__init__.py",
+      "status": "KEEP_HEAD",
+      "bytes": 446,
+      "sha256": "dc831f9406186f24dfed17ebd1679f28c01b13e78b7f4827be51b094c3a1102b"
+    },
+    {
+      "path": "abqjobpilot/project/archive.py",
+      "status": "KEEP_HEAD",
+      "bytes": 12316,
+      "sha256": "36dcdf861458cfd4ffcd009333edba4325d3ae92b4503ded6b05f901b091c8eb"
+    },
+    {
+      "path": "abqjobpilot/project/legacy_import.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2927,
+      "sha256": "d97c32985a3694b01a974901528e9abd87f566e96152eef7d8bfb7abced27bb0"
+    },
+    {
+      "path": "abqjobpilot/project/manager.py",
+      "status": "KEEP_HEAD",
+      "bytes": 9625,
+      "sha256": "1fb2bd29f65856ef753fe2f880c4c0e8ea9bde0922e61aa19d99846679bacf79"
+    },
+    {
+      "path": "abqjobpilot/project/models.py",
+      "status": "KEEP_HEAD",
+      "bytes": 892,
+      "sha256": "d9dbb11eb5c03750bdac9bc2d5e624009cb946bf04119e4eb1c9c54538eaa905"
+    },
+    {
+      "path": "abqjobpilot/queue_store.py",
+      "status": "KEEP_HEAD",
+      "bytes": 18346,
+      "sha256": "f392163b1a700808130cd405907697b0c0182307922165d11cad76f2d052341d"
+    },
+    {
+      "path": "abqjobpilot/recovery_assessment.py",
+      "status": "KEEP_HEAD",
+      "bytes": 6011,
+      "sha256": "2e094a4e0df1fb1921590ddaac10e4114c70b483166d9386856687001c6205a5"
+    },
+    {
+      "path": "abqjobpilot/recovery_dialog.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3112,
+      "sha256": "9790fe69a6c5d80e6cf7c662269e184c2636001712ac7d511cce2ee02c6b6388"
+    },
+    {
+      "path": "abqjobpilot/recovery_management.py",
+      "status": "ADD",
+      "bytes": 857,
+      "sha256": "4f6aab538694beba855e416205c784d98e7d4c0c55147881a18aa815d7306b36"
+    },
+    {
+      "path": "abqjobpilot/recovery_workflow.py",
+      "status": "KEEP_HEAD",
+      "bytes": 19208,
+      "sha256": "7a94edd70e54c0b43814346ff2e837c0e5274092b8c91c1704040f20dd805a68"
+    },
+    {
+      "path": "abqjobpilot/run_evidence.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3342,
+      "sha256": "7566ef094db6c242a8bc9f03c335866f8dfebdf5657e48baf31930bbe0b21e71"
+    },
+    {
+      "path": "abqjobpilot/runner_core.py",
+      "status": "KEEP_HEAD",
+      "bytes": 17933,
+      "sha256": "6ca361ede23cc737e736a71c2089c271897329a60a4fb1d463c5cc7b4ac833ce"
+    },
+    {
+      "path": "abqjobpilot/runtime_coordination.py",
+      "status": "KEEP_HEAD",
+      "bytes": 11277,
+      "sha256": "f6c72bb7a09dbe5db335d4e71c6a3033e497a7062cf60f4986557ff98c06b38c"
+    },
+    {
+      "path": "abqjobpilot/service_discovery.py",
+      "status": "KEEP_HEAD",
+      "bytes": 5266,
+      "sha256": "d729a60d2994f183b0b0645f9394ba0c9986d5f6aa4b7fe979a2c5c14994ab9c"
+    },
+    {
+      "path": "abqjobpilot/service_host.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1968,
+      "sha256": "5599deb419f59aecb0f3828cc09446e5b67b794d30ed88a5c4a3538d89472224"
+    },
+    {
+      "path": "abqjobpilot/service_lifecycle.py",
+      "status": "KEEP_HEAD",
+      "bytes": 12728,
+      "sha256": "5706e992ad304cba225e2abb282388e90d55ea409ae66f2540c6fa985f00c079"
+    },
+    {
+      "path": "abqjobpilot/service_owner.py",
+      "status": "KEEP_HEAD",
+      "bytes": 3622,
+      "sha256": "1ca69f917b94331925a7edd83acb1e13c8626fc45b8df1fcefe6e268c456ce8a"
+    },
+    {
+      "path": "abqjobpilot/settings_store.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2339,
+      "sha256": "c5b2f69696c355a4c8aa2bb2fbe0bf255a413e3da52378682c3586e87b50fdb2"
+    },
+    {
+      "path": "abqjobpilot/status_codes.py",
+      "status": "KEEP_HEAD",
+      "bytes": 1101,
+      "sha256": "39b9bdb78c819d61c6fa91c909edf836562170910bdbb9d149d7c2f2c14f9bbd"
+    },
+    {
+      "path": "abqjobpilot/ui_resources.py",
+      "status": "ADD",
+      "bytes": 3053,
+      "sha256": "8591328e11ae26078291ffa8521acde344a18d30631bcdbc4512d7d75b2a410f"
+    },
+    {
+      "path": "abqjobpilot/utils.py",
+      "status": "KEEP_HEAD",
+      "bytes": 2840,
+      "sha256": "f44818d4b9f5ff3a552874677adc8657b99ce039f708564be657cf185ebc3daf"
+    },
+    {
+      "path": "requirements-mcp.txt",
+      "status": "KEEP_HEAD",
+      "bytes": 92,
+      "sha256": "bbc292a5a44084ace2eb8998bb53d3d93cd90176c8eebe58275cf57c228d6fc1"
+    },
+    {
+      "path": "requirements.txt",
+      "status": "KEEP_HEAD",
+      "bytes": 42,
+      "sha256": "35c806439ff75dd73c68b8b289568d75a4d99e8ebc6582a630971a9f83533e59"
+    },
+    {
+      "path": "run_gui.py",
+      "status": "KEEP_HEAD",
+      "bytes": 82,
+      "sha256": "a99a768fb9c32e27b565afbaa93dd8a4504e173ac8c26cf4929b418ab3ed9644"
+    }
+  ],
+  "environment": "Registered LangChainEnv; no portable-host promise"
+}

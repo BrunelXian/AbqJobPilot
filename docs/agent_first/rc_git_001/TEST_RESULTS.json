@@ -1,0 +1,76 @@
+{
+  "unique_cases": 15,
+  "final": {
+    "PASS": 15
+  },
+  "cases": {
+    "tests.test_execution_isolation::test_dependency_graph_excludes_all_legacy_and_launch_modules": "PASS",
+    "tests.test_execution_isolation::test_all_runtime_io_confined_and_default_navigation_untouched": "PASS",
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[outside]": "PASS",
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[parent]": "PASS",
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[unc]": "PASS",
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[relative]": "PASS",
+    "tests.test_execution_isolation::test_path_escape_rejected_before_candidate_filesystem_access[ads]": "PASS",
+    "tests.test_execution_isolation::test_real_junction_or_symlink_is_rejected": "PASS",
+    "tests.test_execution_isolation::test_creation_never_adopts_existing_directory": "PASS",
+    "tests.test_cockpit_semantics::test_log_source_not_guessed_from_backend_or_file_presence[fixed_worker_self_report_not_exit_or_validation-workerLog]": "PASS",
+    "tests.test_cockpit_semantics::test_log_source_not_guessed_from_backend_or_file_presence[bounded_standard_text_latest-staSummary]": "PASS",
+    "tests.test_cockpit_semantics::test_log_source_not_guessed_from_backend_or_file_presence[None-progressUnavailable]": "PASS",
+    "tests.test_cockpit_semantics::test_log_source_not_guessed_from_backend_or_file_presence[future_source-progressUnavailable]": "PASS",
+    "tests.test_cockpit_semantics::test_long_identity_and_time_are_display_only": "PASS",
+    "tests.test_cockpit_semantics::test_live_and_unresolved_results_remain_visible_and_raw_evidence_unchanged": "PASS"
+  },
+  "iterations": [
+    {
+      "mode": "semantics",
+      "exit_code": 3,
+      "source_files": 199,
+      "root": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\rc_git_001\\local_verification\\228a9c181071440ea98c3c41b6e8c84d",
+      "external_process_calls": 0,
+      "Abaqus_calls": 0,
+      "directories_retained": true,
+      "candidate_SHA_bound": true
+    },
+    {
+      "mode": "isolation",
+      "exit_code": 0,
+      "source_files": 199,
+      "root": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\rc_git_001\\local_verification\\982fd75f062e453eb730b8024ed73c92",
+      "external_process_calls": 0,
+      "Abaqus_calls": 0,
+      "directories_retained": true,
+      "candidate_SHA_bound": true
+    },
+    {
+      "mode": "semantics",
+      "exit_code": 0,
+      "source_files": 199,
+      "root": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\rc_git_001\\local_verification\\d0f16f310ef34ca2beb171a1cc721f86",
+      "external_process_calls": 0,
+      "Abaqus_calls": 0,
+      "directories_retained": true,
+      "candidate_SHA_bound": true
+    },
+    {
+      "mode": "isolation",
+      "exit_code": 3,
+      "source_files": 199,
+      "root": "D:\\Projects\\abqjobpilot_dev\\docs\\agent_first\\rc_git_001\\local_verification\\e6421ec0d5904e0fa4fda6eadca173d3",
+      "external_process_calls": 0,
+      "Abaqus_calls": 0,
+      "directories_retained": true,
+      "candidate_SHA_bound": true
+    }
+  ],
+  "first_failure": "Two runner configure errors before collection: pytest default log path NUL was rejected by the local write confinement hook. Corrected by explicit isolated --log-file, not by relaxing the write scope. Both exit_code=3 records retained.",
+  "external_processes": 0,
+  "Solver_calls": 0,
+  "retained_test_roots": 4,
+  "not_run": [
+    "Full regression requiring excluded historical DAT/diagnostic fixture",
+    "Abaqus",
+    "GUI background lifetime rerun",
+    "remote Git/owner checks"
+  ],
+  "historical_only": "Final Acceptance 225 and Integration 768 were prior results, not added to this run count."
+}

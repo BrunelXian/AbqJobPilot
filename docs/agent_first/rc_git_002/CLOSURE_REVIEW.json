@@ -1,0 +1,13 @@
+{
+  "snapshot_files": 455,
+  "python_parsed": 209,
+  "syntax_errors": [],
+  "missing_relative_product_modules": [],
+  "maintained_raw_fixture_references": [],
+  "forbidden_raw_sources_absent_from_snapshot": true,
+  "tracked_reclassification_counts": {
+    "B_GIT_HISTORY_RETAIN_RELEASE_EXCLUDE": 1136,
+    "A_UNTRACK_PROPOSAL_ONLY": 19,
+    "C_DISCLOSURE_REVIEW": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "roots": 13,
+  "files": 9309,
+  "queried_recorded_identities": 857,
+  "matched_alive": 0,
+  "observation_counts": {
+    "PROCESS_IDENTITY_UNKNOWN": 854,
+    "PROCESS_IDENTITY_MISMATCH": 3
+  },
+  "separate_persisted_exit_records": 586,
+  "encrypted_containers_retained": 311,
+  "fixed_plaintext_negative_fields": 2,
+  "other_plaintext_fields": 0,
+  "log_secret_matches": [],
+  "no_audit_deletion_or_termination": true,
+  "local_detail_sha256": "9b7dea4f76f705c3769af99d9fcec335912e5c988db5e82cbccbbd006def56f8",
+  "limitations": "No decryption; current absence/mismatch does not create historical exit. Fixture-owned-handle assertions are independently tested."
+}

@@ -1,0 +1,5 @@
+{
+  "scope": "existing baseline files excluding .git; no decryption or live authentication",
+  "matches_after_worktree_redaction": [],
+  "values_scanned": 45
+}

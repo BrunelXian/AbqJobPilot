@@ -1,0 +1,11 @@
+{
+  "HEAD": "9553755a24ff521dd2ac694ea39cab5a03f88466",
+  "branch": "Develop",
+  "index_sha256": "b0d9c5d4677a5023a874b982b8d706894b5b1cfca700abe56c692f9ad5a189e6",
+  "index_unchanged": true,
+  "preexisting_files_checked": 2054,
+  "preexisting_files_changed": [],
+  "Abaqus_calls": 0,
+  "owner_operations": 0,
+  "git_mutations": 0
+}

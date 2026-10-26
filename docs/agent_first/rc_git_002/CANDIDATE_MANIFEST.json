@@ -1,0 +1,931 @@
+{
+  "body": {
+    "schema": "rc-g02-exact-incremental-checkpoint-v1",
+    "base_HEAD": "9553755a24ff521dd2ac694ea39cab5a03f88466",
+    "base_index_sha256": "b0d9c5d4677a5023a874b982b8d706894b5b1cfca700abe56c692f9ad5a189e6",
+    "branch": "Develop",
+    "version": "0.3.0.dev0",
+    "status": "PARTIAL_HISTORY_DISPOSITION_PENDING_NOT_GIT_AUTHORIZATION",
+    "groups": {
+      "SOURCE_TEST": [
+        {
+          "path": "abqjobpilot/classic_workspace.py",
+          "status": "ADD",
+          "bytes": 3302,
+          "sha256": "52c9daf1a6a9fbc4f6d645e9547ba6ad539b2d161212b9e0c03a777d730383ad"
+        },
+        {
+          "path": "abqjobpilot/cockpit_display.py",
+          "status": "ADD",
+          "bytes": 605,
+          "sha256": "e3b4c03f7826c86ce220b7fcf7a5360e38b2ca2bd2b46a24df6d493ce73f2a82"
+        },
+        {
+          "path": "abqjobpilot/cockpit_layout.py",
+          "status": "ADD",
+          "bytes": 13577,
+          "sha256": "17f8ecd6f9ffc0c9ba5cbb8e1a45ed7584839c7b217396c6845802fdf32c0c80"
+        },
+        {
+          "path": "abqjobpilot/desktop_workspace.py",
+          "status": "ADD",
+          "bytes": 33924,
+          "sha256": "2aece38f1abc57c2d10cc189b6f958666b10e6b70cd8e80377518b5c86e7ed3c"
+        },
+        {
+          "path": "abqjobpilot/execution/client.py",
+          "status": "MODIFY",
+          "bytes": 5948,
+          "sha256": "f61c4b5dd23f9944aa6f7fe85b9e85222b7262838065f31fc57724b725cadfc3"
+        },
+        {
+          "path": "abqjobpilot/execution/interruption_probe.py",
+          "status": "MODIFY",
+          "bytes": 7269,
+          "sha256": "b7a9496d9df7f369b01718b86dff54ec18e2750f169ec84c9ab5c620b5b64240"
+        },
+        {
+          "path": "abqjobpilot/execution/process_handles.py",
+          "status": "MODIFY",
+          "bytes": 3229,
+          "sha256": "1c3f7961c49c72d55c011d095404413668ea606488db49e05d5c182ad99e453d"
+        },
+        {
+          "path": "abqjobpilot/execution/reconciliation.py",
+          "status": "MODIFY",
+          "bytes": 20404,
+          "sha256": "bb20bac14d7b8d5dd6cfb1ef7ddc8e41bdf81efcd2790397f7065c5f08a83ba8"
+        },
+        {
+          "path": "abqjobpilot/execution/recovery.py",
+          "status": "ADD",
+          "bytes": 25749,
+          "sha256": "a01cefe131e5a13d481e75d6e6018dd3eae9cfa1c02cbc087ef124fc7e2f44e9"
+        },
+        {
+          "path": "abqjobpilot/execution/store.py",
+          "status": "MODIFY",
+          "bytes": 35945,
+          "sha256": "343b77f974da6133e593c37f246b8636db73bc87f8306a0181af7845c14a3116"
+        },
+        {
+          "path": "abqjobpilot/execution/supervisor.py",
+          "status": "MODIFY",
+          "bytes": 17750,
+          "sha256": "a3741ca600ad6d7a93d0427ebeb26af78d4118b5c6f75511f47e4978183a4ea0"
+        },
+        {
+          "path": "abqjobpilot/execution_gui.py",
+          "status": "MODIFY",
+          "bytes": 32975,
+          "sha256": "d2c268555c7a6c0223c13233ae663ef7644ae818422b1f43b3cb0acee2019b43"
+        },
+        {
+          "path": "abqjobpilot/gui_app.py",
+          "status": "MODIFY",
+          "bytes": 138906,
+          "sha256": "1c89dced79843f9c1d60adead75f5957ce3a7b40cdd1d7976d9d4abbb5470d46"
+        },
+        {
+          "path": "abqjobpilot/gui_presentation.py",
+          "status": "MODIFY",
+          "bytes": 3489,
+          "sha256": "3e096a97338d8e6dfb47bbfa63d9f34dd1b5563278207726e4f404ce9ccc4874"
+        },
+        {
+          "path": "abqjobpilot/locales/de-DE.json",
+          "status": "ADD",
+          "bytes": 10431,
+          "sha256": "f10f294689e85360d1acfa5005f0f3a018700e0c09655684332a26023e68dacd"
+        },
+        {
+          "path": "abqjobpilot/locales/en.json",
+          "status": "ADD",
+          "bytes": 9280,
+          "sha256": "2025926c1287072c192b3626021d2fa370540dd04f2361ca756e3dadb12eb61c"
+        },
+        {
+          "path": "abqjobpilot/locales/fr-FR.json",
+          "status": "ADD",
+          "bytes": 10265,
+          "sha256": "b8abdb3739d5214c405732e35b536cc809b779d86637213cc717190126a5e529"
+        },
+        {
+          "path": "abqjobpilot/locales/zh-CN.json",
+          "status": "ADD",
+          "bytes": 8517,
+          "sha256": "e8db8b6911924c8b6f1a37e4a0936efee9facd39e5df49b06754be7ae3a285ff"
+        },
+        {
+          "path": "abqjobpilot/recovery_management.py",
+          "status": "ADD",
+          "bytes": 857,
+          "sha256": "4f6aab538694beba855e416205c784d98e7d4c0c55147881a18aa815d7306b36"
+        },
+        {
+          "path": "abqjobpilot/ui_resources.py",
+          "status": "ADD",
+          "bytes": 3053,
+          "sha256": "8591328e11ae26078291ffa8521acde344a18d30631bcdbc4512d7d75b2a410f"
+        },
+        {
+          "path": "docs/agent_first/run_022/CLEANUP.json",
+          "status": "MODIFY",
+          "bytes": 1402706,
+          "sha256": "0cfaa016cfee2c738d7591f93138aaa2350dbdcf4e60c359500a128aafd7a5fc"
+        },
+        {
+          "path": "docs/agent_first/run_022/audit_redaction.py",
+          "status": "ADD",
+          "bytes": 512,
+          "sha256": "abeea297f7d5bd873ef10f6c06d7fa1166c5cf449e7500ab435c0297e5c76231"
+        },
+        {
+          "path": "docs/agent_first/run_022/verify_cleanup.py",
+          "status": "MODIFY",
+          "bytes": 5174,
+          "sha256": "758fd98c11a77f38d842fc3d0e77dd9bd2233bc77e71bf4fe0650be1e1e838b6"
+        },
+        {
+          "path": "tests/cockpit_capture.py",
+          "status": "ADD",
+          "bytes": 2342,
+          "sha256": "73125b4f21e00b46939b9e090a79acbf8f41284ac9e9c065852e1d0e690f6699"
+        },
+        {
+          "path": "tests/fixtures/synthetic/README.md",
+          "status": "ADD",
+          "bytes": 1330,
+          "sha256": "bd741e5b0fa46d29500e78526b11e6378716f67ca159cf611aefd834a95e3afd"
+        },
+        {
+          "path": "tests/fixtures/synthetic/diagnostic_v2.json",
+          "status": "ADD",
+          "bytes": 4135,
+          "sha256": "c91d790f2215832ff518c6c5f4861ec9a0d89071605921e110503a7dd29570d7"
+        },
+        {
+          "path": "tests/fixtures/synthetic/generate.py",
+          "status": "ADD",
+          "bytes": 4352,
+          "sha256": "029beb6536aff3ac72fa056b8f32cbb06cb7b9e3b7370e2a93560744d62dea6c"
+        },
+        {
+          "path": "tests/fixtures/synthetic/standard_axial_cp936.txt",
+          "status": "ADD",
+          "bytes": 846,
+          "sha256": "22d6dd0068d9fb226db3cb0ba534b48cb5dad3b085691d3c59fe8eeb96abb433"
+        },
+        {
+          "path": "tests/run013_process.py",
+          "status": "MODIFY",
+          "bytes": 3599,
+          "sha256": "d1039610f81723d273f3633bcd98b6923c993452dd5ebe36ae16355ad5ed9539"
+        },
+        {
+          "path": "tests/run018_gui.py",
+          "status": "MODIFY",
+          "bytes": 3890,
+          "sha256": "50ce300805c32ab131af2b71f00b509cd2fd0fcbe5fce2f4c6d15dcf2c12b4d6"
+        },
+        {
+          "path": "tests/run019_gui.py",
+          "status": "MODIFY",
+          "bytes": 5018,
+          "sha256": "bf8d135d1854761218ecfadb11ae15e9f7806013289edee3642244cce68c803b"
+        },
+        {
+          "path": "tests/run020_gui.py",
+          "status": "MODIFY",
+          "bytes": 6079,
+          "sha256": "2095a4d094302ed7c003d613b54dc2ea243f101a77046bcbc0b8dc709888921f"
+        },
+        {
+          "path": "tests/run024_gui.py",
+          "status": "ADD",
+          "bytes": 4308,
+          "sha256": "072fd3fc403c60195bdc8391284b203ed7fbe7e707c0e31679723f1872829425"
+        },
+        {
+          "path": "tests/test_attachment_gui.py",
+          "status": "MODIFY",
+          "bytes": 10033,
+          "sha256": "3d2194167459ee986267f49b88771b12b9e2267d36300c4d5b4d9e0408cf0c79"
+        },
+        {
+          "path": "tests/test_cockpit_semantics.py",
+          "status": "ADD",
+          "bytes": 3083,
+          "sha256": "9090ecc28ebfdb9c9d1e5779605f33ec63bccdeebebcd33af1ee7a527549bbcb"
+        },
+        {
+          "path": "tests/test_cockpit_widgets.py",
+          "status": "ADD",
+          "bytes": 2518,
+          "sha256": "9f4f4a2f2f96051b8b374a1e45ee2ce576f1185d6eac72c6eccdb29908504f31"
+        },
+        {
+          "path": "tests/test_cockpit_windows.py",
+          "status": "ADD",
+          "bytes": 3019,
+          "sha256": "ff0a03fdf68397b60b747e58a30b3449c8b875b8443b002f7a054631fd905e14"
+        },
+        {
+          "path": "tests/test_execution_isolation.py",
+          "status": "MODIFY",
+          "bytes": 11412,
+          "sha256": "3e28ef9be83d57e2c1a98458124111b19a2e6c555a5a918c8ba64f1409207115"
+        },
+        {
+          "path": "tests/test_interrupted_recovery.py",
+          "status": "ADD",
+          "bytes": 15496,
+          "sha256": "f8287cb55065fe11720a1d3323c63e955bbb559855a890d9b227856269d804e7"
+        },
+        {
+          "path": "tests/test_interruption_probe.py",
+          "status": "MODIFY",
+          "bytes": 5244,
+          "sha256": "f3a0d8833082f18dfc585ee67f1a180c23252f7411e26163ded75aafa17ecaad"
+        },
+        {
+          "path": "tests/test_interruption_windows.py",
+          "status": "MODIFY",
+          "bytes": 3967,
+          "sha256": "c2a7fa3511a0688ac1192700e64f14108123891ccd7530197f0fb3ea70768768"
+        },
+        {
+          "path": "tests/test_native_visual.py",
+          "status": "ADD",
+          "bytes": 2200,
+          "sha256": "9ca763e70865958149959206cf5cfc1c4126a19b2848688c4af2c6888aaf18bc"
+        },
+        {
+          "path": "tests/test_native_workspace.py",
+          "status": "ADD",
+          "bytes": 9219,
+          "sha256": "c1178607b4f329381c91f55eae04cd29505984390581e27397c9012400ca4303"
+        },
+        {
+          "path": "tests/test_native_workspace_windows.py",
+          "status": "ADD",
+          "bytes": 9012,
+          "sha256": "23ed632b3c96645775523b67558e96a564acb49b794e22b59dc06b416c6fabc8"
+        },
+        {
+          "path": "tests/test_product_project.py",
+          "status": "MODIFY",
+          "bytes": 7714,
+          "sha256": "05c161c0fa0e189c68e8fdcc434a1574a4aa551ebadb1ba29cc17fb1a02ac8b9"
+        },
+        {
+          "path": "tests/test_product_standard_control.py",
+          "status": "MODIFY",
+          "bytes": 17406,
+          "sha256": "a47a5ac8de6260f433b15723699f0633edcb9ae1950dab496ddbffc84ddf3c8c"
+        },
+        {
+          "path": "tests/test_product_standard_windows.py",
+          "status": "MODIFY",
+          "bytes": 12573,
+          "sha256": "ae4f73d07a134232f9d6f98291e0c452c092c44079df7f973b6210b71d1c70ee"
+        },
+        {
+          "path": "tests/test_product_windows.py",
+          "status": "MODIFY",
+          "bytes": 20063,
+          "sha256": "212d4dfe6672c114f0d7ddf69f3ac855f53d77231c9cd5b5441318b62c10c6c6"
+        },
+        {
+          "path": "tests/test_public_client_example.py",
+          "status": "MODIFY",
+          "bytes": 4600,
+          "sha256": "79a9e58efdb91eb6db3c9596a6330d04a838e0b543864cdff58b3af78bcdaaa4"
+        },
+        {
+          "path": "tests/test_recovery_windows.py",
+          "status": "ADD",
+          "bytes": 7659,
+          "sha256": "39890b9c9677d70a3a9bfcedcfd034901a72b4ae2c967eda16d7a1f91c49ce73"
+        },
+        {
+          "path": "tests/test_release_fixtures.py",
+          "status": "ADD",
+          "bytes": 3170,
+          "sha256": "0710936d8c32487d56aac3088e62491e167a6bc738b6a71479306f7d8c707a88"
+        },
+        {
+          "path": "tests/test_service_lifecycle.py",
+          "status": "MODIFY",
+          "bytes": 11443,
+          "sha256": "30d3bf435e209c7d9f2f08abbb11641fe4fd3a04148f5ceea1d11b8c6071efd3"
+        },
+        {
+          "path": "tests/test_standard_backend.py",
+          "status": "MODIFY",
+          "bytes": 15042,
+          "sha256": "deb922c0b8b263695dae2fee87e41923f31ad3d03d82dccce84a68cb55cd7d12"
+        },
+        {
+          "path": "tests/test_standard_managed.py",
+          "status": "MODIFY",
+          "bytes": 12826,
+          "sha256": "7f24459f408ff5e0720b30ded1817f413e57d17d992d1c95d4499427660185a5"
+        },
+        {
+          "path": "tests/test_standard_managed_windows.py",
+          "status": "MODIFY",
+          "bytes": 11016,
+          "sha256": "b11ffb085b1adaa2249f49725fdb0f909483194be8ff2c33c0ca82ee5629c6aa"
+        },
+        {
+          "path": "tests/test_standard_pair_client.py",
+          "status": "MODIFY",
+          "bytes": 3245,
+          "sha256": "d82a3b1a8a9de556fa30c0c0fb60b9cece264c2d9f767e731578aee738dd1ea6"
+        }
+      ],
+      "DOC_RESOURCE": [
+        {
+          "path": "README.md",
+          "status": "MODIFY",
+          "bytes": 27501,
+          "sha256": "eb7fa3582aa7ee2da867f43dceb91f4a5018d8dac1d49d528d6c259c509013b3"
+        },
+        {
+          "path": "README_CN.md",
+          "status": "MODIFY",
+          "bytes": 24919,
+          "sha256": "f2c2881e8b419cd10693787c4ec4d2e13d741f9646cb832d95bfb96c122db9ad"
+        },
+        {
+          "path": "docs/agent_first/crash_recovery_integration/cr_d03/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 5162,
+          "sha256": "d55b62e182213821e88c636514fbd8e4700da79ec2f225e38d891f4520107f42"
+        },
+        {
+          "path": "docs/agent_first/crash_recovery_integration/cr_d03/IMPLEMENTATION_AND_SCOPE.md",
+          "status": "ADD",
+          "bytes": 4636,
+          "sha256": "5b5aa6b7e8374fd9c9538ca6b9dd1d8d6a951d897ce3da1b577df4efb7a35790"
+        },
+        {
+          "path": "docs/agent_first/crash_recovery_integration/cr_d03/RECOVERY_CONTRACT.md",
+          "status": "ADD",
+          "bytes": 6382,
+          "sha256": "e966e418acd54c08153cc519b9f056479a6f1c8d06db5cfb28ef1f0ea2d30e83"
+        },
+        {
+          "path": "docs/agent_first/crash_recovery_integration/cr_d03/REMAINING_AND_NEXT_STEPS.md",
+          "status": "ADD",
+          "bytes": 2530,
+          "sha256": "086f87cd549bea1d5b091ea48f478ebb7ca475984918be97e6f18660d021ee29"
+        },
+        {
+          "path": "docs/agent_first/crash_recovery_integration/cr_d03/RUN024_GUI_HANDOFF.md",
+          "status": "ADD",
+          "bytes": 4904,
+          "sha256": "d732aa86848f45bbd89c5aebbd61f5d2b5cfb2e65fa3efaa920b7f8cb107e2dd"
+        },
+        {
+          "path": "docs/agent_first/crash_recovery_integration/cr_d03/TEST_AND_ACCEPTANCE.md",
+          "status": "ADD",
+          "bytes": 9985,
+          "sha256": "8d314891e6bc2ad1297828313b3e5d24402ef0873f79544c20ebb48035721786"
+        },
+        {
+          "path": "docs/agent_first/crash_recovery_integration/cr_d03/USAGE.md",
+          "status": "ADD",
+          "bytes": 2923,
+          "sha256": "75e1b081f8469c3daf0295c100a27b0c5a7308b844dad59ac6ec6ec6a36a0089"
+        },
+        {
+          "path": "docs/agent_first/run_024/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 5392,
+          "sha256": "ff9bd808f3053cfcfbf680bab52636c3947fd88c63bfaeaaaf6d398ec1b05513"
+        },
+        {
+          "path": "docs/agent_first/run_024/IMPLEMENTATION_AND_NAVIGATION.md",
+          "status": "ADD",
+          "bytes": 4653,
+          "sha256": "c8380161a33acf72f756892e2f3ca6fdeef32177e90d7dc9c2c785f294995eb5"
+        },
+        {
+          "path": "docs/agent_first/run_024/LOCALIZATION_AND_VISUAL_REVIEW.md",
+          "status": "ADD",
+          "bytes": 3113,
+          "sha256": "d7bca66eb6b1bc92ca75723442743a563328c6da53b9c36f2b16c38e3a4d7a52"
+        },
+        {
+          "path": "docs/agent_first/run_024/READONLY_RECOVERY_CONTRACT.md",
+          "status": "ADD",
+          "bytes": 2753,
+          "sha256": "2757d24d7afbc98f972ca9584fba749cf4681748d70022504d0e9d4704738c67"
+        },
+        {
+          "path": "docs/agent_first/run_024/REMAINING_AND_GIT_CHECKPOINT.md",
+          "status": "ADD",
+          "bytes": 3146,
+          "sha256": "ef7377674dcc7965c6e0584d921597235ad22efbc8b0b6d2bd4b01c9479e4583"
+        },
+        {
+          "path": "docs/agent_first/run_024/TEST_AND_ACCEPTANCE.md",
+          "status": "ADD",
+          "bytes": 6975,
+          "sha256": "5ca89eb4950ddfd833b0e41328fa35f3d196c599a649bc7c749ad25061209ff9"
+        },
+        {
+          "path": "docs/agent_first/run_024/USAGE.md",
+          "status": "ADD",
+          "bytes": 3103,
+          "sha256": "9e2f8bfb6a848c9d4a0459d2484fc59cb3f0545cc556eac7db398d3a64e89f2b"
+        },
+        {
+          "path": "docs/agent_first/run_024r/CLASSIC_REUSE_ANALYSIS.md",
+          "status": "ADD",
+          "bytes": 3077,
+          "sha256": "f3c3c1cb766764ba424cf65018c2cb896828ec2c468afc084abf3e65657e6cc2"
+        },
+        {
+          "path": "docs/agent_first/run_024r/COCKPIT_AND_AGENT_COMMAND_DESIGN.md",
+          "status": "ADD",
+          "bytes": 5186,
+          "sha256": "397fd27f81b27f5b8b4b0ba41fe85255f134ee111316b61e38051715b1b77b4f"
+        },
+        {
+          "path": "docs/agent_first/run_024r/CURRENT_GUI_REVIEW.md",
+          "status": "ADD",
+          "bytes": 3533,
+          "sha256": "aae993ab81df155128c04b01c18b54cecc4e2ea3d753529fd06b1fb4c02b9018"
+        },
+        {
+          "path": "docs/agent_first/run_024r/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 3127,
+          "sha256": "a64988051d57bbeaf5cc0ec00a2f85631f1f1ce05f980b7854690347a2565f26"
+        },
+        {
+          "path": "docs/agent_first/run_024r/IMPLEMENTATION_PLAN.md",
+          "status": "ADD",
+          "bytes": 3719,
+          "sha256": "5b5d25a35c91991611625dcb9e232b82fac1548ac598f808e3abb01caee4d099"
+        },
+        {
+          "path": "docs/agent_first/run_024r/USAGE.md",
+          "status": "ADD",
+          "bytes": 2396,
+          "sha256": "54036a4e4f09a06d2f348be6df95f8eae8e2e245ed8940f0f28335b2279fff53"
+        },
+        {
+          "path": "docs/agent_first/run_024r/VISUAL_REVIEW.md",
+          "status": "ADD",
+          "bytes": 4861,
+          "sha256": "0fa8680ac585c13f679122422e72b691e1bd3ef31c320a5f060d470defd5a30a"
+        },
+        {
+          "path": "docs/agent_first/run_024r/final_acceptance_001/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 3558,
+          "sha256": "59445ac39977f3b53854938fce49a85e5bbc761ebc8a0651a294c40076036ecf"
+        },
+        {
+          "path": "docs/agent_first/run_024r/final_acceptance_001/RETAINED_TEST_DATA_AUDIT.md",
+          "status": "ADD",
+          "bytes": 4663,
+          "sha256": "f236ba1cdbf84b3b52ff59766d422ebf593d77301394d748b4bd0229329e0670"
+        },
+        {
+          "path": "docs/agent_first/run_024r/final_acceptance_001/SEMANTIC_REVIEW.md",
+          "status": "ADD",
+          "bytes": 4919,
+          "sha256": "117e152f51057d38135648c5d56321a94bed913de56ccddc8ea54635f191410a"
+        },
+        {
+          "path": "docs/agent_first/run_024r/final_acceptance_001/TEST_AND_ACCEPTANCE.md",
+          "status": "ADD",
+          "bytes": 4588,
+          "sha256": "36d280b8c1e89a01cd063ff9e9a0118241c22c34e50280d5b97e037a2915ce03"
+        },
+        {
+          "path": "docs/agent_first/run_024r/integration_001/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 3477,
+          "sha256": "bf342d658b333083c590f3083ca80e11489f28da3e409e9d5e4dff9f1b03fedc"
+        },
+        {
+          "path": "docs/agent_first/run_024r/integration_001/IMPLEMENTATION_AND_USAGE.md",
+          "status": "ADD",
+          "bytes": 4752,
+          "sha256": "82183aa18e42b9c63da2ee0cfba88de282d3b683540fcfa0b402e25109eae459"
+        },
+        {
+          "path": "docs/agent_first/run_024r/integration_001/TEST_AND_ACCEPTANCE.md",
+          "status": "ADD",
+          "bytes": 4770,
+          "sha256": "c9f576509fb2b8e2762a48c398c16365214e7795afadd3578ecdda99b2897a58"
+        },
+        {
+          "path": "docs/agent_first/run_024r/refinement_001/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 1824,
+          "sha256": "cbb51a6f64a2c94f34a26b881d632d0ef7365b7d7e082e68cd65ac088ec0b86d"
+        },
+        {
+          "path": "docs/agent_first/run_024r/refinement_001/REFINEMENT_NOTES.md",
+          "status": "ADD",
+          "bytes": 4323,
+          "sha256": "005f401651e795a920e4360a106a5f092269a726e14557d28ab0e785c027437e"
+        },
+        {
+          "path": "docs/agent_first/run_024r/refinement_001/USAGE.md",
+          "status": "ADD",
+          "bytes": 2221,
+          "sha256": "a338b24379603660c6674f7ebb4a37e6263a77f88a1061d70c3e94cf0e822128"
+        }
+      ],
+      "AUDIT": [
+        {
+          "path": "docs/agent_first/rc_git_001/ADD_MODIFY_WHITELIST.txt",
+          "status": "ADD",
+          "bytes": 3145,
+          "sha256": "2a927150e8ea577914c89f203c6ddfc47af2d86e87868f8acd912743e0d9e611"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/AUDIT_ARTIFACT_WHITELIST.json",
+          "status": "ADD",
+          "bytes": 7176,
+          "sha256": "e9fe4e4f2438aca23db916b95092591fb59abd2eb1c61ebfbd3a6bf0f086af63"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/BASELINE_AND_INVENTORY.md",
+          "status": "ADD",
+          "bytes": 3655,
+          "sha256": "468b1d97ffb70dfe494a7ac4c96f18673c16537c3dcfedb48914ecf216774cb9"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/CANDIDATE_SNAPSHOT_WHITELIST.json",
+          "status": "ADD",
+          "bytes": 223904,
+          "sha256": "962226da4809ac30bdca4bcf9ddc8250da4528d5cb903fbe897a215527e55224"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/CHANGE_ESTIMATE.json",
+          "status": "ADD",
+          "bytes": 1020,
+          "sha256": "4e4d4bd6322c7a87d5102c5d7879112b1dc39cb98b2f5b158c5d18a0a1439fe1"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/COMMIT_GROUPS.json",
+          "status": "ADD",
+          "bytes": 41697,
+          "sha256": "c836ffe45aeb59a7d1d5515ce9d28c94a621e0281152f20017daa83a184c2b46"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/COMMIT_PLAN.md",
+          "status": "ADD",
+          "bytes": 3828,
+          "sha256": "ca0361db1ec7e443a5b8f6caec78fdf1f3adc00eecbafb62ae0ef6c943d1a184"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/DEPENDENCY_AND_SECURITY.md",
+          "status": "ADD",
+          "bytes": 7431,
+          "sha256": "341748667ed2ca11ccb3196dc4730b1a62706a3102824e4fe5c7ae9cba06b8c5"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/DEPENDENCY_AUDIT.json",
+          "status": "ADD",
+          "bytes": 64152,
+          "sha256": "5986bb66d7ee8b693b21b38129f153b7ad1ffe1ee31dd99c24a47f0db18c2218"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/EXCLUSIONS.json",
+          "status": "ADD",
+          "bytes": 839457,
+          "sha256": "2234b79a75a1fd5f5df0774018f6f60056d4f955b16984649508719400f1f17b"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/FILE_CLASSIFICATION.json",
+          "status": "ADD",
+          "bytes": 1063358,
+          "sha256": "d523fe495b75000e1e22153b2ff11818a77846189fd5fc1723c5ed7e0209fe64"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 2964,
+          "sha256": "01018209efae3f1511f8206ae35db6f741d94f717641a74e3f396790dbf878c5"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/FIXTURE_REVIEW.json",
+          "status": "ADD",
+          "bytes": 3296,
+          "sha256": "aed43ead4f6f8dc96f22609d4842ee9aeb198f379fe5e38486a5cb85110b6cbe"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/GIT_DIFF_CHECK.txt",
+          "status": "ADD",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/GROUP_1_PATHS.txt",
+          "status": "ADD",
+          "bytes": 1286,
+          "sha256": "62ec1a9b9bc3a0818f14d57389d4508016c99a8101d0b5b06db6e26e840feab8"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/GROUP_2_PATHS.txt",
+          "status": "ADD",
+          "bytes": 1859,
+          "sha256": "c33627b62f81e24db6c263ee5d23784e0101fac0cc9494ca2592ee9f81e41fe0"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/LANGUAGE_REVIEW.json",
+          "status": "ADD",
+          "bytes": 255,
+          "sha256": "9d42146159d668a1d2130726f6eb91511147e17f99f253fb0dd938d3457210ff"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/LOCAL_UNTRACKED_EXCLUSIONS.txt",
+          "status": "ADD",
+          "bytes": 27608,
+          "sha256": "761ae0e05d5538705f2458e39816aa57a8834d55c3354b807e9a2412d513c57c"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/MANUAL_DECISIONS.txt",
+          "status": "ADD",
+          "bytes": 138,
+          "sha256": "1eb47a6408c080dda737a7864929e130e9052ca0784e5df3f0c3eb34a8d2b31c"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/PRESERVATION.json",
+          "status": "ADD",
+          "bytes": 342,
+          "sha256": "a78030786f7b3ce82877de3ee79f75adebd2f715bf01b0c81bfa16a344f35888"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/RELEASE_BLOCKERS.md",
+          "status": "ADD",
+          "bytes": 2447,
+          "sha256": "4546c668a0c1b91d8f002233d180303ce81806312248a20342b8d1b910fd3ded"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/REMOTE_SCOPE.json",
+          "status": "ADD",
+          "bytes": 272,
+          "sha256": "d6f2aeb52840c930d8b47ca7d0e26ef8ff08427fcce9a9023071f70c2fc52b03"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/SENSITIVE_FINDING.json",
+          "status": "ADD",
+          "bytes": 794,
+          "sha256": "d9790314694975bfae042f7b1d0465b113815050ae56cb3d8793834d160c072e"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/TEST_AND_REPRODUCIBILITY.md",
+          "status": "ADD",
+          "bytes": 2897,
+          "sha256": "ad66e6b9df6367239fd360900389b277cd5ff0c22992da4ab292e9265ddcc416"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/TEST_RESULTS.json",
+          "status": "ADD",
+          "bytes": 3959,
+          "sha256": "577fc884bddf4e41ae0733bd93aaebe547ccb44c79ec2c80364e1f5196154006"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/TRACKED_EXCLUSION_PROPOSAL.txt",
+          "status": "ADD",
+          "bytes": 67679,
+          "sha256": "42e3bcb9ccb4e21f9e2999af8945a856f44790667a0984f70c1733a4e1cd2efe"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/audit_checkpoint.py",
+          "status": "ADD",
+          "bytes": 4905,
+          "sha256": "6773e120d06859cc58080f0c132e2b0fa00014ae4daf0b4be36739c3377ddd7d"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/classify_candidate.py",
+          "status": "ADD",
+          "bytes": 8316,
+          "sha256": "691c8e02fda2f3d54425adabaeed09c8222c53c5faae107c7ff29fc652ad5291"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/finalize_audit.py",
+          "status": "ADD",
+          "bytes": 5675,
+          "sha256": "7a682b936d15160e056d2afd85353a2c4dd08f6a1299e196f16f9295a474b8f7"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/isolation_TEST.xml",
+          "status": "ADD",
+          "bytes": 1473,
+          "sha256": "45662a63e4ff339a53622c811c903e61efb59e720db73a74a989ee185389fcdf"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/semantics_TEST.xml",
+          "status": "ADD",
+          "bytes": 1196,
+          "sha256": "22b8e89b1a5c18bb424f029d3d09fd117a34f7b1ee08725dc1a438a0a7f4dfeb"
+        },
+        {
+          "path": "docs/agent_first/rc_git_001/verify_snapshot.py",
+          "status": "ADD",
+          "bytes": 2692,
+          "sha256": "02f48132f679774fe5bf92f2152453fe2758aa0b36d7d66724dfdda7750d2001"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/CANDIDATE_COUNTS.json",
+          "status": "ADD",
+          "bytes": 1672,
+          "sha256": "8f1cf7e6cbd0dffac7632aa973ddd18e1b828187bab595a13a684c68cfefcd12"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/CLOSURE_REVIEW.json",
+          "status": "ADD",
+          "bytes": 385,
+          "sha256": "df348740cf1e39fde7db095a4d73353e6b2f5992064898019d91bc067a7ce08c"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/CREDENTIAL_RISK_REVIEW.md",
+          "status": "ADD",
+          "bytes": 3809,
+          "sha256": "5799153b7cefe5c67211e61147829be103cd80affd2eb7958ba665ad4137aa8d"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/FINAL_SUMMARY.md",
+          "status": "ADD",
+          "bytes": 3214,
+          "sha256": "5cb131cd54beaf9e4ff5cdf16dc585c93cc59812a3d1cc6ea432c5537274ff51"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/FIXTURE_REPLACEMENT_REPORT.md",
+          "status": "ADD",
+          "bytes": 2760,
+          "sha256": "08e37ac288ced166087147c011f8949e181c5de534ca7f3cfcad3c99673608d0"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/HISTORY_AND_REMOTE_REACHABILITY.md",
+          "status": "ADD",
+          "bytes": 2798,
+          "sha256": "42504ab54d173fc67041c2e912be1ae1b6423b1965c50955b80ab540a1c3fa7f"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/HISTORY_METADATA.json",
+          "status": "ADD",
+          "bytes": 3497,
+          "sha256": "4af11a1725c5a2c22d705ffc9ccbbd2eab18c3935416a533b33a8682c3ba61b1"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/NEW_TEST_CLEANUP_SUMMARY.json",
+          "status": "ADD",
+          "bytes": 685,
+          "sha256": "54c0c69654cce0ef41f915f72a08eecdbb821e384a7fc3a7a945535d1aa1e01b"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/PRESERVATION.json",
+          "status": "ADD",
+          "bytes": 3606,
+          "sha256": "1785c098bf7d6a04b317d3be2bfebf454855118a04faa8ca812592e3c3367da5"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/PROPOSED_UNTRACK.json",
+          "status": "ADD",
+          "bytes": 11592,
+          "sha256": "7bc17e76f5f10c8d9a26d9065d21628f288466e0c709b6e05ed0ae6f2ee193d5"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/PROPOSED_UNTRACK_PATHS.txt",
+          "status": "ADD",
+          "bytes": 1985,
+          "sha256": "48b52ed524c6fd8199d66d4bd4d99369d1cd514a3ebf9745df0f3b81bd52360e"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/REDACTED_VALUE_SCAN.json",
+          "status": "ADD",
+          "bytes": 165,
+          "sha256": "fb56920c5327ed49e142d5e6643f44f14c8b93f7e176d8c80baa7a945bb09c19"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/REDACTION_RECEIPT.json",
+          "status": "ADD",
+          "bytes": 2666,
+          "sha256": "872cb0f048717bd2590adf171cf1192eb70479e0889b59b2837abcb3de179ad5"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/RELEASE_EXCLUSIONS.json",
+          "status": "ADD",
+          "bytes": 1063,
+          "sha256": "c322d86f827adf07d08dd380862fabcb1a03101984e9cab8e262370905eccab9"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/RELEASE_RUNTIME_WHITELIST.json",
+          "status": "ADD",
+          "bytes": 22032,
+          "sha256": "6f8b77941f558b810c9228b603c6deef4338bdd3792920cb782350d3a8c508b7"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/RETAINED_ROOTS_EXCLUSION.json",
+          "status": "ADD",
+          "bytes": 462,
+          "sha256": "dc2648e42b504edbe08940b2ce43b6b8dc270ff0b75db1f15877cf6ec2b9f8f7"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/SNAPSHOT_FILES.json",
+          "status": "ADD",
+          "bytes": 77385,
+          "sha256": "22b30dab10012e35734fe3ccb1c935098bad97e5043eec975fa7006c41908e60"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/TEST_AND_ACCEPTANCE.md",
+          "status": "ADD",
+          "bytes": 4519,
+          "sha256": "d8aa19e6d50cc5bcd648368814538e06fe9e843ed24e1e6ce8971e9c9d81f15e"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/TEST_RESULTS.json",
+          "status": "ADD",
+          "bytes": 231882,
+          "sha256": "2b78aa07d6779730ef0f0f18f01488df46f54b7f5f4de137ac774b1686cbe945"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/TRACKED_EXCLUSION_REVIEW.json",
+          "status": "ADD",
+          "bytes": 559865,
+          "sha256": "8b7171cb7f19c5756c4df31b81864b158c40b62a596674fa731fae4ec475d5bc"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/TRACKED_VS_RELEASE_EXCLUSIONS.md",
+          "status": "ADD",
+          "bytes": 2137,
+          "sha256": "8a7f0eff45a1e9830db8d7258d5d529e9086b86cb564a5bd6e87e2c546838f91"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/UPDATED_COMMIT_PLAN.md",
+          "status": "ADD",
+          "bytes": 3729,
+          "sha256": "e873aed39cc333600f54f42971086a5bccea005b1354e30fb05ede1412d587d3"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/prepare_snapshot.py",
+          "status": "ADD",
+          "bytes": 988,
+          "sha256": "cfac220a339df775e7c83dfd88f4485ad54a8e832b139b69e20f70d17ede8202"
+        },
+        {
+          "path": "docs/agent_first/rc_git_002/run_regression.py",
+          "status": "ADD",
+          "bytes": 5846,
+          "sha256": "5245b2ac510320e4a5a42dec93ff158f24a9c7bbbe9b65726df2333f0ba2fac1"
+        }
+      ]
+    },
+    "manifest_materials": [
+      {
+        "path": "docs/agent_first/rc_git_002/SOURCE_TEST_WHITELIST.json",
+        "status": "ADD",
+        "bytes": 10401,
+        "sha256": "2597b450167351367d59eb967fdc29bd9ad4bcfe1b716454a79f9e241bb768e0"
+      },
+      {
+        "path": "docs/agent_first/rc_git_002/SOURCE_TEST_WHITELIST.txt",
+        "status": "ADD",
+        "bytes": 1889,
+        "sha256": "1381ebc96f82522402155042eccd496f2e2ea80b646b2713b87d41ef87da824c"
+      },
+      {
+        "path": "docs/agent_first/rc_git_002/DOC_RESOURCE_WHITELIST.json",
+        "status": "ADD",
+        "bytes": 6847,
+        "sha256": "e07391dd1d5ca9c936937272986d47fba94dc112aec3f1b80fdad5069ebb9999"
+      },
+      {
+        "path": "docs/agent_first/rc_git_002/DOC_RESOURCE_WHITELIST.txt",
+        "status": "ADD",
+        "bytes": 1884,
+        "sha256": "1e15f949ffc96e469a4120f34849861cd412f6d17069f5cc08120b36647ea58e"
+      },
+      {
+        "path": "docs/agent_first/rc_git_002/AUDIT_WHITELIST.json",
+        "status": "ADD",
+        "bytes": 11319,
+        "sha256": "0ac1814f77595d567f48c7b18bf1dc737ce6d98fbe7dbe20d60d796f287c12b6"
+      },
+      {
+        "path": "docs/agent_first/rc_git_002/AUDIT_WHITELIST.txt",
+        "status": "ADD",
+        "bytes": 2909,
+        "sha256": "c181f57c4dd5fd245284b53c21d7c13e2c3c7061400de5a0690024f6440cde44"
+      }
+    ],
+    "self_path": "docs/agent_first/rc_git_002/CANDIDATE_MANIFEST.json",
+    "hash_rule": "SHA256 of UTF8 json.dumps(body,ensure_ascii=False,sort_keys=True,separators=(comma,colon)); self file excluded from rows",
+    "excluded_index_actions": "No removals; 19 paths require separate approval",
+    "source_snapshot": "SNAPSHOT_FILES.json; tests ran in an explicit copy, not a whole repository clone"
+  },
+  "body_sha256": "c3c3e802a00181cf0344361563f3eca8cf5dc45477b9a60b571c892af31808d4"
+}

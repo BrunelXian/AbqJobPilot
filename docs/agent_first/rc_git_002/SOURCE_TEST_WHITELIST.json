@@ -1,0 +1,338 @@
+[
+  {
+    "path": "abqjobpilot/classic_workspace.py",
+    "status": "ADD",
+    "bytes": 3302,
+    "sha256": "52c9daf1a6a9fbc4f6d645e9547ba6ad539b2d161212b9e0c03a777d730383ad"
+  },
+  {
+    "path": "abqjobpilot/cockpit_display.py",
+    "status": "ADD",
+    "bytes": 605,
+    "sha256": "e3b4c03f7826c86ce220b7fcf7a5360e38b2ca2bd2b46a24df6d493ce73f2a82"
+  },
+  {
+    "path": "abqjobpilot/cockpit_layout.py",
+    "status": "ADD",
+    "bytes": 13577,
+    "sha256": "17f8ecd6f9ffc0c9ba5cbb8e1a45ed7584839c7b217396c6845802fdf32c0c80"
+  },
+  {
+    "path": "abqjobpilot/desktop_workspace.py",
+    "status": "ADD",
+    "bytes": 33924,
+    "sha256": "2aece38f1abc57c2d10cc189b6f958666b10e6b70cd8e80377518b5c86e7ed3c"
+  },
+  {
+    "path": "abqjobpilot/execution/client.py",
+    "status": "MODIFY",
+    "bytes": 5948,
+    "sha256": "f61c4b5dd23f9944aa6f7fe85b9e85222b7262838065f31fc57724b725cadfc3"
+  },
+  {
+    "path": "abqjobpilot/execution/interruption_probe.py",
+    "status": "MODIFY",
+    "bytes": 7269,
+    "sha256": "b7a9496d9df7f369b01718b86dff54ec18e2750f169ec84c9ab5c620b5b64240"
+  },
+  {
+    "path": "abqjobpilot/execution/process_handles.py",
+    "status": "MODIFY",
+    "bytes": 3229,
+    "sha256": "1c3f7961c49c72d55c011d095404413668ea606488db49e05d5c182ad99e453d"
+  },
+  {
+    "path": "abqjobpilot/execution/reconciliation.py",
+    "status": "MODIFY",
+    "bytes": 20404,
+    "sha256": "bb20bac14d7b8d5dd6cfb1ef7ddc8e41bdf81efcd2790397f7065c5f08a83ba8"
+  },
+  {
+    "path": "abqjobpilot/execution/recovery.py",
+    "status": "ADD",
+    "bytes": 25749,
+    "sha256": "a01cefe131e5a13d481e75d6e6018dd3eae9cfa1c02cbc087ef124fc7e2f44e9"
+  },
+  {
+    "path": "abqjobpilot/execution/store.py",
+    "status": "MODIFY",
+    "bytes": 35945,
+    "sha256": "343b77f974da6133e593c37f246b8636db73bc87f8306a0181af7845c14a3116"
+  },
+  {
+    "path": "abqjobpilot/execution/supervisor.py",
+    "status": "MODIFY",
+    "bytes": 17750,
+    "sha256": "a3741ca600ad6d7a93d0427ebeb26af78d4118b5c6f75511f47e4978183a4ea0"
+  },
+  {
+    "path": "abqjobpilot/execution_gui.py",
+    "status": "MODIFY",
+    "bytes": 32975,
+    "sha256": "d2c268555c7a6c0223c13233ae663ef7644ae818422b1f43b3cb0acee2019b43"
+  },
+  {
+    "path": "abqjobpilot/gui_app.py",
+    "status": "MODIFY",
+    "bytes": 138906,
+    "sha256": "1c89dced79843f9c1d60adead75f5957ce3a7b40cdd1d7976d9d4abbb5470d46"
+  },
+  {
+    "path": "abqjobpilot/gui_presentation.py",
+    "status": "MODIFY",
+    "bytes": 3489,
+    "sha256": "3e096a97338d8e6dfb47bbfa63d9f34dd1b5563278207726e4f404ce9ccc4874"
+  },
+  {
+    "path": "abqjobpilot/locales/de-DE.json",
+    "status": "ADD",
+    "bytes": 10431,
+    "sha256": "f10f294689e85360d1acfa5005f0f3a018700e0c09655684332a26023e68dacd"
+  },
+  {
+    "path": "abqjobpilot/locales/en.json",
+    "status": "ADD",
+    "bytes": 9280,
+    "sha256": "2025926c1287072c192b3626021d2fa370540dd04f2361ca756e3dadb12eb61c"
+  },
+  {
+    "path": "abqjobpilot/locales/fr-FR.json",
+    "status": "ADD",
+    "bytes": 10265,
+    "sha256": "b8abdb3739d5214c405732e35b536cc809b779d86637213cc717190126a5e529"
+  },
+  {
+    "path": "abqjobpilot/locales/zh-CN.json",
+    "status": "ADD",
+    "bytes": 8517,
+    "sha256": "e8db8b6911924c8b6f1a37e4a0936efee9facd39e5df49b06754be7ae3a285ff"
+  },
+  {
+    "path": "abqjobpilot/recovery_management.py",
+    "status": "ADD",
+    "bytes": 857,
+    "sha256": "4f6aab538694beba855e416205c784d98e7d4c0c55147881a18aa815d7306b36"
+  },
+  {
+    "path": "abqjobpilot/ui_resources.py",
+    "status": "ADD",
+    "bytes": 3053,
+    "sha256": "8591328e11ae26078291ffa8521acde344a18d30631bcdbc4512d7d75b2a410f"
+  },
+  {
+    "path": "docs/agent_first/run_022/CLEANUP.json",
+    "status": "MODIFY",
+    "bytes": 1402706,
+    "sha256": "0cfaa016cfee2c738d7591f93138aaa2350dbdcf4e60c359500a128aafd7a5fc"
+  },
+  {
+    "path": "docs/agent_first/run_022/audit_redaction.py",
+    "status": "ADD",
+    "bytes": 512,
+    "sha256": "abeea297f7d5bd873ef10f6c06d7fa1166c5cf449e7500ab435c0297e5c76231"
+  },
+  {
+    "path": "docs/agent_first/run_022/verify_cleanup.py",
+    "status": "MODIFY",
+    "bytes": 5174,
+    "sha256": "758fd98c11a77f38d842fc3d0e77dd9bd2233bc77e71bf4fe0650be1e1e838b6"
+  },
+  {
+    "path": "tests/cockpit_capture.py",
+    "status": "ADD",
+    "bytes": 2342,
+    "sha256": "73125b4f21e00b46939b9e090a79acbf8f41284ac9e9c065852e1d0e690f6699"
+  },
+  {
+    "path": "tests/fixtures/synthetic/README.md",
+    "status": "ADD",
+    "bytes": 1330,
+    "sha256": "bd741e5b0fa46d29500e78526b11e6378716f67ca159cf611aefd834a95e3afd"
+  },
+  {
+    "path": "tests/fixtures/synthetic/diagnostic_v2.json",
+    "status": "ADD",
+    "bytes": 4135,
+    "sha256": "c91d790f2215832ff518c6c5f4861ec9a0d89071605921e110503a7dd29570d7"
+  },
+  {
+    "path": "tests/fixtures/synthetic/generate.py",
+    "status": "ADD",
+    "bytes": 4352,
+    "sha256": "029beb6536aff3ac72fa056b8f32cbb06cb7b9e3b7370e2a93560744d62dea6c"
+  },
+  {
+    "path": "tests/fixtures/synthetic/standard_axial_cp936.txt",
+    "status": "ADD",
+    "bytes": 846,
+    "sha256": "22d6dd0068d9fb226db3cb0ba534b48cb5dad3b085691d3c59fe8eeb96abb433"
+  },
+  {
+    "path": "tests/run013_process.py",
+    "status": "MODIFY",
+    "bytes": 3599,
+    "sha256": "d1039610f81723d273f3633bcd98b6923c993452dd5ebe36ae16355ad5ed9539"
+  },
+  {
+    "path": "tests/run018_gui.py",
+    "status": "MODIFY",
+    "bytes": 3890,
+    "sha256": "50ce300805c32ab131af2b71f00b509cd2fd0fcbe5fce2f4c6d15dcf2c12b4d6"
+  },
+  {
+    "path": "tests/run019_gui.py",
+    "status": "MODIFY",
+    "bytes": 5018,
+    "sha256": "bf8d135d1854761218ecfadb11ae15e9f7806013289edee3642244cce68c803b"
+  },
+  {
+    "path": "tests/run020_gui.py",
+    "status": "MODIFY",
+    "bytes": 6079,
+    "sha256": "2095a4d094302ed7c003d613b54dc2ea243f101a77046bcbc0b8dc709888921f"
+  },
+  {
+    "path": "tests/run024_gui.py",
+    "status": "ADD",
+    "bytes": 4308,
+    "sha256": "072fd3fc403c60195bdc8391284b203ed7fbe7e707c0e31679723f1872829425"
+  },
+  {
+    "path": "tests/test_attachment_gui.py",
+    "status": "MODIFY",
+    "bytes": 10033,
+    "sha256": "3d2194167459ee986267f49b88771b12b9e2267d36300c4d5b4d9e0408cf0c79"
+  },
+  {
+    "path": "tests/test_cockpit_semantics.py",
+    "status": "ADD",
+    "bytes": 3083,
+    "sha256": "9090ecc28ebfdb9c9d1e5779605f33ec63bccdeebebcd33af1ee7a527549bbcb"
+  },
+  {
+    "path": "tests/test_cockpit_widgets.py",
+    "status": "ADD",
+    "bytes": 2518,
+    "sha256": "9f4f4a2f2f96051b8b374a1e45ee2ce576f1185d6eac72c6eccdb29908504f31"
+  },
+  {
+    "path": "tests/test_cockpit_windows.py",
+    "status": "ADD",
+    "bytes": 3019,
+    "sha256": "ff0a03fdf68397b60b747e58a30b3449c8b875b8443b002f7a054631fd905e14"
+  },
+  {
+    "path": "tests/test_execution_isolation.py",
+    "status": "MODIFY",
+    "bytes": 11412,
+    "sha256": "3e28ef9be83d57e2c1a98458124111b19a2e6c555a5a918c8ba64f1409207115"
+  },
+  {
+    "path": "tests/test_interrupted_recovery.py",
+    "status": "ADD",
+    "bytes": 15496,
+    "sha256": "f8287cb55065fe11720a1d3323c63e955bbb559855a890d9b227856269d804e7"
+  },
+  {
+    "path": "tests/test_interruption_probe.py",
+    "status": "MODIFY",
+    "bytes": 5244,
+    "sha256": "f3a0d8833082f18dfc585ee67f1a180c23252f7411e26163ded75aafa17ecaad"
+  },
+  {
+    "path": "tests/test_interruption_windows.py",
+    "status": "MODIFY",
+    "bytes": 3967,
+    "sha256": "c2a7fa3511a0688ac1192700e64f14108123891ccd7530197f0fb3ea70768768"
+  },
+  {
+    "path": "tests/test_native_visual.py",
+    "status": "ADD",
+    "bytes": 2200,
+    "sha256": "9ca763e70865958149959206cf5cfc1c4126a19b2848688c4af2c6888aaf18bc"
+  },
+  {
+    "path": "tests/test_native_workspace.py",
+    "status": "ADD",
+    "bytes": 9219,
+    "sha256": "c1178607b4f329381c91f55eae04cd29505984390581e27397c9012400ca4303"
+  },
+  {
+    "path": "tests/test_native_workspace_windows.py",
+    "status": "ADD",
+    "bytes": 9012,
+    "sha256": "23ed632b3c96645775523b67558e96a564acb49b794e22b59dc06b416c6fabc8"
+  },
+  {
+    "path": "tests/test_product_project.py",
+    "status": "MODIFY",
+    "bytes": 7714,
+    "sha256": "05c161c0fa0e189c68e8fdcc434a1574a4aa551ebadb1ba29cc17fb1a02ac8b9"
+  },
+  {
+    "path": "tests/test_product_standard_control.py",
+    "status": "MODIFY",
+    "bytes": 17406,
+    "sha256": "a47a5ac8de6260f433b15723699f0633edcb9ae1950dab496ddbffc84ddf3c8c"
+  },
+  {
+    "path": "tests/test_product_standard_windows.py",
+    "status": "MODIFY",
+    "bytes": 12573,
+    "sha256": "ae4f73d07a134232f9d6f98291e0c452c092c44079df7f973b6210b71d1c70ee"
+  },
+  {
+    "path": "tests/test_product_windows.py",
+    "status": "MODIFY",
+    "bytes": 20063,
+    "sha256": "212d4dfe6672c114f0d7ddf69f3ac855f53d77231c9cd5b5441318b62c10c6c6"
+  },
+  {
+    "path": "tests/test_public_client_example.py",
+    "status": "MODIFY",
+    "bytes": 4600,
+    "sha256": "79a9e58efdb91eb6db3c9596a6330d04a838e0b543864cdff58b3af78bcdaaa4"
+  },
+  {
+    "path": "tests/test_recovery_windows.py",
+    "status": "ADD",
+    "bytes": 7659,
+    "sha256": "39890b9c9677d70a3a9bfcedcfd034901a72b4ae2c967eda16d7a1f91c49ce73"
+  },
+  {
+    "path": "tests/test_release_fixtures.py",
+    "status": "ADD",
+    "bytes": 3170,
+    "sha256": "0710936d8c32487d56aac3088e62491e167a6bc738b6a71479306f7d8c707a88"
+  },
+  {
+    "path": "tests/test_service_lifecycle.py",
+    "status": "MODIFY",
+    "bytes": 11443,
+    "sha256": "30d3bf435e209c7d9f2f08abbb11641fe4fd3a04148f5ceea1d11b8c6071efd3"
+  },
+  {
+    "path": "tests/test_standard_backend.py",
+    "status": "MODIFY",
+    "bytes": 15042,
+    "sha256": "deb922c0b8b263695dae2fee87e41923f31ad3d03d82dccce84a68cb55cd7d12"
+  },
+  {
+    "path": "tests/test_standard_managed.py",
+    "status": "MODIFY",
+    "bytes": 12826,
+    "sha256": "7f24459f408ff5e0720b30ded1817f413e57d17d992d1c95d4499427660185a5"
+  },
+  {
+    "path": "tests/test_standard_managed_windows.py",
+    "status": "MODIFY",
+    "bytes": 11016,
+    "sha256": "b11ffb085b1adaa2249f49725fdb0f909483194be8ff2c33c0ca82ee5629c6aa"
+  },
+  {
+    "path": "tests/test_standard_pair_client.py",
+    "status": "MODIFY",
+    "bytes": 3245,
+    "sha256": "d82a3b1a8a9de556fa30c0c0fb60b9cece264c2d9f767e731578aee738dd1ea6"
+  }
+]
