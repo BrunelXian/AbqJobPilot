@@ -36,7 +36,7 @@ import run_gui
 
 original_call=FakeClient.call
 def readonly_call(client,operation,arguments):
-    assert operation in {'health','project_view','run','receipt','events','progress','validations','preview_closeout','lifecycle_stop'}
+    assert operation in {'health','project_view','run','receipt','events','progress','validations','preview_closeout','inspect_interrupted_execution','preview_interrupted_recovery','lifecycle_stop'}
     return original_call(client,operation,arguments)
 FakeClient.call=readonly_call
 
@@ -76,14 +76,18 @@ def construct(**kw):
             if action['operation']=='new':
                 from abqjobpilot import execution_gui
                 creating[0]=True
-                execution_gui.filedialog.asksaveasfilename=lambda **kw:action['project']
-                execution_gui.simpledialog.askstring=lambda *a,**kw:action['name']
                 view.new_button.invoke()
+                dialog=view.dialog
+                entries=[c for c in dialog.winfo_children() if c.winfo_class()=='TEntry']
+                for entry,value in zip(entries,(action['name'],str(Path(action['project']).parent),Path(action['project']).name)):
+                    entry.insert(0,value)
+                bar=next(c for c in dialog.winfo_children() if c.winfo_class()=='TFrame')
+                buttons=bar.winfo_children();buttons[0].invoke();buttons[1].invoke()
             elif action['operation']=='project':
                 gui_app.filedialog.askdirectory=lambda **kw:action['project']
                 view.choose_button.invoke()
             elif action['operation']=='select':
-                view.run_tree.selection_set(action['run_id']);view.run_tree.event_generate('<<TreeviewSelect>>')
+                view.navigate('runs');view.run_tree.selection_set(action['run_id']);view.run_tree.event_generate('<<TreeviewSelect>>')
             elif action['operation']=='reconnect':view.reconnect()
             elif action['operation']=='older':view.older_button.invoke()
             elif action['operation']=='start':view.start_button.invoke()

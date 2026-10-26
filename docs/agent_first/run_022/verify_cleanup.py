@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import sys
 from datetime import datetime,timezone
+from audit_redaction import redact
 
 SOURCE=Path(__file__).resolve().parents[3];OUT=Path(__file__).resolve().parent
 sys.path.insert(0,str(SOURCE))
@@ -49,8 +50,8 @@ for r in roots:
         except (ValueError,UnicodeError,OSError):continue
         collect(v)
         if 'lifecycle' in p.name or p.name in {'inventory.json','product_cleanup.json'}:
-            lifecycle.append({'path':str(p),'record':v})
-        if 'cleanup' in p.name and 'native' in p.name:native.append({'path':str(p),'record':v})
+            lifecycle.append({'path':str(p),'record':redact(v)})
+        if 'cleanup' in p.name and 'native' in p.name:native.append({'path':str(p),'record':redact(v)})
     from abqjobpilot.service_lifecycle import ServiceLifecycleManager
     from abqjobpilot.local_credentials import read_private
     for p in paths:

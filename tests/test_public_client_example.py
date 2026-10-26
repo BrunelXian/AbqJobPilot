@@ -15,7 +15,7 @@ def test_previous_v2_report_allowed_validation_source_remains_readable():
     # Preserve the prior envelope's accepted enum even though the normal R7
     # process path did not emit Fake reconciliation validations.
     source = Path(__file__).resolve().parents[1]
-    report = read_json(source / "docs/agent_first/run_007/examples/historical_invalid_after.json")
+    report = read_json(source / "tests/fixtures/synthetic/diagnostic_v2.json")
     assert report["body"]["facts"]["validations"]
     report["body"]["facts"]["validations"][0]["source"] = "explicit_reconciliation"
     report["content_digest"] = digest(report["body"])

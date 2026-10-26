@@ -63,7 +63,8 @@ def _observe_identity(expected):
         if exit_record: result['exit_code'] = exit_record['exit_code']
     except ExecutionError as exc:
         result['state'] = ('IDENTITY_MISMATCH' if exc.code == 'PROCESS_IDENTITY_MISMATCH'
-                           else 'PROCESS_UNAVAILABLE' if exc.code == 'PROCESS_IDENTITY_UNKNOWN' else 'QUERY_FAILED')
+                           else 'PROCESS_UNAVAILABLE' if exc.code == 'PROCESS_IDENTITY_UNKNOWN'
+                           and getattr(exc, 'pid_absent', False) is True else 'QUERY_FAILED')
     except (OSError, ValueError, AttributeError):
         result['state'] = 'QUERY_FAILED'
     finally:

@@ -129,9 +129,13 @@ def test_windows_dpapi_binding_tamper_and_plaintext_downgrade(tmp_path,monkeypat
     monkeypatch.setattr(lc,'host_binding',lambda:'wrong-user-or-host')
     with pytest.raises(ExecutionError):unseal(m.context,enc)
     monkeypatch.undo()
+    # Reject a plaintext downgrade without leaving an authentic random secret
+    # in retained negative-test material. No service is started by this test.
+    profile['credential']='NON_AUTHENTICATING_PLAINTEXT_DOWNGRADE_SENTINEL'
     (m.private/'lifecycle.json').write_text(canonical_json(profile))
     with pytest.raises(ExecutionError) as e:m._profile()
     assert e.value.code=='LOCAL_CREDENTIAL_UNAVAILABLE' and secret not in str(e.value)
+    assert profile['credential'] not in str(e.value)
 
 
 def test_private_acl_restricted_from_creation(tmp_path):

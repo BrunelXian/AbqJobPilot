@@ -178,7 +178,7 @@ def test_product_gui_start_worker_survives_normal_gui_and_launcher_exit(tmp_path
             (Path(h.context.runtime_root)/'process_runs'/rid/'release.json').write_text('{}')
             finished=wait_until(lambda:r if (r:=client.run(rid))['execution']=='FINISHED' else None,timeout=30)
             assert finished['managed_completion']=='COMMITTED_EMPTY_SCOPE'
-            gui2.view(lambda v:dict(v['rows']).get('Artifact 独立验证')=='VALID')
+            gui2.view(lambda v:dict(v['rows']).get('Validation')=='VALID')
             assert len([e for e in client.events() if e['type']=='START_INTENT'])==1
             # Explicit GUI stop, not closing the window, invokes the one exact idle policy.
             action(gui2,'stop')

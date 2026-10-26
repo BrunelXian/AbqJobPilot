@@ -126,7 +126,8 @@ def preview(service, context, run_id):
 
 
 def _request(service, request, action):
-    require(action in {ADOPT, RESUME, RECONCILE_PROCESS, VALIDATE, *CLOSEOUT_ACTIONS}, "INVALID_REQUEST", "Unsupported management action")
+    from .recovery import ACTION as RECOVERY, SCOPE as RECOVERY_SCOPE
+    require(action in {ADOPT, RESUME, RECONCILE_PROCESS, VALIDATE, RECOVERY, *CLOSEOUT_ACTIONS}, "INVALID_REQUEST", "Unsupported management action")
     common = ("contract_version", "operation", "project_id", "project_instance_id", "owner_id",
               "management_grant_id", "idempotency_key")
     scope_names = ("run_id", "expected_run_revision", "preview_digest") if action == ADOPT else ("expected_gate_version",)
@@ -136,6 +137,8 @@ def _request(service, request, action):
         scope_names = VALIDATION_SCOPE
     if action in CLOSEOUT_ACTIONS:
         scope_names = CLOSEOUT_SCOPE
+    if action == RECOVERY:
+        scope_names = RECOVERY_SCOPE
     fields(request, common + scope_names)
     require(request["contract_version"] == MANAGEMENT_CONTRACT and request["operation"] == action,
             "INVALID_REQUEST", "Unsupported management contract/action")
@@ -144,7 +147,14 @@ def _request(service, request, action):
             "PROJECT_IDENTITY_MISMATCH", "Management request targets another Project")
     for key in ("owner_id", "management_grant_id", "idempotency_key"):
         text(request[key])
-    if action in CLOSEOUT_ACTIONS:
+    if action == RECOVERY:
+        from .recovery import ADMIN, VERIFIED
+        integer(request['expected_run_revision'],1)
+        for key in RECOVERY_SCOPE:
+            if key not in ('expected_run_revision','residual_risk_accepted'):text(request[key])
+        require(request['decision'] in (ADMIN,VERIFIED) and type(request['residual_risk_accepted']) is bool
+                and request['operation_key']==request['idempotency_key'], 'INVALID_REQUEST', 'Exact recovery scope required')
+    elif action in CLOSEOUT_ACTIONS:
         integer(request['expected_run_revision'],1)
         for key in ('run_id','preview_digest','evidence_fingerprint','reason'):text(request[key])
     elif action == VALIDATE:
@@ -175,11 +185,12 @@ def _prior(connection, namespace, key, summary):
 
 
 def _authorize(service, connection, request, action, scope):
+    from .recovery import ACTION as RECOVERY
     session = service.store._session
     require(request["owner_id"] == session.owner_id, "STALE_OWNER", "A new owner requires a new preview and permission")
     row = connection.execute("SELECT body FROM management_grants WHERE grant_id=?", (request["management_grant_id"],)).fetchone()
     used = connection.execute("SELECT 1 FROM management_consumption WHERE grant_id=?", (request["management_grant_id"],)).fetchone()
-    real_disposition = action in CLOSEOUT_ACTIONS or (action == RESUME and any(
+    real_disposition = action == RECOVERY or action in CLOSEOUT_ACTIONS or (action == RESUME and any(
         administratively_released(connection,json.loads(r[0])) for r in connection.execute('SELECT body FROM runs')))
     checker = check_permission if real_disposition else check_management_grant
     checker(service.context, json.loads(row[0]) if row else None,
@@ -216,7 +227,10 @@ def manage(service, context, request, action):
                     and session.active_dispatches == 0, "GATE_PRECONDITION_FAILED", "Current owner must be paused and quiescent")
             operation_id = identifier("op")
             refs = []
-            if action in CLOSEOUT_ACTIONS:
+            from .recovery import ACTION as RECOVERY, apply_recorded as recover_recorded
+            if action == RECOVERY:
+                refs, projection = recover_recorded(service,connection,request,operation_id,gate)
+            elif action in CLOSEOUT_ACTIONS:
                 refs, projection = apply_closeout_recorded(service,connection,request,operation_id,gate)
             elif action == VALIDATE:
                 refs, projection = validate_recorded(service, connection, request, operation_id, gate)

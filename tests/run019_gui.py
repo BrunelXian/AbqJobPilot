@@ -29,7 +29,7 @@ import run_gui
 
 original_call=FakeClient.call
 def readonly_call(client,operation,arguments):
-    assert operation in {'health','project_view','run','receipt','events','progress','validations','preview_closeout','lifecycle_stop'}
+    assert operation in {'health','project_view','run','receipt','events','progress','validations','preview_closeout','inspect_interrupted_execution','preview_interrupted_recovery','lifecycle_stop'}
     return original_call(client,operation,arguments)
 FakeClient.call=readonly_call
 
@@ -68,7 +68,7 @@ def construct(**kw):
                 gui_app.filedialog.askdirectory=lambda **kw:action['project']
                 view.choose_button.invoke()
             elif action['operation']=='select':
-                view.run_tree.selection_set(action['run_id']);view.run_tree.event_generate('<<TreeviewSelect>>')
+                view.navigate('runs');view.run_tree.selection_set(action['run_id']);view.run_tree.event_generate('<<TreeviewSelect>>')
             elif action['operation']=='reconnect':view.reconnect()
             elif action['operation']=='older':view.older_button.invoke()
             elif action['operation']=='start':view.start_button.invoke()

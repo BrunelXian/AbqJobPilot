@@ -54,6 +54,14 @@ class FakeClient:
     def preview_closeout(self, run_id):
         return self.call('preview_closeout', {'run_id':run_id})
 
+    def inspect_interrupted_execution(self, run_id):
+        """Recorded read-only diagnostic; no OS probing or recovery authority."""
+        return self.call('inspect_interrupted_execution', {'run_id': run_id})
+
+    def preview_interrupted_recovery(self, run_id):
+        """Read-only candidates, never permission to Apply."""
+        return self.call('preview_interrupted_recovery', {'run_id': run_id})
+
     def apply_closeout(self, request):
         return self.call('apply_closeout', {'request':request})
 

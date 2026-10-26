@@ -20,7 +20,10 @@ def status_presentation(raw_status: str | None, language: str = "en") -> tuple[s
         return ("完成 · 有警告" if translated else "Completed · warnings", SUCCESS_TAG)
     if canonical == "COMPLETED":
         return ("完成" if translated else "Completed", SUCCESS_TAG)
-    if canonical == "FAILED" or raw == "UNKNOWN_INTERRUPTED":
+    if raw == "UNKNOWN_INTERRUPTED":
+        from .ui_resources import translate
+        return translate(language, "interruption.unknown_interrupted"), "interrupted"
+    if canonical == "FAILED":
         return ("失败" if translated else "Failed", "failed")
     if canonical == "RUNNING":
         return ("运行中" if translated else "Running", "running")
@@ -44,6 +47,8 @@ def filter_jobs(jobs: list[dict], search: str = "", status_filter: str = "all",
             continue
         raw = str(job.get("status") or "").upper()
         canonical = normalize_status(raw)
+        if status_filter == "interrupted" and raw != "UNKNOWN_INTERRUPTED":
+            continue
         if status_filter == "warnings" and raw != "COMPLETED_WITH_WARNINGS":
             continue
         if status_filter == "completed" and canonical != "COMPLETED":

@@ -76,7 +76,7 @@ def test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect(tmp_pa
             assert owner.process.poll() is None
             gui2=Gui(tmp_path,None,None,'normal_B',attachment=True);guis.append(gui2)
             reconnected=choose(gui2,h,rid)
-            assert dict(reconnected['rows'])['原始接收回执']==receipt['request_id']
+            assert dict(reconnected['rows'])['Original acceptance receipt']==receipt['request_id']
             assert db_facts(client,rid)==baseline
             action(gui2,'reconnect')
             gui2.view(lambda v:v['connected'] and dict(v['rows']).get('Run ID')==rid)
@@ -84,7 +84,7 @@ def test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect(tmp_pa
             assert hashlib.sha256(Path(h.context.execution_store).read_bytes()).hexdigest()==database_before
             (directory(h,rid)/'release.json').write_text('{}',encoding='utf-8')
             final=terminal(h,rid)
-            complete=gui2.view(lambda v:v['connected'] and dict(v['rows']).get('Artifact 独立验证')=='VALID')
+            complete=gui2.view(lambda v:v['connected'] and dict(v['rows']).get('Validation')=='VALID')
             assert final['managed_completion']=='COMMITTED_EMPTY_SCOPE'
             assert final['solver_conclusion']=='NOT_RUN'
             assert len(read_json(owner.control/'physical-launches.json'))==1
@@ -92,7 +92,7 @@ def test_normal_dev_entry_managed_worker_survives_gui_chain_and_reconnect(tmp_pa
             # Own completed service is stopped by its test harness, not GUI.
             (owner.control/'stop.json').write_text('{}',encoding='utf-8');assert owner.process.wait(timeout=10)==0
             disconnected=gui2.view(lambda v:not v['connected'])
-            assert '缓存不是实时' in disconnected['status'] and dict(disconnected['rows'])['Run ID']==rid
+            assert 'last successful read' in disconnected['status'] and dict(disconnected['rows'])['Run ID']==rid
             next_owner=h.owner();connection(h);client=h.client()
             paused=gui2.view(lambda v:v['connected'] and 'PAUSED' in v['status'])
             assert client.dispatch_gate()['state']=='PAUSED'

@@ -26,7 +26,7 @@ from abqjobpilot.execution.managed_process import ManagedScope
 from abqjobpilot.execution import standard_backend as backend
 
 SOURCE=Path(__file__).resolve().parents[1]
-HISTORICAL=SOURCE/'docs/agent_first/run_011/result_review_001/ORIGINAL_DAT.bin'
+SYNTHETIC_DAT=SOURCE/'tests/fixtures/synthetic/standard_axial_cp936.txt'
 
 
 @pytest.fixture
@@ -51,7 +51,7 @@ def product(tmp_path,monkeypatch):
     calls=[]
     def create(scope,call,out,err):
         scope.started=True;calls.append(call)
-        (engineering/(plan['job_name']+'.dat')).write_bytes(HISTORICAL.read_bytes())
+        (engineering/(plan['job_name']+'.dat')).write_bytes(SYNTHETIC_DAT.read_bytes())
         (engineering/(plan['job_name']+'.sta')).write_text('THE ANALYSIS HAS COMPLETED SUCCESSFULLY')
         (engineering/(plan['job_name']+'.msg')).write_text('THE ANALYSIS HAS BEEN COMPLETED')
         return object()

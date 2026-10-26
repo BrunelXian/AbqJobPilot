@@ -17,7 +17,8 @@ from .store import acquire_supervisor_store
 OPERATIONS = ("health", "submit", "receipt", "run", "events", "validations", "preview_reconciliation",
               "apply_reconciliation", "resume_dispatch", "dispatch_gate", "management_receipt", "reconciliations", "diagnose",
               "preview_process_reconciliation", "apply_process_reconciliation", "inspect_plan", "validate_run", "progress",
-              "preview_closeout", "apply_closeout", "project_view", "lifecycle_stop", "product_standard_control")
+              "preview_closeout", "apply_closeout", "project_view", "lifecycle_stop", "product_standard_control",
+              "inspect_interrupted_execution", "preview_interrupted_recovery")
 
 
 def load_bootstrap(explicit_test_root, path):
@@ -171,6 +172,13 @@ class FakeSupervisor:
         if operation == 'preview_closeout':
             fields(args,('run_id',))
             return self.service.preview_closeout(ctx,args['run_id'])
+        if operation == 'inspect_interrupted_execution':
+            fields(args, ('run_id',))
+            return self.store.inspect_interrupted_execution(ctx, args['run_id'])
+        if operation == 'preview_interrupted_recovery':
+            fields(args, ('run_id',))
+            from .recovery import preview_interrupted_recovery
+            return preview_interrupted_recovery(ctx, args['run_id'])
         if operation == 'apply_closeout':
             fields(args,('request',))
             result=self.service.apply_closeout(ctx,args['request'])

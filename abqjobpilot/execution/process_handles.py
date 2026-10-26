@@ -18,7 +18,12 @@ class ProcessReference:
         api.GetExitCodeProcess.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
         api.CloseHandle.argtypes = [ctypes.c_void_p]
         self.handle = api.OpenProcess(0x100000 | 0x1000 | (1 if cleanup else 0), False, pid)
-        require(bool(self.handle), "PROCESS_IDENTITY_UNKNOWN", "Cannot open exact process; no exit inferred")
+        if not self.handle:
+            failure = ExecutionError("PROCESS_IDENTITY_UNKNOWN", "Cannot open exact process; no exit inferred")
+            # Read-only diagnostic provenance. Access denied or later identity
+            # query failures must never be interpreted as an absent PID.
+            failure.pid_absent = ctypes.get_last_error() == 87  # ERROR_INVALID_PARAMETER for a nonzero PID
+            raise failure
         try:
             times = [ctypes.c_uint64() for _ in range(4)]
             require(bool(api.GetProcessTimes(self.handle, *(ctypes.byref(t) for t in times))),

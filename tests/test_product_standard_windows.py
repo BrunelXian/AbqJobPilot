@@ -42,7 +42,7 @@ def product_host(tmp_path,monkeypatch):
     plan=prepare_product(root,engineering,'r021_bar_1122abcd',config,expires_at=now()+3600)
     (root/'test-plan.json').write_text(canonical_json(plan))
     manager=ServiceLifecycleManager(root);operator=StandardOperator(root);refs=[];guis=[]
-    evidence={'scope':'PRODUCT_STANDARD_NATIVE_PYTHON_SUBSTITUTE_HISTORICAL_DAT_ONLY','abaqus_calls':0,
+    evidence={'scope':'PRODUCT_STANDARD_NATIVE_PYTHON_SUBSTITUTE_SYNTHETIC_DAT_ONLY','abaqus_calls':0,
               'root':str(root),'python':sys.executable}
     try:yield root,plan,manager,operator,refs,guis,evidence
     finally:
@@ -127,7 +127,7 @@ def test_product_standard_gui_full_chain_and_safe_restart(product_host):
     final=wait_until(lambda:r if (r:=c.run(rid))['execution']=='FINISHED' else None,timeout=20)
     assert final['managed_completion']=='COMMITTED_EMPTY_SCOPE' and final['numerical_validation']=='PRIMARY_THREE_PASS'
     assert final['solver_conclusion']=='COMPLETED_TEXT_EVIDENCE' and final['overall_exit']=='UNKNOWN'
-    shown=again.view(lambda v:dict(v['rows']).get('范围收尾')=='COMMITTED_EMPTY_SCOPE')
+    shown=again.view(lambda v:dict(v['rows']).get('Managed process scope')=='COMMITTED_EMPTY_SCOPE')
     assert c.dispatch_gate()['state']=='PAUSED'
     physical=(root/'fixture/physical.jsonl').read_text().splitlines();assert len(physical)==1
     again.normal_close();stop=m.stop(owner_id=c.endpoint['owner_id'],operation_key='normal-stop')

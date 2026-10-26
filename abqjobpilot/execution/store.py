@@ -456,7 +456,7 @@ def open_existing_read_only(context):
     return ReadOnlyStore(context)
 
 
-def acquire_supervisor_store(context, authority_instance, *, idle_only=False, lifecycle_admit=None, standard_binding=None):
+def acquire_supervisor_store(context, authority_instance, *, idle_only=False, lifecycle_admit=None, standard_binding=None, management_admit=None):
     """Explicit trusted owner handoff, never called by a client or a query.
 
     Only v3, original root identity, and exact pre-registered fixture authority.
@@ -478,6 +478,9 @@ def acquire_supervisor_store(context, authority_instance, *, idle_only=False, li
                 from .lifecycle import require_idle
                 require_idle(connection, standard_binding=standard_binding)
             if lifecycle_admit:lifecycle_admit(context)
+            # Trusted management-only preflight, under the SAME owner lock and
+            # before any owner/gate write. Do not re-enter the session registry.
+            if management_admit:management_admit(context, connection)
             fresh = metadata.get("supervisor_started") == "0" and connection.execute("SELECT COUNT(*) FROM runs").fetchone()[0] == 0
             if idle_only:
                 fresh = fresh and connection.execute("SELECT state FROM dispatch_gate WHERE id=1").fetchone()[0]=='OPEN'

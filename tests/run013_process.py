@@ -23,8 +23,8 @@ if mode=='worker':
         while not (root/'release-worker').exists() and time.monotonic()<deadline:
             stream.write(b'  1  1  1\n');time.sleep(.1)
         stream.write(b'THE ANALYSIS HAS COMPLETED SUCCESSFULLY\n')
-    # Explicit offline sample replay, never represented as physical Abaqus evidence.
-    dat.write_bytes((SOURCE/'docs/agent_first/run_011/result_review_001/ORIGINAL_DAT.bin').read_bytes())
+    # Explicit synthetic fixture replay, never represented as physical Abaqus evidence.
+    dat.write_bytes((SOURCE/'tests/fixtures/synthetic/standard_axial_cp936.txt').read_bytes())
     msg.write_text('THE ANALYSIS HAS BEEN COMPLETED')
     raise SystemExit(0)
 

@@ -1,13 +1,13 @@
 """R16 service policy with explicitly injected process/evidence substitutes.
 
 No positive result here is physical Abaqus evidence. Windows native integration
-is tested separately with a fixed Python worker and historical text samples.
+is tested separately with a fixed Python worker and synthetic text fixtures.
 """
 from pathlib import Path
 import json
 import pytest
 
-from test_standard_backend import case,assert_code,HISTORICAL
+from test_standard_backend import case,assert_code,SYNTHETIC_DAT
 from abqjobpilot.execution.models import canonical_json,now,CONTRACT,ExecutionError
 from abqjobpilot.execution.standard_contract import StandardConfig,management_binding
 from abqjobpilot.execution.standard_sequence import prepare_pair,issue_pair
@@ -34,7 +34,7 @@ def pair(case,monkeypatch):
     def create(scope,call,out,err):
         scope.started=True;c.calls.append({'call':call,'scope':scope.scope_id})
         plan=next(p for p in c.plans if p['engineering']==call['cwd'])
-        root=Path(call['cwd']);(root/(plan['job_name']+'.dat')).write_bytes(HISTORICAL.read_bytes())
+        root=Path(call['cwd']);(root/(plan['job_name']+'.dat')).write_bytes(SYNTHETIC_DAT.read_bytes())
         (root/(plan['job_name']+'.sta')).write_text('THE ANALYSIS HAS COMPLETED SUCCESSFULLY')
         (root/(plan['job_name']+'.msg')).write_text('THE ANALYSIS HAS BEEN COMPLETED')
         return object()

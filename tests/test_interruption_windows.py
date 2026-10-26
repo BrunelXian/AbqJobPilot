@@ -38,8 +38,8 @@ def test_live_owner_worker_readonly_then_normal_completion(tmp_path):
 
 def test_owned_owner_exit_worker_alive_no_requeue_or_takeover(tmp_path):
     with managed(tmp_path,['result_wait','normal']) as h:
-        owner=h.owner();client=h.client();a,b=[client.submit(q)['receipt']['run_id'] for q in h.requests]
-        worker=bind(h,a,'worker');wait_until(lambda:client.run(a).get('process_records'))
+        owner=h.owner(barriers=['process:after_identity']);client=h.client();a,b=[client.submit(q)['receipt']['run_id'] for q in h.requests]
+        owner.reached('process:after_identity');worker=bind(h,a,'worker')
         owner.terminate()  # This fixture's retained identity-checked handle only.
         assert worker.exit_evidence() is None
         from execution_helpers import inventory
@@ -49,7 +49,7 @@ def test_owned_owner_exit_worker_alive_no_requeue_or_takeover(tmp_path):
         # The fixture retained the original handle. A fresh public read may no
         # longer obtain the exited process image; it must NOT borrow our fact.
         owner_state=report['body']['current_observation']['owner']['state']
-        assert owner_state in {'EXACT_IDENTITY_EXITED','PROCESS_UNAVAILABLE'}
+        assert owner_state in {'EXACT_IDENTITY_EXITED','PROCESS_UNAVAILABLE','QUERY_FAILED'}
         assert report['body']['diagnosis']['classification']==('OWNER_LOST_WORKER_ACTIVE'
             if owner_state=='EXACT_IDENTITY_EXITED' else 'EXECUTION_ACTIVITY_OBSERVED')
         assert report['body']['diagnosis']['known_member_active']
@@ -57,6 +57,7 @@ def test_owned_owner_exit_worker_alive_no_requeue_or_takeover(tmp_path):
         pending=inspect_interrupted_execution(h.context,b)
         assert pending['body']['diagnosis']['classification']=='NEVER_STARTED_RECORDED'
         assert len(read_json(owner.control/'physical-launches.json'))==1
+        (directory(h,a)/'owner-bound.json').write_text('{}')
         (directory(h,a)/'release.json').write_text('{}');wait_until(worker.exit_evidence)
         h.evidence.update(owner_exited=owner.identity,worker_alive=worker.identity,
                           interrupted_diagnostic=report,pending_diagnostic=pending)

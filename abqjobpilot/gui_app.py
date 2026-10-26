@@ -198,12 +198,20 @@ class BasicSettingsDialog(tk.Toplevel):
 
 
 class AbqJobPilotApp(tk.Tk):
-    def __init__(self, *, execution_connection=None, request_key=None, on_execution_view=None, attachment_mode=False):
+    def __init__(self, *, execution_connection=None, request_key=None, on_execution_view=None, attachment_mode=False, native_workspace=False):
         super().__init__()
+        if native_workspace:
+            from .desktop_workspace import DesktopWorkspace
+            self.execution_view = DesktopWorkspace(self, execution_connection, request_key, on_execution_view)
+            return
         if execution_connection is not None or attachment_mode:
             from .execution_gui import ExecutionView
             self.execution_view = ExecutionView(self, execution_connection, request_key, on_execution_view)
             return
+        self._init_classic()
+
+    def _init_classic(self):
+        """Existing Classic controller; native shell calls only with explicit Runtime."""
         _load_legacy()
         init_storage()
         self.title("AbqJobPilot")
@@ -921,6 +929,7 @@ class AbqJobPilotApp(tk.Tk):
         tree.tag_configure("running", background="#eff6ff", foreground=COLORS["accent_dark"])
         tree.tag_configure("success", background=SUCCESS_BACKGROUND, foreground=SUCCESS_FOREGROUND)
         tree.tag_configure("failed", background="#fef2f2", foreground="#991b1b")
+        tree.tag_configure("interrupted", background="#fff7ed", foreground="#9a3412")
         tree.tag_configure("skipped", background="#f8fafc", foreground=COLORS["muted"])
 
     def _status_tag(self, status: str) -> str:
@@ -1164,11 +1173,11 @@ class AbqJobPilotApp(tk.Tk):
         self._refresh_inspection()
 
     def _status_filter_labels(self) -> list[str]:
-        return (["全部状态", "待执行", "运行中", "完成", "有警告", "失败"] if self.lang == "zh" else
-                ["All statuses", "Queued", "Running", "Completed", "With warnings", "Failed"])
+        return (["全部状态", "待执行", "运行中", "完成", "有警告", "失败", "异常中断（结果未验证）"] if self.lang == "zh" else
+                ["All statuses", "Queued", "Running", "Completed", "With warnings", "Failed", "Interrupted (Unverified)"])
 
     def _on_status_filter(self, _event=None) -> None:
-        codes = ("all", "queued", "running", "completed", "warnings", "failed")
+        codes = ("all", "queued", "running", "completed", "warnings", "failed", "interrupted")
         index = self.status_filter.current()
         self.filter_status_code = codes[index] if 0 <= index < len(codes) else "all"
         self._refresh_tables_from_cache()
@@ -2463,7 +2472,7 @@ class AbqJobPilotApp(tk.Tk):
             getattr(self, f"live_{side}_follow").configure(text=details["follow"])
         labels = self._status_filter_labels()
         self.status_filter.configure(values=labels)
-        codes = ("all", "queued", "running", "completed", "warnings", "failed")
+        codes = ("all", "queued", "running", "completed", "warnings", "failed", "interrupted")
         self.status_filter.current(codes.index(self.filter_status_code))
         self._update_batch_choices()
         self._refresh_table_counts()
@@ -2500,8 +2509,7 @@ def main() -> None:
         parser.error("Explicit connection and request key are required together")
     if args.legacy and args.execution_connection: parser.error('Choose one GUI mode')
     app = AbqJobPilotApp(execution_connection=args.execution_connection, request_key=args.request_key,
-                        attachment_mode=not args.legacy)
+                        attachment_mode=not args.legacy, native_workspace=True)
+    if args.legacy:
+        app.execution_view.navigate('classic')
     app.mainloop()
-    if getattr(app,'legacy_requested',False):
-        app=AbqJobPilotApp()
-        app.mainloop()

@@ -41,7 +41,7 @@ def pair_host(tmp_path,monkeypatch):
     requests=[{'contract_version':CONTRACT,'operation':'submit','project_id':ctx.project_id,'project_instance_id':ctx.project_instance_id,
         'job_id':p['job_id'],'job_revision':1,'plan_id':p['plan_id'],'plan_digest':p['plan_digest'],
         'grant_id':g['grant_id'],'idempotency_key':'r16-test-'+str(i),'retry_of':None} for i,(p,g) in enumerate(zip(plans,grants))]
-    children=[];refs=[];logs=[];guis=[];evidence={'scope':'FIXED_PYTHON_SUBSTITUTE_WITH_HISTORICAL_DAT_NOT_ABAQUS','abaqus_calls':0,
+    children=[];refs=[];logs=[];guis=[];evidence={'scope':'FIXED_PYTHON_SUBSTITUTE_WITH_SYNTHETIC_DAT_NOT_ABAQUS','abaqus_calls':0,
         'python':sys.executable,'root':str(root)}
     def owner():
         out=(root/('owner'+str(len(children))+'.out')).open('wb');err=(root/('owner'+str(len(children))+'.err')).open('wb');logs.extend([out,err])

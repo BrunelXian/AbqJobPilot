@@ -22,7 +22,7 @@ def test_dependency_graph_excludes_all_legacy_and_launch_modules():
     # Core Fake/plan/validation retain their original no-launch dependency bound.
     # Exact operator capability comparison only. No process/OS transport APIs
     # are permitted in the new product control module; old bounds stay intact.
-    additions = {"interruption_probe": {"ctypes"}, "product_standard": {"hmac"}, "lifecycle": {"hmac"},"ownership": {"ctypes", "msvcrt", "sys"}, "protocol": {"socket", "struct"},
+    additions = {"recovery": {"types"}, "interruption_probe": {"ctypes"}, "product_standard": {"hmac"}, "lifecycle": {"hmac"},"ownership": {"ctypes", "msvcrt", "sys"}, "protocol": {"socket", "struct"},
                  "supervisor": {"argparse", "hmac", "socket"}, "client": set(),
                  "process_handles": {"ctypes"}, "process_backend": {"subprocess", "sys"},
                  'managed_process': {'ctypes', 'subprocess', 'sys', 'msvcrt'},
@@ -37,7 +37,7 @@ def test_dependency_graph_excludes_all_legacy_and_launch_modules():
             if isinstance(node, ast.Import):
                 assert all(item.name in permitted for item in node.names), (path, ast.dump(node))
             if isinstance(node, ast.ImportFrom):
-                assert (node.level == 1 and node.module in local_modules) or (node.level == 0 and node.module in permitted) or (path.stem == "lifecycle" and node.level == 2 and node.module == "service_lifecycle")
+                assert (node.level == 1 and node.module in local_modules) or (node.level == 0 and node.module in permitted) or (path.stem == "lifecycle" and node.level == 2 and node.module == "service_lifecycle") or (path.stem == 'recovery' and node.level == 1 and node.module is None and [n.name for n in node.names] == ['closeout'])
                 if path.stem in {"fake_backend", "planning", "validation", "authorization", "paths", "models"} and node.level:
                     assert node.module in {"models", "paths"}
                 if path.stem == "client" and node.level:

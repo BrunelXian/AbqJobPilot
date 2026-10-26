@@ -1,0 +1,112 @@
+{
+  "body": {
+    "coverage": {
+      "events": 0,
+      "observations": 0,
+      "reconciliations": 0,
+      "validations": 1
+    },
+    "diagnostics": [],
+    "disclosure": {
+      "anonymization": "field_whitelist_not_general_anonymization",
+      "artifact_bytes_included": false,
+      "artifacts_revalidated_now": false,
+      "digest_scope": "canonical_public_body_only_not_original_records_or_signature",
+      "executable_authorization": false,
+      "omitted": []
+    },
+    "facts": {
+      "dispatch_gate": {
+        "owner_id": "owner_11111111111111111111111111111111",
+        "state": "PAUSED",
+        "version": 1
+      },
+      "events": [],
+      "observations": [],
+      "plan": {
+        "backend_id": "python-process-fixture-v1",
+        "backend_version": 1,
+        "plan_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "plan_id": "plan_11111111111111111111111111111111"
+      },
+      "receipt": null,
+      "reconciliations": [],
+      "run": {
+        "artifact_validation": "INVALID",
+        "attempt_no": 1,
+        "backend_id": "python-process-fixture-v1",
+        "backend_outcome": "UNKNOWN",
+        "backend_outcome_basis": null,
+        "created_at": null,
+        "error": null,
+        "execution": "BLOCKED",
+        "exit_verification": null,
+        "job_revision": null,
+        "owner_epoch": null,
+        "owner_id": null,
+        "phase": null,
+        "phase_attempt_id": "phase_11111111111111111111111111111111",
+        "plan_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "plan_id": "plan_11111111111111111111111111111111",
+        "process_exits": [],
+        "process_failure_code": null,
+        "process_observation": null,
+        "process_records": [],
+        "queue_id": null,
+        "queue_state": null,
+        "reconciled_at": null,
+        "reconciliation": "RECONCILIATION_REQUIRED",
+        "retry_of": null,
+        "revision": 4,
+        "run_id": "r_11111111111111111111111111111111",
+        "simulation": true,
+        "solver_conclusion": "NOT_RUN",
+        "validation_scope": null
+      },
+      "validations": [
+        {
+          "evidence_refs": [],
+          "phase_attempt_id": "phase_11111111111111111111111111111111",
+          "policy_id": "process-fixture-result-v1",
+          "policy_version": 1,
+          "recorded_at": 1000,
+          "run_id": "r_11111111111111111111111111111111",
+          "scope": "simulation",
+          "snapshot": null,
+          "source": "explicit_client_validation",
+          "validation_id": "val_11111111111111111111111111111111",
+          "validator_id": "process-fixture-validator",
+          "validator_version": 1,
+          "verdict": "FAIL"
+        }
+      ]
+    },
+    "identity": {
+      "context_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "historical_plan_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "job_ref": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "plan_id": "plan_11111111111111111111111111111111",
+      "project_id": "p_11111111111111111111111111111111",
+      "project_instance_id": "pi_11111111111111111111111111111111",
+      "run_id": "r_11111111111111111111111111111111",
+      "schema_version": 1,
+      "storage_generation": "generation_11111111111111111111111111111111"
+    },
+    "report_version": "af-run-diagnostic-v2",
+    "rules_version": "process-diagnostic-rules-v2",
+    "unknowns": [
+      "LIVE_PROCESS_NOT_OBSERVED"
+    ],
+    "view": {
+      "all_run_records_within_limits": true,
+      "atomic_scope": "database_records_only",
+      "project_event_sequences": [],
+      "project_event_upper_bound": 0,
+      "read_at": 1000,
+      "run_event_sequences": [],
+      "run_revision": 4,
+      "source": "experiment_sqlite_read_transaction"
+    }
+  },
+  "content_digest": "sha256:1456429108b3282d6d70df2851d9eaac318ad79b47bd469ae7203244f841ad05"
+}

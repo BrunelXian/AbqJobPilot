@@ -26829,7 +26829,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_admission_denies_changed_0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABaFeB7FJNK/qZCC/EUR2YNFo8BjSIrwQQUiipKnh4QoQAAAAAOgAAAAAIAACAAAAA+Bu/S0hPy03u05mq7kTCwDrIIihBPUgZ8C64Rhix8BMABAABKlA3fZkR+RVvHTxUB/AZ0TpSdDduvsfd4i/HT1l6JY9KR1YHCOXX07dAAz46Q/U6u+PURwKu/sEWReUnjTCwdDmDV7aCMWvfvFzZw4B6MaRp2quaP3nt1ExWE0MfdmBhetc9VbGJoh/5S673cU2RaU+/Z8hkmNei1p6ffE6C384kp1rIxwhgtYsr02uVM+yhjQGFOLGcrhyEwodJKWhGzHdhhOdA0WTFjYmz5i/FiEjtX0cZrfDoa5Z1jHwwx3Rl2saFW8/dwADKaR7LK7zARvw13iE7JyCTQqJqIRn4GoGjnagy5ruMlw8OdbA/zb8mXg7tgA/NDb/Cbby1KSfRz4Alo2E80jaypyoWZmFyWiZbUffMLSMNbScK45pKMYx5FrKIsA8vje8xdbfJm/v8scCqr+1oGipjah24zM77FvLHD6Q8Wnkp7wpAAm+MCPRrXuWi+F4bSEJqfXYlGnoCCt1ByNRvgHpNYonrHnsWWoLS+8Fhe5qbbHSnj0GYvW3vhU1XPrK4h1L1X0Ff6XT4UVPnsopW7EtRRKgaiZrnr3AhhVoft/wIrof3grhJgk9xvMY9O2POSezxdKtQEUDQuQAAAALTzH93Rj1/kPuPJzudycOkwnl1MyGGIgK0sCxJBeMgNSMkNi8bW60B43RYfQcUcf63djKM8Ks4leqkWjbFJ7GQ=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:adc9262211ccefb57111808b18536ad44578183e6f2ad03581a10d2989ad97b0",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26838,7 +26838,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_admission_denies_changed_1\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAD+aY1sw+x54as/UddUhQn7fPs8Rnd5lK7YuQZGX4HwEQAAAAAOgAAAAAIAACAAAAA34Aadr7VgarDEwKOp2CjfKNUwIb2E1VJ2T4D9OqjKCsABAAC5WzBwGNA9zln+PE9sfnLq865xhjhit9F92exyC1RdgaoNC8Vi8zFHxnUXXl99xI0s7sQmU6a9ESp2A8bVX/fwEJ38ULyfFEc1t6e9VsN01ebqPhf8Tb5UfySUOallqTr7zXNQ5PgH+WHBh1YcZ+DDMDKJW7iyXJpz4NZKpifjJHajd6tah2aIgmyZnytP0te3sayI7TG7aT8ogNud5RPtZIsAjJHXb64QJX3DLIFST1ZIW/c2xxO90XDLd3K+XKVGbT/+k1V1HyLdQpvZ68M5RI+3piwgQ+7h/88myrbSQ4t+id3SdHaRPTJ6pbQwWJfVtA/3jxrglMrkGQA31iGoT4JKPS7VRcK28IIjIMirGGmD5skKySJRvb3itUYO8uw2HzAcUgKUcELvuU1OoZyB+xXEuoHGrtHx1Hr6x+XNSLDUgySyFICmjIc9vRX9qmN5jygWSctYbieG9mZa3MtuOjshDjNm9EXb40gTekG2SIfDLbfcrqFlDnMy2WWhSmEHHQOj0q2En68lgjRmsg2kGLKYLIB+pBpCYsB+glGyMDa3kI+ZzG9+KgLzmkHJ4JmwGiXA90g/p91GnVMNlI9SQAAAAM0YzCSHGAz1YT3lPtsdOghosSACWokCAKkeodLsNcybKDuWu6ApneeYCXSsIkBalDVP5WyyxgemsZc+kB0U2yc=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:ca7fc9892e672acf278927ca99016ff77093789885099dcbbe01763d2aca11ee",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26847,7 +26847,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_admission_denies_changed_2\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACfQRWGPvFYKkAVzkiTMjQlCYtQwQqlOrR2e4juVt3frwAAAAAOgAAAAAIAACAAAABxoTOK7vhezvW1WBk42vSd3RZxZec40IJHBsNtubetGcABAABlb8e6efF9YJeSIlq9jKXGrH7Blj46/0JmKt84NNsLNMQYDzhhCGHAha0G74OfS/3zYn2tIBK2JLuEBnrCMtALoVkCUur736XC95ZGHbNmk6fUZJcwLyHd8zXeruGF4brsSXpewMETDM9NdcxgIpLnbN/1fCVO4TexJLSeAyJRdIJTwYWZTErl2IIDRKRLgigp1s8mYxU8tQ3w0JjP6ACGik5Yr1L4wsrXGQBOQpth5qpJLeW+posAS+ZEkpa3imdhYLsSXp15Mb/hM6ZpXC4yZ7iTwteL2imyN8avdT9iEuPnhH70eqqf+5qBkH7mgBv60WtOaMc0C+zEcVeJBvzBmCxTu4EJkPyOPJM+FCEWjjJUX2LbYbeszDUA5MHd59FjaK4Ac16jIoOMnJta4LNuNaLUYBJFHxgIcK86bZJMsCOhfHM3mVgY+ESkpCCgrqtLaqjAYwr0Im6mEMO4lBuFiqxJGod8T3ryX+7e6FWzY5th0X9QnSASixzNtAq8UGyZFAzOs5yfTw3uFPxPJAc7Z2FO2qyKFAFu89Ee8INNQOmL7iE9vxR/xPgJPu5c20Q3iT1TAhaecbUN2ONLo1wwQAAAABt4uag/bJN9fq3JHDDxz89AF9q4YWJcIBfL2bEq62nWHDqwxP0yfLNh7Brl5pG74ODo9dJpiMtfuO0NrmvY69I=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:83bb59fa45005cefe5ef94d5c881b776d3563dc6b3b563dd99f583635ce08afe",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26856,7 +26856,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_admission_denies_changed_3\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAB0c3PP2pVqUG2vzQ85WxWhGANEGMfJlJp9w6Epq+nMEgAAAAAOgAAAAAIAACAAAADELJqCa1wcZDq6uJME/PCtiGuEeGDt3yp5Hdo8NjGJ+MABAAAjtmZkJmW8NirmvIzQ05I8ui8uzFxqqfzUF6DEk0AZcAWJvRmtst7ZFZbbWNpap8lx4ubwD5hDe6L8epCIXnMmYHoqZtYA7X7dos41Jd4G05hRvKNWr27vohpxI/UE0ouFJCTeeX7IbkA9cR6HdqqNdRvbI/yTrTuMch4m3Y9YIVvIHprJ0BWwMndl15QJEUVw1sLxbO7nNPf/KHZQq5+RYY/biXs2nr94SqcskUwk9zeR6KnURdDdrnKwj1roPLNUi8WnaWntAj8Sq4tM9XBJIBPzUGwIMit2PzkIjVpONdnmaGzXpbY9A1xI0wU0eCqB/CXj5J+ZSNjNmh6L5EhNvRnuHeE6Me5W+fvmufot1ebkOPuYc1zUzSSTHmzxfvATYgqvN/ncaYWC6roylEk/+K8GwcQOERw6PDRMT7N5vBLRTf3zgF8qp8r3AIwQ34vIq9UZ+r2/Xt+YRLkTy3+U4uKQ16DjeBxTlK69TUMO1098P7OYJpLY2O2YG9RF7CcK3meaOYhYSQmiC33qyB6E1jKncDioiXcqEXYwbUg9NuSmkTdgruNXOioXmSkv7dVIaZZJ1yy99SqZhHYII0ZqQAAAAEidnupbKQsIqSSz5eAB3++hogXNcTypy59MrK5tyIGr9CuVh5GwLRYdaZtjepDmaRz59SA7lrVkR4jpG9/k2qE=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:7fbf9f50eb18ebe5988940fa0bf6e9cbd38cfed7d86b4f75f21bc7a9e2a42a09",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26865,7 +26865,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_admission_denies_changed_4\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABzLYojNkpnVK1C8nywFpUmC66lGLZU1LvIZwOOgwGQkAAAAAAOgAAAAAIAACAAAACAcBvv/MoyBYZ7qBGlJrQo9HP/HWYGuSLmqCroMNGv3sABAADvTtE5gH8S9SNjAghEsNOj+x70grpLDSDX3bAKYkb2L39EvYoEJL2Ld8l/6nepMd19+D0GmZWWvtV7ra+K1ZJh41A804PrnyhL+Qzw4M+Hfl70ZMVeWSj5Mhj2/Mfx/Rz0lQcVB4wfABNBgS0lK7gb6YZdLAiutPBPkg8uObLpv/BBoFLI57yw1RqSnfGDB0BEKSwVHW/QIDDtxhQdrpc0wje8mq5VqZsNvK6PFqSLtgDsMy3m1SiU7LkxvjLsV1z3xMosIPY3OUOAz5kxpKPtDUA4sBT9mNomulldNvbkoBsaLyFC2l9EFPd49N27FdxuxoE1fUhyWxeFCyLPJa90SBTBciwdIMl9WXXTo/prUTqo6NnqNLnuYzhyVkSqc1rgjdaaf0w6hySKOvh1cyZdHBx8r+4KcdT/usLevXKHzv7KAQ9dfWlPvyCZP7r+4HHoCCMs19b6ryryneGZwdKQDDrqvs8MjaQPo0GgwhGuJDFoC7BEr1BPxZQ0r39mGVxsyaFMlvleZ6r1DkGfz9C7Cj1dq8Hvc0Nbgc+/g/+HSm5jtSxv1eDrn7oF68PNC58qx1eaciPjjHjpSTb3B0OsQAAAAICYNSXasJcPdXaaZINYpD6dMgAz4tRIu4LcZOmt6IdDKaZyLmExr0cCqjCTJysFG4X42KOEhguBc29JlDcysPM=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:40d8d28177468ed3e87b2ab1c38b802a814399c697aad0ff28577c1c3998689c",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26874,7 +26874,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_admission_denies_changed_5\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAADqc0nnw8n64m3Tvhr8ee9RrJdTRInLlqSOtlUr5vDPMwAAAAAOgAAAAAIAACAAAADWJgKhG5MMR4Bn81Yg8MSiaww+TcPDO5t4PE0NJjtiycABAAAyekBaqGzKTbaM9LYNoj5gYHhjREPpE5mFcKiCqNaJLFJE1cRYZf9GkybQdEpEwllDBRQs8zyRwWRbXUVo5A5pK69NFBOEgoeo/TrtFf2lbLFbsmfTEw8XBBaGaRbrmqMim7J2I8yLJSLHZVKmF/2qIno4SQoif+LzKHd2siha9TH8CccoYU3Jo78uTtlpPfX8U6sYM75fxwnYkRgmHAfynAzsVAZzLVubILX3Svd69KYHmfyapp/nFAa0LJeqeICj7IOVEXfeQyaoTsWeaWByfVzBvxUq4D62bHecTEYyg36mam6QkYnncRZ954YfOIgtcMW0RXV+6zPFO3IzkJOi3pAvK1UnTgHk/gaoJ1Cc8BTNJVpgBq227SSb2OXQpM5vAT+WZsfylyoTaRt4SLueog2ZbAA5wKuXOhEWbtgHtYwxymseJOq3AhYFlqV3M6pIxJVEMwnuT/k0H9ANHcQzWwGLh8QjgPJLSn+RdwivosttVvNWad5F+EI0mdBeA7+FH/9AzqYM8oxUTx/qjrql6Ls/Nx6UVrWWycIEzvYy6EPgMQbqS+h3s9dlQaxaE4tLLQb6IRit9kFhkGLxvXaCQAAAAKTGAufj0H8g2RtsD8QumVGNRkKTyMB/s94BbtgrYna/RsuxS1rKgqL1DIWuMkbuVSpBqPq8LH4rN5ErxPvPCDE=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:f69aa242dc5cab176a2b173094799586b09ce058f2ba1d6030ee9c2e7da59681",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26883,7 +26883,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_admission_denies_changed_6\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAAWNjPtBfbm9B+eEWUkhN5mL1MBr271ZdO/sNdZ/8p2tQAAAAAOgAAAAAIAACAAAAD4m7u+QSI/6ulg/bKXpJeDqtjLsLL0eG1Vy+dR5el3XcABAABq2dQHyik972ih7ZNMes6iQYOxEcWoAawQcWQcDLTVp0NFRuUoR2Rjxf8hEQ/UrCPmvqQMBq4RVVhP+uxZA61EgKEOUhyjXjLXHhS0/OJtU2jDNLVle7iXIMYo28PdN8TarQfA2cFfV6t1MBzRL8Nz6am4mefuci7vYW/mVeWyy7B2qC8GCDC8RGsOxZvUtDt+cUbON/4rt68gLZQoUThXh3LXFVeXPfr+XTJ/cts6kTg7sTR+nIBP2naMh5+T0Rw14iffJIXfOTMy/+vWc9tZWiuDrwRQJoxXheQ0lFrzwYVz28h/UNMeGTc5bDNX0HlZaiL47lZE0hvVM19hIG3MnaouZ8BmCQ7BFpeKC6oUVxQwUb+QE/UjsJQ1EvEiNQ0iKAzHyHxzS04eUAabrQlh8iZ2PboUexjuJLwzp/sSrGcsSMu8+AFzOCJ66Z5ki2lTqiV1RArBz3GcdblM8ttThfwi1++dhX3ssWiM7fQPlbz/3CbAlX/P/wfVZ5X1utuA8Tx9ONwX3msd5+JEsWkk928zNEsGoNP6gwBo1u1M5Vflh/Nk/sYfp3Uc6xDN2BCaRLw1cVR1Ca34HLrvTc5MQAAAALoPAaUcvTtqwTQT7WV9nCTA8+ItOkHvazeU+5iwEkpyR33ad1NC+Tg9O4mhZCTKd3uUELB/XGpM/jd8myrreJo=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:dea601494c4479ff0a4cc2a5f01fcb60267093b1319a1272ca097d1aecca5c35",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26892,7 +26892,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_atomic_concurrent_creatio0\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAADDmqpDXwN6D1fEj2OKfabbao5gNAWsvvxUtVqkgl3oQwAAAAAOgAAAAAIAACAAAADVNSeN/eATl5wa2T6PGsvtcwghA92pSFoWiw1M0WhEh8ABAADiEprReWtpNrDEdxnPvaRVi8VOLrkLFvX/wOaLZDP6z9hzhQVN8cnrQYN9IMnzDkXeeRi4NXq7T6+I84vKAva0HDPgub8+qPki+Jc/oYgnK0eCjaTdjd16CErAroVtQx+Q5/rVsfu/v5bjwWMTVJdNqQExiN5Eel3L0ArWLmn9+kC0p91YRDSu3kwY6QVqpECR+8M7Q9WeWDgur9HVMD89mg2Rhdk6/F8wZGWZ7EJ4BKFs1gRgoS3JVRHYCIIdDMJ8ghRTpQlHYq63K1YlLncUF4mkRK6M1iqX+s05/reJpJSPpqZKUJVNAm0efEVx4aL0ozPio+TX6BdX2qtvJt6NDKp7InSC2O4Hc4FQcvKTEh6RcNuSe1alvIaEuZ2CEnIKXP3ostg9R0RjU6FvfSuMwwgCC9Tz/O8ojKfWTTyQGI2B3iO3Iz0j/VruiAYD9qyK7S8wD2sos9R4GFtp4Sy4NToheB9nsyKfDykQ27KMBfrofFgSV6JlsOf3SZi2aiWMHhET+CMtRvaY93BFYXn3Xpyw1Xq3Np5bkLh/HIyM2p2wlP4ceCaybgiuwl29JPiHIyMPg6ci/kkJag6OXih4QAAAANMjGHW0j8fmDYw94Z8IhWlR4edf554DQMAjymcSTQq+Y5Seia4R5dILHmRcboR+DzzisLzZfxvnZz8Eiy096WY=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:c4071afd6330b7a9a888504ab5a7e19de22ae1bca2c3603f3147273ae338d4d6",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -26901,7 +26901,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_claimed_unknown_scope_pre0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAB/aisEmuTV0ia8oyq83ghPwSLv6Jn/WHoa4MxZHDvuMQAAAAAOgAAAAAIAACAAAAA8ILRB7dXRge5wMq4WnpLtGvg10fCME9/z3++qfIIm8MABAAC6INS4FsZXky571nlSHSBBL6DyjRzoYeWTXaJ/Zvbvx6I6BcWEMow1Exbc9tZbyyRkuA1KFA08NKbzb33qt8FSxIH2mDwDft+lGIEqfA6Kzs68mhqx7UM/WoZJKP1coGYUZlr0BGh+83vwxUQSglA6MtVcxrt4sFuFv6isYaJEctz5ZrKXy72IIlMN5iRayjZHg0M9mbvlRfu3SPE0uQZGDAVWEAFhoRwEU8Scj4gGE5agk7ILTLx/pvuxRYnWXZ46r/uF4sU5haZQnJWpa4ibTsV8PynXFxwUZ8bEJPZf47DfcdwIfAw/qKFf3QddyaNiFvPW2q7cVTsVtv+ghaUxcYlSzBPK6upmxyTJI6DxAJgNGGmb91mYX/JsYn/Hacx9AZCmQc/6erDjirE2hQ6AsIB87u66XAVh4K25n7n1ogso2NlNdccad8mhGOCKIwQGZzpLaQT6Wtwd0mnA5nIRd0ZaMyTGTiakN0C7GRnXSgkiDl+/3Zbw8vOgQT1rnepaktJk4uD1J+qJ6NanRZMQpMrSHIvYN0zJal6vS97YPZTXBYHe1uZKFfuEkhcoWFAQyP8nSpqpRAHBG2FmSfiFQAAAAIhfCstEP5Gsv4ewxDmjRsaTAAtqMUm84rQiEFSijo8qTtBgc1ZvVjcirF56+2uqh5CMjD2siCsHM34zFR3VFTw=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:ab4ddf5aff3b2d75dda25e53a54fc90071ce0b5b6a75348a30e3e548dc4ee190",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -27022,7 +27022,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_connection_and_stop_permi0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABlRbhhvowKOau9mmn0nP3IHSuiCMuTLasX8u4lqCdXvwAAAAAOgAAAAAIAACAAAABwR3fgWRwQr5rW+43wvTIaw8Y+60xyvWpaznFfTYteecABAAD7w17y70sPtJOBZdXfHHm4pFIHmz6Yx4//Z74SmQY3+YEvzIjTETntktWBmHg3d2aA2e9/t4qVA4dzz92Sy/HRK6AYAiEkTFaat60GUTnbGmjJqWKx2WNTAo748XtgIQXTtdncJATwYHeEbXBSJrIaUuip1HB6gN1X5PWWFHFD+HTMECpFU+by4qBefHFTfkItXU6ioeONXC9FvafAbMCvVBTRh/qetbqA3rxBYYCy7kta/5TcqcjP14Qc0SnN2oG491dZ4EYWo9gO1X2OmTVAvPaskqEuY5xOKWk+jHvF1jOgDLblOraSdBUnSBLaQWGAXxHF1VIOTtrpiiF1rzsidm/yfvk1IzKQRINgsCpC+BavJi8YDRPIulCbKZ+ISii+da/SX6MQWvVW7MCSbZ62aiof5Lno1qU/aHJ055s1LA73I59r+xGWuuDuJAiwgJIlA3RwWAA9S7tFg1F9GtS+cAFUkXwHYfzIs0CiXgGN8Upde7uyHTKlUboY69HP7EgBks9t8eSroT7KPguUVaEnDSJPOVxXbGxiNcariJt7Cms12lSfETMdwnVZME1witCsakHxmc2/83o1K5smPM5YQAAAALIHIaC1p5b//W89uelM0vjt70pcB6C6uf/DgR5TFYI0QKg9CYA7QPzVsWzGvWbGCnpdUuVWgS/5XHX6ZM6WcpY=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:87f391e43bb4a448e61abd7ad49c840005f7cc3bd9bc580ed5518bd5f2fb8ffc",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -27031,7 +27031,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_connection_and_stop_permi1\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAA3jObLLXrkqq2eoOU9KGdoMCxgxBe6TaB0VzDIKC9i6wAAAAAOgAAAAAIAACAAAADpTIyQOYXWp354pdS2NIKRE3hgK+IPnt84ICt5IrlOhMABAAAaP4Nr2bGc4MHVJe8q9qrhrPTpGM47rObXqThBWjq8Pt96X2nAHEFdHqnMAchTPiheYsJMODKscJ/bfc7kz8KQAzv3D7/2bx4uj1o0JTTuXqKJOEaHLP4jEDzXTsKb/ADY3RhGqkz1G/DBtIH2pTeuDLBprEYAhWSnI0ql50a9tLRq7TvIKyxeVSsPD5iZLdp8uMJ3shemc5dzBA8votHneqfRfNfcQapoQeXMXY58e1dpr4vRRXGYTtk21NEQ1ygag7Qbodb/0TgWVvictG9Qfk24q9IHaIVl2Ed604p+r+vzR1CwE/JA3B/h0tZXw1AT5ugw+aiRv17t0t3/sWYY5w+1Ra1OeApLKsVNGLHsE/1r8QgRIXRVR1x3X0dR2VHMCbkFuEIJApq3vpQ0p+Lz/uWgACRzljSlkk9Z1vIHoxP+6lr12ZO5iAOoxViT7aq8062zglWKwGTko8HlN4g3BHfdH5Yn07z7l9KaZV2oV8v3tjtU+n4+9TYsUqum2VO9VX/YHYpMIpXCXyMbHfnnui6PLpoKB5dmjZuMIC6CyGO68mxNvLuuWSfhY4Eer04zi6LeNO0NUW2x5qy5tZllQAAAANZCCZ/PnioX/UDREer+RboMQN/mT9THgwgtjMee8BhwsDVMMUKdLIIjpQB/RHpMY8qsCPDBZJ3bd2o6QZhYEdk=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:5710a902fc4a5bd3ed8f21b95e442b47ac26b12b530f7417d86a7b33c2736cb4",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -27040,7 +27040,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_connection_and_stop_permi2\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABWVKVMTy/LAO5kqNtEyTlHQPwICZHx3h1K+NMUE9ZlXAAAAAAOgAAAAAIAACAAAAAsmiUcSSuaQPY9QRRt0dkCs9zibz87aNWLy6ww6rKaJsABAABhjPZBJJw0Acgb0O5+gzD6SPwFqosxWqRJtcKMUK3Zu4RT7B0tZbCEi3Xw9K9Ea77LRfhELuW8NUJG35s3JjNj+Yz8B8620Zk3Xf7DoSDh5HFucW4jHn4SuYqLP4T1nqvO862JQp12pTzh2zso+0kSHElyHlP8MXXKJuBGC/CGqMgZIQh0owhTEQZwj9KkqCmJGgciY7S/tvrNz0XE/FBsA6wsdi9U0UsuNa143h1LJFGHSmNUF5AigR/6usUeaeE1zTWk8qn74DKFO4TbgFSPP91IJMG1OLn8ZS5nhGOsXna+8vuRE3gyn4HRMy4qT3kJNQT6sMPRcetmeumGWCHww84VOeOR1tfBS/rprWH2Rbyr+/3lutShqtKAz6UE99Yg2dcZk6AtBHQFhQkYqrH25lXnYS/mlpp/RC3t8RTLtjXcC7ohkloNOUtUWjXzgiQVLgfEw7lUkZp1gus7jlEQXEhMVDYGZxzLPm1b64YHYSOnIktCcscDmjZI9hqjYX3CJMcGA7vbPGH1rDqqgvEAcCP3INPS2ZHBRL2ZwtSEmh3d8Res4MwVQWjwfEHX2m5B3vZ2+a2ebywoVl7raJKoQAAAAOGnWfkjorGuuXXkHOJARXGm44MCMqsLbcRJ9/BiTYsQ94/JIAXOZNy/twspHYLIoHozVRa3w2VMGu/eecJ/Wb4=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:040f897cf295f60c12701a1c68d031e82da668df340b42e972f72b09cac8a9ee",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -27049,7 +27049,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_consumption_keys_and_conc0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACmr7QIImNK5utXwCuzXmIw8caSOiMiSaz+f/851vlpSwAAAAAOgAAAAAIAACAAAADpNJvFi1uw1vukQShiyqZZ/szCBMLExiR54ots25SS98ABAACaVjL5BpuHuugLN5k9cuOatVYHnCj/XbPEvt0OFkfcbr+aFHJJz5j+9cUkmXWa3WRuwVRfiGKKn6Ul/evVeFEPRrlwrVXLwef0K+073hrDoAIv7oDXYxnwbEdTkJXlmVum4X37S7VBevvAGUzVvxKJ6MuHgWZZiO3WsT7E3oOOFmD6JJ7kstJuBk4qzp/WFi3+rIkXM5h2HdOZj2HBklb80oU3DPVc24IMd+xaBuXspx/Iv1Ntu6BYMP1OaDYEnZQuw/Q6xO2GjQg+Y0zfvG7j1Yc2t3fEt1LxuZJCq63vSSFQ6uHWiMIg/pftFUWnwNfM2HH4OURDWTh5En33tU2qlS4MmNNLrYqJ2pDG6+/wawAqBZCrYYor7lLQnp8lrOOG79Wip8+JSIUB4SWSE8Ud0HKrN5kgrllsifvZy6e6DkO7MkF+ROjFWBQyxAKX/R5LVzCN+qdi6DQVcNcrxYMBZyfaYMk2ut2UU9YxjQWGoeUR00cDl6olxumXZtSnFmbjCU/61tdQzU5JhHciDOE+PuY9Su28rdbMWo4jO++sQEC7+gHqlhzl3rVO0rP4ereZ8iB4zMXVvp2F28tCcW8RQAAAABSF89xkOpl8LD1Dw18m+njVzbZzpFNVxx7nyejAH/f9Wp+m8yPo8L70IRqHFHAEt6Q4akIiIQGefrX7/yR2kjA=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:cb9c769eb118510ff8aa78b5900a05349e0397a0104cf8e46f541a9673ad728b",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -27058,7 +27058,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_create_empty_paused_and_r0\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABxKu9Jg7xHDShSQy/HppJyPBs9EJVzAoAspQlJKPu69QAAAAAOgAAAAAIAACAAAADbWCSkLXQzZlrYFlFjVRanD+NrkBtaEiFDwdsKDbjXksABAACoj8vERfpEkete8X5WQitZDhSNGjFsJe2C8iG9jUZq3krAfvYB117VHDBDbx33R+wxNC9G4gWAacwjI9JeTsHVWlJomjy0yn731mCXGbgTZ9MRkXJvAYnWO1QnwbbQuGGco3jP+7e+Vli9bl2HCAFMCyslrvxCTM5RquioZ/nWNM0gowy7KnZIi6XSevSIPoUsvs1yrAPBlOzd+nYB3zHwIAzPpfnDD+DpKZV355nLCnWksJlwSGAroMShVkbtUPwWdc+xvgDVPVi/PkOIL9V3LoeSVlj9J4DA+v487rIdvxqqry0nQmwP60AkZVQo90aVWGeUx4BXuCqR8JYRZBL/cX1ElxtZa+BDbIVnR42WpkgDYi31RSIXIYo7Dja+a5O6jy9v4fWnnT6pBmHLsJt1LOxjTu0FgJuITNWQJ/4IeHl9zKAV+PXnxK80KsicqPxUG3zVVl5fy/ImAYTK9sRGFDxVpRRgBbWznZbhv3WHgdV5g12D3rncd6Zh5E9bjSufV1t6KHHsTV1UC26f9RNIBeoZ3eyYYIV7q1/wOHDjbFCT3OfLl+OqKOu4HgVqSLaU1DDXjmLiqtlCVMMm7PgsQAAAAJyWjKs6JvitCXHPXod2cAHWzeuQMDd9tSLuaaS03d2ERQcr5ahlTpQWFGhksvlCD/nngmFdTxjG/xMPKuEgO7o=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:61c40dc5e98a538b36ee3a50ff002d3c9e16ab990995ffa6c819713d3f72fcea",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -27564,7 +27564,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_exact_approval_paused_acc0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAB/DdPh1s2DZ+G+OIAGA0BUdSWuAJz84XmtYcV9WN4ElwAAAAAOgAAAAAIAACAAAABywKSXHn+ljE/OyPo1qeIIsg7JAKbWcHhJ/u0UCpP6+MABAACzbpa8vPJycPosQGaO+yVQIC5RHQpYt0Z9kHbtAIEUA9hIn6thIZnN8KGR2ZwEfU0wdqsO3QM705qKWUfswlyBAm3acpLtel47OqjdYoQeHd44JS7lHf7vjdN6HTW6s6yDsLhvKiEtHwA11AK/bdYtfxzwQ99dQ1cNEaHCYBei0Yqgx70hW9V8z5bWSIXCDZZPpbb7r49janGi+lGBawKA/iDW+y41vJ183rHcq4cIDZ+tgorZlrxSDas9kYbvdX7PL1HXcZiD053QsX9Um+eeBr/EsXrcxi1JSd2qWa+41+ZLWxuodLsq1IY0Y0058VG+7H+1z7bw44n3i/ZjGHQ1Cd3icgIc6sWDNbmKt/+LFbnXWnTk9ioecL70Psa6r/EINFn0Qb9YdNO27oBKeqqF03wajqPIBvNiUPLI7xcM9+IqTzHmXwb15tCWtF5/Beuw0TkIMmNTMA5iak5Pfq4UsVvU5lkO+RZJ69MNOV8yLGVdIIHG3TFI2i9xSZy8CaA4vKP3/NzcR9v1KtG70lp0N7tGbGbqtR22i171UND3trckV5WR61LqbkHqijhNKEUIemT0EL27YO3M2cjRRDe6QAAAAI9KKsrDUIY6Qo1JEkN0AxjCq0dU6k9LOa1sqWAureJImzrpTqWjM2FJd9kptM1ngI5MoGYO4q2bdTVjDFTS9WQ=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:ef6698be8f37842bec332cff8e9b268012141af443164cb878ac166cb2be89cd",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28075,7 +28075,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_failed_creation_never_ope1\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAA/5XXrjECZaVvIeMxSOitLxilWUjd/KSIKAcnSVrY5/AAAAAAOgAAAAAIAACAAAADJz+T6Y/PNa11XBC2/SCke1tmf8JB2x70m5qdyMfEflMABAAA+2EX2ofBO6mFJ749bnIWQvdB9YICIOsOmAr5NYYvzl+Iz099JaU87GTqxK63rSCEuxbOD7KCbzNnSd1ytxE4F8r2R5yhnICPwfOYs3pgV4hdSVy4Yl6K9cJ/eVPmP54bi2B8TvgT1w7tZlLDrGM3oQ0KDc1acrrgOA7dKzgyD7HoU2DejIOjCtn71k7Zae06o1I4iRV1FkaE6zIdHgbsfnWUyUgVteo17FQv+DVVNPsV5Pt6xDm1ZxuyFrqnaXuxS6Zcm8oi0VhWESspQOndE3pVwr4ER+CpAkza49xoVXPykEH4fm3Z0CZC8F/DSxwSX3MTZubj0fUlJV1W3vnfkuefpTEJXR3kRC26HVjE1V2rEszlzz2dMxCdSvgmPE3g+QmC+BzPsDhiNsPhyzJKEGS4xvavvS53alqiL6rRzhuqf9U0Gky+cMh0KewDyd58Hh0E7Ic3B42plNWj7CTkbzFfvzY0R6mqHibTS66W32A7C6njSKDdlkGKU7ZVT1bfrnNT4kRwZy367qsqfyCnIYg1X3thtX2A8Axw1OACOjXmef68CcyWWfADHz7dYQwypM7VVJlkyitYZeZRkmYAsQAAAAPrsUkLfBc0joZmwQYv5WHS5KYZY+prJ5gri+OhFdbJCTJfNZ7rhTZ2tm8oV6y2lrCsgp/xoR2NIgYs0TDCOcyo=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:b91402bc77bd0a8434d5951a40583d3f437b2a2c6c914652b6c3a5b12409e7fb",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28084,7 +28084,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_faults_never_unrecorded_o0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACK1ufNbAsJhmqc6uHyo1vhMg8sgPwqKvvjFfeUxkktjQAAAAAOgAAAAAIAACAAAAD8dyg3U5jkaYHx26oItH12OzocadTazU1AEQF0TYfuVcABAADMlv/hyAg5JNSD/RI+2z1dHlCR/Z8EwINsVxszawGFL9NLM8pdEmDehriE734ztORxiBLH0fvsNhXGLiFTkyF69en/seOIRysbl3VgsWqVHXBST7mgXbmmTa/MFHJsmXxZY2Is/y9kmauNeQWjTuO4FFHG0dZq1WGG5RTUJPY8Lafo2rHa3aFxzcsMMC6kEqL75klt9k2qSRKulCOYESKia4gwjPFyfYIIdtyYVKDWTXjsNjJGIp29VutDfOE+PCibQRz+CAtanVP4zJ9Fao7RrE8aqa8CrdoFTyW3NggxgAQWQ8O8qX8y4+YCiaxo5Qr3U2rh66LewW4O+Dte9VeDfvr8WpIMI2jKIPG+KmPGqzqNpkcs/Y8tpwnlxe9GT4uPqy2PsrNuIE+IRLphnMs2tIm5nB+4c3VQFkL0/a46ra7plLo+PgcbIqwWVznId7/gM4a3ZRa9YNxwNjBRalz5hLSthNEn+LcN6mL+GIcLmz4s9I0vdOALr7k9ChnWMNPkmvNpz+xPv+6VX2TfiY5z6lTI1qMfiPAsyYtS3CqpH2n9tHdaD8W26fElpS+1NQLM7Sv5sbPOqUgnrQvMJcMSQAAAAJQBjNfCaa0SiT74E4yUXW1XS+IWceHXHdSu7UlF9GGKPv+DiWBfJI2NlgDHls6ucnq2V4ih3FWseHi8/KGQntw=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:9fdc6b4477129eface1769d3bb5dae8f7c3f368f451bffb24237d62a46033c7b",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28093,7 +28093,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_faults_never_unrecorded_o1\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAD+mdl/jho5nEPN3WVzo79BzpDqHAAViklGFAT7Z8buQQAAAAAOgAAAAAIAACAAAAAAzOc61LbVdEfVaUAOC/Q3jXTAWAlwXGUt/IYXSckzjcABAAAdiGmzuNX9WeCU55XKqBQ0ziJlQXRqATCwcIWi/ORRDZCTcwZwoa1jW9/N43C2jwj0Zls0NLP0ls19ZnfSzyqTyNow99xWnVayxNstGWXUJRaUO6+sYtWtmdbl2HUIBiKHNiltVFlqKSxhYsK+ZYrdVczEW7Kg85hsy/BjNaYb8l8WwNd+H6rnhb9hb1nfhtYeMSc1mzLZammQh4lpBwAsTyjJ5xD8bgzWCtDBKCY5B08PrdV5WZUwMbMgCvLlKq/27lBMpPmdvp1PRdVdfcL64bM+JPS8l5gUV4S0AFIxYSr2Qf1uZkTaetFP+xtvuQrkBV2lrkaiAh40Js/AT63FkYOh4GJ+U09G7q9EV9gLvG/giU8fHjGu+YlRQHeQsf0/9ryS27WhW9msdZVdS1X4FFAhePBmWrosNF4OW4WaKzYb3Zko50E1lNGO1yMgDCdJql2GKFUtExjUtJvQCoJ0V564wFfasS+6wOE+zdubHk26UIWnM4g373wEqa3DRBfskE1QJhUDiOJLGcI7f4VMrn8NLDsLke/5HvUnOhWVNWbtUPHkHp4R/wowG1rNituMQ8bZCuazJtF71/y4ryRjQAAAAJIsO2shQpCrmlKg+PrIoamNTHQJsRrBY3gFdyFBg9Tx+f9BdRFM7LJOrc8vjY4GDKgC0/h+/TvZYvLpqu8ernI=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:5dc5e3dae29871508245daaf1bcac1f0c7d330ef024d21496dcc493c57da08e5",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28102,7 +28102,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_faults_never_unrecorded_o2\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAACZCeggQ6liO5x4MzECIO2PwCGGLZj+prAa06CeNffKQAAAAAOgAAAAAIAACAAAAC1r5MNThUPANJ4aE/J9GRC8NxKycAfD5olhnyU1fMRXMABAAD0gZLhi8Vkh1nI9zQ3lF0/i8DqnoHFPxKChQAodAPSlcISrHg/FtCbk3oUYXgHZErd22AzksaWcfyj+e9kCR4nPfYOZYjyvs7m5IoFedsf8NrodAbwT0X8/9vttd4yvuMNAHvIf5swuOFqxj/kK1T4ekL9WFiG9UB30JlREM2nHfq63hjpKb5sX9rTt61RFaiQsZorVB8zr8/MuWJU0YigQJ/ABTFzzXEz++LXlqpuQQN/iStHQqw6FmugCpuJQYzInxFHUlka0FmOa+vl9b47ILETl/CVx3DVUp5btOHkKCcLbLMyz68WwqlXC7fSG9zDYgMQUcIUnWwF/DCQ7e3+uyl5Od650uQQobo7d9h4ojFVblYnDeNB4JzaZH9eiv0Jer94Z1lBBWrJrE1ChFj7i3kbFivQHgjgjl9qmmQy1foeXVvQ6R/q0pbkwCIyMVFqdDLH2Uik2FfnQW9weTDpZy9l/SjLsnK6NpsuKHmjaSEMtb9xKiKpfHoYi7188EzKtNzAgSKOsYv/4LwbXEv5iMT6R/hSrfBzqe0X/UxS0yy//164NrgcwWGM3UaC2LmsCMIvtZnE5oooTC0zs6gdQAAAANo6cM5+6suDA77z55o0ETSpCzhjbkosVBvSguQwkudZEqbrFXxjmLdCJqJkF/8gAwrVTT3FI0QrDywXNM0hs6A=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:3a9f82ead69b03ca762256b1548a88973ed68d6fe8f6a38c629521b6ea908f83",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28111,7 +28111,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_faults_never_unrecorded_o3\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABjlaLUvkPrhzAGz7kXoHYd3yNj9S8tS5u6B6hzQtuhrwAAAAAOgAAAAAIAACAAAADE7gYFovdYCc95ipuk+i8bMnoBLqKkUGveGzSyNIuDM8ABAABLQd+yHtzGLakcDYuGUiyrconiNnjPTNPvbT1yJtqr42pF7K+sYHU6trhUVK5TxV+PNuLxTlk5itkPYMCMKlMguZ8NoITsWwkJ4wG5kt93+0D2DiU7m885yo8d3v0vnQDtNOBwyzZ5ilDzsaEtcEuWDnNOYF9OqZ9NlUTG//zV5lp6LBMZTtb54mxnRu33fQXQcndCIZSEYaqRRxADty742CSCKFgpDYG09d8NcDN6kVNJFm+3yv9LcpXmGWSL9LD2P3TJ7h9C4/6SgGan+pLiUFjuzIYrUfsnoYzK9mUMR8xEBdA97Q2n9g5WnDLgvcCJASmCkzkbiZNrS5VDVQceK9fvAPW663ObFloYW/EcpD4yJt23zcYO0QNV/B692ceKfSv6QcAr+5dyTNB+oLtqjBu9mc5vPbokxGlowYiFW3eraEv7tVwIoSIQcH1ayA33qlZ/lQw3LlDJt7LYqTFBXw5O4My8lPHn7RyeWbkCnUmjcAvgakYAAIazNSQv8soNySs5AFarvKRN30jc1T+jZiBmUh8KfvX2EYMDWOHKUh4UjTzQ4064A2d17X7ioGSAzbOeJxhRBYycASIfUS20QAAAAOwoxVdg0Cbmtd5lgKkojzkPy4Sq9p6WcTFmJNkHIY/3iXtWOEK4LLFah06rAXAsHZOUTfAPCJtdvsAIqR0a1Oo=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:4b999ce0ef4f886d157dfbb70bc6df789310a793ec364d2386c8eb1ec3a18dfd",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28120,7 +28120,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_faults_never_unrecorded_o4\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAADVhLFFLSLJEtLk4kEAs8ubrqy6duvSfuqubv9pIBQeOwAAAAAOgAAAAAIAACAAAAAj8Mnu8btFF2mBzlREP7yYotgNsl4TiHzWXWqA80YOZMABAACa/FCnbtdeZVkENy0p0kb/x+Q7yW/OIjjaVJBv3WjdvStyrEmpyYCw8hMbEhnK5GGO05ZAqd5sSZuzeDVefuRK0SGnXPpFr++LJH6kq7Of68MMVxHE0yXfY+R9H2KauzJ5UouNNM9Ls9cLQiM6mCmJWY8MP7TgKIPdYzn7A7BAmDqTHs1vC6ivwwld6rwgVYyRth61AanRZH9M/B6jA1QyOEaRY7IYHkTn3L1+I2W+z0VAi/P2TD4hy4eO06jqE9QPKQfPQkl7k4Gs+jCAlcoM7nJ2w6M+lvhr0O8Gx4hr84ygQd/iUJgrAUvWMmRzaeze4UjX7CuCq8Cq1wOmEW5+06RaNj5+E2n6/T0zlH0IMniBnIPRGnZuE6TEyf6Y9k2pi/mYqzplF5K6GX35HpplZxvEi9A2Qhkuah6BhVeYpTduobuMvOK+vcwLUw8XxU42/F2h1PxlP0xW1ut//Om21jXo8dsVTYg6sxjQ6S002Q2dc1/FJlNQDHhm+2S+Ulo+tg7EX1BwQeL1nTeTornmcQBKCaIiZsJXKzn9+o5vAcs1XiOiPBHATN4a8E0Qu+SgSNiRgj5QQHkIL05ubL/RQAAAAIGOuz3rmzN+jUouDRO0lRap+yJEMH4GyUUOac+6G9k0MPqoJ/8CtLXmbZEW6TTt5nhbSpwshvpGj1Nt2hp9tp4=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:9debe915bd75e625cfb1ba4a444889738007e6c93d4e6d99061d22890fff7590",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28129,7 +28129,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_faults_never_unrecorded_o5\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAADU/BYOTZ6npCzqu6jsrhposzQQuCGV1E6F77fx0x8RGQAAAAAOgAAAAAIAACAAAAB15a5xBNhd8UXu5TzFC69/CCfZW2kkOvxHod/MFFw5iMABAAD1L2XtOu2iJtk5bXCYEjrpDTPzNNNOXVqo3zZvAqPL3Qg1rNJF/s1tOkbX3vLqJYdcCVrohcp1V0Bl0awFr/6drs4Zc/l8xcvfBAfXDN9MiugfX/ufrZW6DfaWbQ62ClqpVOcyJ3cMmUKlSiL1Zhe8lOSbHwqaZEk0prpeVod2aTWLydjjGpyOKqwhyzsv9mr9ZsN7hDT5U+kptLN6bg/sZegE8W2f9MMXMZv/WgWras3hJYcGD9a/T5RGXv4miJxjdBh8Di1C7ZxPuvDh2bzuaynbUFH7ep5kodHkqpANAV0T6VXtBsibvqZK5UsnOEgkbRNzGrCzKrVarCcrlRNv8TwWiO9DuKXFHnBJemV8Dv+Ghv3llJADPTOfU8OFXrdPEQbGdXA8paLo/aOhf0aAjo11ql0jg/JNb78cqSMNopAybCaEWHHMii0+f/FXUbcOL6oyBhZaEy/aw9D5fX8MAsFd+lcuOJuVQY03Icu8UCyMQ1djzLdHWocVRAcv5q1E2SmMMb1FtEA/lYo0k/OWtY0WwTzcttqS5cI2KIYGxTUy6JUEhQjMVCgF2YzFDyr9Gp0ns+yMdjSSbepeaXuuQAAAADWt+TxOvPhG5xhC1JcNULX840/FIMZxxAqXHlHiYJeJCskXldyGh15mdH/Awco86I9OHZG5fpmSJvxTx6Si1RQ=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:f9a6e6b0bbabffad0494a356ed32d0f83e100f6d502ef75a86e5af9acf7f5878",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28138,7 +28138,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_faults_never_unrecorded_o6\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACH/TODaoAqfdtv6jEukp1CeWI3J3AFEP0Z3tNYid4cjgAAAAAOgAAAAAIAACAAAAAhZnB3US7ZVfxf/+Y3mhXRUusLQBa14KAhldbyM+F/IMABAADm7K6+54AZLclHo9ywYbdhGWElHRqpf0zu72TMMtvtfhD0gKCB86tOFAT5Ewa90iwJZFmEFIDYFaFcilx0r+rUVGTfHMmXkqxZxwP953R9MFhx9PWW9HDb8/7y2dKZpJNcPSYe4EwXiZwgjdHZiKRwqkjJI1h62OeqtDRyluD79eEhqDp4Khic1g+sG+g+D1aVFHEwOJ+ysw0BR+2Uq3+XeP/XS3qwXKF7+aMK376yQybNxP7yfMpLOynJRFO8F4qywOuJNyIY+prHMrBB/LiQurXMC8EXQMAL9ZITrUN6KuhOACDZlBIhAB5IiyCFRHSM/4Pe/PmsH1CFRIAD3BIFAeYKArZ3ckg6auNbbPOqBq3Jxd3zW0X8AEdIyMxfoFesQpSjtqee5IjCVzzWMpP4lCI2b8B22jvoMFkwGo4twAyPDilVVJbti5oPtrNNbdI9qsWeTQ8CPdZRiQHUp068qXtC8dgMLs7ifUiOm1bUzrOHo7/LtwScgfjdDITVUowDj1B0Bu5CXWNEMRwVt7GtBVv/ui5zEOAxW9B6X9xXk7aHcsnOxe0Elh6QSaaKNColonvwtqFp0AFXAssTugrjQAAAAPnLFxesuQfRaltsbHHgG5TEVRbvulwMmumvul0zq3dMfLqhQx4GmWSkWIzenkePDvaM0RFHuiALMbj+A3IOFMI=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:a8d17211630b4e0b273a1110ec428e8376a643b0f6d8169c513d6a6800bdeaaa",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28222,7 +28222,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_fixed_example_check_is_re0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACmaQvrc2IZsiIG8NHNaS1mc/H3Uu0+Te9M+xATh7gzFwAAAAAOgAAAAAIAACAAAABpjwJv8YfnC5uKcuHtrBDUBbCrEMDYSg3KebntRBQjBcABAACbRHzE/CN7tXXP55iQ8vGEh/GM6CdP44iP5ZNQiezkW4t2EodQo6AgpUDcuznawr/fQN/8pHcqh2gC588xRGeaZKlKnBnj8NKeYWA238h248h7slpvtJETYdmCDagoonV4QaZrRTAjkTEH4FJLgHvkZfLyui2t3UGthFxcy309Wzl2XQw8iO296hYC+344vQYlBGzPTdUiuL3jd4/WMzpVUb/eRcLh8HMOO374pxE/hpijtiJVj0twrwMvNdD9KZF9KgT/h9dbAQx3YNizWVobFNrweoJsyi9HJby70dfXQ3eC6UxQS7CTLb0HoF7CnvZpUg/z4xybrC3LNoNMAA25/c4K9Nz3SecbJmHDIWRlnZeq/0nqsnNA4Ezt6FHH36L0e7EO2HWmfhqh0KkSePxr/5ahu6mfPcI2rh6joaCq+Hz2gtcELP1ujFxNMTjd0N4oGMcRUDMDtK2p0gOfjBOqtgM6oyAO2zbXKhkmWhAphz2iC5yCDI+47gGfR704KMwIu0ZSCbY13Ihj9wmbPgERMRfigHM2Ou/XTjjlFnEfeXxp3QbLFItvUn2oSKJCSU4g6yu9NQkYejtwUY0JbIwmQAAAABeJNeY680WnevPB4z9sthdBIpTdz40FCXjZ2auSnN6jvDFRYb6R4E6LSMwTiHA5278XjHxtdaf+lItgTu26hD0=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:38abe0ce2d07e36283ade724f4af001f2a9e38136ceba3e8f62c75afd121bd69",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28275,7 +28275,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_format_and_copy_boundarie2\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACrv4Eimi6WKp9sWaNodhha31s5PLBiGjTuzqlIRVNNuQAAAAAOgAAAAAIAACAAAAA+sybze9oUyTYdGxy64ix39AxoweHr0r/cXmYsBzN+bMABAAAVLOVYPH0mQ2Gt8iIiIn6s3c1izOEhNwV292CDMYohT5REbWOFB8dXY0ZrP4pOQ1JBKfRABUyOoNIuKLw803SJoxu7NAswIHldfC8OSuH5IqDQCuy9BnSFJPZLhg6rxVXxkbqQ42K+NX0O+Hji0Hp3Lmn7b2iv+6fVJyEA+1/asreHjmdW/HuHJK4zNXVbgQYWaX9X+ywnyZ7KfEMAQseCBQMnyYVlPKTIIJbvAFS8T6NFivzl2kr+aUOItGqXoI2XZ/CrgHgSksiVPgj66cRdCUOkR2VmumlGBt4kjn/j9blAHdVb7yh8RxLPFDHVuCX1H9Mgs/8Yk35ZSGkPpwSmoQBer/OuowWWZjllRPnCcYPxlGDdRdQdroSUAeZfzBjk+tnc9Gk9PCe8X++rXMHjzS2mIJ8sJ84pFyqPC6ZxsVymvPsDw5BdA2FNu+cubvygTCRrYykwQuXbtXaSNL8TC0IwQJxxnJwTMNVQW0GGHYSGWRghHYQgFrR/MGnhmaF/YPtoEnaqPPG1LvkLproQeRI0Oj9B6TQoRvDJWSwVeLZR8IqhLNxm4sJ5EnrOK08vz6xg1sSomZOcCOMJNGMOQAAAACXWCXnyKa/9FnKLqT2tgN+KpEKYklSEjnVkcl97HvncjrH9S70s8ry9Tmh2TGrfu+C/lKG2TMq93f+L2vJF5F0=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:f4375f7daed958979cc3dc3413183e8011737645b355988d1a6a9b88129c2986",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28284,7 +28284,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_format_and_copy_boundarie3\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAADoDwH1RJh5PfZJrkJh/t/ZevdE8aJSNsXYLH/8ToBufgAAAAAOgAAAAAIAACAAAADsb9/nBEPo6mgSkCBEAQMqI6cxgMduZOQXnIXEV6xlesABAAAWTzNPRlpqm7BSq98+bj/iLQn4HGOCLP5txQlzDLvP0Xrk/fDhDNeGE+W3ZwXlgIixE9fEh84hfCRca0QEGL1pB9hOpfVlFzbGT3ZbpK8fPxfknSryjYzslzGDE//eCW+zW0d0VbYw+V3xpkAAyszAtBO9hOzL3DF6o88fjA050E7zg2pwO9lfjoaadPWCEbHUXWQZuJ6D41sPYMf26SaNOl2CMUdTiJnDZNl8QUC69GVHDWMXM54YyWtPQri8+yr8F99OxI3VHZO0Fmp1CiTiG8VUCFxq1HpAcpIzLZcFkDtZ5g9VE7B7+DNUqiLZYLLehMXDvDxX6kWEDIUdlCKuiCnMPMpkqzR+UW4mq7M1VM17XxekhMdpYmYivoIIB8E3jFmhkWkZOAQ+rNO+Bx2xMZkvrD/bz3gFzT4c8Pmba0vGEGA86bBth2Di5dzBi3ccCXLPcOQNWrzniImNXskg4RZX+rIcM789yT/6PsdPo1kunKlN1rTXw1RitcHo3WbKEWVJWqeOfPRiNRra/k61wC/NjDaDfJSArh5cemd51fawQqkTbsc+jrSl7GU+BFnYeCcL/1OgV4epdKANv+lyQAAAAAUl5M8hxnSX5STmM0myb5aqE4ju7Sks3sG3b7KdQ5nnIYS6JsKzzY9RfN46lZeX5E3h3iv4VZhCOEFJxEjZFSA=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:d4afa4b20612818be10b4d22ba107391e7ed6714e5eeeb8d8f7910d116437c50",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28293,7 +28293,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_format_and_copy_boundarie4\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAANo7KQk3lH52L86uZqL2MuU2CLhwPP2FSh+KPBrJjY5QAAAAAOgAAAAAIAACAAAACl8Z4ccEdd743oIIn6GIMWeQa1TL7jknADfwOoKCNR7cABAAAL972IzzcUReYovP6pCchWsIVyxOs48WPNDLVlooRfKCCRSfdhHtCk9duaxuu3ckysL4NUjsS+fzq5YMJlNqGwp/f/Z6QS8jLpFYIobgtih5sZHe4cv2NrDoVupj4mqmYlB0/CgQrMCLMPTMRQWXzF6acXwamssqVU38bUOeFayzSaavDyxRrBWm3em6SU7cHONlyPxR1Hs5rL2tl8FNkLugP+Jb+CGXmPRQocqLO91Kb1YK80EaoDvYcYrmsGUSmOkooVmY80nFW8BeL22QskWZYxXzYbsRQPuhBoL5BOsizCCxcc3DBD/DyzqN3JezmSqu64BzA0KxefqPeK3tQqvcmiyv3spHp/A6ymsdJSkMLFI6Ma2VL+OTQQx0mnp04Bv90i/RKqDsrahQ6M/zjTU389K8jIXNpslnT42xm7RjB8DtiMjQaEh1+VhqAQ50BRt8vRqlFwOAXV5BzWXr9hz5KrL1djW4MKAJK0wsk6fh6iKYpJV74m+BLSL/6q6oNuKwdgjrpYvcF63F5M9G8um5K7w1MksGiATZDVz7M1B2FFQMXdPRJxYtQvw+0D1LVIq8/bC/1v71ikEGBMhxYcQAAAAFtUPajPTi4QDcvWObfckO61YmR7cGzl2pmYtlFlzgUrTAI3GiwDJ4Sq+/9b1VRGtackppiI3c1j62JzzbXMwUg=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:1550a2fad5bd0d8a24a3633d6be921c854da7b704be1108d1392d5f08c4581f8",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28302,7 +28302,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_format_and_copy_boundarie5\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAARH4VHonzVWB3PLfNWqwW61mqm54XBowad4lqXsL9zCwAAAAAOgAAAAAIAACAAAAB39irKG6GpwmKee9/3zatKTld8m/Tip7UPAsPg8wDeg8ABAADIujuxwvsgvGvbdh/dzhKibQR2G6fKFuGyDIatBW4jFoIndAJaBt4TBRZthDPGXWPN4fMuu+qP9ZIhuAM7hXBJ8I0ihJQFu00o5uEd7mTfaNSz9kFgzRGl7YnKxJyBviGZPiYRuHozzKwHXf7jI7lSmpvXPZ/u7bX6Zq+TSEOINKf/sOqWLiU5sPaw/l5+q8eY2fG58X8DqGDhGOIxc7c+7dP3p0Bko6lnoYsm3IhtDt45JGfGhWlZKmH7NlD2eBPjzFbCNLFd0yv7EI7jvHIE7pmBj3o4fKuSZJJWAzVssyTKXoWZFXHYb6vnp3LfM+bp2kvLq5ics533nGIMdZR3fWRaV/P4ffLmqaKxf7JiQC2cWNCtxJhIXsdV5BOuphtnpFp8o0Ch46lrllwnGE77yrstIFAGl0cLnVD//ZnP82ikW6Ey1RRYadwEE8iBva5SaY9wNXYR98sAwmRgJ1A0GzX8XmQZqvTiNlX0UTEE1koSEnLAiqJkJ1coD7Fzc9iB6xXgnQ6FiGSuuB7NFXoQkZxb8q0HSa2VMyrHmUh9DycGs4WLQvUBmQWC1wiaIa6xOF1rFe/6um/ez0u26p+4QAAAALqMz8P7P9HyHefkdvbyc7egt3KMyn3AkmXFbr7c5TIScDB0xNHFmWKrBss/CAZOaqoX7eh86k3atMi5QTLEQhM=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:63efea776910b6fa4c4d8ed76b666acaa64c7d38b48c1f3418574afbeb733460",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28311,7 +28311,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_format_and_copy_boundarie6\\moved\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABgskviXYy6DxR2dqBblIL0DL+6At5AQ7H+HjKjXH2ntgAAAAAOgAAAAAIAACAAAACEpVWWbQ7nkoFdh6AR/cidDNUFTQYOi9w+ksbsn/uxdcABAAD7xVdy+MJB5uXeo1mS8NHE9zVHRxecB+SbALvGssMJbye7oU2kL+SQunusQ76TJ/bEoQMmz9KbxxQldlK9cTqn6LnRclZkideGXQ5+gCVloDh2SgaSppeU18KCHXYIlqAAxCTSoTG+7/U1WTTFEjgogyKm7iCv9BFdnj8GnoQDZSCt0mF841kc/dPDTiZ+5kB/J9HvKejSrShQx+LSEs/wP0qcSYiOuC/SAJ1Odk00az5bwvm1uzrc4jKRNZ+5kY309iufhYjSbb9FRjcCfutNkFC4ffhEAU7TUC26X86/dSTZKdheQW2FcTLJHx6/TlVBzJ8AD7Bke5f38hhTGsVuZdzKa6gPbAw9TwajOcwzjk55eJeFnAF1dY8vIc1ycZpD/IfPV5c/viuLJIsV4HbS1xNBwCfSgbiCXQyE1VGNEXdnpf+SLmf+5mZY40Oh83tJCnJoHWwLSWksePSX/hVjkMsF/WQRI4L8m/dO75q9kS1ccS164GKVpn/to5chzS5Gaxb/dZTnOoUQRmlmRo/pSfyZqai+bpu0cJffee7S73EifcdiHD/8e01wnRtJ0R1AuPSPgNLHWOEHyZifFzrtQAAAAFkEzbAovnt0CkWL41QTmDR2ZQal+OnHI8b94WarJgR8h1Nlr9kfLVyG/P8JHoezHhGnPhru5tAlWaW7E8AOmP0=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:80372949e3058e4231c8414ef95d791bf6680044b3d9cf5f1ca32d85eb64c85d",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28320,7 +28320,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_format_and_copy_boundarie7\\copy\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAASpZPo098Fnm3zt0D2L6FUjW5C8+Y4M2DsKerJXSt4SAAAAAAOgAAAAAIAACAAAABCAPzGSylAbKTwDpVKb1f7P3zyMIwUhLhw8XC14Xs/48ABAAClyQjZFSdLuUI0horqua3XUBeSHHcwVblG3Zk2iTBa3HeDJB34kq6PDwrZ/h5IL0RJCFzjbV/+LgiH91Zt3WYlZFeOflNMyUkVacVl6j/7aIBs175/ePBnvAwQZuYcwSg0UlLGqHITQfUUjurM+qOtUc6EmMR3n34B+ETfH7ISleFJXDA1T5GGKaFZ5gZPyrS49rl3zZ8C6X4x2NH+ecE3q1ZZ8SMkmIHGB+C6Fmyvtd2DN1j0GLfI8AEILWb4o/LfvWrEmGu/maw3zkc6VWOVXxnuwJvkt0UwAzvW15n9RnjZ0f+G0vvC0wqE816STI789+jKPTHs4dKddRdulQThQ22b4NaTnZbnosUyC+GrkecOOOjnK4qhErdcjpZW6sijzMjx64BUjQZxkUPeCaVupMwO2w0X/7FnoS0Idz3AeP7WLoncyHHJf0VmNkrAWndL5oXDNAbEvDAnCzI2EqUgurtYo26+r+VRNmf4g5LvbV5wHHR2ge5nEvm5fKLFaMJgzKA3jfnGraAUWaXCkAALPqou/JWE7qd8a7GLaPOboESd+ootUuAeKLLJk53z/DmjwZmVcKRFHNcaZyXPU3gQQAAAACQsABk5CADCuDWJ8o8N5cN+Ouny3MR51yRkQKAel2BAf3pUPnGBkE0M62Z9OPfD+vIezG/ABiw+6i0vKsw0/GI=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:05dc4ab0fd473177e4efd10a2a1927752c60ef7096dfaa67a98d633c8499204f",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28329,7 +28329,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_format_and_copy_boundarie7\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAASpZPo098Fnm3zt0D2L6FUjW5C8+Y4M2DsKerJXSt4SAAAAAAOgAAAAAIAACAAAABCAPzGSylAbKTwDpVKb1f7P3zyMIwUhLhw8XC14Xs/48ABAAClyQjZFSdLuUI0horqua3XUBeSHHcwVblG3Zk2iTBa3HeDJB34kq6PDwrZ/h5IL0RJCFzjbV/+LgiH91Zt3WYlZFeOflNMyUkVacVl6j/7aIBs175/ePBnvAwQZuYcwSg0UlLGqHITQfUUjurM+qOtUc6EmMR3n34B+ETfH7ISleFJXDA1T5GGKaFZ5gZPyrS49rl3zZ8C6X4x2NH+ecE3q1ZZ8SMkmIHGB+C6Fmyvtd2DN1j0GLfI8AEILWb4o/LfvWrEmGu/maw3zkc6VWOVXxnuwJvkt0UwAzvW15n9RnjZ0f+G0vvC0wqE816STI789+jKPTHs4dKddRdulQThQ22b4NaTnZbnosUyC+GrkecOOOjnK4qhErdcjpZW6sijzMjx64BUjQZxkUPeCaVupMwO2w0X/7FnoS0Idz3AeP7WLoncyHHJf0VmNkrAWndL5oXDNAbEvDAnCzI2EqUgurtYo26+r+VRNmf4g5LvbV5wHHR2ge5nEvm5fKLFaMJgzKA3jfnGraAUWaXCkAALPqou/JWE7qd8a7GLaPOboESd+ootUuAeKLLJk53z/DmjwZmVcKRFHNcaZyXPU3gQQAAAACQsABk5CADCuDWJ8o8N5cN+Ouny3MR51yRkQKAel2BAf3pUPnGBkE0M62Z9OPfD+vIezG/ABiw+6i0vKsw0/GI=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:05dc4ab0fd473177e4efd10a2a1927752c60ef7096dfaa67a98d633c8499204f",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -28338,7 +28338,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_general_resume_and_direct0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAAp0nG8XYgw4hdadUHdHi64o2hG4bkhVk5fMxlZxSoNKQAAAAAOgAAAAAIAACAAAAAtBsqNhs/sseiDdbjX6/opidlVO3GatpuEeeiV/cj8RMABAADH0E4INUkYuXKk2M+c0zegbCjUFFuyPFJ6qXWy7LrN+4Kh4JlQTQl/bVxcV4B71AyVXGLjGAd8ryRus3sKTtKBGd2zrCGIlqU6cmZXrf1FaROdiDCRu/k5ej0w/j68c8C97oogSMA2pwWjAMCzzoy1bbwDY3Amcw2VPAB2tA46dhLpE5F7ya1UJOPx5KuYDiplh4FlUxbp4eXckCxazJ52xfAb43s2q6RJ9TsQ35VLaQXhWl8yukHtO6jZhJs5dkZU0uZQe4SVf+HuvPVogZk2uKZAw6FFe8kqix1P9lLqaWKI86iCTBe4lJya5MWW1CVYhDR4mN6Xep1rdDHCBUvHgaV/SAY4Xdugq6rPveHuRxRlLn5lIHBWgKU9FQF3recKHxLmqxnthblkqzS3mtdu1Y0wyDPia7yQ1YdUIldX5udts978FoZ1fKazuq5LFMztS0tPXlrzilbPIb9wrwqDkhreGIYjUaUBH+m9/YtCypC1CvtemcGjInTiCJTHN9dj2PS5kP7djSH3vIQvmN9o4m4uT63bnXE3jGJKc8uvNlGxZrch3esNbpHDoVD+mI0Rt9bnEeKq0d0dMvssDA4BQAAAAPCzf9DrLh35vJwWOHdQy7Rjvuh3pUGB+jDbICuo46sBbLiLda7tL9+YJl3bIEGOqymuUhmEOXiBO1UbyYtqtOY=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:fbf8be5a2730f4538259a1ad431fa3d1b8d5f650d18419bf601905abf268b8ae",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29183,7 +29183,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_precise_dispatch_precondi0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAABBhY2xMvfj6ASh/eVI+jPDhyVUhupS53AEJtX4hZfP6gAAAAAOgAAAAAIAACAAAACBatCdwhff6C/Tq7kDecY/k8L4mW54qubJusEXaLK1w8ABAACUD7xWyjPEGIhujtuMev9R9FhAJIJI9luCuF5QjSDCXduB444/SJ6LcXuuhCfr1q7xMwuAAu9mMLyh/MH5sSewfU5ZKX51Yx3a9PnIHRWjwmdCnIY9v4EVH9yuEGDhQL/jgUPFtL9Q1DK6rBgrQYqiMR6E7/MaLtCHCGlOaeKbw/cSzTE5hDb4YbyacVFxF2LHefSWJdav7/ln3YhWP1ZnBQNUpgrYRKO0SnVcHCJrWld3upBbWXMwS6qe52ELC+b6Z7ovt6mwfKzseADsq2kRrMFdGYsiNpfCarxF5/08+Xy92v7HK/Rh/fJGneaOilmOh9b1jOFggNo9sTzGukvFtvGhKLgU88XbZSmvy38RJMc54WCv04SgWO6/Tf7vqOhdrru1UjIqx4+f5pHMZGwMxKJz5oGqfAu5GnYAKEByXFBmbmfS0y9OCkDgVkcX5JeHuYX3jQcVpaMihWAt9hk77qcfw8oENvxnjTEBxbcNVC9MSHUyHFoCEZ9B8ZYn/k9DvTqUNmHcH8r+YQB6SSXsH6gV8ClD7kuMAciXbN7/E6zVItMk68ycoFAfDHQ4hdtK+GufHszNlhkfy5Wu2u3hQAAAAE5NcFoUhze0GO17XYCOPd84rZXJDbQGYcEzqRGEnl25ViGA7SYu1KAsSwKvALNQh6lc7FZ2pHzADXglKBoCPtQ=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:0be21a91b3b540680270a9a6398f64f4f3049b619571d113e507efa295026ce8",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29192,7 +29192,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_precise_dispatch_precondi1\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAA2M6lakZHghAaAqKxjXm75PBduQlY7DJe5Z3l32rj/sAAAAAAOgAAAAAIAACAAAABGcgwN6oPxkXBXkLv6Dhn52NPFcKaimyqv/BCqHtG5ccABAABBkY5/NoDVDo5x0TiA6Zjw77yS7HFq3N5vLSnvFMoMycRK4v/Ta5Qq7rul+4SMv4vlZ/9Y0eNZET62REn+WHtO9PDWBdpwT/JQwE/6FZTovolicbrhrI9I44jeBd5UnnJk1Cx9AERMKIt3NSo+Rl4JstPGwl2K1Ml1X07K93A7rMleIIlfsQfIAEDQy9QWFMRJke2F4F6BQPhFCOuPg/XdDDkzs68RCxMKX7LyFDTRGGdJP+0lCD4PyI1S180emE4VU7vaayqAV8AnJNHUSBvipw4c4oEC2RKdE6dW517bWSxA81Y7StwOcL2JDpSIPKvNX2lJ19pzsaBLv5dE/swT6IH2fxq4XLe4COsz/3TnNoKyGYVuBGO12UEcmG34weIWc/GPHaY2q86agPdyFxkLu1YNQLB/SrVl7wXf8jLOipZNC43EdMAnMOcEzJQNx8q4qAL9OGWqZZF1nasK3Kq9Vyp4vjjzB/rUBNgH65KCnO16xOraOBGgxDgt7TOl5cqKTC0OBQeD4x0mB9Okeyhat/Fr7pwxtfgWJqGmQnHIlWrf6Yc5eWhJxkxbfVO7au79LWcGyviimS1p0ucAWEhYQAAAAHMI2iaVVdTYzk9FV3sxdiCNyYov5456bke78O5+Cast7RpldS6M+FgXiDspmyHHiSKEyTxQabU71RIcGi18DMg=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:1fa3b5a35d13f782f40afc156494f7f8026a7d53f7ab9dc11e9d46d0e863eec2",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29201,7 +29201,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_precise_dispatch_precondi2\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAADt7SdaZj4YOKpkN4tNi86MAJCmXwurUOGTiBtiru0y1wAAAAAOgAAAAAIAACAAAAAfpRD15cncczg0M7zLGWzG5ZdnoA8EYVWCd165AELCGsABAAAOmzYBaNurzR8rH3Jm8vNXTg9PKnvrbi8vtl9BAP4in/oZnuRikzD9fqSEs32GruivY2HqoJC9EGpH2RMwUX7iLVZDSBasN+SgNPMlp2Fv2vyat1E6EjHFEeS0KSSDf84iUAM/6XTQi2uiWJiqdE0THlHDoxNOiSvqFsDnHW9YiRtq5yfUrE92kd//6m4OcwP5mDQXtEaIFZMXXrGU8zlvRN8VIVCUsfdePWuoQZASR+t0Dvrrm1SXe/1BfM1dpoVYJ0y9wX2365h+QJXGAYamaz2bMUemZnLbC73NlYJiWqYEU7dsH3xZIrxWnvqeY9TuzzDHcC7/vEadMrqe7e7cBV1lz8eHVaIAQlBf6XOIrgOg8mnnd0V0RrixUJ11CfWeMLu1k00/xW3BIUU5Mk+zJ75K8g2OCCPc80ccK6C6ZjmLuwepSvU/aglMZAPwfY0wrwxUaTT/jcmWxJntl20+CziN9/dSbQYFocScVj2R3vy9cxHA8AWM7ZeW2sAyW+BZ/kBCb19h1PzEjQTFWmXXh3V1IbU6wUyj5XisJzpGGcTgBKI3jWVFs4F++TxCxWfAyGaVbMNoBPf7/b6hb4ClQAAAAKVTkiaI744ZTGeNY1JSpavXqE9lpBsm2flB9GGLgvtLDhym/up/bd2CeSc181GnszUA9NbRM9f6tAr0Q26zO2E=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:734a20dc0f205a06b8d5c57f7894408074d16aeeacd971168760981dba9ca19f",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29210,7 +29210,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_precise_dispatch_precondi3\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAAGpFMQvAHbwGQaDPpKBU4ZKGom7XnYz9ArmhIPwvzC0AAAAAAOgAAAAAIAACAAAACsUYRNyMOdYspasGv4phydYqztiJpicPy4f4fEVLhddcABAABFZq5SW1VvG8f6RxD3nBCEynAREsCvAtBs0SxmhmC/xkNdwuu7YBEp1uny4OVpYZB+67OAwxKRWekU4nSeEYRswnax2URq9oWi/yTM7pMDIRKbpt+CYRiQa62elkieAUOW1n5frrFBu4vbul8UhcKbBSGc8ILlrQagPZvhQ+Xbf/3WvYVgp2mFN9comjt1OwF5IqbYGymWrevq1EFgPt8v1zHm3CQPHuLW3L6Bk3bjW8uYt4a+OvROLag4gWDLUzp5lmYxQ5OgvYnz/UoyjaDMnf9yAJhqfTrXzsLpSlxyfqqqco4nzTOeaeQBwh7EcRdiEBNhjXkWIZj/zYIJHvkPr6Maed3oedVjTnyiM07pTP/HxXoGcjQYz1P4beOSMYSxEYy5Ld16jfut7yMaANJHxd0IahKnP6dTdqO9cvXPHnp3OIKPGiV7NGBnEwEItRlVE/zGN4ntWJwUmAN5YCVyvJXfupIqazV4sXhliHjSGXrQ7AQt9meaKbwHBKXrnSWTWAXqzHPX4ht0sd63+TW1wSykIvxhqynU1Y5SRfUdffF4esKOa4AeSDb6xCHa2jWB07zXrylEegaYGXbw/76aQAAAAGK0n0Lh8qjEVZbgRjF6C88A77v9tCySRdiN4/lb47y1omAKENoO1TmrqDMyCd9fKUC0ioiJMmXqClvFzeqoqvU=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:b6900f6fd27fe37c5fee4a85cbfde95bbf147a6d6445411dbf8e4a66136590cf",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29219,7 +29219,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_precise_dispatch_precondi4\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAAgRX2GNhwpTKho8A/GuBquFlItPnRkVSUnJsyaVy6GKAAAAAAOgAAAAAIAACAAAAA3faL5gvjwGY2fat63LU2b9oELMXroDu99+LCD0hVQg8ABAABYHIH/j8EwfxJYKNolokzg83gCDLjEtuWrxHjg1FoZi4DearJeCfjuGVGvRivFJaB4kLxsQF2d3BYA6xQg0zHTBP6KBmCJANby350QP8afmfcYCzMmh5YK9kPgXtS4UOLLmBADJIo+LHMDLAd4ZgfmKSYFE7AxMqvSBSYeCaVMPBB1rgnW2kYP4jZSC8Ic1yaEjmBQgdZT/Kw3nNT9pvM+kuZ5HiwAFYNththbstZsheb3dlMce8mMqSC0CjkMnJOLWvwWvTvHHdde2p1WV+WD0O3zrQlwc1+rUNvCMYKog+HqyOYoFGtVtVdK8w9TiyIbAeyMeg61/cWcNxHonNo82s88mn9FCNIWCPmDGLk6kI+ZOUgyMyvnwu6ovMM/Feblsy2nEV6AxfHYE9UE6OIo7yfjJ8jIVmTL7jTx8reIiMDsi7h55n2ASdfxc/ltNK8RzXL63TfrYXuX93y9u/CmYStk2LvXsJ42XEHSVrzbW7+c+NnvuxEDZHT5XRLAQrtDsepLx7tw+rzHlYNk/Nzq08yN4lFkS9Scnf6uUk4fywpDkKmCZGCn5sjE4en/Yrkkywh7j8FpzQrKh6Ok84ImQAAAAAUEHVZCelQgimbEhRrvpVx/IpJVPP/TMEEgXwsMBIo7JKZpKPncKZAzB6wypgs8f1o5aUpFOS4SwENqAVHZ63A=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:4cc4d247b8018ccab9e945bdf1ad5d9fef0c5426f116fde5fa19f57eab95ccac",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29228,7 +29228,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_precise_dispatch_precondi5\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACqQl8JRehd/YWG1jM2sVPcKdJaO30mT2Gb5M9fmMiMBAAAAAAOgAAAAAIAACAAAACaxDtNGjglwx1qtumsfzyA0iShvxLUWu3iFtSA+SmzPsABAAD4/mBArcXowJM0p4mkZaEjF7HssdegtzHnrFjdKTDN/ydbNWSK1DN2zGHytcwUbvZfFpe/B3UBRwPBUWhnm2ldBP253qB3zOvnzvE99oZms5xCu4xprBhIlOw8GfqHHgyOUAuclklBebzjX7s8g9lfNk1uSckiaI/FCRU6SFm3mRrB/cYWxH48QTYSfWUbBwJKDjZ8tihdsfsK0MGUXFG/qV8Ya/f8hPYqjV9LwZAgXTrQG836zXSWxhKrO99NqCkb/mcP9XfGrGVA5agtwJHruvlnvajYZlSw5t1mCAzrNePMJZnaLnB8PNQuLCQQOwbpBaDAMlc1n3jdJIkm3pKjzEJlwMGvrb4wDquIhLOzy2sdnS2TYWB7N21uzBD5wYcxzht4+gC6ESZIzQkFm+iNJX8BQwoFd8zWM8OfLGXSM1ZX28kXK6ocCdKfQ6PM5m99GyI3M1WWXmOhxupxexY2tGefM2XL90EJqqL70CMbwFQkl2yGTbbx4AMlT33Syk1Xztk/F1zGBZYt49Y61SmHHi9H+vwEYfsQGjfz3vBjLJwRrEbow8tchs+hoNEwivea/LxZLSqU9dGIq4iuaM3BQAAAAD4+eQCbSL2vCzjjy8ZIhS2M8zg+22fRahPpVfz2+9rJm9aqEzNtrlnTgUdqiVvZ5qfiwUGGFrqWD2pnwlndvZs=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:bc1ceb01ebfe85a73b4ec2f38ba83d78f6a130bda00f53a9cdd1e8d14bf82c63",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29378,7 +29378,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_private_acl_restricted_fr0\\new\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACLY4MfIMvJJ1F9vWxfDcjsoEXt4wMgyQn8S6uuGhjyxAAAAAAOgAAAAAIAACAAAADUCPNpN0+s102vsx1aMwtQ2p6x2hFt7g8PBuFXIIBmtMABAAD2vHN0JMVabSc7PIymSfP2IiZHYzOpjUx5+v1aw8ich3t0xKztaOtTeWaAMEndVX0Uvyls2AH4gKkIZ3DVDKMJ96EbOFRgxQSyUTpPRdEgde6w+pzH8uzrRatM/6y/N9iUjUr5ByIOIjXkw2MU5Ma6bZvwv5ogzpBJUgz3YVPdBJdmw9vbKboD3/6Fp4CDazTgU5VxkQi0hUT/KFHFE0lepQRj9XRT7ud0X/1U4WRQycb8NqrLC+VmT4JrwQahSwHLGCF2XIDNcK4Iy1b2b1OX7ixGPNcn8tmIkdyF8WfE37R9DhKgKU89hF0L273migLdoJwKKGLh1ezUa6W99dJclxlsUyy9yCE6p0VnRJmSFYKC1FR9Jn4BwuR7g/iGTp0vmwVed2x169bHPagWHEFGD+keyGuWmtzH97+QE7ZHh46r4+bTiG+OjhofBooI7L/C32i9HAWOGlTscsEuFTnG+YPQzbUgBFV2cKcFVd99FXqpsnqfAzcJtq0velLkaJkccLUj2jgX0A0hTV1hgo5/JE/wy4TxrajTe6fX5Hu6YOiiWoHpQN3AIutWVWG4/h9sq4aXjRuykIYSesY0AxEMQAAAAGQunxYvehGgriXGUBhnOOvNWXGnPQXzqjJGfT9w6T8fptapLXiWFCE2gwCr5LuojAFABx4FsqODGw6Cf71YVio=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:583c56f7066adde7889360023a98a0423079de734271290c2f2000e8a8586ae9",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -29415,7 +29415,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_product_credentials_wrong0\\copied\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAD57dpcCwR3WHyEehyr69F6RwM7r6neyOgZ3umOYnXjsQAAAAAOgAAAAAIAACAAAAAOJKE4fingc+iwYQVzXaoGVmQwvK3WeaLoXzsjwz/pLcABAACfK3Y1ZV2XzWUHtY+MVU3/HgXSCImB/QpA4FiSK0DTICuLNwean5BjydPdFce62hzBtSuSylM3fV1YFgEASyitZWlSP9D2qQw7fOAb19kdquyVde0HNldTVUFKo2odg5Wi+SCnMCcz23RCtZKqvxOCNUUUsqdZBBcsmbgmVpobIW0LKXqJwuuxNiJCoJCiUPub/v+LL8nimp1qSURcZ9PgTDP/rC17gubnX4TcRbz+DA9mKdYFbr6vPm1tPeZUBNQgJ6g4Rbo9WldIse+yKiyyho8yv3fHaCUUofNWYhk+YcAGBcMyrow0GdPe8c1/lnBLbNK7c1LagvTrXQH3Jinh8pIxujA8kh17sXMplneditTvpbFS0WVEkdmY++gVZWXSr9GK9W6xZUd5CyTqg9URUsnlJONyNKJVZXQPEp5JSGM9k4ye3s9qVvlfYaJm2mgU0jANdY8eGPb9CKELMV12kYg6Wglu3VSff/WoSojvskT7haD4FjCevguw7belVPyGiRBAPR52aWKcUz3YC3voI4I3Vwj2bLs2t+JjjDY5s4yKxVy8V7Lbg1CQiiErAhwJXkdzOY6jXfuYmuLnvFVyQAAAAG659F5lO1sus3DYqRQmWDrKzyk0lLAKNC4TNu8ZOxTlHT0g/dZXfX+sq/VIMkaTeWvmOLi0aSAQfu0u6+S+/mo=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:0c8bb3ace1aa4de0db53aebc0e14c4479f17ab3b5c47b54f2881133fc2898911",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -30314,7 +30314,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_readonly_preparation_and_0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAACdMU7o/ezVZyz4VD7CO1LPDeHQ87/A7PfqHhOpunJHPwAAAAAOgAAAAAIAACAAAABVIuYWBGZF4Bqbk+Fej394ubKD1S7Ca/LDCeOJCjEF+cABAADFE0+1DMRx28qRSPfSspARgCZFsP8bPhgYL5FnYVl0wA3mxZHi/YTTz4JCAGtNOZFVqH27T9erzPRRayMRV/ig1gOb3wFDBXi83Y2S1jVouumRcpDQc7EocZicj4CK3wB1WXYa5gNiovELJSHDKW97YySVLSgpuhtb4i/49J9LVjZalO9No9dJEH4NLI+XINOiJKnK87zx0VlmbH8j0Rzqfj25sXs4QgKzlTe/r3G+4QH5/nI3tyIdUQRRSZu/+2ksP/2lVYBlUYlHnq5ehZrqrWQuG1XNYSDfp6TaJw0HdtddqCOR2Swh/9dUJMZ5c5c9C7WmveByOKO4l/5EMyM0+vKgl55veoD4EeEWCjhe0WjoFtOCnQXYob+NT4M1agz5XgS+ll1LYapjEfE8DXHDqgi8cMl0OmIEuZedvihFxvRUgeFi3KVO6/vzWuaP9Dc6F4mRmNftO+N6MAp2BALsNhkA/0Se0PGPNvVdcNIGt6/EZqJXCzP1m7eaEu2DeSmltC9AV4IhEWIyabgt8tvajrDpJK3TRzEyRaGV7YsiHe/aBDnAYp1Y98sKZ9AfZKc+m20no7bXicW2Iv3OBF5pQAAAAAVtxsi8BTQPAwK993cM7eQc2dlFSqcA19zygbBtAOdZ9IZ9w2HnJNA+JZkofQEaAK06ClYqXP3TJSCJjclceXQ=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:9541fa7b008bfe7424b4da91e9f128454a3ce86f23be604a330b48ce2ed5c6cc",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -30433,7 +30433,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_stop_pending_unknown_and_0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAB+S+sJ3CANWKFL1v4vj1EGdNJ2HGo2t1iPbKiRTYytNQAAAAAOgAAAAAIAACAAAABzE/JRLurSz/BNvT/Oc010kXaaJebxlP7O9Ay92fWfEMABAAB2O1oPP3/+fMvXmsLfsCU7tXnoMC1f3Zf+sJv6SfbpTni9ErmVbacPjnqWPCMQreBHuO70usuecefEbTdOvC1mUOvdy7FB1AjQB4l4rTisQdxDGLUOKwLv7tCqLflhEXZaRklTjElxynqXcCbEzJKvBfkkK+VTequkweqmQ05OpDK320fua7737PDWujLwImPg0juCwKIu5bduWpfOqHeVAfXanDY6c6OJyg7xqGAdPLwc/4Za/0mNr8ZNm0sdFkq4rg6VbLJo/Bs2qpSTH6qc2yX1S7dGjj6AAAcF0ETlxjvxjcme2EZ0WD9Hvkr+VvFWbw4xgFBBgezLwN8hmvB9lh7xlsV3Aqk+3HoVmbv9gKBkOEYghPxo8DeHVlaJg1yGtxB1PsskZLa3AMf4B3YdKDK2WaBTAF3r8FjW5esqBuXsvpZw+Yz/gNUoPeWOwP7Sato/jh3pwLp58+MpxHmwumbuAuV9eUc5PEf7e9/aKG4NATcvJ99IaEcWQ6qRAHXmpaDm+sUDFQ4nM0glsNFqdajXdc5igQ7DO6ccOJFHFf97aGs36AvCaueaEseeMJan8BAXGvtOhI6IYd03IIlgQAAAADSH13qqog4bgb/vwioFbcDJM7rTLqoK0CNUyawBCK6ky9FBTn2LBF+1AD846kDwA5Yk/RQ+pmQk2IVjkZUXRO0=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:bb9e0d8466d55a6e7ae35fa37223a4e4d9cdae558cdbc3fe34c4b2ac561433ce",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -30442,7 +30442,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_stop_races_acceptance_und0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAADjD/zfWlcF/tx5GQEHrdHzhO/l/iJaG6ivttftP1jKrAAAAAAOgAAAAAIAACAAAAAcZ+UEAmc9Zvr+fz7St3sGtOviuN9cC2Kh57Oy01tvxMABAAA+2CGxryelafbPH5Zzfi4vtnYnpdGi5NJsusM7AesgrTbkfqxkuWKtB6gfqBbBlFrQTcWeyS7RnKc34zpMPU92Lm21sSadkTTBzhkiiETngPs40ERg+XCM8HQwrKuBiS1k0vJgOY3E4f0VmUqe1nyXhwC5N1QncFKbxQPFYA3kekQe79YKcYtoLk+uS2OGpzycRKUogmNF8Jm9V8C2zfvS1E5a3GhwaujukfW0xMFd7hWddIj9Q4CInXzKeTjjRyvLzeEkOq4oeq8xYDJiiwrReTNC41iGqJPzdgOvmQlYmkdM29RTnAeTc1sojOModA0PNoGWBJSeNdVkQSAzuOmlrmZirZo8btQAwoj3WSedtbnveSm6Xij5Xkj2nC4EJw0D0IF8Xx5X0YzoB0dgwEei7QyqgFJLbgwlQtv+idGnjb1Hpi8ULhi4IEshrgUv68AR89ohBQdC1pJCMDTPMzU4S1N0OaMhh8xskQhtENKbK4r7ipRwiHE7QvmtqMFL0fd1095Bt6qxwYjXCbPjLrSgOiorlNbf87EwWRbSar2zGMQcS0OZ8fmAQfDgH11sHmyZ/YvwpVpbLNAUztWtYMrVQAAAANrZKRyjTBoKPKKClziR/uEMEjOKX6ZPfc9xV0daqEO09+Ioq5t/R6PODno78YrfLrJNPWHod4u1GDcFZljtrFk=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:c0e318cdf345b48872510f8768fba04e9d7d7018c5314e58d2e472f4788e25d7",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"
@@ -30896,7 +30896,7 @@
         "authority_instance": "fixture_authority_a0ddb319a6304880babdfbadcc0901cd",
         "client_namespace": "product-client",
         "context_digest": "sha256:faa9b62ddf416d9680b83ac1b586315ea43b79dbb847dcf1f032834ea007b12f",
-        "credential": "d0f04156d855331bffdf5c7965880474723b0e6bbb0e1ffc23d906fb0df84811",
+        "credential": "[REDACTED: audit copy; original authentication material omitted]",
         "format": "product-test-lifecycle-v1",
         "operator_digest": "sha256:e8883cd93c1df84ef54abbdc9436ea2f3c30e2b1b14888593da5e786e451e2c9",
         "process_config": null
@@ -30905,7 +30905,7 @@
     {
       "path": "C:\\Users\\wuxia\\AppData\\Local\\Temp\\AbqJobPilot_Run022_product_q5613a92\\cases\\test_window_checked_again_afte0\\product\\private\\lifecycle.json",
       "record": {
-        "ciphertext": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQ7VtVWt/00OOzui/KVIRQQAAAAACAAAAAAAQZgAAAAEAACAAAAB3ZlunmRltONVkkPR32IcZ1nAKuh7N3vibgtm5Jho69QAAAAAOgAAAAAIAACAAAADffzM/6UyVran/zlQeaC72i1pa4pcZxMZxljgGXahCPcABAADj2yQulCJkg8QSF8GsmTu9fyN10/+ODHgVNJmHWSsrBothtUhthZDH5pIaNisHtNP3EOj+USRKIsCsUCsFTNXmZoH9PpusiOnmlCQNUJRtpSBCeIrWkhzQHyhUqRvD/GuIoPivV5SuTzpU1gS/5wE7nPpfqRBvWOT7AT6Skp1T4uFVFknuV0CRe+d3L1qUGIp9fC5+l0EOPgwdwP/LbyWd9y98adO00DCdUfU8YNdgbTjsymaWG0QdBDPaMHnpL6c5s5MwCKQ4yans+XEVMrdXgvfQ7HF9EmyxNQA9F36zc0izlGQymVrzid5bvggMj/5tZxp+HL05k38SYErDS8v4uZwcol3SjIH/8iZ/owm6xmT17tB/uFwCyYxN8B0THaWVZaMe0utmKLCtIZ6ybHlLTKXHR3VKiIjTxyeW9nSBxV59lANriuzkOMW4z7+1u4d1YkcdXYwD4+CxJvZ2sRxQROZsdpcQMQ/+sninsOv/4CodW95XwuIpg6fQtlQLmZznSOhl7PPXurKLXgnnX/HUYXZhLu+GOr2Gk8HvST6+FLGHjPOwY7GQhXUyTosyX4GDvmq0TWr9lcQQBc20ZhkPQAAAAAaVAZcWtsO7TSFKsChoz6qdFLXz1aDe1j/doPF//GEZkfUvtjUA77YPJLJfBgrT5wpow3yv2K/6EOgtts0mx6A=",
+        "ciphertext": "[REDACTED: audit copy; original authentication material omitted]",
         "context_digest": "sha256:ed1e8faf8aa16d57e980dd0a5c939996180291d1478710dac8f66b0e947be79e",
         "format": "windows-user-dpapi-v1",
         "host_binding": "sha256:7c0632d0d4b5393d8bf4933539bd7c9cb128e3e82eecf048da98fad88d167729"

@@ -54,10 +54,11 @@ def read_connection(path):
 
 
 class Reader:
-    def __init__(self, connection, request_key, *, project=None):
+    def __init__(self, connection, request_key, *, project=None, diagnostics=False):
         if project is None: text(request_key)
         self.connection, self.key = connection, request_key
         self.project = project
+        self.diagnostics = diagnostics
         self.selection_lock = threading.Lock()
         self.selection = None
         self.before_row = 0
@@ -122,6 +123,15 @@ class Reader:
                     progress.clear(); events.clear(); pcursor = ecursor = 0
                     selected_run = run['run_id'] if run else None
                 validations = call(client.validations, run['run_id']) if run else []
+                recovery = interruption = None
+                if run and self.diagnostics:
+                    for operation in ('inspect_interrupted_execution', 'preview_interrupted_recovery'):
+                        result = {'unavailable': 'CAPABILITY_UNAVAILABLE'}
+                        if operation in health.get('operations', []):
+                            try: result = call(getattr(client, operation), run['run_id'])
+                            except ExecutionError as exc: result = {'unavailable': exc.code}
+                        if operation == 'inspect_interrupted_execution': interruption = result
+                        else: recovery = result
                 closeout = None
                 if run and run.get('backend_id') == 'abaqus-standard-axial-2024-v1' and 'preview_closeout' in health.get('operations',[]):
                     try: closeout = call(client.preview_closeout, run['run_id'])
@@ -129,9 +139,11 @@ class Reader:
                         if exc.code in {'COMMUNICATION_UNKNOWN','ENDPOINT_IDENTITY_MISMATCH','AUTHENTICATION_FAILED'}: raise
                         closeout = {'unavailable':exc.code}
                 log_error = None
+                progress_source = None
                 if run:
                     try:
                         page = call(client.progress, run['run_id'], pcursor, 64)
+                        progress_source = page.get('source')
                         if page.get('source') == 'bounded_standard_text_latest': progress.clear()
                         progress.extend(page['records']); pcursor = page['next_sequence']
                     except ExecutionError as exc:
@@ -145,21 +157,21 @@ class Reader:
                             events.append({k: event.get(k) for k in ('project_sequence', 'type', 'observed_at')})
                 with self.selection_lock:
                     if version != self.selection_version: continue
-                self._publish({'connected': True, 'observed_at': datetime.now().astimezone().isoformat(),
+                self._publish({'connected': True, 'selection_version': version, 'observed_at': datetime.now().astimezone().isoformat(),
                                'endpoint': {k: client.endpoint[k] for k in ('project_id','project_instance_id','owner_id')},
                                'owner_process': {k:health['process'].get(k) for k in ('pid','creation_time_100ns')},
                                'receipt': receipt, 'run': run, 'gate': gate,
                                'validations': [{k:v.get(k) for k in ('validation_id','verdict','recorded_at')} for v in validations[-8:]],
                                'progress': list(progress), 'events': list(events),
-                               'log_error': log_error,
-                               'closeout': closeout,
+                               'log_error': log_error, 'progress_source': progress_source,
+                               'closeout': closeout, 'interruption': interruption, 'recovery': recovery,
                                'project_page': project_page,
                                'job_name': selection.get('job_name') if selection else None,
                                'progress_cursor': pcursor, 'event_cursor': ecursor})
             except InterruptedError:
                 return
             except Exception as exc:
-                self._publish({'connected': False, 'code': exc.code if isinstance(exc, ExecutionError) else 'READ_FAILED'})
+                self._publish({'connected': False, 'selection_version': version, 'code': exc.code if isinstance(exc, ExecutionError) else 'READ_FAILED'})
             self.stop.wait(0.3)
 
 

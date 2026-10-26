@@ -15,7 +15,7 @@ from abqjobpilot.execution import standard_backend as backend
 from abqjobpilot.execution.store import document
 
 ROOT=Path(__file__).resolve().parents[1]
-HISTORICAL=ROOT/'docs/agent_first/run_011/result_review_001/ORIGINAL_DAT.bin'
+SYNTHETIC_DAT=ROOT/'tests/fixtures/synthetic/standard_axial_cp936.txt'
 
 
 @pytest.fixture
@@ -99,7 +99,7 @@ def test_durable_receipt_single_launch_separate_partial_dimensions(case,monkeypa
         assert c.store.query_run(c.ctx,rid)['launch_state']=='CALL_ENTERED_OUTCOME_UNKNOWN'
         assert (c.engineering/('.'+c.plan['job_name']+'.intent.json')).exists()
         c.calls.append(call)
-        (c.engineering/(c.plan['job_name']+'.dat')).write_bytes(HISTORICAL.read_bytes())
+        (c.engineering/(c.plan['job_name']+'.dat')).write_bytes(SYNTHETIC_DAT.read_bytes())
         (c.engineering/(c.plan['job_name']+'.sta')).write_text('THE ANALYSIS HAS COMPLETED SUCCESSFULLY')
         (c.engineering/(c.plan['job_name']+'.msg')).write_text('THE ANALYSIS HAS BEEN COMPLETED')
         return object()
@@ -148,9 +148,9 @@ def test_host_failure_before_external_attempt(case,monkeypatch):
     assert c.calls==[] and not (c.engineering/('.'+c.plan['job_name']+'.intent.json')).exists()
 
 
-def test_historical_cp936_sample_and_malformed_data():
+def test_synthetic_cp936_sample_and_malformed_data():
     from abqjobpilot.execution.standard_dat import parse
-    raw=HISTORICAL.read_bytes(); result=parse(raw)
+    raw=SYNTHETIC_DAT.read_bytes(); result=parse(raw)
     assert result['numerical']=='PRIMARY_THREE_PASS'
     primary=[v for v in result['comparisons'] if v['group']=='primary']
     from decimal import Decimal
@@ -229,7 +229,7 @@ def test_cross_project_same_output_identity_cannot_restart(case):
 def test_live_and_old_text_cannot_be_promoted(case):
     c=case;rid=c.service.submit(c.ctx,c.request(c.approve()))['receipt']['run_id']
     run=c.store.query_run(c.ctx,rid)
-    dat=c.engineering/(c.plan['job_name']+'.dat');dat.write_bytes(HISTORICAL.read_bytes())
+    dat=c.engineering/(c.plan['job_name']+'.dat');dat.write_bytes(SYNTHETIC_DAT.read_bytes())
     # Future intent demonstrates attribution refusal, not a fixture-created success.
     assert_code('EVIDENCE_IDENTITY_MISMATCH',lambda:backend.collect(c.ctx,c.plan,run,{'intent_at_ns':time.time_ns()+10**9},{'all_observed_exited':True}))
     result=backend.collect(c.ctx,c.plan,run,{'intent_at_ns':0},{'all_observed_exited':False})

@@ -29,9 +29,11 @@
 
 `0.3.0.dev0` 仍是开发版本。独立 ExecutionService 已接入 Fake、固定 Python ProcessFixture 和受限 Abaqus 2024 Standard Backend。[Run016 实测](docs/agent_first/run_016/real_001/FINAL_SUMMARY.md)覆盖两个固定轴向杆分析、受管范围收尾、DAT 检查和 GUI 重连；不代表通用 Abaqus 模式、ODB 内容、生产迁移或正式 0.3.0 已验收。当前边界见 [Run017 产品基线](docs/agent_first/run_017/FINAL_SUMMARY.md)。
 
-默认 `run_gui.py` 打开 Project／服务连接视图。在登记的 Dev 主机双击 `Open_Dev_GUI.vbs`，新建或明确选择受支持的 Project，显式 **Start Service** 或 **Reconnect** 后选择 Run。打开、重连或关闭视图不批准、不提交、不恢复派发。启动与安全空闲停服需要独立生命周期能力；不会替换不兼容或状态不明的 owner。**Legacy 队列界面**按钮或 `run_gui.py --legacy` 打开独立的 Classic 工作流，不是同一执行数据库的另一视图。见 [Run020 使用说明](docs/agent_first/run_020/USAGE.md)。
+默认 `run_gui.py` 打开 Compact Engineering Cockpit（Queue 左、Results 右、底部双日志常驻）。在登记的 Dev 主机双击 `Open_Dev_GUI.vbs`，新建或明确选择受支持的 Project，在 **Agent Command → Project & Service** 中显式 **Start Service** 或 **Reconnect** 后选择 Run。打开、重连或关闭视图不批准、不提交、不恢复派发。启动与安全空闲停服需要独立生命周期能力；不会替换不兼容或状态不明的 owner。**Classic Queue**按钮或 `run_gui.py --legacy` 打开独立的 Classic 工作流，不是同一执行数据库的另一视图。见 [Run020 使用说明](docs/agent_first/run_020/USAGE.md)。
 
-**New Agent-first Project…** 与 Python 共用 `create_project / open_project`。新 Project 为空且 PAUSED，没有 Grant、Run 或自动启动服务；本机 IPC／操作者材料采用 Windows 当前用户保护，复制／移动不会静默连接原 owner。Run021B 已接入单独配置的固定 Standard 操作者能力，以及服务端限定单一 Run 的短时派发；连接权限或 TEST_ONLY 权限不能批准真实执行。这是可信本机操作者边界，不是通用审批 UI，也不隔离同一用户下的任意代码。[Run021B 实测](docs/agent_first/run_021b/real_001/FINAL_SUMMARY.md)记录一次分析、受管收尾、DAT 检查和安全停服重启；其 GUI 退出后 Solver 仍存活的观察为 **NOT_OBSERVED**，原报告保持 PARTIAL。见 [Run022 范围与证据](docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md)及 [Project／凭据边界](docs/agent_first/run_020/PROJECT_AND_CREDENTIAL_CONTRACT.md)。
+**New Project** 与 Python 共用 `create_project / open_project`。新 Project 为空且 PAUSED，没有 Grant、Run 或自动启动服务；本机 IPC／操作者材料采用 Windows 当前用户保护，复制／移动不会静默连接原 owner。Run021B 已接入单独配置的固定 Standard 操作者能力，以及服务端限定单一 Run 的短时派发；连接权限或 TEST_ONLY 权限不能批准真实执行。这是可信本机操作者边界，不是通用审批 UI，也不隔离同一用户下的任意代码。[Run021B 实测](docs/agent_first/run_021b/real_001/FINAL_SUMMARY.md)记录一次分析、受管收尾、DAT 检查和安全停服重启；其 GUI 退出后 Solver 仍存活的观察为 **NOT_OBSERVED**，原报告保持 PARTIAL。见 [Run022 范围与证据](docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md)及 [Project／凭据边界](docs/agent_first/run_020/PROJECT_AND_CREDENTIAL_CONTRACT.md)。
+
+默认显示语言为 English，保留已保存的中文偏好；法语与德语仍为 **Preview**。受管范围结束不证明域外进程全集（**UNKNOWN**）；ODB 内容验证仍为 **NOT_RUN**。VBS 与服务启动器目前依赖登记的 Dev 解释器，下述通用安装步骤不代表可迁移服务宿主已经验收。
 
 ## 软件界面
 
@@ -74,14 +76,14 @@ python run_gui.py
 
 默认产品视图的操作：
 
-1. **New Agent-first Project…** 指定全新目录及名称，或明确选择已有的受支持 Project。
+1. **New Project** 指定全新目录及名称，或明确选择已有的受支持 Project。
 2. 对空的受支持 Project 显式 **Start Service**；已有服务使用 **Reconnect**。新 Project 保持 PAUSED，没有执行授权。
 3. 选择已有 Run，读取状态、有界日志、进程范围、Solver 和验证证据。GUI 不创建真实 Grant 或提交分析。
 4. 关闭 GUI 只断开观察。**Stop Service** 是独立显式操作；存在活跃或未决执行时拒绝。
 
 固定 Standard 操作者流程见 [Run021B 使用说明](docs/agent_first/run_021b/USAGE.md)。历史验收命令不是再次运行该实验的许可；新的真实执行必须重新准备固定 Plan 并获明确批准。既有 TEST_ONLY 示例仍为测试支架。
 
-以下步骤**仅属于 Classic／Legacy 队列**。先选择 **Legacy 队列界面**，或使用 `python run_gui.py --legacy`：
+以下步骤**仅属于 Classic／Legacy 队列**。先选择 **Classic Queue**，或使用 `python run_gui.py --legacy`：
 
 1. 在 **Settings** 配置本机已授权的 Abaqus 命令，确认 CPU/GPU 和 datacheck 参数。
 2. 建议先创建或打开一个 **Project**；不必将 Abaqus 工程文件移动到 Project 目录。

@@ -33,7 +33,7 @@ def test_actual_current_process_identity_and_handle_cleanup(monkeypatch):
     assert mismatch['state']=='IDENTITY_MISMATCH' and handles[-1] is None
 
 
-@pytest.mark.parametrize('code,state',[('PROCESS_IDENTITY_UNKNOWN','PROCESS_UNAVAILABLE'),
+@pytest.mark.parametrize('code,state',[('PROCESS_IDENTITY_UNKNOWN','QUERY_FAILED'),
     ('PROCESS_EXIT_UNKNOWN','QUERY_FAILED'),('PROCESS_IDENTITY_MISMATCH','IDENTITY_MISMATCH')])
 def test_query_failure_never_exit_or_payload(code,state,monkeypatch):
     def fail(*a,**k):raise ExecutionError(code,'secret-payload')

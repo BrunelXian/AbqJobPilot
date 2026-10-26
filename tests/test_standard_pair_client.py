@@ -44,7 +44,7 @@ def test_legacy_export_compatibility_does_not_allow_extra_fields():
     import json
     from abqjobpilot.execution.diagnostics import report_bytes
     from abqjobpilot.execution.models import digest
-    source=Path(__file__).resolve().parents[1]/'docs/agent_first/run_007/examples/historical_invalid_after.json'
+    source=Path(__file__).resolve().parents[1]/'tests/fixtures/synthetic/diagnostic_v2.json'
     report=json.loads(source.read_text(encoding='utf-8'))
     assert json.loads(report_bytes(report))==report
     report['body']['facts']['run']['credential']='must-not-export'

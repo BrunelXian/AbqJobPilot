@@ -213,7 +213,7 @@ def test_fixed_worker_product_gui_chain_and_secret_free_reports(tmp_path,monkeyp
             finished=wait_until(lambda:r if (r:=client.run(rid))['execution']=='FINISHED' else None,timeout=30)
             assert finished['managed_completion']=='COMMITTED_EMPTY_SCOPE' and finished['artifact_validation']=='VALID'
             assert finished['solver_conclusion']=='NOT_RUN'
-            second.view(lambda v:dict(v['rows']).get('Artifact 独立验证')=='VALID')
+            second.view(lambda v:dict(v['rows']).get('Validation')=='VALID')
             assert len([x for x in client.events() if x['type']=='START_INTENT'])==1
             report=client.diagnose(rid)
             # This is an audit projection of the same previously read report.
@@ -285,8 +285,8 @@ def test_two_product_gui_switch_and_pause_remain_isolated(tmp_path):
         try:
             gui=Gui(tmp_path,None,None,'gui',attachment=True,product=True)
             a=attach(gui,one);b=attach(gui,two)
-            assert dict(a['rows'])['Owner']!=dict(b['rows'])['Owner']
-            assert dict(a['rows'])['Owner'] not in json.dumps(b)
+            assert dict(a['rows'])['Service owner identity']!=dict(b['rows'])['Service owner identity']
+            assert dict(a['rows'])['Service owner identity'] not in json.dumps(b)
             assert a['run_list']==b['run_list']==[]
             assert 'PAUSED' in a['status'] and 'PAUSED' in b['status']
             assert before==[facts(one),facts(two)]
