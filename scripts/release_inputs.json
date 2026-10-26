@@ -1,0 +1,578 @@
+{
+  "format": 1,
+  "version": "0.3.0.dev0",
+  "base_commit": "6e44387b7a35bea57e99e7e8711e799c2e089b2b",
+  "resource_policy": "Use native Tk default icon; excluded untracked icon provenance not established.",
+  "files": [
+    {
+      "path": "DEPLOYMENT.md",
+      "sha256": "b89c84278cf84d763020792d66ad561fc3a73c054402316241ccb27740c189b0",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "c956e90740c176cff6d320e14bb73c07f4d4b57d2f832980a126639fb726912b",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "Open_Dev_GUI.vbs",
+      "sha256": "e086e66dd142e7b2392ae82d2bf3a8dcecc89b7f74cefb3566a28e31f9fbec02",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/__init__.py",
+      "sha256": "00fe9230d851d85848d24bd5c2668ed6ac821b82f69b48fc9b000f3124bb8914",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/abaqus_preview/__init__.py",
+      "sha256": "1b74c8e9b0f117d1eb68cb20e53bcb63a286651e10d963e81be01b17c8f51b3e",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/abaqus_preview/inputs.py",
+      "sha256": "66f9b58d79b66161770a91a33111cd270bbf1d21a2b10a501056fdbe756948de",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/abaqus_preview/preview.py",
+      "sha256": "beda61c592784e0d78ac2283b9e64cac1ddc16554937e13d767f1b680e2305d0",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/agent_session.py",
+      "sha256": "761d97bc50b8a6c44ee8fda7bd3cd6bdfabeeeda6c0a488b7c6f57eb2a6e9114",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/api/__init__.py",
+      "sha256": "fc7555e9f5571cd67b2129ab6ade6bf7aff2e13cbaebc069b9be864f11969d02",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/api/cli.py",
+      "sha256": "7664c46965b5522f75070dfb77d9a6fb9e93414257538aefeca6554f774f0a86",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/api/client.py",
+      "sha256": "334d41fc482de21f71b951eba548bb1a433cb500406a8aa423abd2a65d3f4736",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/api/errors.py",
+      "sha256": "6baa3178381900024e7598181ed477910732283207d1afb8ba3911444b5f0575",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/api/models.py",
+      "sha256": "af188eb620d35ce519b6ba9bf367ac0e331a6d5bb7ab7a8274edb2f7cd7e4eeb",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/api/project_surface.py",
+      "sha256": "d5e7fd75a92c736122232b928d48ff51e2bb81f53682db4ae19290c6b7d40cb2",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/api/status_reader.py",
+      "sha256": "2b0afdfdeede7ea95edc4d55bb2d72dbe0b63ba271bcf738baf8a446f85e4adc",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/app_metadata.py",
+      "sha256": "4b001e2c46f121e9ab07bc7bcb43623198589fc98622676072add16673d207cb",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/application_runtime.py",
+      "sha256": "3d6707cdcddfda34b61b00fc0e573ad1ca7fa56cfa74af56a15591b32a9509b2",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/classic_workspace.py",
+      "sha256": "52c9daf1a6a9fbc4f6d645e9547ba6ad539b2d161212b9e0c03a777d730383ad",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/cockpit_display.py",
+      "sha256": "3b08c2c4c22fd18152b25fdf399e4419f7997ab9b5664f6ae0909424a520f278",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/cockpit_layout.py",
+      "sha256": "45928fc5bdf064bc4bea6b69b9c8d527f9fa7d447d80696bdd3f68d72fe0f6b9",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/command_console.py",
+      "sha256": "b9a584537540d97005baff5d5de051d329cb3dabdbfb19fbe52035374aaba4df",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/command_parser.py",
+      "sha256": "6da545dc640018e0e9bb748c4cfc94b9707337c586c7411035434da5623c9542",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/config.py",
+      "sha256": "640fabd4ef2d0f2259c2ca22719a4f80eae347dc6f5b4be9b71436b5510cc219",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/database/__init__.py",
+      "sha256": "e57b0e257f5eac12e99bd265d8c878074906cb29627c5fce19a7348fba5adac6",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/database/connection.py",
+      "sha256": "2d2e02ff30a0d623ccc92c90cf3457f994d5b6ce8ec47a851a473bd64b87972a",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/database/migrations.py",
+      "sha256": "5a293a652a1381ce8288dbb5550b7a9ba0881409efa5c6abfc3c8f590e5f7e79",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/database/portability.py",
+      "sha256": "e2cde220d0c396a2d1b270890f64f3d9280287511599d4e3c44bb24208f13681",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/database/reconciliation.py",
+      "sha256": "d79607a0fa94cb33737fe3561fa0f673b4577e2b2d1264d2e18044574ecca184",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/database/repository.py",
+      "sha256": "c8cbafef5186e8e9cd133a233dc1c54a8818189b0c96240c170c7e42820f324e",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/database/schema.py",
+      "sha256": "f0d8d3f277d6b4ac21b948d30f2809b9693b8f9559aac21f1e47475bbbe5592d",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/desktop_workspace.py",
+      "sha256": "0d139031763573b6cc70710cf09bf7f83756959362d35176b8301c0921f3ffd8",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/__init__.py",
+      "sha256": "d01f3fab0e1bc7762d76635f09b030c6854b29eb5f88235832828d00aa7ea078",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/audit_export.py",
+      "sha256": "08c2da9e8b7046511cb09c09519f4300b2a5f0243d8cb4e9eceba97f4555428f",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/authorization.py",
+      "sha256": "855a37f066f8b7bafd14a1663cde3aa10cd04db95945fcb7805cb2ab86a8f4d3",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/client.py",
+      "sha256": "f61c4b5dd23f9944aa6f7fe85b9e85222b7262838065f31fc57724b725cadfc3",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/closeout.py",
+      "sha256": "1217fe3a61a8eed838cdb5a85c8a8a61ad5fae014099009992fe2b5b8ed05b2b",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/diagnostics.py",
+      "sha256": "911c181663c041442acb2031dc50b737a21b266ee2c6571d71a57a688d07a0a7",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/fake_backend.py",
+      "sha256": "daa2c9949be9741597de245e0a40eb3cb41421d9a21b0821d119318d0d985032",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/interruption.py",
+      "sha256": "cb2d592a585fd2508808f9c3e585a6ea1e02ef8a7e30cca2c8d74c6e35d44617",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/interruption_probe.py",
+      "sha256": "b7a9496d9df7f369b01718b86dff54ec18e2750f169ec84c9ab5c620b5b64240",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/lifecycle.py",
+      "sha256": "7f41ae389de57e9efddec1a95fa8efd14de9943d653f0c74c77e6b1e9a70ca1e",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/managed_process.py",
+      "sha256": "d7678b3dc89bbc9fcb3a0fc9e7d44f28c6f8b982171793e1165cd37d7d80f48d",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/models.py",
+      "sha256": "7242ae21ca764628dd3a2aefc5311d021184364139d53572127437c0bd5a1825",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/ownership.py",
+      "sha256": "01a2188b695ca7192b06a01df51f7ffb26efcdf736e4994c911b777bd969d66f",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/paths.py",
+      "sha256": "4c78b31ce3aacebdc407f5ba0bd732aece5154418c6a8ddc247b66ed0dc77f71",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/planning.py",
+      "sha256": "d1da4ca59114ab1a84c313c1e709647c7cc0227d22b80da551ba30d58225abf4",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/process_backend.py",
+      "sha256": "660b50e378db49c8d38edc9b169ddfeff3cfa8e3229ddc6632c49f0d07f54a61",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/process_contract.py",
+      "sha256": "310f3d6ee08684412ec38bf80c2b091d0c0a71976219fbb769459cb5ebb69fe8",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/process_fixture.py",
+      "sha256": "031166877683c7220806429cbacc2a2ffe69896b031dd919d3da21568a45ccf7",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/process_handles.py",
+      "sha256": "1c3f7961c49c72d55c011d095404413668ea606488db49e05d5c182ad99e453d",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/process_reconciliation.py",
+      "sha256": "aff565901c54050572a446c12181e54c33a554aa1f55aaa10203682f846efaa5",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/process_validation.py",
+      "sha256": "3c3dab14b5edd97b8b066c0762b3b1f48de115f83027277f86f9f5a53e8f151d",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/product_standard.py",
+      "sha256": "ca3a3b738f1afed2744638e577005af32a0373ba8a419f58845e1b73ac8a7c61",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/progress_log.py",
+      "sha256": "422b7f83eb0bc748cdc5e1e88db343339fe20e12f6591be4400d7a5164603c4a",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/protocol.py",
+      "sha256": "e5583e17261db8924cfc09804a675845d9a869c5ad881cfe78f119797f8188c6",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/public_workflow.py",
+      "sha256": "82317a92d18c7b594dadd0e79c462a2aca8c5fbf52b8abdf54af155880346075",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/reconciliation.py",
+      "sha256": "bb20bac14d7b8d5dd6cfb1ef7ddc8e41bdf81efcd2790397f7065c5f08a83ba8",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/recovery.py",
+      "sha256": "a01cefe131e5a13d481e75d6e6018dd3eae9cfa1c02cbc087ef124fc7e2f44e9",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/service.py",
+      "sha256": "b9cfe432acbbac522460639b36dabe4b2b72308ec49cd6ecad55fdeaa0ce877d",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/standard_backend.py",
+      "sha256": "543440f5b7e3c146555ebba842c5d70c33c8cf42e1ca4287447ed6bbca5e8d40",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/standard_contract.py",
+      "sha256": "4ba5522e935a37f809a1e79e9555363cbb58b9f6e3c1c093d260aa6e72a2e373",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/standard_dat.py",
+      "sha256": "6946666f0bd1040fc849ea0684a75382483aeaf0326397863dbfe64a47e08c74",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/standard_process.py",
+      "sha256": "6c291f21a4200a1bc1d5535f8aa822d416d04a8f9574466b841e4a0f84fcc623",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/standard_sequence.py",
+      "sha256": "49c5ac932b99041e5e0b04b699482f4379626fa61298b6ff7fec90644f747b7b",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/store.py",
+      "sha256": "343b77f974da6133e593c37f246b8636db73bc87f8306a0181af7845c14a3116",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/supervisor.py",
+      "sha256": "a3741ca600ad6d7a93d0427ebeb26af78d4118b5c6f75511f47e4978183a4ea0",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/test_authority.py",
+      "sha256": "670a3fbf6adae55e9fe9c24b65080915fb6d7bf613692805e96f23319ac300ba",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution/validation.py",
+      "sha256": "107f8fd6ad27b923cf281e5686458a277e9087676c9f54f3377b80ddaf979f22",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/execution_gui.py",
+      "sha256": "6b6648164ea6ad99618ac6248f57892c4318874a6f60439a9188ecdf18b82559",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/gui_app.py",
+      "sha256": "a125818feabaff69ed8aa643025e3ea420a0c4c7e01eae81d954929b46b6adbd",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/gui_legacy.py",
+      "sha256": "6b739b19cb174e8e53bfdafd29cbdaa587e3c8e0c21276d6812a2f5b0d6b1a95",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/gui_presentation.py",
+      "sha256": "48a29ddbd73a8e1f6ee2461fd1129986891250be1b9fd22b4e8499168fc7dd9e",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/gui_table_state.py",
+      "sha256": "882822769c7edca762aa502de510d6aecb425b343a30cebafcf1a6e2c3b12ae2",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/local_credentials.py",
+      "sha256": "3b39bec883452bf8af2b3b74913d15ff5b3b63e85d62bb7b29b754573bc767bb",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/locales/de-DE.json",
+      "sha256": "76a7d99682725d0b60ba51ac8d089540c511f527d5f628a5e0146d5f56c5213b",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/locales/en.json",
+      "sha256": "79e2ec0a10e50db03c0271c87b1a701e5e442a977f38526a433ca6a7d6abdb6a",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/locales/fr-FR.json",
+      "sha256": "b7937dbdec62296a3fde07ce10e50a65d78405369996f3373ff04402f1fcf639",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/locales/zh-CN.json",
+      "sha256": "7720e8ffd6c10444c31b62fba387a2287cb553105dfce5cec602b7e73b4167c7",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/mcp/__init__.py",
+      "sha256": "1a4d5e6703a8fe823511e0b3645b00e9325bf4760949abc4509d3fc2310b755b",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/mcp/server.py",
+      "sha256": "4219ef8a27b4a70c861f99442b722205fa86e9cdf8011792da3de41aa4978998",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/mcp/tools.py",
+      "sha256": "209409e0ba71dfa76119f64e095252ce9b37c01c7af7331242160c778ba84488",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/monitor.py",
+      "sha256": "243a157a29674ae38f5a6494a84fb1c09421335e995e62560942c9210fe16564",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/parsers.py",
+      "sha256": "c562e10de1ba5d3fb7caf5cccba60676ab0bd210973e2ceed6f3794f90d1bb5e",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/passive_lineage.py",
+      "sha256": "9f4e3e544026917c5f686e836d02b05b3975e1ad938b9c93202cd736ac2acc4a",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/process_identity.py",
+      "sha256": "fc75828b72571c85450d39c4df31e9434bb91097ac91039e6d17d8221e60493f",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/product_project.py",
+      "sha256": "c2dee38fe16eb8bff85c2927d96296f288808b0146965fc0f80a4e21b30f4288",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/product_standard.py",
+      "sha256": "29bfabe1288f532d6a7de1dd6caeafec3c6ddd51d124d6f399416f0fd5879fda",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/project/__init__.py",
+      "sha256": "259248fb826593ce68037a64d5feed8c90bf0b595737fa840826e31118b7093c",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/project/archive.py",
+      "sha256": "c2e9aa70302d55dd996c492d48894617c1acc3ac109522d1c8f3e3d6446b8ce8",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/project/legacy_import.py",
+      "sha256": "b2bdf78a55f8128e967fd3b6cb65a4a3a364c3f11c0b640a5bd8bee9490d1ecc",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/project/manager.py",
+      "sha256": "59e84433a303e7b0a0a90f43d1bdc0f24720906c0eb068404c70948ca0ec691e",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/project/models.py",
+      "sha256": "325125791f5541ac90cb794d35c9ce9d3f4234551d5b947bbc84e88232a9cba0",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/queue_store.py",
+      "sha256": "fd40b2ab8d8ab21f909d0bfe5567892f78b71e12fe658384dcd2f1fa339fbbe0",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/recovery_assessment.py",
+      "sha256": "9d3d3d69072a7bc1561bf94604b044be337d82903f2bc795bfb01dede515c97e",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/recovery_dialog.py",
+      "sha256": "44b0d32c84552421fe9cb8c57239c1fdf1a95ddf5b18d52115b3ad5444bc2403",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/recovery_management.py",
+      "sha256": "4f6aab538694beba855e416205c784d98e7d4c0c55147881a18aa815d7306b36",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/recovery_workflow.py",
+      "sha256": "130bd0963e2eb179aa16f36bc233b5a443c77b019b3819d28a117f41adb3ef68",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/run_evidence.py",
+      "sha256": "0bee3541e63819609883d268f8e6cc7f65dce848c2252731d865f7ab4c47b12c",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/runner_core.py",
+      "sha256": "472abca2289694384b421817b3cf697124e19a750d509d5c0c06cb44aaea7551",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/runtime_coordination.py",
+      "sha256": "c94311f5874fd41333ea3f2b68eba45fe8cd2ec5489232b0c1f314f13da8a068",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/service_discovery.py",
+      "sha256": "d729a60d2994f183b0b0645f9394ba0c9986d5f6aa4b7fe979a2c5c14994ab9c",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/service_host.py",
+      "sha256": "5599deb419f59aecb0f3828cc09446e5b67b794d30ed88a5c4a3538d89472224",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/service_lifecycle.py",
+      "sha256": "c46deb423084254cd6aa66863e61618feaf24a7fb848d6ed2b7d35e206332a85",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/service_owner.py",
+      "sha256": "1ca69f917b94331925a7edd83acb1e13c8626fc45b8df1fcefe6e268c456ce8a",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/settings_store.py",
+      "sha256": "b6d1e917cae0e23306d68ab19dd7fbc28b749fb2b67a0b2f7ab6b1ecdcb5ccfb",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/status_codes.py",
+      "sha256": "9323b302b6ccb71e225510abe86edf4eaefe8345bd499d94111664280b5bac25",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/ui_resources.py",
+      "sha256": "8591328e11ae26078291ffa8521acde344a18d30631bcdbc4512d7d75b2a410f",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "abqjobpilot/utils.py",
+      "sha256": "4a6326295be1f3bf88f6ac7472dc055ae7deb2f16eedd1d2317d33a2e933eb38",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "docs/ABQJOBPILOT_PUBLIC_API.md",
+      "sha256": "c0e94fd703c178244bd44e9299198771311b87cdf51f159b53d1f06414ebec16",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "examples/agent_first/product_inspect.py",
+      "sha256": "07c55daf96bbceb91bde9b160cf110df196a37d982fb22b0185c84fae0d7b4dd",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "launch_gui.py",
+      "sha256": "667406eebceadab2441b3fad7f66fd23b7eb3524433504bccea412ae501793c8",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "requirements-mcp.txt",
+      "sha256": "d2644f8f34f6d80665befac65f7336bf95b868da8252c97ac7e5b853d1126395",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "f5918f1db8f8f302b2c705ede364051181a8950a3d3122a2636daae8be5eb08c",
+      "allow_crlf_checkout": true
+    },
+    {
+      "path": "run_gui.py",
+      "sha256": "7aefae9dc5fb40d88ff90b12205eccc80a1ab13d979871fb838b5feb14619f9c",
+      "allow_crlf_checkout": true
+    }
+  ]
+}

@@ -16,7 +16,9 @@ from .execution.models import ExecutionError, canonical_json, digest, fields, id
 from .execution.paths import confined
 from .service_discovery import discover, project_identity, read_document
 
-PYTHON=Path(r'D:\XianLab\envs\LangChainEnv\Scripts\python.exe')
+from .application_runtime import console_interpreter, validate_runtime
+
+PYTHON=console_interpreter()
 PROFILE='product-test-lifecycle-v1'
 
 
@@ -42,7 +44,7 @@ def configure_lifecycle(service, *, process_config=None):
     if process_config:
         require(process_config.managed_scope,'LIFECYCLE_SCOPE_UNSUPPORTED','Managed test process profile required')
         process_config.verify(process_config.binding('normal'))
-        require(Path(process_config.interpreter)==PYTHON,'HOST_UNCONFIRMED','Registered interpreter required')
+        require(Path(process_config.interpreter)==PYTHON,'HOST_UNCONFIRMED','Fixture must bind the application interpreter')
     from .local_credentials import protected_project, private_directory, private_value
     private=confined(ctx.test_root,Path(ctx.test_root)/'private')
     if protected_project(ctx):private_directory(private)
@@ -149,6 +151,7 @@ class ServiceLifecycleManager:
         status=self.inspect()
         if status['state']=='CONNECTED':return {**status,'created':False}
         require(status['state']=='NOT_RUNNING','START_BLOCKED',status.get('reason','Owner status uncertain'))
+        require(validate_runtime()==PYTHON,'HOST_UNSUPPORTED','Application interpreter changed')
         from .execution.ownership import LocalOwnerLock
         from .execution.store import open_existing_read_only
         from .execution.lifecycle import require_idle
@@ -156,6 +159,13 @@ class ServiceLifecycleManager:
         lease=LocalOwnerLock(self.context)
         try:
             profile=self._profile();current=self._current()
+            # Deployment selection never changes a fixed TEST or real Plan pin.
+            if profile['process_config']:
+                require(Path(profile['process_config']['interpreter'])==PYTHON,
+                        'HOST_UNCONFIRMED','Use the interpreter bound to this fixture Project')
+            if profile.get('standard_extension'):
+                require(Path(profile['standard_extension']['standard_config']['interpreter'])==PYTHON,
+                        'HOST_UNCONFIRMED','Fixed Standard interpreter binding is unchanged')
             if current:
                 require(self._stopped(current) is not None,'START_UNCONFIRMED','A startup is reserved; connect or inspect only')
             else:

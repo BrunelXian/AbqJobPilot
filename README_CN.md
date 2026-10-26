@@ -33,7 +33,7 @@
 
 **New Project** 与 Python 共用 `create_project / open_project`。新 Project 为空且 PAUSED，没有 Grant、Run 或自动启动服务；本机 IPC／操作者材料采用 Windows 当前用户保护，复制／移动不会静默连接原 owner。Run021B 已接入单独配置的固定 Standard 操作者能力，以及服务端限定单一 Run 的短时派发；连接权限或 TEST_ONLY 权限不能批准真实执行。这是可信本机操作者边界，不是通用审批 UI，也不隔离同一用户下的任意代码。[Run021B 实测](docs/agent_first/run_021b/real_001/FINAL_SUMMARY.md)记录一次分析、受管收尾、DAT 检查和安全停服重启；其 GUI 退出后 Solver 仍存活的观察为 **NOT_OBSERVED**，原报告保持 PARTIAL。见 [Run022 范围与证据](docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md)及 [Project／凭据边界](docs/agent_first/run_020/PROJECT_AND_CREDENTIAL_CONTRACT.md)。
 
-默认显示语言为 English，保留已保存的中文偏好；法语与德语仍为 **Preview**。受管范围结束不证明域外进程全集（**UNKNOWN**）；ODB 内容验证仍为 **NOT_RUN**。VBS 与服务启动器目前依赖登记的 Dev 解释器，下述通用安装步骤不代表可迁移服务宿主已经验收。
+默认显示语言为 English，保留已保存的中文偏好；法语与德语仍为 **Preview**。受管范围结束不证明域外进程全集（**UNKNOWN**）；ODB 内容验证仍为 **NOT_RUN**。部署启动器支持明确配置 Windows CPython 3.12 x64 解释器，见 [部署说明](DEPLOYMENT.md)。真实 Standard 计划仍保留单独审阅的解释器绑定；更换应用 Python 不等于新 Solver 宿主已验收。
 
 ## 软件界面
 
@@ -98,13 +98,13 @@ python run_gui.py
 | 条件 | 说明 |
 | --- | --- |
 | 操作系统 | Windows 桌面环境 |
-| Python | Classic 源码 GUI 声明 3.10+；Agent-first 产品路径目前绑定已登记 LangChainEnv／Python 3.12.10，验收限已记录 Windows 主机，并非任意新 venv |
+| Python | 产品候选要求 Windows CPython 3.12 x64 与 Tk；同机解释器验收和未测试环境见 DEPLOYMENT.md |
 | GUI | Tkinter / ttk（在含对应组件的 Python 安装中属于标准库） |
 | Abaqus | 真实求解需要单独安装并获得许可证 |
 | 核心依赖 | 当前 `requirements.txt` 不声明额外第三方运行依赖 |
 | MCP（可选） | `requirements-mcp.txt`，声明 `mcp>=2,<3`；开发测试使用 SDK 2.3.0 |
 
-以上为**源码运行**，不代表已提供安装包；通用新 venv 尚未通过完整产品生命周期验收。`Open_Dev_GUI.vbs` 和产品生命周期当前绑定 `D:\XianLab\envs\LangChainEnv`，可移植解释器配置仍是发布门槛，并非自动发现。Classic Settings 只配置旧 Runner；受限服务 Backend 独立绑定审阅过的 Abaqus 2024 入口、输入字节及 CPU1/GPU0/2048MB 策略，不读取 Classic Settings。Stable、Dev 及活动数据须保持分离。
+以上为**源码运行**，不是安装器。按 [DEPLOYMENT.md](DEPLOYMENT.md) 明确配置解释器，不自动安装 Python 或修改系统环境。任意新 venv 或其他 Windows 主机仍需验收。Classic Settings 仅配置旧 Runner，不改变服务 Backend 已批准的输入、入口、解释器或资源绑定。Stable、Dev 与活动数据保持分离。
 
 ## 核心工作流
 

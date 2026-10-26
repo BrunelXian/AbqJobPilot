@@ -33,7 +33,7 @@ The default `run_gui.py` opens the Compact Engineering Cockpit (Queue left, Resu
 
 **New Project** and the shared `create_project / open_project` Python API create an empty PAUSED Project, without Grants, Runs or automatic service start. Local IPC/operator material uses current-user Windows protection; copied/moved Projects cannot silently connect to their original owner. Run021B adds a separately provisioned, exact fixed-Standard operator capability and a server-enforced one-Run dispatch window; connection or TEST_ONLY permissions cannot approve real execution. This is a trusted local operator boundary, not a general human-approval UI or OS isolation from arbitrary code running as the same user. [Run021B real acceptance](docs/agent_first/run_021b/real_001/FINAL_SUMMARY.md) records one analysis, managed completion, DAT checks and safe stop/restart; its Solver-across-GUI-exit observation remains **NOT_OBSERVED**, and the report remains PARTIAL. See [Run022 scope/evidence](docs/agent_first/run_022/RC_SCOPE_AND_EVIDENCE.md) and [Project/credential boundaries](docs/agent_first/run_020/PROJECT_AND_CREDENTIAL_CONTRACT.md).
 
-English is the default display language; saved Chinese preferences remain supported. French and German remain **Preview**. Managed-scope completion does not prove domain-external process completeness (**UNKNOWN**); ODB content validation remains **NOT_RUN**. The VBS and service launcher currently require the registered Dev interpreter; the generic setup below does not establish portable service-host support.
+English is the default display language; saved Chinese preferences remain supported. French and German remain **Preview**. Managed-scope completion does not prove domain-external process completeness (**UNKNOWN**); ODB content validation remains **NOT_RUN**. The deployment launcher accepts an explicitly configured Windows CPython 3.12 x64 interpreter; see [deployment instructions](DEPLOYMENT.md). Real Standard plans retain their separately reviewed interpreter binding; a different application Python does not qualify a new Solver host.
 
 ## Interface
 
@@ -101,13 +101,13 @@ For source setup and Project behavior, see [Installation](#installation) and [Pr
 | Requirement | Details |
 | --- | --- |
 | OS | Windows desktop |
-| Python | Classic source GUI declares 3.10+; the Agent-first product path is currently verified and bound to registered LangChainEnv / Python 3.12.10 on the documented Windows host, not an arbitrary new venv |
+| Python | The qualified product target is Windows CPython 3.12 x64 with Tk; same-host interpreter qualification and untested environments are recorded in DEPLOYMENT.md |
 | GUI | Tkinter/ttk (Python standard library, when included in your installation) |
 | Abaqus | Separately installed and licensed; required only for actual solver runs |
 | Core packages | `requirements.txt` currently declares no third-party runtime dependencies |
 | Optional MCP | `requirements-mcp.txt` (`mcp>=2,<3`); validated with MCP SDK 2.3.0 in development testing |
 
-These commands launch from **source**, not an installer. A fresh generic venv has not passed the full product lifecycle acceptance. `Open_Dev_GUI.vbs` and the product lifecycle currently bind `D:\XianLab\envs\LangChainEnv`; portable interpreter configuration is a release gate, not automatic discovery. Classic Settings configures the legacy Runner only. The restricted service Backend pins its own reviewed Abaqus 2024 entry, input bytes and CPU1/GPU0/2048MB policy; it does not use Classic Settings. Keep stable and Dev installations and active data separate.
+These commands launch from **source**, not an installer. Configure the launcher explicitly as described in [DEPLOYMENT.md](DEPLOYMENT.md). No Python installation or system environment change occurs automatically. A fresh generic venv or another Windows host still needs qualification. Classic Settings do not change the service Backend's fixed approved input, entry, interpreter or resource bindings.
 
 ## Core Workflows
 

@@ -7,6 +7,8 @@ import ctypes
 import json
 from pathlib import Path
 import sys
+import subprocess
+import abqjobpilot
 from urllib.parse import unquote
 
 p=argparse.ArgumentParser();p.add_argument('--control',required=True,type=Path);args=p.parse_args()
@@ -20,8 +22,9 @@ def guard(event,values):
     if event=='subprocess.Popen':
         command=values[1]
         assert isinstance(command,str)
-        assert ' -I -S -B ' in command and 'service_owner.py --project ' in command
-        assert r'D:\XianLab\envs\LangChainEnv\Scripts\python.exe' in command
+        expected = subprocess.list2cmdline([str(Path(sys.executable).with_name('python.exe')),
+            '-I','-S','-B',str(Path(abqjobpilot.__file__).with_name('service_owner.py')),'--project'])
+        assert command.startswith(expected+' ')
         assert str(args.control.parent) in command and '--start-id start_' in command
         assert 'abq2024' not in command and 'breakaway' not in command.lower()
     if event=='sqlite3.connect':

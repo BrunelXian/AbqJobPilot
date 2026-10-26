@@ -50,7 +50,10 @@ def main():
     if config.get("trusted_process_config"):
         from abqjobpilot.execution.process_backend import ProcessFixtureConfig
         process_config = ProcessFixtureConfig(**config["trusted_process_config"])
-        fixture = Path(__file__).resolve().parents[1] / "abqjobpilot/execution/process_fixture.py"
+        # Test support may be separate from an installed/runtime-only package.
+        # Keep the exact-module allowlist; do not widen it to arbitrary scripts.
+        from abqjobpilot.execution import process_fixture as fixture_module
+        fixture = Path(fixture_module.__file__).resolve()
         allowed_reads = {Path(process_config.interpreter), Path(process_config.image), fixture}
         if process_config.managed_scope:
             allowed_reads.add(fixture.with_name('managed_process.py'))

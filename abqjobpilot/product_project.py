@@ -47,16 +47,15 @@ def create_project(directory, display_name):
     Existing targets (including empty directories) are never reused.
     """
     from .local_credentials import host_binding
-    from .service_lifecycle import PYTHON, configure_lifecycle, write_new
+    from .service_lifecycle import configure_lifecycle, write_new
+    from .application_runtime import validate_runtime
     from .execution.store import create_experiment, ExperimentStore
     from .execution.service import ExecutionService
-    import sys
     name=_name(display_name)
     root=local_path(directory);no_reparse(root)
     require(root.parent.is_dir(),'NOT_FOUND','Explicit existing parent required')
     require(not root.exists(),'PROJECT_EXISTS','Target already exists; nothing overwritten')
-    require(Path(sys.executable).resolve() in (PYTHON,PYTHON.with_name('pythonw.exe')),
-            'HOST_UNSUPPORTED','Use registered product Python interpreter')
+    validate_runtime()
     binding=host_binding()  # Fail before directory creation on unsupported host.
     try:root.mkdir()
     except FileExistsError:raise ExecutionError('PROJECT_EXISTS','Concurrent creation already reserved target') from None
