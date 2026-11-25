@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- AbqJobPilot Official App Icon (Direction B - Development) -->
+  <defs>
+    <clipPath id="squircle-clip">
+      <rect x="2" y="2" width="252" height="252" rx="56" ry="56"/>
+    </clipPath>
+  </defs>
+
+  <!-- Base Squircle with Clipped 45-deg Engineering Amber Corner -->
+  <g clip-path="url(#squircle-clip)">
+    <rect x="2" y="2" width="252" height="252" fill="#0D1F38"/>
+    <polygon points="166,256 256,166 256,256" fill="#F59E0B"/>
+    <line x1="162" y1="256" x2="256" y2="162" stroke="#071120" stroke-width="8"/>
+  </g>
+
+  <!-- Outer Precision Amber Rim -->
+  <rect x="2" y="2" width="252" height="252" rx="56" ry="56" fill="none" stroke="#F59E0B" stroke-opacity="0.59" stroke-width="3.5"/>
+
+  <!-- Queued Job Modules (Steel Blue #5886BA, 18-deg precision slant) -->
+  <polygon points="58,60 158,60 142,92 42,92" fill="#5886BA"/>
+  <polygon points="58,164 158,164 142,196 42,196" fill="#5886BA"/>
+
+  <!-- Active Dispatch Pulse Accent (Ice Cyan #38BDF8) -->
+  <polygon points="46,112 70,112 54,144 30,144" fill="#38BDF8"/>
+
+  <!-- Main Pilot Thrust Vector (Pure White #FFFFFF) -->
+  <polygon points="84,112 192,112 216,128 192,144 68,144" fill="#FFFFFF"/>
+</svg>

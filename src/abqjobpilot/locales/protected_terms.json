@@ -1,0 +1,61 @@
+{
+  "format": "abqjobpilot-protected-technical-terms-v1",
+  "canonical_terms": [
+    "Abaqus",
+    "CAE",
+    "Job",
+    "Step",
+    "Increment",
+    "INP",
+    "ODB",
+    "STA",
+    "CPU",
+    "GPU",
+    "MCP",
+    "IPC",
+    "Plan",
+    "Grant",
+    "Run",
+    "Receipt"
+  ],
+  "locale_surfaces": {
+    "Abaqus": ["newDetail"],
+    "Job": ["job", "jobName"],
+    "Run": ["runs", "accepted", "older", "page", "chooseRun", "firstPage", "pageCounts", "loadingRun"],
+    "Receipt": ["receipt", "identity"],
+    "INP": ["addInput"],
+    "ODB": ["odb"],
+    "STA": ["staText", "staSummary", "progressUnavailable"],
+    "CPU": ["cpus"],
+    "GPU": ["gpus"],
+    "MCP": ["mcpText"],
+    "Grant": ["initial", "pythonText", "cliText"]
+  },
+  "verbatim_file_extensions": [".inp", ".cae", ".odb", ".sta"],
+  "verbatim_gui_evidence_labels": [
+    "Job ID",
+    "Run ID",
+    "Plan ID",
+    "Task Status",
+    "Solver Conclusion",
+    "Validation",
+    "Reconciliation",
+    "ManagedScope"
+  ],
+  "verbatim_status_and_identifier_fields": [
+    "run_id",
+    "job_id",
+    "plan_id",
+    "grant_id",
+    "receipt",
+    "execution",
+    "execution_phase",
+    "solver_conclusion",
+    "artifact_validation",
+    "reconciliation",
+    "validation_id",
+    "status",
+    "error_code",
+    "protocol_version"
+  ]
+}

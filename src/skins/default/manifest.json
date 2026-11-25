@@ -1,0 +1,19 @@
+{
+  "skin_id": "default",
+  "skin_version": "1.0.0",
+  "skin_api_version": "1.0.0",
+  "theme": {
+    "background": "#f4f7fb",
+    "surface": "#ffffff",
+    "foreground": "#172033",
+    "muted": "#64748b",
+    "accent": "#2563eb",
+    "accent_foreground": "#ffffff",
+    "border": "#d9e2ef",
+    "selected_background": "#2563eb",
+    "selected_foreground": "#ffffff"
+  },
+  "resources": {"icon_pack": "default", "font_family": "Segoe UI", "font_size": 10},
+  "compatibility": {"minimum": "1.0.0", "maximum": "1.0.0"},
+  "layout": {"compact_toolbar": true, "toolbar_button_pad": 5, "toolbar_button_width": 14}
+}

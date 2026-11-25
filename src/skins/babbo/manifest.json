@@ -1,0 +1,19 @@
+{
+  "skin_id": "babbo",
+  "skin_version": "1.0.0",
+  "skin_api_version": "1.0.0",
+  "theme": {
+    "background": "#f8f2e8",
+    "surface": "#fffaf1",
+    "foreground": "#30251e",
+    "muted": "#78675b",
+    "accent": "#a64b2a",
+    "accent_foreground": "#fffaf1",
+    "border": "#d9c5ad",
+    "selected_background": "#a64b2a",
+    "selected_foreground": "#fffaf1"
+  },
+  "resources": {"icon_pack": "default", "font_family": "Segoe UI", "font_size": 10},
+  "compatibility": {"minimum": "1.0.0", "maximum": "1.0.0"},
+  "layout": {"compact_toolbar": true, "toolbar_button_pad": 4, "toolbar_button_width": 14}
+}
