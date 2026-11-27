@@ -1,7 +1,7 @@
 {
   "product": "AbqJobPilot",
   "version": "1.0.0",
-  "channel": "public-candidate",
+  "channel": "public-release",
   "platform": "windows-x64",
   "source_commit": "34632670680c25227c851a2368d9f3b0d8987e86",
   "build_id": "sha256:86229294dfde94e3d4cbd4b7b5a1a8e88cf992fb174a983da2dee2b080cbf3d1",

@@ -2,7 +2,7 @@
 
 ## Install and configure
 
-Run `AbqJobPilot-1.0.0-Windows-x64-Setup.exe` under the Windows account that will use the desktop. Compare its SHA-256 with the accompanying SHA256SUMS.txt before installation. This public candidate is unsigned. Setup uses the Windows .NET Framework, installs Python 3.12 and Tcl/Tk privately, creates a per-user Start Menu shortcut and registers an uninstaller. Choose the suggested per-user version directory or a new empty local folder. Keep Projects outside the installation. An older installation can remain in its own directory.
+Run `AbqJobPilot-1.0.0-Windows-x64-Setup.exe` under the Windows account that will use the desktop. Compare its SHA-256 with the accompanying SHA256SUMS.txt before installation. The released installer is unsigned. Setup uses the Windows .NET Framework, installs Python 3.12 and Tcl/Tk privately, creates a per-user Start Menu shortcut and registers an uninstaller. Choose the suggested per-user version directory or a new empty local folder. Keep Projects outside the installation. An older installation can remain in its own directory.
 
 Open **AbqJobPilot-1.0.0** from Start. Use the Project menu to create a management Project or reopen a recent one. Abaqus is optional for Project navigation and evidence inspection. In **Settings → Abaqus Environments**, use **Auto Detect**, or **Add Manually** to choose the Abaqus command BAT file provided by your own installation. Select **Set Default** and **Validate**, then reopen Settings to check the saved selection. With an open Project you can select its override. Validation checks launcher identity and accessibility. Solver availability and license checkout require separate evidence.
 
@@ -25,7 +25,7 @@ For installed Classic MCP, start `AbqJobPilotCLI\AbqJobPilotCLI.exe mcp --projec
 - **Owner loss requires reconciliation.** If the original authenticated Owner exits, the service can report `PROCESS_IDENTITY_UNKNOWN` or `UNAVAILABLE`. Preserve the original business key, Run, Attempt, Receipt and budget. Query the existing evidence through a trusted interface. A replacement process cannot assume the old Owner identity. Avoid resubmission and automatic refunds while acceptance or execution is unknown.
 - The new-task execution bridge passed with a bounded Fake backend and `solver_conclusion=NOT_RUN`. INT-002B planning passed, execution stopped with the original Owner unavailable. No new submission was reported and the current balance is unknown.
 - Historical INT-001 was **PARTIAL**. The solver completed, process and extraction qualifications remained **REVIEW_REQUIRED**, the original extraction Receipt was **FAILED**, and result-data integrity was **INSUFFICIENT**. Preserve these judgments when interpreting read-only observations.
-- This freeze covers installation and desktop startup. It adds no solver entitlement, HIL qualification, automatic recovery, or Abaqus redistribution. Users supply their own Abaqus installation. The signed-publication and independent clean-machine acceptance stages remain outstanding.
+- This freeze covers installation and desktop startup. It adds no solver entitlement, HIL qualification, automatic recovery, or Abaqus redistribution. Users supply their own Abaqus installation. Independent clean-machine acceptance remains outstanding.
 
 ## Dependencies and license
 
