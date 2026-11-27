@@ -2,6 +2,7 @@
 
 import json
 
+from .delegated_grant import EXECUTE
 from .models import ExecutionError, bytes_digest, identifier, now
 from .paths import result_path
 
@@ -42,6 +43,8 @@ def validate_artifact(context, plan, run, emission, *, captured=None):
         reasons = [name for name, passed in checks.items() if not passed]
         verdict = "PASS" if not reasons else "FAIL"
         observation["binding_status"] = "MATCHED" if verdict == "PASS" else "MISMATCH"
+        if verdict == "PASS" and plan.get("delegated_execution") == EXECUTE:
+            observation["verified_result"] = data
     except (ValueError, UnicodeError) as exc:
         verdict, reasons = "FAIL", ["Invalid fixture JSON: " + str(exc)]
     except (OSError, ExecutionError) as exc:

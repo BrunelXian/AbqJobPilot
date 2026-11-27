@@ -1,4 +1,4 @@
-"""Policy for bounded, admission-only TEST_ONLY grants."""
+"""Policy for bounded TEST_ONLY admission and explicitly approved Fake execution."""
 
 from pathlib import Path
 
@@ -7,6 +7,8 @@ from .models import (DELEGATED_GRANT_CONTRACT, RESOURCES, canonical_json, fields
 
 KIND = "TEST_ONLY_DELEGATED"
 ISSUER = "DelegatedFakeOperator"
+ADMIT = "accept_fake_only"
+EXECUTE = "execute_fake_result_v1"
 MAX_PLANS = 32
 MAX_RUNS = 128
 MAX_LIFETIME_SECONDS = 86400
@@ -38,13 +40,16 @@ def plan_resources(value):
     return value
 
 
-def check_plan_scope(context, plan):
+def check_plan_scope(context, plan, allowed_action=ADMIT):
     require(plan["backend_id"] == "fake-v1" and type(plan["backend_version"]) is int
             and plan["backend_version"] == 1 and plan["action"] == "emit_fixture_result"
             and plan["phases"] == ["FAKE"] and plan["validation_policy"] == "fake-result-v1"
             and "delegated_admission" in plan and "sanity" not in plan
             and "process_fixture" not in plan,
-            "DELEGATED_SCOPE_MISMATCH", "Only an admission-only Fake Plan is eligible")
+            "DELEGATED_SCOPE_MISMATCH", "Only the fixed delegated Fake backend is eligible")
+    require(plan.get("delegated_execution", ADMIT) == allowed_action
+            and (allowed_action == ADMIT or (allowed_action == EXECUTE and "dynamic_inp" not in plan)),
+            "DELEGATED_SCOPE_MISMATCH", "Delegated Plan and Grant actions must match")
     require(plan["job_spec"]["project_id"] == context.project_id
             and plan["job_spec"]["project_instance_id"] == context.project_instance_id,
             "PROJECT_IDENTITY_MISMATCH", "Plan Job belongs to another Project")
@@ -72,18 +77,19 @@ def check_terms(terms):
     integer(terms["expires_at"])
 
 
-def issuer_scope(service):
+def issuer_scope(service, allowed_action=ADMIT):
+    require(allowed_action in (ADMIT, EXECUTE), "DELEGATED_SCOPE_MISMATCH", "Unsupported delegated action")
     context = service.context
     return {"contract_version": DELEGATED_GRANT_CONTRACT, "grant_kind": KIND, "issuer": ISSUER,
             "authority_instance": service.store._session.authority_instance,
             "project_id": context.project_id, "project_instance_id": context.project_instance_id,
             "context_digest": context.context_digest, "client_namespace": service.client_namespace,
-            "backend_id": "fake-v1", "backend_version": 1, "allowed_action": "accept_fake_only",
+            "backend_id": "fake-v1", "backend_version": 1, "allowed_action": allowed_action,
             "input_scope": str(input_root(context)), "output_scope": context.runtime_root}
 
 
 def check_registration(service, grant_id, grant, anchor_plan_id):
-    scope = issuer_scope(service)
+    scope = issuer_scope(service, grant.get("allowed_action"))
     keys = ("plans", "resource_limits", "max_runs", "expires_at")
     fields(grant, (*scope, *keys, "grant_id", "issued_at", "revoked_at"))
     require(grant["grant_id"] == grant_id
@@ -115,6 +121,6 @@ def check_admission(service, plan, grant, grant_id, anchor_plan_id):
     require(state == "VALID", f"GRANT_{state}", "Delegated Grant is " + state.lower().replace("_", " "))
     require(grant["plans"].get(plan["plan_id"]) == plan["plan_digest"],
             "DELEGATED_SCOPE_MISMATCH", "Plan ID/digest was outside the approved scope")
-    resources = check_plan_scope(service.context, plan)
+    resources = check_plan_scope(service.context, plan, grant["allowed_action"])
     require(all(amount <= grant["resource_limits"][name] for name, amount in resources.items()),
             "RESOURCE_LIMIT", "Plan exceeds a delegated resource limit")

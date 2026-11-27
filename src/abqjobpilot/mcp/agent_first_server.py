@@ -33,9 +33,10 @@ def build_server(project_path, connection_file=None, *, historical_read_only=Fal
         "abq_check_environment": (adapter.check_environment, "Read bound Project and authenticated Owner capabilities.", {}, "READ"),
         "abq_get_grant_status": (adapter.grant_status, "Read delegated Grant validity and committed Run budget.",
                                  {"grant_id": STRING}, "READ"),
-        "abq_submit_job": (adapter.submit_job, "Accept a preapproved TEST_ONLY Fake Plan and consume one Grant unit.",
+        "abq_submit_job": (adapter.submit_job, "Accept a preapproved TEST_ONLY Plan and consume one Grant unit. "
+                           "The Owner dispatches only explicitly execution-enabled Fake Plans and Grants.",
                            submit, "CONTROLLED_WRITE"),
-        "abq_get_run_status": (adapter.run_status, "Read a Run and available recorded progress.",
+        "abq_get_run_status": (adapter.run_status, "Read a Run, available progress and recorded delegated Fake result evidence.",
                                {"run_id": STRING}, "READ"),
         "abq_get_receipt": (adapter.receipt, "Look up the committed submission Receipt by its original business key.",
                             {"idempotency_key": STRING}, "READ"),

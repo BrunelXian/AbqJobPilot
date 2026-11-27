@@ -33,6 +33,20 @@ def read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def read_child_signal(path):
+    # On Windows a newly published fixture file can briefly deny read sharing.
+    # Only the local read is repeated; malformed data and kernel identity checks
+    # still fail immediately. No IPC operation or job is reissued.
+    deadline = time.monotonic() + 1
+    while True:
+        try:
+            return read_json(path)
+        except PermissionError:
+            if time.monotonic() >= deadline:
+                raise
+            time.sleep(0.02)
+
+
 def bind_child_handle(process, identity):
     # Windows venv python.exe may be a redirector whose child hosts Python.
     # Bind the actual process once, while our launcher is alive, then retain
@@ -74,7 +88,7 @@ class Child:
     def reached(self, name):
         path = self.control / (name.replace(":", "_") + ".reached.json")
         wait_until(path.exists)
-        return read_json(path)
+        return read_child_signal(path)
 
     def release(self, name):
         (self.control / (name.replace(":", "_") + ".release.json")).write_text("{}", encoding="utf-8")
@@ -82,7 +96,7 @@ class Child:
     def result(self):
         path = self.control / "result.json"
         wait_until(path.exists)
-        return read_json(path)
+        return read_child_signal(path)
 
     def terminate(self):
         assert self.process.poll() is None
@@ -153,7 +167,7 @@ class ProcessHarness:
         self.children.append(child)
         wait_until(lambda: (control / "identity.json").exists() or process.poll() is not None)
         assert (control / "identity.json").exists(), (control / "stderr.txt").read_text()
-        child.identity = read_json(control / "identity.json")
+        child.identity = read_child_signal(control / "identity.json")
         assert child.identity["executable"].lower() == str(Path(sys.executable).resolve()).lower()
         child.native = bind_child_handle(process, child.identity)
         (control / "identity-bound.json").write_text("{}", encoding="utf-8")

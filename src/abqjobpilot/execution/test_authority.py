@@ -8,12 +8,13 @@ import json
 from pathlib import Path
 
 from .authorization import check_grant, check_management_grant
+from .delegated_grant import ADMIT
 from .models import DelegatedGrant, RESOURCES, canonical_json, digest, identifier, now, require, text
 from .public_workflow import VALIDATE, validation_scope
 from .store import document
 
 
-def issue_delegated_fake(service, *, approval_key, plans, resource_limits, max_runs, expires_at):
+def issue_delegated_fake(service, *, approval_key, plans, resource_limits, max_runs, expires_at, allowed_action=ADMIT):
     """Owner-local operator entry. No IPC operation or client credential can issue a Grant."""
     from .delegated_grant import check_plan_scope, check_registration, check_terms, issuer_scope, require_environment
     from .planning import check_plan
@@ -23,7 +24,7 @@ def issue_delegated_fake(service, *, approval_key, plans, resource_limits, max_r
     terms = {"plans": plans, "resource_limits": resource_limits, "max_runs": max_runs, "expires_at": expires_at}
     check_terms(terms)
     terms = json.loads(canonical_json(terms))
-    scope = issuer_scope(service)
+    scope = issuer_scope(service, allowed_action)
     grant_id = "grant_" + digest([scope["context_digest"], scope["authority_instance"], approval_key])[7:39]
     anchor = min(terms["plans"])
     with service.store.transaction("delegated_grant") as connection:
@@ -32,7 +33,8 @@ def issue_delegated_fake(service, *, approval_key, plans, resource_limits, max_r
         if row:
             grant = json.loads(row["body"])
             check_registration(service, grant_id, grant, row["plan_id"])
-            require(canonical_json({key: grant[key] for key in terms}) == canonical_json(terms),
+            require(grant["allowed_action"] == allowed_action
+                    and canonical_json({key: grant[key] for key in terms}) == canonical_json(terms),
                     "IDEMPOTENCY_CONFLICT", "Approval key already names different Grant terms")
         else:
             grant = {**scope, **terms, "grant_id": grant_id, "issued_at": now(), "revoked_at": None}
@@ -43,7 +45,7 @@ def issue_delegated_fake(service, *, approval_key, plans, resource_limits, max_r
             for plan_id, expected in terms["plans"].items():
                 plan = document(connection, "plans", "plan_id", plan_id)
                 require(plan["plan_digest"] == expected, "PLAN_STALE", "Reviewed Plan digest differs")
-                check_plan_scope(service.context, plan)
+                check_plan_scope(service.context, plan, allowed_action)
                 check_plan(service.context, plan, current_config)
             connection.execute("INSERT INTO grants VALUES(?,?,?)", (grant_id, anchor, canonical_json(grant)))
     return DelegatedGrant.from_dict(grant)

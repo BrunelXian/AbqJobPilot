@@ -4,7 +4,7 @@ from contextlib import ExitStack
 import json
 
 from .authorization import check_grant
-from .delegated_grant import (KIND as DELEGATED_KIND, check_admission, check_registration,
+from .delegated_grant import (EXECUTE, KIND as DELEGATED_KIND, check_admission, check_registration,
                               environment_enabled, require_environment, validity)
 from .fake_backend import FakeBackend
 from .models import (CONTRACT, CANONICAL, ExecutionError, canonical_json, digest, fields,
@@ -127,14 +127,16 @@ class ExecutionService:
             require_environment(self, connection)
         return preflight(context, request)
 
-    def prepare(self, context, spec, snapshot, *, expires_at, process_scenario=None, delegated_resources=None, candidate=None):
+    def prepare(self, context, spec, snapshot, *, expires_at, process_scenario=None, delegated_resources=None,
+                candidate=None, delegated_execution=None):
         self._context(context)
         if delegated_resources is not None:
             require(process_scenario is None, "TEST_SCOPE_REQUIRED", "Delegated admission is Fake only")
             with self.store.read() as connection:
                 require_environment(self, connection)
         config = configuration(snapshot)
-        plan = prepare_plan(context, spec, config, expires_at, delegated_resources=delegated_resources, candidate=candidate)
+        plan = prepare_plan(context, spec, config, expires_at, delegated_resources=delegated_resources,
+                            candidate=candidate, delegated_execution=delegated_execution)
         data = plan.to_dict()
         if process_scenario is not None:
             require(self._process_backend is not None, "TEST_GRANT_ONLY", "Process fixture is not configured")
@@ -176,6 +178,28 @@ class ExecutionService:
         semantic = {key: value for key, value in request.items() if key != "idempotency_key"}
         semantic.update(context_digest=context.context_digest, canonicalization=CANONICAL)
         return digest(semantic)
+
+    def _check_delegated_dispatch(self, connection, context, plan, grant, run_id, consumed_ids):
+        require(grant["allowed_action"] == EXECUTE and type(self._backend) is FakeBackend,
+                "DELEGATED_DISPATCH_UNAVAILABLE", "Only explicitly approved Fake execution can dispatch")
+        binding = {"project_id": context.project_id, "project_instance_id": context.project_instance_id,
+                   "job_id": plan["job_id"], "job_revision": plan["job_revision"], "plan_id": plan["plan_id"],
+                   "plan_digest": plan["plan_digest"], "grant_id": grant["grant_id"], "retry_of": None}
+        run = document(connection, "runs", "run_id", run_id)
+        require(run_id in consumed_ids and run["run_id"] == run_id and run.get("delegated_execution") == EXECUTE
+                and run.get("admission_only") is False and run["simulation"] is True and run["backend_id"] == "fake-v1"
+                and all(run[key] == value for key, value in binding.items()),
+                "DELEGATED_SCOPE_MISMATCH", "Accepted Run binding differs")
+        namespace = canonical_json([context.project_instance_id, self.client_namespace, "submit"])
+        row = connection.execute("SELECT key,request_digest,body FROM receipts WHERE namespace=? AND run_id=?",
+                                 (namespace, run_id)).fetchone()
+        require(row is not None, "DELEGATED_SCOPE_MISMATCH", "Original receipt is missing")
+        receipt = json.loads(row["body"])
+        request = {**binding, "operation": "submit", "contract_version": CONTRACT, "idempotency_key": row["key"]}
+        require(receipt["request_status"] == "ACCEPTED" and receipt["namespace"] == namespace
+                and receipt["run_id"] == run_id and receipt["idempotency_key"] == row["key"]
+                and receipt["request_digest"] == row["request_digest"] == self._request(context, request),
+                "DELEGATED_SCOPE_MISMATCH", "Original accepted request differs")
 
     def _check(self, connection, context, plan, grant_id, run_id=None, *, pin_scope=None):
         if plan['backend_id'] == 'abaqus-standard-rod-cload-v1':
@@ -219,15 +243,17 @@ class ExecutionService:
         delegated = type(grant) is dict and grant.get("grant_kind") == DELEGATED_KIND
         if "delegated_admission" in plan or delegated:
             require(delegated,
-                    "GRANT_REQUIRED", "Admission-only Plan requires a registered delegated Grant")
-            require(run_id is None, "DELEGATED_DISPATCH_UNAVAILABLE", "Delegated authority is admission-only")
+                    "GRANT_REQUIRED", "Delegated Plan requires a registered delegated Grant")
             require_environment(self, connection)
             gate = gate_view(connection)
             require(gate["state"] == "OPEN" and gate["owner_id"] == self.store._session.owner_id,
                     "DISPATCH_PAUSED", "Owner is query-only; no new acceptance")
             check_admission(self, plan, grant, grant_id, row["plan_id"])
             used = delegated_run_ids(connection, grant_id, grant["max_runs"])
-            require(len(used) < grant["max_runs"], "GRANT_BUDGET_EXHAUSTED", "Delegated Run budget is exhausted")
+            if run_id is None:
+                require(len(used) < grant["max_runs"], "GRANT_BUDGET_EXHAUSTED", "Delegated Run budget is exhausted")
+            else:
+                self._check_delegated_dispatch(connection, context, plan, grant, run_id, used)
             return grant
         consumed = connection.execute("SELECT run_id FROM consumption WHERE grant_id=?", (grant_id,)).fetchone()
         check_grant(context, plan, grant, self.store._session.authority_instance, consumed[0] if consumed else None, run_id)
@@ -241,6 +267,7 @@ class ExecutionService:
             enabled = environment_enabled(self, connection)
             gate = gate_view(connection)
             return {"delegation_enabled": enabled, "gate_state": gate["state"],
+                    "delegated_fake_execution": enabled and type(self._backend) is FakeBackend,
                     "odb_fixture_enabled": enabled and fixture_enabled(connection),
                     "accepting_new": (enabled and gate["state"] == "OPEN"
                                       and gate["owner_id"] == self.store._session.owner_id
@@ -259,7 +286,8 @@ class ExecutionService:
                     "DELEGATED_SCOPE_MISMATCH", "A delegated Grant is required")
             check_registration(self, grant_id, grant, row["plan_id"])
             used = len(delegated_run_ids(connection, grant_id, grant["max_runs"]))
-            keys = ("grant_id", "contract_version", "grant_kind", "issuer", "issued_at", "expires_at", "revoked_at", "max_runs")
+            keys = ("grant_id", "contract_version", "grant_kind", "issuer", "issued_at", "expires_at", "revoked_at", "max_runs",
+                    "allowed_action")
             return {**{key: grant[key] for key in keys}, "validity": validity(grant),
                     "consumed": used, "remaining": grant["max_runs"] - used}
 
@@ -276,7 +304,8 @@ class ExecutionService:
             receipt = json.loads(row[1])
             if delegated_only:
                 run = document(connection, "runs", "run_id", receipt["run_id"])
-                require(run.get("admission_only") is True and run["simulation"] is True and run["backend_id"] == "fake-v1",
+                require((run.get("admission_only") is True or run.get("delegated_execution") == EXECUTE)
+                        and run["simulation"] is True and run["backend_id"] == "fake-v1",
                         "TEST_GRANT_ONLY", "Delegated submission cannot replay an exact Grant Run")
             return receipt
         return None
@@ -307,7 +336,7 @@ class ExecutionService:
                 plan = document(connection, "plans", "plan_id", request["plan_id"])
                 if delegated_only:
                     require(plan["backend_id"] == "fake-v1" and "delegated_admission" in plan and "sanity" not in plan,
-                            "TEST_GRANT_ONLY", "Only delegated admission-only Fake Plans are eligible")
+                            "TEST_GRANT_ONLY", "Only registered delegated Fake Plans are eligible")
                 if 'sanity' in plan:
                     s = plan['sanity']
                     require(s['request_key']==request['idempotency_key'] and s['launch_budget']==1 and
@@ -336,7 +365,9 @@ class ExecutionService:
                        "solver_conclusion": "NOT_RUN", "artifact_validation": "NOT_RUN", "reconciliation": "NONE",
                        "revision": 1, "owner_id": self.store._session.owner_id, "owner_epoch": 1, "created_at": now()}
                 if delegated:
-                    run["admission_only"] = True
+                    run["admission_only"] = delegated["allowed_action"] != EXECUTE
+                    if not run["admission_only"]:
+                        run["delegated_execution"] = EXECUTE
                 if "dynamic_inp" in plan:
                     from .dynamic_inp import receipt_binding
 
@@ -498,6 +529,13 @@ class ExecutionService:
                         with self.store.read() as connection:
                             self._check(connection, context, plan, run["grant_id"], run_id)
                         emission = self._backend.emit(context, fixture, run)
+                elif run.get("delegated_execution") == EXECUTE:
+                    # Keep the Owner lock through the bounded in-process write so
+                    # revocation cannot interleave with the final authority check.
+                    with self.store.read() as connection:
+                        self.store._session.lease.check()
+                        self._check(connection, context, plan, run["grant_id"], run_id)
+                        emission = self._backend.emit(context, fixture, run)
                 else:
                     emission = self._backend.emit(context, fixture, run)
                 completed = True
@@ -526,6 +564,15 @@ class ExecutionService:
                 connection.execute("INSERT INTO observations VALUES(?,?,?)", (observation["observation_id"], run_id, canonical_json(observation)))
                 connection.execute("INSERT INTO validations VALUES(?,?,?)", (validation["validation_id"], run_id, canonical_json(validation)))
                 finish = {}
+                if run.get("delegated_execution") == EXECUTE:
+                    finish["fake_result_evidence"] = {
+                        "contract": "delegated-fake-result-v1", "simulation": True,
+                        "backend_id": observation["provenance"], "run_id": observation["run_id"],
+                        "phase_attempt_id": observation["phase_attempt_id"], "observation_id": observation["observation_id"],
+                        "validation_id": validation["validation_id"], "verdict": validation["verdict"],
+                        "digest": observation["digest"], "size": observation["size"],
+                        "result": observation.get("verified_result"),
+                    }
                 if simulation:
                     finish = {"execution_phase": "EVIDENCE_RECORDED",
                               "simulation_receipt": completion_receipt(connection, plan, run, observation, validation)}

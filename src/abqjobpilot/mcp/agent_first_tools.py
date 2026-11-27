@@ -42,6 +42,8 @@ class AgentFirstTools:
                     and DELEGATED_GRANT_STATUS in operations else "UNAVAILABLE",
                     "abq_submit_job": "TEST_ONLY_DELEGATED_ADMISSION" if delegated["delegation_enabled"]
                     and SUBMIT_DELEGATED in operations else "UNAVAILABLE",
+                    "delegated_fake_execution": "TEST_ONLY" if delegated.get("delegated_fake_execution")
+                    and SUBMIT_DELEGATED in operations else "UNAVAILABLE",
                     "abq_get_run_status": "AVAILABLE" if "run" in operations else "UNAVAILABLE",
                     "abq_get_receipt": "AVAILABLE" if "receipt" in operations else "UNAVAILABLE",
                     "abq_extract_odb": "UNAVAILABLE",
@@ -78,7 +80,8 @@ class AgentFirstTools:
             progress = client.progress(run_id)
         else:
             progress = {"status": "NOT_APPLICABLE" if backend == "fake-v1" else "UNAVAILABLE", "records": []}
-        return {"run": {key: run[key] for key in RUN_FIELDS if key in run}, "progress": progress}
+        live_fields = (*RUN_FIELDS, "delegated_execution", "fake_result_evidence")
+        return {"run": {key: run[key] for key in live_fields if key in run}, "progress": progress}
 
     def receipt(self, idempotency_key):
         text(idempotency_key)

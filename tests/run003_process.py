@@ -23,6 +23,12 @@ from execution_helpers import guard_environment
 from reconciliation_helpers import FakeManagementFixture
 
 
+def publish_json(path, value):
+    temporary = path.with_suffix(".partial")
+    temporary.write_text(canonical_json(value), encoding="utf-8")
+    temporary.replace(path)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--test-root", required=True)
@@ -34,9 +40,7 @@ def main():
     control = config_path.parent
     # Publish only a complete identity. The parent intentionally treats file
     # visibility as the handshake boundary before retaining the kernel handle.
-    identity_temporary = control / "identity.partial"
-    identity_temporary.write_text(canonical_json(current_process_identity()), encoding="utf-8")
-    identity_temporary.replace(control / "identity.json")
+    publish_json(control / "identity.json", current_process_identity())
     identity_deadline = time.monotonic() + 12
     while not (control / "identity-bound.json").exists():
         if time.monotonic() >= identity_deadline:
@@ -131,7 +135,7 @@ def main():
                     occurrences[name] = occurrences.get(name, 0) + 1
                     occurrence = occurrences[name]
                 label = (name + (":" + str(occurrence) if occurrence > 1 else "")).replace(":", "_")
-                (control / (label + ".reached.json")).write_text(canonical_json({"stage": name, "process": current_process_identity()}), encoding="utf-8")
+                publish_json(control / (label + ".reached.json"), {"stage": name, "process": current_process_identity()})
                 deadline = time.monotonic() + 30
                 while not (control / (label + ".release.json")).exists():
                     if time.monotonic() >= deadline:
@@ -176,7 +180,7 @@ def main():
             client = FakeClient(endpoint, config["credential"])
             operation = config["operation"]
             result = client.call(operation, config["arguments"])
-            (control / "result.json").write_text(canonical_json(result), encoding="utf-8")
+            publish_json(control / "result.json", result)
             # An explicit client wait can be terminated by the owning test handle.
             if config.get("wait_after_response"):
                 while True:
@@ -192,7 +196,7 @@ def main():
                     errors.append("UNEXPECTED_OWNER")
                 except ExecutionError as exc:
                     errors.append(exc.code)
-            (control / "result.json").write_text(canonical_json(errors), encoding="utf-8")
+            publish_json(control / "result.json", errors)
         else:
             raise AssertionError("Unknown test harness mode")
     except ExecutionError as exc:

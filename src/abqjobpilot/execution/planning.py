@@ -3,7 +3,7 @@
 import os
 import stat
 
-from .delegated_grant import input_root, plan_resources
+from .delegated_grant import EXECUTE, input_root, plan_resources
 from .models import (CANONICAL, RESOURCES, ConfigSnapshot, ExecutionPlan, JobSpec,
                      bytes_digest, digest, fields, identifier, integer, now, require, text)
 from .paths import confined
@@ -45,7 +45,7 @@ def input_manifest(context, refs, *, delegated=False):
     return result
 
 
-def prepare_plan(context, spec, config, expires_at, *, delegated_resources=None, candidate=None):
+def prepare_plan(context, spec, config, expires_at, *, delegated_resources=None, candidate=None, delegated_execution=None):
     require(type(spec) is JobSpec, "INVALID_REQUEST", "Expected JobSpec")
     value = spec.to_dict()
     fields(value, ("job_id", "revision", "project_id", "project_instance_id", "input_refs", "resources", "metadata"))
@@ -61,6 +61,9 @@ def prepare_plan(context, spec, config, expires_at, *, delegated_resources=None,
     integer(expires_at)
     require(expires_at > now(), "PLAN_EXPIRED", "Plan must expire in the future")
     delegated = delegated_resources is not None
+    if delegated_execution is not None:
+        require(delegated and candidate is None and delegated_execution == EXECUTE,
+                "DELEGATED_SCOPE_MISMATCH", "Delegated execution requires the fixed TXT Fake Plan")
     if delegated:
         plan_resources(delegated_resources)
     if candidate is not None:
@@ -84,6 +87,8 @@ def prepare_plan(context, spec, config, expires_at, *, delegated_resources=None,
             "canonicalization": CANONICAL}
     if delegated:
         plan["delegated_admission"] = delegated_resources
+    if delegated_execution is not None:
+        plan["delegated_execution"] = delegated_execution
     if candidate is not None:
         plan["dynamic_inp"] = candidate
     return ExecutionPlan.from_dict({**plan, "plan_digest": digest(plan)})
