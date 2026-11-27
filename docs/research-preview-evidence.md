@@ -2,7 +2,7 @@
 
 ## The reproducible result
 
-INT-002A.1 passed the engineering checkout's **250 targeted offline tests**, with zero failures, errors or skips in the final run. The public checkout carries the delegated execution change and a selected test set. A publication check ran 42 tests from the bridge, delegated Grant, budget and historical MCP modules against this public tree. The [Windows stdio demo](../README.md#try-one-test_only-job-over-real-mcp-stdio) runs one of those tests with a new Project each time.
+INT-002A.1 passed the engineering checkout's **250 targeted offline tests**, with zero failures, errors or skips in the final run. The public checkout carries the delegated execution change and a selected test set. A publication check ran 42 tests from the bridge, delegated Grant, budget and historical MCP modules against this public tree. The [Windows stdio demo](https://github.com/BrunelXian/AbqJobPilot/blob/779b2990aa49d006414acaf2f7027bd647edb6fd/README.md#try-one-test_only-job-over-real-mcp-stdio) runs one of those tests with a new Project each time.
 
 | Observation in the demo | Evidence |
 | --- | --- |

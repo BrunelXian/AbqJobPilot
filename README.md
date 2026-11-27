@@ -1,83 +1,46 @@
-# AbqJobPilot · Public Research Preview
+# AbqJobPilot
 
-**Current development: 0.5.3 DEV** · Windows desktop · [Stable 0.2.2 installation](https://github.com/BrunelXian/AbqJobPilot/tree/main#installation) · [Evidence and qualification limits](docs/research-preview-evidence.md)
+**1.0.0 release candidate · Windows x64 · MIT**
 
-AbqJobPilot manages Abaqus jobs and records the evidence behind each result. An Abaqus user can open a Project, inspect its queue and review its run history in a Native Tk desktop application. A research client such as [VeriCAE Research Preview](https://github.com/BrunelXian/Goal-Driven-CAE-Orchestrator/tree/codex/vericae-0.5.5-public) can submit a bounded request and later reconnect to read the same Run and Receipt.
+[Installation and release notes](docs/RELEASE_1_0_0.md) · [Package verification](docs/LAUNCH_100_ABQ_PUBLIC_PACKAGE_FIX.md) · [Stable 0.2.2](https://github.com/BrunelXian/AbqJobPilot/tree/main)
 
-![AbqJobPilot DEV native Windows workspace with an empty queue and results table](docs/images/native-tk-preview.png)
+AbqJobPilot is a Windows desktop application for managing Abaqus jobs and keeping the evidence behind each result. Use the GUI to organize Projects, inspect the queue and review job history. Research clients such as VeriCAE can use MCP to look up the same Run and Receipt.
 
-*The DEV workspace in Light mode, captured from a fresh local profile with no Project selected or Owner running.*
+![Native Tk desktop showing the Project selector, navigation, job queue and results](docs/images/native-tk-preview.png)
 
-## Open the Windows GUI
+*The Native Tk workspace, captured on the 0.5.3 development baseline with an empty profile. The 1.0.0 candidate retains this interface.*
 
-Use 64-bit CPython 3.12 for Windows with Tcl/Tk. From PowerShell:
+## Get started on Windows
 
-```powershell
-git clone --branch dev/0.5.3 --single-branch https://github.com/BrunelXian/AbqJobPilot.git
-cd AbqJobPilot
-py -3.12-64 .\src\launch_gui.py --check
-py -3.12-64 .\src\launch_gui.py
-```
+The installer is pending publication. The release branch is available for source review. When the binary is released:
 
-The first invocation checks the desktop runtime. The GUI and Project management work without an Abaqus installation. Use **Project** to create, open or switch to a recent Project. In **Settings → Abaqus Environments**, use **Auto Detect** or **Add Manually** to find a launcher, save a global default, or select a Project-specific environment. **Validate** checks the launcher's files and identity. Actual solver and license availability require separate verification.
+1. Compare the SHA-256 of `AbqJobPilot-1.0.0-Windows-x64-Setup.exe` with the [candidate checksum](packaging/SHA256SUMS.txt). In PowerShell, run `Get-FileHash .\AbqJobPilot-1.0.0-Windows-x64-Setup.exe -Algorithm SHA256`. The candidate is unsigned.
+2. Run Setup as your normal Windows user and open **AbqJobPilot-1.0.0** from Start. Python and Tk are included. Keep Projects outside the install directory.
+3. Choose **Project → New Project** or **Open Project**. The Project selector shows the active name and provides the recent-project list. You can use Project management and inspect the queue without Abaqus installed.
+4. Open **Settings → Abaqus Environments**. Choose **Auto Detect** or **Add Manually**, select your installation’s Abaqus BAT file, then choose **Set Default** and **Validate**. An individual Project can select another configured environment. Validation checks the launcher’s file identity and availability. Solver and license availability require separate checks.
 
-## Follow a job from request to result
+To open the GUI from this source branch with Windows x64 CPython 3.12 and Tcl/Tk, run `py -3.12-64 .\src\launch_gui.py --check`, then `py -3.12-64 .\src\launch_gui.py`.
 
-| Record or component | What it tells you |
+## From queue to evidence
+
+| Component | What you can establish |
 | --- | --- |
-| Project and Plan | The Project identifies the workspace and instance. The frozen Plan binds a job revision, inputs, resource limits, backend and digest. |
-| Grant | A trusted operator approves specific actions against exact Plan digests and a finite budget with an expiry. Ordinary MCP clients can query Grant status. |
-| Supervisor and Owner | The Supervisor hosts the authenticated local service. Its Owner controls admission, dispatch and the execution slot. A committed acceptance consumes one unit of delegated budget. |
-| Run and Receipt | Look up the original acceptance Receipt by the submission's business key, then read its Run by ID. The Run records its Attempt, execution state and validation evidence. An acceptance Receipt can exist before execution finishes. |
-| Results and verdicts | The INP/ODB paths can record input and output identity and SHA-256 provenance. Execution separates solver outcome, process containment and qualification. Extraction also reports result-data integrity; ODB reading requires its own scoped authorization. |
+| Project and Plan | Which Project instance, job revision, input identity, resource bounds and backend a request targets. |
+| Grant, Owner and Supervisor | A trusted operator approves a bounded operation. The authenticated Owner checks admission and accounts for the budget. The Supervisor manages permitted execution. |
+| Run and Receipt | Whether the original request was accepted, which Run and Attempt it created, and which lifecycle and validation evidence actually exists. |
+| Result provenance | Eligible operations can bind inputs and artifacts by SHA-256. ODB result extraction requires a separately scoped read authorization. Execution and extraction qualifications are reported independently of observed results. |
 
-The live Agent-first MCP offers environment, Grant, submit, Run, Receipt and controlled extraction tools. Tool discovery alone cannot establish Owner availability or authorization. Its separate historical read-only profile exposes environment identity, Run status and Receipt lookup for eligible stored records.
+## Connect a research client
 
-## Try one TEST_ONLY job over real MCP stdio
+The installed `AbqJobPilotCLI\AbqJobPilotCLI.exe` serves Classic MCP with `mcp --project "<existing-project>"` and Agent-first MCP with `agent-mcp --project "<existing-project>"`. A live Agent-first session uses the original authenticated Owner connection. Store its connection document privately. Each transport uses standard input and output.
 
-This Windows integration test prepares a disposable Project and an exact one-use Fake Grant. A real MCP client connects over stdio, submits to a separate authenticated Owner process, disconnects after dispatch, and reconnects to check the original Receipt and result. Abaqus, a license server, a production Project and a Desktop MCP registration are unnecessary.
+The installed candidate passed real stdio initialization and discovery for five Classic and six Agent-first tools. UAT-100 verified Desktop read-only communication on the development baseline. A separate bounded TEST_ONLY execution test demonstrated same-Run readback using the Fake backend. [VeriCAE preview](https://github.com/BrunelXian/Goal-Driven-CAE-Orchestrator/tree/codex/vericae-0.5.5-public) · [Evidence and qualification limits](docs/research-preview-evidence.md)
 
-From the DEV checkout, prepare a private Python environment for the demo:
+## Known limitations
 
-```powershell
-py -3.12-64 -m venv .venv-preview
-$python = (Resolve-Path .\.venv-preview\Scripts\python.exe).Path
-& $python -m pip install -r .\src\requirements-mcp.txt "pytest>=8,<10"
-```
+- **General REAL execution remains unqualified.** INSTALL-02 still needs to bind the selected environment to general new Plans and revalidate it before dispatch. The public candidate ships with unprovisioned site contracts.
+- **An interrupted Owner requires reconciliation.** Preserve the original business key, Grant, Run, Attempt and Receipt. Query existing evidence before considering another submission. Unknown acceptance or execution carries no automatic retry or budget refund.
+- **Read a verdict in context.** A solver can complete while execution qualification remains `REVIEW_REQUIRED`. Historical INT-001 retained an overall `PARTIAL` verdict and its original failed extraction Receipt.
+- The installer passed non-administrator installation, startup and removal on the build host. Independent clean-machine acceptance and public release approval are pending.
 
-In the same PowerShell session, run the named test using a fresh temporary output directory:
-
-```powershell
-$env:PYTHONPATH = (Resolve-Path .\src).Path
-$env:PYTHONDONTWRITEBYTECODE = '1'
-$env:PYTEST_DISABLE_PLUGIN_AUTOLOAD = '1'
-$demo = Join-Path ([IO.Path]::GetTempPath()) ("abq-preview-" + [guid]::NewGuid().ToString("N"))
-& $python -B -m pytest -q -p no:cacheprovider --basetemp="$demo" tests/test_delegated_fake_execution.py::test_same_run_stdio_submit_dispatch_result_and_reconnect
-```
-
-Expect `1 passed`. Inspect the proof that the test saved from the actual protocol replies:
-
-```powershell
-$proofFile = Get-ChildItem -LiteralPath $demo -Filter bridge-proof.json -File -Recurse
-$proof = Get-Content -Raw -LiteralPath $proofFile.FullName | ConvertFrom-Json
-$proof.events
-$proof.terminal | Select-Object run_id, phase_attempt_id, execution, backend_outcome, solver_conclusion
-$proof.terminal.fake_result_evidence | Select-Object verdict, digest, size
-$proof.grant | Select-Object consumed, remaining
-```
-
-The Owner records `REQUEST_ACCEPTED → START_INTENT → FAKE_COMPLETED → VALIDATION_RECORDED`. The test compares the readback to the actual Fake JSON bytes, verifies that replay returns the same Receipt, and checks that a second key is rejected after the single unit is spent. Expected values include `FINISHED`, `solver_conclusion=NOT_RUN`, `consumed=1` and `remaining=0`.
-
-## Qualification and roadmap
-
-| Area | Current public claim |
-| --- | --- |
-| GUI-01 / INSTALL-01 | Project navigation and environment management passed manual acceptance. |
-| INT-001 · historical real Abaqus evidence | Read-only MCP integration and the scientific cross-check succeeded. Overall **PARTIAL**. Execution and extraction qualification both remain **REVIEW_REQUIRED**. The historical extraction Receipt is **FAILED**, with result-data integrity **INSUFFICIENT**. |
-| INT-002A.1 · delegated Fake execution | **TEST_ONLY PASS**. Engineering acceptance covered 250 targeted tests. The demo above exercises one same-Run path; real solver status is **NOT_RUN**. |
-| INT-002B · new VeriCAE research task | Planning **PASS**. Execution **BLOCKED / STOPPED** with zero new submissions reported. The original Owner became unavailable and the current budget is unknown. |
-| INSTALL-02 · general REAL execution | **NOT_READY**. The remaining work is to bind the selected environment to a new general-purpose solver Plan, recheck it at Owner dispatch and qualify that path end to end. |
-
-The public tree contains selected source, tests and a sanitized evidence summary. Real HIL records, site configuration and private execution artifacts stay outside the preview. Future integration needs a separately authorized Owner handoff and independent validation of the resulting evidence.
-
-[License](src/LICENSE)
+[MIT license](LICENSE) · [Changelog](CHANGELOG.md)

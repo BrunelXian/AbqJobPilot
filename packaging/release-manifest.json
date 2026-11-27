@@ -1,0 +1,19 @@
+{
+  "product": "AbqJobPilot",
+  "version": "1.0.0",
+  "channel": "public-candidate",
+  "platform": "windows-x64",
+  "source_commit": "34632670680c25227c851a2368d9f3b0d8987e86",
+  "build_id": "sha256:86229294dfde94e3d4cbd4b7b5a1a8e88cf992fb174a983da2dee2b080cbf3d1",
+  "asset": "AbqJobPilot-1.0.0-Windows-x64-Setup.exe",
+  "size_bytes": 71418880,
+  "sha256": "078392d3ccc09c6a6af2f14e8fb7139c127be2b2951db60734bfd504bf22984d",
+  "authenticode_signed": false,
+  "independent_clean_machine_test": "PENDING",
+  "indexed_payload_files": 3618,
+  "uninstall_smoke": "PASS",
+  "installed_stdio_tools": {
+    "classic": 5,
+    "agent_first": 6
+  }
+}
