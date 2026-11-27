@@ -1,0 +1,9 @@
+settings_schema_version = 1
+setGUIskin = "default"
+language = "en"
+appearance = "light"
+ui_scale = 1.0
+restore_window = true
+auto_connect_last_project = false
+auto_start_owner = false
+check_updates = true

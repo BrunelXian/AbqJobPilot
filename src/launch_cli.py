@@ -10,7 +10,7 @@ def main():
     if not args:
         build = current_build_metadata()
         print(json.dumps({**{key: build[key] for key in ('product', 'version', 'candidate')},
-                          'interfaces': ['agent', 'classic', 'mcp', 'sanity', 'operator'],
+                          'interfaces': ['agent', 'classic', 'mcp', 'agent-mcp', 'sanity', 'operator'],
                           'real_execution': 'EXACT_TRUSTED_SANITY_GRANT_REQUIRED'}))
         return 0
     mode=args.pop(0);sys.argv=[sys.argv[0],*args]
@@ -20,6 +20,8 @@ def main():
         from abqjobpilot.api.cli import main as command
     elif mode=='mcp':
         from abqjobpilot.mcp.server import main as command
+    elif mode=='agent-mcp':
+        from abqjobpilot.mcp.agent_first_server import main as command
     elif mode=='sanity':
         from sanity_cli import main as command
     elif mode=='operator':

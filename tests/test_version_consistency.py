@@ -15,16 +15,16 @@ from abqjobpilot.sanity_api import VERSION as SANITY_CONTRACT
 import launch_cli
 
 SOURCE = Path(__file__).resolve().parents[1] / "src"
-EXPECTED_VERSION = "0.5.3"
+EXPECTED_VERSION = "1.0.0"
 
 
-def test_05_product_version_is_consistent_across_runtime_surfaces(tmp_path, monkeypatch, capsys):
+def test_product_version_is_consistent_across_runtime_surfaces(tmp_path, monkeypatch, capsys):
     version = EXPECTED_VERSION
     build = current_build_metadata()
     assert __version__ == application_runtime.PRODUCT_VERSION == gui_app.__version__ == build["version"] == version
-    assert build["runtime_mode"] == "Source" and build["qualification"] == "TEST_ONLY_NOT_FOR_RELEASE"
-    assert gui_app.AbqJobPilotApp._texts(SimpleNamespace(lang="en"))["about"]["build"] == "Development build"
-    assert gui_app.AbqJobPilotApp._texts(SimpleNamespace(lang="zh"))["about"]["build"] == "开发版本"
+    assert build["runtime_mode"] == "Source" and build["qualification"] == "SOURCE_UNQUALIFIED"
+    assert gui_app.AbqJobPilotApp._texts(SimpleNamespace(lang="en"))["about"]["build"] == "Build"
+    assert gui_app.AbqJobPilotApp._texts(SimpleNamespace(lang="zh"))["about"]["build"] == "构建版本"
 
     client = AbqJobPilotClient(runtime_dir=str(tmp_path / "runtime"), recent_file=str(tmp_path / "recent.json"))
     assert client.capabilities()["application_version"] == version

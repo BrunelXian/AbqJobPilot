@@ -184,7 +184,7 @@ class ExecutionView:
         self.lifecycle_threads=[];self.lifecycle_results=queue.Queue();self.lifecycle_generation=0
         self.lifecycle_busy=False
         self.next_page = self.selected_run_id = None
-        app.title('AbqJobPilot Dev '+__version__+' · 独立执行服务')
+        app.title('AbqJobPilot '+__version__+' · 独立执行服务')
         app._apply_icon(); app._set_initial_geometry(); app._configure_styles()
         app.columnconfigure(0, weight=1); app.rowconfigure(2, weight=1)
         header = ttk.Frame(app, padding=12); header.grid(row=0, column=0, sticky='ew')

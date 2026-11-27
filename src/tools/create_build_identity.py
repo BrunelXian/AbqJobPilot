@@ -33,6 +33,7 @@ def main():
     parser.add_argument('--output', required=True, type=Path)
     parser.add_argument('--test-only', action='store_true',
                         help='mark an isolated, non-release qualification image')
+    parser.add_argument('--release-icon', action='store_true')
     args = parser.parse_args()
     if not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", PRODUCT_VERSION) or not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", SKIN_API_VERSION):
         raise SystemExit('INVALID_BUILD_VERSION')
@@ -63,7 +64,7 @@ def main():
         'app_id': APP_ID,
         'product_version': PRODUCT_VERSION,
         'skin_api_version': SKIN_API_VERSION,
-        'icon_variant': 'development',
+        'icon_variant': 'release' if args.release_icon else 'development',
         'icon_set': 'antigravity-approved-B-dark',
         'roles': ['gui', 'owner', 'client'],
         'identity_schema': 1,
