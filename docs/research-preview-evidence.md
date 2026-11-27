@@ -17,7 +17,7 @@ The suite also checks the failure path. Killing the isolated Owner after claim l
 
 ## Historical real-solver evidence
 
-INT-001 read existing Abaqus records through the historical MCP interface. The scientific cross-check succeeded and the overall decision was **PARTIAL**. The solver completed, while unexplained auxiliary process exits kept Execution Qualification at **REVIEW_REQUIRED**. The recorded ODB source was trusted. Abaqus Python produced a diagnostic JSON value, but the original extraction Receipt remains **FAILED**, Extraction Qualification **REVIEW_REQUIRED** and Result Data Integrity **INSUFFICIENT**. The historical output lacks the Owner-bound output digest needed for full integrity verification.
+[INT-001](https://github.com/BrunelXian/Goal-Driven-CAE-Orchestrator/blob/codex/vericae-0.5.5-public/docs/vericae/demo/README.md) read existing Abaqus records through the historical MCP interface. The scientific cross-check succeeded and the overall decision was **PARTIAL**. The solver completed, while unexplained auxiliary process exits kept Execution Qualification at **REVIEW_REQUIRED**. The recorded ODB source was trusted. Abaqus Python produced a diagnostic JSON value, but the original extraction Receipt remains **FAILED**, Extraction Qualification **REVIEW_REQUIRED** and Result Data Integrity **INSUFFICIENT**. The historical output lacks the Owner-bound output digest needed for full integrity verification.
 
 INT-002B is a separate new-task integration. Research planning passed. Execution is **BLOCKED / STOPPED** with zero new submissions reported. After loss of the original Owner, a current Grant balance could not be confirmed. The public demo uses its own disposable Owner, Project, Grant and test request.
 

@@ -2,7 +2,7 @@
 
 **Current development: 0.5.3 DEV** · Windows desktop · [Stable 0.2.2 installation](https://github.com/BrunelXian/AbqJobPilot/tree/main#installation) · [Evidence and qualification limits](docs/research-preview-evidence.md)
 
-AbqJobPilot manages Abaqus jobs and records the evidence behind each result. An Abaqus user can open a Project, inspect its queue and review its run history in a Native Tk desktop application. A research client such as [VeriCAE](https://github.com/BrunelXian/Goal-Driven-CAE-Orchestrator) can submit a bounded request and later reconnect to read the same Run and Receipt.
+AbqJobPilot manages Abaqus jobs and records the evidence behind each result. An Abaqus user can open a Project, inspect its queue and review its run history in a Native Tk desktop application. A research client such as [VeriCAE Research Preview](https://github.com/BrunelXian/Goal-Driven-CAE-Orchestrator/tree/codex/vericae-0.5.5-public) can submit a bounded request and later reconnect to read the same Run and Receipt.
 
 ![AbqJobPilot DEV native Windows workspace with an empty queue and results table](docs/images/native-tk-preview.png)
 
