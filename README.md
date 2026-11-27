@@ -19,6 +19,12 @@ A local Windows desktop application for submitting and monitoring Abaqus `.inp` 
 
 </div>
 
+> [!NOTE]
+> **Public Research Preview · 0.5.3 DEV**
+> Explore the Windows GUI and run a local TEST_ONLY job through real MCP stdio. The demo uses a disposable Project and Fake backend and requires no Abaqus installation. Stable 0.2.2 installation instructions continue below.
+>
+> [Open the DEV guide and GUI screenshot](https://github.com/BrunelXian/AbqJobPilot/tree/dev/0.5.3#readme) · [Qualification results and limits](https://github.com/BrunelXian/AbqJobPilot/blob/dev/0.5.3/docs/research-preview-evidence.md)
+
 ## Overview
 
 Abaqus parameter studies and simulation batches are often managed through separate command windows, manually inspected solver logs, and loose collections of result files. **AbqJobPilot** brings the operational parts together: a sequential job queue, live status and resource monitoring, Project-scoped run history, and a conservative execution/recovery model.
