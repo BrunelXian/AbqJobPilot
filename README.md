@@ -34,7 +34,7 @@ To open the GUI from this source branch with Windows x64 CPython 3.12 and Tcl/Tk
 
 The installed `AbqJobPilotCLI\AbqJobPilotCLI.exe` serves Classic MCP with `mcp --project "<existing-project>"` and Agent-first MCP with `agent-mcp --project "<existing-project>"`. A live Agent-first session uses the original authenticated Owner connection. Store its connection document privately. Each transport uses standard input and output.
 
-The installed 1.0.0 build passed real stdio initialization and discovery for five Classic and six Agent-first tools. UAT-100 verified Desktop read-only communication on the development baseline. A separate bounded TEST_ONLY execution test demonstrated same-Run readback using the Fake backend. [VeriCAE preview](https://github.com/BrunelXian/Goal-Driven-CAE-Orchestrator/tree/codex/vericae-0.5.5-public) · [Evidence and qualification limits](docs/research-preview-evidence.md)
+The installed 1.0.0 build passed real stdio initialization and discovery for five Classic and six Agent-first tools. UAT-100 verified Desktop read-only communication on the development baseline. A separate bounded TEST_ONLY execution test demonstrated same-Run readback using the Fake backend. [VeriCAE 1.0.0](https://github.com/BrunelXian/Goal-Driven-CAE-Orchestrator/releases/tag/v1.0.0) · [Evidence and qualification limits](docs/research-preview-evidence.md)
 
 ## Known limitations
 
